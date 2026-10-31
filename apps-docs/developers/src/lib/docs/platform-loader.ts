@@ -27,11 +27,16 @@ export const createPlatformDocsLoader =
 
     const runtime = getPlatformDocsRuntime(params.platform)
     const data = await runtime.createDocsLoader()({ params })
+    const { page } = runtime.getDocsPage({
+      slugs: params._splat?.split('/').filter(Boolean) ?? [],
+      lang: data.locale
+    })
     const routeBase = `/docs-ui/${params.platform}`
     const tree = runtime.source.getPageTree(data.locale)
 
     return {
       ...data,
+      image: page.data.image,
       pageTree: await runtime.source.serializePageTree({
         ...tree,
         $id: `${data.locale}:${routeBase}:${section.id}`,

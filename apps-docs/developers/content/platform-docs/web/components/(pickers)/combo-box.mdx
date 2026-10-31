@@ -19,7 +19,8 @@ import { ComboBox } from '@heroui/react';
 ```
 
 
-<ComponentPreview name="combo-box-default">
+<ComponentPreview
+  name="combo-box-default">
 
 ````tsx
 "use client";
@@ -109,7 +110,8 @@ export default () => (
 ### Full Width
 
 
-<ComponentPreview name="combo-box-full-width">
+<ComponentPreview
+  name="combo-box-full-width">
 
 ````tsx
 import {ComboBox, Input, Label, ListBox} from "@vezham/react-v3";
@@ -151,7 +153,8 @@ export function FullWidth() {
 ### With Description
 
 
-<ComponentPreview name="combo-box-with-description">
+<ComponentPreview
+  name="combo-box-with-description">
 
 ````tsx
 "use client";
@@ -206,7 +209,8 @@ export function WithDescription() {
 ### Required
 
 
-<ComponentPreview name="combo-box-required">
+<ComponentPreview
+  name="combo-box-required">
 
 ````tsx
 "use client";
@@ -276,7 +280,8 @@ export function Required() {
 ### Disabled
 
 
-<ComponentPreview name="combo-box-disabled">
+<ComponentPreview
+  name="combo-box-disabled">
 
 ````tsx
 "use client";
@@ -330,7 +335,8 @@ export function Disabled() {
 ### With Disabled Options
 
 
-<ComponentPreview name="combo-box-with-disabled-options">
+<ComponentPreview
+  name="combo-box-with-disabled-options">
 
 ````tsx
 "use client";
@@ -384,7 +390,8 @@ export function WithDisabledOptions() {
 ### With Sections
 
 
-<ComponentPreview name="combo-box-with-sections">
+<ComponentPreview
+  name="combo-box-with-sections">
 
 ````tsx
 "use client";
@@ -473,7 +480,8 @@ export function WithSections() {
 ### Controlled
 
 
-<ComponentPreview name="combo-box-controlled">
+<ComponentPreview
+  name="combo-box-controlled">
 
 ````tsx
 "use client";
@@ -546,7 +554,8 @@ export function Controlled() {
 ### Controlled Input Value
 
 
-<ComponentPreview name="combo-box-controlled-input-value">
+<ComponentPreview
+  name="combo-box-controlled-input-value">
 
 ````tsx
 "use client";
@@ -606,7 +615,8 @@ export function ControlledInputValue() {
 ### Asynchronous Loading
 
 
-<ComponentPreview name="combo-box-asynchronous-loading">
+<ComponentPreview
+  name="combo-box-asynchronous-loading">
 
 ````tsx
 "use client";
@@ -690,7 +700,8 @@ export function AsynchronousLoading() {
 ### Default Selected Key
 
 
-<ComponentPreview name="combo-box-default-selected-key">
+<ComponentPreview
+  name="combo-box-default-selected-key">
 
 ````tsx
 "use client";
@@ -744,7 +755,8 @@ export function DefaultSelectedKey() {
 ### Allows Custom Value
 
 
-<ComponentPreview name="combo-box-allows-custom-value">
+<ComponentPreview
+  name="combo-box-allows-custom-value">
 
 ````tsx
 "use client";
@@ -799,7 +811,8 @@ export function AllowsCustomValue() {
 ### Custom Indicator
 
 
-<ComponentPreview name="combo-box-custom-indicator">
+<ComponentPreview
+  name="combo-box-custom-indicator">
 
 ````tsx
 "use client";
@@ -856,7 +869,8 @@ export function CustomIndicator() {
 ### Custom Value
 
 
-<ComponentPreview name="combo-box-custom-value">
+<ComponentPreview
+  name="combo-box-custom-value">
 
 ````tsx
 "use client";
@@ -946,7 +960,8 @@ export function CustomValue() {
 ### Custom Filtering
 
 
-<ComponentPreview name="combo-box-custom-filtering">
+<ComponentPreview
+  name="combo-box-custom-filtering">
 
 ````tsx
 "use client";
@@ -997,7 +1012,8 @@ export function CustomFiltering() {
 ### Render Function
 
 
-<ComponentPreview name="combo-box-render-function">
+<ComponentPreview
+  name="combo-box-render-function">
 
 ````tsx
 "use client";
@@ -1057,7 +1073,8 @@ Use the `menuTrigger` prop to control when the popover opens:
 - `manual`: popover only opens when the user presses the trigger button or uses the arrow keys
 
 
-<ComponentPreview name="combo-box-menu-trigger">
+<ComponentPreview
+  name="combo-box-menu-trigger">
 
 ````tsx
 "use client";
@@ -1201,7 +1218,8 @@ export function MenuTrigger() {
 Use the `formValue` prop to control whether the selected item's key or text is submitted in forms. `key` is the default. When `allowsCustomValue` is true, the text is always submitted.
 
 
-<ComponentPreview name="combo-box-form-value">
+<ComponentPreview
+  name="combo-box-form-value">
 
 ````tsx
 "use client";
@@ -1298,7 +1316,8 @@ Use the `validationBehavior` prop to control how validation is displayed:
 - `aria`: shows errors in realtime and does not block submission
 
 
-<ComponentPreview name="combo-box-validation-behavior">
+<ComponentPreview
+  name="combo-box-validation-behavior">
 
 ````tsx
 "use client";
@@ -1405,7 +1424,8 @@ export function ValidationBehavior() {
 Use the `validate` prop to return an error message when the value is invalid, or `true` when it is valid.
 
 
-<ComponentPreview name="combo-box-custom-validation">
+<ComponentPreview
+  name="combo-box-custom-validation">
 
 ````tsx
 "use client";
@@ -1479,7 +1499,8 @@ export function CustomValidation() {
 Use the `isReadOnly` prop to make the ComboBox read-only. The selected value can be focused, but it cannot be changed.
 
 
-<ComponentPreview name="combo-box-read-only">
+<ComponentPreview
+  name="combo-box-read-only">
 
 ````tsx
 "use client";
@@ -1526,7 +1547,8 @@ export function ReadOnly() {
 Set `selectionMode="multiple"` to allow selecting more than one option. In multiple selection mode, use `ComboBox.Value` to display the selected items and pass `selectionMode="multiple"` to the inner `ListBox` as well. Selection is controlled with the `value` / `defaultValue` (`Key[]`) props and the `onChange` handler.
 
 
-<ComponentPreview name="combo-box-multiple-selection">
+<ComponentPreview
+  name="combo-box-multiple-selection">
 
 ````tsx
 "use client";
@@ -1583,7 +1605,8 @@ export function MultipleSelection() {
 When used inside a [Surface](/docs-ui/web/components/surface) component, use `variant="secondary"` to apply the lower emphasis variant suitable for surface backgrounds.
 
 
-<ComponentPreview name="combo-box-on-surface">
+<ComponentPreview
+  name="combo-box-on-surface">
 
 ````tsx
 "use client";

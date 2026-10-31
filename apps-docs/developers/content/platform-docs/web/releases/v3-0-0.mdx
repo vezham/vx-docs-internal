@@ -86,7 +86,8 @@ Here's what the compound pattern looks like in practice:
 More lines of code. But every piece is a real element you can style, move, or replace. The pattern runs through the entire library, from Accordion to Toast.
 
 
-<ComponentPreview name="accordion-basic">
+<ComponentPreview
+  name="accordion-basic">
 
 ````tsx
 import {
@@ -180,7 +181,8 @@ Each compound component shares state through React context. The root component c
 ```
 
 
-<ComponentPreview name="alert-basic">
+<ComponentPreview
+  name="alert-basic">
 
 ````tsx
 import {Alert, Button, CloseButton, Spinner} from "@vezham/react-v3";
@@ -303,7 +305,8 @@ Components support both simple and compound usage. Start with the one-liner. Add
 ```
 
 
-<ComponentPreview name="button-variants">
+<ComponentPreview
+  name="button-variants">
 
 ````tsx
 import {Button} from "@vezham/react-v3";
@@ -470,7 +473,8 @@ const MotionButton = motion(Button);
 Six components: Calendar, RangeCalendar, DateField, DatePicker, DateRangePicker, and TimeField. Built on React Aria's internationalized date library with Gregorian, Buddhist, Persian, and other calendar systems by default. Keyboard navigation, screen reader labels, and locale-aware formatting come free.
 
 
-<ComponentPreview name="date-picker-basic">
+<ComponentPreview
+  name="date-picker-basic">
 
 ````tsx
 "use client";
@@ -521,7 +525,8 @@ export function Basic() {
 
 
 
-<ComponentPreview name="range-calendar-basic">
+<ComponentPreview
+  name="range-calendar-basic">
 
 ````tsx
 "use client";
@@ -557,7 +562,8 @@ export function Basic() {
 Six color components: ColorPicker, ColorArea, ColorSlider, ColorField, ColorSwatch, and ColorSwatchPicker. Pick from a 2D area, adjust hue and alpha sliders, enter hex values, or select from a swatch palette.
 
 
-<ComponentPreview name="color-picker-basic">
+<ComponentPreview
+  name="color-picker-basic">
 
 ````tsx
 import {ColorArea, ColorPicker, ColorSlider, ColorSwatch, Label} from "@vezham/react-v3";
@@ -600,7 +606,8 @@ export function Basic() {
 Need a table with sorting, row selection, column resizing, async loading, and custom cells? Table does all of that. Large datasets get virtualization via React Aria's `Virtualizer`. ListBox shares the same virtualization support.
 
 
-<ComponentPreview name="table-virtualization">
+<ComponentPreview
+  name="table-virtualization">
 
 ````tsx
 "use client";
@@ -745,7 +752,8 @@ export function Virtualization() {
 Thirteen form components: TextField, Select, Autocomplete, ComboBox, Checkbox, CheckboxGroup, RadioGroup, Switch, InputOTP, NumberField, SearchField, Slider, and Fieldset. All integrate with React Aria's form validation. `isRequired`, `isInvalid`, and custom error messages through FieldError work across every one.
 
 
-<ComponentPreview name="select-default">
+<ComponentPreview
+  name="select-default">
 
 ````tsx
 import {Label, ListBox, Select} from "@vezham/react-v3";
@@ -795,7 +803,8 @@ export function Default() {
 
 
 
-<ComponentPreview name="input-otp-basic">
+<ComponentPreview
+  name="input-otp-basic">
 
 ````tsx
 import {InputOTP, Label, Link} from "@vezham/react-v3";
@@ -839,7 +848,8 @@ export function Basic() {
 Seven overlay components. Drawer supports four placements with drag-to-dismiss gestures. Toast stacks notifications with auto-dismiss and promise support. Menu composes with submenus and sections. Plus Modal, AlertDialog, Popover, and Tooltip.
 
 
-<ComponentPreview name="drawer-basic">
+<ComponentPreview
+  name="drawer-basic">
 
 ````tsx
 import {Button, Drawer} from "@vezham/react-v3";
@@ -878,7 +888,8 @@ export function Basic() {
 
 
 
-<ComponentPreview name="toast-default">
+<ComponentPreview
+  name="toast-default">
 
 ````tsx
 "use client";
@@ -920,7 +931,8 @@ export function Default() {
 Tabs, Accordion, Breadcrumbs, Pagination, and Link. Tabs support horizontal and vertical orientation. Accordion supports single or multiple expanded panels.
 
 
-<ComponentPreview name="tabs-basic">
+<ComponentPreview
+  name="tabs-basic">
 
 ````tsx
 import {Tabs} from "@vezham/react-v3";
@@ -966,7 +978,8 @@ export function Basic() {
 ProgressBar and ProgressCircle handle determinate + indeterminate states. Meter maps values to semantic colors: green for safe, yellow for cautious, red for critical. Skeleton and Spinner round out the set.
 
 
-<ComponentPreview name="meter-colors">
+<ComponentPreview
+  name="meter-colors">
 
 ````tsx
 import {Label, Meter} from "@vezham/react-v3";
@@ -1018,7 +1031,8 @@ export function Colors() {
 
 
 
-<ComponentPreview name="skeleton-basic">
+<ComponentPreview
+  name="skeleton-basic">
 
 ````tsx
 import {Skeleton} from "@vezham/react-v3";
@@ -1045,7 +1059,8 @@ export function Basic() {
 Button, ButtonGroup, ToggleButton, ToggleButtonGroup, CloseButton, and Toolbar. ButtonGroup connects buttons with shared borders and supports vertical orientation. Toolbar groups buttons, toggles, and separators into an accessible `role="toolbar"` container.
 
 
-<ComponentPreview name="toggle-button-group-attached">
+<ComponentPreview
+  name="toggle-button-group-attached">
 
 ````tsx
 import {Bold, Italic, Strikethrough, Underline} from "@gravity-ui/icons";

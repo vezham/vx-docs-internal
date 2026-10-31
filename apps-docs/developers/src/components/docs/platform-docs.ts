@@ -1,3 +1,5 @@
+import { z } from 'zod'
+
 import { defineDocs } from '@vezham/docs-mdx/macro'
 import {
   createStaticDocsRuntime,
@@ -6,10 +8,15 @@ import {
 } from '@vezham/start/runtime/docs'
 
 import { vxCore, vxDocs, vxI18n, vxMetadata } from '@generated/vx'
+
 import { componentLinksSchema } from '../../lib/docs/component-resources'
 
-const platformDocsPageSchema = docsPageSchema.extend({
-  links: componentLinksSchema.optional()
+export const platformDocsPageSchema = docsPageSchema.extend({
+  links: componentLinksSchema.optional(),
+  status: z.enum(['new', 'updated', 'preview', 'new-dot']).optional(),
+  image: z.string().optional(),
+  github: z.object({ pull: z.number().optional() }).optional(),
+  index: z.boolean().optional()
 })
 
 const webPlatformDocs = defineDocs({

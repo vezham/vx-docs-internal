@@ -14,7 +14,8 @@ test('accordion examples run locally and expose their source', async ({
     'Storybook',
     'React Aria',
     'Source',
-    'Styles source'
+    'Styles source',
+    'HeroUI'
   ])
   await expect(
     resources.getByRole('link', { name: 'Storybook', exact: true })
@@ -113,4 +114,64 @@ test('modal examples open and close locally', async ({ page }) => {
   await expect(dialog).toBeVisible()
   await dialog.getByRole('button', { name: 'Continue' }).click()
   await expect(dialog).toBeHidden()
+})
+
+test('source documentation retains colors, related content, and attribution', async ({
+  page
+}) => {
+  await page.goto('/docs-ui/web/getting-started/colors', {
+    waitUntil: 'networkidle'
+  })
+  const light = page
+    .getByRole('region', { name: 'light color tokens' })
+    .filter({
+      has: page.getByRole('button', {
+        name: 'Copy Background color',
+        exact: true
+      })
+    })
+    .first()
+  const dark = page
+    .getByRole('region', { name: 'dark color tokens' })
+    .filter({
+      has: page.getByRole('button', {
+        name: 'Copy Background color',
+        exact: true
+      })
+    })
+    .first()
+  const background = (region: typeof light) =>
+    region
+      .getByRole('button', { name: 'Copy Background color', exact: true })
+      .evaluate(element => getComputedStyle(element).backgroundColor)
+  expect(await background(light)).not.toBe(await background(dark))
+  await expect(
+    page.getByRole('button', { name: 'Copy Placeholder color', exact: true })
+  ).toHaveCount(2)
+
+  await page.goto('/docs-ui/web/components/accordion', {
+    waitUntil: 'networkidle'
+  })
+  await expect(page.locator('[aria-label="Related components"] a')).toHaveCount(
+    2
+  )
+  const preview = page.locator('[data-component-preview="accordion-basic"]')
+  await expect(preview.locator('[role="tabpanel"] > div')).toHaveCSS(
+    'min-height',
+    '400px'
+  )
+
+  await page.goto('/docs-ui/web/components/tabs', { waitUntil: 'networkidle' })
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('New')
+  await expect(
+    page.locator('[aria-label="Related showcases"] a')
+  ).toHaveAttribute(
+    'href',
+    'https://heroui.com/showcase/apple-iphone-camera-zoom'
+  )
+
+  await page.goto('/docs-ui/web/releases/v3-2-7', { waitUntil: 'networkidle' })
+  await expect(
+    page.getByRole('link', { name: 'Contributors to pull request #6892' })
+  ).toHaveAttribute('href', 'https://github.com/heroui-inc/heroui/pull/6892')
 })

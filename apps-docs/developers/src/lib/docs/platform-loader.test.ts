@@ -1,6 +1,9 @@
 import { deserializePageTree } from '@vezham/docs-core/source/client'
 
-import { getPlatformDocsRuntime } from '../../components/docs/platform-docs'
+import {
+  getPlatformDocsRuntime,
+  platformDocsPageSchema
+} from '../../components/docs/platform-docs'
 import { getPlatformSections } from '../../components/docs/platform-sections'
 import { getComponentResources } from './component-resources'
 import { createPlatformDocsLoader } from './platform-loader'
@@ -82,6 +85,24 @@ describe('UI documentation', () => {
         href: 'https://react-spectrum.adobe.com/react-aria/Form.html'
       }
     ])
+  })
+
+  it('retains status, release attribution, and social images', () => {
+    const runtime = getPlatformDocsRuntime('web')
+    expect(
+      runtime.getDocsPage({ slugs: ['components', 'tabs'] }).page.data.status
+    ).toBe('new')
+    expect(
+      runtime.getDocsPage({ slugs: ['getting-started', 'agents-md'] }).page.data
+        .status
+    ).toBe('preview')
+    const metadata = platformDocsPageSchema.parse({
+      title: 'Release',
+      github: { pull: 6892 },
+      image: 'https://example.com/cover.jpg'
+    })
+    expect(metadata.github).toEqual({ pull: 6892 })
+    expect(metadata.image).toBe('https://example.com/cover.jpg')
   })
 
   it('offers migration only on Web and rejects unknown platforms', async () => {

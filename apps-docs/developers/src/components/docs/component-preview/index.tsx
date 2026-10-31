@@ -1,4 +1,5 @@
 import {
+  type CSSProperties,
   Component,
   type ReactNode,
   Suspense,
@@ -18,6 +19,10 @@ import { PreviewSource } from './source'
 type Props = {
   children?: ReactNode
   name: string
+  align?: 'center' | 'start' | 'end'
+  isBgSolid?: boolean
+  minHeight?: string
+  style?: CSSProperties
 }
 
 type BoundaryProps = {
@@ -53,7 +58,14 @@ const previews: Partial<Record<string, ReturnType<typeof createDemo>>> =
     Object.entries(demos).map(([name, entry]) => [name, createDemo(entry)])
   )
 
-export const ComponentPreview = ({ children, name }: Props) => {
+export const ComponentPreview = ({
+  children,
+  name,
+  align = 'center',
+  isBgSolid,
+  minHeight,
+  style
+}: Props) => {
   const container = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
   const [attempt, setAttempt] = useState(0)
@@ -93,6 +105,7 @@ export const ComponentPreview = ({ children, name }: Props) => {
   return (
     <div
       ref={container}
+      style={style}
       data-component-preview={name}
       className="not-prose my-6 min-w-0">
       <Tabs defaultSelectedKey="preview" className="gap-3">
@@ -115,7 +128,17 @@ export const ComponentPreview = ({ children, name }: Props) => {
           </Tabs.List>
         </Tabs.ListContainer>
         <Tabs.Panel id="preview" className="m-0 p-0">
-          <div className="bg-background relative isolate flex min-h-40 w-full items-center justify-center overflow-x-auto rounded-xl border p-6 sm:p-8">
+          <div
+            style={{ minHeight }}
+            className={`relative isolate flex min-h-40 w-full overflow-x-auto rounded-xl border p-6 sm:p-8 ${isBgSolid ? 'bg-background' : ''} ${align === 'start' ? 'items-start justify-start' : align === 'end' ? 'items-end justify-end' : 'items-center justify-center'}`}
+            onClickCapture={event => {
+              const target = event.target
+              if (
+                target instanceof Element &&
+                target.closest('a')?.getAttribute('href') === '#'
+              )
+                event.preventDefault()
+            }}>
             {visible && Demo ? (
               <PreviewBoundary key={`${name}:${attempt}`} onRetry={retry}>
                 <Suspense

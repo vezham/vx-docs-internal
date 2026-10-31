@@ -20,7 +20,9 @@ import { Table } from '@heroui/react';
 ```
 
 
-<ComponentPreview name="table-basic">
+<ComponentPreview
+  name="table-basic"
+  minHeight="320px">
 
 ````tsx
 import {Table} from "@vezham/react-v3";
@@ -103,7 +105,9 @@ export default () => (
 ### Secondary Variant
 
 
-<ComponentPreview name="table-secondary-variant">
+<ComponentPreview
+  name="table-secondary-variant"
+  minHeight="320px">
 
 ````tsx
 import {Table} from "@vezham/react-v3";
@@ -160,7 +164,9 @@ export function SecondaryVariant() {
 Use `Table.LoadMore` for infinite scrolling. It renders a sentinel row that triggers `onLoadMore` when scrolled into view.
 
 
-<ComponentPreview name="table-async-loading">
+<ComponentPreview
+  name="table-async-loading"
+  minHeight="380px">
 
 ````tsx
 "use client";
@@ -334,7 +340,9 @@ export function AsyncLoading() {
 Columns can be made sortable using the `allowsSorting` prop on `Table.Column`. Use `sortDescriptor` and `onSortChange` on `Table.Content` to manage sort state. Wrap the label in `Table.SortableColumnHeader` and forward the `sortDirection` from the column's render prop to render the default ascending/descending indicator.
 
 
-<ComponentPreview name="table-sorting">
+<ComponentPreview
+  name="table-sorting"
+  minHeight="380px">
 
 ````tsx
 "use client";
@@ -451,7 +459,9 @@ export function Sorting() {
 Enable row selection with `selectionMode` on `Table.Content`. Use `Checkbox` with `slot="selection"` for select-all and per-row checkboxes.
 
 
-<ComponentPreview name="table-selection">
+<ComponentPreview
+  name="table-selection"
+  minHeight="380px">
 
 ````tsx
 "use client";
@@ -546,7 +556,9 @@ export function SelectionDemo() {
 Rows can be nested to display hierarchical data. Use the `treeColumn` prop to designate a column, and render a `Button` with `slot="chevron"` in that column’s cells so users can expand and collapse the row. Use the `expandedKeys` prop to control which rows are expanded.
 
 
-<ComponentPreview name="table-expandable-rows">
+<ComponentPreview
+  name="table-expandable-rows"
+  minHeight="420px">
 
 ````tsx
 "use client";
@@ -668,7 +680,9 @@ export function ExpandableRows() {
 Use `Table.Footer` to add a pagination component below the table.
 
 
-<ComponentPreview name="table-pagination">
+<ComponentPreview
+  name="table-pagination"
+  minHeight="400px">
 
 ````tsx
 "use client";
@@ -795,7 +809,9 @@ export function PaginationDemo() {
 Wrap the table in `Table.ResizableContainer` and add `Table.ColumnResizer` inside each resizable column.
 
 
-<ComponentPreview name="table-column-resizing">
+<ComponentPreview
+  name="table-column-resizing"
+  minHeight="420px">
 
 ````tsx
 import {Chip, Table} from "@vezham/react-v3";
@@ -889,7 +905,9 @@ export function ColumnResizing() {
 Use `renderEmptyState` on `Table.Body` to display a custom message when the table has no data.
 
 
-<ComponentPreview name="table-empty-state">
+<ComponentPreview
+  name="table-empty-state"
+  minHeight="300px">
 
 ````tsx
 "use client";
@@ -933,7 +951,9 @@ export function EmptyStateDemo() {
 Table supports virtualization through [Virtualizer](https://react-aria.adobe.com/Virtualizer), enabling efficient rendering of large datasets by displaying only the rows visible within the viewport.
 
 
-<ComponentPreview name="table-virtualization">
+<ComponentPreview
+  name="table-virtualization"
+  minHeight="380px">
 
 ````tsx
 "use client";
@@ -1081,7 +1101,9 @@ definitions, sorting, and pagination — while HeroUI handles styling and
 accessibility.
 
 
-<ComponentPreview name="table-tanstack-table">
+<ComponentPreview
+  name="table-tanstack-table"
+  minHeight="420px">
 
 ````tsx
 "use client";
@@ -1301,7 +1323,9 @@ export function TanstackTable() {
 ### Custom Cells
 
 
-<ComponentPreview name="table-custom-cells">
+<ComponentPreview
+  name="table-custom-cells"
+  minHeight="420px">
 
 ````tsx
 "use client";

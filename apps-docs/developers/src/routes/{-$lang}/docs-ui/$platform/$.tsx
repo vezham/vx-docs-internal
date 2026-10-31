@@ -124,9 +124,20 @@ const RouteComponent = () => {
 
 export const Route = createFileRoute('/{-$lang}/docs-ui/$platform/$')({
   component: RouteComponent,
-  head: ({ loaderData, params }) =>
-    getPlatformDocsRuntime(
+  head: ({ loaderData, params }) => {
+    const head = getPlatformDocsRuntime(
       params.platform === 'native' ? 'native' : 'web'
-    ).getDocsRouteHead(loaderData),
+    ).getDocsRouteHead(loaderData)
+    if (!loaderData?.image || !head.meta) return head
+    return {
+      ...head,
+      meta: head.meta.map(meta =>
+        ('property' in meta && meta.property === 'og:image') ||
+        ('name' in meta && meta.name === 'twitter:image')
+          ? { ...meta, content: loaderData.image }
+          : meta
+      )
+    }
+  },
   loader: createPlatformDocsLoader()
 })

@@ -1,12 +1,14 @@
-import { Link } from '@tanstack/react-router'
+import { Link, useParams } from '@tanstack/react-router'
 import { Suspense, use } from 'react'
 
 import { useDocsLoader } from '@vezham/docs-core/source/client'
+import { Chip } from '@vezham/react-v3'
 import { DocsLayout, DocsPage } from '@vezham/start/layouts/docs'
 import { getMDXComponents } from '@vezham/start/mdx'
 import type { DocsRoutePageProps } from '@vezham/start/pages/docs/route'
 
 import { ComponentLinks } from './component-links'
+import { PageMetadata } from './page-metadata'
 import type { getPlatformDocs } from './platform-docs'
 
 type Props = Omit<DocsRoutePageProps, 'docs'> & {
@@ -24,19 +26,42 @@ const Content = ({
   path: string
   markdownUrl: string
 }) => {
+  const { platform } = useParams({ strict: false })
   const page = docs.getPage(path)
   if (!page) throw new Error(`Unknown platform docs page: ${path}`)
   const { toc } = use(page.load())
   const MDX = page.body
   return (
     <DocsPage
-      title={page.title}
+      title={
+        <span className="inline-flex flex-wrap items-center gap-2">
+          {page.title}
+          {page.status && (
+            <Chip
+              size="sm"
+              variant="soft"
+              color={page.status === 'new' ? 'accent' : 'default'}>
+              <Chip.Label>
+                {page.status === 'new-dot'
+                  ? 'New'
+                  : `${page.status[0].toUpperCase()}${page.status.slice(1)}`}
+              </Chip.Label>
+            </Chip>
+          )}
+        </span>
+      }
       description={page.description}
       markdownUrl={markdownUrl}
       shell={shell}
       toc={toc}>
       <ComponentLinks links={page.links} />
-      <MDX components={components} />
+      <PageMetadata
+        value={{
+          platform: platform === 'native' ? 'native' : 'web',
+          github: page.github
+        }}>
+        <MDX components={components} />
+      </PageMetadata>
     </DocsPage>
   )
 }

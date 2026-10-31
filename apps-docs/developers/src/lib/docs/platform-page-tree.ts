@@ -1,5 +1,7 @@
 import type { Item, Node } from '@vezham/docs-core/page-tree'
 
+import { resolvePlatformIcon } from './platform-icons'
+
 type Props = {
   docsBase: string
   nodes: Node[]
@@ -23,9 +25,14 @@ const filterNodes = ({
 }: Props): Node[] =>
   nodes.flatMap((node): Node[] => {
     if (node.type === 'page') {
-      return matchesPlatform(node, docsBase, prefix) ? [node] : []
+      return matchesPlatform(node, docsBase, prefix)
+        ? [{ ...node, icon: resolvePlatformIcon(node.icon) }]
+        : []
     }
-    if (node.type === 'separator') return preserveSeparators ? [node] : []
+    if (node.type === 'separator')
+      return preserveSeparators
+        ? [{ ...node, icon: resolvePlatformIcon(node.icon) }]
+        : []
     if (node.type !== 'folder') return []
 
     const children = filterNodes({
@@ -42,13 +49,14 @@ const filterNodes = ({
     })
     const index =
       node.index && matchesPlatform(node.index, docsBase, prefix)
-        ? node.index
+        ? { ...node.index, icon: resolvePlatformIcon(node.index.icon) }
         : undefined
 
     return children.length || index
       ? [
           {
             ...node,
+            icon: resolvePlatformIcon(node.icon),
             defaultOpen: true,
             root: false,
             children,
