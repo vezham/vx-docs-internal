@@ -1,0 +1,21 @@
+[
+  "docs/image.png",
+  "docs/openapi/authentication/createUser/image.png",
+  "docs/openapi/authentication/getMe/image.png",
+  "docs/openapi/authentication/getToken/image.png",
+  "docs/openapi/celestial-bodies/createCelestialBody/image.png",
+  "docs/openapi/docs/getSearchIndex/image.png",
+  "docs/openapi/health/getHeartbeat/image.png",
+  "docs/openapi/planets/createPlanet/image.png",
+  "docs/openapi/planets/deletePlanet/image.png",
+  "docs/openapi/planets/getAllData/image.png",
+  "docs/openapi/planets/getPlanet/image.png",
+  "docs/openapi/planets/newplanet/image.png",
+  "docs/openapi/planets/updatePlanet/image.png",
+  "docs/openapi/planets/uploadImage/image.png",
+  "docs/openapi/vezham-demo/auth/image.png",
+  "docs/openapi/vezham-demo/overview/image.png",
+  "docs/overview/image.png",
+  "docs/test/image.png",
+  "image.png"
+]
