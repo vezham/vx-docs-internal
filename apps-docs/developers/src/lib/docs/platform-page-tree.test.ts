@@ -7,6 +7,22 @@ const filter = (nodes: Node[]) =>
   filterPlatformPageTree({ docsBase: '/docs', prefix: 'web', nodes })
 
 describe('platform page tree', () => {
+  it('keeps section labels when the index is listed as a child page', () => {
+    const overview = { type: 'separator', name: 'Overview' } as const
+    const handbook = { type: 'separator', name: 'Handbook' } as const
+    const index = page('/docs/web')
+    const guide = page('/docs/web/guide')
+    expect(
+      filter([
+        {
+          type: 'folder',
+          name: 'Web',
+          children: [overview, index, handbook, guide]
+        }
+      ])
+    ).toEqual([overview, index, handbook, guide])
+  })
+
   it('matches the exact platform and descendants within the docs base', () => {
     const index = page('/docs/web')
     const child = page('/docs/web/start')

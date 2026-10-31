@@ -1,5 +1,5 @@
 import { RouterProvider, createMemoryHistory } from '@tanstack/react-router'
-import { render, waitFor } from '@testing-library/react'
+import { fireEvent, render, waitFor } from '@testing-library/react'
 
 import { createRouter } from '@vezham/start/router/tanstack'
 
@@ -16,10 +16,46 @@ const renderApp = async (path = '/') => {
 
   await router.load()
 
-  return render(<RouterProvider router={router} />)
+  return { ...render(<RouterProvider router={router} />), router }
 }
 
 describe('App', () => {
+  it('switches a Web-only page to the Native introduction', async () => {
+    const animations = Object.getOwnPropertyDescriptor(
+      Element.prototype,
+      'getAnimations'
+    )
+    Object.defineProperty(Element.prototype, 'getAnimations', {
+      configurable: true,
+      value: () => []
+    })
+    vi.stubGlobal(
+      'IntersectionObserver',
+      class {
+        observe = () => undefined
+        unobserve = () => undefined
+        disconnect = () => undefined
+      }
+    )
+    try {
+      const { findAllByRole, router } = await renderApp(
+        '/docs-ui/web/migration'
+      )
+      const tabs = await findAllByRole('tab', { name: 'Native' })
+      fireEvent.click(tabs[0])
+      await waitFor(() =>
+        expect(router.state.location.pathname).toBe(
+          '/docs-ui/native/getting-started'
+        )
+      )
+    } finally {
+      vi.unstubAllGlobals()
+      if (animations)
+        Object.defineProperty(Element.prototype, 'getAnimations', animations)
+      else Reflect.deleteProperty(Element.prototype, 'getAnimations')
+    }
+  })
+
   it('uses the configured default language for the document', async () => {
     await renderApp()
 

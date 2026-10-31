@@ -4,6 +4,7 @@ type Props = {
   docsBase: string
   nodes: Node[]
   prefix: string
+  preserveSeparators?: boolean
 }
 
 const matchesPlatform = (node: Item, docsBase: string, prefix: string) => {
@@ -14,17 +15,30 @@ const matchesPlatform = (node: Item, docsBase: string, prefix: string) => {
   return path === prefix || path.startsWith(`${prefix}/`)
 }
 
-const filterNodes = ({ docsBase, nodes, prefix }: Props): Node[] =>
+const filterNodes = ({
+  docsBase,
+  nodes,
+  prefix,
+  preserveSeparators = false
+}: Props): Node[] =>
   nodes.flatMap((node): Node[] => {
     if (node.type === 'page') {
       return matchesPlatform(node, docsBase, prefix) ? [node] : []
     }
+    if (node.type === 'separator') return preserveSeparators ? [node] : []
     if (node.type !== 'folder') return []
 
     const children = filterNodes({
       docsBase,
       nodes: node.children,
-      prefix
+      prefix,
+      preserveSeparators:
+        preserveSeparators ||
+        Boolean(node.index && matchesPlatform(node.index, docsBase, prefix)) ||
+        node.children.some(
+          child =>
+            child.type === 'page' && matchesPlatform(child, docsBase, prefix)
+        )
     })
     const index =
       node.index && matchesPlatform(node.index, docsBase, prefix)

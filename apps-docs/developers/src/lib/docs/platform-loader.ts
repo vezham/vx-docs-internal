@@ -4,7 +4,7 @@ import { localizedUrl } from '@vezham/start/runtime/docs'
 
 import { i18n } from '@app/docs'
 import { getPlatformDocsRuntime } from '@components/docs/platform-docs'
-import { platformSections } from '@components/docs/platform-sections'
+import { getPlatformSections } from '@components/docs/platform-sections'
 import { filterPlatformPageTree } from '@src/lib/docs/platform-page-tree'
 
 type Params = {
@@ -20,12 +20,14 @@ export const createPlatformDocsLoader =
       throw notFound()
 
     const sectionId = params._splat?.split('/')[0]
-    const section = platformSections.find(item => item.id === sectionId)
+    const section = getPlatformSections(params.platform).find(
+      item => item.id === sectionId
+    )
     if (!section) throw notFound()
 
     const runtime = getPlatformDocsRuntime(params.platform)
     const data = await runtime.createDocsLoader()({ params })
-    const routeBase = `/ui-notebook-platform/${params.platform}`
+    const routeBase = `/docs-ui/${params.platform}`
     const tree = runtime.source.getPageTree(data.locale)
 
     return {

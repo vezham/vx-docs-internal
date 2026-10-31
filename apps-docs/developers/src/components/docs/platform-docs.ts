@@ -38,14 +38,14 @@ const openapiFiles = import.meta.glob<string>('/openapi/**/*.{json,yaml,yml}', {
 })
 
 const runtimeOptions = {
-  i18n: vxI18n,
+  i18n: { ...vxI18n, fallbackLanguage: vxI18n.defaultLanguage },
   openapiDir: vxDocs.openapiDir,
   openapiFiles,
   head: {
     appName: vxCore.shortName,
     docsImageRoute: vxDocs.docsImageRoute,
-    openGraphImage: vxMetadata.openGraph.image,
-    openGraphImageSource: vxMetadata.openGraph.imageSource,
+    openGraphImage: new URL(vxMetadata.openGraph.image, vxMetadata.url).href,
+    openGraphImageSource: 'url' as const,
     siteDescription: vxMetadata.description,
     siteUrl: vxMetadata.url
   }
@@ -55,12 +55,12 @@ const runtimes = {
   web: createStaticDocsRuntime({
     ...runtimeOptions,
     docs: webPlatformDocs,
-    docsRoute: '/ui-notebook-platform/web'
+    docsRoute: '/docs-ui/web'
   }),
   native: createStaticDocsRuntime({
     ...runtimeOptions,
     docs: nativePlatformDocs,
-    docsRoute: '/ui-notebook-platform/native'
+    docsRoute: '/docs-ui/native'
   })
 }
 

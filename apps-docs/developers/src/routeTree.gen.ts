@@ -18,17 +18,19 @@ import { Route as ApiHeartbeatRouteRouteImport } from './routes/api/heartbeat/ro
 import { Route as ApiPulseRouteRouteImport } from './routes/api/pulse/route'
 import { Route as ApiSearchRouteRouteImport } from './routes/api/search/route'
 import { Route as Char123LangChar125IndexRouteImport } from './routes/{-$lang}/index'
+import { Route as Char123LangChar125DocsUiIndexRouteImport } from './routes/{-$lang}/docs-ui/index'
 import { Route as Char123LangChar125DocsIndexRouteImport } from './routes/{-$lang}/docs/index'
 import { Route as Char123LangChar125DocsSplatRouteImport } from './routes/{-$lang}/docs/$'
 import { Route as Char123LangChar125DocsChar123Char125DotmdRouteImport } from './routes/{-$lang}/docs/{$}[.]md'
 import { Route as Char123LangChar125LayoutsIndexRouteImport } from './routes/{-$lang}/layouts/index'
+import { Route as Char123LangChar125DocsUiPlatformIndexRouteImport } from './routes/{-$lang}/docs-ui/$platform/index'
+import { Route as Char123LangChar125DocsUiPlatformSplatRouteImport } from './routes/{-$lang}/docs-ui/$platform/$'
+import { Route as Char123LangChar125DocsUiPlatformChar123Char125DotmdRouteImport } from './routes/{-$lang}/docs-ui/$platform/{$}[.]md'
 import { Route as Char123LangChar125LayoutsDocsIndexRouteImport } from './routes/{-$lang}/layouts/docs/index'
 import { Route as Char123LangChar125LayoutsFluxIndexRouteImport } from './routes/{-$lang}/layouts/flux/index'
 import { Route as Char123LangChar125LayoutsGlassIndexRouteImport } from './routes/{-$lang}/layouts/glass/index'
 import { Route as Char123LangChar125LayoutsHomeIndexRouteImport } from './routes/{-$lang}/layouts/home/index'
 import { Route as Char123LangChar125LayoutsNotebookIndexRouteImport } from './routes/{-$lang}/layouts/notebook/index'
-import { Route as Char123LangChar125UiNotebookPlatformPlatformSplatRouteImport } from './routes/{-$lang}/ui-notebook-platform/$platform/$'
-import { Route as Char123LangChar125UiNotebookPlatformPlatformChar123Char125DotmdRouteImport } from './routes/{-$lang}/ui-notebook-platform/$platform/{$}[.]md'
 
 const Char123LangChar125ProLazyRouteImport = createFileRoute('/{-$lang}/pro')()
 
@@ -75,6 +77,12 @@ const Char123LangChar125ProLazyRoute =
   } as any).lazy(() =>
     import('./routes/{-$lang}/pro.lazy').then((d) => d.Route),
   )
+const Char123LangChar125DocsUiIndexRoute =
+  Char123LangChar125DocsUiIndexRouteImport.update({
+    id: '/docs-ui/',
+    path: '/docs-ui/',
+    getParentRoute: () => Char123LangChar125RouteRoute,
+  } as any)
 const Char123LangChar125DocsIndexRoute =
   Char123LangChar125DocsIndexRouteImport.update({
     id: '/docs/',
@@ -97,6 +105,24 @@ const Char123LangChar125LayoutsIndexRoute =
   Char123LangChar125LayoutsIndexRouteImport.update({
     id: '/layouts/',
     path: '/layouts/',
+    getParentRoute: () => Char123LangChar125RouteRoute,
+  } as any)
+const Char123LangChar125DocsUiPlatformIndexRoute =
+  Char123LangChar125DocsUiPlatformIndexRouteImport.update({
+    id: '/docs-ui/$platform/',
+    path: '/docs-ui/$platform/',
+    getParentRoute: () => Char123LangChar125RouteRoute,
+  } as any)
+const Char123LangChar125DocsUiPlatformSplatRoute =
+  Char123LangChar125DocsUiPlatformSplatRouteImport.update({
+    id: '/docs-ui/$platform/$',
+    path: '/docs-ui/$platform/$',
+    getParentRoute: () => Char123LangChar125RouteRoute,
+  } as any)
+const Char123LangChar125DocsUiPlatformChar123Char125DotmdRoute =
+  Char123LangChar125DocsUiPlatformChar123Char125DotmdRouteImport.update({
+    id: '/docs-ui/$platform/{$}.md',
+    path: '/docs-ui/$platform/{$}.md',
     getParentRoute: () => Char123LangChar125RouteRoute,
   } as any)
 const Char123LangChar125LayoutsDocsIndexRoute =
@@ -129,20 +155,6 @@ const Char123LangChar125LayoutsNotebookIndexRoute =
     path: '/layouts/notebook/',
     getParentRoute: () => Char123LangChar125RouteRoute,
   } as any)
-const Char123LangChar125UiNotebookPlatformPlatformSplatRoute =
-  Char123LangChar125UiNotebookPlatformPlatformSplatRouteImport.update({
-    id: '/ui-notebook-platform/$platform/$',
-    path: '/ui-notebook-platform/$platform/$',
-    getParentRoute: () => Char123LangChar125RouteRoute,
-  } as any)
-const Char123LangChar125UiNotebookPlatformPlatformChar123Char125DotmdRoute =
-  Char123LangChar125UiNotebookPlatformPlatformChar123Char125DotmdRouteImport.update(
-    {
-      id: '/ui-notebook-platform/$platform/{$}.md',
-      path: '/ui-notebook-platform/$platform/{$}.md',
-      getParentRoute: () => Char123LangChar125RouteRoute,
-    } as any,
-  )
 
 export interface FileRoutesByFullPath {
   '/{-$lang}': typeof Char123LangChar125RouteRouteWithChildren
@@ -155,10 +167,12 @@ export interface FileRoutesByFullPath {
   '/{-$lang}/': typeof Char123LangChar125IndexRoute
   '/{-$lang}/docs/$': typeof Char123LangChar125DocsSplatRoute
   '/{-$lang}/docs/{$}.md': typeof Char123LangChar125DocsChar123Char125DotmdRoute
+  '/{-$lang}/docs-ui/': typeof Char123LangChar125DocsUiIndexRoute
   '/{-$lang}/docs/': typeof Char123LangChar125DocsIndexRoute
   '/{-$lang}/layouts/': typeof Char123LangChar125LayoutsIndexRoute
-  '/{-$lang}/ui-notebook-platform/$platform/$': typeof Char123LangChar125UiNotebookPlatformPlatformSplatRoute
-  '/{-$lang}/ui-notebook-platform/$platform/{$}.md': typeof Char123LangChar125UiNotebookPlatformPlatformChar123Char125DotmdRoute
+  '/{-$lang}/docs-ui/$platform/$': typeof Char123LangChar125DocsUiPlatformSplatRoute
+  '/{-$lang}/docs-ui/$platform/{$}.md': typeof Char123LangChar125DocsUiPlatformChar123Char125DotmdRoute
+  '/{-$lang}/docs-ui/$platform/': typeof Char123LangChar125DocsUiPlatformIndexRoute
   '/{-$lang}/layouts/docs/': typeof Char123LangChar125LayoutsDocsIndexRoute
   '/{-$lang}/layouts/flux/': typeof Char123LangChar125LayoutsFluxIndexRoute
   '/{-$lang}/layouts/glass/': typeof Char123LangChar125LayoutsGlassIndexRoute
@@ -175,10 +189,12 @@ export interface FileRoutesByTo {
   '/{-$lang}': typeof Char123LangChar125IndexRoute
   '/{-$lang}/docs/$': typeof Char123LangChar125DocsSplatRoute
   '/{-$lang}/docs/{$}.md': typeof Char123LangChar125DocsChar123Char125DotmdRoute
+  '/{-$lang}/docs-ui': typeof Char123LangChar125DocsUiIndexRoute
   '/{-$lang}/docs': typeof Char123LangChar125DocsIndexRoute
   '/{-$lang}/layouts': typeof Char123LangChar125LayoutsIndexRoute
-  '/{-$lang}/ui-notebook-platform/$platform/$': typeof Char123LangChar125UiNotebookPlatformPlatformSplatRoute
-  '/{-$lang}/ui-notebook-platform/$platform/{$}.md': typeof Char123LangChar125UiNotebookPlatformPlatformChar123Char125DotmdRoute
+  '/{-$lang}/docs-ui/$platform/$': typeof Char123LangChar125DocsUiPlatformSplatRoute
+  '/{-$lang}/docs-ui/$platform/{$}.md': typeof Char123LangChar125DocsUiPlatformChar123Char125DotmdRoute
+  '/{-$lang}/docs-ui/$platform': typeof Char123LangChar125DocsUiPlatformIndexRoute
   '/{-$lang}/layouts/docs': typeof Char123LangChar125LayoutsDocsIndexRoute
   '/{-$lang}/layouts/flux': typeof Char123LangChar125LayoutsFluxIndexRoute
   '/{-$lang}/layouts/glass': typeof Char123LangChar125LayoutsGlassIndexRoute
@@ -197,10 +213,12 @@ export interface FileRoutesById {
   '/{-$lang}/': typeof Char123LangChar125IndexRoute
   '/{-$lang}/docs/$': typeof Char123LangChar125DocsSplatRoute
   '/{-$lang}/docs/{$}.md': typeof Char123LangChar125DocsChar123Char125DotmdRoute
+  '/{-$lang}/docs-ui/': typeof Char123LangChar125DocsUiIndexRoute
   '/{-$lang}/docs/': typeof Char123LangChar125DocsIndexRoute
   '/{-$lang}/layouts/': typeof Char123LangChar125LayoutsIndexRoute
-  '/{-$lang}/ui-notebook-platform/$platform/$': typeof Char123LangChar125UiNotebookPlatformPlatformSplatRoute
-  '/{-$lang}/ui-notebook-platform/$platform/{$}.md': typeof Char123LangChar125UiNotebookPlatformPlatformChar123Char125DotmdRoute
+  '/{-$lang}/docs-ui/$platform/$': typeof Char123LangChar125DocsUiPlatformSplatRoute
+  '/{-$lang}/docs-ui/$platform/{$}.md': typeof Char123LangChar125DocsUiPlatformChar123Char125DotmdRoute
+  '/{-$lang}/docs-ui/$platform/': typeof Char123LangChar125DocsUiPlatformIndexRoute
   '/{-$lang}/layouts/docs/': typeof Char123LangChar125LayoutsDocsIndexRoute
   '/{-$lang}/layouts/flux/': typeof Char123LangChar125LayoutsFluxIndexRoute
   '/{-$lang}/layouts/glass/': typeof Char123LangChar125LayoutsGlassIndexRoute
@@ -220,10 +238,12 @@ export interface FileRouteTypes {
     | '/{-$lang}/'
     | '/{-$lang}/docs/$'
     | '/{-$lang}/docs/{$}.md'
+    | '/{-$lang}/docs-ui/'
     | '/{-$lang}/docs/'
     | '/{-$lang}/layouts/'
-    | '/{-$lang}/ui-notebook-platform/$platform/$'
-    | '/{-$lang}/ui-notebook-platform/$platform/{$}.md'
+    | '/{-$lang}/docs-ui/$platform/$'
+    | '/{-$lang}/docs-ui/$platform/{$}.md'
+    | '/{-$lang}/docs-ui/$platform/'
     | '/{-$lang}/layouts/docs/'
     | '/{-$lang}/layouts/flux/'
     | '/{-$lang}/layouts/glass/'
@@ -240,10 +260,12 @@ export interface FileRouteTypes {
     | '/{-$lang}'
     | '/{-$lang}/docs/$'
     | '/{-$lang}/docs/{$}.md'
+    | '/{-$lang}/docs-ui'
     | '/{-$lang}/docs'
     | '/{-$lang}/layouts'
-    | '/{-$lang}/ui-notebook-platform/$platform/$'
-    | '/{-$lang}/ui-notebook-platform/$platform/{$}.md'
+    | '/{-$lang}/docs-ui/$platform/$'
+    | '/{-$lang}/docs-ui/$platform/{$}.md'
+    | '/{-$lang}/docs-ui/$platform'
     | '/{-$lang}/layouts/docs'
     | '/{-$lang}/layouts/flux'
     | '/{-$lang}/layouts/glass'
@@ -261,10 +283,12 @@ export interface FileRouteTypes {
     | '/{-$lang}/'
     | '/{-$lang}/docs/$'
     | '/{-$lang}/docs/{$}.md'
+    | '/{-$lang}/docs-ui/'
     | '/{-$lang}/docs/'
     | '/{-$lang}/layouts/'
-    | '/{-$lang}/ui-notebook-platform/$platform/$'
-    | '/{-$lang}/ui-notebook-platform/$platform/{$}.md'
+    | '/{-$lang}/docs-ui/$platform/$'
+    | '/{-$lang}/docs-ui/$platform/{$}.md'
+    | '/{-$lang}/docs-ui/$platform/'
     | '/{-$lang}/layouts/docs/'
     | '/{-$lang}/layouts/flux/'
     | '/{-$lang}/layouts/glass/'
@@ -339,6 +363,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LangChar125ProLazyRouteImport
       parentRoute: typeof Char123LangChar125RouteRoute
     }
+    '/{-$lang}/docs-ui/': {
+      id: '/{-$lang}/docs-ui/'
+      path: '/docs-ui'
+      fullPath: '/{-$lang}/docs-ui/'
+      preLoaderRoute: typeof Char123LangChar125DocsUiIndexRouteImport
+      parentRoute: typeof Char123LangChar125RouteRoute
+    }
     '/{-$lang}/docs/': {
       id: '/{-$lang}/docs/'
       path: '/docs'
@@ -365,6 +396,27 @@ declare module '@tanstack/react-router' {
       path: '/layouts'
       fullPath: '/{-$lang}/layouts/'
       preLoaderRoute: typeof Char123LangChar125LayoutsIndexRouteImport
+      parentRoute: typeof Char123LangChar125RouteRoute
+    }
+    '/{-$lang}/docs-ui/$platform/': {
+      id: '/{-$lang}/docs-ui/$platform/'
+      path: '/docs-ui/$platform'
+      fullPath: '/{-$lang}/docs-ui/$platform/'
+      preLoaderRoute: typeof Char123LangChar125DocsUiPlatformIndexRouteImport
+      parentRoute: typeof Char123LangChar125RouteRoute
+    }
+    '/{-$lang}/docs-ui/$platform/$': {
+      id: '/{-$lang}/docs-ui/$platform/$'
+      path: '/docs-ui/$platform/$'
+      fullPath: '/{-$lang}/docs-ui/$platform/$'
+      preLoaderRoute: typeof Char123LangChar125DocsUiPlatformSplatRouteImport
+      parentRoute: typeof Char123LangChar125RouteRoute
+    }
+    '/{-$lang}/docs-ui/$platform/{$}.md': {
+      id: '/{-$lang}/docs-ui/$platform/{$}.md'
+      path: '/docs-ui/$platform/{$}.md'
+      fullPath: '/{-$lang}/docs-ui/$platform/{$}.md'
+      preLoaderRoute: typeof Char123LangChar125DocsUiPlatformChar123Char125DotmdRouteImport
       parentRoute: typeof Char123LangChar125RouteRoute
     }
     '/{-$lang}/layouts/docs/': {
@@ -402,20 +454,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LangChar125LayoutsNotebookIndexRouteImport
       parentRoute: typeof Char123LangChar125RouteRoute
     }
-    '/{-$lang}/ui-notebook-platform/$platform/$': {
-      id: '/{-$lang}/ui-notebook-platform/$platform/$'
-      path: '/ui-notebook-platform/$platform/$'
-      fullPath: '/{-$lang}/ui-notebook-platform/$platform/$'
-      preLoaderRoute: typeof Char123LangChar125UiNotebookPlatformPlatformSplatRouteImport
-      parentRoute: typeof Char123LangChar125RouteRoute
-    }
-    '/{-$lang}/ui-notebook-platform/$platform/{$}.md': {
-      id: '/{-$lang}/ui-notebook-platform/$platform/{$}.md'
-      path: '/ui-notebook-platform/$platform/{$}.md'
-      fullPath: '/{-$lang}/ui-notebook-platform/$platform/{$}.md'
-      preLoaderRoute: typeof Char123LangChar125UiNotebookPlatformPlatformChar123Char125DotmdRouteImport
-      parentRoute: typeof Char123LangChar125RouteRoute
-    }
   }
 }
 
@@ -424,10 +462,12 @@ interface Char123LangChar125RouteRouteChildren {
   Char123LangChar125IndexRoute: typeof Char123LangChar125IndexRoute
   Char123LangChar125DocsSplatRoute: typeof Char123LangChar125DocsSplatRoute
   Char123LangChar125DocsChar123Char125DotmdRoute: typeof Char123LangChar125DocsChar123Char125DotmdRoute
+  Char123LangChar125DocsUiIndexRoute: typeof Char123LangChar125DocsUiIndexRoute
   Char123LangChar125DocsIndexRoute: typeof Char123LangChar125DocsIndexRoute
   Char123LangChar125LayoutsIndexRoute: typeof Char123LangChar125LayoutsIndexRoute
-  Char123LangChar125UiNotebookPlatformPlatformSplatRoute: typeof Char123LangChar125UiNotebookPlatformPlatformSplatRoute
-  Char123LangChar125UiNotebookPlatformPlatformChar123Char125DotmdRoute: typeof Char123LangChar125UiNotebookPlatformPlatformChar123Char125DotmdRoute
+  Char123LangChar125DocsUiPlatformSplatRoute: typeof Char123LangChar125DocsUiPlatformSplatRoute
+  Char123LangChar125DocsUiPlatformChar123Char125DotmdRoute: typeof Char123LangChar125DocsUiPlatformChar123Char125DotmdRoute
+  Char123LangChar125DocsUiPlatformIndexRoute: typeof Char123LangChar125DocsUiPlatformIndexRoute
   Char123LangChar125LayoutsDocsIndexRoute: typeof Char123LangChar125LayoutsDocsIndexRoute
   Char123LangChar125LayoutsFluxIndexRoute: typeof Char123LangChar125LayoutsFluxIndexRoute
   Char123LangChar125LayoutsGlassIndexRoute: typeof Char123LangChar125LayoutsGlassIndexRoute
@@ -442,12 +482,15 @@ const Char123LangChar125RouteRouteChildren: Char123LangChar125RouteRouteChildren
     Char123LangChar125DocsSplatRoute: Char123LangChar125DocsSplatRoute,
     Char123LangChar125DocsChar123Char125DotmdRoute:
       Char123LangChar125DocsChar123Char125DotmdRoute,
+    Char123LangChar125DocsUiIndexRoute: Char123LangChar125DocsUiIndexRoute,
     Char123LangChar125DocsIndexRoute: Char123LangChar125DocsIndexRoute,
     Char123LangChar125LayoutsIndexRoute: Char123LangChar125LayoutsIndexRoute,
-    Char123LangChar125UiNotebookPlatformPlatformSplatRoute:
-      Char123LangChar125UiNotebookPlatformPlatformSplatRoute,
-    Char123LangChar125UiNotebookPlatformPlatformChar123Char125DotmdRoute:
-      Char123LangChar125UiNotebookPlatformPlatformChar123Char125DotmdRoute,
+    Char123LangChar125DocsUiPlatformSplatRoute:
+      Char123LangChar125DocsUiPlatformSplatRoute,
+    Char123LangChar125DocsUiPlatformChar123Char125DotmdRoute:
+      Char123LangChar125DocsUiPlatformChar123Char125DotmdRoute,
+    Char123LangChar125DocsUiPlatformIndexRoute:
+      Char123LangChar125DocsUiPlatformIndexRoute,
     Char123LangChar125LayoutsDocsIndexRoute:
       Char123LangChar125LayoutsDocsIndexRoute,
     Char123LangChar125LayoutsFluxIndexRoute:

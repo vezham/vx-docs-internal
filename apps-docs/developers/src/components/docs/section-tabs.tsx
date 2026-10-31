@@ -7,7 +7,7 @@ import { i18n } from '@app/docs'
 import { sectionTabVariants } from '@components/docs/navigation.variants'
 import {
   type PlatformSection,
-  platformSections
+  getPlatformSections
 } from '@components/docs/platform-sections'
 import type { Locale } from '@generated/vx'
 
@@ -31,10 +31,10 @@ export const SectionTabs = ({ locale, platform, selectedSection }: Props) => {
       <nav
         aria-label="Documentation sections"
         className="ms-3 flex h-full items-end gap-6">
-        {platformSections.map(item => (
+        {getPlatformSections(platform).map(item => (
           <Link
             key={item.id}
-            to="/{-$lang}/ui-notebook-platform/$platform/$"
+            to="/{-$lang}/docs-ui/$platform/$"
             params={{
               lang: locale === i18n.defaultLanguage ? undefined : locale,
               platform,

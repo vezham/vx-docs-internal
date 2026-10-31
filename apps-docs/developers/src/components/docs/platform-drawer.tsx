@@ -8,7 +8,7 @@ import { i18n } from '@app/docs'
 import { ControlCenter } from '@components/docs/control-center'
 import {
   type PlatformSection,
-  platformSections
+  getPlatformSections
 } from '@components/docs/platform-sections'
 import { PlatformTabs } from '@components/docs/platform-tabs'
 import type { Locale } from '@generated/vx'
@@ -27,11 +27,13 @@ type PlatformNavigationProps = {
 type SectionSelectProps = {
   onSectionChange: (section: PlatformSection) => void
   selectedSection: PlatformSection
+  platform: Platform
 }
 
 const PlatformSectionSelect = ({
   onSectionChange,
-  selectedSection
+  selectedSection,
+  platform
 }: SectionSelectProps) => (
   <Select
     aria-label="Documentation section"
@@ -44,7 +46,7 @@ const PlatformSectionSelect = ({
     </Select.Trigger>
     <Select.Popover>
       <ListBox>
-        {platformSections.map(section => (
+        {getPlatformSections(platform).map(section => (
           <ListBox.Item
             key={section.id}
             id={section.id}
@@ -90,6 +92,7 @@ export const PlatformDrawerHeader = ({
           </Link>
         </div>
         <PlatformSectionSelect
+          platform={platform}
           selectedSection={selectedSection}
           onSectionChange={onSectionChange}
         />
@@ -101,6 +104,7 @@ export const PlatformDrawerHeader = ({
           platform={platform}
         />
         <PlatformSectionSelect
+          platform={platform}
           selectedSection={selectedSection}
           onSectionChange={onSectionChange}
         />
