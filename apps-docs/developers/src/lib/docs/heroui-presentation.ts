@@ -96,3 +96,244 @@ export const relatedShowcases = [
     components: ['Tabs']
   }
 ]
+
+export const componentGalleryGroups = {
+  web: [
+    {
+      category: 'Buttons',
+      components: [
+        '(buttons)/button',
+        '(buttons)/button-group',
+        '(buttons)/close-button',
+        '(buttons)/toggle-button',
+        '(buttons)/toggle-button-group'
+      ]
+    },
+    {
+      category: 'Forms',
+      components: [
+        '(forms)/checkbox',
+        '(forms)/checkbox-group',
+        '(forms)/description',
+        '(forms)/error-message',
+        '(forms)/field-error',
+        '(forms)/fieldset',
+        '(forms)/form',
+        '(forms)/input',
+        '(forms)/input-group',
+        '(forms)/input-otp',
+        '(forms)/label',
+        '(forms)/number-field',
+        '(forms)/radio-group',
+        '(forms)/search-field',
+        '(forms)/text-field',
+        '(forms)/text-area'
+      ]
+    },
+    {
+      category: 'Date and Time',
+      components: [
+        '(date-and-time)/calendar',
+        '(date-and-time)/date-field',
+        '(date-and-time)/date-picker',
+        '(date-and-time)/date-range-picker',
+        '(date-and-time)/range-calendar',
+        '(date-and-time)/time-field'
+      ]
+    },
+    {
+      category: 'Navigation',
+      components: [
+        '(navigation)/accordion',
+        '(navigation)/breadcrumbs',
+        '(navigation)/disclosure',
+        '(navigation)/disclosure-group',
+        '(navigation)/link',
+        '(navigation)/pagination',
+        '(navigation)/tabs'
+      ]
+    },
+    {
+      category: 'Overlays',
+      components: [
+        '(overlays)/alert-dialog',
+        '(overlays)/drawer',
+        '(overlays)/modal',
+        '(overlays)/popover',
+        '(overlays)/toast',
+        '(overlays)/tooltip',
+        '(overlays)/sheet'
+      ]
+    },
+    {
+      category: 'Collections',
+      components: [
+        '(collections)/dropdown',
+        '(collections)/list-box',
+        '(collections)/tag-group'
+      ]
+    },
+    {
+      category: 'Controls',
+      components: ['(controls)/slider', '(controls)/switch']
+    },
+    {
+      category: 'Feedback',
+      components: [
+        '(feedback)/alert',
+        '(feedback)/meter',
+        '(feedback)/progress-bar',
+        '(feedback)/progress-circle',
+        '(feedback)/skeleton',
+        '(feedback)/spinner'
+      ]
+    },
+    {
+      category: 'Layout',
+      components: [
+        '(layout)/card',
+        '(layout)/separator',
+        '(layout)/surface',
+        '(layout)/toolbar'
+      ]
+    },
+    {
+      category: 'Media',
+      components: ['(media)/avatar', '(media)/avatar-group']
+    },
+    {
+      category: 'Pickers',
+      components: [
+        '(pickers)/autocomplete',
+        '(pickers)/combo-box',
+        '(pickers)/select'
+      ]
+    },
+    {
+      category: 'Typography',
+      components: ['(typography)/kbd', '(typography)/typography']
+    },
+    {
+      category: 'Data Display',
+      components: [
+        '(data-display)/badge',
+        '(data-display)/chip',
+        '(data-display)/table'
+      ]
+    },
+    {
+      category: 'Colors',
+      components: [
+        '(colors)/color-area',
+        '(colors)/color-field',
+        '(colors)/color-picker',
+        '(colors)/color-slider',
+        '(colors)/color-swatch',
+        '(colors)/color-swatch-picker'
+      ]
+    },
+    {
+      category: 'Utilities',
+      components: ['(utilities)/scroll-shadow']
+    }
+  ],
+  native: [
+    {
+      category: 'Buttons',
+      components: [
+        '(buttons)/button',
+        '(buttons)/close-button',
+        '(buttons)/link-button'
+      ]
+    },
+    {
+      category: 'Collections',
+      components: ['(collections)/menu', '(collections)/tag-group']
+    },
+    {
+      category: 'Controls',
+      components: ['(controls)/slider', '(controls)/switch']
+    },
+    {
+      category: 'Forms',
+      components: [
+        '(forms)/checkbox',
+        '(forms)/control-field',
+        '(forms)/description',
+        '(forms)/field-error',
+        '(forms)/input',
+        '(forms)/input-group',
+        '(forms)/input-otp',
+        '(forms)/label',
+        '(forms)/radio-group',
+        '(forms)/search-field',
+        '(forms)/select',
+        '(forms)/text-area',
+        '(forms)/text-field'
+      ]
+    },
+    {
+      category: 'Navigation',
+      components: [
+        '(navigation)/accordion',
+        '(navigation)/list-group',
+        '(navigation)/tabs'
+      ]
+    },
+    {
+      category: 'Overlays',
+      components: [
+        '(overlays)/bottom-sheet',
+        '(overlays)/dialog',
+        '(overlays)/popover',
+        '(overlays)/toast'
+      ]
+    },
+    {
+      category: 'Feedback',
+      components: [
+        '(feedback)/alert',
+        '(feedback)/skeleton',
+        '(feedback)/skeleton-group',
+        '(feedback)/spinner'
+      ]
+    },
+    {
+      category: 'Layout',
+      components: ['(layout)/card', '(layout)/separator', '(layout)/surface']
+    },
+    {
+      category: 'Media',
+      components: ['(media)/avatar']
+    },
+    {
+      category: 'Data Display',
+      components: ['(data-display)/chip']
+    },
+    {
+      category: 'Typography',
+      components: ['(typography)/text']
+    },
+    {
+      category: 'Utilities',
+      components: [
+        '(utilities)/pressable-feedback',
+        '(utilities)/scroll-shadow'
+      ]
+    }
+  ]
+}
+
+export const componentGalleryMedia: {
+  imageBaseUrl: string
+  nativeVideoBaseUrl: string
+  nativeVideoNames: Record<string, string>
+} = {
+  imageBaseUrl:
+    'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/related-components',
+  nativeVideoBaseUrl:
+    'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos',
+  nativeVideoNames: {
+    'skeleton-group': 'skeleton'
+  }
+}

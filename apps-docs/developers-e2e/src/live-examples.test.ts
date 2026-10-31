@@ -175,3 +175,93 @@ test('source documentation retains colors, related content, and attribution', as
     page.getByRole('link', { name: 'Contributors to pull request #6892' })
   ).toHaveAttribute('href', 'https://github.com/heroui-inc/heroui/pull/6892')
 })
+
+test('component galleries show themed previews in the source order', async ({
+  page
+}) => {
+  for (const viewport of [
+    { width: 1280, height: 900 },
+    { width: 390, height: 844 }
+  ]) {
+    await page.setViewportSize(viewport)
+    await page.goto('/docs-ui/web/components', { waitUntil: 'networkidle' })
+    const buttons = page.getByRole('list', { name: 'Web Buttons components' })
+    await expect(buttons.getByRole('link')).toHaveText([
+      'Button',
+      'ButtonGroup',
+      'CloseButton',
+      'ToggleButton',
+      'ToggleButtonGroup'
+    ])
+    const tile = buttons.getByRole('link', { name: 'Button', exact: true })
+    await tile.scrollIntoViewIfNeeded()
+    for (const theme of ['light', 'dark']) {
+      await page.evaluate(value => {
+        document.documentElement.classList.remove('light', 'dark')
+        document.documentElement.classList.add(value)
+      }, theme)
+      const image = tile.locator(`img[src$="/${theme}-button.png"]`)
+      await expect(image).toBeVisible()
+      await expect
+        .poll(() =>
+          image.evaluate(element => (element as HTMLImageElement).naturalWidth)
+        )
+        .toBeGreaterThan(0)
+      const position = await tile.evaluate(element => {
+        const title = element.firstElementChild!.getBoundingClientRect()
+        const frame = element.lastElementChild!.getBoundingClientRect()
+        return {
+          title: title.top,
+          frame: frame.top,
+          height: frame.height,
+          width: frame.width,
+          cellWidth: element.parentElement!.getBoundingClientRect().width
+        }
+      })
+      expect(position.height).toBe(198)
+      expect(Math.abs(position.width - position.cellWidth)).toBeLessThan(1)
+      if (viewport.width < 640)
+        expect(position.title).toBeLessThan(position.frame)
+      else expect(position.title).toBeGreaterThan(position.frame)
+    }
+    await tile.click()
+    await expect(page).toHaveURL(/\/docs-ui\/web\/components\/button\/?$/)
+  }
+
+  await page.goto('/cn/docs-ui/web/components', { waitUntil: 'networkidle' })
+  await expect(
+    page
+      .getByRole('list', { name: 'Web Buttons components' })
+      .getByRole('link')
+      .first()
+  ).toHaveAttribute('href', '/cn/docs-ui/web/components/button')
+  await page.emulateMedia({ colorScheme: 'dark' })
+  await page.goto('/docs-ui/native/components', { waitUntil: 'networkidle' })
+  const nativeButtons = page.getByRole('list', {
+    name: 'Native Buttons components'
+  })
+  await expect(nativeButtons.getByRole('link')).toHaveText([
+    'Button',
+    'CloseButton',
+    'LinkButton'
+  ])
+  await expect(nativeButtons.locator('video').first()).toHaveAttribute(
+    'src',
+    /\/button-docs-dark\.mp4$/
+  )
+  const skeleton = page
+    .getByRole('list', { name: 'Native Feedback components' })
+    .locator('li')
+    .filter({ hasText: 'SkeletonGroup' })
+  await expect(skeleton.locator('video')).toHaveAttribute(
+    'src',
+    /\/skeleton-docs-(light|dark)\.mp4$/
+  )
+  await expect(
+    page
+      .getByRole('list', { name: 'Native Utilities components' })
+      .locator('li')
+      .filter({ hasText: 'ScrollShadow' })
+      .locator('video')
+  ).toHaveAttribute('src', /\/scroll-shadow-docs-light\.mp4$/)
+})

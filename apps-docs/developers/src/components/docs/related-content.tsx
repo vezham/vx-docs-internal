@@ -6,6 +6,8 @@ import {
   relatedShowcases
 } from '@src/lib/docs/heroui-presentation'
 
+import { ComponentTile } from './component-gallery'
+
 const normalize = (value: string) => value.toLowerCase().replace(/[-_\s]/g, '')
 
 export const RelatedComponents = ({ component }: { component: string }) => {
@@ -20,16 +22,14 @@ export const RelatedComponents = ({ component }: { component: string }) => {
   if (!pages.length) return null
   return (
     <div
-      className="not-prose my-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+      className="not-prose my-6 grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 lg:grid-cols-3"
       aria-label="Related components">
       {pages.map(page => (
-        <a
+        <ComponentTile
           key={page.url}
+          page={page}
           href={`${lang === 'cn' ? '/cn' : ''}${page.url}`}
-          className="rounded-xl border p-4">
-          <p className="font-medium">{page.title}</p>
-          <p className="text-muted mt-2 text-sm">{page.description}</p>
-        </a>
+        />
       ))}
     </div>
   )

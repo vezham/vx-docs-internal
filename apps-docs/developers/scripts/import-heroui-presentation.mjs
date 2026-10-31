@@ -5,6 +5,22 @@ import prettier from 'prettier'
 import ts from 'typescript'
 
 const upstream = path.resolve(process.argv[2])
+const readConstant = async (file, name) => {
+  const source = await readFile(path.join(upstream, 'src', file), 'utf8')
+  const ast = ts.createSourceFile(file, source, ts.ScriptTarget.Latest, true)
+  const declaration = ast.statements
+    .filter(ts.isVariableStatement)
+    .flatMap(statement => [...statement.declarationList.declarations])
+    .find(item => item.name.getText(ast) === name)
+  if (!declaration?.initializer) throw new Error(`Missing ${name} in ${file}`)
+  const exports = {}
+  const output = ts.transpileModule(
+    `export const value = ${declaration.initializer.getText(ast)}`,
+    { compilerOptions: { module: ts.ModuleKind.CommonJS } }
+  ).outputText
+  vm.runInNewContext(output, { exports })
+  return exports.value
+}
 const load = async file => {
   const source = await readFile(path.join(upstream, 'src', file), 'utf8')
   const output = ts.transpileModule(source, {
@@ -66,6 +82,24 @@ const cards = showcases.navigationShowcases.map(
     components
   })
 )
+const categorySource = 'components/components-category.tsx'
+const nativeCategorySource = 'components/native/components-category.tsx'
+const galleryGroups = {
+  web: await readConstant(categorySource, 'COMPONENT_GROUPS'),
+  native: await readConstant(nativeCategorySource, 'COMPONENT_GROUPS')
+}
+const cdn = await readConstant('utils/constants.ts', 'CDN_URL')
+const galleryMedia = {
+  imageBaseUrl: `${cdn}/docs/related-components`,
+  nativeVideoBaseUrl: await readConstant(
+    nativeCategorySource,
+    'VIDEO_BASE_URL'
+  ),
+  nativeVideoNames: await readConstant(
+    nativeCategorySource,
+    'VIDEO_NAME_OVERRIDES'
+  )
+}
 const output = path.resolve(
   import.meta.dirname,
   '../src/lib/docs/heroui-presentation.ts'
@@ -73,7 +107,7 @@ const output = path.resolve(
 await writeFile(
   output,
   await prettier.format(
-    `// vx-bot/INFO: Generated from HeroUI docs (Apache-2.0); see content/platform-docs/LICENSE-HeroUI.\nexport const relatedComponents: Record<string, string[]> = ${JSON.stringify(related, null, 2)}\n\nexport const relatedShowcases = ${JSON.stringify(cards, null, 2)}\n`,
+    `// vx-bot/INFO: Generated from HeroUI docs (Apache-2.0); see content/platform-docs/LICENSE-HeroUI.\nexport const relatedComponents: Record<string, string[]> = ${JSON.stringify(related, null, 2)}\n\nexport const relatedShowcases = ${JSON.stringify(cards, null, 2)}\n\nexport const componentGalleryGroups = ${JSON.stringify(galleryGroups, null, 2)}\n\nexport const componentGalleryMedia: { imageBaseUrl: string; nativeVideoBaseUrl: string; nativeVideoNames: Record<string, string> } = ${JSON.stringify(galleryMedia, null, 2)}\n`,
     { ...(await prettier.resolveConfig(output)), filepath: output }
   )
 )

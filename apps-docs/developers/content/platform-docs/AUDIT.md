@@ -10,7 +10,7 @@ node apps-docs/developers/scripts/audit-heroui-docs.mjs /path/to/heroui/apps/doc
 ```
 
 The audit checks page and navigation-file coverage, prose, headings, frontmatter,
-preview attributes, registered demos, displayed source versus executable source,
+preview attributes, gallery groups and media URLs, registered demos, displayed source versus executable source,
 the supported MDX component names, and the original licenses. It fails on an
 unexpected difference. It accepts the documented route rewrites and the conversion
 of upstream status icons to status metadata.
@@ -26,6 +26,7 @@ of upstream status icons to status metadata.
 | Pages with resource links                  |                      119 |
 | Pages with New, Updated, or Preview status |                       26 |
 | Custom MDX component names                 |                       21 |
+| Gallery tiles                              |  112 (73 Web, 39 Native) |
 
 No missing pages, prose, headings, resource metadata, preview source, or original
 licenses were found. The audit does not establish visual or behavioral parity;
@@ -41,6 +42,10 @@ the browser tests cover representative interactive pages separately.
 - Related-component cards use the upstream relationship registry and local,
   locale-aware routes. Related showcases use the upstream registry and link to
   the original site instead of displaying a generic gallery link.
+- Component catalogs and related components use the upstream light/dark preview
+  images with labels instead of description-only cards. Catalogs retain the
+  explicit source ordering, responsive media/label placement, and status chips.
+  Native catalogs use theme-aware videos, including the SkeletonGroup override.
 - Documentation images retain their destination links, wrappers, aspect ratios,
   and theme-specific sources. Videos retain posters, sizing, and playback props.
 - New, Updated, and Preview metadata survives schema validation and appears in
@@ -65,6 +70,8 @@ part of the shared documentation presentation.
   newsletter subscriptions, and hosted showcase applications are not imported.
 - Native previews use videos and links to the hosted HeroUI Native app. The
   upstream QR-code popovers are not reproduced locally.
+- The Native ScrollShadow gallery tile uses its light recording in both themes:
+  the upstream dark recording URLs return 403.
 - Release attribution links to the source pull request. The upstream live
   GitHub contributor-avatar fetch is not reproduced locally.
 - Long inline `CollapsibleCode` examples use the local expandable details
@@ -81,7 +88,9 @@ every upstream screenshot.
 
 - Source audit: no unexpected differences across the coverage listed above.
 - Nx lint, type checking, and production build passed; all 22 unit tests passed.
-- All six Chromium tests passed, including local demos, numbered source,
+- All seven Chromium tests passed. Coverage includes gallery image loading, theme variants, source
+  ordering, desktop/mobile placement, locale links, and Native video URLs, as
+  well as local demos, numbered source,
   Preview/Code navigation, code scrolling, and stable Show more/Show less controls.
 - Production browser checks at desktop and mobile widths passed for color
   copying, light/dark tokens, related content, release attribution, linked images,

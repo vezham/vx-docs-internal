@@ -2,6 +2,7 @@ import { readFile, readdir } from 'node:fs/promises'
 import { createRequire } from 'node:module'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
+import vm from 'node:vm'
 import ts from 'typescript'
 import yaml from 'yaml'
 
@@ -22,6 +23,7 @@ const totals = {
   demos: 0,
   resourcePages: 0,
   statusPages: 0,
+  galleryEntries: 0,
   customComponents: new Set()
 }
 const visit = (node, callback) => {
@@ -96,6 +98,65 @@ const exportedNames = async (file, seen = new Set()) => {
   }
   return names
 }
+const readConstant = async (file, name) => {
+  const source = ts.createSourceFile(
+    file,
+    await readFile(file, 'utf8'),
+    ts.ScriptTarget.Latest,
+    true
+  )
+  const declaration = source.statements
+    .filter(ts.isVariableStatement)
+    .flatMap(statement => [...statement.declarationList.declarations])
+    .find(item => item.name.getText(source) === name)
+  if (!declaration?.initializer) throw new Error(`Missing ${name} in ${file}`)
+  const exports = {}
+  vm.runInNewContext(
+    ts.transpileModule(
+      `export const value = ${declaration.initializer.getText(source)}`,
+      {
+        compilerOptions: { module: ts.ModuleKind.CommonJS }
+      }
+    ).outputText,
+    { exports }
+  )
+  return exports.value
+}
+const presentation = path.join(app, 'src/lib/docs/heroui-presentation.ts')
+const gallery = await readConstant(presentation, 'componentGalleryGroups')
+for (const [platform, file] of [
+  ['web', 'components/components-category.tsx'],
+  ['native', 'components/native/components-category.tsx']
+]) {
+  const expected = await readConstant(
+    path.join(upstream, 'src', file),
+    'COMPONENT_GROUPS'
+  )
+  if (JSON.stringify(gallery[platform]) !== JSON.stringify(expected))
+    issues.push(`${platform}: changed gallery category or component order`)
+  totals.galleryEntries += expected.reduce(
+    (count, group) => count + group.components.length,
+    0
+  )
+}
+const media = await readConstant(presentation, 'componentGalleryMedia')
+const nativeSource = path.join(
+  upstream,
+  'src/components/native/components-category.tsx'
+)
+const cdn = await readConstant(
+  path.join(upstream, 'src/utils/constants.ts'),
+  'CDN_URL'
+)
+const expectedMedia = {
+  imageBaseUrl: `${cdn}/docs/related-components`,
+  nativeVideoBaseUrl: await readConstant(nativeSource, 'VIDEO_BASE_URL'),
+  nativeVideoNames: await readConstant(nativeSource, 'VIDEO_NAME_OVERRIDES')
+}
+if (JSON.stringify(media) !== JSON.stringify(expectedMedia))
+  issues.push(
+    'Gallery media URLs or native video overrides differ from upstream'
+  )
 const adapters = await exportedNames(
   path.join(app, 'src/components/docs/heroui-mdx.tsx')
 )

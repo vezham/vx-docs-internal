@@ -1,11 +1,8 @@
-import { useParams } from '@tanstack/react-router'
 import { type ComponentProps, type ReactNode, use, useState } from 'react'
 
 import { Callout } from '@vezham/docs-react/components/callout'
 import { Tab, Tabs } from '@vezham/docs-react/components/tabs'
-import { Button, Chip } from '@vezham/react-v3'
-
-import { herouiCatalog as catalog } from '@src/lib/docs/heroui-catalog'
+import { Button } from '@vezham/react-v3'
 
 import { PageMetadata } from './page-metadata'
 
@@ -20,52 +17,10 @@ export {
   NativeTryOnDevice
 } from './docs-media'
 
-const ComponentCategory = ({
-  category,
-  platform
-}: {
-  category: string
-  platform: 'web' | 'native'
-}) => {
-  const { lang } = useParams({ strict: false })
-  return (
-    <ul className="not-prose my-6 grid list-none gap-4 p-0 sm:grid-cols-2">
-      {catalog
-        .filter(
-          item =>
-            item.platform === platform &&
-            item.category === category.toLowerCase().replace(/ /g, '-')
-        )
-        .map(item => (
-          <li key={item.url} className="rounded-xl border p-4">
-            <a
-              href={`${lang === 'cn' ? '/cn' : ''}${item.url}`}
-              className="font-medium">
-              {item.title}
-            </a>
-            {item.status && (
-              <Chip size="sm" variant="soft" className="ms-2">
-                <Chip.Label>
-                  {item.status === 'new' ? 'New' : 'Updated'}
-                </Chip.Label>
-              </Chip>
-            )}
-            <p className="text-muted mt-1 text-sm">{item.description}</p>
-          </li>
-        ))}
-    </ul>
-  )
-}
-
-export const ComponentsCategory = ({ category }: { category: string }) => (
-  <ComponentCategory category={category} platform="web" />
-)
-
-export const NativeComponentsCategory = ({
-  category
-}: {
-  category: string
-}) => <ComponentCategory category={category} platform="native" />
+export {
+  ComponentsCategory,
+  NativeComponentsCategory
+} from './component-gallery'
 
 export const CollapsibleCode = ({
   code,
