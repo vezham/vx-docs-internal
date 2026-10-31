@@ -5,16 +5,11 @@ github:
   pull: 309
 ---
 
-import {
-  Callout,
-  NativeTryOnDevice,
-  NativeVideoPlayerView,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, NativeTryOnDevice, NativeVideoPlayerView, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">February 26, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">February 26, 2026</span>
 </div>
 
 RC 3 delivers three new components—TagGroup for selectable tag management, Menu for popover/bottom-sheet-based dropdown menus, and InputGroup for decorated text inputs with auto-measuring prefix/suffix slots. This release also brings Android hardware back button support for all bottom-sheet-based overlays, Expo 55 compatibility with a critical `combineStyles` fix that preserves Reanimated animated style bindings, and several dependency upgrades.
@@ -23,18 +18,31 @@ RC 3 delivers three new components—TagGroup for selectable tag management, Men
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
-  <Tab value="npm">```bash npm i heroui-native ```</Tab>
-  <Tab value="pnpm">``` bash pnpm add heroui-native ```</Tab>
-  <Tab value="yarn">```bash yarn add heroui-native ```</Tab>
-  <Tab value="bun">```bash bun add heroui-native ```</Tab>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
+<Tab value="npm">
+  ```bash
+  npm i heroui-native
+  ```
+</Tab>
+<Tab value="pnpm">
+  ``` bash
+  pnpm add heroui-native
+  ```
+</Tab>
+<Tab value="yarn">
+  ```bash
+  yarn add heroui-native
+  ```
+</Tab>
+<Tab value="bun">
+  ```bash
+  bun add heroui-native
+  ```
+</Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
-  the latest version" and your AI assistant will automatically compare versions
-  and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs-ui/native/getting-started/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI Native MCP Server](/docs-ui/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -58,8 +66,8 @@ The TagGroup component provides a compound component pattern for rendering selec
 <NativeVideoPlayerView
   target="component"
   slug="tag-group"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/tag-group-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/tag-group-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/tag-group-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/tag-group-docs-dark.mp4"
 />
 
 **Features:**
@@ -77,7 +85,7 @@ The TagGroup component provides a compound component pattern for rendering selec
 **Usage:**
 
 ```tsx
-import { TagGroup } from 'heroui-native'
+import { TagGroup } from "heroui-native";
 
 export function BasicTagGroup() {
   return (
@@ -94,17 +102,16 @@ export function BasicTagGroup() {
         </TagGroup.Item>
       </TagGroup.List>
     </TagGroup>
-  )
+  );
 }
 
 export function RemovableTagGroup() {
-  const [items, setItems] = useState(['React', 'Vue', 'Svelte'])
+  const [items, setItems] = useState(["React", "Vue", "Svelte"]);
 
   return (
-    <TagGroup
-      onRemove={keys => setItems(prev => prev.filter(i => !keys.has(i)))}>
+    <TagGroup onRemove={(keys) => setItems((prev) => prev.filter((i) => !keys.has(i)))}>
       <TagGroup.List>
-        {items.map(item => (
+        {items.map((item) => (
           <TagGroup.Item key={item} id={item}>
             <TagGroup.ItemLabel>{item}</TagGroup.ItemLabel>
             <TagGroup.ItemRemoveButton />
@@ -112,7 +119,7 @@ export function RemovableTagGroup() {
         ))}
       </TagGroup.List>
     </TagGroup>
-  )
+  );
 }
 ```
 
@@ -127,8 +134,8 @@ The Menu component provides a dropdown menu system built on a compound component
 <NativeVideoPlayerView
   target="component"
   slug="menu"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/menu-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/menu-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/menu-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/menu-docs-dark.mp4"
 />
 
 **Features:**
@@ -145,7 +152,7 @@ The Menu component provides a dropdown menu system built on a compound component
 **Usage:**
 
 ```tsx
-import { Menu } from 'heroui-native'
+import { Menu } from "heroui-native";
 
 export function BasicMenu() {
   return (
@@ -168,7 +175,7 @@ export function BasicMenu() {
         </Menu.Content>
       </Menu.Portal>
     </Menu>
-  )
+  );
 }
 
 export function MenuWithSections() {
@@ -180,10 +187,7 @@ export function MenuWithSections() {
       <Menu.Portal>
         <Menu.Overlay />
         <Menu.Content>
-          <Menu.Group
-            selectionMode="single"
-            selectedKeys={selected}
-            onSelectionChange={setSelected}>
+          <Menu.Group selectionMode="single" selectedKeys={selected} onSelectionChange={setSelected}>
             <Menu.Label>View</Menu.Label>
             <Menu.Item id="list">
               <Menu.ItemTitle>List View</Menu.ItemTitle>
@@ -197,7 +201,7 @@ export function MenuWithSections() {
         </Menu.Content>
       </Menu.Portal>
     </Menu>
-  )
+  );
 }
 ```
 
@@ -212,8 +216,8 @@ The InputGroup component provides a decorated text input with absolutely-positio
 <NativeVideoPlayerView
   target="component"
   slug="input-group"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/input-group-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/input-group-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/input-group-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/input-group-docs-dark.mp4"
 />
 
 **Features:**
@@ -227,7 +231,7 @@ The InputGroup component provides a decorated text input with absolutely-positio
 **Usage:**
 
 ```tsx
-import { InputGroup } from 'heroui-native'
+import { InputGroup } from "heroui-native";
 
 export function SearchInput() {
   return (
@@ -240,7 +244,7 @@ export function SearchInput() {
         <ChevronIcon />
       </InputGroup.Suffix>
     </InputGroup>
-  )
+  );
 }
 
 export function DisabledInput() {
@@ -251,7 +255,7 @@ export function DisabledInput() {
       </InputGroup.Prefix>
       <InputGroup.Input placeholder="Disabled input" />
     </InputGroup>
-  )
+  );
 }
 ```
 

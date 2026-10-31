@@ -1,19 +1,16 @@
 ---
 title: v1.0.7
-description: Replaceable background layers via a new background prop, GlassView layer component, blur overlay variant for Dialog and Bottom Sheet, Select trigger field styling, Toast overlay tokens
+description:
+  Replaceable background layers via a new background prop, GlassView layer component, blur overlay variant for Dialog and Bottom Sheet, Select trigger field styling, Toast overlay tokens
 github:
   pull: 457
 ---
 
-import {
-  Callout,
-  NativeTryOnDevice,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, NativeTryOnDevice, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">July 28, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">July 28, 2026</span>
 </div>
 
 HeroUI Native v1.0.7 makes component surfaces extensible: components now accept a `background` prop and expose a matching background compound part, so the layer behind a surface can be replaced with any node. It also adds the `GlassView` layer component, a `blur` overlay variant for Dialog and Bottom Sheet, and `expo-blur` as an optional peer dependency. These are extension points — the default theme registers no background content, so rendering is unchanged.
@@ -22,18 +19,31 @@ HeroUI Native v1.0.7 makes component surfaces extensible: components now accept 
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
-  <Tab value="npm">```bash npm i heroui-native ```</Tab>
-  <Tab value="pnpm">``` bash pnpm add heroui-native ```</Tab>
-  <Tab value="yarn">```bash yarn add heroui-native ```</Tab>
-  <Tab value="bun">```bash bun add heroui-native ```</Tab>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
+<Tab value="npm">
+  ```bash
+  npm i heroui-native
+  ```
+</Tab>
+<Tab value="pnpm">
+  ``` bash
+  pnpm add heroui-native
+  ```
+</Tab>
+<Tab value="yarn">
+  ```bash
+  yarn add heroui-native
+  ```
+</Tab>
+<Tab value="bun">
+  ```bash
+  bun add heroui-native
+  ```
+</Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
-  the latest version" and your AI assistant will automatically compare versions
-  and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs-ui/native/getting-started/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI Native MCP Server](/docs-ui/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device

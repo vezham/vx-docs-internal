@@ -9,17 +9,21 @@ links:
   storybook: Components/Feedback/Meter
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Label, Meter } from '@heroui/react'
+import { Meter, Label } from '@heroui/react';
 ```
 
-[Live example: meter-basic](https://heroui.com/docs/react/components/meter)
 
-```tsx
+<ComponentPreview name="meter-basic">
+
+````tsx
+import {Label, Meter} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <Meter aria-label="Storage" className="w-64" value={60}>
@@ -29,14 +33,17 @@ export function Basic() {
         <Meter.Fill />
       </Meter.Track>
     </Meter>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 ```tsx
-import { Label, Meter } from '@heroui/react'
+import { Meter, Label } from '@heroui/react';
 
 export default () => (
   <Meter value={60}>
@@ -46,16 +53,19 @@ export default () => (
       <Meter.Fill />
     </Meter.Track>
   </Meter>
-)
+);
 ```
 
 ## Examples
 
 ### Sizes
 
-[Live example: meter-sizes](https://heroui.com/docs/react/components/meter)
 
-```tsx
+<ComponentPreview name="meter-sizes">
+
+````tsx
+import {Label, Meter} from "@vezham/react-v3";
+
 export function Sizes() {
   return (
     <div className="flex w-64 flex-col gap-6">
@@ -81,15 +91,21 @@ export function Sizes() {
         </Meter.Track>
       </Meter>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Colors
 
-[Live example: meter-colors](https://heroui.com/docs/react/components/meter)
 
-```tsx
+<ComponentPreview name="meter-colors">
+
+````tsx
+import {Label, Meter} from "@vezham/react-v3";
+
 export function Colors() {
   return (
     <div className="flex w-64 flex-col gap-6">
@@ -129,17 +145,23 @@ export function Colors() {
         </Meter.Track>
       </Meter>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Without Label
 
 When no visible label is needed, use `aria-label` for accessibility.
 
-[Live example: meter-without-label](https://heroui.com/docs/react/components/meter)
 
-```tsx
+<ComponentPreview name="meter-without-label">
+
+````tsx
+import {Meter} from "@vezham/react-v3";
+
 export function WithoutLabel() {
   return (
     <Meter aria-label="Storage usage" className="w-64" value={45}>
@@ -147,54 +169,70 @@ export function WithoutLabel() {
         <Meter.Fill />
       </Meter.Track>
     </Meter>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Custom Value Scale
 
 Use `minValue`, `maxValue`, and `formatOptions` to customize the value range and display format.
 
-[Live example: meter-custom-value](https://heroui.com/docs/react/components/meter)
 
-```tsx
+<ComponentPreview name="meter-custom-value">
+
+````tsx
+import {Label, Meter} from "@vezham/react-v3";
+
 export function CustomValue() {
   return (
     <Meter
       className="w-64"
-      formatOptions={{ currency: 'USD', style: 'currency' }}
+      formatOptions={{currency: "USD", style: "currency"}}
       maxValue={1000}
       minValue={0}
-      value={750}>
+      value={750}
+    >
       <Label>Revenue</Label>
       <Meter.Output />
       <Meter.Track>
         <Meter.Fill />
       </Meter.Track>
     </Meter>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: meter-custom-styles](https://heroui.com/docs/react/components/meter)
 
-```tsx
+<ComponentPreview name="meter-custom-styles">
+
+````tsx
+import {Label, Meter} from "@vezham/react-v3";
+
 export function CustomStyles() {
   return (
     <Meter aria-label="Storage used" className="w-64" value={68}>
-      <Label className="text-foreground font-medium">Storage used</Label>
+      <Label className="font-medium text-foreground">Storage used</Label>
       <Meter.Output className="text-muted tabular-nums" />
-      <Meter.Track className="bg-default rounded-full">
-        <Meter.Fill className="bg-warning rounded-full" />
+      <Meter.Track className="rounded-full bg-default">
+        <Meter.Fill className="rounded-full bg-warning" />
       </Meter.Track>
     </Meter>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -226,20 +264,17 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The Meter component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/meter.css)):
 
 #### Base & Element Classes [!toc]
-
 - `.meter` - Base container (grid layout)
 - `.meter__output` - Value text display
 - `.meter__track` - Track background
 - `.meter__fill` - Filled portion of the track
 
 #### Size Classes [!toc]
-
 - `.meter--sm` - Small size variant (thinner track)
 - `.meter--md` - Medium size variant (default)
 - `.meter--lg` - Large size variant (thicker track)
 
 #### Color Classes [!toc]
-
 - `.meter--default` - Default color variant
 - `.meter--accent` - Accent color variant
 - `.meter--success` - Success color variant
@@ -252,25 +287,25 @@ The Meter component uses these CSS classes ([View source styles](https://github.
 
 Inherits from [React Aria Meter](https://react-spectrum.adobe.com/react-aria/Meter.html).
 
-| Prop            | Type                                                          | Default              | Description                         |
-| --------------- | ------------------------------------------------------------- | -------------------- | ----------------------------------- |
-| `value`         | `number`                                                      | `0`                  | The current value                   |
-| `minValue`      | `number`                                                      | `0`                  | The minimum value                   |
-| `maxValue`      | `number`                                                      | `100`                | The maximum value                   |
-| `size`          | `"sm" \| "md" \| "lg"`                                        | `"md"`               | Size of the meter track             |
-| `color`         | `"default" \| "accent" \| "success" \| "warning" \| "danger"` | `"accent"`           | Color of the fill bar               |
-| `formatOptions` | `Intl.NumberFormatOptions`                                    | `{style: 'percent'}` | Number format for the value display |
-| `valueLabel`    | `ReactNode`                                                   | -                    | Custom value label content          |
-| `children`      | `ReactNode \| (values: MeterRenderProps) => ReactNode`        | -                    | Content or render prop              |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `number` | `0` | The current value |
+| `minValue` | `number` | `0` | The minimum value |
+| `maxValue` | `number` | `100` | The maximum value |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Size of the meter track |
+| `color` | `"default" \| "accent" \| "success" \| "warning" \| "danger"` | `"accent"` | Color of the fill bar |
+| `formatOptions` | `Intl.NumberFormatOptions` | `{style: 'percent'}` | Number format for the value display |
+| `valueLabel` | `ReactNode` | - | Custom value label content |
+| `children` | `ReactNode \| (values: MeterRenderProps) => ReactNode` | - | Content or render prop |
 
 ### Render Props
 
 When using the render prop pattern, these values are provided:
 
-| Prop         | Type     | Description                         |
-| ------------ | -------- | ----------------------------------- |
+| Prop | Type | Description |
+|------|------|-------------|
 | `percentage` | `number` | The percentage of the meter (0-100) |
-| `valueText`  | `string` | The formatted value text            |
+| `valueText` | `string` | The formatted value text |
 
 ## Related Components
 

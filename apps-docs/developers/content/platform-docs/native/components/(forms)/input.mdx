@@ -1,7 +1,7 @@
 ---
 title: Input
 description: A text input component with styled border and background for collecting user input.
-icon: updated
+status: updated
 links:
   source_native: input/input.tsx
   styles_native: input/input.styles.ts
@@ -9,16 +9,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/input-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/input-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/input-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/input-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { Input } from 'heroui-native'
+import { Input } from 'heroui-native';
 ```
 
 ## Usage
@@ -28,9 +29,9 @@ import { Input } from 'heroui-native'
 Input can be used standalone or within a TextField component.
 
 ```tsx
-import { Input } from 'heroui-native'
+import { Input } from 'heroui-native';
 
-;<Input placeholder="Enter your email" />
+<Input placeholder="Enter your email" />;
 ```
 
 ### Within TextField
@@ -38,12 +39,12 @@ import { Input } from 'heroui-native'
 Input works seamlessly with TextField for complete form structure.
 
 ```tsx
-import { Input, Label, TextField } from 'heroui-native'
+import { Input, Label, TextField } from 'heroui-native';
 
-;<TextField>
+<TextField>
   <Label>Email</Label>
   <Input placeholder="Enter your email" />
-</TextField>
+</TextField>;
 ```
 
 ### With Validation
@@ -51,13 +52,13 @@ import { Input, Label, TextField } from 'heroui-native'
 Display error state when the input is invalid.
 
 ```tsx
-import { FieldError, Input, Label, TextField } from 'heroui-native'
+import { FieldError, Input, Label, TextField } from 'heroui-native';
 
-;<TextField isRequired isInvalid={true}>
+<TextField isRequired isInvalid={true}>
   <Label>Email</Label>
   <Input placeholder="Enter your email" />
   <FieldError>Please enter a valid email</FieldError>
-</TextField>
+</TextField>;
 ```
 
 ### With Local Invalid State Override
@@ -65,13 +66,13 @@ import { FieldError, Input, Label, TextField } from 'heroui-native'
 Override the context's invalid state for the input.
 
 ```tsx
-import { FieldError, Input, Label, TextField } from 'heroui-native'
+import { FieldError, Input, Label, TextField } from 'heroui-native';
 
-;<TextField isInvalid={true}>
+<TextField isInvalid={true}>
   <Label isInvalid={false}>Email</Label>
   <Input placeholder="Enter your email" isInvalid={false} />
   <FieldError>Email format is incorrect</FieldError>
-</TextField>
+</TextField>;
 ```
 
 ### Disabled State
@@ -79,12 +80,12 @@ import { FieldError, Input, Label, TextField } from 'heroui-native'
 Disable the input to prevent interaction.
 
 ```tsx
-import { Input, Label, TextField } from 'heroui-native'
+import { Input, Label, TextField } from 'heroui-native';
 
-;<TextField isDisabled>
+<TextField isDisabled>
   <Label>Disabled Field</Label>
   <Input placeholder="Cannot edit" value="Read only value" />
-</TextField>
+</TextField>;
 ```
 
 ### With Variant
@@ -110,15 +111,15 @@ import { Input, Label, TextField } from 'heroui-native';
 Customize the input appearance using className.
 
 ```tsx
-import { Input, Label, TextField } from 'heroui-native'
+import { Input, Label, TextField } from 'heroui-native';
 
-;<TextField>
+<TextField>
   <Label>Custom Styled</Label>
   <Input
     placeholder="Custom colors"
-    className="border-blue-500 bg-blue-50 focus:border-blue-700"
+    className="bg-blue-50 border-blue-500 focus:border-blue-700"
   />
-</TextField>
+</TextField>;
 ```
 
 ### Inside a Bottom Sheet
@@ -128,34 +129,38 @@ When rendering an Input inside a `BottomSheet`, use the `useBottomSheetAwareHand
 > **Note**: `useBottomSheetAwareHandlers` must be used inside a `BottomSheet`. Call it from a child component rendered inside `BottomSheet.Content` — outside of a `BottomSheet` context the returned handlers are no-ops.
 
 ```tsx
-import { Input, TextField, useBottomSheetAwareHandlers } from 'heroui-native'
+import { Input, TextField, useBottomSheetAwareHandlers } from 'heroui-native';
 
 const BottomSheetTextInput = () => {
-  const { onFocus, onBlur } = useBottomSheetAwareHandlers()
+  const { onFocus, onBlur } = useBottomSheetAwareHandlers();
 
   return (
     <TextField>
-      <Input placeholder="Type here..." onFocus={onFocus} onBlur={onBlur} />
+      <Input
+        placeholder="Type here..."
+        onFocus={onFocus}
+        onBlur={onBlur}
+      />
     </TextField>
-  )
-}
+  );
+};
 ```
 
 ## Example
 
 ```tsx
-import { Ionicons } from '@expo/vector-icons'
-import { Description, Input, Label, TextField } from 'heroui-native'
-import { useState } from 'react'
-import { Pressable, View } from 'react-native'
-import { withUniwind } from 'uniwind'
+import { Ionicons } from '@expo/vector-icons';
+import { Description, Input, Label, TextField } from 'heroui-native';
+import { useState } from 'react';
+import { Pressable, View } from 'react-native';
+import { withUniwind } from 'uniwind';
 
-const StyledIonicons = withUniwind(Ionicons)
+const StyledIonicons = withUniwind(Ionicons);
 
 export const TextInputContent = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   return (
     <View className="gap-4">
@@ -186,12 +191,13 @@ export const TextInputContent = () => {
           <StyledIonicons
             name="lock-closed-outline"
             size={16}
-            className="text-muted absolute left-3.5"
+            className="absolute left-3.5 text-muted"
             pointerEvents="none"
           />
           <Pressable
             className="absolute right-4"
-            onPress={() => setIsPasswordVisible(!isPasswordVisible)}>
+            onPress={() => setIsPasswordVisible(!isPasswordVisible)}
+          >
             <StyledIonicons
               name={isPasswordVisible ? 'eye-off-outline' : 'eye-outline'}
               size={16}
@@ -202,27 +208,27 @@ export const TextInputContent = () => {
         <Description>Password must be at least 6 characters</Description>
       </TextField>
     </View>
-  )
-}
+  );
+};
 ```
 
-You can find more examples in the [GitHub repository](<https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/input.tsx>).
+You can find more examples in the [GitHub repository](https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/input.tsx).
 
 ## API Reference
 
 ### Input
 
-| prop                      | type                       | default               | description                                                                                                                                                                                                                                                                       |
-| ------------------------- | -------------------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| isInvalid                 | `boolean`                  | `undefined`           | Whether the input is in an invalid state (overrides context)                                                                                                                                                                                                                      |
-| variant                   | `'primary' \| 'secondary'` | `'primary'`           | Variant style for the input                                                                                                                                                                                                                                                       |
-| className                 | `string`                   | -                     | Custom class name for the input                                                                                                                                                                                                                                                   |
-| selectionColorClassName   | `string`                   | `"accent-accent"`     | Custom className for the selection color                                                                                                                                                                                                                                          |
-| placeholderColorClassName | `string`                   | `"field-placeholder"` | Custom className for the placeholder text color                                                                                                                                                                                                                                   |
-| isBottomSheetAware        | `boolean`                  | `true`                | Whether the input automatically handles keyboard state when rendered inside a BottomSheet. Set to `false` to disable                                                                                                                                                              |
-| animation                 | `AnimationRoot`            | `undefined`           | Animation configuration for the input                                                                                                                                                                                                                                             |
+| prop                      | type                       | default               | description                                                  |
+| ------------------------- | -------------------------- | --------------------- | ------------------------------------------------------------ |
+| isInvalid                 | `boolean`                  | `undefined`           | Whether the input is in an invalid state (overrides context) |
+| variant                   | `'primary' \| 'secondary'` | `'primary'`           | Variant style for the input                                  |
+| className                 | `string`                   | -                     | Custom class name for the input                              |
+| selectionColorClassName   | `string`                   | `"accent-accent"`     | Custom className for the selection color                     |
+| placeholderColorClassName | `string`                   | `"field-placeholder"` | Custom className for the placeholder text color              |
+| isBottomSheetAware        | `boolean`                  | `true`                | Whether the input automatically handles keyboard state when rendered inside a BottomSheet. Set to `false` to disable |
+| animation                 | `AnimationRoot`            | `undefined`           | Animation configuration for the input                        |
 | background                | `React.ReactNode`          | -                     | Background layer behind the text input. `undefined` renders the theme-aware default when the active theme registers default background content (fallback color follows the variant: primary → field token, secondary → default token); custom node replaces it; `null` removes it |
-| ...TextInputProps         | `TextInputProps`           | -                     | All standard React Native TextInput props are supported                                                                                                                                                                                                                           |
+| ...TextInputProps         | `TextInputProps`           | -                     | All standard React Native TextInput props are supported      |
 
 > **Note**: When used within a TextField component, Input automatically consumes form state (isDisabled, isInvalid) from TextField via the form-item-state context.
 
@@ -230,9 +236,9 @@ You can find more examples in the [GitHub repository](<https://github.com/heroui
 
 Absolute-fill container rendered behind the text input. With no children, the active library theme decides the default content (e.g. a glass blur layer); pass children to host custom content with the same positioning and clipping.
 
-| prop          | type              | default   | description                                                                                    |
-| ------------- | ----------------- | --------- | ---------------------------------------------------------------------------------------------- |
-| children      | `React.ReactNode` | -         | Custom content inside the background container                                                 |
-| className     | `string`          | -         | Additional CSS classes                                                                         |
-| fallbackColor | `ThemeColor`      | `'field'` | Theme color token used as the opaque fallback on platforms without native blur (Android / web) |
-| ...ViewProps  | `ViewProps`       | -         | All standard View props are supported                                                          |
+| prop           | type              | default   | description                                                                                    |
+| -------------- | ----------------- | --------- | ---------------------------------------------------------------------------------------------- |
+| children       | `React.ReactNode` | -         | Custom content inside the background container                                                 |
+| className      | `string`          | -         | Additional CSS classes                                                                         |
+| fallbackColor  | `ThemeColor`      | `'field'` | Theme color token used as the opaque fallback on platforms without native blur (Android / web) |
+| ...ViewProps   | `ViewProps`       | -         | All standard View props are supported                                                          |

@@ -8,16 +8,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/checkbox-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/checkbox-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/checkbox-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/checkbox-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { Checkbox } from 'heroui-native'
+import { Checkbox } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -74,46 +75,49 @@ Customize or disable animations for both the root checkbox and indicator.
 {
   /* Disable all animations (root and indicator) */
 }
-;<Checkbox
+<Checkbox
   animation="disable-all"
   isSelected={isSelected}
-  onSelectedChange={setIsSelected}>
+  onSelectedChange={setIsSelected}
+>
   <Checkbox.Indicator />
-</Checkbox>
+</Checkbox>;
 
 {
   /* Disable only root animation */
 }
-;<Checkbox
+<Checkbox
   animation="disabled"
   isSelected={isSelected}
-  onSelectedChange={setIsSelected}>
+  onSelectedChange={setIsSelected}
+>
   <Checkbox.Indicator />
-</Checkbox>
+</Checkbox>;
 
 {
   /* Disable only indicator animation */
 }
-;<Checkbox isSelected={isSelected} onSelectedChange={setIsSelected}>
+<Checkbox isSelected={isSelected} onSelectedChange={setIsSelected}>
   <Checkbox.Indicator animation="disabled" />
-</Checkbox>
+</Checkbox>;
 
 {
   /* Custom animation configuration */
 }
-;<Checkbox
+<Checkbox
   animation={{ scale: { value: [1, 0.9], timingConfig: { duration: 200 } } }}
   isSelected={isSelected}
-  onSelectedChange={setIsSelected}>
+  onSelectedChange={setIsSelected}
+>
   <Checkbox.Indicator
     animation={{
       scale: { value: [0.5, 1] },
       opacity: { value: [0, 1] },
       translateX: { value: [-8, 0] },
-      borderRadius: { value: [12, 0] }
+      borderRadius: { value: [12, 0] },
     }}
   />
-</Checkbox>
+</Checkbox>;
 ```
 
 ## Example
@@ -121,27 +125,27 @@ Customize or disable animations for both the root checkbox and indicator.
 ```tsx
 import {
   Checkbox,
-  ControlField,
   Description,
+  ControlField,
   Label,
   Separator,
-  Surface
-} from 'heroui-native'
-import React from 'react'
-import { Text, View } from 'react-native'
+  Surface,
+} from "heroui-native";
+import React from 'react';
+import { View, Text } from 'react-native';
 
 interface CheckboxFieldProps {
-  isSelected: boolean
-  onSelectedChange: (value: boolean) => void
-  title: string
-  description: string
+  isSelected: boolean;
+  onSelectedChange: (value: boolean) => void;
+  title: string;
+  description: string;
 }
 
 const CheckboxField: React.FC<CheckboxFieldProps> = ({
   isSelected,
   onSelectedChange,
   title,
-  description
+  description,
 }) => {
   return (
     <ControlField isSelected={isSelected} onSelectedChange={onSelectedChange}>
@@ -150,18 +154,20 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
       </ControlField.Indicator>
       <View className="flex-1">
         <Label className="text-lg">{title}</Label>
-        <Description className="text-base">{description}</Description>
+        <Description className="text-base">
+          {description}
+        </Description>
       </View>
     </ControlField>
-  )
-}
+  );
+};
 
 export default function BasicUsage() {
   const [fields, setFields] = React.useState({
     newsletter: true,
     marketing: false,
-    terms: false
-  })
+    terms: false,
+  });
 
   const fieldConfigs: Record<
     keyof typeof fields,
@@ -169,27 +175,27 @@ export default function BasicUsage() {
   > = {
     newsletter: {
       title: 'Subscribe to newsletter',
-      description: 'Get weekly updates about new features and tips'
+      description: 'Get weekly updates about new features and tips',
     },
     marketing: {
       title: 'Marketing communications',
-      description: 'Receive promotional emails and special offers'
+      description: 'Receive promotional emails and special offers',
     },
     terms: {
       title: 'Accept terms and conditions',
-      description: 'Agree to our Terms of Service and Privacy Policy'
-    }
-  }
+      description: 'Agree to our Terms of Service and Privacy Policy',
+    },
+  };
 
   const handleFieldChange = (key: keyof typeof fields) => (value: boolean) => {
-    setFields(prev => ({ ...prev, [key]: value }))
-  }
+    setFields((prev) => ({ ...prev, [key]: value }));
+  };
 
-  const fieldKeys = Object.keys(fields) as Array<keyof typeof fields>
+  const fieldKeys = Object.keys(fields) as Array<keyof typeof fields>;
 
   return (
     <View className="flex-1 items-center justify-center px-5">
-      <Surface className="w-full py-5">
+      <Surface className="py-5 w-full">
         {fieldKeys.map((key, index) => (
           <React.Fragment key={key}>
             {index > 0 && <Separator className="my-4" />}
@@ -203,7 +209,7 @@ export default function BasicUsage() {
         ))}
       </Surface>
     </View>
-  )
+  );
 }
 ```
 
@@ -213,20 +219,20 @@ You can find more examples in the [GitHub repository](<https://github.com/heroui
 
 ### Checkbox
 
-| prop                    | type                                                                   | default     | description                                                                                                                                                                         |
-| ----------------------- | ---------------------------------------------------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `children`              | `React.ReactNode \| ((props: CheckboxRenderProps) => React.ReactNode)` | `undefined` | Child elements or render function to customize the checkbox                                                                                                                         |
-| `isSelected`            | `boolean`                                                              | `undefined` | Whether the checkbox is currently selected                                                                                                                                          |
-| `onSelectedChange`      | `(isSelected: boolean) => void`                                        | `undefined` | Callback fired when the checkbox selection state changes                                                                                                                            |
-| `isDisabled`            | `boolean`                                                              | `false`     | Whether the checkbox is disabled and cannot be interacted with                                                                                                                      |
-| `isInvalid`             | `boolean`                                                              | `false`     | Whether the checkbox is invalid (shows danger color)                                                                                                                                |
-| `variant`               | `'primary' \| 'secondary'`                                             | `'primary'` | Variant style for the checkbox                                                                                                                                                      |
-| `hitSlop`               | `number`                                                               | `6`         | Hit slop for the pressable area                                                                                                                                                     |
-| `animation`             | `CheckboxRootAnimation`                                                | -           | Animation configuration                                                                                                                                                             |
-| `isAnimatedStyleActive` | `boolean`                                                              | `true`      | Whether animated styles (react-native-reanimated) are active                                                                                                                        |
-| `className`             | `string`                                                               | `undefined` | Additional CSS classes to apply                                                                                                                                                     |
-| `background`            | `React.ReactNode`                                                      | -           | Background layer behind the checkbox content. `undefined` renders the theme-aware default for the `secondary` variant while not invalid; custom node replaces it; `null` removes it |
-| `...PressableProps`     | `PressableProps`                                                       | -           | All standard React Native Pressable props are supported (except disabled)                                                                                                           |
+| prop                    | type                                                                   | default     | description                                                               |
+| ----------------------- | ---------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------------- |
+| `children`              | `React.ReactNode \| ((props: CheckboxRenderProps) => React.ReactNode)` | `undefined` | Child elements or render function to customize the checkbox               |
+| `isSelected`            | `boolean`                                                              | `undefined` | Whether the checkbox is currently selected                                |
+| `onSelectedChange`      | `(isSelected: boolean) => void`                                        | `undefined` | Callback fired when the checkbox selection state changes                  |
+| `isDisabled`            | `boolean`                                                              | `false`     | Whether the checkbox is disabled and cannot be interacted with            |
+| `isInvalid`             | `boolean`                                                              | `false`     | Whether the checkbox is invalid (shows danger color)                      |
+| `variant`               | `'primary' \| 'secondary'`                                             | `'primary'` | Variant style for the checkbox                                            |
+| `hitSlop`               | `number`                                                               | `6`         | Hit slop for the pressable area                                           |
+| `animation`             | `CheckboxRootAnimation`                                                | -           | Animation configuration                                                   |
+| `isAnimatedStyleActive` | `boolean`                                                              | `true`      | Whether animated styles (react-native-reanimated) are active              |
+| `className`             | `string`                                                               | `undefined` | Additional CSS classes to apply                                           |
+| `background` | `React.ReactNode` | - | Background layer behind the checkbox content. `undefined` renders the theme-aware default for the `secondary` variant while not invalid; custom node replaces it; `null` removes it |
+| `...PressableProps`     | `PressableProps`                                                       | -           | All standard React Native Pressable props are supported (except disabled) |
 
 #### CheckboxRenderProps
 
@@ -311,12 +317,12 @@ Animation configuration for checkbox indicator component. Can be:
 Hook to access checkbox context values within custom components or compound components.
 
 ```tsx
-import { useCheckbox } from 'heroui-native'
+import { useCheckbox } from 'heroui-native';
 
 const CustomIndicator = () => {
-  const { isSelected, isInvalid, isDisabled } = useCheckbox()
+  const { isSelected, isInvalid, isDisabled } = useCheckbox();
   // ... your implementation
-}
+};
 ```
 
 **Returns:** `UseCheckboxReturn`

@@ -10,37 +10,41 @@ links:
   figma: true
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { ColorSlider, Label } from '@heroui/react'
+import { ColorSlider, Label } from '@heroui/react';
 ```
 
-[Live example: color-slider-basic](https://heroui.com/docs/react/components/color-slider)
 
-```tsx
+<ComponentPreview name="color-slider-basic">
+
+````tsx
+import {ColorSlider, Label} from "@vezham/react-v3";
+
 export function Basic() {
   return (
-    <ColorSlider
-      channel="hue"
-      className="w-full max-w-xs"
-      defaultValue="hsl(0, 100%, 50%)">
+    <ColorSlider channel="hue" className="w-full max-w-xs" defaultValue="hsl(0, 100%, 50%)">
       <Label>Hue</Label>
       <ColorSlider.Output />
       <ColorSlider.Track>
         <ColorSlider.Thumb />
       </ColorSlider.Track>
     </ColorSlider>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 ```tsx
-import { ColorSlider, Label } from '@heroui/react'
+import { ColorSlider, Label } from '@heroui/react';
 
 export default () => (
   <ColorSlider channel="hue" defaultValue="hsl(0, 100%, 50%)">
@@ -52,36 +56,45 @@ export default () => (
   </ColorSlider>
 )
 ```
-
 ## Examples
 
 ### Disabled
 
-[Live example: color-slider-disabled](https://heroui.com/docs/react/components/color-slider)
 
-```tsx
+<ComponentPreview name="color-slider-disabled">
+
+````tsx
+import {ColorSlider, Label} from "@vezham/react-v3";
+
 export function Disabled() {
   return (
     <ColorSlider
       isDisabled
       channel="hue"
       className="w-full max-w-xs"
-      defaultValue="hsl(200, 100%, 50%)">
+      defaultValue="hsl(200, 100%, 50%)"
+    >
       <Label>Hue</Label>
       <ColorSlider.Output />
       <ColorSlider.Track>
         <ColorSlider.Thumb />
       </ColorSlider.Track>
     </ColorSlider>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Vertical
 
-[Live example: color-slider-vertical](https://heroui.com/docs/react/components/color-slider)
 
-```tsx
+<ComponentPreview name="color-slider-vertical">
+
+````tsx
+import {ColorSlider} from "@vezham/react-v3";
+
 export function Vertical() {
   return (
     <div className="flex h-48 gap-4">
@@ -89,7 +102,8 @@ export function Vertical() {
         aria-label="Hue"
         channel="hue"
         defaultValue="hsl(0, 100%, 50%)"
-        orientation="vertical">
+        orientation="vertical"
+      >
         <ColorSlider.Track>
           <ColorSlider.Thumb />
         </ColorSlider.Track>
@@ -98,7 +112,8 @@ export function Vertical() {
         aria-label="Saturation"
         channel="saturation"
         defaultValue="hsl(0, 100%, 50%)"
-        orientation="vertical">
+        orientation="vertical"
+      >
         <ColorSlider.Track>
           <ColorSlider.Thumb />
         </ColorSlider.Track>
@@ -107,25 +122,34 @@ export function Vertical() {
         aria-label="Lightness"
         channel="lightness"
         defaultValue="hsl(0, 100%, 50%)"
-        orientation="vertical">
+        orientation="vertical"
+      >
         <ColorSlider.Track>
           <ColorSlider.Thumb />
         </ColorSlider.Track>
       </ColorSlider>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Controlled
 
-[Live example: color-slider-controlled](https://heroui.com/docs/react/components/color-slider)
 
-```tsx
-'use client'
+<ComponentPreview name="color-slider-controlled">
+
+````tsx
+"use client";
+
+import {ColorSlider, ColorSwatch, Label} from "@vezham/react-v3";
+import {useState} from "react";
+import {parseColor} from "react-aria-components";
 
 export function Controlled() {
-  const [color, setColor] = useState(parseColor('hsl(200, 100%, 50%)'))
+  const [color, setColor] = useState(parseColor("hsl(200, 100%, 50%)"));
 
   return (
     <div className="flex w-full max-w-xs flex-col gap-4">
@@ -138,27 +162,34 @@ export function Controlled() {
       </ColorSlider>
       <div className="flex items-center gap-2">
         <ColorSwatch color={color} size="sm" />
-        <p className="text-muted text-sm">
-          Current color:{' '}
-          <code className="font-mono">{color.toString('hsl')}</code>
+        <p className="text-sm text-muted">
+          Current color: <code className="font-mono">{color.toString("hsl")}</code>
         </p>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### HSL Channels
 
 Use multiple ColorSliders to control different channels of a color value. The sliders can share the same color value to create a complete color picker.
 
-[Live example: color-slider-channels](https://heroui.com/docs/react/components/color-slider)
 
-```tsx
-'use client'
+<ComponentPreview name="color-slider-channels">
+
+````tsx
+"use client";
+
+import {ColorSlider, ColorSwatch, Label} from "@vezham/react-v3";
+import {useState} from "react";
+import {parseColor} from "react-aria-components";
 
 export function Channels() {
-  const [color, setColor] = useState(parseColor('hsl(0, 100%, 50%)'))
+  const [color, setColor] = useState(parseColor("hsl(0, 100%, 50%)"));
 
   return (
     <div className="flex w-full max-w-xs flex-col gap-4">
@@ -185,50 +216,60 @@ export function Channels() {
       </ColorSlider>
       <div className="flex items-center gap-2">
         <ColorSwatch color={color} size="sm" />
-        <p className="text-muted text-sm">
-          Current color:{' '}
-          <code className="font-mono">{color.toString('hsl')}</code>
+        <p className="text-sm text-muted">
+          Current color: <code className="font-mono">{color.toString("hsl")}</code>
         </p>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Alpha Channel
 
 The alpha channel slider shows a transparency checkerboard pattern to help visualize the transparency level.
 
-[Live example: color-slider-alpha-channel](https://heroui.com/docs/react/components/color-slider)
 
-```tsx
+<ComponentPreview name="color-slider-alpha-channel">
+
+````tsx
+import {ColorSlider, Label} from "@vezham/react-v3";
+
 export function AlphaChannel() {
   return (
-    <ColorSlider
-      channel="alpha"
-      className="w-full max-w-xs"
-      defaultValue="hsla(0, 100%, 50%, 0.5)">
+    <ColorSlider channel="alpha" className="w-full max-w-xs" defaultValue="hsla(0, 100%, 50%, 0.5)">
       <Label>Alpha</Label>
       <ColorSlider.Output />
       <ColorSlider.Track>
         <ColorSlider.Thumb />
       </ColorSlider.Track>
     </ColorSlider>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### RGB Channels
 
 You can also use RGB color space with red, green, and blue channels.
 
-[Live example: color-slider-rgb-channels](https://heroui.com/docs/react/components/color-slider)
 
-```tsx
-'use client'
+<ComponentPreview name="color-slider-rgb-channels">
+
+````tsx
+"use client";
+
+import {ColorSlider, ColorSwatch, Label} from "@vezham/react-v3";
+import {useState} from "react";
+import {parseColor} from "react-aria-components";
 
 export function RGBChannels() {
-  const [color, setColor] = useState(parseColor('rgb(255, 100, 50)'))
+  const [color, setColor] = useState(parseColor("rgb(255, 100, 50)"));
 
   return (
     <div className="flex w-full max-w-xs flex-col gap-4">
@@ -255,22 +296,27 @@ export function RGBChannels() {
       </ColorSlider>
       <div className="flex items-center gap-2">
         <ColorSwatch color={color} size="sm" />
-        <p className="text-muted text-sm">
-          Current color:{' '}
-          <code className="font-mono">{color.toString('rgb')}</code>
+        <p className="text-sm text-muted">
+          Current color: <code className="font-mono">{color.toString("rgb")}</code>
         </p>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Render Function
 
-[Live example: color-slider-render-function](https://heroui.com/docs/react/components/color-slider)
 
-```tsx
-'use client'
+<ComponentPreview name="color-slider-render-function">
+
+````tsx
+"use client";
+
+import {ColorSlider, Label} from "@vezham/react-v3";
 
 export function RenderFunction() {
   return (
@@ -278,39 +324,46 @@ export function RenderFunction() {
       channel="hue"
       className="w-full max-w-xs"
       defaultValue="hsl(0, 100%, 50%)"
-      render={props => <div {...props} data-custom="foo" />}>
+      render={(props) => <div {...props} data-custom="foo" />}
+    >
       <Label>Hue</Label>
       <ColorSlider.Output />
       <ColorSlider.Track>
         <ColorSlider.Thumb />
       </ColorSlider.Track>
     </ColorSlider>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: color-slider-custom-styles](https://heroui.com/docs/react/components/color-slider)
 
-```tsx
+<ComponentPreview name="color-slider-custom-styles">
+
+````tsx
+import {ColorSlider, Label} from "@vezham/react-v3";
+
 export function CustomStyles() {
   return (
-    <ColorSlider
-      channel="hue"
-      className="w-full max-w-sm"
-      defaultValue="hsl(220, 70%, 50%)">
-      <Label className="text-foreground font-medium">Hue</Label>
+    <ColorSlider channel="hue" className="w-full max-w-sm" defaultValue="hsl(220, 70%, 50%)">
+      <Label className="font-medium text-foreground">Hue</Label>
       <ColorSlider.Output className="text-muted tabular-nums" />
-      <ColorSlider.Track className="ring-border h-4! rounded-none! ring-1 [&::after]:rounded-r-sm! [&::before]:rounded-l-sm!">
-        <ColorSlider.Thumb className="border-background size-4 rounded-sm! border-2 shadow-md ring-1 ring-black/10 dark:ring-white/20" />
+      <ColorSlider.Track className="h-4! rounded-none! ring-1 ring-border [&::after]:rounded-r-sm! [&::before]:rounded-l-sm!">
+        <ColorSlider.Thumb className="size-4 rounded-sm! border-2 border-background shadow-md ring-1 ring-black/10 dark:ring-white/20" />
       </ColorSlider.Track>
     </ColorSlider>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -332,7 +385,7 @@ To customize the ColorSlider component classes, you can use the `@layer componen
   }
 
   .color-slider__thumb {
-    @apply shadow-overlay size-4 rounded-full border-3 border-white;
+    @apply size-4 rounded-full border-3 border-white shadow-overlay;
   }
 }
 ```
@@ -346,14 +399,12 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The ColorSlider component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/color-slider.css)):
 
 #### Base Classes [!toc]
-
 - `.color-slider` - Base slider container
 - `.color-slider__output` - Output element displaying current value
 - `.color-slider__track` - Track element with color gradient
 - `.color-slider__thumb` - Thumb element showing current color
 
 #### State Classes [!toc]
-
 - `.color-slider[data-disabled="true"]` - Disabled slider state
 - `.color-slider[data-orientation="vertical"]` - Vertical orientation
 - `.color-slider__thumb[data-dragging="true"]` - Thumb being dragged
@@ -375,55 +426,55 @@ The component supports both CSS pseudo-classes and data attributes for flexibili
 
 Inherits from [React Aria ColorSlider](https://react-spectrum.adobe.com/react-aria/ColorSlider.html).
 
-| Prop           | Type                                                                           | Default        | Description                                                                                                     |
-| -------------- | ------------------------------------------------------------------------------ | -------------- | --------------------------------------------------------------------------------------------------------------- |
-| `channel`      | `ColorChannel`                                                                 | -              | The color channel that the slider manipulates (hue, saturation, lightness, brightness, alpha, red, green, blue) |
-| `colorSpace`   | `ColorSpace`                                                                   | -              | The color space (hsl, hsb, rgb). Defaults to the color space of the value                                       |
-| `value`        | `string \| Color`                                                              | -              | The current color value (controlled)                                                                            |
-| `defaultValue` | `string \| Color`                                                              | -              | The default color value (uncontrolled)                                                                          |
-| `onChange`     | `(value: Color) => void`                                                       | -              | Handler called when the value changes during dragging                                                           |
-| `onChangeEnd`  | `(value: Color) => void`                                                       | -              | Handler called when dragging ends                                                                               |
-| `orientation`  | `"horizontal" \| "vertical"`                                                   | `"horizontal"` | The orientation of the slider                                                                                   |
-| `isDisabled`   | `boolean`                                                                      | -              | Whether the slider is disabled                                                                                  |
-| `name`         | `string`                                                                       | -              | The name of the input element for form submission                                                               |
-| `aria-label`   | `string`                                                                       | -              | Accessibility label for the slider                                                                              |
-| `className`    | `string`                                                                       | -              | Additional CSS classes                                                                                          |
-| `children`     | `ReactNode \| RenderFunction`                                                  | -              | Slider content or render function                                                                               |
-| `render`       | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, ColorSliderRenderProps>` | -              | Overrides the default DOM element with a custom render function.                                                |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `channel` | `ColorChannel` | - | The color channel that the slider manipulates (hue, saturation, lightness, brightness, alpha, red, green, blue) |
+| `colorSpace` | `ColorSpace` | - | The color space (hsl, hsb, rgb). Defaults to the color space of the value |
+| `value` | `string \| Color` | - | The current color value (controlled) |
+| `defaultValue` | `string \| Color` | - | The default color value (uncontrolled) |
+| `onChange` | `(value: Color) => void` | - | Handler called when the value changes during dragging |
+| `onChangeEnd` | `(value: Color) => void` | - | Handler called when dragging ends |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | The orientation of the slider |
+| `isDisabled` | `boolean` | - | Whether the slider is disabled |
+| `name` | `string` | - | The name of the input element for form submission |
+| `aria-label` | `string` | - | Accessibility label for the slider |
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode \| RenderFunction` | - | Slider content or render function |
+| `render` | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, ColorSliderRenderProps>` | - | Overrides the default DOM element with a custom render function.|
 
 ### ColorSlider.Output
 
-| Prop        | Type                          | Default | Description                       |
-| ----------- | ----------------------------- | ------- | --------------------------------- |
-| `className` | `string`                      | -       | Additional CSS classes            |
-| `children`  | `ReactNode \| RenderFunction` | -       | Output content or render function |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode \| RenderFunction` | - | Output content or render function |
 
 ### ColorSlider.Track
 
-| Prop        | Type                              | Default | Description                      |
-| ----------- | --------------------------------- | ------- | -------------------------------- |
-| `className` | `string`                          | -       | Additional CSS classes           |
-| `style`     | `CSSProperties \| RenderFunction` | -       | Inline styles or render function |
-| `children`  | `ReactNode \| RenderFunction`     | -       | Track content or render function |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `style` | `CSSProperties \| RenderFunction` | - | Inline styles or render function |
+| `children` | `ReactNode \| RenderFunction` | - | Track content or render function |
 
 ### ColorSlider.Thumb
 
-| Prop        | Type                              | Default | Description                      |
-| ----------- | --------------------------------- | ------- | -------------------------------- |
-| `className` | `string`                          | -       | Additional CSS classes           |
-| `style`     | `CSSProperties \| RenderFunction` | -       | Inline styles or render function |
-| `children`  | `ReactNode \| RenderFunction`     | -       | Thumb content or render function |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `style` | `CSSProperties \| RenderFunction` | - | Inline styles or render function |
+| `children` | `ReactNode \| RenderFunction` | - | Thumb content or render function |
 
 ### Render Props
 
 When using render functions, these values are provided:
 
-| Prop          | Type                         | Description                    |
-| ------------- | ---------------------------- | ------------------------------ |
-| `state`       | `ColorSliderState`           | The state of the color slider  |
-| `color`       | `Color`                      | The current color value        |
-| `orientation` | `"horizontal" \| "vertical"` | The orientation of the slider  |
-| `isDisabled`  | `boolean`                    | Whether the slider is disabled |
+| Prop | Type | Description |
+|------|------|-------------|
+| `state` | `ColorSliderState` | The state of the color slider |
+| `color` | `Color` | The current color value |
+| `orientation` | `"horizontal" \| "vertical"` | The orientation of the slider |
+| `isDisabled` | `boolean` | Whether the slider is disabled |
 
 ## Accessibility
 

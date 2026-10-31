@@ -3,22 +3,15 @@ title: CircularProgress
 description: Migration guide for CircularProgress from HeroUI v2 to v3 (now ProgressCircle)
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 ProgressCircle
-  documentation](/docs-ui/web/components/progress-circle) for complete API
-  reference, styling guide, and advanced examples. This guide only focuses on
-  migrating from HeroUI v2.
+  Refer to the [v3 ProgressCircle documentation](/docs-ui/web/components/progress-circle) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 <Callout type="warning">
-  Looking for the Progress (linear) migration? See the [Progress migration
-  guide](/docs-ui/web/migration/progress).
+  Looking for the Progress (linear) migration? See the [Progress migration guide](/docs-ui/web/migration/progress).
 </Callout>
 
 ## Component Rename
@@ -30,17 +23,19 @@ import {
 In v2, `CircularProgress` was a single component configured with props:
 
 ```tsx
-import { CircularProgress } from '@heroui/react'
+import { CircularProgress } from "@heroui/react";
 
 export default function App() {
-  return <CircularProgress label="Loading..." value={60} />
+  return (
+    <CircularProgress label="Loading..." value={60} />
+  );
 }
 ```
 
 In v3, `ProgressCircle` uses a compound component pattern:
 
 ```tsx
-import { ProgressCircle } from '@heroui/react'
+import { ProgressCircle } from "@heroui/react";
 
 export default function App() {
   return (
@@ -50,7 +45,7 @@ export default function App() {
         <ProgressCircle.FillCircle />
       </ProgressCircle.Track>
     </ProgressCircle>
-  )
+  );
 }
 ```
 
@@ -68,22 +63,22 @@ export default function App() {
 
 ### 3. Prop Changes
 
-| v2 Prop            | v3 Equivalent     | Notes                                                                                      |
-| ------------------ | ----------------- | ------------------------------------------------------------------------------------------ |
-| `value`            | `value`           | Same                                                                                       |
-| `minValue`         | `minValue`        | Same                                                                                       |
-| `maxValue`         | `maxValue`        | Same                                                                                       |
-| `isIndeterminate`  | `isIndeterminate` | Default changed: `true` in v2 → `false` in v3                                              |
-| `formatOptions`    | `formatOptions`   | Same                                                                                       |
-| `size`             | `size`            | Same (`sm`, `md`, `lg`)                                                                    |
-| `color`            | `color`           | `primary` → `accent`, `secondary` removed                                                  |
-| `label`            | -                 | Use `Label` component                                                                      |
-| `valueLabel`       | -                 | Use render prop pattern                                                                    |
-| `showValueLabel`   | -                 | Place value content inside `ProgressCircle`                                                |
-| `strokeWidth`      | -                 | Set `strokeWidth` directly on `ProgressCircle.TrackCircle` and `ProgressCircle.FillCircle` |
-| `isDisabled`       | -                 | Removed                                                                                    |
-| `disableAnimation` | -                 | Removed                                                                                    |
-| `classNames`       | -                 | Use `className` on individual compound components                                          |
+| v2 Prop | v3 Equivalent | Notes |
+|---------|---------------|-------|
+| `value` | `value` | Same |
+| `minValue` | `minValue` | Same |
+| `maxValue` | `maxValue` | Same |
+| `isIndeterminate` | `isIndeterminate` | Default changed: `true` in v2 → `false` in v3 |
+| `formatOptions` | `formatOptions` | Same |
+| `size` | `size` | Same (`sm`, `md`, `lg`) |
+| `color` | `color` | `primary` → `accent`, `secondary` removed |
+| `label` | - | Use `Label` component |
+| `valueLabel` | - | Use render prop pattern |
+| `showValueLabel` | - | Place value content inside `ProgressCircle` |
+| `strokeWidth` | - | Set `strokeWidth` directly on `ProgressCircle.TrackCircle` and `ProgressCircle.FillCircle` |
+| `isDisabled` | - | Removed |
+| `disableAnimation` | - | Removed |
+| `classNames` | - | Use `className` on individual compound components |
 
 ## Migration Examples
 
@@ -96,7 +91,6 @@ export default function App() {
 
     <CircularProgress aria-label="Loading..." value={60} />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -109,13 +103,12 @@ export default function App() {
       </ProgressCircle.Track>
     </ProgressCircle>
     ```
-
   </Tab>
 </Tabs>
 
 ### Indeterminate
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <CircularProgress aria-label="Loading..." />
@@ -162,16 +155,19 @@ export default function App() {
       <Label>Loading...</Label>
     </div>
     ```
-
   </Tab>
 </Tabs>
 
 ### Custom SVG Props
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
-    <CircularProgress value={60} strokeWidth={6} aria-label="Loading" />
+    <CircularProgress
+      value={60}
+      strokeWidth={6}
+      aria-label="Loading"
+    />
     ```
   </Tab>
   <Tab value="v3">
@@ -193,12 +189,12 @@ export default function App() {
 ```tsx
 <CircularProgress
   classNames={{
-    base: 'custom-base',
-    svg: 'custom-svg',
-    track: 'custom-track',
-    indicator: 'custom-fill',
-    label: 'custom-label',
-    value: 'custom-value'
+    base: "custom-base",
+    svg: "custom-svg",
+    track: "custom-track",
+    indicator: "custom-fill",
+    label: "custom-label",
+    value: "custom-value",
   }}
 />
 ```

@@ -9,24 +9,28 @@ links:
   figma: true
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
 import {
-  ColorArea,
-  ColorField,
   ColorPicker,
+  ColorArea,
   ColorSlider,
   ColorSwatch,
-  ColorSwatchPicker
-} from '@heroui/react'
+  ColorField,
+  ColorSwatchPicker,
+} from '@heroui/react';
 ```
 
-[Live example: color-picker-basic](https://heroui.com/docs/react/components/color-picker)
 
-```tsx
+<ComponentPreview name="color-picker-basic">
+
+````tsx
+import {ColorArea, ColorPicker, ColorSlider, ColorSwatch, Label} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <ColorPicker defaultValue="#0485F7">
@@ -40,7 +44,8 @@ export function Basic() {
           className="max-w-full"
           colorSpace="hsb"
           xChannel="saturation"
-          yChannel="brightness">
+          yChannel="brightness"
+        >
           <ColorArea.Thumb />
         </ColorArea>
         <ColorSlider channel="hue" className="gap-1 px-1" colorSpace="hsb">
@@ -52,22 +57,19 @@ export function Basic() {
         </ColorSlider>
       </ColorPicker.Popover>
     </ColorPicker>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 The ColorPicker is a composable component that combines multiple color components:
 
 ```tsx
-import {
-  ColorArea,
-  ColorPicker,
-  ColorSlider,
-  ColorSwatch,
-  Label
-} from '@heroui/react'
+import { ColorPicker, ColorArea, ColorSlider, ColorSwatch, Label } from '@heroui/react';
 
 export default () => (
   <ColorPicker defaultValue="#0485F7">
@@ -86,17 +88,18 @@ export default () => (
       </ColorSlider>
     </ColorPicker.Popover>
   </ColorPicker>
-)
+);
 ```
 
 ## Examples
 
 ### Controlled
 
-[Live example: color-picker-controlled](https://heroui.com/docs/react/components/color-picker)
 
-```tsx
-'use client'
+<ComponentPreview name="color-picker-controlled">
+
+````tsx
+"use client";
 
 import {
   Button,
@@ -107,33 +110,33 @@ import {
   ColorSwatch,
   ColorSwatchPicker,
   Label,
-  parseColor
-} from '@heroui/react'
+  parseColor,
+} from "@vezham/react-v3";
+import {Icon} from "@iconify/react";
+import {useState} from "react";
 
 export function Controlled() {
-  const [color, setColor] = useState(parseColor('#325578'))
+  const [color, setColor] = useState(parseColor("#325578"));
 
   const colorPresets = [
-    '#ef4444',
-    '#f97316',
-    '#eab308',
-    '#22c55e',
-    '#06b6d4',
-    '#3b82f6',
-    '#8b5cf6',
-    '#ec4899',
-    '#f43f5e'
-  ]
+    "#ef4444",
+    "#f97316",
+    "#eab308",
+    "#22c55e",
+    "#06b6d4",
+    "#3b82f6",
+    "#8b5cf6",
+    "#ec4899",
+    "#f43f5e",
+  ];
 
   const shuffleColor = () => {
-    const randomHue = Math.floor(Math.random() * 360)
-    const randomSaturation = 50 + Math.floor(Math.random() * 50) // 50-100%
-    const randomLightness = 40 + Math.floor(Math.random() * 30) // 40-70%
+    const randomHue = Math.floor(Math.random() * 360);
+    const randomSaturation = 50 + Math.floor(Math.random() * 50); // 50-100%
+    const randomLightness = 40 + Math.floor(Math.random() * 30); // 40-70%
 
-    setColor(
-      parseColor(`hsl(${randomHue}, ${randomSaturation}%, ${randomLightness}%)`)
-    )
-  }
+    setColor(parseColor(`hsl(${randomHue}, ${randomSaturation}%, ${randomLightness}%)`));
+  };
 
   return (
     <div className="flex flex-col gap-4">
@@ -144,7 +147,7 @@ export function Controlled() {
         </ColorPicker.Trigger>
         <ColorPicker.Popover className="gap-2">
           <ColorSwatchPicker className="justify-center pt-2" size="xs">
-            {colorPresets.map(preset => (
+            {colorPresets.map((preset) => (
               <ColorSwatchPicker.Item key={preset} color={preset}>
                 <ColorSwatchPicker.Swatch />
               </ColorSwatchPicker.Item>
@@ -155,15 +158,12 @@ export function Controlled() {
             className="max-w-full"
             colorSpace="hsb"
             xChannel="saturation"
-            yChannel="brightness">
+            yChannel="brightness"
+          >
             <ColorArea.Thumb />
           </ColorArea>
           <div className="flex items-center gap-2 px-1">
-            <ColorSlider
-              aria-label="Hue slider"
-              channel="hue"
-              className="flex-1"
-              colorSpace="hsb">
+            <ColorSlider aria-label="Hue slider" channel="hue" className="flex-1" colorSpace="hsb">
               <ColorSlider.Track>
                 <ColorSlider.Thumb />
               </ColorSlider.Track>
@@ -173,7 +173,8 @@ export function Controlled() {
               aria-label="Shuffle color"
               size="sm"
               variant="tertiary"
-              onPress={shuffleColor}>
+              onPress={shuffleColor}
+            >
               <Icon className="size-4" icon="gravity-ui:shuffle" />
             </Button>
           </div>
@@ -187,40 +188,44 @@ export function Controlled() {
           </ColorField>
         </ColorPicker.Popover>
       </ColorPicker>
-      <p className="text-muted w-60 text-sm">
-        Selected: <span className="font-medium">{color.toString('hex')}</span>
+      <p className="w-60 text-sm text-muted">
+        Selected: <span className="font-medium">{color.toString("hex")}</span>
       </p>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Swatches
 
-[Live example: color-picker-with-swatches](https://heroui.com/docs/react/components/color-picker)
 
-```tsx
+<ComponentPreview name="color-picker-with-swatches">
+
+````tsx
 import {
   ColorArea,
   ColorPicker,
   ColorSlider,
   ColorSwatch,
   ColorSwatchPicker,
-  Label
-} from '@heroui/react'
+  Label,
+} from "@vezham/react-v3";
 
 export function WithSwatches() {
   const presets = [
-    '#ef4444',
-    '#f97316',
-    '#eab308',
-    '#22c55e',
-    '#06b6d4',
-    '#3b82f6',
-    '#8b5cf6',
-    '#ec4899',
-    '#f43f5e'
-  ]
+    "#ef4444",
+    "#f97316",
+    "#eab308",
+    "#22c55e",
+    "#06b6d4",
+    "#3b82f6",
+    "#8b5cf6",
+    "#ec4899",
+    "#f43f5e",
+  ];
 
   return (
     <ColorPicker defaultValue="#F43F5E">
@@ -234,14 +239,11 @@ export function WithSwatches() {
           className="max-w-full"
           colorSpace="hsb"
           xChannel="saturation"
-          yChannel="brightness">
+          yChannel="brightness"
+        >
           <ColorArea.Thumb />
         </ColorArea>
-        <ColorSlider
-          aria-label="Hue slider"
-          channel="hue"
-          className="gap-1 px-1"
-          colorSpace="hsb">
+        <ColorSlider aria-label="Hue slider" channel="hue" className="gap-1 px-1" colorSpace="hsb">
           <Label>Hue</Label>
           <ColorSlider.Output className="text-muted" />
           <ColorSlider.Track>
@@ -249,7 +251,7 @@ export function WithSwatches() {
           </ColorSlider.Track>
         </ColorSlider>
         <ColorSwatchPicker className="justify-center px-1" size="xs">
-          {presets.map(preset => (
+          {presets.map((preset) => (
             <ColorSwatchPicker.Item key={preset} color={preset}>
               <ColorSwatchPicker.Swatch />
             </ColorSwatchPicker.Item>
@@ -257,18 +259,24 @@ export function WithSwatches() {
         </ColorSwatchPicker>
       </ColorPicker.Popover>
     </ColorPicker>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Fields
 
 Use `ColorField` to allow users to edit individual color channel values with a `Select` to switch between color spaces.
 
-[Live example: color-picker-with-fields](https://heroui.com/docs/react/components/color-picker)
 
-```tsx
-'use client'
+<ComponentPreview name="color-picker-with-fields">
+
+````tsx
+"use client";
+
+import type {ColorChannel, ColorSpace} from "@vezham/react-v3";
 
 import {
   ColorArea,
@@ -278,17 +286,18 @@ import {
   ColorSwatch,
   Label,
   ListBox,
-  Select
-} from '@heroui/react'
+  Select,
+} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function WithFields() {
-  const [colorSpace, setColorSpace] = useState<ColorSpace>('hsl')
+  const [colorSpace, setColorSpace] = useState<ColorSpace>("hsl");
 
   const colorChannelsByColorSpace: Record<ColorSpace, ColorChannel[]> = {
-    hsb: ['hue', 'saturation', 'brightness'],
-    hsl: ['hue', 'saturation', 'lightness'],
-    rgb: ['red', 'green', 'blue']
-  }
+    hsb: ["hue", "saturation", "brightness"],
+    hsl: ["hue", "saturation", "lightness"],
+    rgb: ["red", "green", "blue"],
+  };
 
   return (
     <ColorPicker defaultValue="hsla(220, 90%, 50%, 0.8)">
@@ -301,7 +310,8 @@ export function WithFields() {
           className="max-w-full"
           colorSpace="hsb"
           xChannel="saturation"
-          yChannel="brightness">
+          yChannel="brightness"
+        >
           <ColorArea.Thumb />
         </ColorArea>
         <ColorSlider channel="hue" className="gap-1 px-1" colorSpace="hsb">
@@ -315,19 +325,16 @@ export function WithFields() {
           aria-label="Color space"
           value={colorSpace}
           variant="secondary"
-          onChange={value => setColorSpace(value as ColorSpace)}>
+          onChange={(value) => setColorSpace(value as ColorSpace)}
+        >
           <Select.Trigger>
             <Select.Value className="uppercase" />
             <Select.Indicator />
           </Select.Trigger>
           <Select.Popover>
             <ListBox>
-              {Object.keys(colorChannelsByColorSpace).map(space => (
-                <ListBox.Item
-                  key={space}
-                  className="uppercase"
-                  id={space}
-                  textValue={space}>
+              {Object.keys(colorChannelsByColorSpace).map((space) => (
+                <ListBox.Item key={space} className="uppercase" id={space} textValue={space}>
                   {space}
                   <ListBox.ItemIndicator />
                 </ListBox.Item>
@@ -336,12 +343,13 @@ export function WithFields() {
           </Select.Popover>
         </Select>
         <div className="grid w-full grid-cols-3 items-center gap-2">
-          {colorChannelsByColorSpace[colorSpace].map(channel => (
+          {colorChannelsByColorSpace[colorSpace].map((channel) => (
             <ColorField
               key={channel}
               aria-label={channel}
               channel={channel}
-              colorSpace={colorSpace}>
+              colorSpace={colorSpace}
+            >
               <ColorField.Group variant="secondary">
                 <ColorField.Input />
               </ColorField.Group>
@@ -350,27 +358,36 @@ export function WithFields() {
         </div>
       </ColorPicker.Popover>
     </ColorPicker>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Sliders
 
 Use multiple `ColorSlider` components to adjust each channel of a color value.
 
-[Live example: color-picker-with-sliders](https://heroui.com/docs/react/components/color-picker)
 
-```tsx
-'use client'
+<ComponentPreview name="color-picker-with-sliders">
+
+````tsx
+"use client";
+
+import type {ColorChannel, ColorSpace} from "@vezham/react-v3";
+
+import {ColorPicker, ColorSlider, ColorSwatch, Label, ListBox, Select} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function WithSliders() {
-  const [colorSpace, setColorSpace] = useState<ColorSpace>('hsl')
+  const [colorSpace, setColorSpace] = useState<ColorSpace>("hsl");
 
   const colorChannelsByColorSpace: Record<ColorSpace, ColorChannel[]> = {
-    hsb: ['hue', 'saturation', 'brightness', 'alpha'],
-    hsl: ['hue', 'saturation', 'lightness', 'alpha'],
-    rgb: ['red', 'green', 'blue', 'alpha']
-  }
+    hsb: ["hue", "saturation", "brightness", "alpha"],
+    hsl: ["hue", "saturation", "lightness", "alpha"],
+    rgb: ["red", "green", "blue", "alpha"],
+  };
 
   return (
     <ColorPicker defaultValue="hsl(219, 58%, 93%)">
@@ -383,19 +400,16 @@ export function WithSliders() {
           aria-label="Color space"
           value={colorSpace}
           variant="secondary"
-          onChange={value => setColorSpace(value as ColorSpace)}>
+          onChange={(value) => setColorSpace(value as ColorSpace)}
+        >
           <Select.Trigger>
             <Select.Value className="uppercase" />
             <Select.Indicator />
           </Select.Trigger>
           <Select.Popover>
             <ListBox>
-              {Object.keys(colorChannelsByColorSpace).map(space => (
-                <ListBox.Item
-                  key={space}
-                  className="uppercase"
-                  id={space}
-                  textValue={space}>
+              {Object.keys(colorChannelsByColorSpace).map((space) => (
+                <ListBox.Item key={space} className="uppercase" id={space} textValue={space}>
                   {space}
                   <ListBox.ItemIndicator />
                 </ListBox.Item>
@@ -404,43 +418,48 @@ export function WithSliders() {
           </Select.Popover>
         </Select>
         <div className="flex flex-col gap-2">
-          {colorChannelsByColorSpace[colorSpace].map(
-            (channel: ColorChannel) => (
-              // @ts-expect-error - TypeScript can't correlate dynamic colorSpace with channel type
-              <ColorSlider
-                key={channel}
-                aria-label={channel}
-                channel={channel}
-                className="gap-1 px-1"
-                colorSpace={colorSpace}>
-                <Label className="capitalize">{channel}</Label>
-                <ColorSlider.Output className="text-muted" />
-                <ColorSlider.Track>
-                  <ColorSlider.Thumb />
-                </ColorSlider.Track>
-              </ColorSlider>
-            )
-          )}
+          {colorChannelsByColorSpace[colorSpace].map((channel: ColorChannel) => (
+            // @ts-expect-error - TypeScript can't correlate dynamic colorSpace with channel type
+            <ColorSlider
+              key={channel}
+              aria-label={channel}
+              channel={channel}
+              className="gap-1 px-1"
+              colorSpace={colorSpace}
+            >
+              <Label className="capitalize">{channel}</Label>
+              <ColorSlider.Output className="text-muted" />
+              <ColorSlider.Track>
+                <ColorSlider.Thumb />
+              </ColorSlider.Track>
+            </ColorSlider>
+          ))}
         </div>
       </ColorPicker.Popover>
     </ColorPicker>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: color-picker-custom-styles](https://heroui.com/docs/react/components/color-picker)
 
-```tsx
+<ComponentPreview name="color-picker-custom-styles">
+
+````tsx
+import {ColorArea, ColorPicker, ColorSlider, ColorSwatch, Label} from "@vezham/react-v3";
+
 export function CustomStyles() {
   return (
     <ColorPicker defaultValue="#0485F7">
-      <ColorPicker.Trigger className="bg-default-soft rounded-xl px-3 py-2">
+      <ColorPicker.Trigger className="rounded-xl bg-default-soft px-3 py-2">
         <ColorSwatch size="lg" />
-        <Label className="text-foreground font-medium">Theme color</Label>
+        <Label className="font-medium text-foreground">Theme color</Label>
       </ColorPicker.Trigger>
       <ColorPicker.Popover className="bg-surface">
         <ColorArea
@@ -448,7 +467,8 @@ export function CustomStyles() {
           className="max-w-full"
           colorSpace="hsb"
           xChannel="saturation"
-          yChannel="brightness">
+          yChannel="brightness"
+        >
           <ColorArea.Thumb />
         </ColorArea>
         <ColorSlider channel="hue" className="gap-1 px-1" colorSpace="hsb">
@@ -460,9 +480,12 @@ export function CustomStyles() {
         </ColorSlider>
       </ColorPicker.Popover>
     </ColorPicker>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -480,7 +503,7 @@ To customize the ColorPicker component classes, you can use the `@layer componen
   }
 
   .color-picker__popover {
-    @apply rounded-xl p-4;
+    @apply p-4 rounded-xl;
   }
 }
 ```
@@ -494,7 +517,6 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The ColorPicker component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/color-picker.css)):
 
 #### Base Classes [!toc]
-
 - `.color-picker` - Base container
 - `.color-picker__trigger` - Trigger button
 - `.color-picker__popover` - Popover container
@@ -512,28 +534,28 @@ The component supports both CSS pseudo-classes and data attributes for flexibili
 
 Inherits from [React Aria ColorPicker](https://react-spectrum.adobe.com/react-aria/ColorPicker.html).
 
-| Prop           | Type                     | Default | Description                                          |
-| -------------- | ------------------------ | ------- | ---------------------------------------------------- |
-| `value`        | `string \| Color`        | -       | The current color value (controlled)                 |
-| `defaultValue` | `string \| Color`        | -       | The default color value (uncontrolled)               |
-| `onChange`     | `(color: Color) => void` | -       | Handler called when the color changes                |
-| `children`     | `React.ReactNode`        | -       | Content of the color picker (Trigger, Popover, etc.) |
-| `className`    | `string`                 | -       | Additional CSS classes                               |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string \| Color` | - | The current color value (controlled) |
+| `defaultValue` | `string \| Color` | - | The default color value (uncontrolled) |
+| `onChange` | `(color: Color) => void` | - | Handler called when the color changes |
+| `children` | `React.ReactNode` | - | Content of the color picker (Trigger, Popover, etc.) |
+| `className` | `string` | - | Additional CSS classes |
 
 ### ColorPicker.Trigger
 
-| Prop        | Type                                                    | Default | Description                    |
-| ----------- | ------------------------------------------------------- | ------- | ------------------------------ |
-| `children`  | `React.ReactNode \| ((renderProps) => React.ReactNode)` | -       | Trigger content or render prop |
-| `className` | `string`                                                | -       | Additional CSS classes         |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode \| ((renderProps) => React.ReactNode)` | - | Trigger content or render prop |
+| `className` | `string` | - | Additional CSS classes |
 
 ### ColorPicker.Popover
 
-| Prop        | Type              | Default         | Description              |
-| ----------- | ----------------- | --------------- | ------------------------ |
-| `placement` | `Placement`       | `"bottom left"` | Placement of the popover |
-| `children`  | `React.ReactNode` | -               | Popover content          |
-| `className` | `string`          | -               | Additional CSS classes   |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `placement` | `Placement` | `"bottom left"` | Placement of the popover |
+| `children` | `React.ReactNode` | - | Popover content |
+| `className` | `string` | - | Additional CSS classes |
 
 ### Related Types
 
@@ -541,21 +563,21 @@ Inherits from [React Aria ColorPicker](https://react-spectrum.adobe.com/react-ar
 
 Represents a color value. See [React Aria Color](https://react-spectrum.adobe.com/react-aria/ColorPicker.html#color) for full API.
 
-| Method                             | Description                                                                  |
-| ---------------------------------- | ---------------------------------------------------------------------------- |
-| `toString(format)`                 | Converts the color to a string in the given format (hex, rgb, hsl, hsb, css) |
-| `toFormat(format)`                 | Converts the color to the given format and returns a new Color object        |
-| `getChannelValue(channel)`         | Returns the numeric value for a given channel                                |
-| `withChannelValue(channel, value)` | Sets the numeric value for a channel and returns a new Color                 |
+| Method | Description |
+|--------|-------------|
+| `toString(format)` | Converts the color to a string in the given format (hex, rgb, hsl, hsb, css) |
+| `toFormat(format)` | Converts the color to the given format and returns a new Color object |
+| `getChannelValue(channel)` | Returns the numeric value for a given channel |
+| `withChannelValue(channel, value)` | Sets the numeric value for a channel and returns a new Color |
 
 #### parseColor
 
 ```tsx
-import { parseColor } from 'react-aria-components'
+import { parseColor } from 'react-aria-components';
 
 // Parse from string
-const color = parseColor('#ff0000')
-const hslColor = parseColor('hsl(0, 100%, 50%)')
+const color = parseColor('#ff0000');
+const hslColor = parseColor('hsl(0, 100%, 50%)');
 ```
 
 ## Related Components

@@ -3,16 +3,11 @@ title: Card
 description: Migration guide for Card from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Card documentation](/docs-ui/web/components/card) for
-  complete API reference, styling guide, and advanced examples. This guide only
-  focuses on migrating from HeroUI v2.
+  Refer to the [v3 Card documentation](/docs-ui/web/components/card) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,7 +15,7 @@ import {
 In v2, Card used separate components: `CardHeader`, `CardBody`, and `CardFooter`:
 
 ```tsx
-import { Card, CardBody, CardFooter, CardHeader } from '@heroui/react'
+import { Card, CardHeader, CardBody, CardFooter } from "@heroui/react";
 
 export default function App() {
   return (
@@ -29,14 +24,14 @@ export default function App() {
       <CardBody>Body</CardBody>
       <CardFooter>Footer</CardFooter>
     </Card>
-  )
+  );
 }
 ```
 
 In v3, Card uses a compound component pattern with explicit subcomponents:
 
 ```tsx
-import { Card } from '@heroui/react'
+import { Card } from "@heroui/react";
 
 export default function App() {
   return (
@@ -48,7 +43,7 @@ export default function App() {
       <Card.Content>Body content</Card.Content>
       <Card.Footer>Footer</Card.Footer>
     </Card>
-  )
+  );
 }
 ```
 
@@ -56,44 +51,44 @@ export default function App() {
 
 ### 1. Component Structure
 
-**v2:** Separate components: `CardHeader`, `CardBody`, `CardFooter`  
+**v2:** Separate components: `CardHeader`, `CardBody`, `CardFooter`
 **v3:** Compound components: `Card.Header`, `Card.Title`, `Card.Description`, `Card.Content`, `Card.Footer`
 
 ### 2. Component Name Changes
 
-| v2 Component | v3 Component       | Notes                                    |
-| ------------ | ------------------ | ---------------------------------------- |
-| `CardHeader` | `Card.Header`      | Same functionality                       |
-| `CardBody`   | `Card.Content`     | Renamed                                  |
-| `CardFooter` | `Card.Footer`      | Same functionality                       |
-| -            | `Card.Title`       | New subcomponent for header titles       |
-| -            | `Card.Description` | New subcomponent for header descriptions |
+| v2 Component | v3 Component | Notes |
+|-------------|--------------|-------|
+| `CardHeader` | `Card.Header` | Same functionality |
+| `CardBody` | `Card.Content` | Renamed |
+| `CardFooter` | `Card.Footer` | Same functionality |
+| - | `Card.Title` | New subcomponent for header titles |
+| - | `Card.Description` | New subcomponent for header descriptions |
 
 ### 3. Prop Changes
 
-| v2 Prop                             | v3 Location | Notes                                                |
-| ----------------------------------- | ----------- | ---------------------------------------------------- |
-| `shadow`                            | -           | Removed (use Tailwind e.g. `shadow-sm`, `shadow-md`) |
-| `radius`                            | -           | Removed (use Tailwind e.g. `rounded-lg`)             |
-| `fullWidth`                         | -           | Removed (use Tailwind `w-full`)                      |
-| `isHoverable`                       | -           | Removed (use Tailwind hover classes)                 |
-| `isPressable`                       | -           | Use button or link wrapper inside Card               |
-| `isBlurred`, `isFooterBlurred`      | -           | Removed (use Tailwind `backdrop-blur-*`)             |
-| `isDisabled`                        | -           | Removed (handle with conditional rendering)          |
-| `disableAnimation`, `disableRipple` | -           | Removed                                              |
-| `allowTextSelectionOnPress`         | -           | Removed (not applicable)                             |
-| `classNames`                        | -           | Use `className` on parts                             |
+| v2 Prop | v3 Location | Notes |
+|---------|-------------|-------|
+| `shadow` | - | Removed (use Tailwind e.g. `shadow-sm`, `shadow-md`) |
+| `radius` | - | Removed (use Tailwind e.g. `rounded-lg`) |
+| `fullWidth` | - | Removed (use Tailwind `w-full`) |
+| `isHoverable` | - | Removed (use Tailwind hover classes) |
+| `isPressable` | - | Use button or link wrapper inside Card |
+| `isBlurred`, `isFooterBlurred` | - | Removed (use Tailwind `backdrop-blur-*`) |
+| `isDisabled` | - | Removed (handle with conditional rendering) |
+| `disableAnimation`, `disableRipple` | - | Removed |
+| `allowTextSelectionOnPress` | - | Removed (not applicable) |
+| `classNames` | - | Use `className` on parts |
 
 ### 4. Variants
 
-**v2:** No variant prop (used shadow/radius for styling)  
+**v2:** No variant prop (used shadow/radius for styling)
 **v3:** Has `variant` prop: `transparent`, `default`, `secondary`, `tertiary`
 
 ## Migration Examples
 
 ### Card Structure
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     {/* Basic structure */}
@@ -102,12 +97,13 @@ export default function App() {
       <CardBody>Body content</CardBody>
       <CardFooter>Footer</CardFooter>
     </Card>
+
     {/* With title and description */}
     <Card>
-      <CardHeader className="flex-col items-start px-4 pt-2 pb-0">
-        <p className="text-tiny font-bold uppercase">Daily Mix</p>
+      <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+        <p className="text-tiny uppercase font-bold">Daily Mix</p>
         <small className="text-default-500">12 Tracks</small>
-        <h4 className="text-large font-bold">Frontend Radio</h4>
+        <h4 className="font-bold text-large">Frontend Radio</h4>
       </CardHeader>
       <CardBody>Content</CardBody>
     </Card>
@@ -123,6 +119,7 @@ export default function App() {
       <Card.Content>Body content</Card.Content>
       <Card.Footer>Footer</Card.Footer>
     </Card>
+
     {/* With title and description */}
     <Card>
       <Card.Header>
@@ -137,10 +134,14 @@ export default function App() {
 
 ### Pressable Card
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
-    <Card isPressable shadow="sm" onPress={() => console.log('pressed')}>
+    <Card
+      isPressable
+      shadow="sm"
+      onPress={() => console.log("pressed")}
+    >
       <CardBody>Clickable card</CardBody>
     </Card>
     ```
@@ -151,7 +152,8 @@ export default function App() {
       <button
         type="button"
         className="w-full cursor-pointer text-left"
-        onClick={() => console.log('pressed')}>
+        onClick={() => console.log("pressed")}
+      >
         <Card.Content>Clickable card</Card.Content>
       </button>
     </Card>
@@ -161,17 +163,17 @@ export default function App() {
 
 ### Card with Image
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Card className="py-4">
-      <CardHeader className="flex-col items-start px-4 pt-2 pb-0">
-        <h4 className="text-large font-bold">Frontend Radio</h4>
+      <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+        <h4 className="font-bold text-large">Frontend Radio</h4>
       </CardHeader>
       <CardBody className="overflow-visible py-2">
         <Image
           alt="Card background"
-          className="rounded-xl object-cover"
+          className="object-cover rounded-xl"
           src="https://example.com/image.jpg"
           width={270}
         />
@@ -188,7 +190,7 @@ export default function App() {
       <Card.Content className="overflow-visible py-2">
         <img
           alt="Card background"
-          className="w-full rounded-xl object-cover"
+          className="object-cover rounded-xl w-full"
           src="https://example.com/image.jpg"
         />
       </Card.Content>
@@ -220,7 +222,6 @@ export default function App() {
       </CardFooter>
     </Card>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -240,13 +241,12 @@ export default function App() {
       </Card.Footer>
     </Card>
     ```
-
   </Tab>
 </Tabs>
 
 ### Card Variants
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     {/* v2 doesn't have variants, uses shadow/radius */}
@@ -274,10 +274,10 @@ export default function App() {
 ```tsx
 <Card
   classNames={{
-    base: 'custom-base',
-    header: 'custom-header',
-    body: 'custom-body',
-    footer: 'custom-footer'
+    base: "custom-base",
+    header: "custom-header",
+    body: "custom-body",
+    footer: "custom-footer"
   }}
 />
 ```
@@ -289,8 +289,12 @@ export default function App() {
   <Card.Header className="custom-header">
     <Card.Title>Title</Card.Title>
   </Card.Header>
-  <Card.Content className="custom-body">Content</Card.Content>
-  <Card.Footer className="custom-footer">Footer</Card.Footer>
+  <Card.Content className="custom-body">
+    Content
+  </Card.Content>
+  <Card.Footer className="custom-footer">
+    Footer
+  </Card.Footer>
 </Card>
 ```
 

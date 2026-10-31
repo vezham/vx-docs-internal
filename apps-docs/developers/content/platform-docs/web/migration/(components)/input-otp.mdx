@@ -3,16 +3,11 @@ title: InputOTP
 description: Migration guide for InputOTP from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 InputOTP documentation](/docs-ui/web/components/input-otp)
-  for complete API reference, styling guide, and advanced examples. This guide
-  only focuses on migrating from HeroUI v2.
+  Refer to the [v3 InputOTP documentation](/docs-ui/web/components/input-otp) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,17 +15,17 @@ import {
 In v2, InputOtp automatically rendered segments based on the `length` prop:
 
 ```tsx
-import { InputOtp } from '@heroui/react'
+import { InputOtp } from "@heroui/react";
 
 export default function App() {
-  return <InputOtp length={4} />
+  return <InputOtp length={4} />;
 }
 ```
 
 In v3, InputOTP requires manual definition of slots using compound components:
 
 ```tsx
-import { InputOTP } from '@heroui/react'
+import { InputOTP } from "@heroui/react";
 
 export default function App() {
   return (
@@ -42,7 +37,7 @@ export default function App() {
         <InputOTP.Slot index={3} />
       </InputOTP.Group>
     </InputOTP>
-  )
+  );
 }
 ```
 
@@ -50,24 +45,24 @@ export default function App() {
 
 ### 1. Component Structure
 
-**v2:** Single component with automatic segment rendering  
+**v2:** Single component with automatic segment rendering
 **v3:** Compound components: `InputOTP.Group`, `InputOTP.Slot`, `InputOTP.Separator`
 
 ### 2. Prop Changes
 
-| v2 Prop                       | v3 Location        | Notes                                                                       |
-| ----------------------------- | ------------------ | --------------------------------------------------------------------------- |
-| `length`                      | `InputOTP`         | Renamed to `maxLength`                                                      |
-| `allowedKeys`                 | `InputOTP`         | Renamed to `pattern` (regex)                                                |
-| `onValueChange`               | `InputOTP`         | Use `onChange`                                                              |
-| `description`, `errorMessage` | -                  | Handle with Description / FieldError                                        |
-| `variant`                     | `InputOTP`         | Simplified to `primary` \| `secondary` only                                 |
-| `color`, `size`, `radius`     | -                  | Removed (use Tailwind CSS)                                                  |
-| `classNames`                  | -                  | Use `className` on parts                                                    |
-| -                             | `textAlign`        | New prop: text alignment within slots (`'left'` \| `'center'` \| `'right'`) |
-| -                             | `inputMode`        | New prop: virtual keyboard type on mobile (default `'numeric'`)             |
-| -                             | `placeholder`      | New prop: placeholder text for empty slots                                  |
-| -                             | `pasteTransformer` | New prop: transform pasted text (e.g., remove hyphens)                      |
+| v2 Prop | v3 Location | Notes |
+|---------|-------------|-------|
+| `length` | `InputOTP` | Renamed to `maxLength` |
+| `allowedKeys` | `InputOTP` | Renamed to `pattern` (regex) |
+| `onValueChange` | `InputOTP` | Use `onChange` |
+| `description`, `errorMessage` | - | Handle with Description / FieldError |
+| `variant` | `InputOTP` | Simplified to `primary` \| `secondary` only |
+| `color`, `size`, `radius` | - | Removed (use Tailwind CSS) |
+| `classNames` | - | Use `className` on parts |
+| - | `textAlign` | New prop: text alignment within slots (`'left'` \| `'center'` \| `'right'`) |
+| - | `inputMode` | New prop: virtual keyboard type on mobile (default `'numeric'`) |
+| - | `placeholder` | New prop: placeholder text for empty slots |
+| - | `pasteTransformer` | New prop: transform pasted text (e.g., remove hyphens) |
 
 ## Migration Examples
 
@@ -82,7 +77,6 @@ export default function App() {
 
     <InputOtp length={4} value={value} onValueChange={setValue} />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -99,7 +93,6 @@ export default function App() {
       </InputOTP.Group>
     </InputOTP>
     ```
-
   </Tab>
 </Tabs>
 
@@ -124,7 +117,6 @@ export default function App() {
       </InputOTP.Group>
     </InputOTP>
     ```
-
   </Tab>
 </Tabs>
 
@@ -135,7 +127,7 @@ export default function App() {
     ```tsx
     {/* With description */}
     <InputOtp description="Enter the code sent to your email" length={4} />
-    
+
     {/* With error message */}
     <InputOtp errorMessage="Invalid code" isInvalid length={4} />
     ```
@@ -170,18 +162,17 @@ export default function App() {
       <FieldError>Invalid code</FieldError>
     </div>
     ```
-
   </Tab>
 </Tabs>
 
 ### With onComplete Callback
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <InputOtp
       length={6}
-      onComplete={value => console.log('Complete:', value)}
+      onComplete={(value) => console.log("Complete:", value)}
     />
     ```
   </Tab>
@@ -189,7 +180,8 @@ export default function App() {
     ```tsx
     <InputOTP
       maxLength={6}
-      onComplete={value => console.log('Complete:', value)}>
+      onComplete={(value) => console.log("Complete:", value)}
+    >
       <InputOTP.Group>
         <InputOTP.Slot index={0} />
         <InputOTP.Slot index={1} />
@@ -236,7 +228,8 @@ v3 introduces several new props not available in v2:
   inputMode="numeric"
   textAlign="center"
   placeholder="-"
-  pasteTransformer={text => text.replace(/-/g, '')}>
+  pasteTransformer={(text) => text.replace(/-/g, "")}
+>
   <InputOTP.Group>
     <InputOTP.Slot index={0} />
     <InputOTP.Slot index={1} />
@@ -256,14 +249,10 @@ v3 introduces several new props not available in v2:
 HeroUI re-exports common regex patterns from the input-otp library for convenience:
 
 ```tsx
-import {
-  REGEXP_ONLY_CHARS,
-  REGEXP_ONLY_DIGITS,
-  REGEXP_ONLY_DIGITS_AND_CHARS
-} from '@heroui/react'
+import { REGEXP_ONLY_DIGITS, REGEXP_ONLY_CHARS, REGEXP_ONLY_DIGITS_AND_CHARS } from "@heroui/react";
 
 // Use with the pattern prop
-;<InputOTP pattern={REGEXP_ONLY_DIGITS} maxLength={6}>
+<InputOTP pattern={REGEXP_ONLY_DIGITS} maxLength={6}>
   {/* ... */}
 </InputOTP>
 ```

@@ -9,25 +9,26 @@ links:
   figma: true
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Avatar } from '@heroui/react'
+import { Avatar } from '@heroui/react';
 ```
 
-[Live example: avatar-basic](https://heroui.com/docs/react/components/avatar)
 
-```tsx
+<ComponentPreview name="avatar-basic">
+
+````tsx
+import {Avatar} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <div className="flex items-center gap-4">
       <Avatar>
-        <Avatar.Image
-          alt="John Doe"
-          src="https://img.heroui.chat/image/avatar?w=400&h=400&u=3"
-        />
+        <Avatar.Image alt="John Doe" src="https://img.heroui.chat/image/avatar?w=400&h=400&u=3" />
         <Avatar.Fallback>JD</Avatar.Fallback>
       </Avatar>
       <Avatar>
@@ -41,19 +42,22 @@ export function Basic() {
         <Avatar.Fallback>JR</Avatar.Fallback>
       </Avatar>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 ```tsx
-import { Avatar } from '@heroui/react'
+import { Avatar } from '@heroui/react';
 
 export default () => (
   <Avatar>
-    <Avatar.Image />
-    <Avatar.Fallback />
+    <Avatar.Image/>
+    <Avatar.Fallback/>
   </Avatar>
 )
 ```
@@ -62,9 +66,12 @@ export default () => (
 
 ### Sizes
 
-[Live example: avatar-sizes](https://heroui.com/docs/react/components/avatar)
 
-```tsx
+<ComponentPreview name="avatar-sizes">
+
+````tsx
+import {Avatar} from "@vezham/react-v3";
+
 export function Sizes() {
   return (
     <div className="flex items-center gap-4">
@@ -90,15 +97,21 @@ export function Sizes() {
         <Avatar.Fallback>LG</Avatar.Fallback>
       </Avatar>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Colors
 
-[Live example: avatar-colors](https://heroui.com/docs/react/components/avatar)
 
-```tsx
+<ComponentPreview name="avatar-colors">
+
+````tsx
+import {Avatar} from "@vezham/react-v3";
+
 export function Colors() {
   return (
     <div className="flex items-center gap-4">
@@ -118,45 +131,50 @@ export function Colors() {
         <Avatar.Fallback>DG</Avatar.Fallback>
       </Avatar>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Variants
 
-[Live example: avatar-variants](https://heroui.com/docs/react/components/avatar)
 
-```tsx
+<ComponentPreview name="avatar-variants">
+
+````tsx
+import {Person} from "@gravity-ui/icons";
+import {Avatar, Separator} from "@vezham/react-v3";
+
 export function Variants() {
-  const colors = ['accent', 'default', 'success', 'warning', 'danger'] as const
+  const colors = ["accent", "default", "success", "warning", "danger"] as const;
   const variants = [
-    { content: 'AG', label: 'letter', type: 'letter' },
-    { content: 'AG', label: 'letter soft', type: 'letter-soft' },
-    { content: <Person />, label: 'icon', type: 'icon' },
-    { content: <Person />, label: 'icon soft', type: 'icon-soft' },
+    {content: "AG", label: "letter", type: "letter"},
+    {content: "AG", label: "letter soft", type: "letter-soft"},
+    {content: <Person />, label: "icon", type: "icon"},
+    {content: <Person />, label: "icon soft", type: "icon-soft"},
     {
       content: [
-        'https://img.heroui.chat/image/avatar?w=400&h=400&u=3',
-        'https://img.heroui.chat/image/avatar?w=400&h=400&u=4',
-        'https://img.heroui.chat/image/avatar?w=400&h=400&u=5',
-        'https://img.heroui.chat/image/avatar?w=400&h=400&u=8',
-        'https://img.heroui.chat/image/avatar?w=400&h=400&u=16'
+        "https://img.heroui.chat/image/avatar?w=400&h=400&u=3",
+        "https://img.heroui.chat/image/avatar?w=400&h=400&u=4",
+        "https://img.heroui.chat/image/avatar?w=400&h=400&u=5",
+        "https://img.heroui.chat/image/avatar?w=400&h=400&u=8",
+        "https://img.heroui.chat/image/avatar?w=400&h=400&u=16",
       ],
-      label: 'img',
-      type: 'img'
-    }
-  ] as const
+      label: "img",
+      type: "img",
+    },
+  ] as const;
 
   return (
     <div className="flex flex-col gap-4">
       {/* Color labels header */}
       <div className="flex items-center gap-3">
         <div className="w-24 shrink-0" />
-        {colors.map(color => (
-          <div
-            key={color}
-            className="flex w-20 shrink-0 items-center justify-center">
-            <span className="text-muted text-xs capitalize">{color}</span>
+        {colors.map((color) => (
+          <div key={color} className="flex w-20 shrink-0 items-center justify-center">
+            <span className="text-xs text-muted capitalize">{color}</span>
           </div>
         ))}
       </div>
@@ -164,31 +182,19 @@ export function Variants() {
       <Separator />
 
       {/* Variant rows */}
-      {variants.map(variant => (
+      {variants.map((variant) => (
         <div key={variant.label} className="flex items-center gap-3">
-          <div className="text-muted w-24 shrink-0 text-sm">
-            {variant.label}
-          </div>
+          <div className="w-24 shrink-0 text-sm text-muted">{variant.label}</div>
           {colors.map((color, colorIndex) => (
-            <div
-              key={color}
-              className="flex w-20 shrink-0 items-center justify-center">
-              <Avatar
-                color={color}
-                variant={variant.type.includes('soft') ? 'soft' : undefined}>
-                {variant.type === 'img' ? (
+            <div key={color} className="flex w-20 shrink-0 items-center justify-center">
+              <Avatar color={color} variant={variant.type.includes("soft") ? "soft" : undefined}>
+                {variant.type === "img" ? (
                   <>
                     <Avatar.Image
                       alt={`Avatar ${color}`}
-                      src={
-                        Array.isArray(variant.content)
-                          ? variant.content[colorIndex]
-                          : ''
-                      }
+                      src={Array.isArray(variant.content) ? variant.content[colorIndex] : ""}
                     />
-                    <Avatar.Fallback>
-                      {color.charAt(0).toUpperCase()}
-                    </Avatar.Fallback>
+                    <Avatar.Fallback>{color.charAt(0).toUpperCase()}</Avatar.Fallback>
                   </>
                 ) : (
                   <Avatar.Fallback>{variant.content}</Avatar.Fallback>
@@ -199,15 +205,22 @@ export function Variants() {
         </div>
       ))}
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Fallback Content
 
-[Live example: avatar-fallback](https://heroui.com/docs/react/components/avatar)
 
-```tsx
+<ComponentPreview name="avatar-fallback">
+
+````tsx
+import {Person} from "@gravity-ui/icons";
+import {Avatar} from "@vezham/react-v3";
+
 export function Fallback() {
   return (
     <div className="flex items-center gap-4">
@@ -239,9 +252,12 @@ export function Fallback() {
         </Avatar.Fallback>
       </Avatar>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
@@ -249,11 +265,16 @@ export function Fallback() {
 
 Use `asChild` on `Avatar.Image` to compose with a custom image component. This example uses Next.js `Image` for optimized loading. Pass `src` on `Avatar.Image` so it can track the loading state and show the fallback until the image is ready.
 
-[Live example: avatar-custom-image-component](https://heroui.com/docs/react/components/avatar)
 
-```tsx
-const SRC =
-  'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg'
+<ComponentPreview name="avatar-custom-image-component">
+
+````tsx
+import {Avatar} from "@vezham/react-v3";
+import type {ComponentProps} from "react";
+
+const Image = (props: ComponentProps<"img">) => <img {...props} />;
+
+const SRC = "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg";
 
 export function CustomImageComponent() {
   return (
@@ -263,27 +284,33 @@ export function CustomImageComponent() {
       </Avatar.Image>
       <Avatar.Fallback>JD</Avatar.Fallback>
     </Avatar>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Tailwind CSS
 
-[Live example: avatar-custom-styles](https://heroui.com/docs/react/components/avatar)
 
-```tsx
+<ComponentPreview name="avatar-custom-styles">
+
+````tsx
+import {Avatar} from "@vezham/react-v3";
+
 export function CustomStyles() {
   return (
     <Avatar className="rounded-lg">
-      <Avatar.Image
-        alt="John Doe"
-        src="https://img.heroui.chat/image/avatar?w=400&h=400&u=3"
-      />
+      <Avatar.Image alt="John Doe" src="https://img.heroui.chat/image/avatar?w=400&h=400&u=3" />
       <Avatar.Fallback className="rounded-lg">JD</Avatar.Fallback>
     </Avatar>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -293,7 +320,7 @@ To customize the Avatar component classes, you can use the `@layer components` d
 ```css
 @layer components {
   .avatar {
-    @apply border-accent size-16 border-2;
+    @apply size-16 border-2 border-accent;
   }
 
   .avatar__fallback {
@@ -311,23 +338,19 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The Avatar component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/avatar.css)):
 
 #### Base Classes [!toc]
-
 - `.avatar` - Base container with default size (size-10)
 - `.avatar__image` - Image element with aspect-square sizing
 - `.avatar__fallback` - Fallback container with centered content
 
 #### Size Modifiers [!toc]
-
 - `.avatar--sm` - Small avatar (size-8)
 - `.avatar--md` - Medium avatar (default, no additional styles)
 - `.avatar--lg` - Large avatar (size-12)
 
 #### Variant Modifiers [!toc]
-
 - `.avatar--soft` - Soft variant with lighter background
 
 #### Color Modifiers [!toc]
-
 - `.avatar__fallback--default` - Default text color
 - `.avatar__fallback--accent` - Accent text color
 - `.avatar__fallback--success` - Success text color
@@ -338,35 +361,35 @@ The Avatar component uses these CSS classes ([View source styles](https://github
 
 ### Avatar
 
-| Prop        | Type                                                          | Default     | Description            |
-| ----------- | ------------------------------------------------------------- | ----------- | ---------------------- |
-| `size`      | `'sm' \| 'md' \| 'lg'`                                        | `'md'`      | Avatar size            |
-| `color`     | `'default' \| 'accent' \| 'success' \| 'warning' \| 'danger'` | `'default'` | Fallback color theme   |
-| `variant`   | `'default' \| 'soft'`                                         | `'default'` | Visual style variant   |
-| `className` | `string`                                                      | -           | Additional CSS classes |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Avatar size |
+| `color` | `'default' \| 'accent' \| 'success' \| 'warning' \| 'danger'` | `'default'` | Fallback color theme |
+| `variant` | `'default' \| 'soft'` | `'default'` | Visual style variant |
+| `className` | `string` | - | Additional CSS classes |
 
 ### Avatar.Image
 
-| Prop          | Type                                                | Default | Description                                                                                |
-| ------------- | --------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------ |
-| `src`         | `string`                                            | -       | Image source URL                                                                           |
-| `srcSet`      | `string`                                            | -       | The image `srcset` attribute for responsive images                                         |
-| `sizes`       | `string`                                            | -       | The image `sizes` attribute for responsive images                                          |
-| `alt`         | `string`                                            | -       | Alternative text for the image                                                             |
-| `asChild`     | `boolean`                                           | `false` | Merge props onto the child element (e.g. `next/image`) instead of rendering a native `img` |
-| `onLoad`      | `(event: SyntheticEvent<HTMLImageElement>) => void` | -       | Callback when the image loads successfully                                                 |
-| `onError`     | `(event: SyntheticEvent<HTMLImageElement>) => void` | -       | Callback when there's an error loading the image                                           |
-| `crossOrigin` | `'anonymous' \| 'use-credentials'`                  | -       | CORS setting for the image request                                                         |
-| `loading`     | `'eager' \| 'lazy'`                                 | -       | Native lazy loading attribute                                                              |
-| `className`   | `string`                                            | -       | Additional CSS classes                                                                     |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `src` | `string` | - | Image source URL |
+| `srcSet` | `string` | - | The image `srcset` attribute for responsive images |
+| `sizes` | `string` | - | The image `sizes` attribute for responsive images |
+| `alt` | `string` | - | Alternative text for the image |
+| `asChild` | `boolean` | `false` | Merge props onto the child element (e.g. `next/image`) instead of rendering a native `img` |
+| `onLoad` | `(event: SyntheticEvent<HTMLImageElement>) => void` | - | Callback when the image loads successfully |
+| `onError` | `(event: SyntheticEvent<HTMLImageElement>) => void` | - | Callback when there's an error loading the image |
+| `crossOrigin` | `'anonymous' \| 'use-credentials'` | - | CORS setting for the image request |
+| `loading` | `'eager' \| 'lazy'` | - | Native lazy loading attribute |
+| `className` | `string` | - | Additional CSS classes |
 
 ### Avatar.Fallback
 
-| Prop        | Type                                                          | Default | Description                                    |
-| ----------- | ------------------------------------------------------------- | ------- | ---------------------------------------------- |
-| `delayMs`   | `number`                                                      | -       | Delay before showing fallback (prevents flash) |
-| `color`     | `'default' \| 'accent' \| 'success' \| 'warning' \| 'danger'` | -       | Override color from parent                     |
-| `className` | `string`                                                      | -       | Additional CSS classes                         |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `delayMs` | `number` | - | Delay before showing fallback (prevents flash) |
+| `color` | `'default' \| 'accent' \| 'success' \| 'warning' \| 'danger'` | - | Override color from parent |
+| `className` | `string` | - | Additional CSS classes |
 
 ## Related Components
 

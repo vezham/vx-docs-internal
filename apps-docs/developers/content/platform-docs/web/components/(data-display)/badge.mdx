@@ -9,23 +9,25 @@ links:
   figma: true
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Badge } from '@heroui/react'
+import { Badge } from '@heroui/react';
 ```
 
-[Live example: badge-basic](https://heroui.com/docs/react/components/badge)
 
-```tsx
-const GREEN_AVATAR_URL =
-  'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg'
+<ComponentPreview name="badge-basic">
+
+````tsx
+import {Avatar, Badge} from "@vezham/react-v3";
+
+const GREEN_AVATAR_URL = "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg";
 const ORANGE_AVATAR_URL =
-  'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/orange.jpg'
-const BLUE_AVATAR_URL =
-  'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg'
+  "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/orange.jpg";
+const BLUE_AVATAR_URL = "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg";
 
 export function BadgeBasic() {
   return (
@@ -58,9 +60,12 @@ export function BadgeBasic() {
         <Badge color="success" placement="bottom-right" size="sm" />
       </Badge.Anchor>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
@@ -79,26 +84,27 @@ Badge is designed to be positioned relative to another element using `Badge.Anch
 
 ### Variants
 
-[Live example: badge-variants](https://heroui.com/docs/react/components/badge)
 
-```tsx
-const AVATAR_URL =
-  'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg'
+<ComponentPreview name="badge-variants">
+
+````tsx
+import {Avatar, Badge, Separator} from "@vezham/react-v3";
+import React from "react";
+
+const AVATAR_URL = "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg";
 
 export function BadgeVariants() {
-  const variants = ['primary', 'secondary', 'soft'] as const
-  const colors = ['accent', 'default', 'success', 'warning', 'danger'] as const
+  const variants = ["primary", "secondary", "soft"] as const;
+  const colors = ["accent", "default", "success", "warning", "danger"] as const;
 
   return (
     <div className="flex flex-col gap-8">
       {variants.map((variant, index) => (
         <React.Fragment key={variant}>
           <div className="flex flex-col gap-4">
-            <h3 className="text-muted text-sm font-semibold capitalize">
-              {variant}
-            </h3>
+            <h3 className="text-sm font-semibold text-muted capitalize">{variant}</h3>
             <div className="flex items-center gap-6">
-              {colors.map(color => (
+              {colors.map((color) => (
                 <Badge.Anchor key={color}>
                   <Avatar>
                     <Avatar.Image src={AVATAR_URL} />
@@ -115,24 +121,29 @@ export function BadgeVariants() {
         </React.Fragment>
       ))}
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Sizes
 
-[Live example: badge-sizes](https://heroui.com/docs/react/components/badge)
 
-```tsx
-const AVATAR_URL =
-  'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg'
+<ComponentPreview name="badge-sizes">
+
+````tsx
+import {Avatar, Badge} from "@vezham/react-v3";
+
+const AVATAR_URL = "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg";
 
 export function BadgeSizes() {
-  const sizes = ['sm', 'md', 'lg'] as const
+  const sizes = ["sm", "md", "lg"] as const;
 
   return (
     <div className="flex items-center gap-6">
-      {sizes.map(size => (
+      {sizes.map((size) => (
         <Badge.Anchor key={size}>
           <Avatar size={size}>
             <Avatar.Image src={AVATAR_URL} />
@@ -144,24 +155,29 @@ export function BadgeSizes() {
         </Badge.Anchor>
       ))}
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Colors
 
-[Live example: badge-colors](https://heroui.com/docs/react/components/badge)
 
-```tsx
-const AVATAR_URL =
-  'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg'
+<ComponentPreview name="badge-colors">
+
+````tsx
+import {Avatar, Badge} from "@vezham/react-v3";
+
+const AVATAR_URL = "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg";
 
 export function BadgeColors() {
-  const colors = ['default', 'accent', 'success', 'warning', 'danger'] as const
+  const colors = ["default", "accent", "success", "warning", "danger"] as const;
 
   return (
     <div className="flex items-center gap-6">
-      {colors.map(color => (
+      {colors.map((color) => (
         <Badge.Anchor key={color}>
           <Avatar>
             <Avatar.Image src={AVATAR_URL} />
@@ -171,29 +187,29 @@ export function BadgeColors() {
         </Badge.Anchor>
       ))}
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Placements
 
-[Live example: badge-placements](https://heroui.com/docs/react/components/badge)
 
-```tsx
-const AVATAR_URL =
-  'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg'
+<ComponentPreview name="badge-placements">
+
+````tsx
+import {Avatar, Badge} from "@vezham/react-v3";
+
+const AVATAR_URL = "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg";
 
 export function BadgePlacements() {
-  const placements = [
-    'top-right',
-    'top-left',
-    'bottom-right',
-    'bottom-left'
-  ] as const
+  const placements = ["top-right", "top-left", "bottom-right", "bottom-left"] as const;
 
   return (
     <div className="flex items-center gap-8">
-      {placements.map(placement => (
+      {placements.map((placement) => (
         <div key={placement} className="flex flex-col items-center gap-2">
           <Badge.Anchor>
             <Avatar>
@@ -202,30 +218,35 @@ export function BadgePlacements() {
             </Avatar>
             <Badge color="accent" placement={placement} size="sm" />
           </Badge.Anchor>
-          <span className="text-muted text-xs">{placement}</span>
+          <span className="text-xs text-muted">{placement}</span>
         </div>
       ))}
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Dot Badge
 
 Empty badges act as status indicators — useful for online/offline states or activity signals.
 
-[Live example: badge-dot](https://heroui.com/docs/react/components/badge)
 
-```tsx
-const AVATAR_URL =
-  'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg'
+<ComponentPreview name="badge-dot">
+
+````tsx
+import {Avatar, Badge} from "@vezham/react-v3";
+
+const AVATAR_URL = "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg";
 
 export function BadgeDot() {
-  const colors = ['accent', 'success', 'warning', 'danger'] as const
+  const colors = ["accent", "success", "warning", "danger"] as const;
 
   return (
     <div className="flex items-center gap-6">
-      {colors.map(color => (
+      {colors.map((color) => (
         <Badge.Anchor key={color}>
           <Avatar>
             <Avatar.Image src={AVATAR_URL} />
@@ -235,19 +256,25 @@ export function BadgeDot() {
         </Badge.Anchor>
       ))}
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Content
 
 Badge supports text, numbers, and icons as content. When no children are provided, it renders as a dot indicator.
 
-[Live example: badge-with-content](https://heroui.com/docs/react/components/badge)
 
-```tsx
-const AVATAR_URL =
-  'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg'
+<ComponentPreview name="badge-with-content">
+
+````tsx
+import {Bell} from "@gravity-ui/icons";
+import {Avatar, Badge} from "@vezham/react-v3";
+
+const AVATAR_URL = "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg";
 
 export function BadgeWithContent() {
   return (
@@ -292,17 +319,23 @@ export function BadgeWithContent() {
         </Badge>
       </Badge.Anchor>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: badge-custom-styles](https://heroui.com/docs/react/components/badge)
 
-```tsx
+<ComponentPreview name="badge-custom-styles">
+
+````tsx
+import {Avatar, Badge} from "@vezham/react-v3";
+
 export function CustomStyles() {
   return (
     <Badge.Anchor>
@@ -313,17 +346,16 @@ export function CustomStyles() {
         />
         <Avatar.Fallback>KW</Avatar.Fallback>
       </Avatar>
-      <Badge
-        className="min-w-5 font-semibold tabular-nums"
-        color="accent"
-        size="sm"
-        variant="soft">
+      <Badge className="min-w-5 font-semibold tabular-nums" color="accent" size="sm" variant="soft">
         5
       </Badge>
     </Badge.Anchor>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -355,13 +387,11 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The Badge component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/badge.css)):
 
 #### Base Classes [!toc]
-
 - `.badge` - Base badge container styles
 - `.badge__label` - Label text slot styles
 - `.badge-anchor` - Positioning wrapper for the anchored element
 
 #### Color Classes [!toc]
-
 - `.badge--accent` - Accent color variant
 - `.badge--danger` - Danger color variant
 - `.badge--default` - Default color variant
@@ -369,19 +399,16 @@ The Badge component uses these CSS classes ([View source styles](https://github.
 - `.badge--warning` - Warning color variant
 
 #### Variant Classes [!toc]
-
 - `.badge--primary` - Primary variant with filled background
 - `.badge--secondary` - Secondary variant with default background
 - `.badge--soft` - Soft variant with lighter background
 
 #### Size Classes [!toc]
-
 - `.badge--sm` - Small size
 - `.badge--md` - Medium size (default)
 - `.badge--lg` - Large size
 
 #### Placement Classes [!toc]
-
 - `.badge--top-right` - Position at top-right corner (default)
 - `.badge--top-left` - Position at top-left corner
 - `.badge--bottom-right` - Position at bottom-right corner
@@ -392,7 +419,6 @@ The Badge component uses these CSS classes ([View source styles](https://github.
 Badges support combining variant and color classes (e.g., `.badge--primary.badge--accent`). The following combinations have default styles defined:
 
 **Primary Variants:**
-
 - `.badge--primary.badge--accent` - Primary accent with filled background
 - `.badge--primary.badge--default` - Primary default with filled background
 - `.badge--primary.badge--success` - Primary success with filled background
@@ -400,7 +426,6 @@ Badges support combining variant and color classes (e.g., `.badge--primary.badge
 - `.badge--primary.badge--danger` - Primary danger with filled background
 
 **Soft Variants:**
-
 - `.badge--soft.badge--accent` - Soft accent with lighter background
 - `.badge--soft.badge--default` - Soft default with lighter background
 - `.badge--soft.badge--success` - Soft success with lighter background
@@ -411,28 +436,28 @@ Badges support combining variant and color classes (e.g., `.badge--primary.badge
 
 ### Badge
 
-| Prop        | Type                                                           | Default       | Description                                                                                  |
-| ----------- | -------------------------------------------------------------- | ------------- | -------------------------------------------------------------------------------------------- |
-| `children`  | `React.ReactNode`                                              | -             | Content to display inside the badge (text, number, or icon). When omitted, renders as a dot. |
-| `className` | `string`                                                       | -             | Additional CSS classes for the root element                                                  |
-| `color`     | `"default" \| "accent" \| "success" \| "warning" \| "danger"`  | `"default"`   | Color variant of the badge                                                                   |
-| `variant`   | `"primary" \| "secondary" \| "soft"`                           | `"primary"`   | Visual style variant                                                                         |
-| `size`      | `"sm" \| "md" \| "lg"`                                         | `"md"`        | Size of the badge                                                                            |
-| `placement` | `"top-right" \| "top-left" \| "bottom-right" \| "bottom-left"` | `"top-right"` | Position of the badge relative to its anchor                                                 |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | Content to display inside the badge (text, number, or icon). When omitted, renders as a dot. |
+| `className` | `string` | - | Additional CSS classes for the root element |
+| `color` | `"default" \| "accent" \| "success" \| "warning" \| "danger"` | `"default"` | Color variant of the badge |
+| `variant` | `"primary" \| "secondary" \| "soft"` | `"primary"` | Visual style variant |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Size of the badge |
+| `placement` | `"top-right" \| "top-left" \| "bottom-right" \| "bottom-left"` | `"top-right"` | Position of the badge relative to its anchor |
 
 ### Badge.Anchor
 
-| Prop        | Type              | Default | Description                                               |
-| ----------- | ----------------- | ------- | --------------------------------------------------------- |
-| `children`  | `React.ReactNode` | -       | The element to anchor the badge to, plus the Badge itself |
-| `className` | `string`          | -       | Additional CSS classes for the anchor wrapper             |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | The element to anchor the badge to, plus the Badge itself |
+| `className` | `string` | - | Additional CSS classes for the anchor wrapper |
 
 ### Badge.Label
 
-| Prop        | Type              | Default | Description                               |
-| ----------- | ----------------- | ------- | ----------------------------------------- |
-| `children`  | `React.ReactNode` | -       | Label text content                        |
-| `className` | `string`          | -       | Additional CSS classes for the label slot |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | Label text content |
+| `className` | `string` | - | Additional CSS classes for the label slot |
 
 ## Related Components
 

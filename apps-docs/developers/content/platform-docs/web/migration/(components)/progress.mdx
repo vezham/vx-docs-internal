@@ -3,22 +3,15 @@ title: Progress
 description: Migration guide for Progress from HeroUI v2 to v3 (now ProgressBar)
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 ProgressBar
-  documentation](/docs-ui/web/components/progress-bar) for complete API
-  reference, styling guide, and advanced examples. This guide only focuses on
-  migrating from HeroUI v2.
+  Refer to the [v3 ProgressBar documentation](/docs-ui/web/components/progress-bar) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 <Callout type="warning">
-  Looking for the CircularProgress migration? See the [CircularProgress
-  migration guide](/docs-ui/web/migration/circular-progress).
+  Looking for the CircularProgress migration? See the [CircularProgress migration guide](/docs-ui/web/migration/circular-progress).
 </Callout>
 
 ## Component Rename
@@ -30,17 +23,19 @@ import {
 In v2, `Progress` was a single component configured with props:
 
 ```tsx
-import { Progress } from '@heroui/react'
+import { Progress } from "@heroui/react";
 
 export default function App() {
-  return <Progress label="Loading..." value={60} />
+  return (
+    <Progress label="Loading..." value={60} />
+  );
 }
 ```
 
 In v3, `ProgressBar` uses a compound component pattern:
 
 ```tsx
-import { Label, ProgressBar } from '@heroui/react'
+import { ProgressBar, Label } from "@heroui/react";
 
 export default function App() {
   return (
@@ -51,7 +46,7 @@ export default function App() {
         <ProgressBar.Fill />
       </ProgressBar.Track>
     </ProgressBar>
-  )
+  );
 }
 ```
 
@@ -69,23 +64,23 @@ export default function App() {
 
 ### 3. Prop Changes
 
-| v2 Prop            | v3 Equivalent     | Notes                                             |
-| ------------------ | ----------------- | ------------------------------------------------- |
-| `value`            | `value`           | Same                                              |
-| `minValue`         | `minValue`        | Same                                              |
-| `maxValue`         | `maxValue`        | Same                                              |
-| `isIndeterminate`  | `isIndeterminate` | Same                                              |
-| `formatOptions`    | `formatOptions`   | Same                                              |
-| `size`             | `size`            | Same (`sm`, `md`, `lg`)                           |
-| `color`            | `color`           | `primary` → `accent`, `secondary` removed         |
-| `label`            | -                 | Use `Label` component                             |
-| `valueLabel`       | `valueLabel`      | Same                                              |
-| `showValueLabel`   | -                 | Include or omit `ProgressBar.Output`              |
-| `radius`           | -                 | Removed (use Tailwind CSS)                        |
-| `isStriped`        | -                 | Removed (use Tailwind CSS on `ProgressBar.Fill`)  |
-| `isDisabled`       | -                 | Removed                                           |
-| `disableAnimation` | -                 | Removed                                           |
-| `classNames`       | -                 | Use `className` on individual compound components |
+| v2 Prop | v3 Equivalent | Notes |
+|---------|---------------|-------|
+| `value` | `value` | Same |
+| `minValue` | `minValue` | Same |
+| `maxValue` | `maxValue` | Same |
+| `isIndeterminate` | `isIndeterminate` | Same |
+| `formatOptions` | `formatOptions` | Same |
+| `size` | `size` | Same (`sm`, `md`, `lg`) |
+| `color` | `color` | `primary` → `accent`, `secondary` removed |
+| `label` | - | Use `Label` component |
+| `valueLabel` | `valueLabel` | Same |
+| `showValueLabel` | - | Include or omit `ProgressBar.Output` |
+| `radius` | - | Removed (use Tailwind CSS) |
+| `isStriped` | - | Removed (use Tailwind CSS on `ProgressBar.Fill`) |
+| `isDisabled` | - | Removed |
+| `disableAnimation` | - | Removed |
+| `classNames` | - | Use `className` on individual compound components |
 
 ## Migration Examples
 
@@ -98,7 +93,6 @@ export default function App() {
 
     <Progress label="Loading..." value={60} color="primary" />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -112,13 +106,12 @@ export default function App() {
       </ProgressBar.Track>
     </ProgressBar>
     ```
-
   </Tab>
 </Tabs>
 
 ### Indeterminate
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Progress isIndeterminate aria-label="Loading..." size="sm" />
@@ -137,7 +130,7 @@ export default function App() {
 
 ### Without Label (Accessibility)
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Progress aria-label="Loading..." value={70} />
@@ -156,12 +149,12 @@ export default function App() {
 
 ### Custom Formatting
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Progress
       label="Budget"
-      formatOptions={{ style: 'currency', currency: 'USD' }}
+      formatOptions={{ style: "currency", currency: "USD" }}
       maxValue={10000}
       value={4000}
     />
@@ -170,9 +163,10 @@ export default function App() {
   <Tab value="v3">
     ```tsx
     <ProgressBar
-      formatOptions={{ style: 'currency', currency: 'USD' }}
+      formatOptions={{ style: "currency", currency: "USD" }}
       maxValue={10000}
-      value={4000}>
+      value={4000}
+    >
       <Label>Budget</Label>
       <ProgressBar.Output />
       <ProgressBar.Track>
@@ -190,11 +184,11 @@ export default function App() {
 ```tsx
 <Progress
   classNames={{
-    base: 'custom-base',
-    track: 'custom-track',
-    indicator: 'custom-fill',
-    label: 'custom-label',
-    value: 'custom-value'
+    base: "custom-base",
+    track: "custom-track",
+    indicator: "custom-fill",
+    label: "custom-label",
+    value: "custom-value",
   }}
 />
 ```

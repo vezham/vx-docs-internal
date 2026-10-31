@@ -52,10 +52,10 @@ import Link from 'next/link';
 **Using BEM classes directly:**
 
 ```tsx
-import Link from 'next/link'
+import Link from 'next/link';
 
 // Apply button styles directly using BEM classes
-;<Link className="button button--primary" href="/about">
+<Link className="button button--primary" href="/about">
   About
 </Link>
 ```
@@ -90,17 +90,15 @@ This approach works because HeroUI's variant functions and BEM classes can be ap
 The simplest way to style links or other elements is to apply HeroUI's [BEM](https://getbem.com/) classes directly. This approach is straightforward and works with any framework or vanilla HTML.
 
 **With Next.js Link:**
-
 ```tsx
-import Link from 'next/link'
+import Link from 'next/link';
 
-;<Link className="button button--tertiary" href="/">
+<Link className="button button--tertiary" href="/">
   Return Home
 </Link>
 ```
 
 **With native anchor:**
-
 ```tsx
 <a className="button button--primary" href="/dashboard">
   Go to Dashboard
@@ -108,7 +106,6 @@ import Link from 'next/link'
 ```
 
 **Available button classes:**
-
 - `.button` — Base button styles
 - `.button--primary`, `.button--secondary`, `.button--tertiary`, `.button--danger`, `.button--ghost` — Variants
 - `.button--sm`, `.button--md`, `.button--lg` — Sizes
@@ -123,13 +120,13 @@ For more control and type safety, use variant functions to apply HeroUI styles t
 **With Next.js Link:**
 
 ```tsx
-import { Link } from '@heroui/react'
-import { linkVariants } from '@heroui/styles'
-import NextLink from 'next/link'
+import { Link } from '@heroui/react';
+import { linkVariants } from '@heroui/styles';
+import NextLink from 'next/link';
 
-const slots = linkVariants()
+const slots = linkVariants();
 
-;<NextLink className={slots.base()} href="/about">
+<NextLink className={slots.base()} href="/about">
   About Page
   <Link.Icon className={slots.icon()} />
 </NextLink>
@@ -138,12 +135,13 @@ const slots = linkVariants()
 **With Button styles:**
 
 ```tsx
-import { buttonVariants } from '@heroui/styles'
-import Link from 'next/link'
+import { buttonVariants } from '@heroui/styles';
+import Link from 'next/link';
 
-;<Link
-  className={buttonVariants({ variant: 'primary', size: 'md' })}
-  href="/dashboard">
+<Link
+  className={buttonVariants({ variant: "primary", size: "md" })}
+  href="/dashboard"
+>
   Dashboard
 </Link>
 ```
@@ -157,9 +155,9 @@ HeroUI components are built as compound components—they export multiple parts 
 **Option 1: Compound pattern (recommended)** — Use the main component directly without `.Root` suffix:
 
 ```tsx
-import { Alert } from '@heroui/react'
+import { Alert } from '@heroui/react';
 
-;<Alert>
+<Alert>
   <Alert.Icon />
   <Alert.Content>
     <Alert.Title>Success</Alert.Title>
@@ -172,9 +170,9 @@ import { Alert } from '@heroui/react'
 **Option 2: Compound pattern with .Root** — Use the `.Root` suffix if you prefer explicit naming:
 
 ```tsx
-import { Alert } from '@heroui/react'
+import { Alert } from '@heroui/react';
 
-;<Alert.Root>
+<Alert.Root>
   <Alert.Icon />
   <Alert.Content>
     <Alert.Title>Success</Alert.Title>
@@ -188,15 +186,15 @@ import { Alert } from '@heroui/react'
 
 ```tsx
 import {
-  AlertClose,
-  AlertContent,
-  AlertDescription,
-  AlertIcon,
   AlertRoot,
-  AlertTitle
-} from '@heroui/react'
+  AlertIcon,
+  AlertContent,
+  AlertTitle,
+  AlertDescription,
+  AlertClose
+} from '@heroui/react';
 
-;<AlertRoot>
+<AlertRoot>
   <AlertIcon />
   <AlertContent>
     <AlertTitle>Success</AlertTitle>
@@ -209,9 +207,9 @@ import {
 **Mixed syntax:** Mix compound and named exports in the same component:
 
 ```tsx
-import { Alert, AlertDescription, AlertTitle } from '@heroui/react'
+import { Alert, AlertTitle, AlertDescription } from '@heroui/react';
 
-;<Alert>
+<Alert>
   <Alert.Icon />
   <Alert.Content>
     <AlertTitle>Success</AlertTitle>
@@ -244,13 +242,16 @@ import { ButtonRoot } from '@heroui/react';
 You can combine variant functions from different components to create unique styles:
 
 ```tsx
-import { Link } from '@heroui/react'
-import { buttonVariants, linkVariants } from '@heroui/styles'
+import { Link } from '@heroui/react';
+import { linkVariants, buttonVariants } from '@heroui/styles';
 
 // Link styled with button variants
-const buttonStyles = buttonVariants({ variant: 'tertiary', size: 'md' })
+const buttonStyles = buttonVariants({ variant: "tertiary", size: "md" });
 
-;<Link className={buttonStyles} href="https://heroui.com">
+<Link
+  className={buttonStyles}
+  href="https://heroui.com"
+>
   HeroUI
 </Link>
 ```
@@ -260,16 +261,20 @@ const buttonStyles = buttonVariants({ variant: 'tertiary', size: 'md' })
 Create your own components by composing HeroUI primitives:
 
 ```tsx
-import { Button, Tooltip } from '@heroui/react'
-import { buttonVariants } from '@heroui/styles'
+import { Button, Tooltip } from '@heroui/react';
+import { buttonVariants } from '@heroui/styles';
 
 // Link button component using variant functions
-function LinkButton({ href, children, variant = 'primary', ...props }) {
+function LinkButton({ href, children, variant = "primary", ...props }) {
   return (
-    <a href={href} className={buttonVariants({ variant, ...props })} {...props}>
+    <a
+      href={href}
+      className={buttonVariants({ variant, ...props })}
+      {...props}
+    >
       {children}
     </a>
-  )
+  );
 }
 
 // Icon button with tooltip
@@ -283,7 +288,7 @@ function IconButton({ icon, label, ...props }) {
       </Tooltip.Trigger>
       <Tooltip.Content>{label}</Tooltip.Content>
     </Tooltip>
-  )
+  );
 }
 ```
 
@@ -292,74 +297,67 @@ function IconButton({ icon, label, ...props }) {
 Create custom variants by extending the component's variant function:
 
 ```tsx
-import type { ButtonRootProps } from '@heroui/react'
-import { Button } from '@heroui/react'
-import { buttonVariants, tv } from '@heroui/styles'
-import type { VariantProps } from 'tailwind-variants'
+import type { ButtonRootProps } from "@heroui/react";
+import type { VariantProps } from "tailwind-variants";
+
+import { Button } from "@heroui/react";
+import { buttonVariants, tv } from "@heroui/styles";
 
 const myButtonVariants = tv({
   extend: buttonVariants,
-  base: 'text-md font-semibold shadow-md text-shadow-lg data-[pending=true]:opacity-40',
+  base: "text-md text-shadow-lg font-semibold shadow-md data-[pending=true]:opacity-40",
   variants: {
     radius: {
-      lg: 'rounded-lg',
-      md: 'rounded-md',
-      sm: 'rounded-sm',
-      full: 'rounded-full'
+      lg: "rounded-lg",
+      md: "rounded-md",
+      sm: "rounded-sm",
+      full: "rounded-full",
     },
     size: {
-      sm: 'h-10 px-4',
-      md: 'h-11 px-6',
-      lg: 'h-12 px-8',
-      xl: 'h-13 px-10'
+      sm: "h-10 px-4",
+      md: "h-11 px-6",
+      lg: "h-12 px-8",
+      xl: "h-13 px-10",
     },
     variant: {
-      primary:
-        'text-white dark:bg-white/10 dark:text-white dark:hover:bg-white/15'
-    }
+      primary: "text-white dark:bg-white/10 dark:text-white dark:hover:bg-white/15",
+    },
   },
   defaultVariants: {
-    radius: 'full',
-    variant: 'primary'
-  }
-})
+    radius: "full",
+    variant: "primary",
+  },
+});
 
-type MyButtonVariants = VariantProps<typeof myButtonVariants>
-export type MyButtonProps = Omit<ButtonRootProps, 'className'> &
-  MyButtonVariants & { className?: string }
+type MyButtonVariants = VariantProps<typeof myButtonVariants>;
+export type MyButtonProps = Omit<ButtonRootProps, "className"> &
+  MyButtonVariants & { className?: string };
 
 function CustomButton({ className, radius, variant, ...props }: MyButtonProps) {
-  return (
-    <Button
-      className={myButtonVariants({ className, radius, variant })}
-      {...props}
-    />
-  )
+  return <Button className={myButtonVariants({ className, radius, variant })} {...props} />;
 }
 
 export function CustomVariants() {
-  return <CustomButton>Custom Button</CustomButton>
+  return <CustomButton>Custom Button</CustomButton>;
 }
 ```
 
 **Type references:** When working with component types, use named type imports or object-style syntax.
 
 **Recommended — Named type imports:**
-
 ```tsx
-import type { AvatarRootProps, ButtonRootProps } from '@heroui/react'
+import type { ButtonRootProps, AvatarRootProps } from "@heroui/react";
 
-type MyButtonProps = ButtonRootProps
-type MyAvatarProps = AvatarRootProps
+type MyButtonProps = ButtonRootProps;
+type MyAvatarProps = AvatarRootProps;
 ```
 
 **Alternative — Object-style syntax:**
-
 ```tsx
-import { Avatar, Button } from '@heroui/react'
+import { Button, Avatar } from "@heroui/react";
 
-type MyButtonProps = Button['RootProps']
-type MyAvatarProps = Avatar['RootProps']
+type MyButtonProps = Button["RootProps"];
+type MyAvatarProps = Avatar["RootProps"];
 ```
 
 **Note:** The namespace syntax `Button.RootProps` is no longer supported. Use `Button["RootProps"]` or named imports instead.
@@ -371,12 +369,14 @@ Use the `render` prop on the following components to render a custom component i
 For example, you can render a [Motion](https://motion.dev/) button and use the state to drive an animation.
 
 ```tsx
-import { Button } from '@heroui/react'
-import { motion } from 'motion/react'
+import {Button} from '@heroui/react';
+import {motion} from 'motion/react';
 
-;<Button
-  render={(domProps, { isPressed }) => (
-    <motion.button {...domProps} animate={{ scale: isPressed ? 0.9 : 1 }} />
+<Button
+  render={(domProps, {isPressed}) => (
+    <motion.button
+      {...domProps}
+      animate={{scale: isPressed ? 0.9 : 1}} />
   )}>
   Press me
 </Button>
@@ -385,48 +385,46 @@ import { motion } from 'motion/react'
 The `render` prop is also useful for rendering link components from client-side routers, or reusing existing presentational components.
 
 ```tsx
-import { Link } from '@heroui/react'
-import NextLink from 'next/link'
+import {Link} from '@heroui/react';
+import NextLink from 'next/link';
 
-;<Link
-  render={({ ref, ...domProps }) => (
-    <NextLink
-      {...domProps}
-      ref={ref as React.Ref<HTMLAnchorElement>}
-      href="/privacy-policy"
-    />
-  )}>
+<Link
+  render={({ref, ...domProps}) => (
+    <NextLink {...domProps} ref={ref as React.Ref<HTMLAnchorElement>} href="/privacy-policy" />
+  )}
+>
   Privacy Policy
 </Link>
 ```
 
 Follow these rules to avoid breaking the behavior and accessibility of the component:
-
 - Always render the expected element type (e.g. if `<button>` is expected, do not render an `<a>`). You will see a warning in development if a mismatch is detected.
 - Only render a single root DOM element (no fragments).
 - Always pass the provided props the underlying DOM element, merging with your own props via `mergeProps` as needed.
+
 
 ## Framework Integration
 
 **With Next.js:**
 
 Use variant functions for type-safe styling:
-
 ```tsx
-import { buttonVariants } from '@heroui/styles'
-import Link from 'next/link'
+import { buttonVariants } from '@heroui/styles';
+import Link from 'next/link';
 
-;<Link className={buttonVariants({ variant: 'primary' })} href="/dashboard">
+<Link
+  className={buttonVariants({ variant: "primary" })}
+  href="/dashboard"
+>
   Dashboard
 </Link>
 ```
 
 Or apply BEM classes directly (simplest):
-
 ```tsx
-import Link from 'next/link'
+import Link from 'next/link';
 
-;<Link className="button button--primary" href="/dashboard">
+<Link className="button button--primary" href="/dashboard">
   Dashboard
 </Link>
 ```
@@ -434,22 +432,23 @@ import Link from 'next/link'
 **With React Router:**
 
 Use variant functions:
-
 ```tsx
-import { buttonVariants } from '@heroui/styles'
-import { Link } from 'react-router-dom'
+import { buttonVariants } from '@heroui/styles';
+import { Link } from 'react-router-dom';
 
-;<Link className={buttonVariants({ variant: 'primary' })} to="/dashboard">
+<Link
+  className={buttonVariants({ variant: "primary" })}
+  to="/dashboard"
+>
   Dashboard
 </Link>
 ```
 
 Or apply BEM classes directly (simplest):
-
 ```tsx
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-;<Link className="button button--primary" to="/dashboard">
+<Link className="button button--primary" to="/dashboard">
   Dashboard
 </Link>
 ```
@@ -457,18 +456,18 @@ import { Link } from 'react-router-dom'
 **With Vue, Svelte, or Other Frameworks:**
 
 Since `@heroui/styles` has no React dependencies, you can use it directly in any framework:
-
 ```vue
 <script setup>
-import { buttonVariants } from '@heroui/styles'
+import { buttonVariants } from '@heroui/styles';
 
-const primaryButton = buttonVariants({ variant: 'primary' })
+const primaryButton = buttonVariants({ variant: "primary" });
 </script>
 
 <template>
   <button :class="primaryButton">Click me</button>
 </template>
 ```
+
 
 ## Next Steps
 

@@ -3,16 +3,11 @@ title: Switch
 description: Migration guide for Switch from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Switch documentation](/docs-ui/web/components/switch) for
-  complete API reference, styling guide, and advanced examples. This guide only
-  focuses on migrating from HeroUI v2.
+  Refer to the [v3 Switch documentation](/docs-ui/web/components/switch) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,17 +15,17 @@ import {
 In v2, Switch used a simple structure with children as label:
 
 ```tsx
-import { Switch } from '@heroui/react'
+import { Switch } from "@heroui/react";
 
 export default function App() {
-  return <Switch>Enable notifications</Switch>
+  return <Switch>Enable notifications</Switch>;
 }
 ```
 
 In v3, Switch requires compound components:
 
 ```tsx
-import { Label, Switch } from '@heroui/react'
+import { Switch, Label } from "@heroui/react";
 
 export default function App() {
   return (
@@ -42,7 +37,7 @@ export default function App() {
         Enable notifications
       </Switch.Content>
     </Switch>
-  )
+  );
 }
 ```
 
@@ -55,17 +50,17 @@ export default function App() {
 
 ### 2. Prop Changes
 
-| v2 Prop            | v3 Location | Notes                                          |
-| ------------------ | ----------- | ---------------------------------------------- |
-| `onValueChange`    | `onChange`  | Renamed event handler                          |
-| `size`             | `size`      | Still exists on root (`sm` \| `md` \| `lg`)    |
-| `label`            | —           | Use `Label` component                          |
-| `color`            | —           | Removed (use Tailwind CSS)                     |
-| `thumbIcon`        | —           | Use `Switch.Icon` inside `Switch.Thumb`        |
-| `startContent`     | —           | Customize control directly                     |
-| `endContent`       | —           | Customize control directly                     |
-| `classNames`       | —           | Use `className` props on individual components |
-| `disableAnimation` | —           | Removed (animations handled differently)       |
+| v2 Prop | v3 Location | Notes |
+|---------|-------------|-------|
+| `onValueChange` | `onChange` | Renamed event handler |
+| `size` | `size` | Still exists on root (`sm` \| `md` \| `lg`) |
+| `label` | — | Use `Label` component |
+| `color` | — | Removed (use Tailwind CSS) |
+| `thumbIcon` | — | Use `Switch.Icon` inside `Switch.Thumb` |
+| `startContent` | — | Customize control directly |
+| `endContent` | — | Customize control directly |
+| `classNames` | — | Use `className` props on individual components |
+| `disableAnimation` | — | Removed (animations handled differently) |
 
 ### 3. New Components
 
@@ -88,7 +83,6 @@ export default function App() {
       Airplane mode
     </Switch>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -105,13 +99,12 @@ export default function App() {
       </Switch.Content>
     </Switch>
     ```
-
   </Tab>
 </Tabs>
 
 ### Without Label
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Switch defaultSelected aria-label="Automatic updates" />
@@ -132,7 +125,7 @@ export default function App() {
 
 ### With Thumb Icon
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Switch thumbIcon={<CheckIcon />}>Enable notifications</Switch>
@@ -158,10 +151,13 @@ export default function App() {
 
 ### With Start/End Content
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
-    <Switch startContent={<SunIcon />} endContent={<MoonIcon />}>
+    <Switch
+      startContent={<SunIcon />}
+      endContent={<MoonIcon />}
+    >
       Dark mode
     </Switch>
     ```
@@ -206,13 +202,12 @@ export default function App() {
       <Description>You will receive notifications for all activity</Description>
     </Switch>
     ```
-
   </Tab>
 </Tabs>
 
 ### Sizes and Colors
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     {/* Sizes */}
@@ -221,6 +216,7 @@ export default function App() {
       <Switch size="md">Medium</Switch>
       <Switch size="lg">Large</Switch>
     </div>
+
     {/* Colors */}
     <Switch color="primary">Primary</Switch>
     <Switch color="success">Success</Switch>
@@ -256,6 +252,7 @@ export default function App() {
         </Switch.Content>
       </Switch>
     </div>
+
     {/* Colors - Use Tailwind CSS classes */}
     <Switch>
       <Switch.Content>
@@ -320,7 +317,6 @@ export default function App() {
       </Switch>
     </SwitchGroup>
     ```
-
   </Tab>
 </Tabs>
 

@@ -5,16 +5,11 @@ github:
   pull: 331
 ---
 
-import {
-  Callout,
-  NativeTryOnDevice,
-  NativeVideoPlayerView,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, NativeTryOnDevice, NativeVideoPlayerView, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">March 6, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">March 6, 2026</span>
 </div>
 
 RC 4 introduces the SubMenu compound component for nested expandable menus with spring-animated expand/collapse, refactors Slider Output with slot-based styling and `textProps` forwarding, and adds `disallowEmptySelection` to Menu.Group for radio-group behavior. This release also resolves the PressableFeedback ripple blink on rapid presses with a dual-layer buffer system, fixes the Bottom Sheet Android back handler to respect `enablePanDownToClose`.
@@ -23,18 +18,31 @@ RC 4 introduces the SubMenu compound component for nested expandable menus with 
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
-  <Tab value="npm">```bash npm i heroui-native ```</Tab>
-  <Tab value="pnpm">``` bash pnpm add heroui-native ```</Tab>
-  <Tab value="yarn">```bash yarn add heroui-native ```</Tab>
-  <Tab value="bun">```bash bun add heroui-native ```</Tab>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
+<Tab value="npm">
+  ```bash
+  npm i heroui-native
+  ```
+</Tab>
+<Tab value="pnpm">
+  ``` bash
+  pnpm add heroui-native
+  ```
+</Tab>
+<Tab value="yarn">
+  ```bash
+  yarn add heroui-native
+  ```
+</Tab>
+<Tab value="bun">
+  ```bash
+  bun add heroui-native
+  ```
+</Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
-  the latest version" and your AI assistant will automatically compare versions
-  and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs-ui/native/getting-started/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI Native MCP Server](/docs-ui/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -50,8 +58,8 @@ The [Menu](/docs-ui/native/components/menu) component now supports nested expand
 <NativeVideoPlayerView
   target="component"
   slug="menu"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/menu-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/menu-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/menu-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/menu-docs-dark.mp4"
 />
 
 **Features:**
@@ -66,7 +74,7 @@ The [Menu](/docs-ui/native/components/menu) component now supports nested expand
 **Usage:**
 
 ```tsx
-import { Menu, SubMenu } from 'heroui-native'
+import { Menu, SubMenu } from "heroui-native";
 
 export function MenuWithSubMenu() {
   return (
@@ -97,7 +105,7 @@ export function MenuWithSubMenu() {
         </Menu.Content>
       </Menu.Portal>
     </Menu>
-  )
+  );
 }
 ```
 
@@ -131,7 +139,8 @@ The [Menu](/docs-ui/native/components/menu) `Menu.Group` component now supports 
   selectionMode="single"
   selectedKeys={selected}
   onSelectionChange={setSelected}
-  disallowEmptySelection>
+  disallowEmptySelection
+>
   <Menu.Item id="list">
     <Menu.ItemTitle>List View</Menu.ItemTitle>
     <Menu.ItemIndicator />

@@ -1,7 +1,7 @@
 ---
 title: Popover
 description: Displays a floating content panel anchored to a trigger element with placement and alignment options.
-icon: updated
+status: updated
 links:
   source_native: popover/popover.tsx
   styles_native: popover/popover.styles.ts
@@ -9,16 +9,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/popover-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/popover-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/popover-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/popover-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { Popover } from 'heroui-native'
+import { Popover } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -109,7 +110,7 @@ Control the width of the popover content using the `width` prop.
 {
   /* Fixed width in pixels */
 }
-;<Popover>
+<Popover>
   <Popover.Trigger>...</Popover.Trigger>
   <Popover.Portal>
     <Popover.Overlay />
@@ -117,12 +118,12 @@ Control the width of the popover content using the `width` prop.
       ...
     </Popover.Content>
   </Popover.Portal>
-</Popover>
+</Popover>;
 
 {
   /* Match trigger width */
 }
-;<Popover>
+<Popover>
   <Popover.Trigger>...</Popover.Trigger>
   <Popover.Portal>
     <Popover.Overlay />
@@ -130,12 +131,12 @@ Control the width of the popover content using the `width` prop.
       ...
     </Popover.Content>
   </Popover.Portal>
-</Popover>
+</Popover>;
 
 {
   /* Full width (100%) */
 }
-;<Popover>
+<Popover>
   <Popover.Trigger>...</Popover.Trigger>
   <Popover.Portal>
     <Popover.Overlay />
@@ -143,12 +144,12 @@ Control the width of the popover content using the `width` prop.
       ...
     </Popover.Content>
   </Popover.Portal>
-</Popover>
+</Popover>;
 
 {
   /* Auto-size to content (default) */
 }
-;<Popover>
+<Popover>
   <Popover.Trigger>...</Popover.Trigger>
   <Popover.Portal>
     <Popover.Overlay />
@@ -156,7 +157,7 @@ Control the width of the popover content using the `width` prop.
       ...
     </Popover.Content>
   </Popover.Portal>
-</Popover>
+</Popover>;
 ```
 
 ### Bottom Sheet Presentation
@@ -218,13 +219,14 @@ Configure custom animations for open and close transitions using the `animation`
   animation={{
     entering: {
       type: 'spring',
-      config: { damping: 15, stiffness: 300 }
+      config: { damping: 15, stiffness: 300 },
     },
     exiting: {
       type: 'timing',
-      config: { duration: 200 }
-    }
-  }}>
+      config: { duration: 200 },
+    },
+  }}
+>
   <Popover.Trigger>...</Popover.Trigger>
   <Popover.Portal>
     <Popover.Overlay />
@@ -237,16 +239,16 @@ Configure custom animations for open and close transitions using the `animation`
 
 ```tsx
 // Open or close popover programmatically using ref
-const popoverRef = useRef<PopoverTriggerRef>(null)
+const popoverRef = useRef<PopoverTriggerRef>(null);
 
 // Open programmatically
-popoverRef.current?.open()
+popoverRef.current?.open();
 
 // Close programmatically
-popoverRef.current?.close()
+popoverRef.current?.close();
 
 // Full example
-;<Popover>
+<Popover>
   <Popover.Trigger ref={popoverRef} asChild>
     <Button>Trigger</Button>
   </Popover.Trigger>
@@ -257,18 +259,18 @@ popoverRef.current?.close()
       <Button onPress={() => popoverRef.current?.close()}>Close</Button>
     </Popover.Content>
   </Popover.Portal>
-</Popover>
+</Popover>;
 ```
 
 ## Example
 
 ```tsx
-import { Ionicons } from '@expo/vector-icons'
-import { Button, Popover, useThemeColor } from 'heroui-native'
-import { Text, View } from 'react-native'
+import { Ionicons } from '@expo/vector-icons';
+import { Button, Popover, useThemeColor } from 'heroui-native';
+import { Text, View } from 'react-native';
 
 export default function PopoverExample() {
-  const themeColorMuted = useThemeColor('muted')
+  const themeColorMuted = useThemeColor('muted');
 
   return (
     <Popover>
@@ -287,7 +289,8 @@ export default function PopoverExample() {
         <Popover.Content
           presentation="popover"
           width={320}
-          className="gap-1 rounded-xl px-6 py-4">
+          className="gap-1 rounded-xl px-6 py-4"
+        >
           <Popover.Close className="absolute top-3 right-3 z-50" />
           <Popover.Title>Information</Popover.Title>
           <Popover.Description>
@@ -297,11 +300,11 @@ export default function PopoverExample() {
         </Popover.Content>
       </Popover.Portal>
     </Popover>
-  )
+  );
 }
 ```
 
-You can find more examples in the [GitHub repository](<https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/popover.tsx>).
+You can find more examples in the [GitHub repository](https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/popover.tsx).
 
 ## API Reference
 
@@ -337,15 +340,15 @@ Animation configuration for popover root component. Can be:
 
 ### Popover.Portal
 
-| prop                                         | type        | default | description                                                                                                                                                                                                      |
-| -------------------------------------------- | ----------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `children`                                   | `ReactNode` | -       | The portal content (required)                                                                                                                                                                                    |
-| `disableFullWindowOverlay`                   | `boolean`   | `false` | When true on iOS, uses View instead of FullWindowOverlay. Enables element inspector; overlay won't appear above native modals                                                                                    |
-| `unstable_accessibilityContainerViewIsModal` | `boolean`   | `false` | Controls whether VoiceOver treats the overlay window as a modal container. When `true`, VoiceOver is restricted to elements inside the overlay. iOS only. Unstable: may change with react-native-screens updates |
-| `hostName`                                   | `string`    | -       | Optional name of the host element for the portal                                                                                                                                                                 |
-| `forceMount`                                 | `boolean`   | -       | Whether to force mount the component in the DOM                                                                                                                                                                  |
-| `className`                                  | `string`    | -       | Additional CSS classes for the portal container                                                                                                                                                                  |
-| `...ViewProps`                               | `ViewProps` | -       | All standard React Native View props are supported                                                                                                                                                               |
+| prop                       | type        | default | description                                                                                                                   |
+| -------------------------- | ----------- | ------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `children`                 | `ReactNode` | -       | The portal content (required)                                                                                                 |
+| `disableFullWindowOverlay` | `boolean`   | `false` | When true on iOS, uses View instead of FullWindowOverlay. Enables element inspector; overlay won't appear above native modals |
+| `unstable_accessibilityContainerViewIsModal` | `boolean` | `false` | Controls whether VoiceOver treats the overlay window as a modal container. When `true`, VoiceOver is restricted to elements inside the overlay. iOS only. Unstable: may change with react-native-screens updates |
+| `hostName`                 | `string`    | -       | Optional name of the host element for the portal                                                                              |
+| `forceMount`               | `boolean`   | -       | Whether to force mount the component in the DOM                                                                               |
+| `className`                | `string`    | -       | Additional CSS classes for the portal container                                                                               |
+| `...ViewProps`             | `ViewProps` | -       | All standard React Native View props are supported                                                                            |
 
 ### Popover.Overlay
 
@@ -465,12 +468,12 @@ Popover.Close extends [CloseButton](./close-button) and automatically handles po
 Hook to access popover context values within custom components or compound components.
 
 ```tsx
-import { usePopover } from 'heroui-native'
+import { usePopover } from 'heroui-native';
 
 const CustomContent = () => {
-  const { isOpen, onOpenChange, triggerPosition } = usePopover()
+  const { isOpen, onOpenChange, triggerPosition } = usePopover();
   // ... your implementation
-}
+};
 ```
 
 **Returns:** `UsePopoverReturn`
@@ -494,12 +497,12 @@ const CustomContent = () => {
 Hook to access popover animation state values within custom components or compound components.
 
 ```tsx
-import { usePopoverAnimation } from 'heroui-native'
+import { usePopoverAnimation } from 'heroui-native';
 
 const CustomContent = () => {
-  const { progress, isDragging } = usePopoverAnimation()
+  const { progress, isDragging } = usePopoverAnimation();
   // ... your implementation
-}
+};
 ```
 
 **Returns:** `UsePopoverAnimationReturn`
@@ -522,11 +525,11 @@ Popover uses FullWindowOverlay on iOS. To enable the React Native element inspec
 When a `Popover` is opened inside a screen presented as a native modal (`presentation: 'modal' | 'formSheet' | 'pageSheet'`), the popover content may render shifted upward. In the new architecture (Fabric), `react-native-screens` marks `RNSModalScreen` as a Fabric root, so the trigger's position is reported relative to the modal's origin while `FullWindowOverlay` (where the popover is mounted) is anchored to the iOS application window. Compensate by adding `safeAreaInsets.top` to `offset`:
 
 ```tsx
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const insets = useSafeAreaInsets()
+const insets = useSafeAreaInsets();
 
-;<Popover.Content presentation="popover" offset={insets.top + 20}>
+<Popover.Content presentation="popover" offset={insets.top + 20}>
   ...
-</Popover.Content>
+</Popover.Content>;
 ```

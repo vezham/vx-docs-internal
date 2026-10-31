@@ -5,9 +5,9 @@ description: Migration guide for HeroUI hooks from v2 to v3
 
 import { Callout } from '../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <Callout type="info">
-  Refer to the [v3 component documentation](/docs-ui/web/components) for
-  complete API reference. This guide focuses on migrating hooks from HeroUI v2.
+  Refer to the [v3 component documentation](/docs-ui/web/components) for complete API reference. This guide focuses on migrating hooks from HeroUI v2.
 </Callout>
 
 ## Overview
@@ -48,28 +48,30 @@ v3 uses compound component patterns that give you direct access to component par
 ### Preserving Structure Example
 
 **v2: Switch without thumb**
-
 ```tsx
-import { useSwitch } from '@heroui/react'
+import { useSwitch } from "@heroui/react";
 
 function CustomSwitch() {
-  const { getBaseProps } = useSwitch()
+  const { getBaseProps } = useSwitch();
 
-  return <div {...getBaseProps()}>{/* No thumb element */}</div>
+  return (
+    <div {...getBaseProps()}>
+      {/* No thumb element */}
+    </div>
+  );
 }
 ```
 
 **v3: Equivalent structure**
-
 ```tsx
-import { Switch } from '@heroui/react'
+import { Switch } from "@heroui/react";
 
 function CustomSwitch() {
   return (
     <Switch.Control>
       {/* No Switch.Thumb - preserving the original structure */}
     </Switch.Control>
-  )
+  );
 }
 ```
 
@@ -82,7 +84,6 @@ The `useDisclosure` hook from v2 has been replaced with `useOverlayState` in v3.
 ### v2: useDisclosure
 
 **API:**
-
 ```tsx
 const {isOpen, onOpen, onClose, onOpenChange, isControlled, getButtonProps, getDisclosureProps} = useDisclosure({
   isOpen?: boolean;
@@ -95,20 +96,11 @@ const {isOpen, onOpen, onClose, onOpenChange, isControlled, getButtonProps, getD
 ```
 
 **Example:**
-
 ```tsx
-import {
-  Button,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  useDisclosure
-} from '@heroui/react'
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@heroui/react";
 
 export default function App() {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure()
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
   return (
     <>
@@ -123,14 +115,13 @@ export default function App() {
         </ModalContent>
       </Modal>
     </>
-  )
+  );
 }
 ```
 
 ### v3: useOverlayState
 
 **API:**
-
 ```tsx
 const state = useOverlayState({
   isOpen?: boolean;
@@ -149,19 +140,18 @@ const state = useOverlayState({
 ```
 
 **Example:**
-
 ```tsx
-import { Button, Modal, useOverlayState } from '@heroui/react'
+import { Modal, Button, useOverlayState } from "@heroui/react";
 
 export default function App() {
-  const state = useOverlayState()
+  const state = useOverlayState();
 
   return (
     <Modal>
       <Button onPress={state.open}>Open Modal</Button>
       <Modal.Container isOpen={state.isOpen} onOpenChange={state.setOpen}>
         <Modal.Dialog>
-          {({ close }) => (
+          {({close}) => (
             <>
               <Modal.Header>
                 <Modal.Heading>Title</Modal.Heading>
@@ -175,7 +165,7 @@ export default function App() {
         </Modal.Dialog>
       </Modal.Container>
     </Modal>
-  )
+  );
 }
 ```
 
@@ -184,69 +174,63 @@ export default function App() {
 #### Basic Migration
 
 **v2:**
-
 ```tsx
-const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure()
+const {isOpen, onOpen, onClose, onOpenChange} = useDisclosure();
 ```
 
 **v3:**
-
 ```tsx
-const state = useOverlayState()
+const state = useOverlayState();
 // Use state.open(), state.close(), state.toggle(), state.setOpen(boolean)
 ```
 
 #### Controlled State
 
 **v2:**
-
 ```tsx
-const { isOpen, onOpenChange } = useDisclosure({
+const {isOpen, onOpenChange} = useDisclosure({
   isOpen: controlledIsOpen,
-  onChange: isOpen => setControlledIsOpen(isOpen)
-})
+  onChange: (isOpen) => setControlledIsOpen(isOpen)
+});
 ```
 
 **v3:**
-
 ```tsx
 const state = useOverlayState({
   isOpen: controlledIsOpen,
   onOpenChange: setControlledIsOpen
-})
+});
 ```
 
 #### Uncontrolled State
 
 **v2:**
-
 ```tsx
-const { isOpen, onOpen, onClose } = useDisclosure({
+const {isOpen, onOpen, onClose} = useDisclosure({
   defaultOpen: false
-})
+});
 ```
 
 **v3:**
-
 ```tsx
 const state = useOverlayState({
   defaultOpen: false
-})
+});
 // Use state.open(), state.close(), state.toggle()
 ```
 
 ### API Differences
 
-| v2 (useDisclosure)     | v3 (useOverlayState) | Notes                             |
-| ---------------------- | -------------------- | --------------------------------- |
-| `isOpen`               | `isOpen`             | Same                              |
-| `onOpen()`             | `open()`             | Renamed method                    |
-| `onClose()`            | `close()`            | Renamed method                    |
-| `onOpenChange()`       | `toggle()`           | New method for toggling           |
-| `onOpenChange` (prop)  | `setOpen(boolean)`   | Different API                     |
-| `isControlled`         | -                    | Removed (handled internally)      |
-| `getButtonProps()`     | -                    | Removed (use compound components) |
-| `getDisclosureProps()` | -                    | Removed (use compound components) |
+| v2 (useDisclosure) | v3 (useOverlayState) | Notes |
+|-------------------|---------------------|-------|
+| `isOpen` | `isOpen` | Same |
+| `onOpen()` | `open()` | Renamed method |
+| `onClose()` | `close()` | Renamed method |
+| `onOpenChange()` | `toggle()` | New method for toggling |
+| `onOpenChange` (prop) | `setOpen(boolean)` | Different API |
+| `isControlled` | - | Removed (handled internally) |
+| `getButtonProps()` | - | Removed (use compound components) |
+| `getDisclosureProps()` | - | Removed (use compound components) |
 
 ### Benefits of useOverlayState
 
@@ -260,20 +244,22 @@ const state = useOverlayState({
 For simple cases, you can also use React's `useState` directly:
 
 ```tsx
-import { Button, Modal } from '@heroui/react'
-import { useState } from 'react'
+import { useState } from "react";
+import { Modal, Button } from "@heroui/react";
 
 export default function App() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Modal>
       <Button onPress={() => setIsOpen(true)}>Open</Button>
       <Modal.Container isOpen={isOpen} onOpenChange={setIsOpen}>
-        <Modal.Dialog>{/* content */}</Modal.Dialog>
+        <Modal.Dialog>
+          {/* content */}
+        </Modal.Dialog>
       </Modal.Container>
     </Modal>
-  )
+  );
 }
 ```
 

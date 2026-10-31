@@ -6,14 +6,13 @@ index: false
 
 import { Callout } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 ## Overview
 
 This guide is designed for AI assistants (agents) helping users migrate from HeroUI v2 to v3. It implements a **full migration approach** that analyzes the project first and migrates components in manageable batches rather than all at once.
 
 <Callout type="warning">
-  **Critical Constraint**: HeroUI v2 and v3 **should not coexist** in the same
-  project. The project will be broken during migration. Always work in a feature
-  branch and migrate all component code before switching dependencies.
+  **Critical Constraint**: HeroUI v2 and v3 **should not coexist** in the same project. The project will be broken during migration. Always work in a feature branch and migrate all component code before switching dependencies.
 </Callout>
 
 ## Key Principles
@@ -70,10 +69,7 @@ See the [Full Migration Guide](/docs-ui/web/migration/full-migration#step-5-upda
 <include>../index.mdx#step-6-component-migration-reference</include>
 
 <Callout type="info">
-  **Removed/In-Progress/Planned Components**: For components marked as ❌
-  Removed, 🔄 In Progress, or 📋 Planned, replace them with standard HTML
-  elements during migration. You can migrate back to HeroUI components once they
-  become available in v3.
+  **Removed/In-Progress/Planned Components**: For components marked as ❌ Removed, 🔄 In Progress, or 📋 Planned, replace them with standard HTML elements during migration. You can migrate back to HeroUI components once they become available in v3.
 </Callout>
 
 Use the `get_component_migration_guides` MCP tool to fetch detailed guides for each component.
@@ -216,7 +212,6 @@ For each component group in the migration plan:
 - Ensures dependencies are ready before dependents
 
 **Example order**:
-
 1. Button, Input, Link (foundational)
 2. Card, Modal (use Button)
 3. Form, Dropdown (use Input, Button)
@@ -230,7 +225,6 @@ For each component group in the migration plan:
 - May require migrating dependencies first
 
 **Example**:
-
 - Feature: User Authentication
   - Migrate: Input, Button, Form, Modal (all auth-related)
 - Feature: Dashboard
@@ -244,7 +238,6 @@ For each component group in the migration plan:
 - Still need to handle dependencies
 
 **Example**:
-
 1. Button (used 150 times)
 2. Input (used 120 times)
 3. Card (used 80 times)
@@ -328,7 +321,5 @@ After completing migration:
 ---
 
 <Callout type="info">
-  This agent migration guide is designed to work with the Migration MCP server.
-  Ensure the MCP server is properly configured and tools are available before
-  starting migration.
+  This agent migration guide is designed to work with the Migration MCP server. Ensure the MCP server is properly configured and tools are available before starting migration.
 </Callout>

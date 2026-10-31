@@ -5,15 +5,11 @@ github:
   pull: 203
 ---
 
-import {
-  Callout,
-  NativeTryOnDevice,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, NativeTryOnDevice, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">January 6, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">January 6, 2026</span>
 </div>
 
 Beta 11 focuses on improving component reliability and developer experience across several key areas. This release enhances Bottom Sheet close coordination to ensure consistent behavior across all close mechanisms, fixes Dialog swipe-to-dismiss gesture handling issues, resolves TextField styling and functionality problems, and introduces a new PortalHost export for advanced portal mounting scenarios. These improvements make interactions smoother and provide developers with more control over component behavior.
@@ -22,18 +18,31 @@ Beta 11 focuses on improving component reliability and developer experience acro
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
-  <Tab value="npm">```bash npm i heroui-native@beta ```</Tab>
-  <Tab value="pnpm">``` bash pnpm add heroui-native@beta ```</Tab>
-  <Tab value="yarn">```bash yarn add heroui-native@beta ```</Tab>
-  <Tab value="bun">```bash bun add heroui-native@beta ```</Tab>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
+<Tab value="npm">
+  ```bash
+  npm i heroui-native@beta
+  ```
+</Tab>
+<Tab value="pnpm">
+  ``` bash
+  pnpm add heroui-native@beta
+  ```
+</Tab>
+<Tab value="yarn">
+  ```bash
+  yarn add heroui-native@beta
+  ```
+</Tab>
+<Tab value="bun">
+  ```bash
+  bun add heroui-native@beta
+  ```
+</Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
-  the latest version" and your AI assistant will automatically compare versions
-  and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs-ui/native/getting-started/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI Native MCP Server](/docs-ui/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -97,17 +106,19 @@ The `PortalHost` component is now exported from the main provider module, enabli
 **New Capability:**
 
 ```tsx
-import { HeroUINativeProvider, PortalHost } from '@heroui/native'
+import { HeroUINativeProvider, PortalHost } from "@heroui/native";
 
 export function CustomLayout() {
   return (
     <>
-      <HeroUINativeProvider>{/* Your app content */}</HeroUINativeProvider>
+      <HeroUINativeProvider>
+        {/* Your app content */}
+      </HeroUINativeProvider>
 
       {/* Manually mount PortalHost in a custom location */}
       <PortalHost name="custom-host" />
     </>
-  )
+  );
 }
 ```
 

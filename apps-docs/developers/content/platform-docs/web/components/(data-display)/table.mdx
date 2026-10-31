@@ -1,7 +1,7 @@
 ---
 title: Table
 description: Tables display structured data in rows and columns with support for sorting, selection, column resizing, and infinite scrolling.
-icon: updated
+status: updated
 
 links:
   rac: Table
@@ -10,17 +10,21 @@ links:
   storybook: Components/Data Display/Table
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Table } from '@heroui/react'
+import { Table } from '@heroui/react';
 ```
 
-[Live example: table-basic](https://heroui.com/docs/react/components/table)
 
-```tsx
+<ComponentPreview name="table-basic">
+
+````tsx
+import {Table} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <Table>
@@ -61,14 +65,17 @@ export function Basic() {
         </Table.Content>
       </Table.ScrollContainer>
     </Table>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 ```tsx
-import { Table } from '@heroui/react'
+import { Table } from '@heroui/react';
 
 export default () => (
   <Table>
@@ -88,16 +95,19 @@ export default () => (
     </Table.ScrollContainer>
     <Table.Footer>{/* Optional footer content */}</Table.Footer>
   </Table>
-)
+);
 ```
 
 ## Examples
 
 ### Secondary Variant
 
-[Live example: table-secondary-variant](https://heroui.com/docs/react/components/table)
 
-```tsx
+<ComponentPreview name="table-secondary-variant">
+
+````tsx
+import {Table} from "@vezham/react-v3";
+
 export function SecondaryVariant() {
   return (
     <Table variant="secondary">
@@ -138,219 +148,162 @@ export function SecondaryVariant() {
         </Table.Content>
       </Table.ScrollContainer>
     </Table>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Async Loading
 
 Use `Table.LoadMore` for infinite scrolling. It renders a sentinel row that triggers `onLoadMore` when scrolled into view.
 
-[Live example: table-async-loading](https://heroui.com/docs/react/components/table)
 
-```tsx
-'use client'
+<ComponentPreview name="table-async-loading">
+
+````tsx
+"use client";
+
+import {Chip, Spinner, Table} from "@vezham/react-v3";
+import {useCallback, useRef, useState} from "react";
 
 interface User {
-  id: number
-  name: string
-  role: string
-  status: string
-  email: string
+  id: number;
+  name: string;
+  role: string;
+  status: string;
+  email: string;
 }
 
-const statusColorMap: Record<string, 'success' | 'danger' | 'warning'> = {
-  Active: 'success',
-  Inactive: 'danger',
-  'On Leave': 'warning'
-}
+const statusColorMap: Record<string, "success" | "danger" | "warning"> = {
+  Active: "success",
+  Inactive: "danger",
+  "On Leave": "warning",
+};
 
 const allUsers: User[] = [
+  {email: "kate@acme.com", id: 1, name: "Kate Moore", role: "CEO", status: "Active"},
+  {email: "john@acme.com", id: 2, name: "John Smith", role: "CTO", status: "Active"},
+  {email: "sara@acme.com", id: 3, name: "Sara Johnson", role: "CMO", status: "On Leave"},
+  {email: "michael@acme.com", id: 4, name: "Michael Brown", role: "CFO", status: "Active"},
   {
-    email: 'kate@acme.com',
-    id: 1,
-    name: 'Kate Moore',
-    role: 'CEO',
-    status: 'Active'
-  },
-  {
-    email: 'john@acme.com',
-    id: 2,
-    name: 'John Smith',
-    role: 'CTO',
-    status: 'Active'
-  },
-  {
-    email: 'sara@acme.com',
-    id: 3,
-    name: 'Sara Johnson',
-    role: 'CMO',
-    status: 'On Leave'
-  },
-  {
-    email: 'michael@acme.com',
-    id: 4,
-    name: 'Michael Brown',
-    role: 'CFO',
-    status: 'Active'
-  },
-  {
-    email: 'emily@acme.com',
+    email: "emily@acme.com",
     id: 5,
-    name: 'Emily Davis',
-    role: 'Product Manager',
-    status: 'Inactive'
+    name: "Emily Davis",
+    role: "Product Manager",
+    status: "Inactive",
   },
+  {email: "davis@acme.com", id: 6, name: "Davis Wilson", role: "Lead Designer", status: "Active"},
   {
-    email: 'davis@acme.com',
-    id: 6,
-    name: 'Davis Wilson',
-    role: 'Lead Designer',
-    status: 'Active'
-  },
-  {
-    email: 'olivia@acme.com',
+    email: "olivia@acme.com",
     id: 7,
-    name: 'Olivia Martinez',
-    role: 'Frontend Engineer',
-    status: 'Active'
+    name: "Olivia Martinez",
+    role: "Frontend Engineer",
+    status: "Active",
   },
   {
-    email: 'james@acme.com',
+    email: "james@acme.com",
     id: 8,
-    name: 'James Taylor',
-    role: 'Backend Engineer',
-    status: 'Active'
+    name: "James Taylor",
+    role: "Backend Engineer",
+    status: "Active",
   },
   {
-    email: 'sophia@acme.com',
+    email: "sophia@acme.com",
     id: 9,
-    name: 'Sophia Anderson',
-    role: 'QA Engineer',
-    status: 'On Leave'
+    name: "Sophia Anderson",
+    role: "QA Engineer",
+    status: "On Leave",
   },
+  {email: "liam@acme.com", id: 10, name: "Liam Thomas", role: "DevOps Engineer", status: "Active"},
   {
-    email: 'liam@acme.com',
-    id: 10,
-    name: 'Liam Thomas',
-    role: 'DevOps Engineer',
-    status: 'Active'
-  },
-  {
-    email: 'lucas@acme.com',
+    email: "lucas@acme.com",
     id: 11,
-    name: 'Lucas Martinez',
-    role: 'Product Manager',
-    status: 'Active'
+    name: "Lucas Martinez",
+    role: "Product Manager",
+    status: "Active",
   },
   {
-    email: 'emma@acme.com',
+    email: "emma@acme.com",
     id: 12,
-    name: 'Emma Johnson',
-    role: 'Frontend Engineer',
-    status: 'Active'
+    name: "Emma Johnson",
+    role: "Frontend Engineer",
+    status: "Active",
   },
+  {email: "noah@acme.com", id: 13, name: "Noah Davis", role: "Backend Engineer", status: "Active"},
+  {email: "ava@acme.com", id: 14, name: "Ava Wilson", role: "Lead Designer", status: "Active"},
   {
-    email: 'noah@acme.com',
-    id: 13,
-    name: 'Noah Davis',
-    role: 'Backend Engineer',
-    status: 'Active'
-  },
-  {
-    email: 'ava@acme.com',
-    id: 14,
-    name: 'Ava Wilson',
-    role: 'Lead Designer',
-    status: 'Active'
-  },
-  {
-    email: 'oliver@acme.com',
+    email: "oliver@acme.com",
     id: 15,
-    name: 'Oliver Martinez',
-    role: 'Frontend Engineer',
-    status: 'Active'
+    name: "Oliver Martinez",
+    role: "Frontend Engineer",
+    status: "Active",
   },
   {
-    email: 'isabella@acme.com',
+    email: "isabella@acme.com",
     id: 16,
-    name: 'Isabella Johnson',
-    role: 'Backend Engineer',
-    status: 'Active'
+    name: "Isabella Johnson",
+    role: "Backend Engineer",
+    status: "Active",
   },
+  {email: "mia@acme.com", id: 17, name: "Mia Davis", role: "Lead Designer", status: "Active"},
   {
-    email: 'mia@acme.com',
-    id: 17,
-    name: 'Mia Davis',
-    role: 'Lead Designer',
-    status: 'Active'
-  },
-  {
-    email: 'william@acme.com',
+    email: "william@acme.com",
     id: 18,
-    name: 'William Wilson',
-    role: 'Frontend Engineer',
-    status: 'Active'
-  }
-]
+    name: "William Wilson",
+    role: "Frontend Engineer",
+    status: "Active",
+  },
+];
 
-const ITEMS_PER_PAGE = 6
+const ITEMS_PER_PAGE = 6;
 
 const columns = [
-  { id: 'name', name: 'Name' },
-  { id: 'role', name: 'Role' },
-  { id: 'status', name: 'Status' },
-  { id: 'email', name: 'Email' }
-]
+  {id: "name", name: "Name"},
+  {id: "role", name: "Role"},
+  {id: "status", name: "Status"},
+  {id: "email", name: "Email"},
+];
 
 export function AsyncLoading() {
-  const [items, setItems] = useState<User[]>(() =>
-    allUsers.slice(0, ITEMS_PER_PAGE)
-  )
-  const [isLoading, setIsLoading] = useState(false)
-  const isLoadingRef = useRef(false)
-  const hasMore = items.length < allUsers.length
+  const [items, setItems] = useState<User[]>(() => allUsers.slice(0, ITEMS_PER_PAGE));
+  const [isLoading, setIsLoading] = useState(false);
+  const isLoadingRef = useRef(false);
+  const hasMore = items.length < allUsers.length;
 
   const loadMore = useCallback(() => {
-    if (!hasMore || isLoadingRef.current) return
-    isLoadingRef.current = true
-    setIsLoading(true)
+    if (!hasMore || isLoadingRef.current) return;
+    isLoadingRef.current = true;
+    setIsLoading(true);
     setTimeout(() => {
-      setItems(prev => allUsers.slice(0, prev.length + ITEMS_PER_PAGE))
-      setIsLoading(false)
+      setItems((prev) => allUsers.slice(0, prev.length + ITEMS_PER_PAGE));
+      setIsLoading(false);
       requestAnimationFrame(() => {
-        isLoadingRef.current = false
-      })
-    }, 1500)
-  }, [hasMore])
+        isLoadingRef.current = false;
+      });
+    }, 1500);
+  }, [hasMore]);
 
   return (
     <Table>
       <Table.ScrollContainer className="h-[280px] overflow-y-auto">
-        <Table.Content
-          aria-label="Async loading table"
-          className="min-w-[600px]">
-          <Table.Header className="bg-surface-secondary sticky top-0 z-10">
-            {columns.map(col => (
-              <Table.Column
-                key={col.id}
-                id={col.id}
-                isRowHeader={col.id === 'name'}>
+        <Table.Content aria-label="Async loading table" className="min-w-[600px]">
+          <Table.Header className="sticky top-0 z-10 bg-surface-secondary">
+            {columns.map((col) => (
+              <Table.Column key={col.id} id={col.id} isRowHeader={col.id === "name"}>
                 {col.name}
               </Table.Column>
             ))}
           </Table.Header>
           <Table.Body>
             <Table.Collection items={items}>
-              {user => (
+              {(user) => (
                 <Table.Row>
                   <Table.Cell>{user.name}</Table.Cell>
                   <Table.Cell>{user.role}</Table.Cell>
                   <Table.Cell>
-                    <Chip
-                      color={statusColorMap[user.status]}
-                      size="sm"
-                      variant="soft">
+                    <Chip color={statusColorMap[user.status]} size="sm" variant="soft">
                       {user.status}
                     </Chip>
                   </Table.Cell>
@@ -359,10 +312,7 @@ export function AsyncLoading() {
               )}
             </Table.Collection>
             {!!hasMore && (
-              <Table.LoadMore
-                isLoading={isLoading}
-                scrollOffset={0}
-                onLoadMore={loadMore}>
+              <Table.LoadMore isLoading={isLoading} scrollOffset={0} onLoadMore={loadMore}>
                 <Table.LoadMoreContent>
                   <Spinner size="md" />
                 </Table.LoadMoreContent>
@@ -372,85 +322,70 @@ export function AsyncLoading() {
         </Table.Content>
       </Table.ScrollContainer>
     </Table>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Sorting
 
 Columns can be made sortable using the `allowsSorting` prop on `Table.Column`. Use `sortDescriptor` and `onSortChange` on `Table.Content` to manage sort state. Wrap the label in `Table.SortableColumnHeader` and forward the `sortDirection` from the column's render prop to render the default ascending/descending indicator.
 
-[Live example: table-sorting](https://heroui.com/docs/react/components/table)
 
-```tsx
-'use client'
+<ComponentPreview name="table-sorting">
+
+````tsx
+"use client";
+
+import type {SortDescriptor} from "@vezham/react-v3";
+
+import {Table} from "@vezham/react-v3";
+import {useMemo, useState} from "react";
 
 interface User {
-  id: number
-  name: string
-  role: string
-  status: string
-  email: string
+  id: number;
+  name: string;
+  role: string;
+  status: string;
+  email: string;
 }
 
 const users: User[] = [
+  {email: "kate@acme.com", id: 1, name: "Kate Moore", role: "CEO", status: "Active"},
+  {email: "john@acme.com", id: 2, name: "John Smith", role: "CTO", status: "Active"},
+  {email: "sara@acme.com", id: 3, name: "Sara Johnson", role: "CMO", status: "On Leave"},
+  {email: "michael@acme.com", id: 4, name: "Michael Brown", role: "CFO", status: "Active"},
   {
-    email: 'kate@acme.com',
-    id: 1,
-    name: 'Kate Moore',
-    role: 'CEO',
-    status: 'Active'
-  },
-  {
-    email: 'john@acme.com',
-    id: 2,
-    name: 'John Smith',
-    role: 'CTO',
-    status: 'Active'
-  },
-  {
-    email: 'sara@acme.com',
-    id: 3,
-    name: 'Sara Johnson',
-    role: 'CMO',
-    status: 'On Leave'
-  },
-  {
-    email: 'michael@acme.com',
-    id: 4,
-    name: 'Michael Brown',
-    role: 'CFO',
-    status: 'Active'
-  },
-  {
-    email: 'emily@acme.com',
+    email: "emily@acme.com",
     id: 5,
-    name: 'Emily Davis',
-    role: 'Product Manager',
-    status: 'Inactive'
-  }
-]
+    name: "Emily Davis",
+    role: "Product Manager",
+    status: "Inactive",
+  },
+];
 
 export function Sorting() {
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>({
-    column: 'name',
-    direction: 'ascending'
-  })
+    column: "name",
+    direction: "ascending",
+  });
 
   const sortedUsers = useMemo(() => {
     return [...users].sort((a, b) => {
-      const col = sortDescriptor.column as keyof User
-      const first = String(a[col])
-      const second = String(b[col])
-      let cmp = first.localeCompare(second)
+      const col = sortDescriptor.column as keyof User;
+      const first = String(a[col]);
+      const second = String(b[col]);
+      let cmp = first.localeCompare(second);
 
-      if (sortDescriptor.direction === 'descending') {
-        cmp *= -1
+      if (sortDescriptor.direction === "descending") {
+        cmp *= -1;
       }
 
-      return cmp
-    })
-  }, [sortDescriptor])
+      return cmp;
+    });
+  }, [sortDescriptor]);
 
   return (
     <Table>
@@ -459,31 +394,32 @@ export function Sorting() {
           aria-label="Sortable table"
           className="min-w-[600px]"
           sortDescriptor={sortDescriptor}
-          onSortChange={setSortDescriptor}>
+          onSortChange={setSortDescriptor}
+        >
           <Table.Header>
             <Table.Column allowsSorting isRowHeader id="name">
-              {({ sortDirection }) => (
+              {({sortDirection}) => (
                 <Table.SortableColumnHeader sortDirection={sortDirection}>
                   Name
                 </Table.SortableColumnHeader>
               )}
             </Table.Column>
             <Table.Column allowsSorting id="role">
-              {({ sortDirection }) => (
+              {({sortDirection}) => (
                 <Table.SortableColumnHeader sortDirection={sortDirection}>
                   Role
                 </Table.SortableColumnHeader>
               )}
             </Table.Column>
             <Table.Column allowsSorting id="status">
-              {({ sortDirection }) => (
+              {({sortDirection}) => (
                 <Table.SortableColumnHeader sortDirection={sortDirection}>
                   Status
                 </Table.SortableColumnHeader>
               )}
             </Table.Column>
             <Table.Column allowsSorting id="email">
-              {({ sortDirection }) => (
+              {({sortDirection}) => (
                 <Table.SortableColumnHeader sortDirection={sortDirection}>
                   Email
                 </Table.SortableColumnHeader>
@@ -491,7 +427,7 @@ export function Sorting() {
             </Table.Column>
           </Table.Header>
           <Table.Body>
-            {sortedUsers.map(user => (
+            {sortedUsers.map((user) => (
               <Table.Row key={user.id} id={user.id}>
                 <Table.Cell>{user.name}</Table.Cell>
                 <Table.Cell>{user.role}</Table.Cell>
@@ -503,52 +439,37 @@ export function Sorting() {
         </Table.Content>
       </Table.ScrollContainer>
     </Table>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Selection
 
 Enable row selection with `selectionMode` on `Table.Content`. Use `Checkbox` with `slot="selection"` for select-all and per-row checkboxes.
 
-[Live example: table-selection](https://heroui.com/docs/react/components/table)
 
-```tsx
-'use client'
+<ComponentPreview name="table-selection">
+
+````tsx
+"use client";
+
+import type {Selection} from "@vezham/react-v3";
+
+import {Checkbox, Table} from "@vezham/react-v3";
+import {useState} from "react";
 
 const users = [
-  {
-    email: 'kate@acme.com',
-    id: 1,
-    name: 'Kate Moore',
-    role: 'CEO',
-    status: 'Active'
-  },
-  {
-    email: 'john@acme.com',
-    id: 2,
-    name: 'John Smith',
-    role: 'CTO',
-    status: 'Active'
-  },
-  {
-    email: 'sara@acme.com',
-    id: 3,
-    name: 'Sara Johnson',
-    role: 'CMO',
-    status: 'On Leave'
-  },
-  {
-    email: 'michael@acme.com',
-    id: 4,
-    name: 'Michael Brown',
-    role: 'CFO',
-    status: 'Active'
-  }
-]
+  {email: "kate@acme.com", id: 1, name: "Kate Moore", role: "CEO", status: "Active"},
+  {email: "john@acme.com", id: 2, name: "John Smith", role: "CTO", status: "Active"},
+  {email: "sara@acme.com", id: 3, name: "Sara Johnson", role: "CMO", status: "On Leave"},
+  {email: "michael@acme.com", id: 4, name: "Michael Brown", role: "CFO", status: "Active"},
+];
 
 export function SelectionDemo() {
-  const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set())
+  const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set());
 
   return (
     <div className="flex flex-col gap-3">
@@ -559,7 +480,8 @@ export function SelectionDemo() {
             className="min-w-[600px]"
             selectedKeys={selectedKeys}
             selectionMode="multiple"
-            onSelectionChange={setSelectedKeys}>
+            onSelectionChange={setSelectedKeys}
+          >
             <Table.Header>
               <Table.Column className="pe-0">
                 <Checkbox aria-label="Select all" slot="selection">
@@ -576,13 +498,14 @@ export function SelectionDemo() {
               <Table.Column>Email</Table.Column>
             </Table.Header>
             <Table.Body>
-              {users.map(user => (
+              {users.map((user) => (
                 <Table.Row key={user.id} id={user.id}>
                   <Table.Cell className="pe-0">
                     <Checkbox
                       aria-label={`Select ${user.name}`}
                       slot="selection"
-                      variant="secondary">
+                      variant="secondary"
+                    >
                       <Checkbox.Content>
                         <Checkbox.Control>
                           <Checkbox.Indicator />
@@ -600,103 +523,87 @@ export function SelectionDemo() {
           </Table.Content>
         </Table.ScrollContainer>
       </Table>
-      <p className="text-muted text-sm">
-        Selected:{' '}
+      <p className="text-sm text-muted">
+        Selected:{" "}
         <span className="font-medium">
-          {selectedKeys === 'all'
-            ? 'All'
+          {selectedKeys === "all"
+            ? "All"
             : selectedKeys.size > 0
-              ? Array.from(selectedKeys).join(', ')
-              : 'None'}
+              ? Array.from(selectedKeys).join(", ")
+              : "None"}
         </span>
       </p>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Expandable Rows
 
 Rows can be nested to display hierarchical data. Use the `treeColumn` prop to designate a column, and render a `Button` with `slot="chevron"` in that column’s cells so users can expand and collapse the row. Use the `expandedKeys` prop to control which rows are expanded.
 
-[Live example: table-expandable-rows](https://heroui.com/docs/react/components/table)
 
-```tsx
-'use client'
+<ComponentPreview name="table-expandable-rows">
+
+````tsx
+"use client";
+
+import type {Selection} from "@vezham/react-v3";
+
+import {Button, Table, cn} from "@vezham/react-v3";
+import {Icon} from "@iconify/react";
+import {useState} from "react";
 
 export function ExpandableRows() {
   type Row = {
-    children: Row[]
-    date: string
-    id: string
-    title: string
-    type: string
-  }
+    children: Row[];
+    date: string;
+    id: string;
+    title: string;
+    type: string;
+  };
 
   const data: Row[] = [
     {
       children: [
         {
           children: [
-            {
-              children: [],
-              date: '7/10/2025',
-              id: '3',
-              title: 'Weekly Report',
-              type: 'File'
-            },
-            {
-              children: [],
-              date: '8/20/2025',
-              id: '4',
-              title: 'Budget',
-              type: 'File'
-            }
+            {children: [], date: "7/10/2025", id: "3", title: "Weekly Report", type: "File"},
+            {children: [], date: "8/20/2025", id: "4", title: "Budget", type: "File"},
           ],
-          date: '8/2/2025',
-          id: '2',
-          title: 'Project',
-          type: 'Directory'
-        }
+          date: "8/2/2025",
+          id: "2",
+          title: "Project",
+          type: "Directory",
+        },
       ],
-      date: '10/20/2025',
-      id: '1',
-      title: 'Documents',
-      type: 'Directory'
+      date: "10/20/2025",
+      id: "1",
+      title: "Documents",
+      type: "Directory",
     },
     {
       children: [
-        {
-          children: [],
-          date: '1/23/2026',
-          id: '6',
-          title: 'Image 1',
-          type: 'File'
-        },
-        {
-          children: [],
-          date: '2/3/2026',
-          id: '7',
-          title: 'Image 2',
-          type: 'File'
-        }
+        {children: [], date: "1/23/2026", id: "6", title: "Image 1", type: "File"},
+        {children: [], date: "2/3/2026", id: "7", title: "Image 2", type: "File"},
       ],
-      date: '2/3/2026',
-      id: '5',
-      title: 'Photos',
-      type: 'Directory'
-    }
-  ]
+      date: "2/3/2026",
+      id: "5",
+      title: "Photos",
+      type: "Directory",
+    },
+  ];
 
-  const [expandedKeys, setExpandedKeys] = useState<Selection>(
-    () => new Set(['1'])
-  )
+  const [expandedKeys, setExpandedKeys] = useState<Selection>(() => new Set(["1"]));
 
   const renderExpandableRow = (item: Row) => {
     return (
       <Table.Row id={item.id} textValue={item.title}>
         <Table.Cell textValue={item.title}>
-          {({ hasChildItems, isDisabled, isExpanded, isTreeColumn }) => (
+          {({hasChildItems, isDisabled, isExpanded, isTreeColumn}) => (
             <span className="flex items-center gap-1">
               {hasChildItems && isTreeColumn ? (
                 <Button
@@ -705,13 +612,14 @@ export function ExpandableRows() {
                   isDisabled={isDisabled}
                   size="sm"
                   slot="chevron"
-                  variant="ghost">
+                  variant="ghost"
+                >
                   <Icon
                     aria-hidden
                     icon="gravity-ui:chevron-right"
                     className={cn(
-                      'text-muted size-4 transition-transform duration-150',
-                      isExpanded ? 'rotate-90' : 'rtl:rotate-180'
+                      "size-4 text-muted transition-transform duration-150",
+                      isExpanded ? "rotate-90" : "rtl:rotate-180",
                     )}
                   />
                 </Button>
@@ -722,12 +630,10 @@ export function ExpandableRows() {
         </Table.Cell>
         <Table.Cell>{item.type}</Table.Cell>
         <Table.Cell>{item.date}</Table.Cell>
-        <Table.Collection items={item.children}>
-          {renderExpandableRow}
-        </Table.Collection>
+        <Table.Collection items={item.children}>{renderExpandableRow}</Table.Collection>
       </Table.Row>
-    )
-  }
+    );
+  };
 
   return (
     <Table>
@@ -737,7 +643,8 @@ export function ExpandableRows() {
           className="min-w-[520px]"
           expandedKeys={expandedKeys}
           treeColumn="name"
-          onExpandedChange={setExpandedKeys}>
+          onExpandedChange={setExpandedKeys}
+        >
           <Table.Header>
             <Table.Column isRowHeader id="name">
               Name
@@ -749,123 +656,92 @@ export function ExpandableRows() {
         </Table.Content>
       </Table.ScrollContainer>
     </Table>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Pagination
 
 Use `Table.Footer` to add a pagination component below the table.
 
-[Live example: table-pagination](https://heroui.com/docs/react/components/table)
 
-```tsx
-'use client'
+<ComponentPreview name="table-pagination">
+
+````tsx
+"use client";
+
+import {Pagination, Table} from "@vezham/react-v3";
+import {useMemo, useState} from "react";
 
 const columns = [
-  { id: 'name', name: 'Name' },
-  { id: 'role', name: 'Role' },
-  { id: 'status', name: 'Status' },
-  { id: 'email', name: 'Email' }
-]
+  {id: "name", name: "Name"},
+  {id: "role", name: "Role"},
+  {id: "status", name: "Status"},
+  {id: "email", name: "Email"},
+];
 
 const users = [
+  {email: "kate@acme.com", id: 1, name: "Kate Moore", role: "CEO", status: "Active"},
+  {email: "john@acme.com", id: 2, name: "John Smith", role: "CTO", status: "Active"},
+  {email: "sara@acme.com", id: 3, name: "Sara Johnson", role: "CMO", status: "On Leave"},
+  {email: "michael@acme.com", id: 4, name: "Michael Brown", role: "CFO", status: "Active"},
   {
-    email: 'kate@acme.com',
-    id: 1,
-    name: 'Kate Moore',
-    role: 'CEO',
-    status: 'Active'
-  },
-  {
-    email: 'john@acme.com',
-    id: 2,
-    name: 'John Smith',
-    role: 'CTO',
-    status: 'Active'
-  },
-  {
-    email: 'sara@acme.com',
-    id: 3,
-    name: 'Sara Johnson',
-    role: 'CMO',
-    status: 'On Leave'
-  },
-  {
-    email: 'michael@acme.com',
-    id: 4,
-    name: 'Michael Brown',
-    role: 'CFO',
-    status: 'Active'
-  },
-  {
-    email: 'emily@acme.com',
+    email: "emily@acme.com",
     id: 5,
-    name: 'Emily Davis',
-    role: 'Product Manager',
-    status: 'Inactive'
+    name: "Emily Davis",
+    role: "Product Manager",
+    status: "Inactive",
   },
+  {email: "davis@acme.com", id: 6, name: "Davis Wilson", role: "Lead Designer", status: "Active"},
   {
-    email: 'davis@acme.com',
-    id: 6,
-    name: 'Davis Wilson',
-    role: 'Lead Designer',
-    status: 'Active'
-  },
-  {
-    email: 'olivia@acme.com',
+    email: "olivia@acme.com",
     id: 7,
-    name: 'Olivia Martinez',
-    role: 'Frontend Engineer',
-    status: 'Active'
+    name: "Olivia Martinez",
+    role: "Frontend Engineer",
+    status: "Active",
   },
   {
-    email: 'james@acme.com',
+    email: "james@acme.com",
     id: 8,
-    name: 'James Taylor',
-    role: 'Backend Engineer',
-    status: 'Active'
-  }
-]
+    name: "James Taylor",
+    role: "Backend Engineer",
+    status: "Active",
+  },
+];
 
-const ROWS_PER_PAGE = 4
+const ROWS_PER_PAGE = 4;
 
 export function PaginationDemo() {
-  const [page, setPage] = useState(1)
-  const totalPages = Math.ceil(users.length / ROWS_PER_PAGE)
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1)
+  const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(users.length / ROWS_PER_PAGE);
+  const pages = Array.from({length: totalPages}, (_, i) => i + 1);
 
   const paginatedItems = useMemo(() => {
-    const start = (page - 1) * ROWS_PER_PAGE
+    const start = (page - 1) * ROWS_PER_PAGE;
 
-    return users.slice(start, start + ROWS_PER_PAGE)
-  }, [page])
+    return users.slice(start, start + ROWS_PER_PAGE);
+  }, [page]);
 
-  const start = (page - 1) * ROWS_PER_PAGE + 1
-  const end = Math.min(page * ROWS_PER_PAGE, users.length)
+  const start = (page - 1) * ROWS_PER_PAGE + 1;
+  const end = Math.min(page * ROWS_PER_PAGE, users.length);
 
   return (
     <Table>
       <Table.ScrollContainer>
-        <Table.Content
-          aria-label="Table with pagination"
-          className="min-w-[600px]">
+        <Table.Content aria-label="Table with pagination" className="min-w-[600px]">
           <Table.Header columns={columns}>
-            {column => (
-              <Table.Column isRowHeader={column.id === 'name'}>
-                {column.name}
-              </Table.Column>
+            {(column) => (
+              <Table.Column isRowHeader={column.id === "name"}>{column.name}</Table.Column>
             )}
           </Table.Header>
           <Table.Body items={paginatedItems}>
-            {user => (
+            {(user) => (
               <Table.Row>
                 <Table.Collection items={columns}>
-                  {column => (
-                    <Table.Cell>
-                      {user[column.id as keyof typeof user]}
-                    </Table.Cell>
-                  )}
+                  {(column) => <Table.Cell>{user[column.id as keyof typeof user]}</Table.Cell>}
                 </Table.Collection>
               </Table.Row>
             )}
@@ -881,16 +757,15 @@ export function PaginationDemo() {
             <Pagination.Item>
               <Pagination.Previous
                 isDisabled={page === 1}
-                onPress={() => setPage(p => Math.max(1, p - 1))}>
+                onPress={() => setPage((p) => Math.max(1, p - 1))}
+              >
                 <Pagination.PreviousIcon />
                 Prev
               </Pagination.Previous>
             </Pagination.Item>
-            {pages.map(p => (
+            {pages.map((p) => (
               <Pagination.Item key={p}>
-                <Pagination.Link
-                  isActive={p === page}
-                  onPress={() => setPage(p)}>
+                <Pagination.Link isActive={p === page} onPress={() => setPage(p)}>
                   {p}
                 </Pagination.Link>
               </Pagination.Item>
@@ -898,7 +773,8 @@ export function PaginationDemo() {
             <Pagination.Item>
               <Pagination.Next
                 isDisabled={page === totalPages}
-                onPress={() => setPage(p => Math.min(totalPages, p + 1))}>
+                onPress={() => setPage((p) => Math.min(totalPages, p + 1))}
+              >
                 Next
                 <Pagination.NextIcon />
               </Pagination.Next>
@@ -907,30 +783,30 @@ export function PaginationDemo() {
         </Pagination>
       </Table.Footer>
     </Table>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Column Resizing
 
 Wrap the table in `Table.ResizableContainer` and add `Table.ColumnResizer` inside each resizable column.
 
-[Live example: table-column-resizing](https://heroui.com/docs/react/components/table)
 
-```tsx
+<ComponentPreview name="table-column-resizing">
+
+````tsx
+import {Chip, Table} from "@vezham/react-v3";
+
 export function ColumnResizing() {
   return (
     <Table>
       <Table.ResizableContainer>
-        <Table.Content
-          aria-label="Table with resizable columns"
-          className="min-w-[700px]">
+        <Table.Content aria-label="Table with resizable columns" className="min-w-[700px]">
           <Table.Header>
-            <Table.Column
-              isRowHeader
-              defaultWidth="1fr"
-              id="name"
-              minWidth={160}>
+            <Table.Column isRowHeader defaultWidth="1fr" id="name" minWidth={160}>
               Name
               <Table.ColumnResizer />
             </Table.Column>
@@ -1001,26 +877,31 @@ export function ColumnResizing() {
         </Table.Content>
       </Table.ResizableContainer>
     </Table>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Empty State
 
 Use `renderEmptyState` on `Table.Body` to display a custom message when the table has no data.
 
-[Live example: table-empty-state](https://heroui.com/docs/react/components/table)
 
-```tsx
-'use client'
+<ComponentPreview name="table-empty-state">
+
+````tsx
+"use client";
+
+import {EmptyState, Table} from "@vezham/react-v3";
+import {Icon} from "@iconify/react";
 
 export function EmptyStateDemo() {
   return (
     <Table className="min-h-[200px]">
       <Table.ScrollContainer>
-        <Table.Content
-          aria-label="Empty table"
-          className="h-full min-w-[600px]">
+        <Table.Content aria-label="Empty table" className="h-full min-w-[600px]">
           <Table.Header>
             <Table.Column isRowHeader>Name</Table.Column>
             <Table.Column>Role</Table.Column>
@@ -1030,129 +911,137 @@ export function EmptyStateDemo() {
           <Table.Body
             renderEmptyState={() => (
               <EmptyState className="flex h-full w-full flex-col items-center justify-center gap-4 text-center">
-                <Icon className="text-muted size-6" icon="gravity-ui:tray" />
-                <span className="text-muted text-sm">No results found</span>
+                <Icon className="size-6 text-muted" icon="gravity-ui:tray" />
+                <span className="text-sm text-muted">No results found</span>
               </EmptyState>
-            )}>
+            )}
+          >
             {[]}
           </Table.Body>
         </Table.Content>
       </Table.ScrollContainer>
     </Table>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Virtualization
 
 Table supports virtualization through [Virtualizer](https://react-aria.adobe.com/Virtualizer), enabling efficient rendering of large datasets by displaying only the rows visible within the viewport.
 
-[Live example: table-virtualization](https://heroui.com/docs/react/components/table)
 
-```tsx
-'use client'
+<ComponentPreview name="table-virtualization">
+
+````tsx
+"use client";
+
+import {Table, TableLayout, Virtualizer} from "@vezham/react-v3";
 
 interface User {
-  id: number
-  name: string
-  role: string
-  email: string
+  id: number;
+  name: string;
+  role: string;
+  email: string;
 }
 
 export function Virtualization() {
   const roles = [
-    'Software Engineer',
-    'Senior Engineer',
-    'Staff Engineer',
-    'Product Manager',
-    'Designer',
-    'Data Analyst',
-    'QA Engineer',
-    'DevOps Engineer',
-    'Marketing Manager',
-    'Sales Representative'
-  ]
+    "Software Engineer",
+    "Senior Engineer",
+    "Staff Engineer",
+    "Product Manager",
+    "Designer",
+    "Data Analyst",
+    "QA Engineer",
+    "DevOps Engineer",
+    "Marketing Manager",
+    "Sales Representative",
+  ];
 
   const firstNames = [
-    'Emma',
-    'Liam',
-    'Olivia',
-    'Noah',
-    'Ava',
-    'James',
-    'Sophia',
-    'Oliver',
-    'Isabella',
-    'Lucas',
-    'Mia',
-    'Ethan',
-    'Charlotte',
-    'Mason',
-    'Amelia',
-    'Logan',
-    'Harper',
-    'Alexander',
-    'Ella',
-    'Benjamin'
-  ]
+    "Emma",
+    "Liam",
+    "Olivia",
+    "Noah",
+    "Ava",
+    "James",
+    "Sophia",
+    "Oliver",
+    "Isabella",
+    "Lucas",
+    "Mia",
+    "Ethan",
+    "Charlotte",
+    "Mason",
+    "Amelia",
+    "Logan",
+    "Harper",
+    "Alexander",
+    "Ella",
+    "Benjamin",
+  ];
 
   const lastNames = [
-    'Smith',
-    'Johnson',
-    'Williams',
-    'Brown',
-    'Jones',
-    'Garcia',
-    'Miller',
-    'Davis',
-    'Rodriguez',
-    'Martinez',
-    'Anderson',
-    'Taylor',
-    'Thomas',
-    'Jackson',
-    'White',
-    'Harris',
-    'Clark',
-    'Lewis',
-    'Robinson',
-    'Walker'
-  ]
+    "Smith",
+    "Johnson",
+    "Williams",
+    "Brown",
+    "Jones",
+    "Garcia",
+    "Miller",
+    "Davis",
+    "Rodriguez",
+    "Martinez",
+    "Anderson",
+    "Taylor",
+    "Thomas",
+    "Jackson",
+    "White",
+    "Harris",
+    "Clark",
+    "Lewis",
+    "Robinson",
+    "Walker",
+  ];
 
   function generateUsers(count: number): User[] {
-    const users: User[] = []
+    const users: User[] = [];
 
     for (let i = 0; i < count; i++) {
-      const firstName = firstNames[i % firstNames.length]
-      const lastName =
-        lastNames[Math.floor(i / firstNames.length) % lastNames.length]
-      const name = `${firstName} ${lastName}`
+      const firstName = firstNames[i % firstNames.length];
+      const lastName = lastNames[Math.floor(i / firstNames.length) % lastNames.length];
+      const name = `${firstName} ${lastName}`;
 
       users.push({
         email: `${firstName?.toLowerCase()}.${lastName?.toLowerCase()}@acme.com`,
         id: i + 1,
         name,
-        role: roles[i % roles.length] || ''
-      })
+        role: roles[i % roles.length] || "",
+      });
     }
 
-    return users
+    return users;
   }
 
-  const virtualizedUsers = generateUsers(1000)
+  const virtualizedUsers = generateUsers(1000);
 
   return (
     <Virtualizer
       layout={TableLayout}
       layoutOptions={{
         headingHeight: 42,
-        rowHeight: 42
-      }}>
+        rowHeight: 42,
+      }}
+    >
       <Table>
         <Table.ScrollContainer>
           <Table.Content
             aria-label="Virtualized table with 1000 rows"
-            className="h-[300px] min-w-[700px] overflow-auto">
+            className="h-[300px] min-w-[700px] overflow-auto"
+          >
             <Table.Header className="h-full w-full">
               <Table.Column isRowHeader id="name" minWidth={160}>
                 Name
@@ -1165,7 +1054,7 @@ export function Virtualization() {
               </Table.Column>
             </Table.Header>
             <Table.Body items={virtualizedUsers}>
-              {user => (
+              {(user) => (
                 <Table.Row>
                   <Table.Cell>{user.name}</Table.Cell>
                   <Table.Cell>{user.role}</Table.Cell>
@@ -1177,9 +1066,12 @@ export function Virtualization() {
         </Table.ScrollContainer>
       </Table>
     </Virtualizer>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### TanStack Table
 
@@ -1188,11 +1080,16 @@ This example uses [TanStack Table](https://tanstack.com/table) for column
 definitions, sorting, and pagination — while HeroUI handles styling and
 accessibility.
 
-[Live example: table-tanstack-table](https://heroui.com/docs/react/components/table)
 
-```tsx
-'use client'
+<ComponentPreview name="table-tanstack-table">
 
+````tsx
+"use client";
+
+import type {SortDescriptor} from "@vezham/react-v3";
+import type {SortingState} from "@tanstack/react-table";
+
+import {Chip, Pagination, Table} from "@vezham/react-v3";
 import {
   createColumnHelper,
   createPaginatedRowModel,
@@ -1202,82 +1099,53 @@ import {
   rowSortingFeature,
   sortFn_alphanumeric,
   tableFeatures,
-  useTable
-} from '@tanstack/react-table'
+  useTable,
+} from "@tanstack/react-table";
+import {useMemo, useState} from "react";
 
 // --- Data -----------------------------------------------------------------
 interface User {
-  id: number
-  name: string
-  role: string
-  status: 'Active' | 'Inactive' | 'On Leave'
-  email: string
+  id: number;
+  name: string;
+  role: string;
+  status: "Active" | "Inactive" | "On Leave";
+  email: string;
 }
 
-const statusColorMap: Record<string, 'success' | 'danger' | 'warning'> = {
-  Active: 'success',
-  Inactive: 'danger',
-  'On Leave': 'warning'
-}
+const statusColorMap: Record<string, "success" | "danger" | "warning"> = {
+  Active: "success",
+  Inactive: "danger",
+  "On Leave": "warning",
+};
 
 const users: User[] = [
+  {email: "kate@acme.com", id: 1, name: "Kate Moore", role: "CEO", status: "Active"},
+  {email: "john@acme.com", id: 2, name: "John Smith", role: "CTO", status: "Active"},
+  {email: "sara@acme.com", id: 3, name: "Sara Johnson", role: "CMO", status: "On Leave"},
+  {email: "michael@acme.com", id: 4, name: "Michael Brown", role: "CFO", status: "Active"},
   {
-    email: 'kate@acme.com',
-    id: 1,
-    name: 'Kate Moore',
-    role: 'CEO',
-    status: 'Active'
-  },
-  {
-    email: 'john@acme.com',
-    id: 2,
-    name: 'John Smith',
-    role: 'CTO',
-    status: 'Active'
-  },
-  {
-    email: 'sara@acme.com',
-    id: 3,
-    name: 'Sara Johnson',
-    role: 'CMO',
-    status: 'On Leave'
-  },
-  {
-    email: 'michael@acme.com',
-    id: 4,
-    name: 'Michael Brown',
-    role: 'CFO',
-    status: 'Active'
-  },
-  {
-    email: 'emily@acme.com',
+    email: "emily@acme.com",
     id: 5,
-    name: 'Emily Davis',
-    role: 'Product Manager',
-    status: 'Inactive'
+    name: "Emily Davis",
+    role: "Product Manager",
+    status: "Inactive",
   },
+  {email: "davis@acme.com", id: 6, name: "Davis Wilson", role: "Lead Designer", status: "Active"},
   {
-    email: 'davis@acme.com',
-    id: 6,
-    name: 'Davis Wilson',
-    role: 'Lead Designer',
-    status: 'Active'
-  },
-  {
-    email: 'olivia@acme.com',
+    email: "olivia@acme.com",
     id: 7,
-    name: 'Olivia Martinez',
-    role: 'Frontend Engineer',
-    status: 'Active'
+    name: "Olivia Martinez",
+    role: "Frontend Engineer",
+    status: "Active",
   },
   {
-    email: 'james@acme.com',
+    email: "james@acme.com",
     id: 8,
-    name: 'James Taylor',
-    role: 'Backend Engineer',
-    status: 'Active'
-  }
-]
+    name: "James Taylor",
+    role: "Backend Engineer",
+    status: "Active",
+  },
+];
 
 // --- TanStack Features & Column Definitions -------------------------------
 const features = tableFeatures({
@@ -1285,72 +1153,67 @@ const features = tableFeatures({
   rowPaginationFeature,
   rowSortingFeature,
   sortFns: {
-    alphanumeric: sortFn_alphanumeric
+    alphanumeric: sortFn_alphanumeric,
   },
-  sortedRowModel: createSortedRowModel()
-})
+  sortedRowModel: createSortedRowModel(),
+});
 
-const columnHelper = createColumnHelper<typeof features, User>()
+const columnHelper = createColumnHelper<typeof features, User>();
 
 const columns = columnHelper.columns([
-  columnHelper.accessor('name', { header: 'Name' }),
-  columnHelper.accessor('role', { header: 'Role' }),
-  columnHelper.accessor('status', {
-    cell: info => (
+  columnHelper.accessor("name", {header: "Name"}),
+  columnHelper.accessor("role", {header: "Role"}),
+  columnHelper.accessor("status", {
+    cell: (info) => (
       <Chip color={statusColorMap[info.getValue()]} size="sm" variant="soft">
         {info.getValue()}
       </Chip>
     ),
-    header: 'Status'
+    header: "Status",
   }),
-  columnHelper.accessor('email', { header: 'Email' })
-])
+  columnHelper.accessor("email", {header: "Email"}),
+]);
 
 // --- Sorting Bridge -------------------------------------------------------
 // Convert TanStack SortingState → React Aria SortDescriptor
 function toSortDescriptor(sorting: SortingState): SortDescriptor | undefined {
-  const first = sorting[0]
+  const first = sorting[0];
 
-  if (!first) return undefined
+  if (!first) return undefined;
 
   return {
     column: first.id,
-    direction: first.desc ? 'descending' : 'ascending'
-  }
+    direction: first.desc ? "descending" : "ascending",
+  };
 }
 
 // Convert React Aria SortDescriptor → TanStack SortingState
 function toSortingState(descriptor: SortDescriptor): SortingState {
-  return [
-    {
-      desc: descriptor.direction === 'descending',
-      id: descriptor.column as string
-    }
-  ]
+  return [{desc: descriptor.direction === "descending", id: descriptor.column as string}];
 }
 
 // --- Component ------------------------------------------------------------
-const PAGE_SIZE = 4
+const PAGE_SIZE = 4;
 
 export function TanstackTable() {
-  const [sorting, setSorting] = useState<SortingState>([])
+  const [sorting, setSorting] = useState<SortingState>([]);
 
   const table = useTable({
     columns,
     data: users,
     features,
-    initialState: { pagination: { pageIndex: 0, pageSize: PAGE_SIZE } },
+    initialState: {pagination: {pageIndex: 0, pageSize: PAGE_SIZE}},
     onSortingChange: setSorting,
-    state: { sorting }
-  })
+    state: {sorting},
+  });
 
-  const sortDescriptor = useMemo(() => toSortDescriptor(sorting), [sorting])
+  const sortDescriptor = useMemo(() => toSortDescriptor(sorting), [sorting]);
 
-  const { pageIndex } = table.state.pagination
-  const pageCount = table.getPageCount()
-  const pages = Array.from({ length: pageCount }, (_, i) => i + 1)
-  const start = pageIndex * PAGE_SIZE + 1
-  const end = Math.min((pageIndex + 1) * PAGE_SIZE, users.length)
+  const {pageIndex} = table.state.pagination;
+  const pageCount = table.getPageCount();
+  const pages = Array.from({length: pageCount}, (_, i) => i + 1);
+  const start = pageIndex * PAGE_SIZE + 1;
+  const end = Math.min((pageIndex + 1) * PAGE_SIZE, users.length);
 
   return (
     <Table>
@@ -1359,29 +1222,28 @@ export function TanstackTable() {
           aria-label="TanStack Table example"
           className="min-w-[600px]"
           sortDescriptor={sortDescriptor}
-          onSortChange={d => setSorting(toSortingState(d))}>
+          onSortChange={(d) => setSorting(toSortingState(d))}
+        >
           <Table.Header>
-            {table.getHeaderGroups()[0]?.headers.map(header => (
+            {table.getHeaderGroups()[0]?.headers.map((header) => (
               <Table.Column
                 key={header.id}
                 allowsSorting={header.column.getCanSort()}
                 id={header.id}
-                isRowHeader={header.id === 'name'}>
-                {({ sortDirection }) => (
+                isRowHeader={header.id === "name"}
+              >
+                {({sortDirection}) => (
                   <Table.SortableColumnHeader sortDirection={sortDirection}>
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext()
-                    )}
+                    {flexRender(header.column.columnDef.header, header.getContext())}
                   </Table.SortableColumnHeader>
                 )}
               </Table.Column>
             ))}
           </Table.Header>
           <Table.Body>
-            {table.getRowModel().rows.map(row => (
+            {table.getRowModel().rows.map((row) => (
               <Table.Row key={row.id} id={row.id}>
-                {row.getAllCells().map(cell => (
+                {row.getAllCells().map((cell) => (
                   <Table.Cell key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </Table.Cell>
@@ -1400,16 +1262,18 @@ export function TanstackTable() {
             <Pagination.Item>
               <Pagination.Previous
                 isDisabled={!table.getCanPreviousPage()}
-                onPress={() => table.previousPage()}>
+                onPress={() => table.previousPage()}
+              >
                 <Pagination.PreviousIcon />
                 Prev
               </Pagination.Previous>
             </Pagination.Item>
-            {pages.map(p => (
+            {pages.map((p) => (
               <Pagination.Item key={p}>
                 <Pagination.Link
                   isActive={p === pageIndex + 1}
-                  onPress={() => table.setPageIndex(p - 1)}>
+                  onPress={() => table.setPageIndex(p - 1)}
+                >
                   {p}
                 </Pagination.Link>
               </Pagination.Item>
@@ -1417,7 +1281,8 @@ export function TanstackTable() {
             <Pagination.Item>
               <Pagination.Next
                 isDisabled={!table.getCanNextPage()}
-                onPress={() => table.nextPage()}>
+                onPress={() => table.nextPage()}
+              >
                 Next
                 <Pagination.NextIcon />
               </Pagination.Next>
@@ -1426,101 +1291,106 @@ export function TanstackTable() {
         </Pagination>
       </Table.Footer>
     </Table>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Custom Cells
 
-[Live example: table-custom-cells](https://heroui.com/docs/react/components/table)
 
-```tsx
-'use client'
+<ComponentPreview name="table-custom-cells">
+
+````tsx
+"use client";
+
+import type {Selection, SortDescriptor} from "@vezham/react-v3";
+
+import {Avatar, Button, Checkbox, Chip, Table} from "@vezham/react-v3";
+import {Icon} from "@iconify/react";
+import {useMemo, useState} from "react";
 
 interface User {
-  id: number
-  name: string
-  image_url: string
-  role: string
-  status: 'Active' | 'Inactive' | 'On Leave'
-  email: string
+  id: number;
+  name: string;
+  image_url: string;
+  role: string;
+  status: "Active" | "Inactive" | "On Leave";
+  email: string;
 }
 
-const statusColorMap: Record<string, 'success' | 'danger' | 'warning'> = {
-  Active: 'success',
-  Inactive: 'danger',
-  'On Leave': 'warning'
-}
+const statusColorMap: Record<string, "success" | "danger" | "warning"> = {
+  Active: "success",
+  Inactive: "danger",
+  "On Leave": "warning",
+};
 
 const users: User[] = [
   {
-    email: 'kate@acme.com',
+    email: "kate@acme.com",
     id: 4586932,
-    image_url:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/red.jpg',
-    name: 'Kate Moore',
-    role: 'Chief Executive Officer',
-    status: 'Active'
+    image_url: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/red.jpg",
+    name: "Kate Moore",
+    role: "Chief Executive Officer",
+    status: "Active",
   },
   {
-    email: 'john@acme.com',
+    email: "john@acme.com",
     id: 5273849,
-    image_url:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg',
-    name: 'John Smith',
-    role: 'Chief Technology Officer',
-    status: 'Active'
+    image_url: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg",
+    name: "John Smith",
+    role: "Chief Technology Officer",
+    status: "Active",
   },
   {
-    email: 'sara@acme.com',
+    email: "sara@acme.com",
     id: 7492836,
-    image_url:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg',
-    name: 'Sara Johnson',
-    role: 'Chief Marketing Officer',
-    status: 'On Leave'
+    image_url: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg",
+    name: "Sara Johnson",
+    role: "Chief Marketing Officer",
+    status: "On Leave",
   },
   {
-    email: 'michael@acme.com',
+    email: "michael@acme.com",
     id: 8293746,
-    image_url:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/purple.jpg',
-    name: 'Michael Brown',
-    role: 'Chief Financial Officer',
-    status: 'Active'
+    image_url: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/purple.jpg",
+    name: "Michael Brown",
+    role: "Chief Financial Officer",
+    status: "Active",
   },
   {
-    email: 'emily@acme.com',
+    email: "emily@acme.com",
     id: 1234567,
-    image_url:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/orange.jpg',
-    name: 'Emily Davis',
-    role: 'Product Manager',
-    status: 'Inactive'
-  }
-]
+    image_url: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/orange.jpg",
+    name: "Emily Davis",
+    role: "Product Manager",
+    status: "Inactive",
+  },
+];
 
 export function CustomCells() {
-  const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set())
+  const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set());
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>({
-    column: 'name',
-    direction: 'ascending'
-  })
+    column: "name",
+    direction: "ascending",
+  });
 
   const sortedUsers = useMemo(() => {
     return [...users].sort((a, b) => {
-      const col = sortDescriptor.column as keyof User
-      const first = String(a[col])
-      const second = String(b[col])
-      let cmp = first.localeCompare(second)
+      const col = sortDescriptor.column as keyof User;
+      const first = String(a[col]);
+      const second = String(b[col]);
+      let cmp = first.localeCompare(second);
 
-      if (sortDescriptor.direction === 'descending') {
-        cmp *= -1
+      if (sortDescriptor.direction === "descending") {
+        cmp *= -1;
       }
 
-      return cmp
-    })
-  }, [sortDescriptor])
+      return cmp;
+    });
+  }, [sortDescriptor]);
 
   return (
     <Table>
@@ -1532,7 +1402,8 @@ export function CustomCells() {
           selectionMode="multiple"
           sortDescriptor={sortDescriptor}
           onSelectionChange={setSelectedKeys}
-          onSortChange={setSortDescriptor}>
+          onSortChange={setSortDescriptor}
+        >
           <Table.Header>
             <Table.Column className="pe-0">
               <Checkbox aria-label="Select all" slot="selection">
@@ -1543,33 +1414,29 @@ export function CustomCells() {
                 </Checkbox.Content>
               </Checkbox>
             </Table.Column>
-            <Table.Column
-              allowsSorting
-              isRowHeader
-              className="after:hidden"
-              id="id">
-              {({ sortDirection }) => (
+            <Table.Column allowsSorting isRowHeader className="after:hidden" id="id">
+              {({sortDirection}) => (
                 <Table.SortableColumnHeader sortDirection={sortDirection}>
                   Worker ID
                 </Table.SortableColumnHeader>
               )}
             </Table.Column>
             <Table.Column allowsSorting id="name">
-              {({ sortDirection }) => (
+              {({sortDirection}) => (
                 <Table.SortableColumnHeader sortDirection={sortDirection}>
                   Member
                 </Table.SortableColumnHeader>
               )}
             </Table.Column>
             <Table.Column allowsSorting id="role">
-              {({ sortDirection }) => (
+              {({sortDirection}) => (
                 <Table.SortableColumnHeader sortDirection={sortDirection}>
                   Role
                 </Table.SortableColumnHeader>
               )}
             </Table.Column>
             <Table.Column allowsSorting id="status">
-              {({ sortDirection }) => (
+              {({sortDirection}) => (
                 <Table.SortableColumnHeader sortDirection={sortDirection}>
                   Status
                 </Table.SortableColumnHeader>
@@ -1578,13 +1445,10 @@ export function CustomCells() {
             <Table.Column className="text-end">Actions</Table.Column>
           </Table.Header>
           <Table.Body>
-            {sortedUsers.map(user => (
+            {sortedUsers.map((user) => (
               <Table.Row key={user.id} id={user.id}>
                 <Table.Cell className="pe-0">
-                  <Checkbox
-                    aria-label={`Select ${user.name}`}
-                    slot="selection"
-                    variant="secondary">
+                  <Checkbox aria-label={`Select ${user.name}`} slot="selection" variant="secondary">
                     <Checkbox.Content>
                       <Checkbox.Control>
                         <Checkbox.Indicator />
@@ -1594,16 +1458,9 @@ export function CustomCells() {
                 </Table.Cell>
                 <Table.Cell className="font-medium">
                   <div className="flex items-center gap-2">
-                    #{user.id.toString()}{' '}
-                    <Button
-                      isIconOnly
-                      aria-label={`Copy ID #${user.id}`}
-                      size="sm"
-                      variant="ghost">
-                      <Icon
-                        className="text-muted size-4"
-                        icon="gravity-ui:copy"
-                      />
+                    #{user.id.toString()}{" "}
+                    <Button isIconOnly aria-label={`Copy ID #${user.id}`} size="sm" variant="ghost">
+                      <Icon className="size-4 text-muted" icon="gravity-ui:copy" />
                     </Button>
                   </div>
                 </Table.Cell>
@@ -1613,23 +1470,20 @@ export function CustomCells() {
                       <Avatar.Image src={user.image_url} />
                       <Avatar.Fallback>
                         {user.name
-                          .split(' ')
-                          .map(n => n[0])
-                          .join('')}
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")}
                       </Avatar.Fallback>
                     </Avatar>
                     <div className="flex flex-col">
                       <span className="text-xs">{user.name}</span>
-                      <span className="text-muted text-xs">{user.email}</span>
+                      <span className="text-xs text-muted">{user.email}</span>
                     </div>
                   </div>
                 </Table.Cell>
                 <Table.Cell className="min-w-52">{user.role}</Table.Cell>
                 <Table.Cell className="min-w-25">
-                  <Chip
-                    color={statusColorMap[user.status]}
-                    size="sm"
-                    variant="soft">
+                  <Chip color={statusColorMap[user.status]} size="sm" variant="soft">
                     {user.status}
                   </Chip>
                 </Table.Cell>
@@ -1639,21 +1493,24 @@ export function CustomCells() {
                       isIconOnly
                       aria-label={`View ${user.name}`}
                       size="sm"
-                      variant="tertiary">
+                      variant="tertiary"
+                    >
                       <Icon className="size-4" icon="gravity-ui:eye" />
                     </Button>
                     <Button
                       isIconOnly
                       aria-label={`Edit ${user.name}`}
                       size="sm"
-                      variant="tertiary">
+                      variant="tertiary"
+                    >
                       <Icon className="size-4" icon="gravity-ui:pencil" />
                     </Button>
                     <Button
                       isIconOnly
                       aria-label={`Delete ${user.name}`}
                       size="sm"
-                      variant="danger-soft">
+                      variant="danger-soft"
+                    >
                       <Icon className="size-4" icon="gravity-ui:trash-bin" />
                     </Button>
                   </div>
@@ -1664,26 +1521,32 @@ export function CustomCells() {
         </Table.Content>
       </Table.ScrollContainer>
     </Table>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: table-custom-styles](https://heroui.com/docs/react/components/table)
 
-```tsx
+<ComponentPreview name="table-custom-styles">
+
+````tsx
+import {Table} from "@vezham/react-v3";
+
 const headerCell =
-  'text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400'
+  "text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400";
 
 const rowClass =
-  'border-t border-border/60 transition-colors hover:bg-neutral-100/60 even:bg-neutral-50/50 dark:hover:bg-neutral-800/50 dark:even:bg-neutral-900/30'
+  "border-t border-border/60 transition-colors hover:bg-neutral-100/60 even:bg-neutral-50/50 dark:hover:bg-neutral-800/50 dark:even:bg-neutral-900/30";
 
 export function CustomStyles() {
   return (
-    <Table className="border-border/80 w-full max-w-2xl overflow-hidden rounded-xl border shadow-sm ring-1 ring-black/5 dark:ring-white/10">
+    <Table className="w-full max-w-2xl overflow-hidden rounded-xl border border-border/80 shadow-sm ring-1 ring-black/5 dark:ring-white/10">
       <Table.ScrollContainer>
         <Table.Content aria-label="Team members" className="min-w-[600px]">
           <Table.Header className="bg-neutral-100/80 dark:bg-neutral-800/80">
@@ -1719,9 +1582,12 @@ export function CustomStyles() {
         </Table.Content>
       </Table.ScrollContainer>
     </Table>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -1743,7 +1609,7 @@ To customize the Table component classes, you can use the `@layer components` di
   }
 
   .table__row {
-    @apply border-b border-gray-200 bg-white;
+    @apply bg-white border-b border-gray-200;
   }
 
   .table__cell {
@@ -1765,7 +1631,6 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The Table component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/table.css)):
 
 #### Base Classes [!toc]
-
 - `.table-root` - Root container (named `table-root` instead of `table` because `table` is a built-in Tailwind CSS utility class for `display: table`)
 - `.table__scroll-container` - Horizontal scroll wrapper with custom scrollbar
 - `.table__content` - The `<table>` element
@@ -1777,14 +1642,12 @@ The Table component uses these CSS classes ([View source styles](https://github.
 - `.table__footer` - Footer container (outside table)
 
 #### Advanced Classes [!toc]
-
 - `.table__column-resizer` - Drag handle for column resizing
 - `.table__resizable-container` - Wrapper enabling column resizing
 - `.table__load-more` - Sentinel row for infinite scrolling
 - `.table__load-more-content` - Styled container for the loading indicator
 
 #### Variant Classes [!toc]
-
 - `.table-root--primary` - Gray background container with card-style body (default)
 - `.table-root--secondary` - No background, standalone rounded headers
 
@@ -1804,158 +1667,158 @@ The Table supports both CSS pseudo-classes and data attributes for flexibility:
 
 ### Table
 
-| Prop        | Type                       | Default     | Description                                                                                       |
-| ----------- | -------------------------- | ----------- | ------------------------------------------------------------------------------------------------- |
-| `variant`   | `"primary" \| "secondary"` | `"primary"` | Visual variant. Primary has a gray background container; secondary is flat with transparent rows. |
-| `className` | `string`                   | -           | Additional CSS classes for the root container                                                     |
-| `children`  | `React.ReactNode`          | -           | Table content (ScrollContainer, Footer, etc.)                                                     |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `"primary" \| "secondary"` | `"primary"` | Visual variant. Primary has a gray background container; secondary is flat with transparent rows. |
+| `className` | `string` | - | Additional CSS classes for the root container |
+| `children` | `React.ReactNode` | - | Table content (ScrollContainer, Footer, etc.) |
 
 ### Table.ScrollContainer
 
-| Prop        | Type              | Default | Description            |
-| ----------- | ----------------- | ------- | ---------------------- |
-| `className` | `string`          | -       | Additional CSS classes |
-| `children`  | `React.ReactNode` | -       | Table.Content element  |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `React.ReactNode` | - | Table.Content element |
 
 ### Table.Content
 
 Inherits from [React Aria Table](https://react-spectrum.adobe.com/react-aria/Table.html).
 
-| Prop                | Type                                   | Default  | Description                    |
-| ------------------- | -------------------------------------- | -------- | ------------------------------ |
-| `aria-label`        | `string`                               | -        | Accessible label for the table |
-| `selectionMode`     | `"none" \| "single" \| "multiple"`     | `"none"` | Selection behavior             |
-| `selectedKeys`      | `Selection`                            | -        | Controlled selected keys       |
-| `onSelectionChange` | `(keys: Selection) => void`            | -        | Selection change handler       |
-| `sortDescriptor`    | `SortDescriptor`                       | -        | Current sort state             |
-| `onSortChange`      | `(descriptor: SortDescriptor) => void` | -        | Sort change handler            |
-| `className`         | `string`                               | -        | Additional CSS classes         |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `aria-label` | `string` | - | Accessible label for the table |
+| `selectionMode` | `"none" \| "single" \| "multiple"` | `"none"` | Selection behavior |
+| `selectedKeys` | `Selection` | - | Controlled selected keys |
+| `onSelectionChange` | `(keys: Selection) => void` | - | Selection change handler |
+| `sortDescriptor` | `SortDescriptor` | - | Current sort state |
+| `onSortChange` | `(descriptor: SortDescriptor) => void` | - | Sort change handler |
+| `className` | `string` | - | Additional CSS classes |
 
 ### Table.Header
 
 Inherits from [React Aria TableHeader](https://react-spectrum.adobe.com/react-aria/Table.html#tableheader).
 
-| Prop       | Type                                                | Default | Description                                 |
-| ---------- | --------------------------------------------------- | ------- | ------------------------------------------- |
-| `columns`  | `T[]`                                               | -       | Dynamic column data for render prop pattern |
-| `children` | `React.ReactNode \| (column: T) => React.ReactNode` | -       | Static columns or render prop               |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `columns` | `T[]` | - | Dynamic column data for render prop pattern |
+| `children` | `React.ReactNode \| (column: T) => React.ReactNode` | - | Static columns or render prop |
 
 ### Table.Column
 
 Inherits from [React Aria Column](https://react-spectrum.adobe.com/react-aria/Table.html#column).
 
-| Prop            | Type                                                                | Default | Description                                       |
-| --------------- | ------------------------------------------------------------------- | ------- | ------------------------------------------------- |
-| `id`            | `string`                                                            | -       | Column identifier                                 |
-| `allowsSorting` | `boolean`                                                           | `false` | Whether the column is sortable                    |
-| `isRowHeader`   | `boolean`                                                           | `false` | Whether this column is a row header               |
-| `defaultWidth`  | `string \| number`                                                  | -       | Default width for resizable columns               |
-| `minWidth`      | `number`                                                            | -       | Minimum width for resizable columns               |
-| `children`      | `React.ReactNode \| (values: ColumnRenderProps) => React.ReactNode` | -       | Column content or render prop with sort direction |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `id` | `string` | - | Column identifier |
+| `allowsSorting` | `boolean` | `false` | Whether the column is sortable |
+| `isRowHeader` | `boolean` | `false` | Whether this column is a row header |
+| `defaultWidth` | `string \| number` | - | Default width for resizable columns |
+| `minWidth` | `number` | - | Minimum width for resizable columns |
+| `children` | `React.ReactNode \| (values: ColumnRenderProps) => React.ReactNode` | - | Column content or render prop with sort direction |
 
 ### Table.Body
 
 Inherits from [React Aria TableBody](https://react-spectrum.adobe.com/react-aria/Table.html#tablebody).
 
-| Prop               | Type                                              | Default | Description                                |
-| ------------------ | ------------------------------------------------- | ------- | ------------------------------------------ |
-| `items`            | `T[]`                                             | -       | Dynamic row data for render prop pattern   |
-| `renderEmptyState` | `() => React.ReactNode`                           | -       | Content to display when the table is empty |
-| `children`         | `React.ReactNode \| (item: T) => React.ReactNode` | -       | Static rows or render prop                 |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `T[]` | - | Dynamic row data for render prop pattern |
+| `renderEmptyState` | `() => React.ReactNode` | - | Content to display when the table is empty |
+| `children` | `React.ReactNode \| (item: T) => React.ReactNode` | - | Static rows or render prop |
 
 ### Table.Row
 
 Inherits from [React Aria Row](https://react-spectrum.adobe.com/react-aria/Table.html#row).
 
-| Prop        | Type               | Default | Description            |
-| ----------- | ------------------ | ------- | ---------------------- |
-| `id`        | `string \| number` | -       | Row identifier         |
-| `className` | `string`           | -       | Additional CSS classes |
-| `children`  | `React.ReactNode`  | -       | Row cells              |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `id` | `string \| number` | - | Row identifier |
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `React.ReactNode` | - | Row cells |
 
 ### Table.Cell
 
 Inherits from [React Aria Cell](https://react-spectrum.adobe.com/react-aria/Table.html#cell).
 
-| Prop        | Type              | Default | Description            |
-| ----------- | ----------------- | ------- | ---------------------- |
-| `className` | `string`          | -       | Additional CSS classes |
-| `children`  | `React.ReactNode` | -       | Cell content           |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `React.ReactNode` | - | Cell content |
 
 ### Table.SortableColumnHeader
 
 Renders a sortable column label with an ascending/descending indicator. Use it inside a `Table.Column` render-prop callback and forward the `sortDirection` value.
 
-| Prop            | Type                          | Default | Description                                                                                        |
-| --------------- | ----------------------------- | ------- | -------------------------------------------------------------------------------------------------- |
-| `sortDirection` | `"ascending" \| "descending"` | -       | Current sort direction. Pass through from the `Table.Column` render prop.                          |
-| `showIndicator` | `boolean`                     | `true`  | Whether to render the sort indicator icon when a direction is set.                                 |
-| `indicator`     | `React.ReactNode`             | -       | Custom indicator element. Overrides the default chevron and receives a `data-direction` attribute. |
-| `className`     | `string`                      | -       | Additional CSS classes for the wrapper.                                                            |
-| `children`      | `React.ReactNode`             | -       | Column label content                                                                               |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `sortDirection` | `"ascending" \| "descending"` | - | Current sort direction. Pass through from the `Table.Column` render prop. |
+| `showIndicator` | `boolean` | `true` | Whether to render the sort indicator icon when a direction is set. |
+| `indicator` | `React.ReactNode` | - | Custom indicator element. Overrides the default chevron and receives a `data-direction` attribute. |
+| `className` | `string` | - | Additional CSS classes for the wrapper. |
+| `children` | `React.ReactNode` | - | Column label content |
 
 ### Table.Footer
 
-| Prop        | Type              | Default | Description                       |
-| ----------- | ----------------- | ------- | --------------------------------- |
-| `className` | `string`          | -       | Additional CSS classes            |
-| `children`  | `React.ReactNode` | -       | Footer content (e.g., pagination) |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `React.ReactNode` | - | Footer content (e.g., pagination) |
 
 ### Table.ColumnResizer
 
 Inherits from [React Aria ColumnResizer](https://react-spectrum.adobe.com/react-aria/Table.html#columnresizer).
 
-| Prop        | Type     | Default | Description            |
-| ----------- | -------- | ------- | ---------------------- |
-| `className` | `string` | -       | Additional CSS classes |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
 
 ### Table.ResizableContainer
 
 Inherits from [React Aria ResizableTableContainer](https://react-spectrum.adobe.com/react-aria/Table.html#resizabletablecontainer).
 
-| Prop        | Type              | Default | Description            |
-| ----------- | ----------------- | ------- | ---------------------- |
-| `className` | `string`          | -       | Additional CSS classes |
-| `children`  | `React.ReactNode` | -       | Table.Content element  |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `React.ReactNode` | - | Table.Content element |
 
 ### Table.LoadMore
 
 Inherits from [React Aria TableLoadMoreItem](https://react-spectrum.adobe.com/react-aria/Table.html).
 
-| Prop         | Type              | Default | Description                                     |
-| ------------ | ----------------- | ------- | ----------------------------------------------- |
-| `isLoading`  | `boolean`         | `false` | Whether data is currently loading               |
-| `onLoadMore` | `() => void`      | -       | Handler called when the sentinel row is visible |
-| `children`   | `React.ReactNode` | -       | Loading indicator content                       |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `isLoading` | `boolean` | `false` | Whether data is currently loading |
+| `onLoadMore` | `() => void` | - | Handler called when the sentinel row is visible |
+| `children` | `React.ReactNode` | - | Loading indicator content |
 
 ### Table.LoadMoreContent
 
-| Prop        | Type              | Default | Description                               |
-| ----------- | ----------------- | ------- | ----------------------------------------- |
-| `className` | `string`          | -       | Additional CSS classes                    |
-| `children`  | `React.ReactNode` | -       | Loading indicator content (e.g., Spinner) |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `React.ReactNode` | - | Loading indicator content (e.g., Spinner) |
 
 ### Table.Collection
 
 Re-exported from React Aria `Collection`. Used to render dynamic cells within rows alongside static cells (e.g., checkboxes).
 
-| Prop       | Type                           | Default | Description               |
-| ---------- | ------------------------------ | ------- | ------------------------- |
-| `items`    | `T[]`                          | -       | Collection items          |
-| `children` | `(item: T) => React.ReactNode` | -       | Render prop for each item |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `T[]` | - | Collection items |
+| `children` | `(item: T) => React.ReactNode` | - | Render prop for each item |
 
 ### TableLayout
 
-| Name                     | Type                  | Default | Description                                                                                                                                                                       |
-| ------------------------ | --------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `rowHeight`              | `number \| undefined` | 48      | The fixed height of a row in px.                                                                                                                                                  |
-| `estimatedRowHeight`     | `number \| undefined` | —       | The estimated height of a row, when row heights are variable.                                                                                                                     |
-| `headingHeight`          | `number \| undefined` | 48      | The fixed height of a section header in px.                                                                                                                                       |
-| `estimatedHeadingHeight` | `number \| undefined` | —       | The estimated height of a section header, when the height is variable.                                                                                                            |
-| `loaderHeight`           | `number \| undefined` | 48      | The fixed height of a loader element in px. This loader is specifically for "load more" elements rendered when loading more rows at the root level or inside nested row/sections. |
-| `dropIndicatorThickness` | `number \| undefined` | 2       | The thickness of the drop indicator.                                                                                                                                              |
-| `gap`                    | `number \| undefined` | 0       | The gap between items.                                                                                                                                                            |
-| `padding`                | `number \| undefined` | 0       | The padding around the list.                                                                                                                                                      |
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `rowHeight` | `number \| undefined` | 48 | The fixed height of a row in px. |
+| `estimatedRowHeight` | `number \| undefined` | — | The estimated height of a row, when row heights are variable. |
+| `headingHeight` | `number \| undefined` | 48 | The fixed height of a section header in px. |
+| `estimatedHeadingHeight` | `number \| undefined` | — | The estimated height of a section header, when the height is variable. |
+| `loaderHeight` | `number \| undefined` | 48 | The fixed height of a loader element in px. This loader is specifically for "load more" elements rendered when loading more rows at the root level or inside nested row/sections. |
+| `dropIndicatorThickness` | `number \| undefined` | 2 | The thickness of the drop indicator. |
+| `gap` | `number \| undefined` | 0 | The gap between items. |
+| `padding` | `number \| undefined` | 0 | The padding around the list. |
 
 ## Related Components
 

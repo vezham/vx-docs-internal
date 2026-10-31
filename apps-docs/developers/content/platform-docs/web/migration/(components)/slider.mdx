@@ -3,16 +3,11 @@ title: Slider
 description: Migration guide for Slider from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Slider documentation](/docs-ui/web/components/slider) for
-  complete API reference, styling guide, and advanced examples. This guide only
-  focuses on migrating from HeroUI v2.
+  Refer to the [v3 Slider documentation](/docs-ui/web/components/slider) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,17 +15,24 @@ import {
 In v2, Slider used a simple structure with props:
 
 ```tsx
-import { Slider } from '@heroui/react'
+import { Slider } from "@heroui/react";
 
 export default function App() {
-  return <Slider label="Volume" defaultValue={30} size="md" color="primary" />
+  return (
+    <Slider
+      label="Volume"
+      defaultValue={30}
+      size="md"
+      color="primary"
+    />
+  );
 }
 ```
 
 In v3, Slider requires compound components:
 
 ```tsx
-import { Label, Slider } from '@heroui/react'
+import { Slider, Label } from "@heroui/react";
 
 export default function App() {
   return (
@@ -42,7 +44,7 @@ export default function App() {
         <Slider.Thumb />
       </Slider.Track>
     </Slider>
-  )
+  );
 }
 ```
 
@@ -50,35 +52,35 @@ export default function App() {
 
 ### 1. Component Structure
 
-**v2:** Simple Slider with props  
+**v2:** Simple Slider with props
 **v3:** Compound components: `Slider.Output`, `Slider.Track`, `Slider.Fill`, `Slider.Thumb`
 
 ### 2. Prop Changes
 
-| v2 Prop             | v3 Location | Notes                                                                    |
-| ------------------- | ----------- | ------------------------------------------------------------------------ |
-| `label`             | —           | Use `Label` component                                                    |
-| `size`              | —           | Removed (use Tailwind CSS)                                               |
-| `color`             | —           | Removed (use Tailwind CSS)                                               |
-| `radius`            | —           | Removed (use Tailwind CSS)                                               |
-| `classNames`        | —           | Use `className` props on individual components                           |
-| `showSteps`         | —           | Not yet supported                                                        |
-| `showTooltip`       | —           | Not yet supported                                                        |
-| `marks`             | —           | Not yet supported (see `Slider.Marks`)                                   |
-| `startContent`      | —           | Customize track wrapper directly                                         |
-| `endContent`        | —           | Customize track wrapper directly                                         |
-| `hideValue`         | —           | Omit `Slider.Output`                                                     |
-| `hideThumb`         | —           | Omit `Slider.Thumb`                                                      |
-| `showOutline`       | —           | Use Tailwind CSS                                                         |
-| `renderThumb`       | —           | Use `Slider.Thumb` render prop                                           |
-| `renderLabel`       | —           | Use `Label` component                                                    |
-| `renderValue`       | —           | Use `Slider.Output` render prop                                          |
-| `getValue`          | —           | Use `Slider.Output` render prop                                          |
-| `getTooltipValue`   | —           | Use `Slider.Output` render prop                                          |
-| `fillOffset`        | —           | Not yet supported                                                        |
-| `disableThumbScale` | —           | Use Tailwind CSS                                                         |
-| `disableAnimation`  | —           | Removed                                                                  |
-| `onChangeEnd`       | `Slider`    | Still supported — handler called when the user finishes dragging a thumb |
+| v2 Prop | v3 Location | Notes |
+|---------|-------------|-------|
+| `label` | — | Use `Label` component |
+| `size` | — | Removed (use Tailwind CSS) |
+| `color` | — | Removed (use Tailwind CSS) |
+| `radius` | — | Removed (use Tailwind CSS) |
+| `classNames` | — | Use `className` props on individual components |
+| `showSteps` | — | Not yet supported |
+| `showTooltip` | — | Not yet supported |
+| `marks` | — | Not yet supported (see `Slider.Marks`) |
+| `startContent` | — | Customize track wrapper directly |
+| `endContent` | — | Customize track wrapper directly |
+| `hideValue` | — | Omit `Slider.Output` |
+| `hideThumb` | — | Omit `Slider.Thumb` |
+| `showOutline` | — | Use Tailwind CSS |
+| `renderThumb` | — | Use `Slider.Thumb` render prop |
+| `renderLabel` | — | Use `Label` component |
+| `renderValue` | — | Use `Slider.Output` render prop |
+| `getValue` | — | Use `Slider.Output` render prop |
+| `getTooltipValue` | — | Use `Slider.Output` render prop |
+| `fillOffset` | — | Not yet supported |
+| `disableThumbScale` | — | Use Tailwind CSS |
+| `disableAnimation` | — | Removed |
+| `onChangeEnd` | `Slider` | Still supported — handler called when the user finishes dragging a thumb |
 
 ## Migration Examples
 
@@ -97,7 +99,6 @@ export default function App() {
       label="Volume"
     />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -114,18 +115,17 @@ export default function App() {
       </Slider.Track>
     </Slider>
     ```
-
   </Tab>
 </Tabs>
 
 ### Range Slider
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Slider
       defaultValue={[100, 500]}
-      formatOptions={{ style: 'currency', currency: 'USD' }}
+      formatOptions={{style: "currency", currency: "USD"}}
       label="Price Range"
       maxValue={1000}
       minValue={0}
@@ -137,14 +137,15 @@ export default function App() {
     ```tsx
     <Slider
       defaultValue={[100, 500]}
-      formatOptions={{ style: 'currency', currency: 'USD' }}
+      formatOptions={{style: "currency", currency: "USD"}}
       maxValue={1000}
       minValue={0}
-      step={50}>
+      step={50}
+    >
       <Label>Price Range</Label>
       <Slider.Output />
       <Slider.Track>
-        {({ state }) => (
+        {({state}) => (
           <>
             <Slider.Fill />
             {state.values.map((_, i) => (
@@ -160,10 +161,14 @@ export default function App() {
 
 ### Vertical Slider
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
-    <Slider defaultValue={30} orientation="vertical" label="Volume" />
+    <Slider
+      defaultValue={30}
+      orientation="vertical"
+      label="Volume"
+    />
     ```
   </Tab>
   <Tab value="v3">
@@ -182,11 +187,13 @@ export default function App() {
 
 ### Custom Value Display
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Slider
-      renderValue={props => <output {...props}>Custom: {value}</output>}
+      renderValue={(props) => (
+        <output {...props}>Custom: {value}</output>
+      )}
       label="Volume"
       defaultValue={30}
     />
@@ -197,7 +204,7 @@ export default function App() {
     <Slider defaultValue={30}>
       <Label>Volume</Label>
       <Slider.Output>
-        {({ state }) => `Custom: ${state.values[0]}`}
+        {({state}) => `Custom: ${state.values[0]}`}
       </Slider.Output>
       <Slider.Track>
         <Slider.Fill />
@@ -225,7 +232,7 @@ For range sliders, use a render prop in `Slider.Track`:
 
 ```tsx
 <Slider.Track>
-  {({ state }) => (
+  {({state}) => (
     <>
       <Slider.Fill />
       {state.values.map((_, i) => (

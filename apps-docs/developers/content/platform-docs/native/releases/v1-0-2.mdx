@@ -1,19 +1,16 @@
 ---
 title: v1.0.2
-description: asChild slot pattern for PressableFeedback and Surface, Portal accessibility modal prop, Button Android variant fix, Input and Select style refinements
+description:
+  asChild slot pattern for PressableFeedback and Surface, Portal accessibility modal prop, Button Android variant fix, Input and Select style refinements
 github:
   pull: 380
 ---
 
-import {
-  Callout,
-  NativeTryOnDevice,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, NativeTryOnDevice, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">April 15, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">April 15, 2026</span>
 </div>
 
 HeroUI Native v1.0.2 introduces the `asChild` slot pattern for PressableFeedback and Surface components, adds VoiceOver modal containment support across all portal-based overlay components, and fixes an Android-specific Button variant styling issue. This release also refines Input and Select visual styles and improves RadioGroup documentation with inline API references.
@@ -22,18 +19,31 @@ HeroUI Native v1.0.2 introduces the `asChild` slot pattern for PressableFeedback
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
-  <Tab value="npm">```bash npm i heroui-native ```</Tab>
-  <Tab value="pnpm">``` bash pnpm add heroui-native ```</Tab>
-  <Tab value="yarn">```bash yarn add heroui-native ```</Tab>
-  <Tab value="bun">```bash bun add heroui-native ```</Tab>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
+<Tab value="npm">
+  ```bash
+  npm i heroui-native
+  ```
+</Tab>
+<Tab value="pnpm">
+  ``` bash
+  pnpm add heroui-native
+  ```
+</Tab>
+<Tab value="yarn">
+  ```bash
+  yarn add heroui-native
+  ```
+</Tab>
+<Tab value="bun">
+  ```bash
+  bun add heroui-native
+  ```
+</Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
-  the latest version" and your AI assistant will automatically compare versions
-  and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs-ui/native/getting-started/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI Native MCP Server](/docs-ui/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -84,9 +94,9 @@ A new `unstable_accessibilityContainerViewIsModal` prop has been added to all po
 **New capability:**
 
 ```tsx
-import { Dialog } from 'heroui-native'
+import { Dialog } from "heroui-native";
 
-;<Dialog>
+<Dialog>
   <Dialog.Portal unstable_accessibilityContainerViewIsModal>
     <Dialog.Content>
       {/* VoiceOver focus is restricted to this overlay on iOS */}

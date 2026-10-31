@@ -8,16 +8,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/accordion-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/accordion-docs-dark-1.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/accordion-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/accordion-docs-dark-1.mp4"
 />
 
 ## Import
 
 ```tsx
-import { Accordion } from 'heroui-native'
+import { Accordion } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -156,12 +157,13 @@ Apply custom styles using className, classNames, or styles props.
   className="rounded-lg"
   classNames={{
     container: 'bg-surface',
-    separator: 'bg-separator/50'
+    separator: 'bg-separator/50',
   }}
   styles={{
     container: { padding: 16 },
-    separator: { height: 2 }
-  }}>
+    separator: { height: 2 },
+  }}
+>
   <Accordion.Item value="1">
     <Accordion.Trigger>...</Accordion.Trigger>
     <Accordion.Content>...</Accordion.Content>
@@ -174,14 +176,14 @@ Apply custom styles using className, classNames, or styles props.
 Use `Accordion.Trigger` with `asChild` prop and wrap content with `PressableFeedback` to add custom press feedback animations.
 
 ```tsx
-import { Accordion, PressableFeedback } from 'heroui-native'
-import { View } from 'react-native'
+import { Accordion, PressableFeedback } from 'heroui-native';
+import { View } from 'react-native';
 
-;<Accordion>
+<Accordion>
   <Accordion.Item value="1">
     <Accordion.Trigger asChild>
       <PressableFeedback animation={{ scale: false }}>
-        <PressableFeedback.Scale className="flex-1 flex-row items-center gap-3">
+        <PressableFeedback.Scale className="flex-row items-center flex-1 gap-3">
           <Text>Item Title</Text>
         </PressableFeedback.Scale>
         <Accordion.Indicator />
@@ -192,18 +194,18 @@ import { View } from 'react-native'
     </Accordion.Trigger>
     <Accordion.Content>...</Accordion.Content>
   </Accordion.Item>
-</Accordion>
+</Accordion>;
 ```
 
 ## Example
 
 ```tsx
-import { Ionicons } from '@expo/vector-icons'
-import { Accordion, useThemeColor } from 'heroui-native'
-import { Text, View } from 'react-native'
+import { Accordion, useThemeColor } from 'heroui-native';
+import { Ionicons } from '@expo/vector-icons';
+import { View, Text } from 'react-native';
 
 export default function AccordionExample() {
-  const themeColorMuted = useThemeColor('muted')
+  const themeColorMuted = useThemeColor('muted');
 
   const accordionData = [
     {
@@ -211,50 +213,50 @@ export default function AccordionExample() {
       title: 'How do I place an order?',
       icon: <Ionicons name="bag-outline" size={16} color={themeColorMuted} />,
       content:
-        'Lorem ipsum dolor sit amet consectetur. Netus nunc mauris risus consequat. Libero placerat dignissim consectetur nisl.'
+        'Lorem ipsum dolor sit amet consectetur. Netus nunc mauris risus consequat. Libero placerat dignissim consectetur nisl.',
     },
     {
       id: '2',
       title: 'What payment methods do you accept?',
       icon: <Ionicons name="card-outline" size={16} color={themeColorMuted} />,
       content:
-        'Lorem ipsum dolor sit amet consectetur. Netus nunc mauris risus consequat. Libero placerat dignissim consectetur nisl.'
+        'Lorem ipsum dolor sit amet consectetur. Netus nunc mauris risus consequat. Libero placerat dignissim consectetur nisl.',
     },
     {
       id: '3',
       title: 'How much does shipping cost?',
       icon: <Ionicons name="cube-outline" size={16} color={themeColorMuted} />,
       content:
-        'Lorem ipsum dolor sit amet consectetur. Netus nunc mauris risus consequat. Libero placerat dignissim consectetur nisl.'
-    }
-  ]
+        'Lorem ipsum dolor sit amet consectetur. Netus nunc mauris risus consequat. Libero placerat dignissim consectetur nisl.',
+    },
+  ];
 
   return (
     <Accordion selectionMode="single" variant="surface" defaultValue="2">
-      {accordionData.map(item => (
+      {accordionData.map((item) => (
         <Accordion.Item key={item.id} value={item.id}>
           <Accordion.Trigger>
-            <View className="flex-1 flex-row items-center gap-3">
+            <View className="flex-row items-center flex-1 gap-3">
               {item.icon}
-              <Text className="text-foreground flex-1 text-base">
+              <Text className="text-foreground text-base flex-1">
                 {item.title}
               </Text>
             </View>
             <Accordion.Indicator />
           </Accordion.Trigger>
           <Accordion.Content>
-            <Text className="text-muted px-[25px] text-base/relaxed">
+            <Text className="text-muted text-base/relaxed px-[25px]">
               {item.content}
             </Text>
           </Accordion.Content>
         </Accordion.Item>
       ))}
     </Accordion>
-  )
+  );
 }
 ```
 
-You can find more examples in the [GitHub repository](<https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/accordion.tsx>).
+You can find more examples in the [GitHub repository](https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/accordion.tsx).
 
 ## API Reference
 
@@ -393,10 +395,10 @@ Animation configuration for accordion content component. Can be:
 Hook to access the accordion root context. Must be used within an `Accordion` component.
 
 ```tsx
-import { useAccordion } from 'heroui-native'
+import { useAccordion } from 'heroui-native';
 
 const { value, onValueChange, selectionMode, isCollapsible, isDisabled } =
-  useAccordion()
+  useAccordion();
 ```
 
 #### Returns
@@ -414,9 +416,9 @@ const { value, onValueChange, selectionMode, isCollapsible, isDisabled } =
 Hook to access the accordion item context. Must be used within an `Accordion.Item` component.
 
 ```tsx
-import { useAccordionItem } from 'heroui-native'
+import { useAccordionItem } from 'heroui-native';
 
-const { value, isExpanded, isDisabled, nativeID } = useAccordionItem()
+const { value, isExpanded, isDisabled, nativeID } = useAccordionItem();
 ```
 
 #### Returns
@@ -433,16 +435,16 @@ const { value, isExpanded, isDisabled, nativeID } = useAccordionItem()
 When using the Accordion component alongside other components in the same view, you should import and apply `AccordionLayoutTransition` to those components to ensure smooth and consistent layout animations across the entire screen.
 
 ```jsx
-import { Accordion, AccordionLayoutTransition } from 'heroui-native'
-import Animated from 'react-native-reanimated'
+import { Accordion, AccordionLayoutTransition } from 'heroui-native';
+import Animated from 'react-native-reanimated';
 
-;<Animated.ScrollView layout={AccordionLayoutTransition}>
+<Animated.ScrollView layout={AccordionLayoutTransition}>
   <Animated.View layout={AccordionLayoutTransition}>
     {/* Other content */}
   </Animated.View>
 
   <Accordion>{/* Accordion items */}</Accordion>
-</Animated.ScrollView>
+</Animated.ScrollView>;
 ```
 
 This ensures that when the accordion expands or collapses, all components on the screen animate with the same timing and easing, creating a cohesive user experience.

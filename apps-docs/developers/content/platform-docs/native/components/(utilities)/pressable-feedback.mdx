@@ -8,16 +8,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/pressable-feedback-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/pressable-feedback-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/pressable-feedback-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/pressable-feedback-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { PressableFeedback } from 'heroui-native'
+import { PressableFeedback } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -77,9 +78,10 @@ Customize the built-in scale animation via the `animation.scale` prop. Accepts `
     scale: {
       value: 0.9,
       timingConfig: { duration: 150 },
-      ignoreScaleCoefficient: true
-    }
-  }}>
+      ignoreScaleCoefficient: true,
+    },
+  }}
+>
   ...
 </PressableFeedback>
 ```
@@ -93,7 +95,7 @@ Configure highlight overlay opacity and background color.
   <PressableFeedback.Highlight
     animation={{
       backgroundColor: { value: '#3b82f6' },
-      opacity: { value: [0, 0.2] }
+      opacity: { value: [0, 0.2] },
     }}
   />
   ...
@@ -110,7 +112,7 @@ Configure ripple effect color, opacity, and duration.
     animation={{
       backgroundColor: { value: '#ec4899' },
       opacity: { value: [0, 0.1, 0] },
-      progress: { baseDuration: 600 }
+      progress: { baseDuration: 600 },
     }}
   />
   ...
@@ -157,18 +159,18 @@ You can also disable all animations while keeping a scale config (e.g. for toggl
 ## Example
 
 ```tsx
-import { Image } from 'expo-image'
-import { LinearGradient } from 'expo-linear-gradient'
-import { Button, Card, PressableFeedback } from 'heroui-native'
-import { StyleSheet, Text, View } from 'react-native'
+import { PressableFeedback, Card, Button } from 'heroui-native';
+import { Image } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
+import { StyleSheet, View, Text } from 'react-native';
 
 export default function PressableFeedbackExample() {
   return (
-    <PressableFeedback className="aspect-square w-full overflow-auto">
+    <PressableFeedback className="w-full aspect-square overflow-auto">
       <Card className="flex-1">
         <Image
           source={{
-            uri: 'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/neo2.jpeg'
+            uri: 'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/neo2.jpeg',
           }}
           style={StyleSheet.absoluteFill}
           contentFit="cover"
@@ -180,15 +182,15 @@ export default function PressableFeedbackExample() {
         <PressableFeedback.Ripple
           animation={{
             backgroundColor: { value: 'white' },
-            opacity: { value: [0, 0.3, 0] }
+            opacity: { value: [0, 0.3, 0] },
           }}
         />
         <View className="flex-1 gap-4" pointerEvents="box-none">
           <Card.Body className="flex-1" pointerEvents="none">
-            <Card.Title className="mb-0.5 text-base text-zinc-50 uppercase">
+            <Card.Title className="text-base text-zinc-50 uppercase mb-0.5">
               Neo
             </Card.Title>
-            <Card.Description className="text-base font-medium text-zinc-50">
+            <Card.Description className="text-zinc-50 font-medium text-base">
               Home robot
             </Card.Description>
           </Card.Body>
@@ -206,7 +208,7 @@ export default function PressableFeedbackExample() {
         </View>
       </Card>
     </PressableFeedback>
-  )
+  );
 }
 ```
 

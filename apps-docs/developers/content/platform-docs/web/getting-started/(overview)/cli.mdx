@@ -4,11 +4,8 @@ description: Use the CLI to manage HeroUI dependencies and initialize projects.
 icon: terminal
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 The CLI offers a comprehensive suite of commands to initialize, manage, and improve your HeroUI projects. Use it to `install`, `uninstall`, or `upgrade` HeroUI packages, read component docs in the terminal, check project health, download documentation and design guidance for AI coding agents, and more.
 
@@ -18,9 +15,11 @@ Requirements:
 
 - [Node.js version 22.22.0 or later](https://nodejs.org/en/)
 
+
 ### Global Installation
 
 To install `heroui-cli` globally, execute one of the following commands in your terminal:
+
 
 ```npm
 npm install heroui-cli@latest -g
@@ -30,11 +29,27 @@ npm install heroui-cli@latest -g
 
 Alternatively, you can use `heroui-cli` without a global installation by running one of the following:
 
-<Tabs items={['pnpm', 'npm', 'yarn', 'bun']}>
-  <Tab value="pnpm">```bash pnpm dlx heroui-cli@latest ```</Tab>
-  <Tab value="npm">```bash npx heroui-cli@latest ```</Tab>
-  <Tab value="yarn">```bash yarn dlx heroui-cli@latest ```</Tab>
-  <Tab value="bun">```bash bunx heroui-cli@latest ```</Tab>
+<Tabs items={["pnpm", "npm", "yarn", "bun"]}>
+  <Tab value="pnpm">
+    ```bash
+    pnpm dlx heroui-cli@latest
+    ```
+  </Tab>
+  <Tab value="npm">
+    ```bash
+    npx heroui-cli@latest
+    ```
+  </Tab>
+  <Tab value="yarn">
+    ```bash
+    yarn dlx heroui-cli@latest
+    ```
+  </Tab>
+  <Tab value="bun">
+    ```bash
+    bunx heroui-cli@latest
+    ```
+  </Tab>
 </Tabs>
 
 ## Quick Start
@@ -95,11 +110,11 @@ heroui design-md --react --json
 
 Registry lookups are cached for 30 minutes in a per-user cache directory:
 
-| Platform | Location                                              |
-| -------- | ----------------------------------------------------- |
-| macOS    | `~/Library/Caches/heroui-cli`                         |
-| Linux    | `$XDG_CACHE_HOME/heroui-cli` or `~/.cache/heroui-cli` |
-| Windows  | `%LOCALAPPDATA%\heroui-cli\Cache`                     |
+| Platform | Location |
+| -------- | -------- |
+| macOS | `~/Library/Caches/heroui-cli` |
+| Linux | `$XDG_CACHE_HOME/heroui-cli` or `~/.cache/heroui-cli` |
+| Windows | `%LOCALAPPDATA%\heroui-cli\Cache` |
 
 `XDG_CACHE_HOME` is checked on every platform, including macOS and Windows, before the default in the table. Set `HEROUI_CACHE_DIR` to store the cache somewhere else, or pass `--no-cache` to skip it. When no location is writable, the CLI keeps working without caching.
 
@@ -150,13 +165,30 @@ HeroUI CLI <version>
 └  🚀 Get started with npm run dev
 ```
 
+
 Install the dependencies to start the local server:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
-  <Tab value="npm">```bash cd my-heroui-app && npm install ```</Tab>
-  <Tab value="pnpm">```bash cd my-heroui-app && pnpm install ```</Tab>
-  <Tab value="yarn">```bash cd my-heroui-app && yarn install ```</Tab>
-  <Tab value="bun">```bash cd my-heroui-app && bun install ```</Tab>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
+  <Tab value="npm">
+    ```bash
+    cd my-heroui-app && npm install
+    ```
+  </Tab>
+  <Tab value="pnpm">
+    ```bash
+    cd my-heroui-app && pnpm install
+    ```
+  </Tab>
+  <Tab value="yarn">
+    ```bash
+    cd my-heroui-app && yarn install
+    ```
+  </Tab>
+  <Tab value="bun">
+    ```bash
+    cd my-heroui-app && bun install
+    ```
+  </Tab>
 </Tabs>
 
 Start the local server:
@@ -176,6 +208,7 @@ heroui install [options]
 **Options:**
 
 - `-p --packagePath` [string] The path to the package.json file
+
 
 **Output:**
 
@@ -203,6 +236,7 @@ HeroUI CLI <version>
 ```
 
 ### upgrade
+
 
 Upgrade `@heroui/react` and `@heroui/styles` to the latest versions. An installed peer dependency is included only when it is below the range those packages require. When nothing needs upgrading, the command prints `All packages are up to date` and does not prompt.
 
@@ -324,11 +358,11 @@ heroui doc button
 ### doctor
 
 Check for issues in your project.
-
 - Check whether `@heroui/react` and `@heroui/styles` are installed
 - Check peer dependencies resolved from the installed HeroUI packages against their full version ranges; missing optional peers are skipped
 - Check whether Node.js meets the CLI's minimum version requirement
 - Check whether Tailwind CSS is installed, with Tailwind CSS v4 installation guidance when missing
+
 
 ```bash
 heroui doctor [options]
@@ -511,11 +545,7 @@ Only one of `--react`, `--native`, or `--migration` can be selected at a time.
 For more details, see [AGENTS.md](/docs-ui/web/getting-started/agents-md).
 
 <Callout>
-  The `agents-md` and `design-md` commands collect anonymous usage data: the
-  selected content (`react`, `native`, or `migration` where supported), output
-  paths, how many files were written, duration, success or failure (including
-  error messages on failure). Project contents are not collected. Set
-  `HEROUI_ANALYTICS_DISABLED=1` to opt out.
+  The `agents-md` and `design-md` commands collect anonymous usage data: the selected content (`react`, `native`, or `migration` where supported), output paths, how many files were written, duration, success or failure (including error messages on failure). Project contents are not collected. Set `HEROUI_ANALYTICS_DISABLED=1` to opt out.
 </Callout>
 
 ### Migrating from NextUI

@@ -3,16 +3,11 @@ title: Dropdown
 description: Migration guide for Dropdown from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Dropdown documentation](/docs-ui/web/components/dropdown) for
-  complete API reference, styling guide, and advanced examples. This guide only
-  focuses on migrating from HeroUI v2.
+  Refer to the [v3 Dropdown documentation](/docs-ui/web/components/dropdown) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,13 +15,7 @@ import {
 In v2, Dropdown used separate components: `DropdownTrigger`, `DropdownMenu`, `DropdownItem`, `DropdownSection`:
 
 ```tsx
-import {
-  Button,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger
-} from '@heroui/react'
+import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from "@heroui/react";
 
 export default function App() {
   return (
@@ -39,14 +28,14 @@ export default function App() {
         <DropdownItem key="copy">Copy link</DropdownItem>
       </DropdownMenu>
     </Dropdown>
-  )
+  );
 }
 ```
 
 In v3, Dropdown uses a compound component pattern with explicit subcomponents:
 
 ```tsx
-import { Button, Dropdown, Label } from '@heroui/react'
+import { Dropdown, Button, Label } from "@heroui/react";
 
 export default function App() {
   return (
@@ -63,7 +52,7 @@ export default function App() {
         </Dropdown.Menu>
       </Dropdown.Popover>
     </Dropdown>
-  )
+  );
 }
 ```
 
@@ -71,41 +60,41 @@ export default function App() {
 
 ### 1. Component Structure
 
-**v2:** Separate components: `DropdownTrigger`, `DropdownMenu`, `DropdownItem`, `DropdownSection`  
+**v2:** Separate components: `DropdownTrigger`, `DropdownMenu`, `DropdownItem`, `DropdownSection`
 **v3:** Compound components: `Dropdown.Trigger`, `Dropdown.Popover`, `Dropdown.Menu`, `Dropdown.Item`, `Dropdown.Section`
 
 ### 2. Component Name Changes
 
-| v2 Component      | v3 Component       | Notes                                              |
-| ----------------- | ------------------ | -------------------------------------------------- |
-| `DropdownTrigger` | `Dropdown.Trigger` | Same functionality                                 |
-| `DropdownMenu`    | `Dropdown.Menu`    | Wrapped in `Dropdown.Popover`                      |
-| `DropdownItem`    | `Dropdown.Item`    | Use `id` and `textValue`; keep `key` on list items |
-| `DropdownSection` | `Dropdown.Section` | Same functionality                                 |
-| -                 | `Dropdown.Popover` | New wrapper component (required)                   |
+| v2 Component | v3 Component | Notes |
+|-------------|--------------|-------|
+| `DropdownTrigger` | `Dropdown.Trigger` | Same functionality |
+| `DropdownMenu` | `Dropdown.Menu` | Wrapped in `Dropdown.Popover` |
+| `DropdownItem` | `Dropdown.Item` | Use `id` and `textValue`; keep `key` on list items |
+| `DropdownSection` | `Dropdown.Section` | Same functionality |
+| - | `Dropdown.Popover` | New wrapper component (required) |
 
 ### 3. Item Identification
 
-**v2:** Item content passed as children; React's `key` was used for both list reconciliation and item identity (selection, focus).  
+**v2:** Item content passed as children; React's `key` was used for both list reconciliation and item identity (selection, focus).
 **v3:** Item content must use `Label` component for text. Give each item an `id` (for state/focus) and `textValue` (for accessibility when content isn't plain text). Keep React's `key` on items in lists.
 
 ### 4. Prop Changes
 
-| v2 Prop                                       | v3 Location     | Notes                                                 |
-| --------------------------------------------- | --------------- | ----------------------------------------------------- |
-| `variant`, `color` (on DropdownMenu)          | -               | Removed (no menu variants)                            |
-| `classNames`, `itemClasses` (on DropdownMenu) | -               | Use `className` on Menu and items                     |
-| `color` (on DropdownItem)                     | `Dropdown.Item` | Use `variant="danger"` for danger                     |
-| `title`                                       | -               | Use `Label` component as child                        |
-| `description`                                 | -               | Use `Description` component as child                  |
-| `shortcut`                                    | -               | Use `Kbd` component as child                          |
-| `startContent`, `endContent`                  | -               | Use icon/components as children                       |
-| `selectedIcon`                                | -               | Use `Dropdown.ItemIndicator`                          |
-| `showDivider`                                 | -               | Use `Separator` between items                         |
-| `classNames` (on DropdownItem)                | -               | Use `className` on item                               |
-| `isSelected`                                  | `Dropdown.Menu` | Use `selectedKeys` on Menu                            |
-| `isDisabled`                                  | `Dropdown.Menu` | Use `disabledKeys` on Menu                            |
-| `trigger` (on Dropdown)                       | `Dropdown`      | Still supported: `"press"` (default) or `"longPress"` |
+| v2 Prop | v3 Location | Notes |
+|---------|-------------|-------|
+| `variant`, `color` (on DropdownMenu) | - | Removed (no menu variants) |
+| `classNames`, `itemClasses` (on DropdownMenu) | - | Use `className` on Menu and items |
+| `color` (on DropdownItem) | `Dropdown.Item` | Use `variant="danger"` for danger |
+| `title` | - | Use `Label` component as child |
+| `description` | - | Use `Description` component as child |
+| `shortcut` | - | Use `Kbd` component as child |
+| `startContent`, `endContent` | - | Use icon/components as children |
+| `selectedIcon` | - | Use `Dropdown.ItemIndicator` |
+| `showDivider` | - | Use `Separator` between items |
+| `classNames` (on DropdownItem) | - | Use `className` on item |
+| `isSelected` | `Dropdown.Menu` | Use `selectedKeys` on Menu |
+| `isDisabled` | `Dropdown.Menu` | Use `disabledKeys` on Menu |
+| `trigger` (on Dropdown) | `Dropdown` | Still supported: `"press"` (default) or `"longPress"` |
 
 ### 5. New Components
 
@@ -118,17 +107,17 @@ export default function App() {
 
 ### With Action Handler
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
-    <DropdownMenu onAction={key => alert(key)}>
+    <DropdownMenu onAction={(key) => alert(key)}>
       <DropdownItem key="new">New file</DropdownItem>
     </DropdownMenu>
     ```
   </Tab>
   <Tab value="v3">
     ```tsx
-    <Dropdown.Menu onAction={key => alert(key)}>
+    <Dropdown.Menu onAction={(key) => alert(key)}>
       <Dropdown.Item id="new" textValue="New file">
         <Label>New file</Label>
       </Dropdown.Item>
@@ -149,7 +138,7 @@ export default function App() {
     >
       New file
     </DropdownItem>
-    
+
     {/* With description */}
     <DropdownItem
       key="edit"
@@ -157,7 +146,7 @@ export default function App() {
     >
       Edit file
     </DropdownItem>
-    
+
     {/* With shortcut */}
     <DropdownItem
       key="copy"
@@ -193,16 +182,19 @@ export default function App() {
       </Kbd>
     </Dropdown.Item>
     ```
-
   </Tab>
 </Tabs>
 
 ### Danger Item
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
-    <DropdownItem key="delete" className="text-danger" color="danger">
+    <DropdownItem
+      key="delete"
+      className="text-danger"
+      color="danger"
+    >
       Delete file
     </DropdownItem>
     ```
@@ -255,7 +247,6 @@ export default function App() {
       </Dropdown.Section>
     </Dropdown.Menu>
     ```
-
   </Tab>
 </Tabs>
 
@@ -288,7 +279,6 @@ export default function App() {
       <DropdownItem key="italic">Italic</DropdownItem>
     </DropdownMenu>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -328,7 +318,6 @@ export default function App() {
       </Dropdown.Item>
     </Dropdown.Menu>
     ```
-
   </Tab>
 </Tabs>
 
@@ -356,7 +345,6 @@ export default function App() {
     ```
 
     The `slot="keyboard"` prop on `Kbd` positions the shortcut at the end of the menu item, replacing the v2 `shortcut` prop.
-
   </Tab>
 </Tabs>
 
@@ -396,7 +384,6 @@ export default function App() {
     ```
 
     Use `Dropdown.SubmenuTrigger` to wrap an item that opens a nested menu. Place `Dropdown.SubmenuIndicator` inside the item to render a chevron icon.
-
   </Tab>
 </Tabs>
 
@@ -434,7 +421,6 @@ export default function App() {
     ```
 
     The `trigger` prop on `Dropdown` accepts `"press"` (default) or `"longPress"` to control how the menu is opened.
-
   </Tab>
 </Tabs>
 

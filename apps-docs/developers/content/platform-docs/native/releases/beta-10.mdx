@@ -5,15 +5,11 @@ github:
   pull: 6068
 ---
 
-import {
-  Callout,
-  NativeVideoPlayerView,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, NativeVideoPlayerView, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">December 30, 2025</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">December 30, 2025</span>
 </div>
 
 This release introduces the new [Bottom Sheet](/docs-ui/native/components/bottom-sheet) component, refactors [PressableFeedback](/docs-ui/native/components/pressable-feedback) with improved API, extends the Animation API with State Prop support, enhances the `use-theme-color` hook to handle multiple colors selection, and includes various bug fixes and documentation improvements.
@@ -22,18 +18,31 @@ This release introduces the new [Bottom Sheet](/docs-ui/native/components/bottom
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
-  <Tab value="npm">```bash npm i heroui-native@beta ```</Tab>
-  <Tab value="pnpm">```bash pnpm add heroui-native@beta ```</Tab>
-  <Tab value="yarn">```bash yarn add heroui-native@beta ```</Tab>
-  <Tab value="bun">```bash bun add heroui-native@beta ```</Tab>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
+  <Tab value="npm">
+    ```bash
+    npm i heroui-native@beta
+    ```
+  </Tab>
+  <Tab value="pnpm">
+    ```bash
+    pnpm add heroui-native@beta
+    ```
+  </Tab>
+  <Tab value="yarn">
+    ```bash
+    yarn add heroui-native@beta
+    ```
+  </Tab>
+  <Tab value="bun">
+    ```bash
+    bun add heroui-native@beta
+    ```
+  </Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
-  the latest version" and your AI assistant will automatically compare versions
-  and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs-ui/native/getting-started/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI Native MCP Server](/docs-ui/native/getting-started/mcp-server).
 </Callout>
 
 ## What's New
@@ -47,12 +56,11 @@ This release introduces the **Bottom Sheet** component, a versatile overlay comp
 <NativeVideoPlayerView
   target="component"
   slug="bottom-sheet"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/bottom-sheet-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/bottom-sheet-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/bottom-sheet-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/bottom-sheet-docs-dark.mp4"
 />
 
 **Features:**
-
 - Smooth animated transitions with gesture support
 - Multiple snap points for flexible sizing
 - Detached mode for custom positioning
@@ -61,11 +69,10 @@ This release introduces the **Bottom Sheet** component, a versatile overlay comp
 - Built on [@gorhom/bottom-sheet](https://gorhom.dev/react-native-bottom-sheet)
 
 **Usage:**
-
 ```tsx
-import { BottomSheet, Button } from 'heroui-native'
+import { BottomSheet, Button } from 'heroui-native';
 
-;<BottomSheet>
+<BottomSheet>
   <BottomSheet.Trigger asChild>
     <Button>Open Bottom Sheet</Button>
   </BottomSheet.Trigger>
@@ -91,7 +98,6 @@ For complete documentation and examples, see the [Bottom Sheet component page](/
 The [PressableFeedback](/docs-ui/native/components/pressable-feedback) component has been refactored with an improved API and better animation control.
 
 **Improvements:**
-
 - Enhanced animation configuration API
 - Better support for custom animation states
 - Improved performance and smoother animations
@@ -108,18 +114,16 @@ The component maintains backward compatibility while providing more control over
 The Animation API has been extended with a new `state` prop that allows you to disable animations while customizing properties. This provides more granular control over animation behavior.
 
 **New Capability:**
-
 ```tsx
 <Component
   animation={{
-    state: 'disabled' // or 'disable-all' or boolean
+    state: 'disabled', // or 'disable-all' or boolean
     // ... other animation properties
   }}
 />
 ```
 
 The `state` prop can be:
-
 - `'disabled'`: Disable animations while still allowing property customization
 - `'disable-all'`: Disable all animations including children
 - `boolean`: Simple enable/disable control
@@ -133,7 +137,6 @@ This enhancement makes it easier to customize animation properties without enabl
 The `use-theme-color` hook has been refactored to handle multiple colors selection, making it more flexible and powerful for theme customization.
 
 **Enhancement:**
-
 - Support for selecting multiple colors at once
 - Improved color selection logic
 - Better performance when working with multiple color values
@@ -149,7 +152,6 @@ This improvement makes it easier to work with complex theming scenarios where mu
 Added comprehensive comments and documentation to the Animated Styles Guide, making it easier for developers to understand and use animation features effectively.
 
 **Improvements:**
-
 - Enhanced code examples with detailed comments
 - Better explanation of animation patterns
 - Clearer guidance on when to use different animation approaches

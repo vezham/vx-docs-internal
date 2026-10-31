@@ -22,18 +22,17 @@ HeroUI components use data attributes to expose their state for animation:
 
 /* Button press effect */
 .button:active,
-.button[data-pressed='true'] {
+.button[data-pressed="true"] {
   transform: scale(0.97);
 }
 
 /* Accordion expansion */
-.accordion__panel[aria-hidden='false'] {
+.accordion__panel[aria-hidden="false"] {
   @apply h-[var(--panel-height)] opacity-100;
 }
 ```
 
 **State attributes for styling:**
-
 - `[data-hovered="true"]` - Hover state
 - `[data-pressed="true"]` - Active/pressed state
 - `[data-focus-visible="true"]` - Keyboard focus
@@ -77,9 +76,7 @@ HeroUI components use data attributes to expose their state for animation:
 }
 
 @keyframes bounce {
-  50% {
-    transform: scale(0.95);
-  }
+  50% { transform: scale(0.95); }
 }
 ```
 
@@ -90,12 +87,15 @@ HeroUI components work seamlessly with Framer Motion for advanced animations.
 **Basic usage:**
 
 ```tsx
-import { Button } from '@heroui/react'
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
+import { Button } from '@heroui/react';
 
-const MotionButton = motion(Button)
+const MotionButton = motion(Button);
 
-;<MotionButton whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+<MotionButton
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+>
   Animated Button
 </MotionButton>
 ```
@@ -106,7 +106,8 @@ const MotionButton = motion(Button)
 <motion.div
   initial={{ opacity: 0, y: 20 }}
   animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.5 }}>
+  transition={{ duration: 0.5 }}
+>
   <Alert>
     <Alert.Title>Welcome!</Alert.Title>
   </Alert>
@@ -116,7 +117,7 @@ const MotionButton = motion(Button)
 **Layout animations:**
 
 ```tsx
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion';
 
 function Tabs({ items, selected }) {
   return (
@@ -127,14 +128,14 @@ function Tabs({ items, selected }) {
           {selected === i && (
             <motion.div
               layoutId="active"
-              className="bg-accent absolute inset-0"
-              transition={{ type: 'spring', bounce: 0.2 }}
+              className="absolute inset-0 bg-accent"
+              transition={{ type: "spring", bounce: 0.2 }}
             />
           )}
         </Button>
       ))}
     </div>
-  )
+  );
 }
 ```
 
@@ -148,7 +149,8 @@ Apply dynamic animations based on component state:
     <motion.span
       animate={{
         scale: isPressed ? 0.95 : isHovered ? 1.05 : 1
-      }}>
+      }}
+    >
       Interactive Button
     </motion.span>
   )}
@@ -174,7 +176,7 @@ HeroUI extends Tailwind's `motion-reduce:` variant to support both the native `p
   }
 }
 
-[data-reduce-motion='true'] .button {
+[data-reduce-motion="true"] .button {
   transition: none;
 }
 ```
@@ -182,19 +184,20 @@ HeroUI extends Tailwind's `motion-reduce:` variant to support both the native `p
 With Framer Motion:
 
 ```tsx
-import { useReducedMotion } from 'framer-motion'
+import { useReducedMotion } from 'framer-motion';
 
 function AnimatedCard() {
-  const shouldReduceMotion = useReducedMotion()
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: shouldReduceMotion ? 0 : 0.5 }}>
+      transition={{ duration: shouldReduceMotion ? 0 : 0.5 }}
+    >
       <Card>Content</Card>
     </motion.div>
-  )
+  );
 }
 ```
 

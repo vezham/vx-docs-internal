@@ -9,6 +9,7 @@ import { Button } from '@vezham/react-v3'
 import { herouiCatalog as catalog } from '@src/lib/docs/heroui-catalog'
 
 export { Callout, Tab, Tabs }
+export { ComponentPreview } from '@components/docs/component-preview'
 
 type ImageProps = ComponentProps<'img'> & { darkSrc?: string }
 

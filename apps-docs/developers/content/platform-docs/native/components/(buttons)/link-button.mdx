@@ -8,16 +8,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/link-button-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/link-button-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/link-button-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/link-button-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { LinkButton } from 'heroui-native'
+import { LinkButton } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -85,13 +86,13 @@ Place link buttons inline alongside regular text for terms, policies, or context
 
 ```tsx
 <View className="flex-row flex-wrap">
-  <Text className="text-muted text-sm">I agree to the </Text>
+  <Text className="text-sm text-muted">I agree to the </Text>
   <LinkButton size="sm" onPress={handleTermsPress}>
     <LinkButton.Label className="text-accent">
       Terms of Service
     </LinkButton.Label>
   </LinkButton>
-  <Text className="text-muted text-sm"> and </Text>
+  <Text className="text-sm text-muted"> and </Text>
   <LinkButton size="sm" onPress={handlePrivacyPress}>
     <LinkButton.Label className="text-accent">Privacy Policy</LinkButton.Label>
   </LinkButton>
@@ -101,35 +102,36 @@ Place link buttons inline alongside regular text for terms, policies, or context
 ## Example
 
 ```tsx
-import { Button, Checkbox, ControlField, LinkButton } from 'heroui-native'
-import React from 'react'
-import { Alert, View } from 'react-native'
+import { Button, Checkbox, ControlField, LinkButton } from 'heroui-native';
+import React from 'react';
+import { Alert, View } from 'react-native';
 
 export default function LinkButtonExample() {
-  const [isAgreed, setIsAgreed] = React.useState(false)
+  const [isAgreed, setIsAgreed] = React.useState(false);
 
-  const handleTermsPress = () => Alert.alert('Terms', 'Navigate to Terms')
+  const handleTermsPress = () => Alert.alert('Terms', 'Navigate to Terms');
   const handlePrivacyPress = () =>
-    Alert.alert('Privacy', 'Navigate to Privacy Policy')
+    Alert.alert('Privacy', 'Navigate to Privacy Policy');
 
   return (
-    <View className="flex-1 items-center justify-center px-5">
+    <View className="flex-1 px-5 items-center justify-center">
       <View className="w-full max-w-xs gap-6">
         <ControlField
           isSelected={isAgreed}
           onSelectedChange={setIsAgreed}
-          className="items-start">
+          className="items-start"
+        >
           <ControlField.Indicator>
             <Checkbox className="mt-0.5" />
           </ControlField.Indicator>
-          <View className="flex-1 flex-row flex-wrap">
-            <Text className="text-muted text-sm">I agree to the </Text>
+          <View className="flex-row flex-wrap flex-1">
+            <Text className="text-sm text-muted">I agree to the </Text>
             <LinkButton size="sm" onPress={handleTermsPress}>
               <LinkButton.Label className="text-accent">
                 Terms of Service
               </LinkButton.Label>
             </LinkButton>
-            <Text className="text-muted text-sm"> and </Text>
+            <Text className="text-sm text-muted"> and </Text>
             <LinkButton size="sm" onPress={handlePrivacyPress}>
               <LinkButton.Label className="text-accent">
                 Privacy Policy
@@ -140,7 +142,7 @@ export default function LinkButtonExample() {
         <Button isDisabled={!isAgreed}>Sign up</Button>
       </View>
     </View>
-  )
+  );
 }
 ```
 

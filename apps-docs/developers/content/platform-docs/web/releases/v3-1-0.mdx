@@ -5,17 +5,12 @@ github:
   pull: 6576
 ---
 
-import {
-  Callout,
-  DocsImage,
-  HandPointUp,
-  PRContributors,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, ComponentPreview, DocsImage, HandPointUp, PRContributors, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">May 25, 2026</span>
+
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">May 25, 2026</span>
 </div>
 
 Minor release: HeroUI React docs now ship with Chinese pages and localized demos, soft color tokens were expanded for better readability, scroll containers share a single themeable scrollbar system, and several runtime and layout fixes landed for `useTheme`, Toast, Link, Fieldset, overlays, and RTL layouts.
@@ -24,26 +19,31 @@ Minor release: HeroUI React docs now ship with Chinese pages and localized demos
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
   <Tab value="npm">
-    ```bash npm i @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    npm i @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="pnpm">
-    ```bash pnpm add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    pnpm add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="yarn">
-    ```bash yarn add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    yarn add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="bun">
-    ```bash bun add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    bun add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the
-  latest version" and your AI assistant will automatically compare versions and
-  apply the necessary changes. Learn more about the [HeroUI MCP
-  Server](https://heroui.com/docs/ui-for-agents/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI MCP Server](https://heroui.com/docs/ui-for-agents/mcp-server).
 </Callout>
 
 ## What's New
@@ -71,46 +71,41 @@ New tokens include:
 
 The default palette now uses soft foreground colors with accessibility-compliant contrast. Teams that prefer the previous, more saturated palette can opt into the vibrant palette with `data-vibrant-palette="true"`, but that palette has lower contrast. The theme builder and docs theme selector were updated to preserve this preference.
 
-[Live example: release-chip-vibrant-palette](https://heroui.com/docs/react/releases/v3-1-0)
 
-```tsx
-const variants = ['primary', 'secondary', 'tertiary', 'soft'] as const
-const colors = ['accent', 'default', 'success', 'warning', 'danger'] as const
+<ComponentPreview name="release-chip-vibrant-palette">
 
-function ChipMatrix({
-  isVibrant,
-  title
-}: {
-  isVibrant?: boolean
-  title: string
-}) {
+````tsx
+import {Chip, Separator} from "@vezham/react-v3";
+
+const variants = ["primary", "secondary", "tertiary", "soft"] as const;
+const colors = ["accent", "default", "success", "warning", "danger"] as const;
+
+function ChipMatrix({isVibrant, title}: {isVibrant?: boolean; title: string}) {
   return (
-    <div
-      className="flex flex-col gap-4"
-      data-vibrant-palette={isVibrant ? 'true' : undefined}>
-      <h3 className="text-muted text-sm font-semibold">{title}</h3>
+    <div className="flex flex-col gap-4" data-vibrant-palette={isVibrant ? "true" : undefined}>
+      <h3 className="text-sm font-semibold text-muted">{title}</h3>
       <div className="flex items-center gap-3">
         <div className="w-24 shrink-0" />
-        {colors.map(color => (
+        {colors.map((color) => (
           <div
             key={color}
             className="flex shrink-0 items-center justify-center"
-            style={{ width: '130px' }}>
-            <span className="text-muted text-xs capitalize">{color}</span>
+            style={{width: "130px"}}
+          >
+            <span className="text-xs text-muted capitalize">{color}</span>
           </div>
         ))}
       </div>
       <div className="flex flex-col gap-3">
-        {variants.map(variant => (
+        {variants.map((variant) => (
           <div key={variant} className="flex items-center gap-3">
-            <div className="text-muted w-24 shrink-0 text-sm capitalize">
-              {variant}
-            </div>
-            {colors.map(color => (
+            <div className="w-24 shrink-0 text-sm text-muted capitalize">{variant}</div>
+            {colors.map((color) => (
               <div
                 key={color}
                 className="flex shrink-0 items-center justify-center"
-                style={{ width: '130px' }}>
+                style={{width: "130px"}}
+              >
                 <Chip color={color} size="md" variant={variant}>
                   <Chip.Label className="capitalize">{color}</Chip.Label>
                 </Chip>
@@ -120,7 +115,7 @@ function ChipMatrix({
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 export function ChipVibrantPalette() {
@@ -130,9 +125,12 @@ export function ChipVibrantPalette() {
       <Separator />
       <ChipMatrix isVibrant title="Vibrant palette" />
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Shared Scrollbar System
 
@@ -150,75 +148,80 @@ Supported modes:
 <div data-scrollbar="none">Hides descendant HeroUI scrollbars</div>
 ```
 
-<div className="not-prose text-muted mt-6 mb-4 flex items-center gap-2 text-sm font-medium">
+<div className="not-prose mt-6 mb-4 flex items-center gap-2 text-sm font-medium text-muted">
   <HandPointUp aria-hidden="true" className="size-5 shrink-0" />
   <span>Scroll vertically</span>
 </div>
 
-[Live example: release-list-box-scrollbar-modes](https://heroui.com/docs/react/releases/v3-1-0)
 
-```tsx
+<ComponentPreview name="release-list-box-scrollbar-modes">
+
+````tsx
+import {ListBox, Surface} from "@vezham/react-v3";
+
 type ScrollbarMode = {
-  id: string
-  label: string
-  scrollbar?: 'thin' | 'default' | 'none'
-}
+  id: string;
+  label: string;
+  scrollbar?: "thin" | "default" | "none";
+};
 
 const modes: ScrollbarMode[] = [
   {
-    id: 'heroui',
-    label: 'HeroUI thin',
-    scrollbar: 'thin'
+    id: "heroui",
+    label: "HeroUI thin",
+    scrollbar: "thin",
   },
   {
-    id: 'browser',
-    label: 'Browser default',
-    scrollbar: 'default'
+    id: "browser",
+    label: "Browser default",
+    scrollbar: "default",
   },
   {
-    id: 'hidden',
-    label: 'Hidden',
-    scrollbar: 'none'
-  }
-]
+    id: "hidden",
+    label: "Hidden",
+    scrollbar: "none",
+  },
+];
 
 const animals = [
-  { id: 'aardvark', name: 'Aardvark' },
-  { id: 'alpaca', name: 'Alpaca' },
-  { id: 'antelope', name: 'Antelope' },
-  { id: 'bear', name: 'Bear' },
-  { id: 'cat', name: 'Cat' },
-  { id: 'dog', name: 'Dog' },
-  { id: 'fox', name: 'Fox' },
-  { id: 'giraffe', name: 'Giraffe' },
-  { id: 'kangaroo', name: 'Kangaroo' },
-  { id: 'koala', name: 'Koala' },
-  { id: 'lemur', name: 'Lemur' },
-  { id: 'otter', name: 'Otter' },
-  { id: 'panda', name: 'Panda' },
-  { id: 'penguin', name: 'Penguin' },
-  { id: 'rabbit', name: 'Rabbit' },
-  { id: 'snake', name: 'Snake' },
-  { id: 'turtle', name: 'Turtle' },
-  { id: 'wombat', name: 'Wombat' },
-  { id: 'zebra', name: 'Zebra' }
-]
+  {id: "aardvark", name: "Aardvark"},
+  {id: "alpaca", name: "Alpaca"},
+  {id: "antelope", name: "Antelope"},
+  {id: "bear", name: "Bear"},
+  {id: "cat", name: "Cat"},
+  {id: "dog", name: "Dog"},
+  {id: "fox", name: "Fox"},
+  {id: "giraffe", name: "Giraffe"},
+  {id: "kangaroo", name: "Kangaroo"},
+  {id: "koala", name: "Koala"},
+  {id: "lemur", name: "Lemur"},
+  {id: "otter", name: "Otter"},
+  {id: "panda", name: "Panda"},
+  {id: "penguin", name: "Penguin"},
+  {id: "rabbit", name: "Rabbit"},
+  {id: "snake", name: "Snake"},
+  {id: "turtle", name: "Turtle"},
+  {id: "wombat", name: "Wombat"},
+  {id: "zebra", name: "Zebra"},
+];
 
-function ScrollbarListBox({ mode }: { mode: ScrollbarMode }) {
+function ScrollbarListBox({mode}: {mode: ScrollbarMode}) {
   return (
     <div className="flex w-[260px] flex-col gap-2">
-      <h3 className="text-muted px-1 text-sm font-semibold">{mode.label}</h3>
+      <h3 className="px-1 text-sm font-semibold text-muted">{mode.label}</h3>
       <Surface
-        className="shadow-surface overflow-hidden rounded-3xl"
-        data-scrollbar={mode.scrollbar}>
-        <div className="scrollbar h-52 overflow-y-auto p-1">
+        className="overflow-hidden rounded-3xl shadow-surface"
+        data-scrollbar={mode.scrollbar}
+      >
+        <div className="h-52 scrollbar overflow-y-auto p-1">
           <ListBox aria-label={`${mode.label} animals`} selectionMode="single">
-            {animals.map(animal => (
+            {animals.map((animal) => (
               <ListBox.Item
                 key={`${mode.id}-${animal.id}`}
                 className="text-sm leading-5 font-medium"
                 id={`${mode.id}-${animal.id}`}
-                textValue={animal.name}>
+                textValue={animal.name}
+              >
                 {animal.name}
               </ListBox.Item>
             ))}
@@ -226,19 +229,22 @@ function ScrollbarListBox({ mode }: { mode: ScrollbarMode }) {
         </div>
       </Surface>
     </div>
-  )
+  );
 }
 
 export function ScrollbarModes() {
   return (
     <div className="flex w-full flex-wrap justify-center gap-4">
-      {modes.map(mode => (
+      {modes.map((mode) => (
         <ScrollbarListBox key={mode.id} mode={mode} />
       ))}
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 Components such as Select, ComboBox, Autocomplete, Dropdown, DatePicker, DateRangePicker, ColorPicker, Table, Tabs, Modal, Drawer, and ScrollShadow now share the same scrollbar utilities instead of maintaining one-off scrollbar CSS.
 
@@ -246,7 +252,7 @@ Use the `scrollbar` utility on any scrollable slot that should follow the active
 
 ```css
 .alert-dialog__body {
-  @apply scrollbar min-h-0 flex-1;
+  @apply min-h-0 flex-1 scrollbar;
 }
 ```
 

@@ -5,15 +5,11 @@ github:
   pull: 6708
 ---
 
-import {
-  Callout,
-  PRContributors,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, ComponentPreview, PRContributors, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">July 30, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">July 30, 2026</span>
 </div>
 
 Patch release: [ComboBox](https://heroui.com/docs/components/combo-box) now supports multiple selection, styles adopt logical CSS properties for better RTL support, `tailwind-variants` is upgraded to `3.3.0`, and several fixes land across `ScrollShadow`, `Spinner`, `InputOTP`, `Table`, and accent `Button` focus styling.
@@ -22,26 +18,31 @@ Patch release: [ComboBox](https://heroui.com/docs/components/combo-box) now supp
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
   <Tab value="npm">
-    ```bash npm i @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    npm i @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="pnpm">
-    ```bash pnpm add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    pnpm add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="yarn">
-    ```bash yarn add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    yarn add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="bun">
-    ```bash bun add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    bun add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the
-  latest version" and your AI assistant will automatically compare versions and
-  apply the necessary changes. Learn more about the [HeroUI MCP
-  Server](https://heroui.com/docs/ui-for-agents/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI MCP Server](https://heroui.com/docs/ui-for-agents/mcp-server).
 </Callout>
 
 ## Features
@@ -52,10 +53,13 @@ Update to the latest version:
 
 - **Multiple selection**: Select multiple options with `selectionMode="multiple"` and display them via `ComboBox.Value` ([#6714](https://github.com/heroui-inc/heroui/pull/6714))
 
-[Live example: combo-box-multiple-selection](https://heroui.com/docs/react/releases/v3-2-3)
 
-```tsx
-'use client'
+<ComponentPreview name="combo-box-multiple-selection">
+
+````tsx
+"use client";
+
+import {ComboBox, Input, Label, ListBox} from "@vezham/react-v3";
 
 export function MultipleSelection() {
   return (
@@ -95,9 +99,12 @@ export function MultipleSelection() {
         </ListBox>
       </ComboBox.Popover>
     </ComboBox>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Bug Fixes
 

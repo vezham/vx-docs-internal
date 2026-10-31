@@ -1,19 +1,16 @@
 ---
 title: v1.0.9
-description: Font weights resolve through Uniwind font-* utilities, SearchField pads Input only for composed slots, Toast duration 0 auto-hides, Select dialog swipe-to-dismiss on RNGH 3 Android
+description:
+  Font weights resolve through Uniwind font-* utilities, SearchField pads Input only for composed slots, Toast duration 0 auto-hides, Select dialog swipe-to-dismiss on RNGH 3 Android
 github:
   pull: 481
 ---
 
-import {
-  Callout,
-  NativeTryOnDevice,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, NativeTryOnDevice, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">August 31, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">August 31, 2026</span>
 </div>
 
 HeroUI Native v1.0.9 reworks how font weights resolve in component styles, fixes SearchField padding when optional slots are omitted, corrects Toast auto-dismiss for zero-duration toasts, and restores Select/Dialog swipe-to-dismiss on Android under react-native-gesture-handler 3.
@@ -22,18 +19,31 @@ HeroUI Native v1.0.9 reworks how font weights resolve in component styles, fixes
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
-  <Tab value="npm">```bash npm i heroui-native ```</Tab>
-  <Tab value="pnpm">``` bash pnpm add heroui-native ```</Tab>
-  <Tab value="yarn">```bash yarn add heroui-native ```</Tab>
-  <Tab value="bun">```bash bun add heroui-native ```</Tab>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
+<Tab value="npm">
+  ```bash
+  npm i heroui-native
+  ```
+</Tab>
+<Tab value="pnpm">
+  ``` bash
+  pnpm add heroui-native
+  ```
+</Tab>
+<Tab value="yarn">
+  ```bash
+  yarn add heroui-native
+  ```
+</Tab>
+<Tab value="bun">
+  ```bash
+  bun add heroui-native
+  ```
+</Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
-  the latest version" and your AI assistant will automatically compare versions
-  and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs-ui/native/getting-started/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI Native MCP Server](/docs-ui/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -49,18 +59,18 @@ Update to the latest version:
 **Before:**
 
 ```tsx
-toast.show({ label: 'Quick flash', duration: 0 })
+toast.show({ label: 'Quick flash', duration: 0 });
 // Toast stayed on screen indefinitely — same as 'persistent'
 ```
 
 **After:**
 
 ```tsx
-toast.show({ label: 'Quick flash', duration: 0 })
+toast.show({ label: 'Quick flash', duration: 0 });
 // Toast auto-hides on the next tick
 
 // To keep a toast on screen indefinitely, use 'persistent':
-toast.show({ label: 'Sticky', duration: 'persistent' })
+toast.show({ label: 'Sticky', duration: 'persistent' });
 ```
 
 **Migration:** Replace `duration: 0` with `duration: 'persistent'` if you relied on the old behavior.

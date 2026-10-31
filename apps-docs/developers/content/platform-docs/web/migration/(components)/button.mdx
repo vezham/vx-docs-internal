@@ -3,16 +3,11 @@ title: Button
 description: Migration guide for Button from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Button documentation](/docs-ui/web/components/button) for
-  complete API reference, styling guide, and advanced examples. This guide only
-  focuses on migrating from HeroUI v2.
+  Refer to the [v3 Button documentation](/docs-ui/web/components/button) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,24 +15,20 @@ import {
 In v2, `Button` used a combination of `color` and `variant` props:
 
 ```tsx
-import { Button } from '@heroui/react'
+import { Button } from "@heroui/react";
 
 export default function App() {
-  return (
-    <Button color="primary" variant="solid">
-      Button
-    </Button>
-  )
+  return <Button color="primary" variant="solid">Button</Button>;
 }
 ```
 
 In v3, Button uses only the `variant` prop (no separate `color` prop):
 
 ```tsx
-import { Button } from '@heroui/react'
+import { Button } from "@heroui/react";
 
 export default function App() {
-  return <Button variant="primary">Button</Button>
+  return <Button variant="primary">Button</Button>;
 }
 ```
 
@@ -45,74 +36,68 @@ export default function App() {
 
 ### 1. Variants and Colors
 
-**v2:** Used `color` + `variant` combination  
+**v2:** Used `color` + `variant` combination
 **v3:** Uses `variant` only (no separate `color` prop)
 
-| v2 Color + Variant                   | v3 Variant              | Notes                                     |
-| ------------------------------------ | ----------------------- | ----------------------------------------- |
-| `color="primary" variant="solid"`    | `variant="primary"`     | Default primary button                    |
-| `color="default" variant="solid"`    | `variant="primary"`     | Use primary variant                       |
-| `color="secondary" variant="solid"`  | `variant="secondary"`   | Same                                      |
-| `color="success" variant="solid"`    | `variant="primary"`     | Use primary with custom styling if needed |
-| `color="warning" variant="solid"`    | `variant="primary"`     | Use primary with custom styling if needed |
-| `color="danger" variant="solid"`     | `variant="danger"`      | Danger variant available                  |
-| `color="primary" variant="bordered"` | `variant="secondary"`   | Similar appearance                        |
-| `color="primary" variant="light"`    | `variant="tertiary"`    | Similar appearance                        |
-| `color="primary" variant="flat"`     | `variant="tertiary"`    | Similar appearance                        |
-| `color="primary" variant="faded"`    | `variant="secondary"`   | Similar appearance                        |
-| `color="primary" variant="ghost"`    | `variant="ghost"`       | Same                                      |
-| `color="danger" variant="flat"`      | `variant="danger-soft"` | New soft danger variant                   |
+| v2 Color + Variant | v3 Variant | Notes |
+|-------------------|------------|-------|
+| `color="primary" variant="solid"` | `variant="primary"` | Default primary button |
+| `color="default" variant="solid"` | `variant="primary"` | Use primary variant |
+| `color="secondary" variant="solid"` | `variant="secondary"` | Same |
+| `color="success" variant="solid"` | `variant="primary"` | Use primary with custom styling if needed |
+| `color="warning" variant="solid"` | `variant="primary"` | Use primary with custom styling if needed |
+| `color="danger" variant="solid"` | `variant="danger"` | Danger variant available |
+| `color="primary" variant="bordered"` | `variant="secondary"` | Similar appearance |
+| `color="primary" variant="light"` | `variant="tertiary"` | Similar appearance |
+| `color="primary" variant="flat"` | `variant="tertiary"` | Similar appearance |
+| `color="primary" variant="faded"` | `variant="secondary"` | Similar appearance |
+| `color="primary" variant="ghost"` | `variant="ghost"` | Same |
+| `color="danger" variant="flat"` | `variant="danger-soft"` | New soft danger variant |
 
-**v2 Variants:** `solid`, `bordered`, `light`, `flat`, `faded`, `shadow`, `ghost`  
+**v2 Variants:** `solid`, `bordered`, `light`, `flat`, `faded`, `shadow`, `ghost`
 **v3 Variants:** `primary`, `secondary`, `tertiary`, `outline`, `ghost`, `danger`, `danger-soft`
 
 ### 2. Loading State: `isLoading` → `isPending`
 
-**v2:** Used `isLoading` prop  
+**v2:** Used `isLoading` prop
 **v3:** Uses `isPending` prop
 
 ### 3. Default Width Behavior
 
-**v2:** Buttons had minimum widths based on size (`min-w-16` for sm, `min-w-20` for md, `min-w-24` for lg)  
+**v2:** Buttons had minimum widths based on size (`min-w-16` for sm, `min-w-20` for md, `min-w-24` for lg)
 **v3:** Buttons use `w-fit` by default (width fits content, no minimum width)
 
 This means v3 buttons will be narrower than v2 buttons when they have short text. To maintain v2's minimum width behavior, add Tailwind classes see the [Minimum Width](#minimum-width) example section.
 
 ### 4. Prop Changes
 
-| v2 Prop                       | v3 Location | Notes                                                             |
-| ----------------------------- | ----------- | ----------------------------------------------------------------- |
-| `isLoading`                   | `Button`    | Renamed to `isPending`                                            |
-| `isIconOnly`                  | `Button`    | Still available in v3 — renders a square button with only an icon |
-| `color`                       | -           | Removed (variants handle styling)                                 |
-| `radius`                      | -           | Removed (use Tailwind e.g. `rounded-lg`)                          |
-| `startContent`, `endContent`  | -           | Place icons as children                                           |
-| `spinner`, `spinnerPlacement` | -           | Handle loading manually with render props                         |
-| `disableRipple`               | -           | Removed (ripple removed in v3)                                    |
-| `disableAnimation`            | -           | Removed (animations handled internally)                           |
-| `classNames`                  | -           | Use `className`                                                   |
+| v2 Prop | v3 Location | Notes |
+|---------|-------------|-------|
+| `isLoading` | `Button` | Renamed to `isPending` |
+| `isIconOnly` | `Button` | Still available in v3 — renders a square button with only an icon |
+| `color` | - | Removed (variants handle styling) |
+| `radius` | - | Removed (use Tailwind e.g. `rounded-lg`) |
+| `startContent`, `endContent` | - | Place icons as children |
+| `spinner`, `spinnerPlacement` | - | Handle loading manually with render props |
+| `disableRipple` | - | Removed (ripple removed in v3) |
+| `disableAnimation` | - | Removed (animations handled internally) |
+| `classNames` | - | Use `className` |
 
 ### 5. ButtonGroup Available
 
-**v2:** Had a dedicated `ButtonGroup` component  
+**v2:** Had a dedicated `ButtonGroup` component
 **v3:** `ButtonGroup` continues to exist. See the [ButtonGroup migration guide](/docs-ui/web/migration/button-group) for details.
 
 ## Migration Examples
 
 ### Variants
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
-    <Button color="primary" variant="solid">
-      Solid
-    </Button>
-    <Button color="primary" variant="bordered">
-      Bordered
-    </Button>
-    <Button color="primary" variant="ghost">
-      Ghost
-    </Button>
+    <Button color="primary" variant="solid">Solid</Button>
+    <Button color="primary" variant="bordered">Bordered</Button>
+    <Button color="primary" variant="ghost">Ghost</Button>
     ```
   </Tab>
   <Tab value="v3">
@@ -128,12 +113,10 @@ This means v3 buttons will be narrower than v2 buttons when they have short text
 
 The `danger-soft` variant is new in v3. It replaces the v2 pattern of using a flat danger button.
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
-    <Button color="danger" variant="flat">
-      Delete
-    </Button>
+    <Button color="danger" variant="flat">Delete</Button>
     ```
   </Tab>
   <Tab value="v3">
@@ -169,7 +152,6 @@ The `isIconOnly` prop is available in both v2 and v3. It renders a square button
       <Icon icon="gravity-ui:magnifier" />
     </Button>
     ```
-
   </Tab>
 </Tabs>
 
@@ -182,9 +164,9 @@ The `isIconOnly` prop is available in both v2 and v3. It renders a square button
     <Button isLoading color="primary">
       Loading
     </Button>
-    
+
     {/* Loading with conditional content */}
-    <Button 
+    <Button
       isLoading={isLoading}
       spinnerPlacement="start"
       color="primary"
@@ -229,7 +211,6 @@ The `isIconOnly` prop is available in both v2 and v3. It renders a square button
       )}
     </Button>
     ```
-
   </Tab>
 </Tabs>
 
@@ -254,7 +235,6 @@ The `isIconOnly` prop is available in both v2 and v3. It renders a square button
       Delete user
     </Button>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -269,7 +249,6 @@ The `isIconOnly` prop is available in both v2 and v3. It renders a square button
       Delete user
     </Button>
     ```
-
   </Tab>
 </Tabs>
 
@@ -291,7 +270,6 @@ The `isIconOnly` prop is available in both v2 and v3. It renders a square button
       <Icon icon="gravity-ui:heart" />
     </Button>
     ```
-
   </Tab>
 </Tabs>
 
@@ -308,7 +286,6 @@ The `isIconOnly` prop is available in both v2 and v3. It renders a square button
       <Button>Three</Button>
     </ButtonGroup>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -320,19 +297,16 @@ The `isIconOnly` prop is available in both v2 and v3. It renders a square button
       <Button>Three</Button>
     </ButtonGroup>
     ```
-
   </Tab>
 </Tabs>
 
 ### Sizes and Minimum Width
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     {/* v2 automatically applies minimum widths */}
-    <Button size="md" color="primary">
-      Save
-    </Button>
+    <Button size="md" color="primary">Save</Button>
     ```
   </Tab>
   <Tab value="v3">
@@ -351,24 +325,16 @@ v3 Button supports a render prop pattern that provides state information:
 
 ```tsx
 <Button isPending={isLoading}>
-  {({
-    isPending,
-    isPressed,
-    isHovered,
-    isFocused,
-    isFocusVisible,
-    isDisabled
-  }) => (
+  {({isPending, isPressed, isHovered, isFocused, isFocusVisible, isDisabled}) => (
     <>
       {isPending && <Spinner size="sm" />}
-      {isPressed ? 'Pressed!' : 'Click me'}
+      {isPressed ? "Pressed!" : "Click me"}
     </>
   )}
 </Button>
 ```
 
 Available render props:
-
 - `isPending` - Whether button is in loading state
 - `isPressed` - Whether button is currently pressed
 - `isHovered` - Whether button is hovered

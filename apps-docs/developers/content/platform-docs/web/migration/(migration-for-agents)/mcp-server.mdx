@@ -5,14 +5,13 @@ description: Access HeroUI v2 to v3 migration guides in your AI assistant
 
 import { Callout } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 The HeroUI Migration MCP Server gives AI assistants direct access to HeroUI v2 to v3 migration documentation.
 
 The Migration MCP server uses **Streamable HTTP transport** (URL-based) and is deployed at `https://migration-mcp.heroui.com`. View the source code on [GitHub](https://github.com/heroui-inc/heroui-mcp/tree/main/apps/migration-mcp).
 
 <Callout>
-  The Migration MCP is for **migration only**. After completing migration,
-  switch to the [HeroUI React MCP
-  Server](/docs-ui/web/getting-started/mcp-server) for v3 component development.
+  The Migration MCP is for **migration only**. After completing migration, switch to the [HeroUI React MCP Server](/docs-ui/web/getting-started/mcp-server) for v3 component development.
 </Callout>
 
 ## Quick Setup
@@ -153,21 +152,21 @@ Once configured, ask your AI assistant questions like:
 
 The Migration MCP server provides these tools to AI assistants:
 
-| Tool                              | Description                                                                                                                                |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `get_migration_workflow`          | Get the comprehensive migration guide. Use `migrationType: "full"` (default) or `"incremental"` for full vs incremental migration approach |
-| `list_component_migration_guides` | List all 39 available component migration guides                                                                                           |
-| `get_component_migration_guides`  | Get migration guides for specific components. Pass `components: ["button", "card"]` (kebab-case)                                           |
-| `get_styling_migration_guide`     | Get the styling migration guide (utility classes, color tokens, CSS variables)                                                             |
-| `get_hooks_migration_guide`       | Get the hooks migration guide (useDisclosure → useOverlayState, etc.)                                                                      |
+| Tool | Description |
+|------|-------------|
+| `get_migration_workflow` | Get the comprehensive migration guide. Use `migrationType: "full"` (default) or `"incremental"` for full vs incremental migration approach |
+| `list_component_migration_guides` | List all 39 available component migration guides |
+| `get_component_migration_guides` | Get migration guides for specific components. Pass `components: ["button", "card"]` (kebab-case) |
+| `get_styling_migration_guide` | Get the styling migration guide (utility classes, color tokens, CSS variables) |
+| `get_hooks_migration_guide` | Get the hooks migration guide (useDisclosure → useOverlayState, etc.) |
 
 ## Available Prompts
 
 The Migration MCP server provides guided prompts that can be used with slash commands in your agent chat:
 
-| Prompt                | Description                                                                                                                                                                                                                         |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `analyze-and-plan`    | Analyze the project to identify all HeroUI v2 components and create a migration plan. Use this as the first step in migration. Optional: `migrationType: "full"` (default) or `"incremental"`                                       |
+| Prompt | Description |
+|--------|-------------|
+| `analyze-and-plan` | Analyze the project to identify all HeroUI v2 components and create a migration plan. Use this as the first step in migration. Optional: `migrationType: "full"` (default) or `"incremental"` |
 | `implement-migration` | Implement component migrations phase by phase with checkpoints for user approval. Migrates components, switches dependencies, then guides through hooks and styling. Optional: `migrationType: "full"` (default) or `"incremental"` |
 
 **Workflow:** Run `analyze-and-plan` first to create your migration plan, then use `implement-migration` to execute it step by step.

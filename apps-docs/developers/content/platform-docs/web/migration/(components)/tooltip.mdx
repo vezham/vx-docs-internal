@@ -3,16 +3,11 @@ title: Tooltip
 description: Migration guide for Tooltip from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Tooltip documentation](/docs-ui/web/components/tooltip) for
-  complete API reference, styling guide, and advanced examples. This guide only
-  focuses on migrating from HeroUI v2.
+  Refer to the [v3 Tooltip documentation](/docs-ui/web/components/tooltip) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,21 +15,21 @@ import {
 In v2, Tooltip used a `content` prop:
 
 ```tsx
-import { Button, Tooltip } from '@heroui/react'
+import { Tooltip, Button } from "@heroui/react";
 
 export default function App() {
   return (
     <Tooltip content="I am a tooltip">
       <Button>Hover me</Button>
     </Tooltip>
-  )
+  );
 }
 ```
 
 In v3, Tooltip requires compound components:
 
 ```tsx
-import { Button, Tooltip } from '@heroui/react'
+import { Tooltip, Button } from "@heroui/react";
 
 export default function App() {
   return (
@@ -42,9 +37,11 @@ export default function App() {
       <Tooltip.Trigger>
         <Button>Hover me</Button>
       </Tooltip.Trigger>
-      <Tooltip.Content>I am a tooltip</Tooltip.Content>
+      <Tooltip.Content>
+        I am a tooltip
+      </Tooltip.Content>
     </Tooltip>
-  )
+  );
 }
 ```
 
@@ -52,37 +49,37 @@ export default function App() {
 
 ### 1. Component Structure
 
-**v2:** Simple Tooltip with `content` prop and children as trigger  
+**v2:** Simple Tooltip with `content` prop and children as trigger
 **v3:** Compound components (`Tooltip.Trigger`, `Tooltip.Content`, `Tooltip.Arrow`)
 
 ### 2. Prop Changes
 
-| v2 Prop                           | v3 Location              | Notes                                                    |
-| --------------------------------- | ------------------------ | -------------------------------------------------------- |
-| `content`                         | —                        | Use `Tooltip.Content` children                           |
-| `showArrow`                       | `showArrow` (on Content) | Moved to `Tooltip.Content`                               |
-| `placement`                       | `placement` (on Content) | Moved to `Tooltip.Content`                               |
-| `offset`                          | `offset` (on Content)    | Moved to `Tooltip.Content`                               |
-| `color`                           | —                        | Removed (use Tailwind CSS)                               |
-| `size`                            | —                        | Removed (use Tailwind CSS)                               |
-| `radius`                          | —                        | Removed (use Tailwind CSS)                               |
-| `shadow`                          | —                        | Removed (use Tailwind CSS)                               |
-| `classNames`                      | —                        | Use `className` props on individual components           |
-| `motionProps`                     | —                        | Removed (animations handled differently)                 |
-| `trigger`                         | `trigger` (on root)      | Still exists: `"hover"` \| `"focus"` (default `"hover"`) |
-| `isDisabled`                      | `isDisabled` (on root)   | New in v3: disables the tooltip entirely                 |
-| `delay`                           | `delay` (on root)        | Still exists (default changed from `0` to `700`)         |
-| `closeDelay`                      | `closeDelay` (on root)   | Still exists (default `0`)                               |
-| `portalContainer`                 | —                        | Not exposed                                              |
-| `updatePositionDeps`              | —                        | Not exposed                                              |
-| `containerPadding`, `crossOffset` | —                        | Not exposed                                              |
-| `shouldFlip`                      | —                        | Handled automatically                                    |
-| `triggerScaleOnOpen`              | —                        | Not available                                            |
-| `isKeyboardDismissDisabled`       | —                        | Not available                                            |
-| `isDismissable`                   | —                        | Not available                                            |
-| `shouldCloseOnBlur`               | —                        | Not available                                            |
-| `shouldCloseOnInteractOutside`    | —                        | Not available                                            |
-| `onClose`                         | —                        | Use `onOpenChange` instead                               |
+| v2 Prop | v3 Location | Notes |
+|---------|-------------|-------|
+| `content` | — | Use `Tooltip.Content` children |
+| `showArrow` | `showArrow` (on Content) | Moved to `Tooltip.Content` |
+| `placement` | `placement` (on Content) | Moved to `Tooltip.Content` |
+| `offset` | `offset` (on Content) | Moved to `Tooltip.Content` |
+| `color` | — | Removed (use Tailwind CSS) |
+| `size` | — | Removed (use Tailwind CSS) |
+| `radius` | — | Removed (use Tailwind CSS) |
+| `shadow` | — | Removed (use Tailwind CSS) |
+| `classNames` | — | Use `className` props on individual components |
+| `motionProps` | — | Removed (animations handled differently) |
+| `trigger` | `trigger` (on root) | Still exists: `"hover"` \| `"focus"` (default `"hover"`) |
+| `isDisabled` | `isDisabled` (on root) | New in v3: disables the tooltip entirely |
+| `delay` | `delay` (on root) | Still exists (default changed from `0` to `700`) |
+| `closeDelay` | `closeDelay` (on root) | Still exists (default `0`) |
+| `portalContainer` | — | Not exposed |
+| `updatePositionDeps` | — | Not exposed |
+| `containerPadding`, `crossOffset` | — | Not exposed |
+| `shouldFlip` | — | Handled automatically |
+| `triggerScaleOnOpen` | — | Not available |
+| `isKeyboardDismissDisabled` | — | Not available |
+| `isDismissable` | — | Not available |
+| `shouldCloseOnBlur` | — | Not available |
+| `shouldCloseOnInteractOutside` | — | Not available |
+| `onClose` | — | Use `onOpenChange` instead |
 
 ### 3. Props Moved to Tooltip.Content
 
@@ -94,17 +91,19 @@ export default function App() {
 
 ### Content Configuration
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     {/* With arrow */}
     <Tooltip content="I am a tooltip" showArrow>
       <Button>Hover me</Button>
     </Tooltip>
+
     {/* With placement */}
     <Tooltip content="Tooltip" placement="bottom">
       <Button>Hover me</Button>
     </Tooltip>
+
     {/* With offset */}
     <Tooltip content="Tooltip" offset={12}>
       <Button>Hover me</Button>
@@ -123,6 +122,7 @@ export default function App() {
         <p>I am a tooltip</p>
       </Tooltip.Content>
     </Tooltip>
+
     {/* With placement */}
     <Tooltip delay={0}>
       <Tooltip.Trigger>
@@ -132,6 +132,7 @@ export default function App() {
         <p>Tooltip</p>
       </Tooltip.Content>
     </Tooltip>
+
     {/* With offset */}
     <Tooltip delay={0}>
       <Tooltip.Trigger>
@@ -162,7 +163,6 @@ export default function App() {
       <Button>Hover me</Button>
     </Tooltip>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -179,13 +179,12 @@ export default function App() {
       </Tooltip.Content>
     </Tooltip>
     ```
-
   </Tab>
 </Tabs>
 
 ### With Delay
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Tooltip content="Tooltip" delay={500} closeDelay={200}>
@@ -209,7 +208,7 @@ export default function App() {
 
 ### Custom Content
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Tooltip
@@ -218,7 +217,8 @@ export default function App() {
           <strong>Title</strong>
           <p>Description</p>
         </div>
-      }>
+      }
+    >
       <Button>Hover me</Button>
     </Tooltip>
     ```
@@ -242,7 +242,7 @@ export default function App() {
 
 ### With Custom Trigger
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Tooltip content="Tooltip">
@@ -299,10 +299,8 @@ The `isDisabled` prop allows you to completely disable the tooltip. When disable
 The `trigger` prop controls how the tooltip is activated. It accepts `"hover"` (default) or `"focus"`:
 
 ```tsx
-{
-  /* Show tooltip only on focus */
-}
-;<Tooltip trigger="focus">
+{/* Show tooltip only on focus */}
+<Tooltip trigger="focus">
   <Tooltip.Trigger>
     <Button>Focus me</Button>
   </Tooltip.Trigger>

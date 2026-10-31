@@ -9,34 +9,46 @@ links:
   figma: true
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { ToggleButton } from '@heroui/react'
+import { ToggleButton } from '@heroui/react';
 ```
 
-[Live example: toggle-button-basic](https://heroui.com/docs/react/components/toggle-button)
 
-```tsx
+<ComponentPreview name="toggle-button-basic">
+
+````tsx
+import {Heart} from "@gravity-ui/icons";
+import {ToggleButton} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <ToggleButton>
       <Heart />
       Like
     </ToggleButton>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Examples
 
 ### Variants
 
-[Live example: toggle-button-variants](https://heroui.com/docs/react/components/toggle-button)
 
-```tsx
+<ComponentPreview name="toggle-button-variants">
+
+````tsx
+import {Heart} from "@gravity-ui/icons";
+import {ToggleButton} from "@vezham/react-v3";
+
 export function Variants() {
   return (
     <div className="flex items-center gap-3">
@@ -49,15 +61,22 @@ export function Variants() {
         Ghost
       </ToggleButton>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Icon Only
 
-[Live example: toggle-button-icon-only](https://heroui.com/docs/react/components/toggle-button)
 
-```tsx
+<ComponentPreview name="toggle-button-icon-only">
+
+````tsx
+import {Bookmark, Heart} from "@gravity-ui/icons";
+import {ToggleButton} from "@vezham/react-v3";
+
 export function IconOnly() {
   return (
     <div className="flex items-center gap-3">
@@ -68,15 +87,22 @@ export function IconOnly() {
         <Bookmark />
       </ToggleButton>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Sizes
 
-[Live example: toggle-button-sizes](https://heroui.com/docs/react/components/toggle-button)
 
-```tsx
+<ComponentPreview name="toggle-button-sizes">
+
+````tsx
+import {Heart} from "@gravity-ui/icons";
+import {ToggleButton} from "@vezham/react-v3";
+
 export function Sizes() {
   return (
     <div className="flex flex-col gap-6">
@@ -106,15 +132,22 @@ export function Sizes() {
         </ToggleButton>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Disabled
 
-[Live example: toggle-button-disabled](https://heroui.com/docs/react/components/toggle-button)
 
-```tsx
+<ComponentPreview name="toggle-button-disabled">
+
+````tsx
+import {Heart, HeartFill} from "@gravity-ui/icons";
+import {ToggleButton} from "@vezham/react-v3";
+
 export function Disabled() {
   return (
     <div className="flex items-center gap-3">
@@ -127,57 +160,72 @@ export function Disabled() {
         Like
       </ToggleButton>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Controlled
 
-[Live example: toggle-button-controlled](https://heroui.com/docs/react/components/toggle-button)
 
-```tsx
-'use client'
+<ComponentPreview name="toggle-button-controlled">
+
+````tsx
+"use client";
+
+import {Heart, HeartFill} from "@gravity-ui/icons";
+import {ToggleButton} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function Controlled() {
-  const [isSelected, setIsSelected] = useState(false)
+  const [isSelected, setIsSelected] = useState(false);
 
   return (
     <div className="flex flex-col gap-4">
       <ToggleButton isSelected={isSelected} onChange={setIsSelected}>
-        {({ isSelected: selected }) => (
+        {({isSelected: selected}) => (
           <>
             {selected ? <HeartFill /> : <Heart />}
-            {selected ? 'Liked' : 'Like'}
+            {selected ? "Liked" : "Like"}
           </>
         )}
       </ToggleButton>
-      <p className="text-muted text-sm">
-        Status:{' '}
-        <span className="font-medium">
-          {isSelected ? 'Selected' : 'Not selected'}
-        </span>
+      <p className="text-sm text-muted">
+        Status: <span className="font-medium">{isSelected ? "Selected" : "Not selected"}</span>
       </p>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: toggle-button-custom-styles](https://heroui.com/docs/react/components/toggle-button)
 
-```tsx
+<ComponentPreview name="toggle-button-custom-styles">
+
+````tsx
+import {Heart} from "@gravity-ui/icons";
+import {ToggleButton} from "@vezham/react-v3";
+
 export function CustomStyles() {
   return (
-    <ToggleButton className="border-border/80 bg-surface text-foreground data-[selected=true]:border-accent/30 data-[selected=true]:bg-accent-soft data-[selected=true]:text-accent-soft-foreground [&_svg]:text-muted data-[selected=true]:[&_svg]:text-accent gap-2 rounded-full border px-4 shadow-sm">
+    <ToggleButton className="gap-2 rounded-full border border-border/80 bg-surface px-4 text-foreground shadow-sm data-[selected=true]:border-accent/30 data-[selected=true]:bg-accent-soft data-[selected=true]:text-accent-soft-foreground [&_svg]:text-muted data-[selected=true]:[&_svg]:text-accent">
       <Heart />
       Save article
     </ToggleButton>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -205,19 +253,16 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The ToggleButton component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/toggle-button.css)):
 
 #### Base & Size Classes [!toc]
-
 - `.toggle-button` - Base toggle button styles
 - `.toggle-button--sm` - Small size variant
 - `.toggle-button--md` - Medium size variant (default)
 - `.toggle-button--lg` - Large size variant
 
 #### Variant Classes [!toc]
-
 - `.toggle-button--default` - Default variant with filled background
 - `.toggle-button--ghost` - Ghost variant with transparent background
 
 #### Modifier Classes [!toc]
-
 - `.toggle-button--icon-only` - Icon-only toggle button
 - `.toggle-button--icon-only.toggle-button--sm` - Small icon-only
 - `.toggle-button--icon-only.toggle-button--lg` - Large icon-only
@@ -238,30 +283,30 @@ The toggle button supports both CSS pseudo-classes and data attributes for flexi
 
 Inherits from [React Aria ToggleButton](https://react-spectrum.adobe.com/react-aria/ToggleButton.html).
 
-| Prop              | Type                                                                      | Default     | Description                               |
-| ----------------- | ------------------------------------------------------------------------- | ----------- | ----------------------------------------- |
-| `variant`         | `'default' \| 'ghost'`                                                    | `'default'` | Visual style variant                      |
-| `size`            | `'sm' \| 'md' \| 'lg'`                                                    | `'md'`      | Size of the toggle button                 |
-| `isIconOnly`      | `boolean`                                                                 | `false`     | Whether the button contains only an icon  |
-| `isSelected`      | `boolean`                                                                 | -           | Controlled selected state                 |
-| `defaultSelected` | `boolean`                                                                 | `false`     | Default selected state (uncontrolled)     |
-| `isDisabled`      | `boolean`                                                                 | `false`     | Whether the toggle button is disabled     |
-| `onChange`        | `(isSelected: boolean) => void`                                           | -           | Handler called when selection changes     |
-| `onPress`         | `(e: PressEvent) => void`                                                 | -           | Handler called when the button is pressed |
-| `children`        | `React.ReactNode \| (values: ToggleButtonRenderProps) => React.ReactNode` | -           | Button content or render prop             |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'default' \| 'ghost'` | `'default'` | Visual style variant |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the toggle button |
+| `isIconOnly` | `boolean` | `false` | Whether the button contains only an icon |
+| `isSelected` | `boolean` | - | Controlled selected state |
+| `defaultSelected` | `boolean` | `false` | Default selected state (uncontrolled) |
+| `isDisabled` | `boolean` | `false` | Whether the toggle button is disabled |
+| `onChange` | `(isSelected: boolean) => void` | - | Handler called when selection changes |
+| `onPress` | `(e: PressEvent) => void` | - | Handler called when the button is pressed |
+| `children` | `React.ReactNode \| (values: ToggleButtonRenderProps) => React.ReactNode` | - | Button content or render prop |
 
 ### Render Props
 
 When using the render prop pattern, these values are provided:
 
-| Prop             | Type      | Description                                    |
-| ---------------- | --------- | ---------------------------------------------- |
-| `isSelected`     | `boolean` | Whether the button is currently selected       |
-| `isPressed`      | `boolean` | Whether the button is currently pressed        |
-| `isHovered`      | `boolean` | Whether the button is hovered                  |
-| `isFocused`      | `boolean` | Whether the button is focused                  |
+| Prop | Type | Description |
+|------|------|-------------|
+| `isSelected` | `boolean` | Whether the button is currently selected |
+| `isPressed` | `boolean` | Whether the button is currently pressed |
+| `isHovered` | `boolean` | Whether the button is hovered |
+| `isFocused` | `boolean` | Whether the button is focused |
 | `isFocusVisible` | `boolean` | Whether the button should show focus indicator |
-| `isDisabled`     | `boolean` | Whether the button is disabled                 |
+| `isDisabled` | `boolean` | Whether the button is disabled |
 
 ## Related Components
 

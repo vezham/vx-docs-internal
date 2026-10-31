@@ -9,17 +9,21 @@ links:
   storybook: Components/Pickers/Select
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Select } from '@heroui/react'
+import { Select } from "@heroui/react";
 ```
 
-[Live example: select-default](https://heroui.com/docs/react/components/select)
 
-```tsx
+<ComponentPreview name="select-default">
+
+````tsx
+import {Label, ListBox, Select} from "@vezham/react-v3";
+
 export function Default() {
   return (
     <Select className="w-[256px]" placeholder="Select one">
@@ -57,21 +61,17 @@ export function Default() {
         </ListBox>
       </Select.Popover>
     </Select>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 ```tsx
-import {
-  Description,
-  Header,
-  Label,
-  ListBox,
-  Select,
-  Separator
-} from '@heroui/react'
+import {Select, Label, Description, Header, ListBox, Separator} from "@heroui/react";
 
 export default () => (
   <Select>
@@ -98,7 +98,7 @@ export default () => (
       </ListBox>
     </Select.Popover>
   </Select>
-)
+);
 ```
 
 ## Examples
@@ -110,9 +110,12 @@ The Select component supports two visual variants:
 - **`primary`** (default) - Standard styling with shadow, suitable for most use cases
 - **`secondary`** - Lower emphasis variant without shadow, suitable for use in Surface components
 
-[Live example: select-variants](https://heroui.com/docs/react/components/select)
 
-```tsx
+<ComponentPreview name="select-variants">
+
+````tsx
+import {Label, ListBox, Select} from "@vezham/react-v3";
+
 export function Variants() {
   return (
     <div className="flex flex-col gap-4">
@@ -135,10 +138,7 @@ export function Variants() {
           </ListBox>
         </Select.Popover>
       </Select>
-      <Select
-        className="w-[256px]"
-        placeholder="Select one"
-        variant="secondary">
+      <Select className="w-[256px]" placeholder="Select one" variant="secondary">
         <Label>Secondary variant</Label>
         <Select.Trigger>
           <Select.Value />
@@ -158,15 +158,21 @@ export function Variants() {
         </Select.Popover>
       </Select>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Full Width
 
-[Live example: select-full-width](https://heroui.com/docs/react/components/select)
 
-```tsx
+<ComponentPreview name="select-full-width">
+
+````tsx
+import {Label, ListBox, Select} from "@vezham/react-v3";
+
 export function FullWidth() {
   return (
     <div className="w-[400px] space-y-4">
@@ -194,15 +200,21 @@ export function FullWidth() {
         </Select.Popover>
       </Select>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Description
 
-[Live example: select-with-description](https://heroui.com/docs/react/components/select)
 
-```tsx
+<ComponentPreview name="select-with-description">
+
+````tsx
+import {Description, Label, ListBox, Select} from "@vezham/react-v3";
+
 export function WithDescription() {
   return (
     <Select className="w-[256px]" placeholder="Select one">
@@ -241,38 +253,40 @@ export function WithDescription() {
       </Select.Popover>
       <Description>Select your state of residence</Description>
     </Select>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Required
 
-[Live example: select-required](https://heroui.com/docs/react/components/select)
 
-```tsx
-'use client'
+<ComponentPreview name="select-required">
+
+````tsx
+"use client";
+
+import {Button, FieldError, Form, Label, ListBox, Select} from "@vezham/react-v3";
 
 export function Required() {
   const onSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    const data: Record<string, string> = {}
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data: Record<string, string> = {};
 
     // Convert FormData to plain object
     formData.forEach((value, key) => {
-      data[key] = value.toString()
-    })
+      data[key] = value.toString();
+    });
 
-    alert('Form submitted successfully!')
-  }
+    alert("Form submitted successfully!");
+  };
 
   return (
     <Form className="flex w-[256px] flex-col gap-4" onSubmit={onSubmit}>
-      <Select
-        isRequired
-        className="w-full"
-        name="state"
-        placeholder="Select one">
+      <Select isRequired className="w-full" name="state" placeholder="Select one">
         <Label>State</Label>
         <Select.Trigger>
           <Select.Value />
@@ -308,11 +322,7 @@ export function Required() {
         </Select.Popover>
         <FieldError />
       </Select>
-      <Select
-        isRequired
-        className="w-full"
-        name="country"
-        placeholder="Select a country">
+      <Select isRequired className="w-full" name="country" placeholder="Select a country">
         <Label>Country</Label>
         <Select.Trigger>
           <Select.Value />
@@ -350,23 +360,25 @@ export function Required() {
       </Select>
       <Button type="submit">Submit</Button>
     </Form>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Disabled
 
-[Live example: select-disabled](https://heroui.com/docs/react/components/select)
 
-```tsx
+<ComponentPreview name="select-disabled">
+
+````tsx
+import {Label, ListBox, Select} from "@vezham/react-v3";
+
 export function Disabled() {
   return (
     <div className="flex flex-col gap-4">
-      <Select
-        isDisabled
-        className="w-[256px]"
-        defaultValue="california"
-        placeholder="Select one">
+      <Select isDisabled className="w-[256px]" defaultValue="california" placeholder="Select one">
         <Label>State</Label>
         <Select.Trigger>
           <Select.Value />
@@ -404,9 +416,10 @@ export function Disabled() {
       <Select
         isDisabled
         className="w-[256px]"
-        defaultValue={['argentina', 'japan', 'france']}
+        defaultValue={["argentina", "japan", "france"]}
         placeholder="Select countries"
-        selectionMode="multiple">
+        selectionMode="multiple"
+      >
         <Label>Countries to Visit</Label>
         <Select.Trigger>
           <Select.Value />
@@ -442,21 +455,24 @@ export function Disabled() {
         </Select.Popover>
       </Select>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Disabled Options
 
-[Live example: select-with-disabled-options](https://heroui.com/docs/react/components/select)
 
-```tsx
+<ComponentPreview name="select-with-disabled-options">
+
+````tsx
+import {Label, ListBox, Select} from "@vezham/react-v3";
+
 export function WithDisabledOptions() {
   return (
-    <Select
-      className="w-[256px]"
-      disabledKeys={['cat', 'kangaroo']}
-      placeholder="Select an animal">
+    <Select className="w-[256px]" disabledKeys={["cat", "kangaroo"]} placeholder="Select an animal">
       <Label>Animal</Label>
       <Select.Trigger>
         <Select.Value />
@@ -491,21 +507,24 @@ export function WithDisabledOptions() {
         </ListBox>
       </Select.Popover>
     </Select>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Multiple Select
 
-[Live example: select-multiple-select](https://heroui.com/docs/react/components/select)
 
-```tsx
+<ComponentPreview name="select-multiple-select">
+
+````tsx
+import {Label, ListBox, Select} from "@vezham/react-v3";
+
 export function MultipleSelect() {
   return (
-    <Select
-      className="w-[256px]"
-      placeholder="Select countries"
-      selectionMode="multiple">
+    <Select className="w-[256px]" placeholder="Select countries" selectionMode="multiple">
       <Label>Countries to Visit</Label>
       <Select.Trigger>
         <Select.Value />
@@ -552,15 +571,21 @@ export function MultipleSelect() {
         </ListBox>
       </Select.Popover>
     </Select>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Sections
 
-[Live example: select-with-sections](https://heroui.com/docs/react/components/select)
 
-```tsx
+<ComponentPreview name="select-with-sections">
+
+````tsx
+import {Header, Label, ListBox, Select, Separator} from "@vezham/react-v3";
+
 export function WithSections() {
   return (
     <Select className="w-[256px]" placeholder="Select a country">
@@ -633,48 +658,57 @@ export function WithSections() {
         </ListBox>
       </Select.Popover>
     </Select>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Controlled
 
-[Live example: select-controlled](https://heroui.com/docs/react/components/select)
 
-```tsx
-'use client'
+<ComponentPreview name="select-controlled">
+
+````tsx
+"use client";
+
+import type {Key} from "@vezham/react-v3";
+
+import {Label, ListBox, Select} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function Controlled() {
   const states = [
     {
-      id: 'california',
-      name: 'California'
+      id: "california",
+      name: "California",
     },
     {
-      id: 'texas',
-      name: 'Texas'
+      id: "texas",
+      name: "Texas",
     },
     {
-      id: 'florida',
-      name: 'Florida'
+      id: "florida",
+      name: "Florida",
     },
     {
-      id: 'new-york',
-      name: 'New York'
+      id: "new-york",
+      name: "New York",
     },
     {
-      id: 'illinois',
-      name: 'Illinois'
+      id: "illinois",
+      name: "Illinois",
     },
     {
-      id: 'pennsylvania',
-      name: 'Pennsylvania'
-    }
-  ]
+      id: "pennsylvania",
+      name: "Pennsylvania",
+    },
+  ];
 
-  const [state, setState] = useState<Key | null>('california')
+  const [state, setState] = useState<Key | null>("california");
 
-  const selectedState = states.find(s => s.id === state)
+  const selectedState = states.find((s) => s.id === state);
 
   return (
     <div className="space-y-2">
@@ -682,7 +716,8 @@ export function Controlled() {
         className="w-[256px]"
         placeholder="Select a state"
         value={state}
-        onChange={value => setState(value)}>
+        onChange={(value) => setState(value)}
+      >
         <Label>State (controlled)</Label>
         <Select.Trigger>
           <Select.Value />
@@ -690,7 +725,7 @@ export function Controlled() {
         </Select.Trigger>
         <Select.Popover>
           <ListBox>
-            {states.map(state => (
+            {states.map((state) => (
               <ListBox.Item key={state.id} id={state.id} textValue={state.name}>
                 {state.name}
                 <ListBox.ItemIndicator />
@@ -699,23 +734,30 @@ export function Controlled() {
           </ListBox>
         </Select.Popover>
       </Select>
-      <p className="text-muted text-sm">
-        Selected: {selectedState?.name || 'None'}
-      </p>
+      <p className="text-sm text-muted">Selected: {selectedState?.name || "None"}</p>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Controlled Multiple
 
-[Live example: select-controlled-multiple](https://heroui.com/docs/react/components/select)
 
-```tsx
-'use client'
+<ComponentPreview name="select-controlled-multiple">
+
+````tsx
+"use client";
+
+import type {Key} from "@vezham/react-v3";
+
+import {Label, ListBox, Select} from "@vezham/react-v3";
+import React from "react";
 
 export function ControlledMultiple() {
-  const [selected, setSelected] = React.useState<Key[]>(['california', 'texas'])
+  const [selected, setSelected] = React.useState<Key[]>(["california", "texas"]);
 
   return (
     <div className="space-y-4">
@@ -724,7 +766,8 @@ export function ControlledMultiple() {
         placeholder="Select states"
         selectionMode="multiple"
         value={selected}
-        onChange={keys => setSelected(keys as Key[])}>
+        onChange={(keys) => setSelected(keys as Key[])}
+      >
         <Label>States (controlled multiple)</Label>
         <Select.Trigger>
           <Select.Value />
@@ -759,23 +802,30 @@ export function ControlledMultiple() {
           </ListBox>
         </Select.Popover>
       </Select>
-      <p className="text-muted text-sm">
-        Selected: {selected.length > 0 ? selected.join(', ') : 'None'}
+      <p className="text-sm text-muted">
+        Selected: {selected.length > 0 ? selected.join(", ") : "None"}
       </p>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Controlled Open State
 
-[Live example: select-controlled-open-state](https://heroui.com/docs/react/components/select)
 
-```tsx
-'use client'
+<ComponentPreview name="select-controlled-open-state">
+
+````tsx
+"use client";
+
+import {Button, Label, ListBox, Select} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function ControlledOpenState() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="space-y-4">
@@ -783,7 +833,8 @@ export function ControlledOpenState() {
         className="w-[256px]"
         isOpen={isOpen}
         placeholder="Select one"
-        onOpenChange={setIsOpen}>
+        onOpenChange={setIsOpen}
+      >
         <Label>State</Label>
         <Select.Trigger>
           <Select.Value />
@@ -818,42 +869,44 @@ export function ControlledOpenState() {
           </ListBox>
         </Select.Popover>
       </Select>
-      <Button onPress={() => setIsOpen(!isOpen)}>
-        {isOpen ? 'Close' : 'Open'} Select
-      </Button>
-      <p className="text-muted text-sm">
-        Select is {isOpen ? 'open' : 'closed'}
-      </p>
+      <Button onPress={() => setIsOpen(!isOpen)}>{isOpen ? "Close" : "Open"} Select</Button>
+      <p className="text-sm text-muted">Select is {isOpen ? "open" : "closed"}</p>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Asynchronous Loading
 
-[Live example: select-asynchronous-loading](https://heroui.com/docs/react/components/select)
 
-```tsx
-'use client'
+<ComponentPreview name="select-asynchronous-loading">
+
+````tsx
+"use client";
+
+import {Label, ListBox, Select, Spinner} from "@vezham/react-v3";
+import {useAsyncList} from "@react-stately/data";
+import {Collection, ListBoxLoadMoreItem} from "react-aria-components";
 
 interface Pokemon {
-  name: string
+  name: string;
 }
 
 export function AsynchronousLoading() {
   const list = useAsyncList<Pokemon>({
-    async load({ cursor, signal }) {
-      const res = await fetch(cursor || `https://pokeapi.co/api/v2/pokemon`, {
-        signal
-      })
-      const json = await res.json()
+    async load({cursor, signal}) {
+      const res = await fetch(cursor || `https://pokeapi.co/api/v2/pokemon`, {signal});
+      const json = await res.json();
 
       return {
         cursor: json.next,
-        items: json.results
-      }
-    }
-  })
+        items: json.results,
+      };
+    },
+  });
 
   return (
     <Select className="w-[256px]" placeholder="Select a Pokemon">
@@ -873,25 +926,33 @@ export function AsynchronousLoading() {
             )}
           </Collection>
           <ListBoxLoadMoreItem
-            isLoading={list.loadingState === 'loadingMore'}
-            onLoadMore={list.loadMore}>
+            isLoading={list.loadingState === "loadingMore"}
+            onLoadMore={list.loadMore}
+          >
             <div className="flex items-center justify-center gap-2 py-2">
               <Spinner size="sm" />
-              <span className="text-muted text-sm">Loading more...</span>
+              <span className="text-sm text-muted">Loading more...</span>
             </div>
           </ListBoxLoadMoreItem>
         </ListBox>
       </Select.Popover>
     </Select>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Custom Indicator
 
-[Live example: select-custom-indicator](https://heroui.com/docs/react/components/select)
 
-```tsx
+<ComponentPreview name="select-custom-indicator">
+
+````tsx
+import {ChevronsExpandVertical} from "@gravity-ui/icons";
+import {Label, ListBox, Select} from "@vezham/react-v3";
+
 export function CustomIndicator() {
   return (
     <Select className="w-[256px]" placeholder="Select one">
@@ -931,23 +992,26 @@ export function CustomIndicator() {
         </ListBox>
       </Select.Popover>
     </Select>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Clear Button
 
 `Select.Trigger` is a button, so a nested `<button>` cannot be used for clear. Compose `Select.ClearButton` inside the trigger instead — it renders as a non-button control and does not open the menu.
 
-[Live example: select-with-clear-button](https://heroui.com/docs/react/components/select)
 
-```tsx
+<ComponentPreview name="select-with-clear-button">
+
+````tsx
+import {Label, ListBox, Select} from "@vezham/react-v3";
+
 export function WithClearButton() {
   return (
-    <Select
-      className="w-[256px]"
-      defaultValue="california"
-      placeholder="Select one">
+    <Select className="w-[256px]" defaultValue="california" placeholder="Select one">
       <Label>State</Label>
       <Select.Trigger>
         <Select.Value />
@@ -983,18 +1047,22 @@ export function WithClearButton() {
         </ListBox>
       </Select.Popover>
     </Select>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 Because ARIA treats the children of a button as presentational, the clear control cannot take focus. It is therefore `aria-hidden` and acts as a pointer affordance only. When a `Select.ClearButton` is composed, the trigger also clears on `Backspace` or `Delete`, which is how keyboard and screen reader users clear the selection. Both paths call `onClear`.
 
 ### Custom Value
 
-[Live example: select-custom-value](https://heroui.com/docs/react/components/select)
 
-```tsx
-'use client'
+<ComponentPreview name="select-custom-value">
+
+````tsx
+"use client";
 
 import {
   Avatar,
@@ -1003,75 +1071,68 @@ import {
   Description,
   Label,
   ListBox,
-  Select
-} from '@heroui/react'
+  Select,
+} from "@vezham/react-v3";
 
 export function CustomValue() {
   const users = [
     {
-      avatarUrl:
-        'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg',
-      email: 'bob@heroui.com',
-      fallback: 'B',
-      id: '1',
-      name: 'Bob'
+      avatarUrl: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg",
+      email: "bob@heroui.com",
+      fallback: "B",
+      id: "1",
+      name: "Bob",
     },
     {
-      avatarUrl:
-        'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg',
-      email: 'fred@heroui.com',
-      fallback: 'F',
-      id: '2',
-      name: 'Fred'
+      avatarUrl: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg",
+      email: "fred@heroui.com",
+      fallback: "F",
+      id: "2",
+      name: "Fred",
     },
     {
-      avatarUrl:
-        'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/purple.jpg',
-      email: 'martha@heroui.com',
-      fallback: 'M',
-      id: '3',
-      name: 'Martha'
+      avatarUrl: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/purple.jpg",
+      email: "martha@heroui.com",
+      fallback: "M",
+      id: "3",
+      name: "Martha",
     },
     {
-      avatarUrl:
-        'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/red.jpg',
-      email: 'john@heroui.com',
-      fallback: 'J',
-      id: '4',
-      name: 'John'
+      avatarUrl: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/red.jpg",
+      email: "john@heroui.com",
+      fallback: "J",
+      id: "4",
+      name: "John",
     },
     {
-      avatarUrl:
-        'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/orange.jpg',
-      email: 'jane@heroui.com',
-      fallback: 'J',
-      id: '5',
-      name: 'Jane'
-    }
-  ]
+      avatarUrl: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/orange.jpg",
+      email: "jane@heroui.com",
+      fallback: "J",
+      id: "5",
+      name: "Jane",
+    },
+  ];
 
   return (
     <Select className="w-[256px]" placeholder="Select a user">
       <Label>User</Label>
       <Select.Trigger>
         <Select.Value>
-          {({ defaultChildren, isPlaceholder, state }) => {
+          {({defaultChildren, isPlaceholder, state}) => {
             if (isPlaceholder || state.selectedItems.length === 0) {
-              return defaultChildren
+              return defaultChildren;
             }
 
-            const selectedItems = state.selectedItems
+            const selectedItems = state.selectedItems;
 
             if (selectedItems.length > 1) {
-              return `${selectedItems.length} users selected`
+              return `${selectedItems.length} users selected`;
             }
 
-            const selectedItem = users.find(
-              user => user.id === selectedItems[0]?.key
-            )
+            const selectedItem = users.find((user) => user.id === selectedItems[0]?.key);
 
             if (!selectedItem) {
-              return defaultChildren
+              return defaultChildren;
             }
 
             return (
@@ -1082,14 +1143,14 @@ export function CustomValue() {
                 </Avatar>
                 <span>{selectedItem.name}</span>
               </div>
-            )
+            );
           }}
         </Select.Value>
         <Select.Indicator />
       </Select.Trigger>
       <Select.Popover>
         <ListBox>
-          {users.map(user => (
+          {users.map((user) => (
             <ListBox.Item key={user.id} id={user.id} textValue={user.name}>
               <Avatar size="sm">
                 <AvatarImage src={user.avatarUrl} />
@@ -1105,23 +1166,30 @@ export function CustomValue() {
         </ListBox>
       </Select.Popover>
     </Select>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Render Function
 
-[Live example: select-render-function](https://heroui.com/docs/react/components/select)
 
-```tsx
-'use client'
+<ComponentPreview name="select-render-function">
+
+````tsx
+"use client";
+
+import {Label, ListBox, Select} from "@vezham/react-v3";
 
 export function RenderFunction() {
   return (
     <Select
       className="w-[256px]"
       placeholder="Select one"
-      render={props => <div {...props} data-custom="foo" />}>
+      render={(props) => <div {...props} data-custom="foo" />}
+    >
       <Label>State</Label>
       <Select.Trigger>
         <Select.Value />
@@ -1156,32 +1224,38 @@ export function RenderFunction() {
         </ListBox>
       </Select.Popover>
     </Select>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### In Surface
 
 When used inside a [Surface](/docs-ui/web/components/surface) component, use `variant="secondary"` to apply the lower emphasis variant suitable for surface backgrounds.
 
-[Live example: select-on-surface](https://heroui.com/docs/react/components/select)
 
-```tsx
-'use client'
+<ComponentPreview name="select-on-surface">
+
+````tsx
+"use client";
+
+import {Button, FieldError, Form, Label, ListBox, Select, Surface} from "@vezham/react-v3";
 
 export function OnSurface() {
   const onSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    const data: Record<string, string> = {}
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data: Record<string, string> = {};
 
     // Convert FormData to plain object
     formData.forEach((value, key) => {
-      data[key] = value.toString()
-    })
+      data[key] = value.toString();
+    });
 
-    alert('Form submitted successfully!')
-  }
+    alert("Form submitted successfully!");
+  };
 
   return (
     <Surface className="w-[320px] rounded-3xl p-6">
@@ -1191,7 +1265,8 @@ export function OnSurface() {
           className="w-full"
           name="state"
           placeholder="Select one"
-          variant="secondary">
+          variant="secondary"
+        >
           <Label>State</Label>
           <Select.Trigger>
             <Select.Value />
@@ -1232,7 +1307,8 @@ export function OnSurface() {
           className="w-full"
           name="country"
           placeholder="Select a country"
-          variant="secondary">
+          variant="secondary"
+        >
           <Label>Country</Label>
           <Select.Trigger>
             <Select.Value />
@@ -1271,29 +1347,35 @@ export function OnSurface() {
         <Button type="submit">Submit</Button>
       </Form>
     </Surface>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: select-custom-styles](https://heroui.com/docs/react/components/select)
 
-```tsx
+<ComponentPreview name="select-custom-styles">
+
+````tsx
+import {Label, ListBox, Select} from "@vezham/react-v3";
+
 const itemClass =
-  'rounded-lg data-[focused=true]:bg-accent/10 data-[selected=true]:text-foreground'
+  "rounded-lg data-[focused=true]:bg-accent/10 data-[selected=true]:text-foreground";
 
 export function CustomStyles() {
   return (
     <Select className="w-56" placeholder="Pick a plan" variant="secondary">
-      <Label className="text-foreground font-medium">Plan</Label>
-      <Select.Trigger className="bg-default rounded-xl">
+      <Label className="font-medium text-foreground">Plan</Label>
+      <Select.Trigger className="rounded-xl bg-default">
         <Select.Value />
         <Select.Indicator />
       </Select.Trigger>
-      <Select.Popover className="border-border bg-surface rounded-xl border p-1 shadow-lg">
+      <Select.Popover className="rounded-xl border border-border bg-surface p-1 shadow-lg">
         <ListBox>
           <ListBox.Item className={itemClass} id="free" textValue="Free">
             Free
@@ -1306,9 +1388,12 @@ export function CustomStyles() {
         </ListBox>
       </Select.Popover>
     </Select>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -1323,7 +1408,7 @@ To customize the Select component classes, you can use the `@layer components` d
   }
 
   .select__trigger {
-    @apply border-border bg-surface rounded-lg border p-2;
+    @apply rounded-lg border border-border bg-surface p-2;
   }
 
   .select__value {
@@ -1335,7 +1420,7 @@ To customize the Select component classes, you can use the `@layer components` d
   }
 
   .select__popover {
-    @apply border-border bg-surface rounded-lg border p-2;
+    @apply rounded-lg border border-border bg-surface p-2;
   }
 }
 ```
@@ -1384,28 +1469,28 @@ The component supports both CSS pseudo-classes and data attributes for flexibili
 
 ### Select
 
-| Prop            | Type                                                                      | Default            | Description                                                                                                                                                        |
-| --------------- | ------------------------------------------------------------------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `placeholder`   | `string`                                                                  | `'Select an item'` | Temporary text that occupies the select when it is empty                                                                                                           |
-| `selectionMode` | `"single" \| "multiple"`                                                  | `"single"`         | Whether single or multiple selection is enabled                                                                                                                    |
-| `isOpen`        | `boolean`                                                                 | -                  | Sets the open state of the menu (controlled)                                                                                                                       |
-| `defaultOpen`   | `boolean`                                                                 | -                  | Sets the default open state of the menu (uncontrolled)                                                                                                             |
-| `onOpenChange`  | `(isOpen: boolean) => void`                                               | -                  | Handler called when the open state changes                                                                                                                         |
-| `disabledKeys`  | `Iterable<Key>`                                                           | -                  | Keys of disabled items                                                                                                                                             |
-| `isDisabled`    | `boolean`                                                                 | -                  | Whether the select is disabled                                                                                                                                     |
-| `value`         | `Key \| Key[] \| null`                                                    | -                  | Current value (controlled)                                                                                                                                         |
-| `defaultValue`  | `Key \| Key[] \| null`                                                    | -                  | Default value (uncontrolled)                                                                                                                                       |
-| `onChange`      | `(value: Key \| Key[] \| null) => void`                                   | -                  | Handler called when the value changes                                                                                                                              |
-| `onClear`       | `() => void`                                                              | -                  | Handler called when the selection is cleared                                                                                                                       |
-| `isRequired`    | `boolean`                                                                 | -                  | Whether user input is required                                                                                                                                     |
-| `isInvalid`     | `boolean`                                                                 | -                  | Whether the select value is invalid                                                                                                                                |
-| `name`          | `string`                                                                  | -                  | The name of the input, used when submitting an HTML form                                                                                                           |
-| `autoComplete`  | `string`                                                                  | -                  | Describes the type of autocomplete functionality                                                                                                                   |
-| `fullWidth`     | `boolean`                                                                 | `false`            | Whether the select should take full width of its container                                                                                                         |
-| `variant`       | `"primary" \| "secondary"`                                                | `"primary"`        | Visual variant of the component. `primary` is the default style with shadow. `secondary` is a lower emphasis variant without shadow, suitable for use in surfaces. |
-| `className`     | `string`                                                                  | -                  | Additional CSS classes                                                                                                                                             |
-| `children`      | `ReactNode \| RenderFunction`                                             | -                  | Select content or render function                                                                                                                                  |
-| `render`        | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, SelectRenderProps>` | -                  | Overrides the default DOM element with a custom render function.                                                                                                   |
+| Prop            | Type                                    | Default            | Description                                              |
+| --------------- | --------------------------------------- | ------------------ | -------------------------------------------------------- |
+| `placeholder`   | `string`                                | `'Select an item'` | Temporary text that occupies the select when it is empty |
+| `selectionMode` | `"single" \| "multiple"`                | `"single"`         | Whether single or multiple selection is enabled          |
+| `isOpen`        | `boolean`                               | -                  | Sets the open state of the menu (controlled)             |
+| `defaultOpen`   | `boolean`                               | -                  | Sets the default open state of the menu (uncontrolled)   |
+| `onOpenChange`  | `(isOpen: boolean) => void`             | -                  | Handler called when the open state changes               |
+| `disabledKeys`  | `Iterable<Key>`                         | -                  | Keys of disabled items                                   |
+| `isDisabled`    | `boolean`                               | -                  | Whether the select is disabled                           |
+| `value`         | `Key \| Key[] \| null`                  | -                  | Current value (controlled)                               |
+| `defaultValue`  | `Key \| Key[] \| null`                  | -                  | Default value (uncontrolled)                             |
+| `onChange`      | `(value: Key \| Key[] \| null) => void` | -                  | Handler called when the value changes                    |
+| `onClear`       | `() => void`                            | -                  | Handler called when the selection is cleared             |
+| `isRequired`    | `boolean`                               | -                  | Whether user input is required                           |
+| `isInvalid`     | `boolean`                               | -                  | Whether the select value is invalid                      |
+| `name`          | `string`                                | -                  | The name of the input, used when submitting an HTML form |
+| `autoComplete`  | `string`                                | -                  | Describes the type of autocomplete functionality         |
+| `fullWidth`     | `boolean`                               | `false`             | Whether the select should take full width of its container |
+| `variant`       | `"primary" \| "secondary"`             | `"primary"`         | Visual variant of the component. `primary` is the default style with shadow. `secondary` is a lower emphasis variant without shadow, suitable for use in surfaces. |
+| `className`     | `string`                                | -                  | Additional CSS classes                                   |
+| `children`      | `ReactNode \| RenderFunction`           | -                  | Select content or render function                        |
+| `render` | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, SelectRenderProps>` | - | Overrides the default DOM element with a custom render function.|
 
 ### Select.Trigger
 
@@ -1416,11 +1501,11 @@ The component supports both CSS pseudo-classes and data attributes for flexibili
 
 ### Select.Value
 
-| Prop        | Type                                                                           | Default | Description                                                      |
-| ----------- | ------------------------------------------------------------------------------ | ------- | ---------------------------------------------------------------- |
-| `className` | `string`                                                                       | -       | Additional CSS classes                                           |
-| `children`  | `ReactNode \| RenderFunction`                                                  | -       | Value content or render function                                 |
-| `render`    | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, SelectValueRenderProps>` | -       | Overrides the default DOM element with a custom render function. |
+| Prop        | Type                          | Default | Description                      |
+| ----------- | ----------------------------- | ------- | -------------------------------- |
+| `className` | `string`                      | -       | Additional CSS classes           |
+| `children`  | `ReactNode \| RenderFunction` | -       | Value content or render function |
+| `render` | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, SelectValueRenderProps>` | - | Overrides the default DOM element with a custom render function.|
 
 ### Select.Indicator
 

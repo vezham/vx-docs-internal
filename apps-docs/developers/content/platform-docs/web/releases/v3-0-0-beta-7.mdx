@@ -5,16 +5,11 @@ github:
   pull: 6237
 ---
 
-import {
-  Callout,
-  DocsImage,
-  PRContributors,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, ComponentPreview, DocsImage, PRContributors, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">February 19, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">February 19, 2026</span>
 </div>
 
 This release adds 4 new components: [Calendar](https://heroui.com/docs/components/calendar), [RangeCalendar](https://heroui.com/docs/components/range-calendar), [DatePicker](https://heroui.com/docs/components/date-picker), and [DateRangePicker](https://heroui.com/docs/components/date-range-picker). Also new: [Switch.Content](#switchcontent) for grouping label and description, and [Tabs.Separator](#tabsseparator) for opt-in separator lines between tabs.
@@ -32,26 +27,31 @@ This release adds 4 new components: [Calendar](https://heroui.com/docs/component
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
   <Tab value="npm">
-    ```bash npm i @heroui/styles@beta @heroui/react@beta ```
+    ```bash
+    npm i @heroui/styles@beta @heroui/react@beta
+    ```
   </Tab>
   <Tab value="pnpm">
-    ```bash pnpm add @heroui/styles@beta @heroui/react@beta ```
+    ```bash
+    pnpm add @heroui/styles@beta @heroui/react@beta
+    ```
   </Tab>
   <Tab value="yarn">
-    ```bash yarn add @heroui/styles@beta @heroui/react@beta ```
+    ```bash
+    yarn add @heroui/styles@beta @heroui/react@beta
+    ```
   </Tab>
   <Tab value="bun">
-    ```bash bun add @heroui/styles@beta @heroui/react@beta ```
+    ```bash
+    bun add @heroui/styles@beta @heroui/react@beta
+    ```
   </Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the
-  latest version" and your AI assistant will automatically compare versions and
-  apply the necessary changes. Learn more about the [HeroUI MCP
-  Server](https://heroui.com/docs/ui-for-agents/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI MCP Server](https://heroui.com/docs/ui-for-agents/mcp-server).
 </Callout>
 
 ## What's New
@@ -61,7 +61,6 @@ Update to the latest version:
 **Date & Time** — Calendar, DatePicker, RangeCalendar, and DateRangePicker built on React Aria date primitives. Supports i18n, time zones, and full keyboard/ARIA accessibility.
 
 **Key features:**
-
 - **Calendar systems**: Gregorian, Buddhist, Persian, and others
 - **Year picker**: Overlay for quick year navigation
 - **Cell indicators**: Events, availability, or status dots on cells
@@ -81,10 +80,13 @@ All date values use [`@internationalized/date`](https://react-aria.adobe.com/int
 
 Single-date calendar with year picker, cell indicators, multi-month view, and i18n calendars.
 
-[Live example: calendar-basic](https://heroui.com/docs/react/releases/v3-0-0-beta-7)
 
-```tsx
-'use client'
+<ComponentPreview name="calendar-basic">
+
+````tsx
+"use client";
+
+import {Calendar} from "@vezham/react-v3";
 
 export function Basic() {
   return (
@@ -96,23 +98,27 @@ export function Basic() {
       </Calendar.Header>
       <Calendar.Grid>
         <Calendar.GridHeader>
-          {day => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
+          {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
         </Calendar.GridHeader>
-        <Calendar.GridBody>
-          {date => <Calendar.Cell date={date} />}
-        </Calendar.GridBody>
+        <Calendar.GridBody>{(date) => <Calendar.Cell date={date} />}</Calendar.GridBody>
       </Calendar.Grid>
     </Calendar>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 **Year Picker:**
 
-[Live example: calendar-year-picker](https://heroui.com/docs/react/releases/v3-0-0-beta-7)
 
-```tsx
-'use client'
+<ComponentPreview name="calendar-year-picker">
+
+````tsx
+"use client";
+
+import {Calendar} from "@vezham/react-v3";
 
 export function YearPicker() {
   return (
@@ -127,35 +133,40 @@ export function YearPicker() {
       </Calendar.Header>
       <Calendar.Grid>
         <Calendar.GridHeader>
-          {day => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
+          {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
         </Calendar.GridHeader>
-        <Calendar.GridBody>
-          {date => <Calendar.Cell date={date} />}
-        </Calendar.GridBody>
+        <Calendar.GridBody>{(date) => <Calendar.Cell date={date} />}</Calendar.GridBody>
       </Calendar.Grid>
       <Calendar.YearPickerGrid>
         <Calendar.YearPickerGridBody>
-          {({ year }) => <Calendar.YearPickerCell year={year} />}
+          {({year}) => <Calendar.YearPickerCell year={year} />}
         </Calendar.YearPickerGridBody>
       </Calendar.YearPickerGrid>
     </Calendar>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
+
 
 **International Calendars:**
 
-[Live example: calendar-international-calendar](https://heroui.com/docs/react/releases/v3-0-0-beta-7)
 
-```tsx
-'use client'
+<ComponentPreview name="calendar-international-calendar">
+
+````tsx
+"use client";
+
+import {Calendar} from "@vezham/react-v3";
+import {getLocalTimeZone, today} from "@internationalized/date";
+import {I18nProvider} from "react-aria-components";
 
 export function InternationalCalendar() {
   return (
     <I18nProvider locale="hi-IN-u-ca-indian">
-      <Calendar
-        aria-label="Event date"
-        defaultValue={today(getLocalTimeZone())}>
+      <Calendar aria-label="Event date" defaultValue={today(getLocalTimeZone())}>
         <Calendar.Header>
           <Calendar.YearPickerTrigger>
             <Calendar.YearPickerTriggerHeading />
@@ -166,31 +177,35 @@ export function InternationalCalendar() {
         </Calendar.Header>
         <Calendar.Grid>
           <Calendar.GridHeader>
-            {day => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
+            {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
           </Calendar.GridHeader>
-          <Calendar.GridBody>
-            {date => <Calendar.Cell date={date} />}
-          </Calendar.GridBody>
+          <Calendar.GridBody>{(date) => <Calendar.Cell date={date} />}</Calendar.GridBody>
         </Calendar.Grid>
         <Calendar.YearPickerGrid>
           <Calendar.YearPickerGridBody>
-            {({ year }) => <Calendar.YearPickerCell year={year} />}
+            {({year}) => <Calendar.YearPickerCell year={year} />}
           </Calendar.YearPickerGridBody>
         </Calendar.YearPickerGrid>
       </Calendar>
     </I18nProvider>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### RangeCalendar
 
 Date range selection with range highlighting and multi-month views.
 
-[Live example: range-calendar-basic](https://heroui.com/docs/react/releases/v3-0-0-beta-7)
 
-```tsx
-'use client'
+<ComponentPreview name="range-calendar-basic">
+
+````tsx
+"use client";
+
+import {RangeCalendar} from "@vezham/react-v3";
 
 export function Basic() {
   return (
@@ -202,30 +217,37 @@ export function Basic() {
       </RangeCalendar.Header>
       <RangeCalendar.Grid>
         <RangeCalendar.GridHeader>
-          {day => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
+          {(day) => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
         </RangeCalendar.GridHeader>
         <RangeCalendar.GridBody>
-          {date => <RangeCalendar.Cell date={date} />}
+          {(date) => <RangeCalendar.Cell date={date} />}
         </RangeCalendar.GridBody>
       </RangeCalendar.Grid>
     </RangeCalendar>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 **Multiple Months:**
 
-[Live example: range-calendar-multiple-months](https://heroui.com/docs/react/releases/v3-0-0-beta-7)
 
-```tsx
-'use client'
+<ComponentPreview name="range-calendar-multiple-months">
+
+````tsx
+"use client";
+
+import {RangeCalendar} from "@vezham/react-v3";
 
 export function MultipleMonths() {
   return (
     <RangeCalendar
       aria-label="Trip dates"
       className="@container-normal w-full max-w-none overflow-x-auto"
-      visibleDuration={{ months: 2 }}>
+      visibleDuration={{months: 2}}
+    >
       <div className="mx-auto flex w-max gap-8">
         <div className="w-64">
           <RangeCalendar.Header>
@@ -235,58 +257,55 @@ export function MultipleMonths() {
           </RangeCalendar.Header>
           <RangeCalendar.Grid>
             <RangeCalendar.GridHeader>
-              {day => (
-                <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>
-              )}
+              {(day) => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
             </RangeCalendar.GridHeader>
             <RangeCalendar.GridBody>
-              {date => <RangeCalendar.Cell date={date} />}
+              {(date) => <RangeCalendar.Cell date={date} />}
             </RangeCalendar.GridBody>
           </RangeCalendar.Grid>
         </div>
         <div className="w-64">
           <RangeCalendar.Header>
             <div className="size-6" />
-            <RangeCalendar.Heading
-              className="flex-none"
-              offset={{ months: 1 }}
-            />
+            <RangeCalendar.Heading className="flex-none" offset={{months: 1}} />
             <RangeCalendar.NavButton slot="next" />
           </RangeCalendar.Header>
-          <RangeCalendar.Grid offset={{ months: 1 }}>
+          <RangeCalendar.Grid offset={{months: 1}}>
             <RangeCalendar.GridHeader>
-              {day => (
-                <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>
-              )}
+              {(day) => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
             </RangeCalendar.GridHeader>
             <RangeCalendar.GridBody>
-              {date => <RangeCalendar.Cell date={date} />}
+              {(date) => <RangeCalendar.Cell date={date} />}
             </RangeCalendar.GridBody>
           </RangeCalendar.Grid>
         </div>
       </div>
     </RangeCalendar>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### DatePicker
 
 Date field + popover calendar. Format options, i18n, custom indicators, validation.
 
-[Live example: date-picker-basic](https://heroui.com/docs/react/releases/v3-0-0-beta-7)
 
-```tsx
-'use client'
+<ComponentPreview name="date-picker-basic">
+
+````tsx
+"use client";
+
+import {Calendar, DateField, DatePicker, Label} from "@vezham/react-v3";
 
 export function Basic() {
   return (
     <DatePicker className="w-72" name="date">
       <Label>Date</Label>
       <DateField.Group fullWidth>
-        <DateField.Input>
-          {segment => <DateField.Segment segment={segment} />}
-        </DateField.Input>
+        <DateField.Input>{(segment) => <DateField.Segment segment={segment} />}</DateField.Input>
         <DateField.Suffix>
           <DatePicker.Trigger>
             <DatePicker.TriggerIndicator />
@@ -305,30 +324,35 @@ export function Basic() {
           </Calendar.Header>
           <Calendar.Grid>
             <Calendar.GridHeader>
-              {day => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
+              {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
             </Calendar.GridHeader>
-            <Calendar.GridBody>
-              {date => <Calendar.Cell date={date} />}
-            </Calendar.GridBody>
+            <Calendar.GridBody>{(date) => <Calendar.Cell date={date} />}</Calendar.GridBody>
           </Calendar.Grid>
           <Calendar.YearPickerGrid>
             <Calendar.YearPickerGridBody>
-              {({ year }) => <Calendar.YearPickerCell year={year} />}
+              {({year}) => <Calendar.YearPickerCell year={year} />}
             </Calendar.YearPickerGridBody>
           </Calendar.YearPickerGrid>
         </Calendar>
       </DatePicker.Popover>
     </DatePicker>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 **Date and Time (with TimeField):**
 
-[Live example: date-picker-format-options](https://heroui.com/docs/react/releases/v3-0-0-beta-7)
 
-```tsx
-'use client'
+<ComponentPreview name="date-picker-format-options">
+
+````tsx
+"use client";
+
+import type {TimeValue} from "@vezham/react-v3";
+import type {DateValue} from "@internationalized/date";
 
 import {
   Calendar,
@@ -338,38 +362,40 @@ import {
   ListBox,
   Select,
   Switch,
-  TimeField
-} from '@heroui/react'
+  TimeField,
+} from "@vezham/react-v3";
+import {getLocalTimeZone, parseDate, parseZonedDateTime} from "@internationalized/date";
+import {useMemo, useState} from "react";
 
-type Granularity = 'day' | 'hour' | 'minute' | 'second'
-type HourCycle = 12 | 24
-const granularityOptions: { label: string; value: Granularity }[] = [
-  { label: 'Day', value: 'day' },
-  { label: 'Hour', value: 'hour' },
-  { label: 'Minute', value: 'minute' },
-  { label: 'Second', value: 'second' }
-]
-const hourCycleOptions: { label: string; value: HourCycle }[] = [
-  { label: '12-hour', value: 12 },
-  { label: '24-hour', value: 24 }
-]
+type Granularity = "day" | "hour" | "minute" | "second";
+type HourCycle = 12 | 24;
+const granularityOptions: {label: string; value: Granularity}[] = [
+  {label: "Day", value: "day"},
+  {label: "Hour", value: "hour"},
+  {label: "Minute", value: "minute"},
+  {label: "Second", value: "second"},
+];
+const hourCycleOptions: {label: string; value: HourCycle}[] = [
+  {label: "12-hour", value: 12},
+  {label: "24-hour", value: 24},
+];
 
 export function FormatOptions() {
-  const [granularity, setGranularity] = useState<Granularity>('minute')
-  const [hourCycle, setHourCycle] = useState<HourCycle>(12)
-  const [hideTimeZone, setHideTimeZone] = useState(false)
-  const [shouldForceLeadingZeros, setShouldForceLeadingZeros] = useState(false)
-  const timeGranularity = granularity !== 'day' ? granularity : undefined
-  const showTimeField = !!timeGranularity
+  const [granularity, setGranularity] = useState<Granularity>("minute");
+  const [hourCycle, setHourCycle] = useState<HourCycle>(12);
+  const [hideTimeZone, setHideTimeZone] = useState(false);
+  const [shouldForceLeadingZeros, setShouldForceLeadingZeros] = useState(false);
+  const timeGranularity = granularity !== "day" ? granularity : undefined;
+  const showTimeField = !!timeGranularity;
   const defaultValue = useMemo<DateValue>(() => {
-    const localTimeZone = getLocalTimeZone()
+    const localTimeZone = getLocalTimeZone();
 
-    if (granularity === 'day') {
-      return parseDate('2026-02-03')
+    if (granularity === "day") {
+      return parseDate("2026-02-03");
     }
 
-    return parseZonedDateTime(`2026-02-03T08:45:00[${localTimeZone}]`)
-  }, [granularity])
+    return parseZonedDateTime(`2026-02-03T08:45:00[${localTimeZone}]`);
+  }, [granularity]);
 
   return (
     <div className="flex flex-col gap-4">
@@ -381,13 +407,14 @@ export function FormatOptions() {
         hideTimeZone={hideTimeZone}
         hourCycle={hourCycle}
         name="date"
-        shouldForceLeadingZeros={shouldForceLeadingZeros}>
-        {({ state }) => (
+        shouldForceLeadingZeros={shouldForceLeadingZeros}
+      >
+        {({state}) => (
           <>
             <Label>Date and time</Label>
             <DateField.Group fullWidth>
               <DateField.Input>
-                {segment => <DateField.Segment segment={segment} />}
+                {(segment) => <DateField.Segment segment={segment} />}
               </DateField.Input>
               <DateField.Suffix>
                 <DatePicker.Trigger>
@@ -407,15 +434,13 @@ export function FormatOptions() {
                 </Calendar.Header>
                 <Calendar.Grid>
                   <Calendar.GridHeader>
-                    {day => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
+                    {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
                   </Calendar.GridHeader>
-                  <Calendar.GridBody>
-                    {date => <Calendar.Cell date={date} />}
-                  </Calendar.GridBody>
+                  <Calendar.GridBody>{(date) => <Calendar.Cell date={date} />}</Calendar.GridBody>
                 </Calendar.Grid>
                 <Calendar.YearPickerGrid>
                   <Calendar.YearPickerGridBody>
-                    {({ year }) => <Calendar.YearPickerCell year={year} />}
+                    {({year}) => <Calendar.YearPickerCell year={year} />}
                   </Calendar.YearPickerGridBody>
                 </Calendar.YearPickerGrid>
               </Calendar>
@@ -430,10 +455,11 @@ export function FormatOptions() {
                     name="time"
                     shouldForceLeadingZeros={shouldForceLeadingZeros}
                     value={state.timeValue}
-                    onChange={v => state.setTimeValue(v as TimeValue)}>
+                    onChange={(v) => state.setTimeValue(v as TimeValue)}
+                  >
                     <TimeField.Group variant="secondary">
                       <TimeField.Input>
-                        {segment => <TimeField.Segment segment={segment} />}
+                        {(segment) => <TimeField.Segment segment={segment} />}
                       </TimeField.Input>
                     </TimeField.Group>
                   </TimeField>
@@ -450,7 +476,8 @@ export function FormatOptions() {
             className="w-[120px]"
             value={granularity}
             variant="secondary"
-            onChange={value => setGranularity(value as Granularity)}>
+            onChange={(value) => setGranularity(value as Granularity)}
+          >
             <Label>Granularity</Label>
             <Select.Trigger>
               <Select.Value />
@@ -458,11 +485,8 @@ export function FormatOptions() {
             </Select.Trigger>
             <Select.Popover>
               <ListBox>
-                {granularityOptions.map(option => (
-                  <ListBox.Item
-                    key={option.value}
-                    id={option.value}
-                    textValue={option.label}>
+                {granularityOptions.map((option) => (
+                  <ListBox.Item key={option.value} id={option.value} textValue={option.label}>
                     {option.label}
                     <ListBox.ItemIndicator />
                   </ListBox.Item>
@@ -477,7 +501,8 @@ export function FormatOptions() {
             className="w-[120px]"
             value={hourCycle}
             variant="secondary"
-            onChange={value => setHourCycle(Number(value) as HourCycle)}>
+            onChange={(value) => setHourCycle(Number(value) as HourCycle)}
+          >
             <Label>Hour cycle</Label>
             <Select.Trigger>
               <Select.Value />
@@ -485,11 +510,8 @@ export function FormatOptions() {
             </Select.Trigger>
             <Select.Popover>
               <ListBox>
-                {hourCycleOptions.map(option => (
-                  <ListBox.Item
-                    key={option.value}
-                    id={option.value}
-                    textValue={option.label}>
+                {hourCycleOptions.map((option) => (
+                  <ListBox.Item key={option.value} id={option.value} textValue={option.label}>
                     {option.label}
                     <ListBox.ItemIndicator />
                   </ListBox.Item>
@@ -509,9 +531,7 @@ export function FormatOptions() {
             Hide timezone
           </Switch.Content>
         </Switch>
-        <Switch
-          isSelected={shouldForceLeadingZeros}
-          onChange={setShouldForceLeadingZeros}>
+        <Switch isSelected={shouldForceLeadingZeros} onChange={setShouldForceLeadingZeros}>
           <Switch.Content>
             <Switch.Control>
               <Switch.Thumb />
@@ -521,18 +541,24 @@ export function FormatOptions() {
         </Switch>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### DateRangePicker
 
 Two date fields + popover range calendar.
 
-[Live example: date-range-picker-basic](https://heroui.com/docs/react/releases/v3-0-0-beta-7)
 
-```tsx
-'use client'
+<ComponentPreview name="date-range-picker-basic">
+
+````tsx
+"use client";
+
+import {DateField, DateRangePicker, Label, RangeCalendar} from "@vezham/react-v3";
 
 export function Basic() {
   return (
@@ -540,11 +566,11 @@ export function Basic() {
       <Label>Trip dates</Label>
       <DateField.Group fullWidth>
         <DateField.Input slot="start">
-          {segment => <DateField.Segment segment={segment} />}
+          {(segment) => <DateField.Segment segment={segment} />}
         </DateField.Input>
         <DateRangePicker.RangeSeparator />
         <DateField.Input slot="end">
-          {segment => <DateField.Segment segment={segment} />}
+          {(segment) => <DateField.Segment segment={segment} />}
         </DateField.Input>
         <DateField.Suffix>
           <DateRangePicker.Trigger>
@@ -564,25 +590,26 @@ export function Basic() {
           </RangeCalendar.Header>
           <RangeCalendar.Grid>
             <RangeCalendar.GridHeader>
-              {day => (
-                <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>
-              )}
+              {(day) => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
             </RangeCalendar.GridHeader>
             <RangeCalendar.GridBody>
-              {date => <RangeCalendar.Cell date={date} />}
+              {(date) => <RangeCalendar.Cell date={date} />}
             </RangeCalendar.GridBody>
           </RangeCalendar.Grid>
           <RangeCalendar.YearPickerGrid>
             <RangeCalendar.YearPickerGridBody>
-              {({ year }) => <RangeCalendar.YearPickerCell year={year} />}
+              {({year}) => <RangeCalendar.YearPickerCell year={year} />}
             </RangeCalendar.YearPickerGridBody>
           </RangeCalendar.YearPickerGrid>
         </RangeCalendar>
       </DateRangePicker.Popover>
     </DateRangePicker>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## API Improvements
 
@@ -591,11 +618,10 @@ export function Basic() {
 `Switch.Content` groups label and description next to the switch control ([#6240](https://github.com/heroui-inc/heroui/pull/6240)).
 
 **Before:**
-
 ```tsx
-import { Description, Label, Switch } from '@heroui/react'
+import { Switch, Label, Description } from '@heroui/react';
 
-;<Switch>
+<Switch>
   <Switch.Control>
     <Switch.Thumb />
   </Switch.Control>
@@ -612,9 +638,12 @@ The [Tabs](https://heroui.com/docs/components/tabs) component now includes an ex
 
 Separators are now **opt-in** — add `<Tabs.Separator />` inside each `<Tabs.Tab>` where you want a separator line.
 
-[Live example: tabs-with-separator](https://heroui.com/docs/react/releases/v3-0-0-beta-7)
 
-```tsx
+<ComponentPreview name="tabs-with-separator">
+
+````tsx
+import {Tabs} from "@vezham/react-v3";
+
 export function WithSeparator() {
   return (
     <Tabs className="w-full max-w-md">
@@ -646,9 +675,12 @@ export function WithSeparator() {
         <p>Generate and download detailed reports.</p>
       </Tabs.Panel>
     </Tabs>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Field Sub-Component Consolidation
 
@@ -679,46 +711,28 @@ Props passed to `Breadcrumbs.Item` are now forwarded to the underlying `Link` ([
 The `hideSeparator` prop has been removed from the Tabs component. Separators are now **opt-in** using the new `<Tabs.Separator />` sub-component instead of being automatically generated via CSS pseudo-elements ([#6243](https://github.com/heroui-inc/heroui/pull/6243)).
 
 **Before:**
-
 ```tsx
-{
-  /* Separators shown by default, hidden via prop */
-}
-;<Tabs hideSeparator>
+{/* Separators shown by default, hidden via prop */}
+<Tabs hideSeparator>
   <Tabs.List>
-    <Tabs.Tab id="tab1">
-      Tab 1<Tabs.Indicator />
-    </Tabs.Tab>
-    <Tabs.Tab id="tab2">
-      Tab 2<Tabs.Indicator />
-    </Tabs.Tab>
+    <Tabs.Tab id="tab1">Tab 1<Tabs.Indicator /></Tabs.Tab>
+    <Tabs.Tab id="tab2">Tab 2<Tabs.Indicator /></Tabs.Tab>
   </Tabs.List>
 </Tabs>
 ```
 
 **After:**
-
 ```tsx
-{
-  /* No separators by default — explicitly add them where needed */
-}
-;<Tabs>
+{/* No separators by default — explicitly add them where needed */}
+<Tabs>
   <Tabs.List>
-    <Tabs.Tab id="tab1">
-      <Tabs.Indicator />
-      Tab 1
-    </Tabs.Tab>
-    <Tabs.Tab id="tab2">
-      <Tabs.Separator />
-      <Tabs.Indicator />
-      Tab 2
-    </Tabs.Tab>
+    <Tabs.Tab id="tab1"><Tabs.Indicator />Tab 1</Tabs.Tab>
+    <Tabs.Tab id="tab2"><Tabs.Separator /><Tabs.Indicator />Tab 2</Tabs.Tab>
   </Tabs.List>
 </Tabs>
 ```
 
 **CSS Changes:**
-
 - Tab separator styles moved from pseudo-element (`.tabs__tab:not(:first-child):before`) to a dedicated `.tabs__separator` class
 - The `[data-hide-separator]` data attribute has been removed
 
@@ -729,16 +743,15 @@ The `hideSeparator` prop has been removed from the Tabs component. Separators ar
 #### DateField Changes
 
 **Before:**
-
 ```tsx
-import { DateField, DateInputGroup, Description, Label } from '@heroui/react'
+import {DateField, Label, DateInputGroup, Description} from '@heroui/react';
 
-;<DateField>
+<DateField>
   <Label>Date</Label>
   <DateInputGroup>
     <DateInputGroup.Prefix>...</DateInputGroup.Prefix>
     <DateInputGroup.Input>
-      {segment => <DateInputGroup.Segment segment={segment} />}
+      {(segment) => <DateInputGroup.Segment segment={segment} />}
     </DateInputGroup.Input>
     <DateInputGroup.Suffix>...</DateInputGroup.Suffix>
   </DateInputGroup>
@@ -747,16 +760,15 @@ import { DateField, DateInputGroup, Description, Label } from '@heroui/react'
 ```
 
 **After:**
-
 ```tsx
-import { DateField, Description, Label } from '@heroui/react'
+import {DateField, Label, Description} from '@heroui/react';
 
-;<DateField>
+<DateField>
   <Label>Date</Label>
   <DateField.Group>
     <DateField.Prefix>...</DateField.Prefix>
     <DateField.Input>
-      {segment => <DateField.Segment segment={segment} />}
+      {(segment) => <DateField.Segment segment={segment} />}
     </DateField.Input>
     <DateField.Suffix>...</DateField.Suffix>
   </DateField.Group>
@@ -768,29 +780,29 @@ import { DateField, Description, Label } from '@heroui/react'
 
 Same pattern as DateField:
 
-| Before                   | After               |
-| ------------------------ | ------------------- |
-| `DateInputGroup`         | `TimeField.Group`   |
-| `DateInputGroup.Input`   | `TimeField.Input`   |
+| Before | After |
+|--------|-------|
+| `DateInputGroup` | `TimeField.Group` |
+| `DateInputGroup.Input` | `TimeField.Input` |
 | `DateInputGroup.Segment` | `TimeField.Segment` |
-| `DateInputGroup.Prefix`  | `TimeField.Prefix`  |
-| `DateInputGroup.Suffix`  | `TimeField.Suffix`  |
+| `DateInputGroup.Prefix` | `TimeField.Prefix` |
+| `DateInputGroup.Suffix` | `TimeField.Suffix` |
 
 #### ColorField Changes
 
-| Before                   | After               |
-| ------------------------ | ------------------- |
-| `ColorInputGroup`        | `ColorField.Group`  |
-| `ColorInputGroup.Input`  | `ColorField.Input`  |
+| Before | After |
+|--------|-------|
+| `ColorInputGroup` | `ColorField.Group` |
+| `ColorInputGroup.Input` | `ColorField.Input` |
 | `ColorInputGroup.Prefix` | `ColorField.Prefix` |
 | `ColorInputGroup.Suffix` | `ColorField.Suffix` |
 
 **Usage:**
 
 ```tsx
-import { ColorField, ColorInputGroup, ColorSwatch, Label } from '@heroui/react'
+import {ColorField, Label, ColorInputGroup, ColorSwatch} from '@heroui/react';
 
-;<ColorField>
+<ColorField>
   <Label>Color</Label>
   <ColorInputGroup>
     <ColorInputGroup.Prefix>
@@ -802,11 +814,10 @@ import { ColorField, ColorInputGroup, ColorSwatch, Label } from '@heroui/react'
 ```
 
 **After:**
-
 ```tsx
-import { ColorField, ColorSwatch, Label } from '@heroui/react'
+import {ColorField, Label, ColorSwatch} from '@heroui/react';
 
-;<ColorField>
+<ColorField>
   <Label>Color</Label>
   <ColorField.Group>
     <ColorField.Prefix>

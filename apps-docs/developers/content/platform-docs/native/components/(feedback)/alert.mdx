@@ -8,16 +8,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/alert-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/alert-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/alert-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/alert-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { Alert } from 'heroui-native'
+import { Alert } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -154,8 +155,8 @@ Apply custom styles using the `className` prop on the root and compound parts.
 ## Example
 
 ```tsx
-import { Alert, Button, CloseButton } from 'heroui-native'
-import { View } from 'react-native'
+import { Alert, Button, CloseButton } from 'heroui-native';
+import { View } from 'react-native';
 
 export default function AlertExample() {
   return (
@@ -196,7 +197,7 @@ export default function AlertExample() {
         <CloseButton />
       </Alert>
     </View>
-  )
+  );
 }
 ```
 
@@ -262,9 +263,9 @@ You can find more examples in the [GitHub repository](<https://github.com/heroui
 Hook to access the alert root context. Must be used within an `Alert` component.
 
 ```tsx
-import { useAlert } from 'heroui-native'
+import { useAlert } from 'heroui-native';
 
-const { status, nativeID } = useAlert()
+const { status, nativeID } = useAlert();
 ```
 
 #### Returns

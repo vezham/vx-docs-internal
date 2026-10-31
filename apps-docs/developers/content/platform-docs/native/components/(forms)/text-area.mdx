@@ -1,7 +1,7 @@
 ---
 title: TextArea
 description: A multiline text input component with styled border and background for collecting longer user input.
-icon: updated
+status: updated
 links:
   source_native: text-area/text-area.tsx
   styles_native: text-area/text-area.styles.ts
@@ -9,16 +9,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/text-area-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/text-area-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/text-area-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/text-area-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { TextArea } from 'heroui-native'
+import { TextArea } from 'heroui-native';
 ```
 
 ## Usage
@@ -28,9 +29,9 @@ import { TextArea } from 'heroui-native'
 TextArea can be used standalone or within a TextField component.
 
 ```tsx
-import { TextArea } from 'heroui-native'
+import { TextArea } from 'heroui-native';
 
-;<TextArea placeholder="Enter your message" />
+<TextArea placeholder="Enter your message" />
 ```
 
 ### Within TextField
@@ -38,9 +39,9 @@ import { TextArea } from 'heroui-native'
 TextArea works seamlessly with TextField for complete form structure.
 
 ```tsx
-import { Description, Label, TextArea, TextField } from 'heroui-native'
+import { Description, Label, TextArea, TextField } from 'heroui-native';
 
-;<TextField>
+<TextField>
   <Label>Message</Label>
   <TextArea placeholder="Enter your message here..." />
   <Description>Please provide as much detail as possible.</Description>
@@ -52,9 +53,9 @@ import { Description, Label, TextArea, TextField } from 'heroui-native'
 Display error state when the text area is invalid.
 
 ```tsx
-import { FieldError, Label, TextArea, TextField } from 'heroui-native'
+import { FieldError, Label, TextArea, TextField } from 'heroui-native';
 
-;<TextField isRequired isInvalid={true}>
+<TextField isRequired isInvalid={true}>
   <Label>Message</Label>
   <TextArea placeholder="Enter your message" />
   <FieldError>Please enter a valid message</FieldError>
@@ -66,9 +67,9 @@ import { FieldError, Label, TextArea, TextField } from 'heroui-native'
 Disable the text area to prevent interaction.
 
 ```tsx
-import { Label, TextArea, TextField } from 'heroui-native'
+import { Label, TextArea, TextField } from 'heroui-native';
 
-;<TextField isDisabled>
+<TextField isDisabled>
   <Label>Disabled Field</Label>
   <TextArea placeholder="Cannot edit" value="Read only value" />
 </TextField>
@@ -97,13 +98,13 @@ import { Label, TextArea, TextField } from 'heroui-native';
 Customize the text area appearance using className.
 
 ```tsx
-import { Label, TextArea, TextField } from 'heroui-native'
+import { Label, TextArea, TextField } from 'heroui-native';
 
-;<TextField>
+<TextField>
   <Label>Custom Styled</Label>
   <TextArea
     placeholder="Custom colors"
-    className="border-blue-500 bg-blue-50 focus:border-blue-700"
+    className="bg-blue-50 border-blue-500 focus:border-blue-700"
   />
 </TextField>
 ```
@@ -111,14 +112,8 @@ import { Label, TextArea, TextField } from 'heroui-native'
 ## Example
 
 ```tsx
-import {
-  Description,
-  FieldError,
-  Label,
-  TextArea,
-  TextField
-} from 'heroui-native'
-import { View } from 'react-native'
+import { Description, FieldError, Label, TextArea, TextField } from 'heroui-native';
+import { View } from 'react-native';
 
 export default function TextAreaExample() {
   return (
@@ -131,15 +126,18 @@ export default function TextAreaExample() {
 
       <TextField>
         <Label>Secondary Variant</Label>
-        <TextArea placeholder="Secondary style text area" variant="secondary" />
+        <TextArea
+          placeholder="Secondary style text area"
+          variant="secondary"
+        />
         <Description>Secondary variant for surfaces</Description>
       </TextField>
     </View>
-  )
+  );
 }
 ```
 
-You can find more examples in the [GitHub repository](<https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/text-area.tsx>).
+You can find more examples in the [GitHub repository](https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/text-area.tsx).
 
 ## API Reference
 

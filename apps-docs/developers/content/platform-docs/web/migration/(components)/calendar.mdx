@@ -3,16 +3,11 @@ title: Calendar
 description: Migration guide for Calendar from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Calendar documentation](/docs-ui/web/components/calendar) for
-  complete API reference, styling guide, and advanced examples. This guide only
-  focuses on migrating from HeroUI v2.
+  Refer to the [v3 Calendar documentation](/docs-ui/web/components/calendar) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,17 +15,17 @@ import {
 In v2, `Calendar` was a single component configured entirely through props:
 
 ```tsx
-import { Calendar } from '@heroui/react'
+import { Calendar } from "@heroui/react";
 
 export default function App() {
-  return <Calendar aria-label="Date" />
+  return <Calendar aria-label="Date" />;
 }
 ```
 
 In v3, Calendar uses a compound component pattern with explicit subcomponents:
 
 ```tsx
-import { Calendar } from '@heroui/react'
+import { Calendar } from "@heroui/react";
 
 export default function App() {
   return (
@@ -42,14 +37,14 @@ export default function App() {
       </Calendar.Header>
       <Calendar.Grid>
         <Calendar.GridHeader>
-          {day => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
+          {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
         </Calendar.GridHeader>
         <Calendar.GridBody>
-          {date => <Calendar.Cell date={date} />}
+          {(date) => <Calendar.Cell date={date} />}
         </Calendar.GridBody>
       </Calendar.Grid>
     </Calendar>
-  )
+  );
 }
 ```
 
@@ -67,33 +62,33 @@ export default function App() {
 
 ### 3. Prop Changes
 
-| v2 Prop                   | v3 Equivalent            | Notes                                                          |
-| ------------------------- | ------------------------ | -------------------------------------------------------------- |
-| `value`                   | `value`                  | Same                                                           |
-| `defaultValue`            | `defaultValue`           | Same                                                           |
-| `onChange`                | `onChange`               | Same                                                           |
-| `focusedValue`            | `focusedValue`           | Same                                                           |
-| `onFocusChange`           | `onFocusChange`          | Same                                                           |
-| `minValue`                | `minValue`               | Same                                                           |
-| `maxValue`                | `maxValue`               | Same                                                           |
-| `isDateUnavailable`       | `isDateUnavailable`      | Same                                                           |
-| `isDisabled`              | `isDisabled`             | Same                                                           |
-| `isReadOnly`              | `isReadOnly`             | Same                                                           |
-| `isInvalid`               | `isInvalid`              | Same                                                           |
-| `visibleMonths`           | `visibleDuration`        | Changed to `{months: number}` object                           |
-| `showMonthAndYearPickers` | -                        | Use `Calendar.YearPickerTrigger` and `Calendar.YearPickerGrid` |
-| `onHeaderExpandedChange`  | `onYearPickerOpenChange` | Renamed                                                        |
-| `color`                   | -                        | Removed (use Tailwind CSS)                                     |
-| `calendarWidth`           | -                        | Removed (use `className` or Tailwind CSS)                      |
-| `weekdayStyle`            | -                        | Removed                                                        |
-| `pageBehavior`            | `pageBehavior`           | Same                                                           |
-| `firstDayOfWeek`          | -                        | Use `I18nProvider` locale instead                              |
-| `hideDisabledDates`       | -                        | Removed                                                        |
-| `disableAnimation`        | -                        | Removed                                                        |
-| `topContent`              | -                        | Place custom content inside `Calendar` before `Calendar.Grid`  |
-| `bottomContent`           | -                        | Place custom content inside `Calendar` after `Calendar.Grid`   |
-| `classNames`              | -                        | Use `className` on individual compound components              |
-| `errorMessage`            | -                        | Removed (handle validation externally)                         |
+| v2 Prop | v3 Equivalent | Notes |
+|---------|---------------|-------|
+| `value` | `value` | Same |
+| `defaultValue` | `defaultValue` | Same |
+| `onChange` | `onChange` | Same |
+| `focusedValue` | `focusedValue` | Same |
+| `onFocusChange` | `onFocusChange` | Same |
+| `minValue` | `minValue` | Same |
+| `maxValue` | `maxValue` | Same |
+| `isDateUnavailable` | `isDateUnavailable` | Same |
+| `isDisabled` | `isDisabled` | Same |
+| `isReadOnly` | `isReadOnly` | Same |
+| `isInvalid` | `isInvalid` | Same |
+| `visibleMonths` | `visibleDuration` | Changed to `{months: number}` object |
+| `showMonthAndYearPickers` | - | Use `Calendar.YearPickerTrigger` and `Calendar.YearPickerGrid` |
+| `onHeaderExpandedChange` | `onYearPickerOpenChange` | Renamed |
+| `color` | - | Removed (use Tailwind CSS) |
+| `calendarWidth` | - | Removed (use `className` or Tailwind CSS) |
+| `weekdayStyle` | - | Removed |
+| `pageBehavior` | `pageBehavior` | Same |
+| `firstDayOfWeek` | - | Use `I18nProvider` locale instead |
+| `hideDisabledDates` | - | Removed |
+| `disableAnimation` | - | Removed |
+| `topContent` | - | Place custom content inside `Calendar` before `Calendar.Grid` |
+| `bottomContent` | - | Place custom content inside `Calendar` after `Calendar.Grid` |
+| `classNames` | - | Use `className` on individual compound components |
+| `errorMessage` | - | Removed (handle validation externally) |
 
 ### 4. Color Prop Removed
 
@@ -115,7 +110,6 @@ export default function App() {
       defaultValue={today(getLocalTimeZone())}
     />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -141,7 +135,6 @@ export default function App() {
       </Calendar.Grid>
     </Calendar>
     ```
-
   </Tab>
 </Tabs>
 
@@ -162,7 +155,6 @@ export default function App() {
       onChange={setValue}
     />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -192,16 +184,18 @@ export default function App() {
       </Calendar.Grid>
     </Calendar>
     ```
-
   </Tab>
 </Tabs>
 
 ### Month and Year Pickers
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
-    <Calendar aria-label="Date" showMonthAndYearPickers />
+    <Calendar
+      aria-label="Date"
+      showMonthAndYearPickers
+    />
     ```
   </Tab>
   <Tab value="v3">
@@ -217,15 +211,15 @@ export default function App() {
       </Calendar.Header>
       <Calendar.Grid>
         <Calendar.GridHeader>
-          {day => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
+          {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
         </Calendar.GridHeader>
         <Calendar.GridBody>
-          {date => <Calendar.Cell date={date} />}
+          {(date) => <Calendar.Cell date={date} />}
         </Calendar.GridBody>
       </Calendar.Grid>
       <Calendar.YearPickerGrid>
         <Calendar.YearPickerGridBody>
-          {year => <Calendar.YearPickerCell date={year} />}
+          {(year) => <Calendar.YearPickerCell date={year} />}
         </Calendar.YearPickerGridBody>
       </Calendar.YearPickerGrid>
     </Calendar>
@@ -235,15 +229,18 @@ export default function App() {
 
 ### Multiple Months
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
-    <Calendar aria-label="Date" visibleMonths={2} />
+    <Calendar
+      aria-label="Date"
+      visibleMonths={2}
+    />
     ```
   </Tab>
   <Tab value="v3">
     ```tsx
-    <Calendar aria-label="Date" visibleDuration={{ months: 2 }}>
+    <Calendar aria-label="Date" visibleDuration={{months: 2}}>
       <Calendar.Header>
         <Calendar.Heading />
         <Calendar.NavButton slot="previous" />
@@ -252,18 +249,18 @@ export default function App() {
       <div className="flex gap-4">
         <Calendar.Grid>
           <Calendar.GridHeader>
-            {day => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
+            {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
           </Calendar.GridHeader>
           <Calendar.GridBody>
-            {date => <Calendar.Cell date={date} />}
+            {(date) => <Calendar.Cell date={date} />}
           </Calendar.GridBody>
         </Calendar.Grid>
-        <Calendar.Grid offset={{ months: 1 }}>
+        <Calendar.Grid offset={{months: 1}}>
           <Calendar.GridHeader>
-            {day => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
+            {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
           </Calendar.GridHeader>
           <Calendar.GridBody>
-            {date => <Calendar.Cell date={date} />}
+            {(date) => <Calendar.Cell date={date} />}
           </Calendar.GridBody>
         </Calendar.Grid>
       </div>
@@ -287,7 +284,6 @@ export default function App() {
       isDateUnavailable={(date) => isWeekend(date, locale)}
     />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -315,13 +311,12 @@ export default function App() {
       </Calendar.Grid>
     </Calendar>
     ```
-
   </Tab>
 </Tabs>
 
 ### Top and Bottom Content
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Calendar
@@ -346,13 +341,15 @@ export default function App() {
       </Calendar.Header>
       <Calendar.Grid>
         <Calendar.GridHeader>
-          {day => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
+          {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
         </Calendar.GridHeader>
         <Calendar.GridBody>
-          {date => <Calendar.Cell date={date} />}
+          {(date) => <Calendar.Cell date={date} />}
         </Calendar.GridBody>
       </Calendar.Grid>
-      <button onClick={() => setValue(today(getLocalTimeZone()))}>Today</button>
+      <button onClick={() => setValue(today(getLocalTimeZone()))}>
+        Today
+      </button>
     </Calendar>
     ```
   </Tab>
@@ -360,7 +357,7 @@ export default function App() {
 
 ### Cell Indicators
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     {/* v2 did not have a built-in cell indicator API */}
@@ -370,12 +367,12 @@ export default function App() {
     ```tsx
     <Calendar.Grid>
       <Calendar.GridHeader>
-        {day => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
+        {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
       </Calendar.GridHeader>
       <Calendar.GridBody>
-        {date => (
+        {(date) => (
           <Calendar.Cell date={date}>
-            {({ formattedDate }) => (
+            {({formattedDate}) => (
               <>
                 {formattedDate}
                 {hasEvent(date) && <Calendar.CellIndicator />}
@@ -396,12 +393,12 @@ export default function App() {
 ```tsx
 <Calendar
   classNames={{
-    base: 'custom-base',
-    prevButton: 'custom-prev',
-    nextButton: 'custom-next',
-    title: 'custom-title',
-    cell: 'custom-cell',
-    cellButton: 'custom-cell-button'
+    base: "custom-base",
+    prevButton: "custom-prev",
+    nextButton: "custom-next",
+    title: "custom-title",
+    cell: "custom-cell",
+    cellButton: "custom-cell-button",
   }}
 />
 ```
@@ -417,10 +414,10 @@ export default function App() {
   </Calendar.Header>
   <Calendar.Grid>
     <Calendar.GridHeader>
-      {day => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
+      {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
     </Calendar.GridHeader>
     <Calendar.GridBody>
-      {date => <Calendar.Cell date={date} className="custom-cell" />}
+      {(date) => <Calendar.Cell date={date} className="custom-cell" />}
     </Calendar.GridBody>
   </Calendar.Grid>
 </Calendar>

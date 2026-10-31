@@ -3,34 +3,29 @@ title: Link
 description: Migration guide for Link from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Link documentation](/docs-ui/web/components/link) for
-  complete API reference, styling guide, and advanced examples. This guide only
-  focuses on migrating from HeroUI v2.
+  Refer to the [v3 Link documentation](/docs-ui/web/components/link) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Key Changes
 
 ### 1. Component Structure
 
-**v2:** Single component with icon props  
+**v2:** Single component with icon props
 **v3:** Compound component: `Link.Icon` for icons
 
 ### 2. Prop Changes
 
-| v2 Prop                        | v3 Location | Notes                                                 |
-| ------------------------------ | ----------- | ----------------------------------------------------- |
-| `showAnchorIcon`, `anchorIcon` | -           | Use `Link.Icon` component with children               |
-| `isExternal`                   | -           | Use `target="_blank"` and `rel="noopener noreferrer"` |
-| `size`, `color`, `isBlock`     | -           | Removed (use Tailwind CSS)                            |
-| `disableAnimation`             | -           | Removed                                               |
-| `underline`                    | -           | Removed (use Tailwind `underline`, etc.)              |
+| v2 Prop | v3 Location | Notes |
+|---------|-------------|-------|
+| `showAnchorIcon`, `anchorIcon` | - | Use `Link.Icon` component with children |
+| `isExternal` | - | Use `target="_blank"` and `rel="noopener noreferrer"` |
+| `size`, `color`, `isBlock` | - | Removed (use Tailwind CSS) |
+| `disableAnimation` | - | Removed |
+| `underline` | - | Removed (use Tailwind `underline`, etc.) |
 
 ### 3. New Props
 
@@ -41,20 +36,20 @@ import {
 In v2, Link component usage:
 
 ```tsx
-import { Link } from '@heroui/react'
+import { Link } from "@heroui/react";
 
 export default function App() {
-  return <Link href="#">Default Link</Link>
+  return <Link href="#">Default Link</Link>;
 }
 ```
 
 In v3, Link component usage remains the same for basic cases:
 
 ```tsx
-import { Link } from '@heroui/react'
+import { Link } from "@heroui/react";
 
 export default function App() {
-  return <Link href="#">Default Link</Link>
+  return <Link href="#">Default Link</Link>;
 }
 ```
 
@@ -62,15 +57,20 @@ export default function App() {
 
 ### With Icons
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     {/* Default icon */}
     <Link showAnchorIcon href="#">
       External Link
     </Link>
+
     {/* Custom icon */}
-    <Link showAnchorIcon anchorIcon={<CustomIcon />} href="#">
+    <Link
+      showAnchorIcon
+      anchorIcon={<CustomIcon />}
+      href="#"
+    >
       Custom Icon
     </Link>
     ```
@@ -82,6 +82,7 @@ export default function App() {
       External Link
       <Link.Icon />
     </Link>
+
     {/* Custom icon */}
     <Link href="#">
       Custom Icon
@@ -95,7 +96,7 @@ export default function App() {
 
 ### External Link
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Link isExternal href="https://example.com">
@@ -105,7 +106,11 @@ export default function App() {
   </Tab>
   <Tab value="v3">
     ```tsx
-    <Link href="https://example.com" target="_blank" rel="noopener noreferrer">
+    <Link
+      href="https://example.com"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       External Link
       <Link.Icon />
     </Link>
@@ -115,7 +120,7 @@ export default function App() {
 
 ### Underline and offset (v3: use Tailwind)
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Link href="#" underline="hover">
@@ -125,7 +130,9 @@ export default function App() {
   </Tab>
   <Tab value="v3">
     ```tsx
-    <Link href="#">Hover to underline</Link>
+    <Link href="#">
+      Hover to underline
+    </Link>
     <Link href="#" className="underline underline-offset-2">
       Underline with offset
     </Link>
@@ -145,7 +152,6 @@ export default function App() {
       About
     </Link>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -157,7 +163,6 @@ export default function App() {
       About
     </NextLink>
     ```
-
   </Tab>
 </Tabs>
 

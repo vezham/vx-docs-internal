@@ -3,16 +3,11 @@ title: Popover
 description: Migration guide for Popover from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Popover documentation](/docs-ui/web/components/popover) for
-  complete API reference, styling guide, and advanced examples. This guide only
-  focuses on migrating from HeroUI v2.
+  Refer to the [v3 Popover documentation](/docs-ui/web/components/popover) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,7 +15,7 @@ import {
 In v2, Popover used separate components:
 
 ```tsx
-import { Button, Popover, PopoverContent, PopoverTrigger } from '@heroui/react'
+import { Popover, PopoverTrigger, PopoverContent, Button } from "@heroui/react";
 
 export default function App() {
   return (
@@ -32,14 +27,14 @@ export default function App() {
         <div>Content</div>
       </PopoverContent>
     </Popover>
-  )
+  );
 }
 ```
 
 In v3, Popover uses compound components:
 
 ```tsx
-import { Button, Popover } from '@heroui/react'
+import { Popover, Button } from "@heroui/react";
 
 export default function App() {
   return (
@@ -52,7 +47,7 @@ export default function App() {
         </Popover.Dialog>
       </Popover.Content>
     </Popover>
-  )
+  );
 }
 ```
 
@@ -60,60 +55,50 @@ export default function App() {
 
 ### 1. Component Structure
 
-**v2:** Separate components (`Popover`, `PopoverTrigger`, `PopoverContent`)  
+**v2:** Separate components (`Popover`, `PopoverTrigger`, `PopoverContent`)
 **v3:** Compound components (`Popover`, `Popover.Trigger`, `Popover.Content`, `Popover.Dialog`, `Popover.Heading`, `Popover.Arrow`)
 
 ### 2. Prop Changes
 
-| v2 Prop                                   | v3 Location               | Notes                                                        |
-| ----------------------------------------- | ------------------------- | ------------------------------------------------------------ |
-| `placement`                               | `placement` (on Content)  | Moved to `Popover.Content`                                   |
-| `offset`                                  | `offset` (on Content)     | Moved to `Popover.Content`                                   |
-| `shouldFlip`                              | `shouldFlip` (on Content) | Moved to `Popover.Content`                                   |
-| `isOpen` / `defaultOpen` / `onOpenChange` | Same (on root)            | Controlled state stays on root `Popover`                     |
-| `showArrow`                               | —                         | Use `Popover.Arrow` component                                |
-| `size`                                    | —                         | Removed (use Tailwind CSS)                                   |
-| `color`                                   | —                         | Removed (use Tailwind CSS)                                   |
-| `radius`                                  | —                         | Removed (use Tailwind CSS)                                   |
-| `shadow`                                  | —                         | Removed (use Tailwind CSS)                                   |
-| `backdrop`                                | —                         | Removed                                                      |
-| `motionProps`                             | —                         | Removed (animations handled differently)                     |
-| `classNames`                              | —                         | Use `className` on each part                                 |
-| `onClose`                                 | —                         | Use `onOpenChange((open) => { if (!open) { ... } })` instead |
+| v2 Prop | v3 Location | Notes |
+|---------|-------------|-------|
+| `placement` | `placement` (on Content) | Moved to `Popover.Content` |
+| `offset` | `offset` (on Content) | Moved to `Popover.Content` |
+| `shouldFlip` | `shouldFlip` (on Content) | Moved to `Popover.Content` |
+| `isOpen` / `defaultOpen` / `onOpenChange` | Same (on root) | Controlled state stays on root `Popover` |
+| `showArrow` | — | Use `Popover.Arrow` component |
+| `size` | — | Removed (use Tailwind CSS) |
+| `color` | — | Removed (use Tailwind CSS) |
+| `radius` | — | Removed (use Tailwind CSS) |
+| `shadow` | — | Removed (use Tailwind CSS) |
+| `backdrop` | — | Removed |
+| `motionProps` | — | Removed (animations handled differently) |
+| `classNames` | — | Use `className` on each part |
+| `onClose` | — | Use `onOpenChange((open) => { if (!open) { ... } })` instead |
 
 ## Migration Examples
 
 ### Content Configuration
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     {/* With arrow */}
     <Popover showArrow>
-      <PopoverTrigger>
-        <Button>Open</Button>
-      </PopoverTrigger>
-      <PopoverContent>
-        <div>Content</div>
-      </PopoverContent>
+      <PopoverTrigger><Button>Open</Button></PopoverTrigger>
+      <PopoverContent><div>Content</div></PopoverContent>
     </Popover>
+
     {/* With placement */}
     <Popover placement="top">
-      <PopoverTrigger>
-        <Button>Open</Button>
-      </PopoverTrigger>
-      <PopoverContent>
-        <div>Content</div>
-      </PopoverContent>
+      <PopoverTrigger><Button>Open</Button></PopoverTrigger>
+      <PopoverContent><div>Content</div></PopoverContent>
     </Popover>
+
     {/* With offset */}
     <Popover offset={10}>
-      <PopoverTrigger>
-        <Button>Open</Button>
-      </PopoverTrigger>
-      <PopoverContent>
-        <div>Content</div>
-      </PopoverContent>
+      <PopoverTrigger><Button>Open</Button></PopoverTrigger>
+      <PopoverContent><div>Content</div></PopoverContent>
     </Popover>
     ```
   </Tab>
@@ -129,6 +114,7 @@ export default function App() {
         </Popover.Dialog>
       </Popover.Content>
     </Popover>
+
     {/* With placement - moved to Content */}
     <Popover>
       <Button>Open</Button>
@@ -139,6 +125,7 @@ export default function App() {
         </Popover.Dialog>
       </Popover.Content>
     </Popover>
+
     {/* With offset - moved to Content */}
     <Popover>
       <Button>Open</Button>
@@ -154,7 +141,7 @@ export default function App() {
 
 ### With Heading
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <PopoverContent>
@@ -195,7 +182,6 @@ export default function App() {
       </PopoverContent>
     </Popover>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -212,13 +198,12 @@ export default function App() {
       </Popover.Content>
     </Popover>
     ```
-
   </Tab>
 </Tabs>
 
 ### Custom Trigger
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <PopoverTrigger>
@@ -273,11 +258,11 @@ In v2, the arrow was controlled by the `showArrow` boolean prop on the root `Pop
 
 Controlled open state remains on the root `Popover` component, using the same prop names as v2:
 
-| Prop           | Type                        | Default | Description                              |
-| -------------- | --------------------------- | ------- | ---------------------------------------- |
-| `isOpen`       | `boolean`                   | -       | Controls popover visibility (controlled) |
-| `defaultOpen`  | `boolean`                   | `false` | Initial open state (uncontrolled)        |
-| `onOpenChange` | `(isOpen: boolean) => void` | -       | Called when open state changes           |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `isOpen` | `boolean` | - | Controls popover visibility (controlled) |
+| `defaultOpen` | `boolean` | `false` | Initial open state (uncontrolled) |
+| `onOpenChange` | `(isOpen: boolean) => void` | - | Called when open state changes |
 
 ### Custom Render Function
 

@@ -7,22 +7,27 @@ links:
   styles: field-error.css
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { FieldError } from '@heroui/react'
+import { FieldError } from '@heroui/react';
 ```
 
-[Live example: field-error-basic](https://heroui.com/docs/react/components/field-error)
 
-```tsx
-'use client'
+<ComponentPreview name="field-error-basic">
+
+````tsx
+"use client";
+
+import {FieldError, Input, Label, TextField} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function Basic() {
-  const [value, setValue] = useState('jr')
-  const isInvalid = value.length > 0 && value.length < 3
+  const [value, setValue] = useState("jr");
+  const isInvalid = value.length > 0 && value.length < 3;
 
   return (
     <TextField className="w-64" isInvalid={isInvalid}>
@@ -31,13 +36,16 @@ export function Basic() {
         id="username"
         placeholder="Enter username"
         value={value}
-        onChange={e => setValue(e.target.value)}
+        onChange={(e) => setValue(e.target.value)}
       />
       <FieldError>Username must be at least 3 characters</FieldError>
     </TextField>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 The FieldError component displays validation error messages for form fields. It automatically appears when the parent field is marked as invalid and provides smooth opacity transitions.
 
@@ -47,8 +55,8 @@ The FieldError component displays validation error messages for form fields. It 
 
 ```tsx
 export function Basic() {
-  const [value, setValue] = useState('')
-  const isInvalid = value.length > 0 && value.length < 3
+  const [value, setValue] = useState("");
+  const isInvalid = value.length > 0 && value.length < 3;
 
   return (
     <TextField className="w-64" isInvalid={isInvalid}>
@@ -57,11 +65,11 @@ export function Basic() {
         id="username"
         placeholder="Enter username"
         value={value}
-        onChange={e => setValue(e.target.value)}
+        onChange={(e) => setValue(e.target.value)}
       />
       <FieldError>Username must be at least 3 characters</FieldError>
     </TextField>
-  )
+  );
 }
 ```
 
@@ -72,7 +80,7 @@ export function Basic() {
   <Label>Password</Label>
   <Input type="password" />
   <FieldError>
-    {validation => validation.validationErrors.join(', ')}
+    {(validation) => validation.validationErrors.join(', ')}
   </FieldError>
 </TextField>
 ```
@@ -81,8 +89,8 @@ export function Basic() {
 
 ```tsx
 function EmailField() {
-  const [email, setEmail] = useState('')
-  const isInvalid = email.length > 0 && !email.includes('@')
+  const [email, setEmail] = useState('');
+  const isInvalid = email.length > 0 && !email.includes('@');
 
   return (
     <TextField isInvalid={isInvalid}>
@@ -90,11 +98,11 @@ function EmailField() {
       <Input
         type="email"
         value={email}
-        onChange={e => setEmail(e.target.value)}
+        onChange={(e) => setEmail(e.target.value)}
       />
       <FieldError>Email must include @ symbol</FieldError>
     </TextField>
-  )
+  );
 }
 ```
 
@@ -116,14 +124,18 @@ function EmailField() {
 
 ### Tailwind CSS
 
-[Live example: field-error-custom-styles](https://heroui.com/docs/react/components/field-error)
 
-```tsx
-'use client'
+<ComponentPreview name="field-error-custom-styles">
+
+````tsx
+"use client";
+
+import {FieldError, Input, Label, TextField} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function CustomStyles() {
-  const [value, setValue] = useState('jr')
-  const isInvalid = value.length > 0 && value.length < 3
+  const [value, setValue] = useState("jr");
+  const isInvalid = value.length > 0 && value.length < 3;
 
   return (
     <TextField className="w-64" isInvalid={isInvalid}>
@@ -133,15 +145,16 @@ export function CustomStyles() {
         id="handle"
         placeholder="min. 3 characters"
         value={value}
-        onChange={e => setValue(e.target.value)}
+        onChange={(e) => setValue(e.target.value)}
       />
-      <FieldError className="font-medium">
-        Handle must be at least 3 characters
-      </FieldError>
+      <FieldError className="font-medium">Handle must be at least 3 characters</FieldError>
     </TextField>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -150,7 +163,7 @@ To customize the FieldError component classes, you can use the `@layer component
 ```css
 @layer components {
   .field-error {
-    @apply text-danger font-medium;
+    @apply font-medium text-danger;
   }
 }
 ```
@@ -173,10 +186,10 @@ The FieldError component uses these CSS classes ([View source styles](https://gi
 
 ### FieldError
 
-| Prop        | Type                                                         | Default | Description                              |
-| ----------- | ------------------------------------------------------------ | ------- | ---------------------------------------- |
-| `className` | `string`                                                     | -       | Additional CSS classes                   |
-| `children`  | `ReactNode \| ((validation: ValidationResult) => ReactNode)` | -       | Error message content or render function |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode \| ((validation: ValidationResult) => ReactNode)` | - | Error message content or render function |
 
 ## Accessibility
 

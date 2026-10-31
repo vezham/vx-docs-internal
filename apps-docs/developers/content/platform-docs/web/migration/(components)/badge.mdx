@@ -3,16 +3,11 @@ title: Badge
 description: Migration guide for Badge from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Badge documentation](/docs-ui/web/components/badge) for
-  complete API reference, styling guide, and advanced examples. This guide only
-  focuses on migrating from HeroUI v2.
+  Refer to the [v3 Badge documentation](/docs-ui/web/components/badge) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,21 +15,21 @@ import {
 In v2, `Badge` was a wrapper component that positioned content relative to its children:
 
 ```tsx
-import { Avatar, Badge } from '@heroui/react'
+import { Badge, Avatar } from "@heroui/react";
 
 export default function App() {
   return (
     <Badge content="5" color="primary">
       <Avatar src="https://i.pravatar.cc/300" />
     </Badge>
-  )
+  );
 }
 ```
 
 In v3, Badge uses a compound component pattern with `Badge.Anchor` for positioning:
 
 ```tsx
-import { Avatar, Badge } from '@heroui/react'
+import { Badge, Avatar } from "@heroui/react";
 
 export default function App() {
   return (
@@ -45,7 +40,7 @@ export default function App() {
       </Avatar>
       <Badge color="accent">5</Badge>
     </Badge.Anchor>
-  )
+  );
 }
 ```
 
@@ -68,42 +63,42 @@ export default function App() {
 
 ### 4. Prop Changes
 
-| v2 Prop            | v3 Location      | Notes                                                         |
-| ------------------ | ---------------- | ------------------------------------------------------------- |
-| `content`          | `Badge` children | Content is now passed as children                             |
-| `children`         | `Badge.Anchor`   | The anchored element goes inside `Badge.Anchor`               |
-| `variant`          | `Badge`          | Values changed (see variant mapping)                          |
-| `color`            | `Badge`          | `primary` → `accent`, `secondary` removed                     |
-| `size`             | `Badge`          | Same (`sm`, `md`, `lg`)                                       |
-| `placement`        | `Badge`          | Same (`top-right`, `top-left`, `bottom-right`, `bottom-left`) |
-| `shape`            | -                | Removed (use Tailwind CSS)                                    |
-| `showOutline`      | -                | Removed (use Tailwind CSS e.g. `border-2`)                    |
-| `disableOutline`   | -                | Removed                                                       |
-| `disableAnimation` | -                | Removed                                                       |
-| `isInvisible`      | -                | Removed (use conditional rendering)                           |
-| `isOneChar`        | -                | Removed (use Tailwind CSS)                                    |
-| `isDot`            | -                | Omit children to render as dot                                |
-| `classNames`       | -                | Use `className` on individual components                      |
+| v2 Prop | v3 Location | Notes |
+|---------|-------------|-------|
+| `content` | `Badge` children | Content is now passed as children |
+| `children` | `Badge.Anchor` | The anchored element goes inside `Badge.Anchor` |
+| `variant` | `Badge` | Values changed (see variant mapping) |
+| `color` | `Badge` | `primary` → `accent`, `secondary` removed |
+| `size` | `Badge` | Same (`sm`, `md`, `lg`) |
+| `placement` | `Badge` | Same (`top-right`, `top-left`, `bottom-right`, `bottom-left`) |
+| `shape` | - | Removed (use Tailwind CSS) |
+| `showOutline` | - | Removed (use Tailwind CSS e.g. `border-2`) |
+| `disableOutline` | - | Removed |
+| `disableAnimation` | - | Removed |
+| `isInvisible` | - | Removed (use conditional rendering) |
+| `isOneChar` | - | Removed (use Tailwind CSS) |
+| `isDot` | - | Omit children to render as dot |
+| `classNames` | - | Use `className` on individual components |
 
 ### 5. Variant Mapping
 
-| v2 Variant | v3 Equivalent | Notes                           |
-| ---------- | ------------- | ------------------------------- |
-| `solid`    | `primary`     | Filled background               |
-| `flat`     | `soft`        | Light background                |
-| `faded`    | `secondary`   | Border with background          |
-| `shadow`   | `primary`     | Use Tailwind `shadow-*` classes |
+| v2 Variant | v3 Equivalent | Notes |
+|-----------|---------------|-------|
+| `solid` | `primary` | Filled background |
+| `flat` | `soft` | Light background |
+| `faded` | `secondary` | Border with background |
+| `shadow` | `primary` | Use Tailwind `shadow-*` classes |
 
 ### 6. Color Mapping
 
-| v2 Color    | v3 Equivalent         | Notes              |
-| ----------- | --------------------- | ------------------ |
-| `default`   | `default`             | Same               |
-| `primary`   | `accent`              | Renamed            |
+| v2 Color | v3 Equivalent | Notes |
+|---------|---------------|-------|
+| `default` | `default` | Same |
+| `primary` | `accent` | Renamed |
 | `secondary` | `default` or `accent` | Depends on context |
-| `success`   | `success`             | Same               |
-| `warning`   | `warning`             | Same               |
-| `danger`    | `danger`              | Same               |
+| `success` | `success` | Same |
+| `warning` | `warning` | Same |
+| `danger` | `danger` | Same |
 
 ## Migration Examples
 
@@ -118,7 +113,6 @@ export default function App() {
       <Avatar src="https://i.pravatar.cc/300" />
     </Badge>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -132,13 +126,12 @@ export default function App() {
       <Badge color="accent">5</Badge>
     </Badge.Anchor>
     ```
-
   </Tab>
 </Tabs>
 
 ### Dot Badge
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Badge content="" isDot color="success">
@@ -161,7 +154,7 @@ export default function App() {
 
 ### Placement
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Badge content="5" placement="bottom-right" color="danger">
@@ -176,9 +169,7 @@ export default function App() {
         <Avatar.Image src="https://i.pravatar.cc/300" alt="User" />
         <Avatar.Fallback>U</Avatar.Fallback>
       </Avatar>
-      <Badge placement="bottom-right" color="danger">
-        5
-      </Badge>
+      <Badge placement="bottom-right" color="danger">5</Badge>
     </Badge.Anchor>
     ```
   </Tab>
@@ -195,7 +186,6 @@ export default function App() {
       <Avatar src="https://i.pravatar.cc/300" />
     </Badge>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -209,7 +199,6 @@ export default function App() {
       {isVisible && <Badge color="danger">5</Badge>}
     </Badge.Anchor>
     ```
-
   </Tab>
 </Tabs>
 
@@ -224,7 +213,6 @@ export default function App() {
       <Avatar src="https://i.pravatar.cc/300" />
     </Badge>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -240,7 +228,6 @@ export default function App() {
       </Badge>
     </Badge.Anchor>
     ```
-
   </Tab>
 </Tabs>
 
@@ -251,8 +238,8 @@ export default function App() {
 ```tsx
 <Badge
   classNames={{
-    base: 'custom-base',
-    badge: 'custom-badge'
+    base: "custom-base",
+    badge: "custom-badge"
   }}
 />
 ```

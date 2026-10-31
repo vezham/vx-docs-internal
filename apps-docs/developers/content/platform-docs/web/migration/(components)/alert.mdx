@@ -3,16 +3,11 @@ title: Alert
 description: Migration guide for Alert from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Alert documentation](/docs-ui/web/components/alert) for
-  complete API reference, styling guide, and advanced examples. This guide only
-  focuses on migrating from HeroUI v2.
+  Refer to the [v3 Alert documentation](/docs-ui/web/components/alert) for complete API reference, styling guide, and advanced examples.  This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,7 +15,7 @@ import {
 In v2, `Alert` was a single component that accepted props for title, description, icon, and other elements:
 
 ```tsx
-import { Alert } from '@heroui/react'
+import { Alert } from "@heroui/react";
 
 export default function App() {
   return (
@@ -28,14 +23,14 @@ export default function App() {
       title="This is an alert"
       description="Thanks for subscribing to our newsletter!"
     />
-  )
+  );
 }
 ```
 
 In v3, Alert uses a compound component pattern with explicit subcomponents:
 
 ```tsx
-import { Alert } from '@heroui/react'
+import { Alert } from "@heroui/react";
 
 export default function App() {
   return (
@@ -48,7 +43,7 @@ export default function App() {
         </Alert.Description>
       </Alert.Content>
     </Alert>
-  )
+  );
 }
 ```
 
@@ -56,27 +51,26 @@ export default function App() {
 
 ### 1. Component Structure
 
-**v2:** Single `Alert` component with props  
+**v2:** Single `Alert` component with props
 **v3:** Compound components: `Alert`, `Alert.Indicator`, `Alert.Content`, `Alert.Title`, `Alert.Description`
 
 ### 2. Color/Status Props
 
-| v2 Color    | v3 Status | Notes                |
-| ----------- | --------- | -------------------- |
-| `default`   | `default` | Same                 |
-| `primary`   | `accent`  | Renamed              |
+| v2 Color | v3 Status | Notes |
+|----------|----------|-------|
+| `default` | `default` | Same |
+| `primary` | `accent` | Renamed |
 | `secondary` | `default` | Use `default` status |
-| `success`   | `success` | Same                 |
-| `warning`   | `warning` | Same                 |
-| `danger`    | `danger`  | Same                 |
+| `success` | `success` | Same |
+| `warning` | `warning` | Same |
+| `danger` | `danger` | Same |
 
 ### 3. Variants Removed
 
-**v2 Variants:** `solid`, `bordered`, `flat`, `faded`  
+**v2 Variants:** `solid`, `bordered`, `flat`, `faded`
 **v3:** No variant prop - use Tailwind CSS classes to achieve similar effects
 
 To achieve v2 variant styles in v3:
-
 - **v2 `solid`** → v3 `status` + add background color classes
 - **v2 `bordered`** → v3 `status` + add `border` classes
 - **v2 `flat`** → v3 default (no additional classes needed)
@@ -84,23 +78,23 @@ To achieve v2 variant styles in v3:
 
 ### 4. Prop Changes
 
-| v2 Prop                                            | v3 Location         | Notes                                              |
-| -------------------------------------------------- | ------------------- | -------------------------------------------------- |
-| `variant`                                          | -                   | Removed (use Tailwind CSS)                         |
-| `radius`                                           | -                   | Removed (use Tailwind e.g. `rounded-lg`)           |
-| `startContent`                                     | -                   | Place content before `<Alert.Indicator />`         |
-| `endContent`                                       | -                   | Place content after `<Alert.Content />`            |
-| `hideIcon`                                         | -                   | Omit `<Alert.Indicator />`                         |
-| `hideIconWrapper`                                  | -                   | Removed (no wrapper in v3)                         |
-| `icon`                                             | `Alert.Indicator`   | Render icon as child of `<Alert.Indicator />`      |
-| `isVisible`, `isDefaultVisible`, `onVisibleChange` | -                   | Removed (handle with conditional rendering)        |
-| `isClosable`, `onClose`, `closeButtonProps`        | -                   | Removed (add `CloseButton` manually)               |
-| `title`                                            | `Alert.Title`       | Use `<Alert.Title>` inside `<Alert.Content>`       |
-| `description`                                      | `Alert.Description` | Use `<Alert.Description>` inside `<Alert.Content>` |
+| v2 Prop | v3 Location | Notes |
+|---------|-------------|-------|
+| `variant` | - | Removed (use Tailwind CSS) |
+| `radius` | - | Removed (use Tailwind e.g. `rounded-lg`) |
+| `startContent` | - | Place content before `<Alert.Indicator />` |
+| `endContent` | - | Place content after `<Alert.Content />` |
+| `hideIcon` | - | Omit `<Alert.Indicator />` |
+| `hideIconWrapper` | - | Removed (no wrapper in v3) |
+| `icon` | `Alert.Indicator` | Render icon as child of `<Alert.Indicator />` |
+| `isVisible`, `isDefaultVisible`, `onVisibleChange` | - | Removed (handle with conditional rendering) |
+| `isClosable`, `onClose`, `closeButtonProps` | - | Removed (add `CloseButton` manually) |
+| `title` | `Alert.Title` | Use `<Alert.Title>` inside `<Alert.Content>` |
+| `description` | `Alert.Description` | Use `<Alert.Description>` inside `<Alert.Content>` |
 
 ### 5. Icon Handling
 
-**v2:** Used `icon` prop or `hideIcon` prop  
+**v2:** Used `icon` prop or `hideIcon` prop
 **v3:** Use `<Alert.Indicator />` with custom children or omit it entirely
 
 ## Migration Examples
@@ -121,7 +115,6 @@ To achieve v2 variant styles in v3:
     {/* Without icon */}
     <Alert hideIcon title="No Icon Alert" />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -144,7 +137,6 @@ To achieve v2 variant styles in v3:
       </Alert.Content>
     </Alert>
     ```
-
   </Tab>
 </Tabs>
 
@@ -165,7 +157,6 @@ To achieve v2 variant styles in v3:
       }
     />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -184,7 +175,6 @@ To achieve v2 variant styles in v3:
       </Alert.Content>
     </Alert>
     ```
-
   </Tab>
 </Tabs>
 
@@ -220,7 +210,6 @@ To achieve v2 variant styles in v3:
       </Alert>
     )}
     ```
-
   </Tab>
 </Tabs>
 
@@ -231,9 +220,9 @@ To achieve v2 variant styles in v3:
 ```tsx
 <Alert
   classNames={{
-    base: 'custom-base',
-    title: 'custom-title',
-    description: 'custom-description'
+    base: "custom-base",
+    title: "custom-title",
+    description: "custom-description"
   }}
 />
 ```

@@ -1,7 +1,7 @@
 ---
 title: Switch
 description: A toggle switch component for boolean states
-icon: updated
+status: updated
 links:
   rac: Switch
   source: switch/switch.tsx
@@ -10,17 +10,21 @@ links:
   figma: true
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Label, Switch, SwitchGroup } from '@heroui/react'
+import { Switch, SwitchGroup, Label } from '@heroui/react';
 ```
 
-[Live example: switch-basic](https://heroui.com/docs/react/components/switch)
 
-```tsx
+<ComponentPreview name="switch-basic">
+
+````tsx
+import {Switch} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <Switch>
@@ -31,20 +35,23 @@ export function Basic() {
         Enable notifications
       </Switch.Content>
     </Switch>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 ```tsx
-import { Description, Label, Switch } from '@heroui/react'
+import { Switch, Label, Description } from '@heroui/react';
 
 export default () => (
   <Switch>
     <Switch.Control>
       <Switch.Thumb>
-        <Switch.Icon /> {/* Optional */}
+        <Switch.Icon/> {/* Optional */}
       </Switch.Thumb>
     </Switch.Control>
     <Switch.Content>
@@ -52,13 +59,13 @@ export default () => (
       <Description /> {/* Optional */}
     </Switch.Content>
   </Switch>
-)
+);
 ```
 
 For grouping multiple switches, use the `SwitchGroup` component:
 
 ```tsx
-import { Label, Switch, SwitchGroup } from '@heroui/react'
+import { Switch, SwitchGroup, Label } from '@heroui/react';
 
 export default () => (
   <SwitchGroup>
@@ -75,16 +82,19 @@ export default () => (
       <Label>Option 2</Label>
     </Switch>
   </SwitchGroup>
-)
+);
 ```
 
 ## Examples
 
 ### Sizes
 
-[Live example: switch-sizes](https://heroui.com/docs/react/components/switch)
 
-```tsx
+<ComponentPreview name="switch-sizes">
+
+````tsx
+import {Switch} from "@vezham/react-v3";
+
 export function Sizes() {
   return (
     <div className="flex gap-6">
@@ -113,16 +123,20 @@ export function Sizes() {
         </Switch.Content>
       </Switch>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Icons
 
-[Live example: switch-with-icons](https://heroui.com/docs/react/components/switch)
 
-```tsx
-'use client'
+<ComponentPreview name="switch-with-icons">
+
+````tsx
+"use client";
 
 import {
   BellFill,
@@ -134,46 +148,46 @@ import {
   Power,
   Sun,
   VolumeFill,
-  VolumeSlashFill
-} from '@gravity-ui/icons'
+  VolumeSlashFill,
+} from "@gravity-ui/icons";
+import {Switch} from "@vezham/react-v3";
 
 export function WithIcons() {
   const icons = {
     check: {
       off: Power,
       on: Check,
-      selectedControlClass: 'bg-green-500/80'
+      selectedControlClass: "bg-green-500/80",
     },
     darkMode: {
       off: Moon,
       on: Sun,
-      selectedControlClass: ''
+      selectedControlClass: "",
     },
     microphone: {
       off: Microphone,
       on: MicrophoneSlash,
-      selectedControlClass: 'bg-red-500/80'
+      selectedControlClass: "bg-red-500/80",
     },
     notification: {
       off: BellSlash,
       on: BellFill,
-      selectedControlClass: 'bg-purple-500/80'
+      selectedControlClass: "bg-purple-500/80",
     },
     volume: {
       off: VolumeFill,
       on: VolumeSlashFill,
-      selectedControlClass: 'bg-blue-500/80'
-    }
-  }
+      selectedControlClass: "bg-blue-500/80",
+    },
+  };
 
   return (
     <div className="flex gap-3">
       {Object.entries(icons).map(([key, value]) => (
         <Switch key={key} defaultSelected aria-label={key} size="lg">
-          {({ isSelected }) => (
+          {({isSelected}) => (
             <Switch.Content>
-              <Switch.Control
-                className={isSelected ? value.selectedControlClass : ''}>
+              <Switch.Control className={isSelected ? value.selectedControlClass : ""}>
                 <Switch.Thumb>
                   <Switch.Icon>
                     {isSelected ? (
@@ -189,15 +203,21 @@ export function WithIcons() {
         </Switch>
       ))}
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Disabled
 
-[Live example: switch-disabled](https://heroui.com/docs/react/components/switch)
 
-```tsx
+<ComponentPreview name="switch-disabled">
+
+````tsx
+import {Switch} from "@vezham/react-v3";
+
 export function Disabled() {
   return (
     <Switch isDisabled>
@@ -208,15 +228,21 @@ export function Disabled() {
         Enable notifications
       </Switch.Content>
     </Switch>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Without Label
 
-[Live example: switch-without-label](https://heroui.com/docs/react/components/switch)
 
-```tsx
+<ComponentPreview name="switch-without-label">
+
+````tsx
+import {Switch} from "@vezham/react-v3";
+
 export function WithoutLabel() {
   return (
     <Switch aria-label="Enable notifications">
@@ -226,15 +252,21 @@ export function WithoutLabel() {
         </Switch.Control>
       </Switch.Content>
     </Switch>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Description
 
-[Live example: switch-with-description](https://heroui.com/docs/react/components/switch)
 
-```tsx
+<ComponentPreview name="switch-with-description">
+
+````tsx
+import {Description, Switch} from "@vezham/react-v3";
+
 export function WithDescription() {
   return (
     <div className="max-w-sm">
@@ -248,15 +280,21 @@ export function WithDescription() {
         <Description>Allow others to see your profile information</Description>
       </Switch>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Default Selected
 
-[Live example: switch-default-selected](https://heroui.com/docs/react/components/switch)
 
-```tsx
+<ComponentPreview name="switch-default-selected">
+
+````tsx
+import {Switch} from "@vezham/react-v3";
+
 export function DefaultSelected() {
   return (
     <Switch defaultSelected>
@@ -267,19 +305,26 @@ export function DefaultSelected() {
         Enable notifications
       </Switch.Content>
     </Switch>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Controlled
 
-[Live example: switch-controlled](https://heroui.com/docs/react/components/switch)
 
-```tsx
-'use client'
+<ComponentPreview name="switch-controlled">
+
+````tsx
+"use client";
+
+import {Switch} from "@vezham/react-v3";
+import React from "react";
 
 export function Controlled() {
-  const [isSelected, setIsSelected] = React.useState(false)
+  const [isSelected, setIsSelected] = React.useState(false);
 
   return (
     <div className="flex flex-col gap-4">
@@ -291,19 +336,23 @@ export function Controlled() {
           Enable notifications
         </Switch.Content>
       </Switch>
-      <p className="text-muted text-sm">
-        Switch is {isSelected ? 'on' : 'off'}
-      </p>
+      <p className="text-sm text-muted">Switch is {isSelected ? "on" : "off"}</p>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Label Position
 
-[Live example: switch-label-position](https://heroui.com/docs/react/components/switch)
 
-```tsx
+<ComponentPreview name="switch-label-position">
+
+````tsx
+import {Switch} from "@vezham/react-v3";
+
 export function LabelPosition() {
   return (
     <div className="flex flex-col gap-4">
@@ -324,15 +373,21 @@ export function LabelPosition() {
         </Switch.Content>
       </Switch>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Group
 
-[Live example: switch-group](https://heroui.com/docs/react/components/switch)
 
-```tsx
+<ComponentPreview name="switch-group">
+
+````tsx
+import {Switch, SwitchGroup} from "@vezham/react-v3";
+
 export function Group() {
   return (
     <SwitchGroup>
@@ -361,15 +416,21 @@ export function Group() {
         </Switch.Content>
       </Switch>
     </SwitchGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Group Horizontal
 
-[Live example: switch-group-horizontal](https://heroui.com/docs/react/components/switch)
 
-```tsx
+<ComponentPreview name="switch-group-horizontal">
+
+````tsx
+import {Switch, SwitchGroup} from "@vezham/react-v3";
+
 export function GroupHorizontal() {
   return (
     <SwitchGroup className="overflow-x-auto" orientation="horizontal">
@@ -398,28 +459,35 @@ export function GroupHorizontal() {
         </Switch.Content>
       </Switch>
     </SwitchGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Form Integration
 
-[Live example: switch-form](https://heroui.com/docs/react/components/switch)
 
-```tsx
-'use client'
+<ComponentPreview name="switch-form">
+
+````tsx
+"use client";
+
+import {Button, Switch, SwitchGroup} from "@vezham/react-v3";
+import React from "react";
 
 export function Form() {
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const formData = new FormData(e.target as HTMLFormElement)
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
 
     alert(
       `Form submitted with:\n${Array.from(formData.entries())
         .map(([key, value]) => `${key}: ${value}`)
-        .join('\n')}`
-    )
-  }
+        .join("\n")}`,
+    );
+  };
 
   return (
     <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -453,43 +521,55 @@ export function Form() {
         Submit
       </Button>
     </form>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Render Props
 
-[Live example: switch-render-props](https://heroui.com/docs/react/components/switch)
 
-```tsx
-'use client'
+<ComponentPreview name="switch-render-props">
+
+````tsx
+"use client";
+
+import {Switch} from "@vezham/react-v3";
 
 export function RenderProps() {
   return (
     <Switch>
-      {({ isSelected }) => (
+      {({isSelected}) => (
         <Switch.Content>
           <Switch.Control>
             <Switch.Thumb />
           </Switch.Control>
-          {isSelected ? 'Enabled' : 'Disabled'}
+          {isSelected ? "Enabled" : "Disabled"}
         </Switch.Content>
       )}
     </Switch>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Render Function
 
-[Live example: switch-render-function](https://heroui.com/docs/react/components/switch)
 
-```tsx
-'use client'
+<ComponentPreview name="switch-render-function">
+
+````tsx
+"use client";
+
+import {Switch} from "@vezham/react-v3";
 
 export function RenderFunction() {
   return (
-    <Switch render={props => <div {...props} data-custom="foo" />}>
+    <Switch render={(props) => <div {...props} data-custom="foo" />}>
       <Switch.Content>
         <Switch.Control>
           <Switch.Thumb />
@@ -497,18 +577,24 @@ export function RenderFunction() {
         Enable notifications
       </Switch.Content>
     </Switch>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: switch-custom-styles](https://heroui.com/docs/react/components/switch)
 
-```tsx
-'use client'
+<ComponentPreview name="switch-custom-styles">
+
+````tsx
+"use client";
+
+import {Description, Label, Switch} from "@vezham/react-v3";
 
 export function CustomStyles() {
   return (
@@ -523,9 +609,12 @@ export function CustomStyles() {
         </div>
       </Switch.Content>
     </Switch>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -535,7 +624,7 @@ To customize the Switch component classes, you can use the `@layer components` d
 ```css
 @layer components {
   .switch {
-    @apply inline-flex items-center gap-3;
+    @apply inline-flex gap-3 items-center;
   }
 
   .switch__control {
@@ -600,48 +689,48 @@ The switch supports both CSS pseudo-classes and data attributes for flexibility:
 
 Inherits from [React Aria Switch](https://react-spectrum.adobe.com/react-aria/Switch.html).
 
-| Prop                 | Type                                                                      | Default    | Description                                                       |
-| -------------------- | ------------------------------------------------------------------------- | ---------- | ----------------------------------------------------------------- |
-| `size`               | `'sm' \| 'md' \| 'lg'`                                                    | `'md'`     | The size of the switch                                            |
-| `isSelected`         | `boolean`                                                                 | `false`    | Whether the switch is on                                          |
-| `defaultSelected`    | `boolean`                                                                 | `false`    | Whether the switch is on by default (uncontrolled)                |
-| `isDisabled`         | `boolean`                                                                 | `false`    | Whether the switch is disabled                                    |
-| `isInvalid`          | `boolean`                                                                 | `false`    | Whether the switch is invalid                                     |
-| `isReadOnly`         | `boolean`                                                                 | `false`    | Whether the switch is read only                                   |
-| `isRequired`         | `boolean`                                                                 | `false`    | Whether the switch must be selected                               |
-| `validate`           | `(value: boolean) => ValidationError \| true \| null \| undefined`        | -          | Custom validation function                                        |
-| `validationBehavior` | `'native' \| 'aria'`                                                      | `'native'` | Whether to use native HTML form validation or ARIA                |
-| `name`               | `string`                                                                  | -          | The name of the input element, used when submitting an HTML form  |
-| `value`              | `string`                                                                  | -          | The value of the input element, used when submitting an HTML form |
-| `onChange`           | `(isSelected: boolean) => void`                                           | -          | Handler called when the switch value changes                      |
-| `onPress`            | `(e: PressEvent) => void`                                                 | -          | Handler called when the switch is pressed                         |
-| `children`           | `React.ReactNode \| (values: SwitchRenderProps) => React.ReactNode`       | -          | Switch content or render prop                                     |
-| `render`             | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, SwitchRenderProps>` | -          | Overrides the default DOM element with a custom render function.  |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The size of the switch |
+| `isSelected` | `boolean` | `false` | Whether the switch is on |
+| `defaultSelected` | `boolean` | `false` | Whether the switch is on by default (uncontrolled) |
+| `isDisabled` | `boolean` | `false` | Whether the switch is disabled |
+| `isInvalid` | `boolean` | `false` | Whether the switch is invalid |
+| `isReadOnly` | `boolean` | `false` | Whether the switch is read only |
+| `isRequired` | `boolean` | `false` | Whether the switch must be selected |
+| `validate` | `(value: boolean) => ValidationError \| true \| null \| undefined` | - | Custom validation function |
+| `validationBehavior` | `'native' \| 'aria'` | `'native'` | Whether to use native HTML form validation or ARIA |
+| `name` | `string` | - | The name of the input element, used when submitting an HTML form |
+| `value` | `string` | - | The value of the input element, used when submitting an HTML form |
+| `onChange` | `(isSelected: boolean) => void` | - | Handler called when the switch value changes |
+| `onPress` | `(e: PressEvent) => void` | - | Handler called when the switch is pressed |
+| `children` | `React.ReactNode \| (values: SwitchRenderProps) => React.ReactNode` | - | Switch content or render prop |
+| `render` | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, SwitchRenderProps>` | - | Overrides the default DOM element with a custom render function.|
 
 ### Render Props
 
 When using the render prop pattern, these values are provided:
 
-| Prop             | Type      | Description                             |
-| ---------------- | --------- | --------------------------------------- |
-| `isSelected`     | `boolean` | Whether the switch is currently on      |
-| `isHovered`      | `boolean` | Whether the switch is hovered           |
-| `isPressed`      | `boolean` | Whether the switch is currently pressed |
-| `isFocused`      | `boolean` | Whether the switch is focused           |
-| `isFocusVisible` | `boolean` | Whether the switch is keyboard focused  |
-| `isDisabled`     | `boolean` | Whether the switch is disabled          |
-| `isReadOnly`     | `boolean` | Whether the switch is read only         |
-| `isInvalid`      | `boolean` | Whether the switch is invalid           |
-| `isRequired`     | `boolean` | Whether the switch is required          |
-| `state`          | `-`       | State of the switch.                    |
+| Prop | Type | Description |
+|------|------|-------------|
+| `isSelected` | `boolean` | Whether the switch is currently on |
+| `isHovered` | `boolean` | Whether the switch is hovered |
+| `isPressed` | `boolean` | Whether the switch is currently pressed |
+| `isFocused` | `boolean` | Whether the switch is focused |
+| `isFocusVisible` | `boolean` | Whether the switch is keyboard focused |
+| `isDisabled` | `boolean` | Whether the switch is disabled |
+| `isReadOnly` | `boolean` | Whether the switch is read only |
+| `isInvalid` | `boolean` | Whether the switch is invalid |
+| `isRequired` | `boolean` | Whether the switch is required |
+| `state` | `-` | State of the switch. |
 
 ### SwitchGroup
 
-| Prop          | Type                         | Default      | Description                         |
-| ------------- | ---------------------------- | ------------ | ----------------------------------- |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
 | `orientation` | `'horizontal' \| 'vertical'` | `'vertical'` | The orientation of the switch group |
-| `children`    | `React.ReactNode`            | -            | The switch items to render          |
-| `className`   | `string`                     | -            | Additional CSS class names          |
+| `children` | `React.ReactNode` | - | The switch items to render |
+| `className` | `string` | - | Additional CSS class names |
 
 ## Related Components
 

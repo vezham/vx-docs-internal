@@ -3,10 +3,11 @@ title: v3.0.0-alpha.33
 description: RAC upgrade, Tabs indicator redesign, Switch size variant, Related showcase
 ---
 
-import { Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">October 5, 2025</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">October 5, 2025</span>
 </div>
 
 This release upgrades React Aria Components, redesigns the Tabs indicator, adds Switch sizes, and includes component showcases.
@@ -15,18 +16,26 @@ This release upgrades React Aria Components, redesigns the Tabs indicator, adds 
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
   <Tab value="npm">
-    ```bash npm i @heroui/styles@alpha @heroui/react@alpha ```
+    ```bash
+    npm i @heroui/styles@alpha @heroui/react@alpha
+    ```
   </Tab>
   <Tab value="pnpm">
-    ```bash pnpm add @heroui/styles@alpha @heroui/react@alpha ```
+    ```bash
+    pnpm add @heroui/styles@alpha @heroui/react@alpha
+    ```
   </Tab>
   <Tab value="yarn">
-    ```bash yarn add @heroui/styles@alpha @heroui/react@alpha ```
+    ```bash
+    yarn add @heroui/styles@alpha @heroui/react@alpha
+    ```
   </Tab>
   <Tab value="bun">
-    ```bash bun add @heroui/styles@alpha @heroui/react@alpha ```
+    ```bash
+    bun add @heroui/styles@alpha @heroui/react@alpha
+    ```
   </Tab>
 </Tabs>
 
@@ -37,7 +46,6 @@ Update to the latest version:
 Upgraded React Aria Components to the [October 2, 2025 Release](https://react-spectrum.adobe.com/releases/2025-10-02.html).
 
 This release includes:
-
 - CSS variables for animations
 - Better SSR support
 - Performance improvements for selection indicators
@@ -55,7 +63,6 @@ This release includes:
 - Moved `Tabs.Indicator` inside each `Tabs.Tab`
 
 **Before:**
-
 ```diff tsx
 <Tabs>
   <Tabs.ListWrapper>
@@ -74,9 +81,12 @@ This release includes:
 
 [Switch](https://heroui.com/docs/components/switch) has updated styles and animations. Added `size` prop with options: `sm`, `md`, `lg`.
 
-[Live example: switch-sizes](https://heroui.com/docs/react/releases/v3-0-0-alpha-33)
 
-```tsx
+<ComponentPreview name="switch-sizes">
+
+````tsx
+import {Switch} from "@vezham/react-v3";
+
 export function Sizes() {
   return (
     <div className="flex gap-6">
@@ -105,9 +115,12 @@ export function Sizes() {
         </Switch.Content>
       </Switch>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Related showcases
 
@@ -116,7 +129,6 @@ Related showcases have been added in [Button](https://heroui.com/docs/components
 ## Documentation Improvements
 
 ### Component Documentation
-
 - **[Tabs](https://heroui.com/docs/components/tabs)**: Updated anatomy, revised examples with new indicator design and added related showcase
 - **[Switch](https://heroui.com/docs/components/switch)**: Added size example and revised with-icon example
 - **[Button](https://heroui.com/docs/components/button)**, **[Disclosure](https://heroui.com/docs/components/disclosure)**, **[Disclosure Group](https://heroui.com/docs/components/disclosure-group)**: Added related showcase

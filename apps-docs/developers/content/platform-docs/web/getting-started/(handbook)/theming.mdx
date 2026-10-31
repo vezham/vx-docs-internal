@@ -7,17 +7,13 @@ links:
   tailwind: theme
 ---
 
-import {
-  Callout,
-  CollapsibleCode
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, CollapsibleCode } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 HeroUI uses CSS variables and [BEM](https://getbem.com/) classes for theming. Customize everything from colors to component styles using standard CSS.
 
 <Callout type="info">
-  **Want to create your own theme?** Try the [Theme
-  Builder](https://heroui.com/themes) to visually customize colors, radius,
-  fonts, and more — then export the CSS to use in your project.
+  **Want to create your own theme?** Try the [Theme Builder](https://heroui.com/themes) to visually customize colors, radius, fonts, and more — then export the CSS to use in your project.
 </Callout>
 
 ## How It Works
@@ -25,7 +21,6 @@ HeroUI uses CSS variables and [BEM](https://getbem.com/) classes for theming. Cu
 HeroUI's theming system is built on top of [Tailwind CSS v4](https://tailwindcss.com/docs/theme)'s theme. When you import `@heroui/styles`, it uses Tailwind's built-in color palettes, maps them to semantic variables, automatically switches between light and dark themes, and uses CSS layers and the `@theme` directive for organization.
 
 **Naming pattern:**
-
 - Colors without a suffix are backgrounds (e.g., `--accent`)
 - Colors with `-foreground` are for text on that background (e.g., `--accent-foreground`)
 
@@ -42,13 +37,12 @@ HeroUI's theming system is built on top of [Tailwind CSS v4](https://tailwindcss
 ```
 
 **Switch themes:**
-
 ```html
 <!-- Light theme -->
 <html class="light" data-theme="light">
-  <!-- Dark theme -->
-  <html class="dark" data-theme="dark"></html>
-</html>
+
+<!-- Dark theme -->
+<html class="dark" data-theme="dark">
 ```
 
 **Switch themes programmatically with [next-themes](https://github.com/pacocoursey/next-themes) (For Next.js):**
@@ -57,53 +51,49 @@ First, wrap your app with `ThemeProvider`:
 
 ```tsx
 // app/providers.tsx
-'use client'
+"use client";
 
-import { ThemeProvider } from 'next-themes'
+import { ThemeProvider } from "next-themes";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider attribute="class" defaultTheme="light">
       {children}
     </ThemeProvider>
-  )
+  );
 }
 ```
 
 ```tsx
 // app/layout.tsx
-import { Providers } from './providers'
+import { Providers } from "./providers";
 
-export default function RootLayout({
-  children
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="bg-background text-foreground">
         <Providers>{children}</Providers>
       </body>
     </html>
-  )
+  );
 }
 ```
 
 Then use `useTheme` to toggle between themes:
 
 ```tsx
-'use client'
+"use client";
 
-import { useTheme } from 'next-themes'
+import { useTheme } from "next-themes";
 
 export function ThemeSwitch() {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme();
 
   return (
-    <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-      Toggle {theme === 'dark' ? 'Light' : 'Dark'} Mode
+    <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+      Toggle {theme === "dark" ? "Light" : "Dark"} Mode
     </button>
-  )
+  );
 }
 ```
 
@@ -111,8 +101,8 @@ export function ThemeSwitch() {
 
 ```css
 /* app/globals.css */
-@import 'tailwindcss';
-@import '@heroui/styles';
+@import "tailwindcss";
+@import "@heroui/styles";
 
 :root {
   /* Override any color variable */
@@ -284,7 +274,6 @@ export function ThemeSwitch() {
       --overlay-shadow: 0 0 0 0 transparent inset;
       --field-shadow: 0 0 0 0 transparent inset;
     }
-
 }
 `}
 />
@@ -295,10 +284,10 @@ Use your theme:
 /* app/globals.css */
 @layer theme, base, components, utilities;
 
-@import 'tailwindcss';
-@import '@heroui/styles';
+@import "tailwindcss";
+@import "@heroui/styles";
 
-@import './src/themes/ocean.css' layer(theme); /* [!code highlight]*/
+@import "./src/themes/ocean.css" layer(theme); /* [!code highlight]*/
 ```
 
 Apply your theme:
@@ -308,9 +297,9 @@ Apply your theme:
 
 <!-- Light ocean -->
 <html data-theme="ocean">
-  <!-- Dark ocean -->
-  <html data-theme="ocean-dark"></html>
-</html>
+
+<!-- Dark ocean -->
+<html data-theme="ocean-dark">
 ```
 
 ## Customize Components
@@ -344,8 +333,8 @@ Apply your theme:
 **Full import (recommended):** Get everything with two lines:
 
 ```css
-@import 'tailwindcss';
-@import '@heroui/styles';
+@import "tailwindcss";
+@import "@heroui/styles";
 ```
 
 **Selective import:** Import only what you need:
@@ -355,30 +344,30 @@ Apply your theme:
 @layer theme, base, components, utilities;
 
 /* Base requirements */
-@import 'tailwindcss';
-@import '@heroui/styles/base' layer(base);
+@import "tailwindcss";
+@import "@heroui/styles/base" layer(base);
 /* OR specific base file */
-@import '@heroui/styles/base/base.css' layer(base);
+@import "@heroui/styles/base/base.css" layer(base);
 
 /* Theme variables */
-@import '@heroui/styles/themes/shared/theme.css' layer(theme);
-@import '@heroui/styles/themes/default' layer(theme);
+@import "@heroui/styles/themes/shared/theme.css" layer(theme);
+@import "@heroui/styles/themes/default" layer(theme);
 /* OR specific theme files */
-@import '@heroui/styles/themes/default/index.css' layer(theme);
-@import '@heroui/styles/themes/default/variables.css' layer(theme);
+@import "@heroui/styles/themes/default/index.css" layer(theme);
+@import "@heroui/styles/themes/default/variables.css" layer(theme);
 
 /* Components (all components) */
-@import '@heroui/styles/components' layer(components);
+@import "@heroui/styles/components" layer(components);
 /* OR specific component files */
-@import '@heroui/styles/components/index.css' layer(components);
-@import '@heroui/styles/components/button.css' layer(components);
-@import '@heroui/styles/components/accordion.css' layer(components);
+@import "@heroui/styles/components/index.css" layer(components);
+@import "@heroui/styles/components/button.css" layer(components);
+@import "@heroui/styles/components/accordion.css" layer(components);
 
 /* Utilities (optional) */
-@import '@heroui/styles/utilities' layer(utilities);
+@import "@heroui/styles/utilities" layer(utilities);
 
 /* Variants (optional) */
-@import '@heroui/styles/variants' layer(utilities);
+@import "@heroui/styles/variants" layer(utilities);
 ```
 
 > **Note**: Directory imports (e.g., `@heroui/styles/components`) automatically resolve to their `index.css` file. Use explicit file paths (e.g., `@heroui/styles/components/button.css`) to import individual component styles.
@@ -386,8 +375,8 @@ Apply your theme:
 **Headless mode:** Build your own styles from scratch:
 
 ```css
-@import 'tailwindcss';
-@import '@heroui/styles/base/base.css';
+@import "tailwindcss";
+@import "@heroui/styles/base/base.css";
 
 /* Your custom styles */
 .button {
@@ -402,13 +391,13 @@ Add your own semantic colors to the theme:
 ```css
 /* Define in both light and dark themes */
 :root,
-[data-theme='light'] {
+[data-theme="light"] {
   --info: oklch(0.6 0.15 210);
   --info-foreground: oklch(0.98 0 0);
 }
 
 .dark,
-[data-theme='dark'] {
+[data-theme="dark"] {
   --info: oklch(0.7 0.12 210);
   --info-foreground: oklch(0.15 0 0);
 }
@@ -439,7 +428,6 @@ For a complete reference, see: [Colors Documentation](/docs-ui/web/getting-start
 **Tailwind theme bridge (`@theme inline`):**
 
 [`themes/shared/theme.css`](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/themes/shared/theme.css) maps semantic variables to Tailwind tokens (`--color-*`, `--radius-*`, `--ease-*`). Calculated colors reference underlying vars (e.g. `--surface-hover`, `--accent-soft`) from `variables.css` — they are not inlined with `color-mix()` in this file:
-
 <CollapsibleCode lang="css" code={`  @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
@@ -605,8 +593,7 @@ For a complete reference, see: [Colors Documentation](/docs-ui/web/getting-start
         opacity: 0;
       }
     }
-
-}
+  }
 `}
 />
 
@@ -618,33 +605,37 @@ HeroUI applies a shared scrollbar style to component scroll areas (tables, popov
 
 **Modes** — set `data-scrollbar` on `<html>`, a component root, or a scroll slot:
 
-| Mode         | `data-scrollbar`    | Behavior                                       |
-| ------------ | ------------------- | ---------------------------------------------- |
-| HeroUI thin  | _(unset)_ or `thin` | Thin thumb from theme tokens                   |
-| OS / browser | `default`           | Native scrollbars (`auto`)                     |
-| Hidden       | `none`              | No visible scrollbar (`scrollbar-width: none`) |
+| Mode | `data-scrollbar` | Behavior |
+|------|------------------|----------|
+| HeroUI thin | *(unset)* or `thin` | Thin thumb from theme tokens |
+| OS / browser | `default` | Native scrollbars (`auto`) |
+| Hidden | `none` | No visible scrollbar (`scrollbar-width: none`) |
 
 ```html
 <!-- Native scrollbars everywhere -->
 <html data-scrollbar="default">
-  <!-- Restore HeroUI scrollbars in one subtree -->
-  <main data-scrollbar="thin">...</main>
 
-  <!-- Hide scrollbars in one subtree (e.g. a popover) -->
-  <div data-scrollbar="none">...</div>
-</html>
+<!-- Restore HeroUI scrollbars in one subtree -->
+<main data-scrollbar="thin">
+  ...
+</main>
+
+<!-- Hide scrollbars in one subtree (e.g. a popover) -->
+<div data-scrollbar="none">
+  ...
+</div>
 ```
 
 **Theme variables** — defined in light and dark theme blocks in [`variables.css`](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/themes/default/variables.css):
 
-| Variable             | Description                                               |
-| -------------------- | --------------------------------------------------------- |
-| `--scrollbar-thumb`  | Thumb color (default: 15% `--foreground` via `color-mix`) |
-| `--scrollbar-track`  | Track color (default: `transparent`)                      |
-| `--scrollbar-gutter` | Gutter (default: `auto`)                                  |
-| `--scrollbar-width`  | `scrollbar-width` (default: `thin`)                       |
-| `--scrollbar-color`  | `scrollbar-color` (default: thumb + track)                |
-| `--scrollbar`        | Legacy alias of `--scrollbar-thumb`                       |
+| Variable | Description |
+|----------|-------------|
+| `--scrollbar-thumb` | Thumb color (default: 15% `--foreground` via `color-mix`) |
+| `--scrollbar-track` | Track color (default: `transparent`) |
+| `--scrollbar-gutter` | Gutter (default: `auto`) |
+| `--scrollbar-width` | `scrollbar-width` (default: `thin`) |
+| `--scrollbar-color` | `scrollbar-color` (default: thumb + track) |
+| `--scrollbar` | Legacy alias of `--scrollbar-thumb` |
 
 **Customize globally:**
 
@@ -677,19 +668,17 @@ HeroUI applies a shared scrollbar style to component scroll areas (tables, popov
 By default, HeroUI uses accessible soft foreground colors that mix the semantic color with the foreground for better contrast. If you prefer more saturated, vibrant soft foreground colors, add the `data-vibrant-palette` attribute to your root element:
 
 ```html
-<html data-vibrant-palette="true"></html>
+<html data-vibrant-palette="true">
 ```
 
 This switches all `*-soft-foreground` variables (accent, success, warning, danger) to use 92% of the semantic color with only 8% foreground mixed in — closer to the raw color but with a slight contrast boost.
 
-| Mode            | Accessible (default)                         | Vibrant                               |
-| --------------- | -------------------------------------------- | ------------------------------------- |
+| Mode | Accessible (default) | Vibrant |
+|------|----------------------|---------|
 | Soft foreground | `color-mix(color 70-80%, foreground 30-40%)` | `color-mix(color 92%, foreground 8%)` |
 
 <Callout type="warn">
-  The vibrant palette prioritizes visual saturation over contrast. It may not
-  meet WCAG accessibility guidelines for some color combinations, especially
-  with lighter accent colors.
+  The vibrant palette prioritizes visual saturation over contrast. It may not meet WCAG accessibility guidelines for some color combinations, especially with lighter accent colors.
 </Callout>
 
 You can also enable vibrant palette in the [Theme Builder](https://heroui.com/themes) via the "Vibrant palette" toggle in the theme popover.

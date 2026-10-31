@@ -3,16 +3,11 @@ title: Radio
 description: Migration guide for Radio from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Radio documentation](/docs-ui/web/components/radio-group) for
-  complete API reference, styling guide, and advanced examples. This guide only
-  focuses on migrating from HeroUI v2.
+  Refer to the [v3 Radio documentation](/docs-ui/web/components/radio-group) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,24 +15,22 @@ import {
 In v2, Radio used a simple structure with props:
 
 ```tsx
-import { Radio, RadioGroup } from '@heroui/react'
+import { RadioGroup, Radio } from "@heroui/react";
 
 export default function App() {
   return (
     <RadioGroup label="Select city">
       <Radio value="london">London</Radio>
-      <Radio value="tokyo" description="Capital of Japan">
-        Tokyo
-      </Radio>
+      <Radio value="tokyo" description="Capital of Japan">Tokyo</Radio>
     </RadioGroup>
-  )
+  );
 }
 ```
 
 In v3, Radio requires compound components:
 
 ```tsx
-import { Description, Label, Radio, RadioGroup } from '@heroui/react'
+import { RadioGroup, Radio, Label, Description } from "@heroui/react";
 
 export default function App() {
   return (
@@ -61,7 +54,7 @@ export default function App() {
         <Description>Capital of Japan</Description>
       </Radio>
     </RadioGroup>
-  )
+  );
 }
 ```
 
@@ -69,22 +62,22 @@ export default function App() {
 
 ### 1. Component Structure
 
-**v2:** Simple Radio with children as label  
+**v2:** Simple Radio with children as label
 **v3:** Compound components: `Radio.Content`, `Radio.Control`, `Radio.Indicator`
 
 ### 2. Prop Changes
 
-| v2 Prop                  | v3 Location  | Notes                                                                                       |
-| ------------------------ | ------------ | ------------------------------------------------------------------------------------------- |
-| `onValueChange`          | `onChange`   | Renamed event handler                                                                       |
-| `label` (on RadioGroup)  | —            | Use `Label` component                                                                       |
-| `description` (on Radio) | —            | Use `Description` component as a sibling of `Radio.Content`                                 |
-| `size`                   | —            | Removed (use Tailwind CSS)                                                                  |
-| `color`                  | —            | Removed (use Tailwind CSS)                                                                  |
-| `classNames`             | —            | Use `className` props on individual components                                              |
-| `disableAnimation`       | —            | Removed (animations handled differently)                                                    |
-| —                        | `variant`    | New prop on `RadioGroup`: `"primary"` (default) or `"secondary"` for lower emphasis styling |
-| —                        | `isReadOnly` | New prop on `RadioGroup`: prevents value changes while keeping the group focusable          |
+| v2 Prop | v3 Location | Notes |
+|---------|-------------|-------|
+| `onValueChange` | `onChange` | Renamed event handler |
+| `label` (on RadioGroup) | — | Use `Label` component |
+| `description` (on Radio) | — | Use `Description` component as a sibling of `Radio.Content` |
+| `size` | — | Removed (use Tailwind CSS) |
+| `color` | — | Removed (use Tailwind CSS) |
+| `classNames` | — | Use `className` props on individual components |
+| `disableAnimation` | — | Removed (animations handled differently) |
+| — | `variant` | New prop on `RadioGroup`: `"primary"` (default) or `"secondary"` for lower emphasis styling |
+| — | `isReadOnly` | New prop on `RadioGroup`: prevents value changes while keeping the group focusable |
 
 ## Migration Examples
 
@@ -99,7 +92,7 @@ export default function App() {
         London
       </Radio>
     </RadioGroup>
-    
+
     {/* With validation */}
     <RadioGroup
       isInvalid
@@ -142,7 +135,6 @@ export default function App() {
       <FieldError>Please select an option</FieldError>
     </RadioGroup>
     ```
-
   </Tab>
 </Tabs>
 
@@ -163,7 +155,6 @@ export default function App() {
       <Radio value="tokyo">Tokyo</Radio>
     </RadioGroup>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -191,13 +182,12 @@ export default function App() {
       </Radio>
     </RadioGroup>
     ```
-
   </Tab>
 </Tabs>
 
 ### Horizontal Orientation
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <RadioGroup orientation="horizontal" label="Select city">
@@ -236,10 +226,8 @@ export default function App() {
 v3 introduces a `variant` prop on `RadioGroup` with `"primary"` (default) and `"secondary"` options:
 
 ```tsx
-{
-  /* Primary variant (default) */
-}
-;<RadioGroup variant="primary">
+{/* Primary variant (default) */}
+<RadioGroup variant="primary">
   <Label>Select city</Label>
   <Radio value="london">
     <Radio.Content>
@@ -251,10 +239,8 @@ v3 introduces a `variant` prop on `RadioGroup` with `"primary"` (default) and `"
   </Radio>
 </RadioGroup>
 
-{
-  /* Secondary variant - lower emphasis, suitable for Surface components */
-}
-;<RadioGroup variant="secondary">
+{/* Secondary variant - lower emphasis, suitable for Surface components */}
+<RadioGroup variant="secondary">
   <Label>Select city</Label>
   <Radio value="london">
     <Radio.Content>

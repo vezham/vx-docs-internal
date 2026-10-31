@@ -8,135 +8,166 @@ links:
   figma: true
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Spinner } from '@heroui/react'
+import { Spinner } from '@heroui/react';
 ```
 
-[Live example: spinner-basic](https://heroui.com/docs/react/components/spinner)
 
-```tsx
+<ComponentPreview name="spinner-basic">
+
+````tsx
+import {Spinner} from "@vezham/react-v3";
+
 export function SpinnerBasic() {
   return (
     <div className="flex items-center gap-4">
       <Spinner />
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Examples
 
 ### Colors
 
-[Live example: spinner-colors](https://heroui.com/docs/react/components/spinner)
 
-```tsx
+<ComponentPreview name="spinner-colors">
+
+````tsx
+import {Spinner} from "@vezham/react-v3";
+
 export function SpinnerColors() {
   return (
     <div className="flex items-center gap-8">
       <div className="flex flex-col items-center gap-2">
         <Spinner color="current" />
-        <span className="text-muted text-xs">Current</span>
+        <span className="text-xs text-muted">Current</span>
       </div>
       <div className="flex flex-col items-center gap-2">
         <Spinner color="accent" />
-        <span className="text-muted text-xs">Accent</span>
+        <span className="text-xs text-muted">Accent</span>
       </div>
       <div className="flex flex-col items-center gap-2">
         <Spinner color="success" />
-        <span className="text-muted text-xs">Success</span>
+        <span className="text-xs text-muted">Success</span>
       </div>
       <div className="flex flex-col items-center gap-2">
         <Spinner color="warning" />
-        <span className="text-muted text-xs">Warning</span>
+        <span className="text-xs text-muted">Warning</span>
       </div>
       <div className="flex flex-col items-center gap-2">
         <Spinner color="danger" />
-        <span className="text-muted text-xs">Danger</span>
+        <span className="text-xs text-muted">Danger</span>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Sizes
 
-[Live example: spinner-sizes](https://heroui.com/docs/react/components/spinner)
 
-```tsx
+<ComponentPreview name="spinner-sizes">
+
+````tsx
+import {Spinner} from "@vezham/react-v3";
+
 export function SpinnerSizes() {
   return (
     <div className="flex items-center gap-8">
       <div className="flex flex-col items-center gap-2">
         <Spinner size="sm" />
-        <span className="text-muted text-xs">Small</span>
+        <span className="text-xs text-muted">Small</span>
       </div>
       <div className="flex flex-col items-center gap-2">
         <Spinner size="md" />
-        <span className="text-muted text-xs">Medium</span>
+        <span className="text-xs text-muted">Medium</span>
       </div>
       <div className="flex flex-col items-center gap-2">
         <Spinner size="lg" />
-        <span className="text-muted text-xs">Large</span>
+        <span className="text-xs text-muted">Large</span>
       </div>
       <div className="flex flex-col items-center gap-2">
         <Spinner size="xl" />
-        <span className="text-muted text-xs">Extra Large</span>
+        <span className="text-xs text-muted">Extra Large</span>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Speed
 
 Apply an animation utility to change how fast a single spinner rotates. Pair it with
 `motion-reduce:animate-none` so it stays still for users who prefer reduced motion.
 
-[Live example: spinner-speed](https://heroui.com/docs/react/components/spinner)
 
-```tsx
+<ComponentPreview name="spinner-speed">
+
+````tsx
+import {Spinner} from "@vezham/react-v3";
+
 export function SpinnerSpeed() {
   return (
     <div className="flex items-center gap-8">
       <div className="flex flex-col items-center gap-2">
         <Spinner className="animate-[spin_1.5s_linear_infinite] motion-reduce:animate-none" />
-        <span className="text-muted text-xs">Slow</span>
+        <span className="text-xs text-muted">Slow</span>
       </div>
       <div className="flex flex-col items-center gap-2">
         <Spinner />
-        <span className="text-muted text-xs">Default</span>
+        <span className="text-xs text-muted">Default</span>
       </div>
       <div className="flex flex-col items-center gap-2">
         <Spinner className="animate-[spin_0.4s_linear_infinite] motion-reduce:animate-none" />
-        <span className="text-muted text-xs">Fast</span>
+        <span className="text-xs text-muted">Fast</span>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: spinner-custom-styles](https://heroui.com/docs/react/components/spinner)
 
-```tsx
+<ComponentPreview name="spinner-custom-styles">
+
+````tsx
+import {Spinner} from "@vezham/react-v3";
+
 export function CustomStyles() {
   return (
-    <div className="border-border bg-surface flex items-center gap-4 rounded-xl border px-5 py-4">
+    <div className="flex items-center gap-4 rounded-xl border border-border bg-surface px-5 py-4">
       <Spinner className="text-accent" size="sm" />
       <Spinner className="text-muted" size="md" />
       <Spinner className="text-success" size="lg" />
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -164,7 +195,6 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The Spinner component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/spinner.css)):
 
 #### Base & Size Classes [!toc]
-
 - `.spinner` - Base spinner styles with default size
 - `.spinner--sm` - Small size variant
 - `.spinner--md` - Medium size variant (default)
@@ -172,7 +202,6 @@ The Spinner component uses these CSS classes ([View source styles](https://githu
 - `.spinner--xl` - Extra large size variant
 
 #### Color Classes [!toc]
-
 - `.spinner--current` - Inherits current text color
 - `.spinner--accent` - Accent color variant
 - `.spinner--danger` - Danger color variant
@@ -183,11 +212,11 @@ The Spinner component uses these CSS classes ([View source styles](https://githu
 
 ### Spinner
 
-| Prop        | Type                                                          | Default    | Description                  |
-| ----------- | ------------------------------------------------------------- | ---------- | ---------------------------- |
-| `size`      | `"sm" \| "md" \| "lg" \| "xl"`                                | `"md"`     | Size of the spinner          |
-| `color`     | `"current" \| "accent" \| "success" \| "warning" \| "danger"` | `"accent"` | Color variant of the spinner |
-| `className` | `string`                                                      | -          | Additional CSS classes       |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `"sm" \| "md" \| "lg" \| "xl"` | `"md"` | Size of the spinner |
+| `color` | `"current" \| "accent" \| "success" \| "warning" \| "danger"` | `"accent"` | Color variant of the spinner |
+| `className` | `string` | - | Additional CSS classes |
 
 ## Related Components
 

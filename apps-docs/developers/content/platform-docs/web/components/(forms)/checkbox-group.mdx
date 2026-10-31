@@ -1,7 +1,7 @@
 ---
 title: CheckboxGroup
 description: A checkbox group component for managing multiple checkbox selections
-icon: updated
+status: updated
 links:
   rac: CheckboxGroup
   source: checkbox-group/checkbox-group.tsx
@@ -9,17 +9,21 @@ links:
   storybook: Components/Forms/CheckboxGroup
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Checkbox, CheckboxGroup, Description, Label } from '@heroui/react'
+import { CheckboxGroup, Checkbox, Label, Description } from '@heroui/react';
 ```
 
-[Live example: checkbox-group-basic](https://heroui.com/docs/react/components/checkbox-group)
 
-```tsx
+<ComponentPreview name="checkbox-group-basic">
+
+````tsx
+import {Checkbox, CheckboxGroup, Description, Label} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <CheckboxGroup name="interests">
@@ -53,20 +57,17 @@ export function Basic() {
         <Description>Passionate about content creation</Description>
       </Checkbox>
     </CheckboxGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 ```tsx
-import {
-  Checkbox,
-  CheckboxGroup,
-  Description,
-  FieldError,
-  Label
-} from '@heroui/react'
+import {CheckboxGroup, Checkbox, Label, Description, FieldError} from '@heroui/react';
 
 export default () => (
   <CheckboxGroup name="interests">
@@ -83,7 +84,7 @@ export default () => (
     </Checkbox>
     <FieldError /> {/* Optional */}
   </CheckboxGroup>
-)
+);
 ```
 
 ## Examples
@@ -92,9 +93,12 @@ export default () => (
 
 When used inside a [Surface](/docs-ui/web/components/surface) component, use `variant="secondary"` to apply the lower emphasis variant suitable for surface backgrounds.
 
-[Live example: checkbox-group-on-surface](https://heroui.com/docs/react/components/checkbox-group)
 
-```tsx
+<ComponentPreview name="checkbox-group-on-surface">
+
+````tsx
+import {Checkbox, CheckboxGroup, Description, Label, Surface} from "@vezham/react-v3";
+
 export function OnSurface() {
   return (
     <Surface className="w-full rounded-3xl p-6">
@@ -130,15 +134,21 @@ export function OnSurface() {
         </Checkbox>
       </CheckboxGroup>
     </Surface>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Disabled
 
-[Live example: checkbox-group-disabled](https://heroui.com/docs/react/components/checkbox-group)
 
-```tsx
+<ComponentPreview name="checkbox-group-disabled">
+
+````tsx
+import {Checkbox, CheckboxGroup, Description, Label} from "@vezham/react-v3";
+
 export function Disabled() {
   return (
     <CheckboxGroup isDisabled name="disabled-features">
@@ -163,32 +173,38 @@ export function Disabled() {
         <Description>This feature is coming soon</Description>
       </Checkbox>
     </CheckboxGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Indeterminate
 
-[Live example: checkbox-group-indeterminate](https://heroui.com/docs/react/components/checkbox-group)
 
-```tsx
-'use client'
+<ComponentPreview name="checkbox-group-indeterminate">
+
+````tsx
+"use client";
+
+import {Checkbox, CheckboxGroup} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function Indeterminate() {
-  const [selected, setSelected] = useState(['coding'])
-  const allOptions = ['coding', 'design', 'writing']
+  const [selected, setSelected] = useState(["coding"]);
+  const allOptions = ["coding", "design", "writing"];
 
   return (
     <div>
       <Checkbox
-        isIndeterminate={
-          selected.length > 0 && selected.length < allOptions.length
-        }
+        isIndeterminate={selected.length > 0 && selected.length < allOptions.length}
         isSelected={selected.length === allOptions.length}
         name="select-all"
         onChange={(isSelected: boolean) => {
-          setSelected(isSelected ? allOptions : [])
-        }}>
+          setSelected(isSelected ? allOptions : []);
+        }}
+      >
         <Checkbox.Content>
           <Checkbox.Control>
             <Checkbox.Indicator />
@@ -225,26 +241,29 @@ export function Indeterminate() {
         </CheckboxGroup>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Controlled
 
-[Live example: checkbox-group-controlled](https://heroui.com/docs/react/components/checkbox-group)
 
-```tsx
-'use client'
+<ComponentPreview name="checkbox-group-controlled">
+
+````tsx
+"use client";
+
+import {Checkbox, CheckboxGroup, Label} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function Controlled() {
-  const [selected, setSelected] = useState(['coding', 'design'])
+  const [selected, setSelected] = useState(["coding", "design"]);
 
   return (
-    <CheckboxGroup
-      className="min-w-[320px]"
-      name="skills"
-      value={selected}
-      onChange={setSelected}>
+    <CheckboxGroup className="min-w-[320px]" name="skills" value={selected} onChange={setSelected}>
       <Label>Your skills</Label>
       <Checkbox value="coding">
         <Checkbox.Content>
@@ -270,33 +289,38 @@ export function Controlled() {
           Writing
         </Checkbox.Content>
       </Checkbox>
-      <Label className="text-muted my-4 text-sm">
-        Selected: {selected.join(', ') || 'None'}
-      </Label>
+      <Label className="my-4 text-sm text-muted">Selected: {selected.join(", ") || "None"}</Label>
     </CheckboxGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Validation
 
-[Live example: checkbox-group-validation](https://heroui.com/docs/react/components/checkbox-group)
 
-```tsx
-'use client'
+<ComponentPreview name="checkbox-group-validation">
+
+````tsx
+"use client";
+
+import {Button, Checkbox, CheckboxGroup, FieldError, Form, Label} from "@vezham/react-v3";
 
 export function Validation() {
   return (
     <Form
       className="flex flex-col gap-4 px-4"
-      onSubmit={e => {
-        e.preventDefault()
+      onSubmit={(e) => {
+        e.preventDefault();
 
-        const formData = new FormData(e.currentTarget)
-        const values = formData.getAll('preferences')
+        const formData = new FormData(e.currentTarget);
+        const values = formData.getAll("preferences");
 
-        alert(`Selected preferences: ${values.join(', ')}`)
-      }}>
+        alert(`Selected preferences: ${values.join(", ")}`);
+      }}
+    >
       <CheckboxGroup isRequired name="preferences">
         <Label>Preferences</Label>
         <Checkbox value="email">
@@ -327,36 +351,44 @@ export function Validation() {
       </CheckboxGroup>
       <Button type="submit">Submit</Button>
     </Form>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Features and Add-ons Example
 
-[Live example: checkbox-group-features-and-addons](https://heroui.com/docs/react/components/checkbox-group)
 
-```tsx
+<ComponentPreview name="checkbox-group-features-and-addons">
+
+````tsx
+import {Bell, Comment, Envelope} from "@gravity-ui/icons";
+import {Checkbox, CheckboxGroup, Description, Label} from "@vezham/react-v3";
+import clsx from "clsx";
+
 export function FeaturesAndAddOns() {
   const addOns = [
     {
-      description: 'Receive updates via email',
+      description: "Receive updates via email",
       icon: Envelope,
-      title: 'Email Notifications',
-      value: 'email'
+      title: "Email Notifications",
+      value: "email",
     },
     {
-      description: 'Get instant SMS notifications',
+      description: "Get instant SMS notifications",
       icon: Comment,
-      title: 'SMS Alerts',
-      value: 'sms'
+      title: "SMS Alerts",
+      value: "sms",
     },
     {
-      description: 'Browser and mobile push alerts',
+      description: "Browser and mobile push alerts",
       icon: Bell,
-      title: 'Push Notifications',
-      value: 'push'
-    }
-  ]
+      title: "Push Notifications",
+      value: "push",
+    },
+  ];
 
   return (
     <div className="flex w-full flex-col items-center gap-10 px-4 py-8">
@@ -365,20 +397,18 @@ export function FeaturesAndAddOns() {
           <Label>Notification preferences</Label>
           <Description>Choose how you want to receive updates</Description>
           <div className="flex flex-col gap-2">
-            {addOns.map(addon => (
-              <Checkbox
-                key={addon.value}
-                value={addon.value}
-                variant="secondary">
+            {addOns.map((addon) => (
+              <Checkbox key={addon.value} value={addon.value} variant="secondary">
                 <Checkbox.Content
                   className={clsx(
-                    'group bg-surface relative flex w-full flex-row items-start justify-start gap-4 rounded-3xl px-5 py-4 transition-all',
-                    'data-[selected=true]:bg-accent/10'
-                  )}>
+                    "group relative flex w-full flex-row items-start justify-start gap-4 rounded-3xl bg-surface px-5 py-4 transition-all",
+                    "data-[selected=true]:bg-accent/10",
+                  )}
+                >
                   <Checkbox.Control className="absolute end-4 top-3 size-5 rounded-full before:rounded-full">
                     <Checkbox.Indicator />
                   </Checkbox.Control>
-                  <addon.icon className="text-accent-soft-foreground size-5" />
+                  <addon.icon className="size-5 text-accent-soft-foreground" />
                   <div className="flex flex-col gap-1">
                     <span>{addon.title}</span>
                     <Description>{addon.description}</Description>
@@ -390,16 +420,22 @@ export function FeaturesAndAddOns() {
         </CheckboxGroup>
       </section>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Custom Indicator
 
-[Live example: checkbox-group-with-custom-indicator](https://heroui.com/docs/react/components/checkbox-group)
 
-```tsx
-'use client'
+<ComponentPreview name="checkbox-group-with-custom-indicator">
+
+````tsx
+"use client";
+
+import {Checkbox, CheckboxGroup, Description, Label} from "@vezham/react-v3";
 
 export function WithCustomIndicator() {
   return (
@@ -410,7 +446,7 @@ export function WithCustomIndicator() {
         <Checkbox.Content>
           <Checkbox.Control>
             <Checkbox.Indicator>
-              {({ isSelected }) =>
+              {({isSelected}) =>
                 isSelected ? (
                   <svg
                     aria-hidden="true"
@@ -418,7 +454,8 @@ export function WithCustomIndicator() {
                     stroke="currentColor"
                     strokeLinecap="round"
                     strokeWidth={2}
-                    viewBox="0 0 24 24">
+                    viewBox="0 0 24 24"
+                  >
                     <path d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 ) : null
@@ -433,7 +470,7 @@ export function WithCustomIndicator() {
         <Checkbox.Content>
           <Checkbox.Control>
             <Checkbox.Indicator>
-              {({ isSelected }) =>
+              {({isSelected}) =>
                 isSelected ? (
                   <svg
                     aria-hidden="true"
@@ -441,7 +478,8 @@ export function WithCustomIndicator() {
                     stroke="currentColor"
                     strokeLinecap="round"
                     strokeWidth={2}
-                    viewBox="0 0 24 24">
+                    viewBox="0 0 24 24"
+                  >
                     <path d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 ) : null
@@ -453,22 +491,26 @@ export function WithCustomIndicator() {
         <Description>Get weekly newsletters</Description>
       </Checkbox>
     </CheckboxGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Render Function
 
-[Live example: checkbox-group-render-function](https://heroui.com/docs/react/components/checkbox-group)
 
-```tsx
-'use client'
+<ComponentPreview name="checkbox-group-render-function">
+
+````tsx
+"use client";
+
+import {Checkbox, CheckboxGroup, Description, Label} from "@vezham/react-v3";
 
 export function RenderFunction() {
   return (
-    <CheckboxGroup
-      name="interests"
-      render={props => <div {...props} data-custom="foo" />}>
+    <CheckboxGroup name="interests" render={(props) => <div {...props} data-custom="foo" />}>
       <Label>Select your interests</Label>
       <Description>Choose all that apply</Description>
       <Checkbox value="coding">
@@ -499,38 +541,43 @@ export function RenderFunction() {
         <Description>Passionate about content creation</Description>
       </Checkbox>
     </CheckboxGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: checkbox-group-custom-styles](https://heroui.com/docs/react/components/checkbox-group)
 
-```tsx
-const controlClassName = 'bg-success-soft before:bg-success'
+<ComponentPreview name="checkbox-group-custom-styles">
+
+````tsx
+import {Checkbox, CheckboxGroup, Description, Label} from "@vezham/react-v3";
+
+const controlClassName = "bg-success-soft before:bg-success";
 const indicatorClassName =
-  '**:data-[slot=checkbox-default-indicator--checkmark]:text-success-foreground'
+  "**:data-[slot=checkbox-default-indicator--checkmark]:text-success-foreground";
 
 const channels = [
-  { label: 'Email', value: 'email' },
-  { label: 'SMS', value: 'sms' },
-  { label: 'Push', value: 'push' }
-] as const
+  {label: "Email", value: "email"},
+  {label: "SMS", value: "sms"},
+  {label: "Push", value: "push"},
+] as const;
 
 export function CustomStyles() {
   return (
     <CheckboxGroup
       className="gap-3 **:data-[slot=checkbox]:mt-0"
-      defaultValue={['email']}
-      name="notification-channels">
+      defaultValue={["email"]}
+      name="notification-channels"
+    >
       <Label>Notification channels</Label>
-      <Description>
-        Choose how we should reach you for account updates.
-      </Description>
-      {channels.map(({ label, value }) => (
+      <Description>Choose how we should reach you for account updates.</Description>
+      {channels.map(({label, value}) => (
         <Checkbox key={value} value={value}>
           <Checkbox.Content>
             <Checkbox.Control className={controlClassName}>
@@ -541,9 +588,12 @@ export function CustomStyles() {
         </Checkbox>
       ))}
     </CheckboxGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -576,30 +626,30 @@ The CheckboxGroup component uses these CSS classes ([View source styles](https:/
 
 Inherits from [React Aria CheckboxGroup](https://react-spectrum.adobe.com/react-aria/CheckboxGroup.html).
 
-| Prop           | Type                                                                             | Default | Description                                                       |
-| -------------- | -------------------------------------------------------------------------------- | ------- | ----------------------------------------------------------------- |
-| `value`        | `string[]`                                                                       | -       | The current selected values (controlled)                          |
-| `defaultValue` | `string[]`                                                                       | -       | The default selected values (uncontrolled)                        |
-| `onChange`     | `(value: string[]) => void`                                                      | -       | Handler called when the selected values change                    |
-| `isDisabled`   | `boolean`                                                                        | `false` | Whether the checkbox group is disabled                            |
-| `isRequired`   | `boolean`                                                                        | `false` | Whether the checkbox group is required                            |
-| `isReadOnly`   | `boolean`                                                                        | `false` | Whether the checkbox group is read only                           |
-| `isInvalid`    | `boolean`                                                                        | `false` | Whether the checkbox group is in an invalid state                 |
-| `name`         | `string`                                                                         | -       | The name of the checkbox group, used when submitting an HTML form |
-| `children`     | `React.ReactNode \| (values: CheckboxGroupRenderProps) => React.ReactNode`       | -       | Checkbox group content or render prop                             |
-| `render`       | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, CheckboxGroupRenderProps>` | -       | Overrides the default DOM element with a custom render function.  |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string[]` | - | The current selected values (controlled) |
+| `defaultValue` | `string[]` | - | The default selected values (uncontrolled) |
+| `onChange` | `(value: string[]) => void` | - | Handler called when the selected values change |
+| `isDisabled` | `boolean` | `false` | Whether the checkbox group is disabled |
+| `isRequired` | `boolean` | `false` | Whether the checkbox group is required |
+| `isReadOnly` | `boolean` | `false` | Whether the checkbox group is read only |
+| `isInvalid` | `boolean` | `false` | Whether the checkbox group is in an invalid state |
+| `name` | `string` | - | The name of the checkbox group, used when submitting an HTML form |
+| `children` | `React.ReactNode \| (values: CheckboxGroupRenderProps) => React.ReactNode` | - | Checkbox group content or render prop |
+| `render` | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, CheckboxGroupRenderProps>` | - | Overrides the default DOM element with a custom render function.|
 
 ### Render Props
 
 When using the render prop pattern, these values are provided:
 
-| Prop         | Type       | Description                                       |
-| ------------ | ---------- | ------------------------------------------------- |
-| `value`      | `string[]` | The currently selected values                     |
-| `isDisabled` | `boolean`  | Whether the checkbox group is disabled            |
-| `isReadOnly` | `boolean`  | Whether the checkbox group is read only           |
-| `isInvalid`  | `boolean`  | Whether the checkbox group is in an invalid state |
-| `isRequired` | `boolean`  | Whether the checkbox group is required            |
+| Prop | Type | Description |
+|------|------|-------------|
+| `value` | `string[]` | The currently selected values |
+| `isDisabled` | `boolean` | Whether the checkbox group is disabled |
+| `isReadOnly` | `boolean` | Whether the checkbox group is read only |
+| `isInvalid` | `boolean` | Whether the checkbox group is in an invalid state |
+| `isRequired` | `boolean` | Whether the checkbox group is required |
 
 ## Related Components
 

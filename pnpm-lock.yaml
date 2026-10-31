@@ -192,8 +192,8 @@ catalogs:
       specifier: ^12.40.0
       version: 12.43.0
     react-aria-components:
-      specifier: 1.21.1
-      version: 1.21.1
+      specifier: 1.22.1
+      version: 1.22.1
     yaml:
       specifier: 2.9.1
       version: 2.9.1
@@ -231,11 +231,11 @@ importers:
         specifier: ^5.3.0
         version: 5.3.0
       '@heroui/react':
-        specifier: 3.2.6
-        version: 3.2.6(@internationalized/date@3.12.4)(@react-aria/ssr@3.10.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@react-aria/utils@3.34.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@react-spectrum/provider@3.11.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-aria-components@1.21.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-aria@3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(tailwind-merge@3.7.0)(tailwindcss@4.3.0)
+        specifier: 3.2.7
+        version: 3.2.7(@internationalized/date@3.12.4)(@react-aria/ssr@3.10.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@react-aria/utils@3.34.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@react-spectrum/provider@3.11.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-aria-components@1.22.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-aria@3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(tailwind-merge@3.7.0)(tailwindcss@4.3.0)
       '@heroui/styles':
-        specifier: 3.2.6
-        version: 3.2.6(tailwind-merge@3.7.0)(tailwindcss@4.3.0)
+        specifier: 3.2.7
+        version: 3.2.7(tailwind-merge@3.7.0)(tailwindcss@4.3.0)
       '@internationalized/date':
         specifier: 'catalog:'
         version: 3.12.4
@@ -300,14 +300,14 @@ importers:
         specifier: npm:@heroui-pro/react@1.0.0-beta.10
         version: '@heroui-pro/react@1.0.0-beta.10'
       '@vezham/react-v3':
-        specifier: npm:@heroui/react@3.2.6
-        version: '@heroui/react@3.2.6(@internationalized/date@3.12.4)(@react-aria/ssr@3.10.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@react-aria/utils@3.34.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@react-spectrum/provider@3.11.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-aria-components@1.21.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-aria@3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(tailwind-merge@3.7.0)(tailwindcss@4.3.0)'
+        specifier: npm:@heroui/react@3.2.7
+        version: '@heroui/react@3.2.7(@internationalized/date@3.12.4)(@react-aria/ssr@3.10.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@react-aria/utils@3.34.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@react-spectrum/provider@3.11.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-aria-components@1.22.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-aria@3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(tailwind-merge@3.7.0)(tailwindcss@4.3.0)'
       '@vezham/start':
         specifier: 'catalog:'
         version: 26.0.2(@tanstack/hotkeys@0.8.0)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(csstype@3.2.3)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(solid-js@1.9.17)
       '@vezham/styles-v3':
-        specifier: npm:@heroui/styles@3.2.6
-        version: '@heroui/styles@3.2.6(tailwind-merge@3.7.0)(tailwindcss@4.3.0)'
+        specifier: npm:@heroui/styles@3.2.7
+        version: '@heroui/styles@3.2.7(tailwind-merge@3.7.0)(tailwindcss@4.3.0)'
       '@vezham/template':
         specifier: 'catalog:'
         version: 26.0.2
@@ -336,11 +336,11 @@ importers:
         specifier: 19.2.7
         version: 19.2.7
       react-aria:
-        specifier: 3.52.1
-        version: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+        specifier: 3.53.1
+        version: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-aria-components:
         specifier: 'catalog:'
-        version: 1.21.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+        version: 1.22.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom:
         specifier: 19.2.7
         version: 19.2.7(react@19.2.7)
@@ -467,7 +467,7 @@ importers:
         version: 1.167.2(@tanstack/react-router@1.170.41(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@tanstack/router-core@1.171.34)(csstype@3.2.3)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@tanstack/react-start':
         specifier: 1.168.60
-        version: 1.168.60(crossws@0.4.15(srvx@1.0.6))(esbuild@0.28.2)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(rolldown@1.1.5)(supports-color@10.2.2)(vite@8.1.6(@types/node@25.9.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(webpack@5.112.0(@swc/core@1.15.41(@swc/helpers@0.5.23))(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.31)(sharp@0.35.5(@types/node@25.9.3))(uglify-js@3.19.3))
+        version: 1.168.60(crossws@0.4.15(srvx@1.0.7))(esbuild@0.28.2)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(rolldown@1.1.5)(supports-color@10.2.2)(vite@8.1.6(@types/node@25.9.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(webpack@5.112.0(@swc/core@1.15.41(@swc/helpers@0.5.23))(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.31)(sharp@0.35.5(@types/node@25.9.3))(uglify-js@3.19.3))
       '@tanstack/router-cli':
         specifier: 1.167.25
         version: 1.167.25(supports-color@10.2.2)
@@ -652,9 +652,43 @@ importers:
         specifier: 17.7.3
         version: 17.7.3
 
+  apps-docs/developers:
+    dependencies:
+      '@gravity-ui/icons':
+        specifier: 2.23.0
+        version: 2.23.0(react@19.2.7)
+      '@iconify/react':
+        specifier: 6.0.3
+        version: 6.0.3(react@19.2.7)
+      '@react-stately/data':
+        specifier: 3.16.1
+        version: 3.16.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@tanstack/react-table':
+        specifier: 9.3.1
+        version: 9.3.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      clsx:
+        specifier: 2.1.1
+        version: 2.1.1
+      m3-ripple:
+        specifier: 1.1.3
+        version: 1.1.3(react@19.2.7)
+
+  apps-docs/developers-e2e: {}
+
   packages/vx/react: {}
 
 packages:
+
+  nitro-nightly@3.0.1-20261023-052727-7e9a0481:
+    resolution: {integrity: sha512-9XElAldyN7V8Vnet6aM3jWY1YFM0xrOoRp585h0dI9vG3w7ntrvzRvbywiclzjW5gZ5W40KR9GaKp1wOTxPYYw==}
+    engines: {node: '>=22.22.0'}
+    hasBin: true
+
+  srvx@1.0.6:
+    resolution: {integrity: sha512-QeTKgAhk8OSsfeq60bl3wuVs9PmBftzmk7owBInA/F1YQne+TRw0UcPymNpURldAmx8hfmM2PNNGH/zgo3GpLA==}
+    engines: {node: '>=20.16.0'}
+    hasBin: true
+
 
   '@adobe/css-tools@4.5.0':
     resolution: {integrity: sha512-6OzddxPio9UiWTCemp4N8cYLV2ZN1ncRnV1cVGtve7dhPOtRkleRyx32GQCYSwDYgaHU3USMm84tNsvKzRCa1Q==}
@@ -1894,23 +1928,31 @@ packages:
       json-schema-typed:
         optional: true
 
+  '@gravity-ui/icons@2.23.0':
+    resolution: {integrity: sha512-xy/upFefm889FJkfQ2/4QRH6t4Xdv1VVdtv7hRznGqz3bJsS+h2IHDctABbjjHC5qO032NWWul4wQ0c2vShE5A==}
+    peerDependencies:
+      react: '*'
+    peerDependenciesMeta:
+      react:
+        optional: true
+
   '@heroui-pro/react@1.0.0-beta.10':
     resolution: {integrity: sha512-3Vxf4m72WyjG1RIMtSlAn8ZNs//JtEZBUXUbki5Xo23InOdgukY/nEYGqPWLKoSIUrXx1ZH6ykNJXyhIUut1xg==}
 
-  '@heroui/react@3.2.6':
-    resolution: {integrity: sha512-KBhUUUdX4571SSjwpuBPEFZTYAw/tmGezTIsTnjIOlXDZkjWACfhFe6ibtReO+xTkUcfxCV1r3cF00/3OPlhhw==}
+  '@heroui/react@3.2.7':
+    resolution: {integrity: sha512-cFYqzjgkuni+UD8mKOzbUloi99DCFEt1bE7YLE/3/RpahdRsjzp10zjbNgDn7CJC0oES2AX81Siu/EeLk7bsVg==}
     peerDependencies:
       '@internationalized/date': ^3.12.4
       '@react-aria/ssr': ^3.10.1
       '@react-aria/utils': ^3.34.1
       react: '>=19.0.0'
-      react-aria: ^3.52.1
-      react-aria-components: ^1.21.1
+      react-aria: ^3.53.1
+      react-aria-components: ^1.22.1
       react-dom: '>=19.0.0'
       tailwindcss: '>=4.0.0'
 
-  '@heroui/styles@3.2.6':
-    resolution: {integrity: sha512-feKZUphVe5+QCXnUe8kpqT5T+pPeMI3LaQcSztx08PGVTkhz0dU0C6crKvA1G4HHIPFXXon68VeL8lPjvGHsWg==}
+  '@heroui/styles@3.2.7':
+    resolution: {integrity: sha512-WerQwDRChQsauO1vr3gXIOnbM9R4gvuCXg1mVt4NDirfejprZHSG7iQQJ8eCfKl3p5rRNC3BwX6W3xcEf/5ibw==}
     peerDependencies:
       tailwindcss: '>=4.0.0'
 
@@ -1936,6 +1978,14 @@ packages:
 
   '@iarna/toml@2.2.5':
     resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}
+
+  '@iconify/react@6.0.3':
+    resolution: {integrity: sha512-2x7gVs+tpUG75aXYo/0c5wPOqrFy75YSGKmuJZyuHyrHMydzXpI/+i9/USIzWXJL9WWc2BCgPVnGY2FhbeiiDQ==}
+    peerDependencies:
+      react: '>=18.0.0'
+
+  '@iconify/types@2.0.0':
+    resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
 
   '@img/colour@1.1.0':
     resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
@@ -3450,11 +3500,11 @@ packages:
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
 
-  '@radix-ui/primitive@1.1.7':
-    resolution: {integrity: sha512-rqWnm76nYT8HoNNqEjpgJ7Pw/DrBj5iBTrmEPo6HTX5+VJyBNOqTdv4g89G63HuR5g0AaENoAcH7Is5fF2kZ8Q==}
+  '@radix-ui/primitive@1.2.0':
+    resolution: {integrity: sha512-KABY+VMIRPJL+Vyzv/335FEhXXD/xDv8BMb1kl48/aXJZMH0LtHCTx5ga5RnxaEP3nZHtmTLf1P9vanmFX46bw==}
 
-  '@radix-ui/react-avatar@1.2.6':
-    resolution: {integrity: sha512-4ULOTJ/mqy2hT9GlWa/MFHxHSvH3nJzHnZM1waNsc5Bonv7i70aNenghXmD97S6OJ81ekXONGGt4nT1r0PfEdA==}
+  '@radix-ui/react-avatar@1.3.1':
+    resolution: {integrity: sha512-ssZOkfQNkFpYVmCPQlr978xSaU7moSrGXdwg4j2Xs2WlGl/1KsSZtfpK+WnLnx0Rwll1BAh6oUrAy/uR31SBvQ==}
     peerDependencies:
       '@types/react': '*'
       '@types/react-dom': '*'
@@ -3475,8 +3525,8 @@ packages:
       '@types/react':
         optional: true
 
-  '@radix-ui/react-context@1.2.2':
-    resolution: {integrity: sha512-RHCUGwKHDr0hDGg4X7ma4JG4/+12qxw8rkh5QKdDldlCvtja6nUx1Ef/8HVrJze81lEsgLQlqjzjGNHantgnQA==}
+  '@radix-ui/react-context@1.3.0':
+    resolution: {integrity: sha512-v5AYEocMISkbJ+1fTXzZpiFv7NRr3D2WiYbLIKf+FkmJ8VkP6d503eV2n34MFussHXY1pcoq3yfJiQH77dc4Mg==}
     peerDependencies:
       '@types/react': '*'
       react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
@@ -3484,8 +3534,8 @@ packages:
       '@types/react':
         optional: true
 
-  '@radix-ui/react-primitive@2.1.10':
-    resolution: {integrity: sha512-MucOnzh6hR5mid6VpkbglRAMYMjKLqRnGBbjXkzjK52fuQDd1qbkx78a5P40mkcnVXJdEVxm26E9OPAiUq7nBg==}
+  '@radix-ui/react-primitive@2.2.0':
+    resolution: {integrity: sha512-HCTSPMNqv55Qk0IX4geJbpyXazmqulcimwuyjxTkKi29v+QZbG2Zho9BnbBq4YS2PF+KlNb2CXoLz66uUmblkg==}
     peerDependencies:
       '@types/react': '*'
       '@types/react-dom': '*'
@@ -3497,8 +3547,8 @@ packages:
       '@types/react-dom':
         optional: true
 
-  '@radix-ui/react-slot@1.3.3':
-    resolution: {integrity: sha512-qx7oqnYbxnK9kYI9m317qmFmEgo6ywqWvbTogdj7cL9p3/yx4M48p7Rnw5z3H890cL/ow/EeWJsuTykeZVXP5Q==}
+  '@radix-ui/react-slot@1.5.0':
+    resolution: {integrity: sha512-tyYd9ddPXAysAbdbD9eYxgwpCSv6f3PncqVSNKQFSR5lcJVLz3cb/pANDoYrLiHBpXv7skortyUgGUWsYuPPFQ==}
     peerDependencies:
       '@types/react': '*'
       react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
@@ -3506,8 +3556,8 @@ packages:
       '@types/react':
         optional: true
 
-  '@radix-ui/react-use-callback-ref@1.1.4':
-    resolution: {integrity: sha512-R6OUY2e2fA6Yn6s+VSx5KBV6Nx8LQEhu+cz7LCej18rQ1HLyg9PSC9jP/ZNx0o6FAIK9c0F1kHylzSxKsdlkrQ==}
+  '@radix-ui/react-use-callback-ref@1.1.5':
+    resolution: {integrity: sha512-Y5GBf4NKeADoXI1geiMlMuMoURT3k9MizzzKhGb/m55H94aGigZ01PIpkvsO6lML13BA6XYAXSJ6gza7vTn5nw==}
     peerDependencies:
       '@types/react': '*'
       react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
@@ -3986,6 +4036,12 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
 
+  '@react-stately/data@3.16.1':
+    resolution: {integrity: sha512-pHLN4kry+t2fd3N8GgGM4It0y4hMPWhSxcrnetGmrgTPJPEzBZmvZcCkJaIny0XaH+7SBlQ5oKvTnP/L8SeNbA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+      react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+
   '@react-stately/datepicker@3.16.1':
     resolution: {integrity: sha512-BtAMDvxd1OZxkxjqq5tN5TYmp6Hm8+o3+IDA4qmem2/pfQfVbOZeWS2WitcPBImj4n4T+W1A5+PI7mT/6DUBVg==}
     peerDependencies:
@@ -4266,11 +4322,6 @@ packages:
 
   '@react-types/shared@3.33.1':
     resolution: {integrity: sha512-oJHtjvLG43VjwemQDadlR5g/8VepK56B/xKO2XORPHt9zlW6IZs3tZrYlvH29BMvoqC7RtE7E5UjgbnbFtDGag==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
-
-  '@react-types/shared@3.36.1':
-    resolution: {integrity: sha512-AzsuD9OfxTOZMMvTRhlN3oHBwOmFN7tDh27LzqmHt4+uOgPhJT7ZM7/kVs/8/o0WxayMUIk3hBmCFRHv1FUoag==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
 
@@ -5210,6 +5261,12 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
+  '@tanstack/react-table@9.3.1':
+    resolution: {integrity: sha512-E6Ya5TnY6EaGyZYIUqig/29Lr/gJSAubQkLJFqiWkUl5nRCr0Xr9hvJot+NiRTtG+TzGxHTiqUW3bnLtQxlHug==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      react: '>=18'
+
   '@tanstack/react-virtual@3.11.3':
     resolution: {integrity: sha512-vCU+OTylXN3hdC8RKg68tPlBPjjxtzon7Ys46MgrSLE+JhSjSTPvoQifV6DQJeJmA8Q3KT6CphJbejupx85vFw==}
     peerDependencies:
@@ -5335,6 +5392,10 @@ packages:
 
   '@tanstack/store@0.11.2':
     resolution: {integrity: sha512-sJ4mjol8uQsHV0gOJzzjwXfh2Fwm+Sz0+8deqiTm4jGbMdjzNSW+xZCFm0kUa870uhd8yi+DpKnZb5Kc4apa0Q==}
+
+  '@tanstack/table-core@9.3.1':
+    resolution: {integrity: sha512-zQvlxSNi2qGM3L4jh85Z6hqMfdIR5qOfD9KHOU32nuKFJGN0RlJ7UvV1lsPb1fPVhpFYI0VP3jJGxLdLDpTKjQ==}
+    engines: {node: '>=20'}
 
   '@tanstack/virtual-core@3.11.3':
     resolution: {integrity: sha512-v2mrNSnMwnPJtcVqNvV0c5roGCBqeogN8jDtgtuHCphdwBasOZ17x8UV8qpHUh+u0MLfX43c0uUHKje0s+Zb0w==}
@@ -10011,6 +10072,11 @@ packages:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
     hasBin: true
 
+  m3-ripple@1.1.3:
+    resolution: {integrity: sha512-ERPnwcri3lsNKKvq8gCf4Hxbfkjeo9bdQt1PpoVTE5c5pPMulWAObbP/3D+/Rw55hjd6cph98nGVDzzCZmgeXQ==}
+    peerDependencies:
+      react: '>= 18.0.0'
+
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
 
@@ -10496,8 +10562,8 @@ packages:
       sass:
         optional: true
 
-  nitro-nightly@3.0.1-20261023-052727-7e9a0481:
-    resolution: {integrity: sha512-9XElAldyN7V8Vnet6aM3jWY1YFM0xrOoRp585h0dI9vG3w7ntrvzRvbywiclzjW5gZ5W40KR9GaKp1wOTxPYYw==}
+  nitro-nightly@3.0.1-20261024-005652-6bccaad1:
+    resolution: {integrity: sha512-AJ31BZWNg7k47ThA3rE+i7axPSC2s+yGsUMWTdl3FyHThaYzm0cb2hVqR2qU260NWz0qIGBCpBQj0Gk6qKzNLQ==}
     engines: {node: '>=22.22.0'}
     hasBin: true
 
@@ -11750,8 +11816,8 @@ packages:
     engines: {node: '>=20.16.0'}
     hasBin: true
 
-  srvx@1.0.6:
-    resolution: {integrity: sha512-QeTKgAhk8OSsfeq60bl3wuVs9PmBftzmk7owBInA/F1YQne+TRw0UcPymNpURldAmx8hfmM2PNNGH/zgo3GpLA==}
+  srvx@1.0.7:
+    resolution: {integrity: sha512-8h30Qy2cpYkcXgByHNpV4+jp609bU3ic7MqnfyLQ2Fpa8BgjIaI2zfsDKAIbwm8DcYDrCLqm5izF5KeL2nxdvg==}
     engines: {node: '>=20.16.0'}
     hasBin: true
 
@@ -12857,6 +12923,30 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
 snapshots:
+
+  nitro-nightly@3.0.1-20261023-052727-7e9a0481:
+    dependencies:
+      crossws: 0.4.15(srvx@1.0.6)
+      env-runner: 0.3.7
+      h3: 2.0.8(crossws@0.4.15(srvx@1.0.6))(ocache@0.3.1)
+      ocache: 0.3.1
+      rou3: 1.0.0
+      srvx: 1.0.6
+
+  crossws@0.4.15(srvx@1.0.6):
+    optionalDependencies:
+      srvx: 1.0.6
+
+  srvx@1.0.6: {}
+
+  h3@2.0.8(crossws@0.4.15(srvx@1.0.6))(ocache@0.3.1):
+    dependencies:
+      rou3: 1.0.0
+      srvx: 1.0.6
+    optionalDependencies:
+      crossws: 0.4.15(srvx@1.0.6)
+      ocache: 0.3.1
+
 
   '@adobe/css-tools@4.5.0': {}
 
@@ -14263,25 +14353,31 @@ snapshots:
     optionalDependencies:
       json-schema-typed: 8.0.2
 
+  '@gravity-ui/icons@2.23.0(react@19.2.7)':
+    dependencies:
+      tslib: 2.8.1
+    optionalDependencies:
+      react: 19.2.7
+
   '@heroui-pro/react@1.0.0-beta.10':
     dependencies:
       chalk: 5.6.2
       heroui-pro: 1.0.0-beta.14
 
-  '@heroui/react@3.2.6(@internationalized/date@3.12.4)(@react-aria/ssr@3.10.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@react-aria/utils@3.34.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@react-spectrum/provider@3.11.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-aria-components@1.21.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-aria@3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(tailwind-merge@3.7.0)(tailwindcss@4.3.0)':
+  '@heroui/react@3.2.7(@internationalized/date@3.12.4)(@react-aria/ssr@3.10.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@react-aria/utils@3.34.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@react-spectrum/provider@3.11.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-aria-components@1.22.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-aria@3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(tailwind-merge@3.7.0)(tailwindcss@4.3.0)':
     dependencies:
-      '@heroui/styles': 3.2.6(tailwind-merge@3.7.0)(tailwindcss@4.3.0)
+      '@heroui/styles': 3.2.7(tailwind-merge@3.7.0)(tailwindcss@4.3.0)
       '@internationalized/date': 3.12.4
-      '@radix-ui/react-avatar': 1.2.6(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@radix-ui/react-avatar': 1.3.1(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@react-aria/ssr': 3.10.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@react-aria/utils': 3.34.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@react-stately/utils': 3.12.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@react-types/color': 3.2.0(@react-spectrum/provider@3.11.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      '@react-types/shared': 3.36.1(react@19.2.7)
+      '@react-types/shared': 3.37.0(react@19.2.7)
       input-otp: 1.5.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      react-aria-components: 1.21.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria-components: 1.22.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
       tailwind-variants: 3.3.1(tailwind-merge@3.7.0)(tailwindcss@4.3.0)
       tailwindcss: 4.3.0
@@ -14291,7 +14387,7 @@ snapshots:
       - '@types/react-dom'
       - tailwind-merge
 
-  '@heroui/styles@3.2.6(tailwind-merge@3.7.0)(tailwindcss@4.3.0)':
+  '@heroui/styles@3.2.7(tailwind-merge@3.7.0)(tailwindcss@4.3.0)':
     dependencies:
       tailwind-variants: 3.3.1(tailwind-merge@3.7.0)(tailwindcss@4.3.0)
       tailwindcss: 4.3.0
@@ -14316,6 +14412,13 @@ snapshots:
   '@humanwhocodes/retry@0.4.3': {}
 
   '@iarna/toml@2.2.5': {}
+
+  '@iconify/react@6.0.3(react@19.2.7)':
+    dependencies:
+      '@iconify/types': 2.0.0
+      react: 19.2.7
+
+  '@iconify/types@2.0.0': {}
 
   '@img/colour@1.1.0':
     optional: true
@@ -15714,14 +15817,14 @@ snapshots:
 
   '@polka/url@1.0.0-next.29': {}
 
-  '@radix-ui/primitive@1.1.7': {}
+  '@radix-ui/primitive@1.2.0': {}
 
-  '@radix-ui/react-avatar@1.2.6(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
+  '@radix-ui/react-avatar@1.3.1(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
-      '@radix-ui/primitive': 1.1.7
-      '@radix-ui/react-context': 1.2.2(@types/react@19.2.17)(react@19.2.7)
-      '@radix-ui/react-primitive': 2.1.10(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      '@radix-ui/react-use-callback-ref': 1.1.4(@types/react@19.2.17)(react@19.2.7)
+      '@radix-ui/primitive': 1.2.0
+      '@radix-ui/react-context': 1.3.0(@types/react@19.2.17)(react@19.2.7)
+      '@radix-ui/react-primitive': 2.2.0(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@radix-ui/react-use-callback-ref': 1.1.5(@types/react@19.2.17)(react@19.2.7)
       '@radix-ui/react-use-is-hydrated': 0.1.3(@types/react@19.2.17)(react@19.2.7)
       '@radix-ui/react-use-layout-effect': 1.1.4(@types/react@19.2.17)(react@19.2.7)
       react: 19.2.7
@@ -15736,30 +15839,31 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.17
 
-  '@radix-ui/react-context@1.2.2(@types/react@19.2.17)(react@19.2.7)':
+  '@radix-ui/react-context@1.3.0(@types/react@19.2.17)(react@19.2.7)':
     dependencies:
       react: 19.2.7
     optionalDependencies:
       '@types/react': 19.2.17
 
-  '@radix-ui/react-primitive@2.1.10(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
+  '@radix-ui/react-primitive@2.2.0(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
-      '@radix-ui/react-slot': 1.3.3(@types/react@19.2.17)(react@19.2.7)
+      '@radix-ui/react-slot': 1.5.0(@types/react@19.2.17)(react@19.2.7)
       react: 19.2.7
       react-dom: 19.2.7(react@19.2.7)
     optionalDependencies:
       '@types/react': 19.2.17
       '@types/react-dom': 19.2.3(@types/react@19.2.17)
 
-  '@radix-ui/react-slot@1.3.3(@types/react@19.2.17)(react@19.2.7)':
+  '@radix-ui/react-slot@1.5.0(@types/react@19.2.17)(react@19.2.7)':
     dependencies:
       '@radix-ui/react-compose-refs': 1.1.5(@types/react@19.2.17)(react@19.2.7)
       react: 19.2.7
     optionalDependencies:
       '@types/react': 19.2.17
 
-  '@radix-ui/react-use-callback-ref@1.1.4(@types/react@19.2.17)(react@19.2.7)':
+  '@radix-ui/react-use-callback-ref@1.1.5(@types/react@19.2.17)(react@19.2.7)':
     dependencies:
+      '@radix-ui/react-use-layout-effect': 1.1.4(@types/react@19.2.17)(react@19.2.7)
       react: 19.2.7
     optionalDependencies:
       '@types/react': 19.2.17
@@ -15807,14 +15911,14 @@ snapshots:
     dependencies:
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/calendar@3.10.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
       react-stately: 3.51.0(react@19.2.7)
 
@@ -15853,14 +15957,14 @@ snapshots:
     dependencies:
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/color@3.2.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/combobox@3.15.0(@react-spectrum/provider@3.11.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
@@ -15929,7 +16033,7 @@ snapshots:
     dependencies:
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/focus@3.21.5(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
@@ -15946,7 +16050,7 @@ snapshots:
     dependencies:
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/form@3.1.5(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
@@ -15963,14 +16067,14 @@ snapshots:
     dependencies:
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/grid@3.15.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/i18n@3.12.16(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
@@ -15993,7 +16097,7 @@ snapshots:
       '@internationalized/string': 3.2.10
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/interactions@3.27.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
@@ -16011,7 +16115,7 @@ snapshots:
       '@react-types/shared': 3.37.0(react@19.2.7)
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/label@3.7.25(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
@@ -16026,21 +16130,21 @@ snapshots:
     dependencies:
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/landmark@3.1.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/link@3.9.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/listbox@3.15.3(@react-spectrum/provider@3.11.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
@@ -16063,14 +16167,14 @@ snapshots:
     dependencies:
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/live-announcer@3.5.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/menu@3.21.0(@react-spectrum/provider@3.11.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
@@ -16098,7 +16202,7 @@ snapshots:
     dependencies:
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/numberfield@3.12.5(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
@@ -16141,7 +16245,7 @@ snapshots:
     dependencies:
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/progress@3.4.30(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
@@ -16186,7 +16290,7 @@ snapshots:
     dependencies:
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/slider@3.8.5(@react-spectrum/provider@3.11.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
@@ -16209,21 +16313,21 @@ snapshots:
       '@react-types/shared': 3.37.0(react@19.2.7)
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/spinbutton@3.8.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/ssr@3.10.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/ssr@3.9.10(react@19.2.7)':
@@ -16247,7 +16351,7 @@ snapshots:
     dependencies:
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/table@3.17.11(@react-spectrum/provider@3.11.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
@@ -16292,7 +16396,7 @@ snapshots:
       '@react-types/shared': 3.37.0(react@19.2.7)
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/textfield@3.18.5(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
@@ -16313,7 +16417,7 @@ snapshots:
     dependencies:
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/toast@3.0.11(@react-spectrum/provider@3.11.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
@@ -16335,7 +16439,7 @@ snapshots:
     dependencies:
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
   '@react-aria/toolbar@3.0.0-beta.24(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
@@ -16374,7 +16478,7 @@ snapshots:
     dependencies:
       '@swc/helpers': 0.5.23
       react: 19.2.7
-      react-aria: 3.52.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react-aria: 3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
       react-stately: 3.51.0(react@19.2.7)
 
@@ -16541,6 +16645,13 @@ snapshots:
       react: 19.2.7
     transitivePeerDependencies:
       - react-dom
+
+  '@react-stately/data@3.16.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
+    dependencies:
+      '@swc/helpers': 0.5.23
+      react: 19.2.7
+      react-dom: 19.2.7(react@19.2.7)
+      react-stately: 3.51.0(react@19.2.7)
 
   '@react-stately/datepicker@3.16.1(@react-spectrum/provider@3.11.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
@@ -16942,10 +17053,6 @@ snapshots:
       react: 19.2.7
 
   '@react-types/shared@3.33.1(react@19.2.7)':
-    dependencies:
-      react: 19.2.7
-
-  '@react-types/shared@3.36.1(react@19.2.7)':
     dependencies:
       react: 19.2.7
 
@@ -17771,14 +17878,14 @@ snapshots:
       react: 19.2.7
       react-dom: 19.2.7(react@19.2.7)
 
-  '@tanstack/react-start-rsc@0.1.59(crossws@0.4.15(srvx@1.0.6))(esbuild@0.28.2)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(rolldown@1.1.5)(supports-color@10.2.2)(vite@8.1.6(@types/node@25.9.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(webpack@5.112.0(@swc/core@1.15.41(@swc/helpers@0.5.23))(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.31)(sharp@0.35.5(@types/node@25.9.3))(uglify-js@3.19.3))':
+  '@tanstack/react-start-rsc@0.1.59(crossws@0.4.15(srvx@1.0.7))(esbuild@0.28.2)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(rolldown@1.1.5)(supports-color@10.2.2)(vite@8.1.6(@types/node@25.9.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(webpack@5.112.0(@swc/core@1.15.41(@swc/helpers@0.5.23))(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.31)(sharp@0.35.5(@types/node@25.9.3))(uglify-js@3.19.3))':
     dependencies:
       '@tanstack/react-router': 1.170.41(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@tanstack/router-core': 1.171.34
       '@tanstack/router-utils': 1.162.3(supports-color@10.2.2)
       '@tanstack/start-client-core': 1.170.34
       '@tanstack/start-fn-stubs': 1.162.0
-      '@tanstack/start-plugin-core': 1.171.49(@tanstack/react-router@1.170.41(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(crossws@0.4.15(srvx@1.0.6))(esbuild@0.28.2)(rolldown@1.1.5)(supports-color@10.2.2)(vite@8.1.6(@types/node@25.9.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(webpack@5.112.0(@swc/core@1.15.41(@swc/helpers@0.5.23))(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.31)(sharp@0.35.5(@types/node@25.9.3))(uglify-js@3.19.3))
+      '@tanstack/start-plugin-core': 1.171.49(@tanstack/react-router@1.170.41(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(crossws@0.4.15(srvx@1.0.7))(esbuild@0.28.2)(rolldown@1.1.5)(supports-color@10.2.2)(vite@8.1.6(@types/node@25.9.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(webpack@5.112.0(@swc/core@1.15.41(@swc/helpers@0.5.23))(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.31)(sharp@0.35.5(@types/node@25.9.3))(uglify-js@3.19.3))
       '@tanstack/start-storage-context': 1.167.36
       pathe: 2.0.3
       react: 19.2.7
@@ -17797,26 +17904,26 @@ snapshots:
       - vite-plugin-solid
       - webpack
 
-  '@tanstack/react-start-server@1.167.46(crossws@0.4.15(srvx@1.0.6))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
+  '@tanstack/react-start-server@1.167.46(crossws@0.4.15(srvx@1.0.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
       '@tanstack/react-router': 1.170.41(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@tanstack/router-core': 1.171.34
-      '@tanstack/start-server-core': 1.169.39(crossws@0.4.15(srvx@1.0.6))
+      '@tanstack/start-server-core': 1.169.39(crossws@0.4.15(srvx@1.0.7))
       react: 19.2.7
       react-dom: 19.2.7(react@19.2.7)
     transitivePeerDependencies:
       - crossws
 
-  '@tanstack/react-start@1.168.60(crossws@0.4.15(srvx@1.0.6))(esbuild@0.28.2)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(rolldown@1.1.5)(supports-color@10.2.2)(vite@8.1.6(@types/node@25.9.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(webpack@5.112.0(@swc/core@1.15.41(@swc/helpers@0.5.23))(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.31)(sharp@0.35.5(@types/node@25.9.3))(uglify-js@3.19.3))':
+  '@tanstack/react-start@1.168.60(crossws@0.4.15(srvx@1.0.7))(esbuild@0.28.2)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(rolldown@1.1.5)(supports-color@10.2.2)(vite@8.1.6(@types/node@25.9.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(webpack@5.112.0(@swc/core@1.15.41(@swc/helpers@0.5.23))(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.31)(sharp@0.35.5(@types/node@25.9.3))(uglify-js@3.19.3))':
     dependencies:
       '@tanstack/react-router': 1.170.41(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@tanstack/react-start-client': 1.168.39(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      '@tanstack/react-start-rsc': 0.1.59(crossws@0.4.15(srvx@1.0.6))(esbuild@0.28.2)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(rolldown@1.1.5)(supports-color@10.2.2)(vite@8.1.6(@types/node@25.9.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(webpack@5.112.0(@swc/core@1.15.41(@swc/helpers@0.5.23))(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.31)(sharp@0.35.5(@types/node@25.9.3))(uglify-js@3.19.3))
-      '@tanstack/react-start-server': 1.167.46(crossws@0.4.15(srvx@1.0.6))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@tanstack/react-start-rsc': 0.1.59(crossws@0.4.15(srvx@1.0.7))(esbuild@0.28.2)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(rolldown@1.1.5)(supports-color@10.2.2)(vite@8.1.6(@types/node@25.9.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(webpack@5.112.0(@swc/core@1.15.41(@swc/helpers@0.5.23))(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.31)(sharp@0.35.5(@types/node@25.9.3))(uglify-js@3.19.3))
+      '@tanstack/react-start-server': 1.167.46(crossws@0.4.15(srvx@1.0.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@tanstack/router-utils': 1.162.3(supports-color@10.2.2)
       '@tanstack/start-client-core': 1.170.34
-      '@tanstack/start-plugin-core': 1.171.49(@tanstack/react-router@1.170.41(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(crossws@0.4.15(srvx@1.0.6))(esbuild@0.28.2)(rolldown@1.1.5)(supports-color@10.2.2)(vite@8.1.6(@types/node@25.9.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(webpack@5.112.0(@swc/core@1.15.41(@swc/helpers@0.5.23))(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.31)(sharp@0.35.5(@types/node@25.9.3))(uglify-js@3.19.3))
-      '@tanstack/start-server-core': 1.169.39(crossws@0.4.15(srvx@1.0.6))
+      '@tanstack/start-plugin-core': 1.171.49(@tanstack/react-router@1.170.41(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(crossws@0.4.15(srvx@1.0.7))(esbuild@0.28.2)(rolldown@1.1.5)(supports-color@10.2.2)(vite@8.1.6(@types/node@25.9.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(webpack@5.112.0(@swc/core@1.15.41(@swc/helpers@0.5.23))(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.31)(sharp@0.35.5(@types/node@25.9.3))(uglify-js@3.19.3))
+      '@tanstack/start-server-core': 1.169.39(crossws@0.4.15(srvx@1.0.7))
       pathe: 2.0.3
       react: 19.2.7
       react-dom: 19.2.7(react@19.2.7)
@@ -17842,6 +17949,14 @@ snapshots:
       react: 19.2.7
       react-dom: 19.2.7(react@19.2.7)
       use-sync-external-store: 1.7.0(react@19.2.7)
+
+  '@tanstack/react-table@9.3.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
+    dependencies:
+      '@tanstack/react-store': 0.11.2(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@tanstack/table-core': 9.3.1
+      react: 19.2.7
+    transitivePeerDependencies:
+      - react-dom
 
   '@tanstack/react-virtual@3.11.3(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
@@ -18010,7 +18125,7 @@ snapshots:
 
   '@tanstack/start-fn-stubs@1.162.0': {}
 
-  '@tanstack/start-plugin-core@1.171.49(@tanstack/react-router@1.170.41(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(crossws@0.4.15(srvx@1.0.6))(esbuild@0.28.2)(rolldown@1.1.5)(supports-color@10.2.2)(vite@8.1.6(@types/node@25.9.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(webpack@5.112.0(@swc/core@1.15.41(@swc/helpers@0.5.23))(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.31)(sharp@0.35.5(@types/node@25.9.3))(uglify-js@3.19.3))':
+  '@tanstack/start-plugin-core@1.171.49(@tanstack/react-router@1.170.41(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(crossws@0.4.15(srvx@1.0.7))(esbuild@0.28.2)(rolldown@1.1.5)(supports-color@10.2.2)(vite@8.1.6(@types/node@25.9.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(webpack@5.112.0(@swc/core@1.15.41(@swc/helpers@0.5.23))(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.31)(sharp@0.35.5(@types/node@25.9.3))(uglify-js@3.19.3))':
     dependencies:
       '@babel/code-frame': 7.29.7
       '@babel/core': 7.29.7(supports-color@10.2.2)
@@ -18020,7 +18135,7 @@ snapshots:
       '@tanstack/router-generator': 1.167.40(supports-color@10.2.2)
       '@tanstack/router-plugin': 1.168.42(@tanstack/react-router@1.170.41(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(esbuild@0.28.2)(rolldown@1.1.5)(supports-color@10.2.2)(vite@8.1.6(@types/node@25.9.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(webpack@5.112.0(@swc/core@1.15.41(@swc/helpers@0.5.23))(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.31)(sharp@0.35.5(@types/node@25.9.3))(uglify-js@3.19.3))
       '@tanstack/router-utils': 1.162.3(supports-color@10.2.2)
-      '@tanstack/start-server-core': 1.169.39(crossws@0.4.15(srvx@1.0.6))
+      '@tanstack/start-server-core': 1.169.39(crossws@0.4.15(srvx@1.0.7))
       exsolve: 1.1.3
       lightningcss: 1.33.0
       pathe: 2.0.3
@@ -18049,14 +18164,14 @@ snapshots:
       - vite-plugin-solid
       - webpack
 
-  '@tanstack/start-server-core@1.169.39(crossws@0.4.15(srvx@1.0.6))':
+  '@tanstack/start-server-core@1.169.39(crossws@0.4.15(srvx@1.0.7))':
     dependencies:
       '@tanstack/history': 1.162.4
       '@tanstack/router-core': 1.171.34
       '@tanstack/start-client-core': 1.170.34
       '@tanstack/start-storage-context': 1.167.36
       fetchdts: 0.1.7
-      h3-v2: h3@2.0.1-rc.20(crossws@0.4.15(srvx@1.0.6))
+      h3-v2: h3@2.0.1-rc.20(crossws@0.4.15(srvx@1.0.7))
       seroval: 1.6.8
     transitivePeerDependencies:
       - crossws
@@ -18066,6 +18181,10 @@ snapshots:
       '@tanstack/router-core': 1.171.34
 
   '@tanstack/store@0.11.2': {}
+
+  '@tanstack/table-core@9.3.1':
+    dependencies:
+      '@tanstack/store': 0.11.2
 
   '@tanstack/virtual-core@3.11.3': {}
 
@@ -21286,9 +21405,9 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
-  crossws@0.4.15(srvx@1.0.6):
+  crossws@0.4.15(srvx@1.0.7):
     optionalDependencies:
-      srvx: 1.0.6
+      srvx: 1.0.7
 
   css-background-parser@0.1.0: {}
 
@@ -21597,8 +21716,8 @@ snapshots:
 
   env-runner@0.3.7:
     dependencies:
-      crossws: 0.4.15(srvx@1.0.6)
-      srvx: 1.0.6
+      crossws: 0.4.15(srvx@1.0.7)
+      srvx: 1.0.7
 
   envinfo@7.21.0: {}
 
@@ -22535,19 +22654,19 @@ snapshots:
       pumpify: 1.5.1
       through2: 2.0.5
 
-  h3@2.0.1-rc.20(crossws@0.4.15(srvx@1.0.6)):
+  h3@2.0.1-rc.20(crossws@0.4.15(srvx@1.0.7)):
     dependencies:
       rou3: 0.8.1
       srvx: 0.11.22
     optionalDependencies:
-      crossws: 0.4.15(srvx@1.0.6)
+      crossws: 0.4.15(srvx@1.0.7)
 
-  h3@2.0.8(crossws@0.4.15(srvx@1.0.6))(ocache@0.3.1):
+  h3@2.0.8(crossws@0.4.15(srvx@1.0.7))(ocache@0.3.1):
     dependencies:
       rou3: 1.0.0
-      srvx: 1.0.6
+      srvx: 1.0.7
     optionalDependencies:
-      crossws: 0.4.15(srvx@1.0.6)
+      crossws: 0.4.15(srvx@1.0.7)
       ocache: 0.3.1
 
   handlebars@4.7.10:
@@ -23770,6 +23889,10 @@ snapshots:
 
   lz-string@1.5.0: {}
 
+  m3-ripple@1.1.3(react@19.2.7):
+    dependencies:
+      react: 19.2.7
+
   magic-string@0.30.21:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.6.0
@@ -24455,14 +24578,14 @@ snapshots:
       - '@types/node'
       - babel-plugin-macros
 
-  nitro-nightly@3.0.1-20261023-052727-7e9a0481:
+  nitro-nightly@3.0.1-20261024-005652-6bccaad1:
     dependencies:
-      crossws: 0.4.15(srvx@1.0.6)
+      crossws: 0.4.15(srvx@1.0.7)
       env-runner: 0.3.7
-      h3: 2.0.8(crossws@0.4.15(srvx@1.0.6))(ocache@0.3.1)
+      h3: 2.0.8(crossws@0.4.15(srvx@1.0.7))(ocache@0.3.1)
       ocache: 0.3.1
       rou3: 1.0.0
-      srvx: 1.0.6
+      srvx: 1.0.7
 
   node-addon-api@7.1.1: {}
 
@@ -26095,7 +26218,7 @@ snapshots:
 
   srvx@0.11.22: {}
 
-  srvx@1.0.6: {}
+  srvx@1.0.7: {}
 
   sshpk@1.18.0:
     dependencies:

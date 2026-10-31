@@ -10,25 +10,27 @@ links:
   figma: true
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Separator } from '@heroui/react'
+import { Separator } from '@heroui/react';
 ```
 
-[Live example: separator-basic](https://heroui.com/docs/react/components/separator)
 
-```tsx
+<ComponentPreview name="separator-basic">
+
+````tsx
+import {Separator} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <div className="max-w-md">
       <div className="space-y-1">
         <h4 className="text-medium font-medium">HeroUI v3 Components</h4>
-        <p className="text-small text-default-400">
-          Beautiful, fast and modern React UI library.
-        </p>
+        <p className="text-small text-default-400">Beautiful, fast and modern React UI library.</p>
       </div>
       <Separator className="my-4" />
       <div className="text-small flex h-5 items-center space-x-4">
@@ -39,17 +41,23 @@ export function Basic() {
         <div>Source</div>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Examples
 
 ### Variants
 
-[Live example: separator-variants](https://heroui.com/docs/react/components/separator)
 
-```tsx
+<ComponentPreview name="separator-variants">
+
+````tsx
+import {Separator} from "@vezham/react-v3";
+
 export function Variants() {
   return (
     <div className="flex max-w-md flex-col items-center gap-3">
@@ -60,77 +68,76 @@ export function Variants() {
       <div>Tertiary Variant</div>
       <Separator variant="tertiary" />
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Surface
 
 The Separator component adapts to different surface backgrounds for better visibility.
 
-[Live example: separator-with-surface](https://heroui.com/docs/react/components/separator)
 
-```tsx
+<ComponentPreview name="separator-with-surface">
+
+````tsx
+import {Separator, Surface} from "@vezham/react-v3";
+
 export function WithSurface() {
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-2">
-        <Surface
-          className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6"
-          variant="default">
-          <h3 className="text-foreground text-base font-semibold">
-            Default Surface
-          </h3>
+        <Surface className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6" variant="default">
+          <h3 className="text-base font-semibold text-foreground">Default Surface</h3>
           <Separator />
-          <p className="text-muted text-sm">Surface Content</p>
+          <p className="text-sm text-muted">Surface Content</p>
         </Surface>
       </div>
 
       <div className="flex flex-col gap-2">
-        <Surface
-          className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6"
-          variant="secondary">
-          <h3 className="text-foreground text-base font-semibold">
-            Secondary Surface
-          </h3>
+        <Surface className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6" variant="secondary">
+          <h3 className="text-base font-semibold text-foreground">Secondary Surface</h3>
           <Separator variant="secondary" />
-          <p className="text-muted text-sm">Surface Content</p>
+          <p className="text-sm text-muted">Surface Content</p>
         </Surface>
       </div>
 
       <div className="flex flex-col gap-2">
-        <Surface
-          className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6"
-          variant="tertiary">
-          <h3 className="text-foreground text-base font-semibold">
-            Tertiary Surface
-          </h3>
+        <Surface className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6" variant="tertiary">
+          <h3 className="text-base font-semibold text-foreground">Tertiary Surface</h3>
           <Separator variant="tertiary" />
-          <p className="text-muted text-sm">Surface Content</p>
+          <p className="text-sm text-muted">Surface Content</p>
         </Surface>
       </div>
 
       <div className="flex flex-col gap-2">
         <Surface
           className="flex min-w-[320px] flex-col gap-3 rounded-3xl border p-6"
-          variant="transparent">
-          <h3 className="text-foreground text-base font-semibold">
-            Transparent Surface
-          </h3>
+          variant="transparent"
+        >
+          <h3 className="text-base font-semibold text-foreground">Transparent Surface</h3>
           <Separator />
-          <p className="text-muted text-sm">Surface Content</p>
+          <p className="text-sm text-muted">Surface Content</p>
         </Surface>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Vertical
 
-[Live example: separator-vertical](https://heroui.com/docs/react/components/separator)
 
-```tsx
+<ComponentPreview name="separator-vertical">
+
+````tsx
+import {Separator} from "@vezham/react-v3";
+
 export function Vertical() {
   return (
     <div className="text-small flex h-5 items-center space-x-4">
@@ -140,35 +147,39 @@ export function Vertical() {
       <Separator orientation="vertical" />
       <div>Source</div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Content
 
-[Live example: separator-with-content](https://heroui.com/docs/react/components/separator)
 
-```tsx
+<ComponentPreview name="separator-with-content">
+
+````tsx
+import {Separator} from "@vezham/react-v3";
+
 const items = [
   {
-    iconUrl:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/3dicons/bell-small.png',
-    subtitle: 'Receive account activity updates',
-    title: 'Set Up Notifications'
+    iconUrl: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/3dicons/bell-small.png",
+    subtitle: "Receive account activity updates",
+    title: "Set Up Notifications",
+  },
+  {
+    iconUrl: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/3dicons/compass-small.png",
+    subtitle: "Connect your browser to your account",
+    title: "Set up Browser Extension",
   },
   {
     iconUrl:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/3dicons/compass-small.png',
-    subtitle: 'Connect your browser to your account',
-    title: 'Set up Browser Extension'
+      "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/3dicons/mint-collective-small.png",
+    subtitle: "Create your first collectible",
+    title: "Mint Collectible",
   },
-  {
-    iconUrl:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/3dicons/mint-collective-small.png',
-    subtitle: 'Create your first collectible',
-    title: 'Mint Collectible'
-  }
-]
+];
 
 export function WithContent() {
   return (
@@ -179,16 +190,19 @@ export function WithContent() {
             <img alt={item.title} className="size-12" src={item.iconUrl} />
             <div className="flex-1 space-y-0">
               <h4 className="text-small font-medium">{item.title}</h4>
-              <p className="text-muted text-sm">{item.subtitle}</p>
+              <p className="text-sm text-muted">{item.subtitle}</p>
             </div>
           </div>
           {index < items.length - 1 && <Separator className="my-4" />}
         </div>
       ))}
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Decorative
 
@@ -200,65 +214,72 @@ Use `isDecorative` when the divider is purely visual, such as between listbox se
 
 ### Render Function
 
-[Live example: separator-render-function](https://heroui.com/docs/react/components/separator)
 
-```tsx
-'use client'
+<ComponentPreview name="separator-render-function">
+
+````tsx
+"use client";
+
+import {Separator} from "@vezham/react-v3";
 
 export function RenderFunction() {
   return (
     <div className="max-w-md">
       <div className="space-y-1">
         <h4 className="text-medium font-medium">HeroUI v3 Components</h4>
-        <p className="text-small text-default-400">
-          Beautiful, fast and modern React UI library.
-        </p>
+        <p className="text-small text-default-400">Beautiful, fast and modern React UI library.</p>
       </div>
-      <Separator
-        className="my-4"
-        render={props => <div {...props} data-custom="foo" />}
-      />
+      <Separator className="my-4" render={(props) => <div {...props} data-custom="foo" />} />
       <div className="text-small flex h-5 items-center space-x-4">
         <div>Blog</div>
         <Separator
           orientation="vertical"
-          render={props => <div {...props} data-custom="foo" />}
+          render={(props) => <div {...props} data-custom="foo" />}
         />
         <div>Docs</div>
         <Separator
           orientation="vertical"
-          render={props => <div {...props} data-custom="foo" />}
+          render={(props) => <div {...props} data-custom="foo" />}
         />
         <div>Source</div>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: separator-custom-styles](https://heroui.com/docs/react/components/separator)
 
-```tsx
+<ComponentPreview name="separator-custom-styles">
+
+````tsx
+import {Separator} from "@vezham/react-v3";
+
 export function CustomStyles() {
   return (
     <div className="max-w-xs space-y-4">
-      <p className="text-foreground text-sm font-medium">Account settings</p>
+      <p className="text-sm font-medium text-foreground">Account settings</p>
       <Separator className="bg-separator-secondary" />
-      <div className="text-muted flex items-center gap-3 text-sm">
+      <div className="flex items-center gap-3 text-sm text-muted">
         <span>Profile</span>
-        <Separator className="bg-separator h-4" orientation="vertical" />
+        <Separator className="h-4 bg-separator" orientation="vertical" />
         <span>Billing</span>
-        <Separator className="bg-separator h-4" orientation="vertical" />
+        <Separator className="h-4 bg-separator" orientation="vertical" />
         <span>Security</span>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -286,13 +307,11 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The Separator component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/separator.css)):
 
 #### Base & Orientation Classes [!toc]
-
 - `.separator` - Base separator styles with default horizontal orientation
 - `.separator--horizontal` - Horizontal orientation (full width, 1px height)
 - `.separator--vertical` - Vertical orientation (full height, 1px width)
 
 #### Variant Classes [!toc]
-
 - `.separator--default` - Default variant with standard contrast
 - `.separator--secondary` - Secondary variant with medium contrast
 - `.separator--tertiary` - Tertiary variant with subtle contrast
@@ -301,13 +320,13 @@ The Separator component uses these CSS classes ([View source styles](https://git
 
 ### Separator
 
-| Prop           | Type                                                              | Default        | Description                                                                             |
-| -------------- | ----------------------------------------------------------------- | -------------- | --------------------------------------------------------------------------------------- |
-| `isDecorative` | `boolean`                                                         | `false`        | Hides a purely visual divider from assistive technology and removes separator semantics |
-| `orientation`  | `'horizontal' \| 'vertical'`                                      | `'horizontal'` | The orientation of the separator                                                        |
-| `variant`      | `'default' \| 'secondary' \| 'tertiary'`                          | `'default'`    | The visual variant of the separator                                                     |
-| `className`    | `string`                                                          | -              | Additional CSS classes                                                                  |
-| `render`       | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, undefined>` | -              | Overrides the default DOM element with a custom render function.                        |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `isDecorative` | `boolean` | `false` | Hides a purely visual divider from assistive technology and removes separator semantics |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | The orientation of the separator |
+| `variant` | `'default' \| 'secondary' \| 'tertiary'` | `'default'` | The visual variant of the separator |
+| `className` | `string` | - | Additional CSS classes |
+| `render` | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, undefined>` | - | Overrides the default DOM element with a custom render function.|
 
 ## Related Components
 

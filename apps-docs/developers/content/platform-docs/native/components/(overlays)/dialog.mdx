@@ -8,16 +8,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/dialog-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/dialog-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/dialog-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/dialog-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { Dialog } from 'heroui-native'
+import { Dialog } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -125,12 +126,12 @@ Dialog with text inputs and keyboard handling.
 ## Example
 
 ```tsx
-import { Button, Dialog } from 'heroui-native'
-import { useState } from 'react'
-import { View } from 'react-native'
+import { Button, Dialog } from 'heroui-native';
+import { View } from 'react-native';
+import { useState } from 'react';
 
 export default function DialogExample() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Dialog isOpen={isOpen} onOpenChange={setIsOpen}>
@@ -157,11 +158,11 @@ export default function DialogExample() {
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog>
-  )
+  );
 }
 ```
 
-You can find more examples in the [GitHub repository](<https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/dialog.tsx>).
+You can find more examples in the [GitHub repository](https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/dialog.tsx).
 
 ## API Reference
 
@@ -194,30 +195,30 @@ Animation configuration for dialog root component. Can be:
 
 ### Dialog.Portal
 
-| prop                                         | type                   | default | description                                                                                                                                                                                                      |
-| -------------------------------------------- | ---------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `children`                                   | `React.ReactNode`      | -       | Portal content (overlay and dialog)                                                                                                                                                                              |
-| `disableFullWindowOverlay`                   | `boolean`              | `false` | When true on iOS, uses View instead of FullWindowOverlay. Enables element inspector; overlay won't appear above native modals                                                                                    |
-| `unstable_accessibilityContainerViewIsModal` | `boolean`              | `false` | Controls whether VoiceOver treats the overlay window as a modal container. When `true`, VoiceOver is restricted to elements inside the overlay. iOS only. Unstable: may change with react-native-screens updates |
-| `className`                                  | `string`               | -       | Additional CSS classes for portal container                                                                                                                                                                      |
-| `style`                                      | `StyleProp<ViewStyle>` | -       | Additional styles for portal container                                                                                                                                                                           |
-| `hostName`                                   | `string`               | -       | Optional portal host name for specific container                                                                                                                                                                 |
-| `forceMount`                                 | `boolean`              | -       | Force mount when closed for animation purposes                                                                                                                                                                   |
+| prop                       | type                   | default | description                                                                                                                   |
+| -------------------------- | ---------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `children`                 | `React.ReactNode`      | -       | Portal content (overlay and dialog)                                                                                           |
+| `disableFullWindowOverlay` | `boolean`              | `false` | When true on iOS, uses View instead of FullWindowOverlay. Enables element inspector; overlay won't appear above native modals |
+| `unstable_accessibilityContainerViewIsModal` | `boolean` | `false` | Controls whether VoiceOver treats the overlay window as a modal container. When `true`, VoiceOver is restricted to elements inside the overlay. iOS only. Unstable: may change with react-native-screens updates |
+| `className`                | `string`               | -       | Additional CSS classes for portal container                                                                                   |
+| `style`                    | `StyleProp<ViewStyle>` | -       | Additional styles for portal container                                                                                        |
+| `hostName`                 | `string`               | -       | Optional portal host name for specific container                                                                              |
+| `forceMount`               | `boolean`              | -       | Force mount when closed for animation purposes                                                                                |
 
 ### Dialog.Overlay
 
-| prop                    | type                     | default                                                  | description                                                                                                                                          |
-| ----------------------- | ------------------------ | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `children`              | `React.ReactNode`        | -                                                        | Custom overlay content                                                                                                                               |
-| `className`             | `string`                 | -                                                        | Additional CSS classes for overlay                                                                                                                   |
-| `style`                 | `ViewStyle`              | -                                                        | Additional styles for overlay container                                                                                                              |
-| `animation`             | `DialogOverlayAnimation` | -                                                        | Animation configuration                                                                                                                              |
-| `variant`               | `'default' \| 'blur'`    | `'default'` (`'blur'` when the library theme is `glass`) | Overlay variant. `'blur'` renders an animated blur backdrop (iOS only, requires `expo-blur`; falls back to `'default'` otherwise)                    |
-| `blurViewProps`         | `BlurViewProps`          | -                                                        | Props forwarded to the BlurView rendered by the `'blur'` variant. `intensity` sets the maximum animated blur intensity (default: 75 dark / 50 light) |
-| `isAnimatedStyleActive` | `boolean`                | `true` (`false` for the `'blur'` variant)                | Whether animated styles (react-native-reanimated) are active                                                                                         |
-| `isCloseOnPress`        | `boolean`                | `true`                                                   | Whether pressing overlay closes dialog                                                                                                               |
-| `forceMount`            | `boolean`                | -                                                        | Force mount when closed for animation purposes                                                                                                       |
-| `...PressableProps`     | `PressableProps`         | -                                                        | All standard React Native Pressable props are supported                                                                                              |
+| prop                    | type                     | default | description                                                  |
+| ----------------------- | ------------------------ | ------- | ------------------------------------------------------------ |
+| `children`              | `React.ReactNode`        | -       | Custom overlay content                                       |
+| `className`             | `string`                 | -       | Additional CSS classes for overlay                           |
+| `style`                 | `ViewStyle`              | -       | Additional styles for overlay container                      |
+| `animation`             | `DialogOverlayAnimation` | -       | Animation configuration                                      |
+| `variant`               | `'default' \| 'blur'`    | `'default'` (`'blur'` when the library theme is `glass`) | Overlay variant. `'blur'` renders an animated blur backdrop (iOS only, requires `expo-blur`; falls back to `'default'` otherwise) |
+| `blurViewProps`         | `BlurViewProps`          | -       | Props forwarded to the BlurView rendered by the `'blur'` variant. `intensity` sets the maximum animated blur intensity (default: 75 dark / 50 light) |
+| `isAnimatedStyleActive` | `boolean`                | `true` (`false` for the `'blur'` variant) | Whether animated styles (react-native-reanimated) are active |
+| `isCloseOnPress`        | `boolean`                | `true`  | Whether pressing overlay closes dialog                       |
+| `forceMount`            | `boolean`                | -       | Force mount when closed for animation purposes               |
+| `...PressableProps`     | `PressableProps`         | -       | All standard React Native Pressable props are supported      |
 
 #### DialogOverlayAnimation
 
@@ -287,7 +288,7 @@ Dialog.Close extends [CloseButton](./close-button) and automatically handles dia
 Hook to access dialog primitive context.
 
 ```tsx
-const { isOpen, onOpenChange } = useDialog()
+const { isOpen, onOpenChange } = useDialog();
 ```
 
 | property       | type                       | description                   |
@@ -301,7 +302,7 @@ Hook to access dialog animation context for advanced customization.
 
 ```tsx
 const { progress, isDragging, isGestureReleaseAnimationRunning } =
-  useDialogAnimation()
+  useDialogAnimation();
 ```
 
 | property                           | type                   | description                                  |

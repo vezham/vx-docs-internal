@@ -3,16 +3,11 @@ title: Spinner
 description: Migration guide for Spinner from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Spinner documentation](/docs-ui/web/components/spinner) for
-  complete API reference, styling guide, and advanced examples. This guide only
-  focuses on migrating from HeroUI v2.
+  Refer to the [v3 Spinner documentation](/docs-ui/web/components/spinner) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,20 +15,20 @@ import {
 In v2, Spinner supported multiple variants and labels:
 
 ```tsx
-import { Spinner } from '@heroui/react'
+import { Spinner } from "@heroui/react";
 
 export default function App() {
-  return <Spinner variant="default" label="Loading..." color="primary" />
+  return <Spinner variant="default" label="Loading..." color="primary" />;
 }
 ```
 
 In v3, Spinner is simplified to a single circular variant:
 
 ```tsx
-import { Spinner } from '@heroui/react'
+import { Spinner } from "@heroui/react";
 
 export default function App() {
-  return <Spinner color="accent" />
+  return <Spinner color="accent" />;
 }
 ```
 
@@ -41,19 +36,19 @@ export default function App() {
 
 ### 1. Component Behavior
 
-**v2:** Supported multiple variants (`default`, `simple`, `gradient`, `wave`, `dots`, `spinner`) and labels  
+**v2:** Supported multiple variants (`default`, `simple`, `gradient`, `wave`, `dots`, `spinner`) and labels
 **v3:** Single circular spinner variant, no label support
 
 ### 2. Prop Changes
 
-| v2 Prop      | v3 Location | Notes                                                            |
-| ------------ | ----------- | ---------------------------------------------------------------- |
-| `label`      | —           | Add label manually with separate element if needed               |
-| `variant`    | —           | Only one spinner variant available                               |
-| `labelColor` | —           | No label support                                                 |
-| `classNames` | —           | Use `className` prop directly                                    |
-| `size`       | `size`      | Changed: `"sm" \| "md" \| "lg"` → `"sm" \| "md" \| "lg" \| "xl"` |
-| `color`      | `color`     | Changed values (see below)                                       |
+| v2 Prop | v3 Location | Notes |
+|---------|-------------|-------|
+| `label` | — | Add label manually with separate element if needed |
+| `variant` | — | Only one spinner variant available |
+| `labelColor` | — | No label support |
+| `classNames` | — | Use `className` prop directly |
+| `size` | `size` | Changed: `"sm" \| "md" \| "lg"` → `"sm" \| "md" \| "lg" \| "xl"` |
+| `color` | `color` | Changed values (see below) |
 
 ### 3. Changed Color Values
 
@@ -66,17 +61,18 @@ export default function App() {
 
 ### With Label
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     {/* Simple label */}
     <Spinner label="Loading..." />
+
     {/* With label color and custom styling */}
     <Spinner
       label="Loading..."
       labelColor="primary"
       classNames={{
-        label: 'text-foreground mt-4'
+        label: "text-foreground mt-4"
       }}
     />
     ```
@@ -88,6 +84,7 @@ export default function App() {
       <Spinner />
       <span>Loading...</span>
     </div>
+
     {/* With custom styling */}
     <div className="flex flex-col items-center gap-2">
       <Spinner />
@@ -99,7 +96,7 @@ export default function App() {
 
 ### Sizes and Colors
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     {/* Sizes */}
@@ -108,6 +105,7 @@ export default function App() {
       <Spinner size="md" />
       <Spinner size="lg" />
     </div>
+
     {/* Colors */}
     <div className="flex gap-4">
       <Spinner color="default" />
@@ -128,6 +126,7 @@ export default function App() {
       <Spinner size="lg" />
       <Spinner size="xl" />
     </div>
+
     {/* Colors */}
     <div className="flex gap-4">
       <Spinner color="current" />
@@ -142,7 +141,7 @@ export default function App() {
 
 ### Variants (Removed)
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <div className="flex gap-4">
@@ -159,6 +158,7 @@ export default function App() {
     ```tsx
     {/* Only one variant available - circular spinner */}
     <Spinner />
+
     {/* For other spinner styles, consider using CSS animations */}
     ```
   </Tab>
@@ -168,14 +168,14 @@ export default function App() {
 
 When migrating colors, use this mapping:
 
-| v2 Color      | v3 Color                  | Notes                       |
-| ------------- | ------------------------- | --------------------------- |
-| `"default"`   | `"current"`               | Inherits current text color |
-| `"primary"`   | `"accent"`                | Use accent color            |
-| `"secondary"` | `"current"` or `"accent"` | Use current or accent       |
-| `"success"`   | `"success"`               | No change                   |
-| `"warning"`   | `"warning"`               | No change                   |
-| `"danger"`    | `"danger"`                | No change                   |
+| v2 Color | v3 Color | Notes |
+|----------|----------|-------|
+| `"default"` | `"current"` | Inherits current text color |
+| `"primary"` | `"accent"` | Use accent color |
+| `"secondary"` | `"current"` or `"accent"` | Use current or accent |
+| `"success"` | `"success"` | No change |
+| `"warning"` | `"warning"` | No change |
+| `"danger"` | `"danger"` | No change |
 
 ## Summary
 

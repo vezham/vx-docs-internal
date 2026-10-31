@@ -3,16 +3,11 @@ title: Modal
 description: Migration guide for Modal from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Modal documentation](/docs-ui/web/components/modal) for
-  complete API reference, styling guide, and advanced examples. This guide only
-  focuses on migrating from HeroUI v2.
+  Refer to the [v3 Modal documentation](/docs-ui/web/components/modal) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,18 +15,10 @@ import {
 In v2, Modal used separate components:
 
 ```tsx
-import {
-  Button,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  useDisclosure
-} from '@heroui/react'
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@heroui/react";
 
 export default function App() {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure()
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
   return (
     <>
@@ -44,14 +31,14 @@ export default function App() {
         </ModalContent>
       </Modal>
     </>
-  )
+  );
 }
 ```
 
 In v3, Modal uses compound components:
 
 ```tsx
-import { Button, Modal } from '@heroui/react'
+import { Modal, Button } from "@heroui/react";
 
 export default function App() {
   return (
@@ -70,7 +57,7 @@ export default function App() {
         </Modal.Container>
       </Modal.Backdrop>
     </Modal>
-  )
+  );
 }
 ```
 
@@ -78,7 +65,7 @@ export default function App() {
 
 ### 1. Component Structure
 
-**v2:** Separate components (`Modal`, `ModalContent`, `ModalHeader`, `ModalBody`, `ModalFooter`)  
+**v2:** Separate components (`Modal`, `ModalContent`, `ModalHeader`, `ModalBody`, `ModalFooter`)
 **v3:** Compound components (`Modal.Backdrop`, `Modal.Container`, `Modal.Dialog`, `Modal.Header`, `Modal.Body`, `Modal.Footer`)
 
 ### 2. Built-in Trigger with `Modal.Trigger`
@@ -98,7 +85,6 @@ export default function App() {
       <ModalContent>{/* content */}</ModalContent>
     </Modal>
     ```
-
   </Tab>
   <Tab value="v3 (Button trigger)">
     ```tsx
@@ -114,7 +100,6 @@ export default function App() {
       </Modal.Backdrop>
     </Modal>
     ```
-
   </Tab>
   <Tab value="v3 (Modal.Trigger)">
     ```tsx
@@ -133,7 +118,6 @@ export default function App() {
       </Modal.Backdrop>
     </Modal>
     ```
-
   </Tab>
 </Tabs>
 
@@ -169,20 +153,20 @@ const state = useOverlayState({ isOpen, onOpenChange: setIsOpen });
 
 **Hook API:**
 
-| Property                | Type                        | Description                           |
-| ----------------------- | --------------------------- | ------------------------------------- |
-| `state.isOpen`          | `boolean`                   | Whether the overlay is currently open |
-| `state.open()`          | `() => void`                | Opens the overlay                     |
-| `state.close()`         | `() => void`                | Closes the overlay                    |
-| `state.toggle()`        | `() => void`                | Toggles the overlay open/closed       |
-| `state.setOpen(isOpen)` | `(isOpen: boolean) => void` | Sets the open state directly          |
+| Property | Type | Description |
+|----------|------|-------------|
+| `state.isOpen` | `boolean` | Whether the overlay is currently open |
+| `state.open()` | `() => void` | Opens the overlay |
+| `state.close()` | `() => void` | Closes the overlay |
+| `state.toggle()` | `() => void` | Toggles the overlay open/closed |
+| `state.setOpen(isOpen)` | `(isOpen: boolean) => void` | Sets the open state directly |
 
 Pass `state` to the `Modal` root to connect it:
 
 ```tsx
-const state = useOverlayState()
+const state = useOverlayState();
 
-;<Modal state={state}>
+<Modal state={state}>
   <Button onPress={state.open}>Open</Button>
   <Modal.Backdrop>
     <Modal.Container>
@@ -193,31 +177,30 @@ const state = useOverlayState()
 ```
 
 <Callout type="info">
-  For detailed migration from `useDisclosure` to `useOverlayState`, see the
-  [Hooks Migration Guide](/docs-ui/web/migration/hooks).
+  For detailed migration from `useDisclosure` to `useOverlayState`, see the [Hooks Migration Guide](/docs-ui/web/migration/hooks).
 </Callout>
 
 ### 4. Prop Changes
 
-| v2 Prop                     | v3 Location                                   | Notes                                                       |
-| --------------------------- | --------------------------------------------- | ----------------------------------------------------------- |
-| `size`                      | `size` (on Container)                         | Simplified (xs, sm, md, lg, cover, full)                    |
-| `radius`                    | —                                             | Removed (use Tailwind CSS)                                  |
-| `shadow`                    | —                                             | Removed (use Tailwind CSS)                                  |
-| `backdrop`                  | `variant` (on **Backdrop**)                   | Renamed; values unchanged (`opaque`, `blur`, `transparent`) |
-| `scrollBehavior`            | `scroll` (on Container)                       | Renamed (`normal` → `inside`)                               |
-| `placement`                 | `placement` (on Container)                    | Moved to Container                                          |
-| `isDismissable`             | `isDismissable` (on **Backdrop**)             | Moved to `Modal.Backdrop`                                   |
-| `isKeyboardDismissDisabled` | `isKeyboardDismissDisabled` (on **Backdrop**) | Moved to `Modal.Backdrop`                                   |
-| `isOpen`                    | `isOpen` (on **Backdrop**)                    | Controlled state on `Modal.Backdrop`                        |
-| `onOpenChange`              | `onOpenChange` (on **Backdrop**)              | Same as above                                               |
-| `onClose`                   | —                                             | Use `close` from render prop                                |
-| `hideCloseButton`           | —                                             | Omit `Modal.CloseTrigger` instead                           |
-| `closeButton`               | —                                             | Use `Modal.CloseTrigger` with custom content                |
-| `motionProps`               | —                                             | Removed (animations handled differently)                    |
-| `classNames`                | —                                             | Use `className` props on individual components              |
-| `shouldBlockScroll`         | —                                             | Removed (handled automatically)                             |
-| `portalContainer`           | —                                             | Removed                                                     |
+| v2 Prop | v3 Location | Notes |
+|---------|-------------|-------|
+| `size` | `size` (on Container) | Simplified (xs, sm, md, lg, cover, full) |
+| `radius` | — | Removed (use Tailwind CSS) |
+| `shadow` | — | Removed (use Tailwind CSS) |
+| `backdrop` | `variant` (on **Backdrop**) | Renamed; values unchanged (`opaque`, `blur`, `transparent`) |
+| `scrollBehavior` | `scroll` (on Container) | Renamed (`normal` → `inside`) |
+| `placement` | `placement` (on Container) | Moved to Container |
+| `isDismissable` | `isDismissable` (on **Backdrop**) | Moved to `Modal.Backdrop` |
+| `isKeyboardDismissDisabled` | `isKeyboardDismissDisabled` (on **Backdrop**) | Moved to `Modal.Backdrop` |
+| `isOpen` | `isOpen` (on **Backdrop**) | Controlled state on `Modal.Backdrop` |
+| `onOpenChange` | `onOpenChange` (on **Backdrop**) | Same as above |
+| `onClose` | — | Use `close` from render prop |
+| `hideCloseButton` | — | Omit `Modal.CloseTrigger` instead |
+| `closeButton` | — | Use `Modal.CloseTrigger` with custom content |
+| `motionProps` | — | Removed (animations handled differently) |
+| `classNames` | — | Use `className` props on individual components |
+| `shouldBlockScroll` | — | Removed (handled automatically) |
+| `portalContainer` | — | Removed |
 
 ## Migration Examples
 
@@ -241,7 +224,6 @@ const state = useOverlayState()
       </ModalContent>
     </Modal>
     ```
-
   </Tab>
   <Tab value="v3 (useState)">
     ```tsx
@@ -267,7 +249,6 @@ const state = useOverlayState()
       </Modal.Backdrop>
     </Modal>
     ```
-
   </Tab>
   <Tab value="v3 (useOverlayState)">
     ```tsx
@@ -293,7 +274,6 @@ const state = useOverlayState()
       </Modal.Backdrop>
     </Modal>
     ```
-
   </Tab>
   <Tab value="v3 (state prop)">
     ```tsx
@@ -320,28 +300,28 @@ const state = useOverlayState()
       </Modal.Backdrop>
     </Modal>
     ```
-
   </Tab>
 </Tabs>
 
 <Callout type="info">
-  For detailed `useDisclosure` → `useOverlayState` migration guide, see the
-  [Hooks Migration Guide](/docs-ui/web/migration/hooks).
+  For detailed `useDisclosure` → `useOverlayState` migration guide, see the [Hooks Migration Guide](/docs-ui/web/migration/hooks).
 </Callout>
 
 ### Backdrop and Container Props
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     {/* Backdrop */}
     <Modal backdrop="blur">
       <ModalContent>{/* content */}</ModalContent>
     </Modal>
+
     {/* Placement */}
     <Modal placement="top">
       <ModalContent>{/* content */}</ModalContent>
     </Modal>
+
     {/* Scroll behavior */}
     <Modal scrollBehavior="outside">
       <ModalContent>{/* content */}</ModalContent>
@@ -356,12 +336,14 @@ const state = useOverlayState()
         <Modal.Dialog>{/* content */}</Modal.Dialog>
       </Modal.Container>
     </Modal.Backdrop>
+
     {/* Placement - on Container */}
     <Modal.Backdrop>
       <Modal.Container placement="top">
         <Modal.Dialog>{/* content */}</Modal.Dialog>
       </Modal.Container>
     </Modal.Backdrop>
+
     {/* Scroll - on Container */}
     <Modal.Backdrop>
       <Modal.Container scroll="outside">
@@ -374,13 +356,14 @@ const state = useOverlayState()
 
 ### Close Button
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     {/* Without close button */}
     <Modal hideCloseButton>
       <ModalContent>{/* content */}</ModalContent>
     </Modal>
+
     {/* Custom close button */}
     <Modal closeButton={<CustomCloseIcon />}>
       <ModalContent>{/* content */}</ModalContent>
@@ -397,6 +380,7 @@ const state = useOverlayState()
         </Modal.Header>
       </Modal.Dialog>
     </Modal.Container>
+
     {/* Custom close button */}
     <Modal.Container>
       <Modal.Dialog>
@@ -428,7 +412,6 @@ const state = useOverlayState()
       <ModalContent>{/* content */}</ModalContent>
     </Modal>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -453,13 +436,12 @@ const state = useOverlayState()
       </Modal.Backdrop>
     </Modal>
     ```
-
   </Tab>
 </Tabs>
 
 ### With Icon and Heading
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <ModalHeader className="flex flex-col gap-1">

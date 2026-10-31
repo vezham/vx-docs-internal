@@ -7,35 +7,38 @@ links:
   storybook: Components/Navigation/Pagination
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Pagination } from '@heroui/react'
+import { Pagination } from '@heroui/react';
 ```
 
-[Live example: pagination-basic](https://heroui.com/docs/react/components/pagination)
 
-```tsx
-'use client'
+<ComponentPreview name="pagination-basic">
+
+````tsx
+"use client";
+
+import {Pagination} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function PaginationBasic() {
-  const [page, setPage] = useState(1)
-  const totalPages = 3
+  const [page, setPage] = useState(1);
+  const totalPages = 3;
 
   return (
     <Pagination className="justify-center">
       <Pagination.Content>
         <Pagination.Item>
-          <Pagination.Previous
-            isDisabled={page === 1}
-            onPress={() => setPage(p => p - 1)}>
+          <Pagination.Previous isDisabled={page === 1} onPress={() => setPage((p) => p - 1)}>
             <Pagination.PreviousIcon />
             <span>Previous</span>
           </Pagination.Previous>
         </Pagination.Item>
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
+        {Array.from({length: totalPages}, (_, i) => i + 1).map((p) => (
           <Pagination.Item key={p}>
             <Pagination.Link isActive={p === page} onPress={() => setPage(p)}>
               {p}
@@ -43,23 +46,24 @@ export function PaginationBasic() {
           </Pagination.Item>
         ))}
         <Pagination.Item>
-          <Pagination.Next
-            isDisabled={page === totalPages}
-            onPress={() => setPage(p => p + 1)}>
+          <Pagination.Next isDisabled={page === totalPages} onPress={() => setPage((p) => p + 1)}>
             <span>Next</span>
             <Pagination.NextIcon />
           </Pagination.Next>
         </Pagination.Item>
       </Pagination.Content>
     </Pagination>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 ```tsx
-import { Pagination } from '@heroui/react'
+import { Pagination } from '@heroui/react';
 
 export default () => (
   <Pagination>
@@ -88,36 +92,38 @@ export default () => (
       </Pagination.Item>
     </Pagination.Content>
   </Pagination>
-)
+);
 ```
 
 ## Examples
 
 ### Sizes
 
-[Live example: pagination-sizes](https://heroui.com/docs/react/components/pagination)
 
-```tsx
-'use client'
+<ComponentPreview name="pagination-sizes">
 
-function SizePagination({ size }: { size: 'sm' | 'md' | 'lg' }) {
-  const [page, setPage] = useState(1)
-  const totalPages = 3
+````tsx
+"use client";
+
+import {Pagination} from "@vezham/react-v3";
+import {useState} from "react";
+
+function SizePagination({size}: {size: "sm" | "md" | "lg"}) {
+  const [page, setPage] = useState(1);
+  const totalPages = 3;
 
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-muted text-xs font-medium capitalize">{size}</span>
+      <span className="text-xs font-medium text-muted capitalize">{size}</span>
       <Pagination className="justify-center" size={size}>
         <Pagination.Content>
           <Pagination.Item>
-            <Pagination.Previous
-              isDisabled={page === 1}
-              onPress={() => setPage(p => p - 1)}>
+            <Pagination.Previous isDisabled={page === 1} onPress={() => setPage((p) => p - 1)}>
               <Pagination.PreviousIcon />
               <span>Previous</span>
             </Pagination.Previous>
           </Pagination.Item>
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
+          {Array.from({length: totalPages}, (_, i) => i + 1).map((p) => (
             <Pagination.Item key={p}>
               <Pagination.Link isActive={p === page} onPress={() => setPage(p)}>
                 {p}
@@ -125,9 +131,7 @@ function SizePagination({ size }: { size: 'sm' | 'md' | 'lg' }) {
             </Pagination.Item>
           ))}
           <Pagination.Item>
-            <Pagination.Next
-              isDisabled={page === totalPages}
-              onPress={() => setPage(p => p + 1)}>
+            <Pagination.Next isDisabled={page === totalPages} onPress={() => setPage((p) => p + 1)}>
               <span>Next</span>
               <Pagination.NextIcon />
             </Pagination.Next>
@@ -135,41 +139,48 @@ function SizePagination({ size }: { size: 'sm' | 'md' | 'lg' }) {
         </Pagination.Content>
       </Pagination>
     </div>
-  )
+  );
 }
 
 export function PaginationSizes() {
   return (
     <div className="flex flex-col gap-6">
-      {(['sm', 'md', 'lg'] as const).map(size => (
+      {(["sm", "md", "lg"] as const).map((size) => (
         <SizePagination key={size} size={size} />
       ))}
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Disabled
 
-[Live example: pagination-disabled](https://heroui.com/docs/react/components/pagination)
 
-```tsx
-'use client'
+<ComponentPreview name="pagination-disabled">
+
+````tsx
+"use client";
+
+import {Pagination} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function PaginationDisabled() {
-  const [page, setPage] = useState(1)
-  const totalPages = 3
+  const [page, setPage] = useState(1);
+  const totalPages = 3;
 
   return (
     <Pagination className="justify-center">
       <Pagination.Content>
         <Pagination.Item>
-          <Pagination.Previous isDisabled onPress={() => setPage(p => p - 1)}>
+          <Pagination.Previous isDisabled onPress={() => setPage((p) => p - 1)}>
             <Pagination.PreviousIcon />
             <span>Previous</span>
           </Pagination.Previous>
         </Pagination.Item>
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
+        {Array.from({length: totalPages}, (_, i) => i + 1).map((p) => (
           <Pagination.Item key={p}>
             <Pagination.Link isActive={p === page} onPress={() => setPage(p)}>
               {p}
@@ -177,32 +188,39 @@ export function PaginationDisabled() {
           </Pagination.Item>
         ))}
         <Pagination.Item>
-          <Pagination.Next isDisabled onPress={() => setPage(p => p + 1)}>
+          <Pagination.Next isDisabled onPress={() => setPage((p) => p + 1)}>
             <span>Next</span>
             <Pagination.NextIcon />
           </Pagination.Next>
         </Pagination.Item>
       </Pagination.Content>
     </Pagination>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Simple (Previous / Next)
 
-[Live example: pagination-simple-prev-next](https://heroui.com/docs/react/components/pagination)
 
-```tsx
-'use client'
+<ComponentPreview name="pagination-simple-prev-next">
+
+````tsx
+"use client";
+
+import {Pagination} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function PaginationSimplePrevNext() {
-  const [page, setPage] = useState(1)
-  const totalPages = 10
-  const itemsPerPage = 5
-  const totalItems = 50
+  const [page, setPage] = useState(1);
+  const totalPages = 10;
+  const itemsPerPage = 5;
+  const totalItems = 50;
 
-  const startItem = (page - 1) * itemsPerPage + 1
-  const endItem = Math.min(page * itemsPerPage, totalItems)
+  const startItem = (page - 1) * itemsPerPage + 1;
+  const endItem = Math.min(page * itemsPerPage, totalItems);
 
   return (
     <Pagination className="w-full">
@@ -211,73 +229,76 @@ export function PaginationSimplePrevNext() {
       </Pagination.Summary>
       <Pagination.Content>
         <Pagination.Item>
-          <Pagination.Previous
-            isDisabled={page === 1}
-            onPress={() => setPage(p => p - 1)}>
+          <Pagination.Previous isDisabled={page === 1} onPress={() => setPage((p) => p - 1)}>
             <Pagination.PreviousIcon />
             <span>Prev</span>
           </Pagination.Previous>
         </Pagination.Item>
         <Pagination.Item>
-          <Pagination.Next
-            isDisabled={page === totalPages}
-            onPress={() => setPage(p => p + 1)}>
+          <Pagination.Next isDisabled={page === totalPages} onPress={() => setPage((p) => p + 1)}>
             <span>Next</span>
             <Pagination.NextIcon />
           </Pagination.Next>
         </Pagination.Item>
       </Pagination.Content>
     </Pagination>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Controlled
 
-[Live example: pagination-controlled](https://heroui.com/docs/react/components/pagination)
 
-```tsx
-'use client'
+<ComponentPreview name="pagination-controlled">
+
+````tsx
+"use client";
+
+import {Pagination} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function PaginationControlled() {
-  const [page, setPage] = useState(1)
-  const totalPages = 12
-  const itemsPerPage = 10
-  const totalItems = 120
+  const [page, setPage] = useState(1);
+  const totalPages = 12;
+  const itemsPerPage = 10;
+  const totalItems = 120;
 
   const getPageNumbers = () => {
-    const pages: (number | 'ellipsis')[] = []
+    const pages: (number | "ellipsis")[] = [];
 
     if (totalPages <= 7) {
       for (let i = 1; i <= totalPages; i++) {
-        pages.push(i)
+        pages.push(i);
       }
     } else {
-      pages.push(1)
+      pages.push(1);
 
       if (page > 3) {
-        pages.push('ellipsis')
+        pages.push("ellipsis");
       }
 
-      const start = Math.max(2, page - 1)
-      const end = Math.min(totalPages - 1, page + 1)
+      const start = Math.max(2, page - 1);
+      const end = Math.min(totalPages - 1, page + 1);
 
       for (let i = start; i <= end; i++) {
-        pages.push(i)
+        pages.push(i);
       }
 
       if (page < totalPages - 2) {
-        pages.push('ellipsis')
+        pages.push("ellipsis");
       }
 
-      pages.push(totalPages)
+      pages.push(totalPages);
     }
 
-    return pages
-  }
+    return pages;
+  };
 
-  const startItem = (page - 1) * itemsPerPage + 1
-  const endItem = Math.min(page * itemsPerPage, totalItems)
+  const startItem = (page - 1) * itemsPerPage + 1;
+  const endItem = Math.min(page * itemsPerPage, totalItems);
 
   return (
     <Pagination>
@@ -286,15 +307,13 @@ export function PaginationControlled() {
       </Pagination.Summary>
       <Pagination.Content>
         <Pagination.Item>
-          <Pagination.Previous
-            isDisabled={page === 1}
-            onPress={() => setPage(p => p - 1)}>
+          <Pagination.Previous isDisabled={page === 1} onPress={() => setPage((p) => p - 1)}>
             <Pagination.PreviousIcon />
             <span>Previous</span>
           </Pagination.Previous>
         </Pagination.Item>
         {getPageNumbers().map((p, i) =>
-          p === 'ellipsis' ? (
+          p === "ellipsis" ? (
             <Pagination.Item key={`ellipsis-${i}`}>
               <Pagination.Ellipsis />
             </Pagination.Item>
@@ -304,89 +323,88 @@ export function PaginationControlled() {
                 {p}
               </Pagination.Link>
             </Pagination.Item>
-          )
+          ),
         )}
         <Pagination.Item>
-          <Pagination.Next
-            isDisabled={page === totalPages}
-            onPress={() => setPage(p => p + 1)}>
+          <Pagination.Next isDisabled={page === totalPages} onPress={() => setPage((p) => p + 1)}>
             <span>Next</span>
             <Pagination.NextIcon />
           </Pagination.Next>
         </Pagination.Item>
       </Pagination.Content>
     </Pagination>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Ellipsis
 
-[Live example: pagination-with-ellipsis](https://heroui.com/docs/react/components/pagination)
 
-```tsx
-'use client'
+<ComponentPreview name="pagination-with-ellipsis">
+
+````tsx
+"use client";
+
+import {Pagination} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function PaginationWithEllipsis() {
-  const [page, setPage] = useState(1)
-  const totalPages = 12
+  const [page, setPage] = useState(1);
+  const totalPages = 12;
 
   const getPageNumbers = () => {
-    const pages: (number | 'ellipsis')[] = []
+    const pages: (number | "ellipsis")[] = [];
 
-    pages.push(1)
+    pages.push(1);
 
     if (page > 3) {
-      pages.push('ellipsis')
+      pages.push("ellipsis");
     }
 
-    const start = Math.max(2, page - 1)
-    const end = Math.min(totalPages - 1, page + 1)
+    const start = Math.max(2, page - 1);
+    const end = Math.min(totalPages - 1, page + 1);
 
     for (let i = start; i <= end; i++) {
-      pages.push(i)
+      pages.push(i);
     }
 
     if (page < totalPages - 2) {
-      pages.push('ellipsis')
+      pages.push("ellipsis");
     }
 
-    pages.push(totalPages)
+    pages.push(totalPages);
 
-    return pages
-  }
+    return pages;
+  };
 
   return (
     <div className="w-full max-w-2xs overflow-x-auto sm:max-w-full">
       <Pagination className="justify-center">
         <Pagination.Content>
           <Pagination.Item>
-            <Pagination.Previous
-              isDisabled={page === 1}
-              onPress={() => setPage(p => p - 1)}>
+            <Pagination.Previous isDisabled={page === 1} onPress={() => setPage((p) => p - 1)}>
               <Pagination.PreviousIcon />
               <span>Previous</span>
             </Pagination.Previous>
           </Pagination.Item>
           {getPageNumbers().map((p, i) =>
-            p === 'ellipsis' ? (
+            p === "ellipsis" ? (
               <Pagination.Item key={`ellipsis-${i}`}>
                 <Pagination.Ellipsis />
               </Pagination.Item>
             ) : (
               <Pagination.Item key={p}>
-                <Pagination.Link
-                  isActive={p === page}
-                  onPress={() => setPage(p)}>
+                <Pagination.Link isActive={p === page} onPress={() => setPage(p)}>
                   {p}
                 </Pagination.Link>
               </Pagination.Item>
-            )
+            ),
           )}
           <Pagination.Item>
-            <Pagination.Next
-              isDisabled={page === totalPages}
-              onPress={() => setPage(p => p + 1)}>
+            <Pagination.Next isDisabled={page === totalPages} onPress={() => setPage((p) => p + 1)}>
               <span>Next</span>
               <Pagination.NextIcon />
             </Pagination.Next>
@@ -394,50 +412,57 @@ export function PaginationWithEllipsis() {
         </Pagination.Content>
       </Pagination>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Summary
 
-[Live example: pagination-with-summary](https://heroui.com/docs/react/components/pagination)
 
-```tsx
-'use client'
+<ComponentPreview name="pagination-with-summary">
+
+````tsx
+"use client";
+
+import {Pagination} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function PaginationWithSummary() {
-  const [page, setPage] = useState(1)
-  const totalPages = 12
-  const itemsPerPage = 10
-  const totalItems = 120
+  const [page, setPage] = useState(1);
+  const totalPages = 12;
+  const itemsPerPage = 10;
+  const totalItems = 120;
 
   const getPageNumbers = () => {
-    const pages: (number | 'ellipsis')[] = []
+    const pages: (number | "ellipsis")[] = [];
 
-    pages.push(1)
+    pages.push(1);
 
     if (page > 3) {
-      pages.push('ellipsis')
+      pages.push("ellipsis");
     }
 
-    const start = Math.max(2, page - 1)
-    const end = Math.min(totalPages - 1, page + 1)
+    const start = Math.max(2, page - 1);
+    const end = Math.min(totalPages - 1, page + 1);
 
     for (let i = start; i <= end; i++) {
-      pages.push(i)
+      pages.push(i);
     }
 
     if (page < totalPages - 2) {
-      pages.push('ellipsis')
+      pages.push("ellipsis");
     }
 
-    pages.push(totalPages)
+    pages.push(totalPages);
 
-    return pages
-  }
+    return pages;
+  };
 
-  const startItem = (page - 1) * itemsPerPage + 1
-  const endItem = Math.min(page * itemsPerPage, totalItems)
+  const startItem = (page - 1) * itemsPerPage + 1;
+  const endItem = Math.min(page * itemsPerPage, totalItems);
 
   return (
     <Pagination className="w-full">
@@ -446,15 +471,13 @@ export function PaginationWithSummary() {
       </Pagination.Summary>
       <Pagination.Content>
         <Pagination.Item>
-          <Pagination.Previous
-            isDisabled={page === 1}
-            onPress={() => setPage(p => p - 1)}>
+          <Pagination.Previous isDisabled={page === 1} onPress={() => setPage((p) => p - 1)}>
             <Pagination.PreviousIcon />
             <span>Previous</span>
           </Pagination.Previous>
         </Pagination.Item>
         {getPageNumbers().map((p, i) =>
-          p === 'ellipsis' ? (
+          p === "ellipsis" ? (
             <Pagination.Item key={`ellipsis-${i}`}>
               <Pagination.Ellipsis />
             </Pagination.Item>
@@ -464,49 +487,53 @@ export function PaginationWithSummary() {
                 {p}
               </Pagination.Link>
             </Pagination.Item>
-          )
+          ),
         )}
         <Pagination.Item>
-          <Pagination.Next
-            isDisabled={page === totalPages}
-            onPress={() => setPage(p => p + 1)}>
+          <Pagination.Next isDisabled={page === totalPages} onPress={() => setPage((p) => p + 1)}>
             <span>Next</span>
             <Pagination.NextIcon />
           </Pagination.Next>
         </Pagination.Item>
       </Pagination.Content>
     </Pagination>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Custom Icons
 
 You can replace the default chevron icons by passing custom children to `PreviousIcon` and `NextIcon`.
 
-[Live example: pagination-custom-icons](https://heroui.com/docs/react/components/pagination)
 
-```tsx
-'use client'
+<ComponentPreview name="pagination-custom-icons">
+
+````tsx
+"use client";
+
+import {Pagination} from "@vezham/react-v3";
+import {Icon} from "@iconify/react";
+import {useState} from "react";
 
 export function PaginationCustomIcons() {
-  const [page, setPage] = useState(1)
-  const totalPages = 3
+  const [page, setPage] = useState(1);
+  const totalPages = 3;
 
   return (
     <Pagination className="justify-center">
       <Pagination.Content>
         <Pagination.Item>
-          <Pagination.Previous
-            isDisabled={page === 1}
-            onPress={() => setPage(p => p - 1)}>
+          <Pagination.Previous isDisabled={page === 1} onPress={() => setPage((p) => p - 1)}>
             <Pagination.PreviousIcon>
               <Icon icon="gravity-ui:arrow-left" />
             </Pagination.PreviousIcon>
             <span>Back</span>
           </Pagination.Previous>
         </Pagination.Item>
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
+        {Array.from({length: totalPages}, (_, i) => i + 1).map((p) => (
           <Pagination.Item key={p}>
             <Pagination.Link isActive={p === page} onPress={() => setPage(p)}>
               {p}
@@ -514,9 +541,7 @@ export function PaginationCustomIcons() {
           </Pagination.Item>
         ))}
         <Pagination.Item>
-          <Pagination.Next
-            isDisabled={page === totalPages}
-            onPress={() => setPage(p => p + 1)}>
+          <Pagination.Next isDisabled={page === totalPages} onPress={() => setPage((p) => p + 1)}>
             <span>Forward</span>
             <Pagination.NextIcon>
               <Icon icon="gravity-ui:arrow-right" />
@@ -525,42 +550,51 @@ export function PaginationCustomIcons() {
         </Pagination.Item>
       </Pagination.Content>
     </Pagination>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: pagination-custom-styles](https://heroui.com/docs/react/components/pagination)
 
-```tsx
-'use client'
+<ComponentPreview name="pagination-custom-styles">
 
-const linkClass = 'text-muted hover:bg-surface hover:text-foreground'
-const activeClass = 'bg-accent text-accent-foreground hover:bg-accent-hover'
+````tsx
+"use client";
+
+import {Pagination} from "@vezham/react-v3";
+import {useState} from "react";
+
+const linkClass = "text-muted hover:bg-surface hover:text-foreground";
+const activeClass = "bg-accent text-accent-foreground hover:bg-accent-hover";
 
 export function CustomStyles() {
-  const [page, setPage] = useState(2)
+  const [page, setPage] = useState(2);
 
   return (
     <Pagination className="justify-center">
-      <Pagination.Content className="bg-default gap-1 rounded-xl p-1">
+      <Pagination.Content className="gap-1 rounded-xl bg-default p-1">
         <Pagination.Item>
           <Pagination.Previous
             className={linkClass}
             isDisabled={page === 1}
-            onPress={() => setPage(p => p - 1)}>
+            onPress={() => setPage((p) => p - 1)}
+          >
             <Pagination.PreviousIcon />
           </Pagination.Previous>
         </Pagination.Item>
-        {[1, 2, 3].map(p => (
+        {[1, 2, 3].map((p) => (
           <Pagination.Item key={p}>
             <Pagination.Link
               className={p === page ? activeClass : linkClass}
               isActive={p === page}
-              onPress={() => setPage(p)}>
+              onPress={() => setPage(p)}
+            >
               {p}
             </Pagination.Link>
           </Pagination.Item>
@@ -569,15 +603,19 @@ export function CustomStyles() {
           <Pagination.Next
             className={linkClass}
             isDisabled={page === 3}
-            onPress={() => setPage(p => p + 1)}>
+            onPress={() => setPage((p) => p + 1)}
+          >
             <Pagination.NextIcon />
           </Pagination.Next>
         </Pagination.Item>
       </Pagination.Content>
     </Pagination>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -609,7 +647,6 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The Pagination component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/pagination.css)):
 
 #### Base & Layout Classes [!toc]
-
 - `.pagination` - Root navigation container with flex layout
 - `.pagination__summary` - Left-side info text container
 - `.pagination__content` - Container for pagination items
@@ -619,7 +656,6 @@ The Pagination component uses these CSS classes ([View source styles](https://gi
 - `.pagination__ellipsis` - Ellipsis indicator
 
 #### Size Classes [!toc]
-
 - `.pagination--sm` - Small size variant
 - `.pagination--md` - Medium size variant (default)
 - `.pagination--lg` - Large size variant
@@ -638,64 +674,64 @@ The component supports both CSS pseudo-classes and data attributes for flexibili
 
 ### Pagination
 
-| Prop        | Type                   | Default | Description                         |
-| ----------- | ---------------------- | ------- | ----------------------------------- |
-| `size`      | `"sm" \| "md" \| "lg"` | `"md"`  | Size of the pagination items        |
-| `className` | `string`               | -       | Additional CSS classes              |
-| `children`  | `ReactNode`            | -       | Pagination parts (Summary, Content) |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Size of the pagination items |
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | Pagination parts (Summary, Content) |
 
 ### Pagination.Summary
 
-| Prop        | Type        | Default | Description                                   |
-| ----------- | ----------- | ------- | --------------------------------------------- |
-| `className` | `string`    | -       | Additional CSS classes                        |
-| `children`  | `ReactNode` | -       | Summary content (e.g., "Showing 1-10 of 120") |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | Summary content (e.g., "Showing 1-10 of 120") |
 
 ### Pagination.Content
 
-| Prop        | Type        | Default | Description            |
-| ----------- | ----------- | ------- | ---------------------- |
-| `className` | `string`    | -       | Additional CSS classes |
-| `children`  | `ReactNode` | -       | Pagination items       |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | Pagination items |
 
 ### Pagination.Item
 
-| Prop        | Type        | Default | Description                                      |
-| ----------- | ----------- | ------- | ------------------------------------------------ |
-| `className` | `string`    | -       | Additional CSS classes                           |
-| `children`  | `ReactNode` | -       | Item content (Link, Previous, Next, or Ellipsis) |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | Item content (Link, Previous, Next, or Ellipsis) |
 
 ### Pagination.Link
 
-| Prop         | Type                      | Default | Description                      |
-| ------------ | ------------------------- | ------- | -------------------------------- |
-| `isActive`   | `boolean`                 | `false` | Whether this is the current page |
-| `isDisabled` | `boolean`                 | `false` | Whether the link is disabled     |
-| `onPress`    | `(e: PressEvent) => void` | -       | Press handler (from React Aria)  |
-| `className`  | `string`                  | -       | Additional CSS classes           |
-| `children`   | `ReactNode`               | -       | Page number content              |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `isActive` | `boolean` | `false` | Whether this is the current page |
+| `isDisabled` | `boolean` | `false` | Whether the link is disabled |
+| `onPress` | `(e: PressEvent) => void` | - | Press handler (from React Aria) |
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | Page number content |
 
 ### Pagination.Previous / Pagination.Next
 
-| Prop         | Type                      | Default | Description                                         |
-| ------------ | ------------------------- | ------- | --------------------------------------------------- |
-| `isDisabled` | `boolean`                 | `false` | Whether the button is disabled                      |
-| `onPress`    | `(e: PressEvent) => void` | -       | Press handler (from React Aria)                     |
-| `className`  | `string`                  | -       | Additional CSS classes                              |
-| `children`   | `ReactNode`               | -       | Button content (compose with PreviousIcon/NextIcon) |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `isDisabled` | `boolean` | `false` | Whether the button is disabled |
+| `onPress` | `(e: PressEvent) => void` | - | Press handler (from React Aria) |
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | Button content (compose with PreviousIcon/NextIcon) |
 
 ### Pagination.PreviousIcon / Pagination.NextIcon
 
-| Prop        | Type        | Default             | Description                                |
-| ----------- | ----------- | ------------------- | ------------------------------------------ |
-| `className` | `string`    | -                   | Additional CSS classes                     |
-| `children`  | `ReactNode` | Default chevron SVG | Custom icon to replace the default chevron |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | Default chevron SVG | Custom icon to replace the default chevron |
 
 ### Pagination.Ellipsis
 
-| Prop        | Type     | Default | Description            |
-| ----------- | -------- | ------- | ---------------------- |
-| `className` | `string` | -       | Additional CSS classes |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
 
 ## Note
 

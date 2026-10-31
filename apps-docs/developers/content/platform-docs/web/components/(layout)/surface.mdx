@@ -7,32 +7,35 @@ links:
   storybook: surface
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Surface } from '@heroui/react'
+import { Surface } from '@heroui/react';
 ```
 
-[Live example: surface-basic](https://heroui.com/docs/react/components/surface)
 
-```tsx
+<ComponentPreview name="surface-basic">
+
+````tsx
+import {Surface} from "@vezham/react-v3";
+
 export function Basic() {
   return (
-    <Surface
-      className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6"
-      variant="default">
-      <h3 className="text-foreground text-base font-semibold">
-        Surface Content
-      </h3>
-      <p className="text-muted text-sm">
+    <Surface className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6" variant="default">
+      <h3 className="text-base font-semibold text-foreground">Surface Content</h3>
+      <p className="text-sm text-muted">
         This is a default surface variant. It uses bg-surface styling.
       </p>
     </Surface>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Examples
 
@@ -44,121 +47,116 @@ Surface comes in semantic variants that describe their prominence level:
 - **`secondary`** - Medium prominence (bg-surface-secondary)
 - **`tertiary`** - Higher prominence (bg-surface-tertiary)
 
-[Live example: surface-variants](https://heroui.com/docs/react/components/surface)
 
-```tsx
+<ComponentPreview name="surface-variants">
+
+````tsx
+import {Surface} from "@vezham/react-v3";
+
 export function Variants() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Default</p>
-        <Surface
-          className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6"
-          variant="default">
-          <h3 className="text-foreground text-base font-semibold">
-            Surface Content
-          </h3>
-          <p className="text-muted text-sm">
+        <p className="text-sm font-medium text-muted">Default</p>
+        <Surface className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6" variant="default">
+          <h3 className="text-base font-semibold text-foreground">Surface Content</h3>
+          <p className="text-sm text-muted">
             This is a default surface variant. It uses bg-surface styling.
           </p>
         </Surface>
       </div>
 
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Secondary</p>
-        <Surface
-          className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6"
-          variant="secondary">
-          <h3 className="text-foreground text-base font-semibold">
-            Surface Content
-          </h3>
-          <p className="text-muted text-sm">
-            This is a secondary surface variant. It uses bg-surface-secondary
-            styling.
+        <p className="text-sm font-medium text-muted">Secondary</p>
+        <Surface className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6" variant="secondary">
+          <h3 className="text-base font-semibold text-foreground">Surface Content</h3>
+          <p className="text-sm text-muted">
+            This is a secondary surface variant. It uses bg-surface-secondary styling.
           </p>
         </Surface>
       </div>
 
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Tertiary</p>
-        <Surface
-          className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6"
-          variant="tertiary">
-          <h3 className="text-foreground text-base font-semibold">
-            Surface Content
-          </h3>
-          <p className="text-muted text-sm">
-            This is a tertiary surface variant. It uses bg-surface-tertiary
-            styling.
+        <p className="text-sm font-medium text-muted">Tertiary</p>
+        <Surface className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6" variant="tertiary">
+          <h3 className="text-base font-semibold text-foreground">Surface Content</h3>
+          <p className="text-sm text-muted">
+            This is a tertiary surface variant. It uses bg-surface-tertiary styling.
           </p>
         </Surface>
       </div>
 
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Transparent</p>
+        <p className="text-sm font-medium text-muted">Transparent</p>
         <Surface
           className="flex min-w-[320px] flex-col gap-3 rounded-3xl border p-6"
-          variant="transparent">
-          <h3 className="text-foreground text-base font-semibold">
-            Surface Content
-          </h3>
-          <p className="text-muted text-sm">
-            This is a transparent surface variant. It has no background,
-            suitable for overlays and cards with custom backgrounds.
+          variant="transparent"
+        >
+          <h3 className="text-base font-semibold text-foreground">Surface Content</h3>
+          <p className="text-sm text-muted">
+            This is a transparent surface variant. It has no background, suitable for overlays and
+            cards with custom backgrounds.
           </p>
         </Surface>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Form Components
 
 When using form components inside a Surface, use the `variant="secondary"` prop to apply the lower emphasis variant suitable for surface backgrounds.
 
-[Live example: surface-with-form-components](https://heroui.com/docs/react/components/surface)
 
-```tsx
-'use client'
+<ComponentPreview name="surface-with-form-components">
+
+````tsx
+"use client";
+
+import {Input, Surface, TextArea} from "@vezham/react-v3";
 
 export function WithFormComponents() {
   return (
-    <Surface
-      className="flex min-w-[320px] flex-col gap-4 rounded-3xl p-6"
-      variant="default">
+    <Surface className="flex min-w-[320px] flex-col gap-4 rounded-3xl p-6" variant="default">
       <Input placeholder="Input with secondary variant" variant="secondary" />
-      <TextArea
-        placeholder="TextArea with secondary variant"
-        variant="secondary"
-      />
+      <TextArea placeholder="TextArea with secondary variant" variant="secondary" />
     </Surface>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: surface-custom-styles](https://heroui.com/docs/react/components/surface)
 
-```tsx
+<ComponentPreview name="surface-custom-styles">
+
+````tsx
+import {Surface} from "@vezham/react-v3";
+
 export function CustomStyles() {
   return (
     <Surface
-      className="border-accent/15 from-accent/8 via-surface to-surface-secondary w-full max-w-sm rounded-xl border bg-linear-to-br p-4"
-      variant="default">
-      <h3 className="text-foreground text-sm font-semibold">
-        Billing overview
-      </h3>
-      <p className="text-muted text-sm">
-        View invoices and payment methods in one place.
-      </p>
+      className="w-full max-w-sm rounded-xl border border-accent/15 bg-linear-to-br from-accent/8 via-surface to-surface-secondary p-4"
+      variant="default"
+    >
+      <h3 className="text-sm font-semibold text-foreground">Billing overview</h3>
+      <p className="text-sm text-muted">View invoices and payment methods in one place.</p>
     </Surface>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -168,7 +166,7 @@ To customize the Surface component classes, you can use the `@layer components` 
 ```css
 @layer components {
   .surface {
-    @apply border-border rounded-2xl border;
+    @apply rounded-2xl border border-border;
   }
 
   .surface--secondary {
@@ -186,11 +184,9 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The Surface component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/surface.css)):
 
 #### Base Classes [!toc]
-
 - `.surface` - Base surface container
 
 #### Variant Classes [!toc]
-
 - `.surface--default` - Default surface variant (bg-surface)
 - `.surface--secondary` - Secondary surface variant (bg-surface-secondary)
 - `.surface--tertiary` - Tertiary surface variant (bg-surface-tertiary)
@@ -199,11 +195,11 @@ The Surface component uses these CSS classes ([View source styles](https://githu
 
 ### Surface
 
-| Prop        | Type                                                       | Default     | Description                       |
-| ----------- | ---------------------------------------------------------- | ----------- | --------------------------------- |
-| `variant`   | ` "transparent" \| "default" \| "secondary" \| "tertiary"` | `"default"` | The visual variant of the surface |
-| `className` | `string`                                                   | -           | Additional CSS classes            |
-| `children`  | `ReactNode`                                                | -           | The surface content               |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | ` "transparent" \| "default" \| "secondary" \| "tertiary"` | `"default"` | The visual variant of the surface |
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | The surface content |
 
 ## Context API
 
@@ -212,11 +208,11 @@ The Surface component uses these CSS classes ([View source styles](https://githu
 Child components can access the Surface context to get the current variant:
 
 ```tsx
-import { SurfaceContext } from '@heroui/react'
-import { useContext } from 'react'
+import { useContext } from 'react';
+import { SurfaceContext } from '@heroui/react';
 
 function MyComponent() {
-  const { variant } = useContext(SurfaceContext)
+  const { variant } = useContext(SurfaceContext);
   // variant will be "transparent" | "default" | "secondary" | "tertiary" | undefined
 }
 ```

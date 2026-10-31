@@ -6,6 +6,7 @@ icon: book
 
 import { DocsImage } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 HeroUI v3 follows 10 core principles that prioritize clarity, accessibility, customization, and developer experience.
 
 ## Core Principles
@@ -21,6 +22,7 @@ Use semantic naming (primary, secondary, tertiary) instead of visual description
   className="object-contain"
 />
 
+
 ```tsx
 // ✅ Semantic variants communicate hierarchy
 <Button variant="primary">Save</Button>
@@ -28,21 +30,21 @@ Use semantic naming (primary, secondary, tertiary) instead of visual description
 <Button variant="tertiary">Cancel</Button>
 ```
 
-| Variant       | Purpose                           | Usage            |
-| ------------- | --------------------------------- | ---------------- |
-| **Primary**   | Main action to move forward       | 1 per context    |
-| **Secondary** | Alternative actions               | Multiple allowed |
-| **Tertiary**  | Dismissive actions (cancel, skip) | Sparingly        |
-| **Danger**    | Destructive actions               | When needed      |
+| Variant | Purpose | Usage |
+|---------|---------|-------|
+| **Primary** | Main action to move forward | 1 per context |
+| **Secondary** | Alternative actions | Multiple allowed |
+| **Tertiary** | Dismissive actions (cancel, skip) | Sparingly |
+| **Danger** | Destructive actions | When needed |
 
 ### 2. Accessibility as Foundation
 
 Built on [React Aria Components](https://react-spectrum.adobe.com/react-aria/) for WCAG 2.1 AA compliance. Automatic ARIA attributes, keyboard navigation, and screen reader support included.
 
 ```tsx
-import { Tab, TabList, TabPanel, Tabs } from '@heroui/react'
+import { Tabs, TabList, Tab, TabPanel } from '@heroui/react';
 
-;<Tabs defaultSelectedKey="profile">
+<Tabs defaultSelectedKey="profile">
   <TabList aria-label="Settings">
     <Tab id="profile">Profile</Tab>
     <Tab id="security">Security</Tab>
@@ -60,15 +62,15 @@ Compound components let you rearrange, customize, or omit parts as needed. Use d
 // Compose parts to build exactly what you need
 import {
   Accordion,
-  AccordionBody,
-  AccordionHeading,
-  AccordionIndicator,
   AccordionItem,
+  AccordionHeading,
+  AccordionTrigger,
+  AccordionIndicator,
   AccordionPanel,
-  AccordionTrigger
-} from '@heroui/react'
+  AccordionBody
+} from '@heroui/react';
 
-;<Accordion>
+<Accordion>
   <AccordionItem id="1">
     <AccordionHeading>
       <AccordionTrigger>
@@ -132,21 +134,20 @@ import { Alert, AlertIcon, CardHeader, AccordionTrigger } from '@heroui/react';
 Full TypeScript support with IntelliSense, auto-completion, and compile-time error detection. Extend types for custom components.
 
 ```tsx
-import type { ButtonProps } from '@heroui/react'
+import type { ButtonProps } from '@heroui/react';
 
 // Type-safe props and event handlers
-;<Button
-  variant="primary" // Autocomplete: primary | secondary | tertiary | danger | ghost
-  size="md" // Type checked: sm | md | lg
-  onPress={e => {
-    // e is properly typed as PressEvent
-    console.log(e.target)
+<Button
+  variant="primary"  // Autocomplete: primary | secondary | tertiary | danger | ghost
+  size="md"          // Type checked: sm | md | lg
+  onPress={(e) => {  // e is properly typed as PressEvent
+    console.log(e.target);
   }}
 />
 
 // Extend types for custom components
 interface CustomButtonProps extends Omit<ButtonProps, 'variant'> {
-  intent: 'save' | 'cancel' | 'delete'
+  intent: 'save' | 'cancel' | 'delete';
 }
 ```
 
@@ -163,9 +164,9 @@ or with React:
 
 ```tsx
 // Apply styles to any component
-import { buttonVariants } from '@heroui/styles'
+import { buttonVariants } from '@heroui/styles';
 
-;<Link className={buttonVariants({ variant: 'primary' })} href="/home">
+<Link className={buttonVariants({ variant: "primary" })} href="/home">
   Home
 </Link>
 ```
@@ -189,7 +190,7 @@ Beautiful defaults out-of-the-box. Transform the entire look with CSS variables 
 /* Component-specific customization */
 @layer components {
   .button {
-    @apply tracking-wider uppercase;
+    @apply uppercase tracking-wider;
   }
   .button--primary {
     @apply bg-gradient-to-r from-purple-500 to-pink-500;
@@ -204,14 +205,14 @@ Wrap, extend, and customize components to match your needs. Use variant function
 **Apply styles with variant functions:**
 
 ```tsx
-import { Link } from '@heroui/react'
-import { linkVariants } from '@heroui/styles'
-import NextLink from 'next/link'
+import { Link } from '@heroui/react';
+import { linkVariants } from '@heroui/styles';
+import NextLink from 'next/link';
 
 // Use variant functions to style framework-specific components
-const slots = linkVariants({ underline: 'hover' })
+const slots = linkVariants({ underline: "hover" });
 
-;<NextLink className={slots.base()} href="/about">
+<NextLink className={slots.base()} href="/about">
   About Page
   <Link.Icon className={slots.icon()} />
 </NextLink>
@@ -220,10 +221,10 @@ const slots = linkVariants({ underline: 'hover' })
 **Apply BEM classes directly:**
 
 ```tsx
-import Link from 'next/link'
+import Link from 'next/link';
 
 // Apply HeroUI's BEM classes directly to any element
-;<Link className="button button--primary" href="/dashboard">
+<Link className="button button--primary" href="/dashboard">
   Dashboard
 </Link>
 ```
@@ -241,15 +242,15 @@ const CTAButton = ({
   const variantMap = {
     'primary-cta': 'primary',
     'secondary-cta': 'secondary',
-    minimal: 'ghost'
-  }
+    'minimal': 'ghost'
+  };
 
   return (
     <Button ref={ref} variant={variantMap[intent]} {...props}>
       {children}
     </Button>
-  )
-}
+  );
+};
 ```
 
 **Extend with Tailwind Variants:**
@@ -281,12 +282,12 @@ function CustomButton({ variant, className, ...props }) {
 
 ## Comparison with HeroUI v2
 
-| Aspect                       | HeroUI v2                            | HeroUI v3                                 |
-| ---------------------------- | ------------------------------------ | ----------------------------------------- |
-| **Animations**               | Framer Motion                        | CSS + GPU accelerated                     |
-| **Component Pattern**        | Single components with many props    | Compound components                       |
-| **Variants**                 | Visual-based (solid, bordered, flat) | Semantic (primary, secondary, tertiary)   |
-| **Styling**                  | Tailwind v4 partially supported      | Tailwind v4 fully supported               |
-| **Accessibility**            | Excellent (React Aria powered)       | Excellent (React Aria powered)            |
-| **Bundle Size**              | Larger (Bundle)                      | Smaller (tree-shakeable)                  |
-| **Customization Difficulty** | Medium (Props-based)                 | Simple (Compound components + Native CSS) |
+| Aspect | HeroUI v2 | HeroUI v3 |
+|--------|-----------|-----------|
+| **Animations** | Framer Motion | CSS + GPU accelerated |
+| **Component Pattern** | Single components with many props | Compound components |
+| **Variants** | Visual-based (solid, bordered, flat) | Semantic (primary, secondary, tertiary) |
+| **Styling** | Tailwind v4 partially supported | Tailwind v4 fully supported |
+| **Accessibility** | Excellent (React Aria powered) | Excellent (React Aria powered) |
+| **Bundle Size** | Larger (Bundle) | Smaller (tree-shakeable) |
+| **Customization Difficulty** | Medium (Props-based) | Simple (Compound components + Native CSS) |

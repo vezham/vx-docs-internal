@@ -8,16 +8,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/text-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/text-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/text-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/text-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { Typography } from 'heroui-native'
+import { Typography } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -136,29 +137,29 @@ If your app defines custom `--font-*` families, each weight resolves to the matc
 Use the `truncate` boolean prop to limit the text to a single line with an ellipsis. It is mapped to React Native's `numberOfLines={1}`. An explicit `numberOfLines` prop, if provided, takes precedence.
 
 ```tsx
-;<Typography truncate>
+<Typography truncate>
   A long line of text that will be cut off with an ellipsis when it overflows
   the container.
-</Typography>
+</Typography>;
 
 {
   /* Multi-line truncation via the underlying RN prop */
 }
-;<Typography numberOfLines={2}>
+<Typography numberOfLines={2}>
   Two-line truncation works through React Native's standard `numberOfLines`
   prop.
-</Typography>
+</Typography>;
 ```
 
 ## Example
 
 ```tsx
-import { Typography } from 'heroui-native'
-import { View } from 'react-native'
+import { Typography } from 'heroui-native';
+import { View } from 'react-native';
 
 export default function TypographyExample() {
   return (
-    <View className="flex-1 justify-center gap-4 px-5">
+    <View className="flex-1 justify-center px-5 gap-4">
       <Typography.Heading type="h1">Welcome</Typography.Heading>
       <Typography.Heading type="h3">Getting Started</Typography.Heading>
       <Typography.Paragraph>
@@ -169,7 +170,7 @@ export default function TypographyExample() {
       </Typography.Paragraph>
       <Typography.Code>npm install heroui-native</Typography.Code>
     </View>
-  )
+  );
 }
 ```
 

@@ -7,28 +7,36 @@ links:
   styles: error-message.css
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { ErrorMessage } from '@heroui/react'
+import { ErrorMessage } from '@heroui/react';
 ```
 
-[Live example: error-message-basic](https://heroui.com/docs/react/components/error-message)
 
-```tsx
-'use client'
+<ComponentPreview name="error-message-basic">
+
+````tsx
+"use client";
+
+import type {Key} from "@vezham/react-v3";
+
+import {Description, ErrorMessage, Label, Tag, TagGroup} from "@vezham/react-v3";
+import {useMemo, useState} from "react";
 
 export function ErrorMessageBasic() {
-  const [selected, setSelected] = useState<Iterable<Key>>(new Set())
-  const isInvalid = useMemo(() => Array.from(selected).length === 0, [selected])
+  const [selected, setSelected] = useState<Iterable<Key>>(new Set());
+  const isInvalid = useMemo(() => Array.from(selected).length === 0, [selected]);
 
   return (
     <TagGroup
       selectedKeys={selected}
       selectionMode="multiple"
-      onSelectionChange={keys => setSelected(keys)}>
+      onSelectionChange={(keys) => setSelected(keys)}
+    >
       <Label>Required Categories</Label>
       <TagGroup.List>
         <Tag id="news">News</Tag>
@@ -37,22 +45,23 @@ export function ErrorMessageBasic() {
         <Tag id="shopping">Shopping</Tag>
       </TagGroup.List>
       <Description>Select at least one category</Description>
-      <ErrorMessage>
-        {!!isInvalid && <>Please select at least one category</>}
-      </ErrorMessage>
+      <ErrorMessage>{!!isInvalid && <>Please select at least one category</>}</ErrorMessage>
     </TagGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 `ErrorMessage` is a low-level component built on React Aria's `Text` component with an `errorMessage` slot. It's designed for displaying error messages in **non-form components** such as `TagGroup`, `Calendar`, and other collection-based components.
 
 ## Anatomy
 
 ```tsx
-import { Description, ErrorMessage, Label, Tag, TagGroup } from '@heroui/react'
+import { TagGroup, Tag, Label, Description, ErrorMessage } from '@heroui/react';
 
-;<TagGroup>
+<TagGroup>
   <Label />
   <TagGroup.List>
     <Tag />
@@ -71,10 +80,10 @@ import { Description, ErrorMessage, Label, Tag, TagGroup } from '@heroui/react'
 
 ## ErrorMessage vs FieldError
 
-| Component      | Use Case                  | Form Integration | Example Components                   |
-| -------------- | ------------------------- | ---------------- | ------------------------------------ |
-| `ErrorMessage` | Non-form components       | No               | `TagGroup`, `Calendar`               |
-| `FieldError`   | Form fields (recommended) | Yes              | `TextField`, `NumberField`, `Select` |
+| Component | Use Case | Form Integration | Example Components |
+|-----------|----------|------------------|---------------------|
+| `ErrorMessage` | Non-form components | No | `TagGroup`, `Calendar` |
+| `FieldError` | Form fields (recommended) | Yes | `TextField`, `NumberField`, `Select` |
 
 For form validation, we recommend using `FieldError` as it follows standardized form validation patterns and provides form-specific features. See the [FieldError documentation](/docs-ui/web/components/field-error) and the [Form guide](/docs-ui/web/components/form) for examples and best practices.
 
@@ -82,21 +91,28 @@ For form validation, we recommend using `FieldError` as it follows standardized 
 
 ### Tailwind CSS
 
-[Live example: error-message-custom-styles](https://heroui.com/docs/react/components/error-message)
 
-```tsx
-'use client'
+<ComponentPreview name="error-message-custom-styles">
+
+````tsx
+"use client";
+
+import type {Key} from "@vezham/react-v3";
+
+import {Description, ErrorMessage, Label, Tag, TagGroup} from "@vezham/react-v3";
+import {useMemo, useState} from "react";
 
 export function CustomStyles() {
-  const [selected, setSelected] = useState<Iterable<Key>>(new Set())
-  const isInvalid = useMemo(() => Array.from(selected).length === 0, [selected])
+  const [selected, setSelected] = useState<Iterable<Key>>(new Set());
+  const isInvalid = useMemo(() => Array.from(selected).length === 0, [selected]);
 
   return (
     <TagGroup
       className="w-full max-w-xs gap-1.5"
       selectedKeys={selected}
       selectionMode="multiple"
-      onSelectionChange={setSelected}>
+      onSelectionChange={setSelected}
+    >
       <Label>Topics</Label>
       <TagGroup.List>
         <Tag id="api">API</Tag>
@@ -104,13 +120,16 @@ export function CustomStyles() {
         <Tag id="docs">Docs</Tag>
       </TagGroup.List>
       <Description>Pick at least one topic</Description>
-      <ErrorMessage className="text-danger font-medium">
+      <ErrorMessage className="font-medium text-danger">
         {!!isInvalid && <>Choose at least one topic</>}
       </ErrorMessage>
     </TagGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -119,7 +138,7 @@ To customize the ErrorMessage component classes, you can use the `@layer compone
 ```css
 @layer components {
   .error-message {
-    @apply text-danger text-sm font-medium;
+    @apply text-sm font-medium text-danger;
   }
 }
 ```
@@ -144,10 +163,10 @@ The ErrorMessage component uses these CSS classes ([View source styles](https://
 
 ### ErrorMessage
 
-| Prop        | Type        | Default | Description               |
-| ----------- | ----------- | ------- | ------------------------- |
-| `className` | `string`    | -       | Additional CSS classes    |
-| `children`  | `ReactNode` | -       | The error message content |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | The error message content |
 
 ## Note
 

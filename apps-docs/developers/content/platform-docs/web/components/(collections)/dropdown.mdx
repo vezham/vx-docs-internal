@@ -8,18 +8,22 @@ links:
   storybook: Components/Collections/Dropdown
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Dropdown } from '@heroui/react'
+import { Dropdown } from '@heroui/react';
 ```
 
-[Live example: dropdown-default](https://heroui.com/docs/react/components/dropdown)
 
-```tsx
-'use client'
+<ComponentPreview name="dropdown-default">
+
+````tsx
+"use client";
+
+import {Button, Dropdown, Label} from "@vezham/react-v3";
 
 export function Default() {
   return (
@@ -28,7 +32,7 @@ export function Default() {
         Actions
       </Button>
       <Dropdown.Popover>
-        <Dropdown.Menu onAction={key => console.log(`Selected: ${key}`)}>
+        <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
           <Dropdown.Item id="new-file" textValue="New file">
             <Label>New file</Label>
           </Dropdown.Item>
@@ -38,31 +42,23 @@ export function Default() {
           <Dropdown.Item id="edit-file" textValue="Edit file">
             <Label>Edit file</Label>
           </Dropdown.Item>
-          <Dropdown.Item
-            id="delete-file"
-            textValue="Delete file"
-            variant="danger">
+          <Dropdown.Item id="delete-file" textValue="Delete file" variant="danger">
             <Label>Delete file</Label>
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown.Popover>
     </Dropdown>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 ```tsx
-import {
-  Button,
-  Description,
-  Dropdown,
-  Header,
-  Kbd,
-  Label,
-  Separator
-} from '@heroui/react'
+import { Dropdown, Button, Label, Description, Header, Kbd, Separator } from '@heroui/react';
 
 export default () => (
   <Dropdown>
@@ -103,10 +99,14 @@ export default () => (
 
 ### With Icons
 
-[Live example: dropdown-with-icons](https://heroui.com/docs/react/components/dropdown)
 
-```tsx
-'use client'
+<ComponentPreview name="dropdown-with-icons">
+
+````tsx
+"use client";
+
+import {FloppyDisk, FolderOpen, SquarePlus, TrashBin} from "@gravity-ui/icons";
+import {Button, Dropdown, Kbd, Label} from "@vezham/react-v3";
 
 export function WithIcons() {
   return (
@@ -115,9 +115,9 @@ export function WithIcons() {
         Actions
       </Button>
       <Dropdown.Popover>
-        <Dropdown.Menu onAction={key => console.log(`Selected: ${key}`)}>
+        <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
           <Dropdown.Item id="new-file" textValue="New file">
-            <SquarePlus className="text-muted size-4 shrink-0" />
+            <SquarePlus className="size-4 shrink-0 text-muted" />
             <Label>New file</Label>
             <Kbd className="ms-auto" slot="keyboard" variant="light">
               <Kbd.Abbr keyValue="command" />
@@ -125,7 +125,7 @@ export function WithIcons() {
             </Kbd>
           </Dropdown.Item>
           <Dropdown.Item id="open-file" textValue="Open file">
-            <FolderOpen className="text-muted size-4 shrink-0" />
+            <FolderOpen className="size-4 shrink-0 text-muted" />
             <Label>Open file</Label>
             <Kbd className="ms-auto" slot="keyboard" variant="light">
               <Kbd.Abbr keyValue="command" />
@@ -133,18 +133,15 @@ export function WithIcons() {
             </Kbd>
           </Dropdown.Item>
           <Dropdown.Item id="save-file" textValue="Save file">
-            <FloppyDisk className="text-muted size-4 shrink-0" />
+            <FloppyDisk className="size-4 shrink-0 text-muted" />
             <Label>Save file</Label>
             <Kbd className="ms-auto" slot="keyboard" variant="light">
               <Kbd.Abbr keyValue="command" />
               <Kbd.Content>S</Kbd.Content>
             </Kbd>
           </Dropdown.Item>
-          <Dropdown.Item
-            id="delete-file"
-            textValue="Delete file"
-            variant="danger">
-            <TrashBin className="text-danger size-4 shrink-0" />
+          <Dropdown.Item id="delete-file" textValue="Delete file" variant="danger">
+            <TrashBin className="size-4 shrink-0 text-danger" />
             <Label>Delete file</Label>
             <Kbd className="ms-auto" slot="keyboard" variant="light">
               <Kbd.Abbr keyValue="command" />
@@ -155,16 +152,23 @@ export function WithIcons() {
         </Dropdown.Menu>
       </Dropdown.Popover>
     </Dropdown>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Descriptions
 
-[Live example: dropdown-with-descriptions](https://heroui.com/docs/react/components/dropdown)
 
-```tsx
-'use client'
+<ComponentPreview name="dropdown-with-descriptions">
+
+````tsx
+"use client";
+
+import {FloppyDisk, FolderOpen, SquarePlus, TrashBin} from "@gravity-ui/icons";
+import {Button, Description, Dropdown, Kbd, Label} from "@vezham/react-v3";
 
 export function WithDescriptions() {
   return (
@@ -173,10 +177,10 @@ export function WithDescriptions() {
         Actions
       </Button>
       <Dropdown.Popover>
-        <Dropdown.Menu onAction={key => console.log(`Selected: ${key}`)}>
+        <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
           <Dropdown.Item id="new-file" textValue="New file">
             <div className="flex h-8 items-start justify-center pt-px">
-              <SquarePlus className="text-muted size-4 shrink-0" />
+              <SquarePlus className="size-4 shrink-0 text-muted" />
             </div>
             <div className="flex flex-col">
               <Label>New file</Label>
@@ -189,7 +193,7 @@ export function WithDescriptions() {
           </Dropdown.Item>
           <Dropdown.Item id="open-file" textValue="Open file">
             <div className="flex h-8 items-start justify-center pt-px">
-              <FolderOpen className="text-muted size-4 shrink-0" />
+              <FolderOpen className="size-4 shrink-0 text-muted" />
             </div>
             <div className="flex flex-col">
               <Label>Open file</Label>
@@ -202,7 +206,7 @@ export function WithDescriptions() {
           </Dropdown.Item>
           <Dropdown.Item id="save-file" textValue="Save file">
             <div className="flex h-8 items-start justify-center pt-px">
-              <FloppyDisk className="text-muted size-4 shrink-0" />
+              <FloppyDisk className="size-4 shrink-0 text-muted" />
             </div>
             <div className="flex flex-col">
               <Label>Save file</Label>
@@ -213,12 +217,9 @@ export function WithDescriptions() {
               <Kbd.Content>S</Kbd.Content>
             </Kbd>
           </Dropdown.Item>
-          <Dropdown.Item
-            id="delete-file"
-            textValue="Delete file"
-            variant="danger">
+          <Dropdown.Item id="delete-file" textValue="Delete file" variant="danger">
             <div className="flex h-8 items-start justify-center pt-px">
-              <TrashBin className="text-danger size-4 shrink-0" />
+              <TrashBin className="size-4 shrink-0 text-danger" />
             </div>
             <div className="flex flex-col">
               <Label>Delete file</Label>
@@ -233,16 +234,23 @@ export function WithDescriptions() {
         </Dropdown.Menu>
       </Dropdown.Popover>
     </Dropdown>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Disabled Items
 
-[Live example: dropdown-with-disabled-items](https://heroui.com/docs/react/components/dropdown)
 
-```tsx
-'use client'
+<ComponentPreview name="dropdown-with-disabled-items">
+
+````tsx
+"use client";
+
+import {Bars, Pencil, SquarePlus, TrashBin} from "@gravity-ui/icons";
+import {Button, Description, Dropdown, Header, Kbd, Label, Separator} from "@vezham/react-v3";
 
 export function WithDisabledItems() {
   return (
@@ -252,13 +260,14 @@ export function WithDisabledItems() {
       </Button>
       <Dropdown.Popover className="min-w-[220px]">
         <Dropdown.Menu
-          disabledKeys={['delete-file']}
-          onAction={key => console.log(`Selected: ${key}`)}>
+          disabledKeys={["delete-file"]}
+          onAction={(key) => console.log(`Selected: ${key}`)}
+        >
           <Dropdown.Section>
             <Header>Actions</Header>
             <Dropdown.Item id="new-file" textValue="New file">
               <div className="flex h-8 items-start justify-center pt-px">
-                <SquarePlus className="text-muted size-4 shrink-0" />
+                <SquarePlus className="size-4 shrink-0 text-muted" />
               </div>
               <div className="flex flex-col">
                 <Label>New file</Label>
@@ -271,7 +280,7 @@ export function WithDisabledItems() {
             </Dropdown.Item>
             <Dropdown.Item id="edit-file" textValue="Edit file">
               <div className="flex h-8 items-start justify-center pt-px">
-                <Pencil className="text-muted size-4 shrink-0" />
+                <Pencil className="size-4 shrink-0 text-muted" />
               </div>
               <div className="flex flex-col">
                 <Label>Edit file</Label>
@@ -286,12 +295,9 @@ export function WithDisabledItems() {
           <Separator />
           <Dropdown.Section>
             <Header>Danger zone</Header>
-            <Dropdown.Item
-              id="delete-file"
-              textValue="Delete file"
-              variant="danger">
+            <Dropdown.Item id="delete-file" textValue="Delete file" variant="danger">
               <div className="flex h-8 items-start justify-center pt-px">
-                <TrashBin className="text-danger size-4 shrink-0" />
+                <TrashBin className="size-4 shrink-0 text-danger" />
               </div>
               <div className="flex flex-col">
                 <Label>Delete file</Label>
@@ -307,16 +313,23 @@ export function WithDisabledItems() {
         </Dropdown.Menu>
       </Dropdown.Popover>
     </Dropdown>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Sections
 
-[Live example: dropdown-with-sections](https://heroui.com/docs/react/components/dropdown)
 
-```tsx
-'use client'
+<ComponentPreview name="dropdown-with-sections">
+
+````tsx
+"use client";
+
+import {EllipsisVertical, Pencil, SquarePlus, TrashBin} from "@gravity-ui/icons";
+import {Button, Description, Dropdown, Header, Kbd, Label, Separator} from "@vezham/react-v3";
 
 export function WithSections() {
   return (
@@ -325,12 +338,12 @@ export function WithSections() {
         <EllipsisVertical className="outline-none" />
       </Button>
       <Dropdown.Popover>
-        <Dropdown.Menu onAction={key => console.log(`Selected: ${key}`)}>
+        <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
           <Dropdown.Section>
             <Header>Actions</Header>
             <Dropdown.Item id="new-file" textValue="New file">
               <div className="flex h-8 items-start justify-center pt-px">
-                <SquarePlus className="text-muted size-4 shrink-0" />
+                <SquarePlus className="size-4 shrink-0 text-muted" />
               </div>
               <div className="flex flex-col">
                 <Label>New file</Label>
@@ -343,7 +356,7 @@ export function WithSections() {
             </Dropdown.Item>
             <Dropdown.Item id="edit-file" textValue="Edit file">
               <div className="flex h-8 items-start justify-center pt-px">
-                <Pencil className="text-muted size-4 shrink-0" />
+                <Pencil className="size-4 shrink-0 text-muted" />
               </div>
               <div className="flex flex-col">
                 <Label>Edit file</Label>
@@ -358,12 +371,9 @@ export function WithSections() {
           <Separator />
           <Dropdown.Section>
             <Header>Danger zone</Header>
-            <Dropdown.Item
-              id="delete-file"
-              textValue="Delete file"
-              variant="danger">
+            <Dropdown.Item id="delete-file" textValue="Delete file" variant="danger">
               <div className="flex h-8 items-start justify-center pt-px">
-                <TrashBin className="text-danger size-4 shrink-0" />
+                <TrashBin className="size-4 shrink-0 text-danger" />
               </div>
               <div className="flex flex-col">
                 <Label>Delete file</Label>
@@ -379,19 +389,28 @@ export function WithSections() {
         </Dropdown.Menu>
       </Dropdown.Popover>
     </Dropdown>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Multiple Selection
 
-[Live example: dropdown-with-multiple-selection](https://heroui.com/docs/react/components/dropdown)
 
-```tsx
-'use client'
+<ComponentPreview name="dropdown-with-multiple-selection">
+
+````tsx
+"use client";
+
+import type {Selection} from "@vezham/react-v3";
+
+import {Button, Dropdown, Header, Label} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function WithMultipleSelection() {
-  const [selected, setSelected] = useState<Selection>(new Set(['apple']))
+  const [selected, setSelected] = useState<Selection>(new Set(["apple"]));
 
   return (
     <Dropdown>
@@ -402,7 +421,8 @@ export function WithMultipleSelection() {
         <Dropdown.Menu
           selectedKeys={selected}
           selectionMode="multiple"
-          onSelectionChange={setSelected}>
+          onSelectionChange={setSelected}
+        >
           <Dropdown.Section>
             <Header>Select a fruit</Header>
             <Dropdown.Item id="apple" textValue="Apple">
@@ -429,26 +449,35 @@ export function WithMultipleSelection() {
         </Dropdown.Menu>
       </Dropdown.Popover>
     </Dropdown>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Controlled
 
-[Live example: dropdown-controlled](https://heroui.com/docs/react/components/dropdown)
 
-```tsx
-'use client'
+<ComponentPreview name="dropdown-controlled">
+
+````tsx
+"use client";
+
+import type {Selection} from "@vezham/react-v3";
+
+import {Button, Dropdown, Label} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function Controlled() {
-  const [selected, setSelected] = useState<Selection>(new Set(['bold']))
+  const [selected, setSelected] = useState<Selection>(new Set(["bold"]));
 
-  const selectedItems = Array.from(selected)
+  const selectedItems = Array.from(selected);
 
   return (
     <div className="flex min-w-sm flex-col items-center justify-center gap-4">
-      <p className="text-muted text-sm">
-        Selected: {selectedItems.length > 0 ? selectedItems.join(', ') : 'None'}
+      <p className="text-sm text-muted">
+        Selected: {selectedItems.length > 0 ? selectedItems.join(", ") : "None"}
       </p>
       <Dropdown>
         <Button aria-label="Menu" variant="secondary">
@@ -458,7 +487,8 @@ export function Controlled() {
           <Dropdown.Menu
             selectedKeys={selected}
             selectionMode="multiple"
-            onSelectionChange={setSelected}>
+            onSelectionChange={setSelected}
+          >
             <Dropdown.Item id="bold" textValue="Bold">
               <Label>Bold</Label>
               <Dropdown.ItemIndicator />
@@ -475,24 +505,31 @@ export function Controlled() {
         </Dropdown.Popover>
       </Dropdown>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Controlled Open State
 
-[Live example: dropdown-controlled-open-state](https://heroui.com/docs/react/components/dropdown)
 
-```tsx
-'use client'
+<ComponentPreview name="dropdown-controlled-open-state">
+
+````tsx
+"use client";
+
+import {Button, Dropdown, Label} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function ControlledOpenState() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="flex min-w-sm flex-col items-center justify-center gap-4">
-      <p className="text-muted text-sm">
-        Dropdown is: <strong>{open ? 'open' : 'closed'}</strong>
+      <p className="text-sm text-muted">
+        Dropdown is: <strong>{open ? "open" : "closed"}</strong>
       </p>
       <Dropdown isOpen={open} onOpenChange={setOpen}>
         <Button aria-label="Menu" variant="secondary">
@@ -509,29 +546,35 @@ export function ControlledOpenState() {
             <Dropdown.Item id="save-file" textValue="Save file">
               <Label>Save file</Label>
             </Dropdown.Item>
-            <Dropdown.Item
-              id="delete-file"
-              textValue="Delete file"
-              variant="danger">
+            <Dropdown.Item id="delete-file" textValue="Delete file" variant="danger">
               <Label>Delete file</Label>
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown.Popover>
       </Dropdown>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Single Selection
 
-[Live example: dropdown-with-single-selection](https://heroui.com/docs/react/components/dropdown)
 
-```tsx
-'use client'
+<ComponentPreview name="dropdown-with-single-selection">
+
+````tsx
+"use client";
+
+import type {Selection} from "@vezham/react-v3";
+
+import {Button, Dropdown, Header, Label} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function WithSingleSelection() {
-  const [selected, setSelected] = useState<Selection>(new Set(['apple']))
+  const [selected, setSelected] = useState<Selection>(new Set(["apple"]));
 
   return (
     <Dropdown>
@@ -542,7 +585,8 @@ export function WithSingleSelection() {
         <Dropdown.Menu
           selectedKeys={selected}
           selectionMode="single"
-          onSelectionChange={setSelected}>
+          onSelectionChange={setSelected}
+        >
           <Dropdown.Section>
             <Header>Select a fruit</Header>
             <Dropdown.Item id="apple" textValue="Apple">
@@ -569,26 +613,31 @@ export function WithSingleSelection() {
         </Dropdown.Menu>
       </Dropdown.Popover>
     </Dropdown>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Single With Custom Indicator
 
-[Live example: dropdown-single-with-custom-indicator](https://heroui.com/docs/react/components/dropdown)
 
-```tsx
-'use client'
+<ComponentPreview name="dropdown-single-with-custom-indicator">
+
+````tsx
+"use client";
+
+import type {Selection} from "@vezham/react-v3";
+
+import {Button, Dropdown, Header, Label} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function SingleWithCustomIndicator() {
-  const [selected, setSelected] = useState<Selection>(new Set(['apple']))
+  const [selected, setSelected] = useState<Selection>(new Set(["apple"]));
 
   const CustomCheckmarkIcon = (
-    <svg
-      height="16"
-      viewBox="0 0 16 16"
-      width="16"
-      xmlns="http://www.w3.org/2000/svg">
+    <svg height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
       <path
         className="text-accent-soft-foreground"
         clipRule="evenodd"
@@ -597,7 +646,7 @@ export function SingleWithCustomIndicator() {
         fillRule="evenodd"
       />
     </svg>
-  )
+  );
 
   return (
     <Dropdown>
@@ -608,61 +657,67 @@ export function SingleWithCustomIndicator() {
         <Dropdown.Menu
           selectedKeys={selected}
           selectionMode="single"
-          onSelectionChange={setSelected}>
+          onSelectionChange={setSelected}
+        >
           <Dropdown.Section>
             <Header>Select a fruit</Header>
             <Dropdown.Item id="apple" textValue="Apple">
               <Dropdown.ItemIndicator>
-                {({ isSelected }) => (isSelected ? CustomCheckmarkIcon : null)}
+                {({isSelected}) => (isSelected ? CustomCheckmarkIcon : null)}
               </Dropdown.ItemIndicator>
               <Label>Apple</Label>
             </Dropdown.Item>
             <Dropdown.Item id="banana" textValue="Banana">
               <Dropdown.ItemIndicator>
-                {({ isSelected }) => (isSelected ? CustomCheckmarkIcon : null)}
+                {({isSelected}) => (isSelected ? CustomCheckmarkIcon : null)}
               </Dropdown.ItemIndicator>
               <Label>Banana</Label>
             </Dropdown.Item>
             <Dropdown.Item id="cherry" textValue="Cherry">
               <Dropdown.ItemIndicator>
-                {({ isSelected }) => (isSelected ? CustomCheckmarkIcon : null)}
+                {({isSelected}) => (isSelected ? CustomCheckmarkIcon : null)}
               </Dropdown.ItemIndicator>
               <Label>Cherry</Label>
             </Dropdown.Item>
           </Dropdown.Section>
           <Dropdown.Item id="orange" textValue="Orange">
             <Dropdown.ItemIndicator>
-              {({ isSelected }) => (isSelected ? CustomCheckmarkIcon : null)}
+              {({isSelected}) => (isSelected ? CustomCheckmarkIcon : null)}
             </Dropdown.ItemIndicator>
             <Label>Orange</Label>
           </Dropdown.Item>
           <Dropdown.Item id="pear" textValue="Pear">
             <Dropdown.ItemIndicator>
-              {({ isSelected }) => (isSelected ? CustomCheckmarkIcon : null)}
+              {({isSelected}) => (isSelected ? CustomCheckmarkIcon : null)}
             </Dropdown.ItemIndicator>
             <Label>Pear</Label>
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown.Popover>
     </Dropdown>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Section Level Selection
 
-[Live example: dropdown-with-section-level-selection](https://heroui.com/docs/react/components/dropdown)
 
-```tsx
-'use client'
+<ComponentPreview name="dropdown-with-section-level-selection">
+
+````tsx
+"use client";
+
+import type {Selection} from "@vezham/react-v3";
+
+import {Button, Dropdown, Header, Kbd, Label, Separator} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function WithSectionLevelSelection() {
-  const [textStyles, setTextStyles] = useState<Selection>(
-    new Set(['bold', 'italic'])
-  )
-  const [textAlignment, setTextAlignment] = useState<Selection>(
-    new Set(['left'])
-  )
+  const [textStyles, setTextStyles] = useState<Selection>(new Set(["bold", "italic"]));
+  const [textAlignment, setTextAlignment] = useState<Selection>(new Set(["left"]));
 
   return (
     <Dropdown>
@@ -699,7 +754,8 @@ export function WithSectionLevelSelection() {
           <Dropdown.Section
             selectedKeys={textStyles}
             selectionMode="multiple"
-            onSelectionChange={setTextStyles}>
+            onSelectionChange={setTextStyles}
+          >
             <Header>Text Style</Header>
             <Dropdown.Item id="bold" textValue="Bold">
               <Dropdown.ItemIndicator />
@@ -730,7 +786,8 @@ export function WithSectionLevelSelection() {
           <Dropdown.Section
             selectedKeys={textAlignment}
             selectionMode="single"
-            onSelectionChange={setTextAlignment}>
+            onSelectionChange={setTextAlignment}
+          >
             <Header>Text Alignment</Header>
             <Dropdown.Item id="left" textValue="Left">
               <Dropdown.ItemIndicator type="dot" />
@@ -760,16 +817,22 @@ export function WithSectionLevelSelection() {
         </Dropdown.Menu>
       </Dropdown.Popover>
     </Dropdown>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Keyboard Shortcuts
 
-[Live example: dropdown-with-keyboard-shortcuts](https://heroui.com/docs/react/components/dropdown)
 
-```tsx
-'use client'
+<ComponentPreview name="dropdown-with-keyboard-shortcuts">
+
+````tsx
+"use client";
+
+import {Button, Dropdown, Kbd, Label} from "@vezham/react-v3";
 
 export function WithKeyboardShortcuts() {
   return (
@@ -778,7 +841,7 @@ export function WithKeyboardShortcuts() {
         Actions
       </Button>
       <Dropdown.Popover>
-        <Dropdown.Menu onAction={key => console.log(`Selected: ${key}`)}>
+        <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
           <Dropdown.Item id="new" textValue="New">
             <Label>New</Label>
             <Kbd className="ms-auto" slot="keyboard" variant="light">
@@ -811,16 +874,22 @@ export function WithKeyboardShortcuts() {
         </Dropdown.Menu>
       </Dropdown.Popover>
     </Dropdown>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Submenus
 
-[Live example: dropdown-with-submenus](https://heroui.com/docs/react/components/dropdown)
 
-```tsx
-'use client'
+<ComponentPreview name="dropdown-with-submenus">
+
+````tsx
+"use client";
+
+import {Button, Dropdown, Label} from "@vezham/react-v3";
 
 export function WithSubmenus() {
   return (
@@ -829,7 +898,7 @@ export function WithSubmenus() {
         Share
       </Button>
       <Dropdown.Popover>
-        <Dropdown.Menu onAction={key => console.log(`Selected: ${key}`)}>
+        <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
           <Dropdown.Item id="copy-link" textValue="Copy Link">
             <Label>Copy Link</Label>
           </Dropdown.Item>
@@ -877,16 +946,23 @@ export function WithSubmenus() {
         </Dropdown.Menu>
       </Dropdown.Popover>
     </Dropdown>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Custom Submenu Indicator
 
-[Live example: dropdown-with-custom-submenu-indicator](https://heroui.com/docs/react/components/dropdown)
 
-```tsx
-'use client'
+<ComponentPreview name="dropdown-with-custom-submenu-indicator">
+
+````tsx
+"use client";
+
+import {ArrowRight} from "@gravity-ui/icons";
+import {Button, Dropdown, Label} from "@vezham/react-v3";
 
 export function WithCustomSubmenuIndicator() {
   return (
@@ -895,7 +971,7 @@ export function WithCustomSubmenuIndicator() {
         Share
       </Button>
       <Dropdown.Popover>
-        <Dropdown.Menu onAction={key => console.log(`Selected: ${key}`)}>
+        <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
           <Dropdown.Item id="copy-link" textValue="Copy Link">
             <Label>Copy Link</Label>
           </Dropdown.Item>
@@ -906,7 +982,7 @@ export function WithCustomSubmenuIndicator() {
             <Dropdown.Item id="share" textValue="Share">
               <Label>More options</Label>
               <Dropdown.SubmenuIndicator>
-                <ArrowRight className="text-muted size-3.5" />
+                <ArrowRight className="size-3.5 text-muted" />
               </Dropdown.SubmenuIndicator>
             </Dropdown.Item>
             <Dropdown.Popover>
@@ -922,13 +998,14 @@ export function WithCustomSubmenuIndicator() {
                     <Label>Email</Label>
                     <Dropdown.SubmenuIndicator>
                       <svg
-                        className="text-muted size-3.5"
+                        className="size-3.5 text-muted"
                         fill="none"
                         stroke="currentColor"
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth="2"
-                        viewBox="0 0 24 24">
+                        viewBox="0 0 24 24"
+                      >
                         <path d="M9 18l6-6-6-6" />
                       </svg>
                     </Dropdown.SubmenuIndicator>
@@ -966,15 +1043,22 @@ export function WithCustomSubmenuIndicator() {
         </Dropdown.Menu>
       </Dropdown.Popover>
     </Dropdown>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Custom Trigger
 
-[Live example: dropdown-custom-trigger](https://heroui.com/docs/react/components/dropdown)
 
-```tsx
+<ComponentPreview name="dropdown-custom-trigger">
+
+````tsx
+import {ArrowRightFromSquare, Gear, Persons} from "@gravity-ui/icons";
+import {Avatar, Dropdown, Label} from "@vezham/react-v3";
+
 export function CustomTrigger() {
   return (
     <Dropdown>
@@ -999,9 +1083,7 @@ export function CustomTrigger() {
             </Avatar>
             <div className="flex flex-col gap-0">
               <p className="text-sm leading-5 font-medium">Jane Doe</p>
-              <p className="text-muted text-xs leading-none">
-                jane@example.com
-              </p>
+              <p className="text-xs leading-none text-muted">jane@example.com</p>
             </div>
           </div>
         </div>
@@ -1015,33 +1097,39 @@ export function CustomTrigger() {
           <Dropdown.Item id="settings" textValue="Settings">
             <div className="flex w-full items-center justify-between gap-2">
               <Label>Settings</Label>
-              <Gear className="text-muted size-3.5" />
+              <Gear className="size-3.5 text-muted" />
             </div>
           </Dropdown.Item>
           <Dropdown.Item id="new-project" textValue="New project">
             <div className="flex w-full items-center justify-between gap-2">
               <Label>Create Team</Label>
-              <Persons className="text-muted size-3.5" />
+              <Persons className="size-3.5 text-muted" />
             </div>
           </Dropdown.Item>
           <Dropdown.Item id="logout" textValue="Logout" variant="danger">
             <div className="flex w-full items-center justify-between gap-2">
               <Label>Log Out</Label>
-              <ArrowRightFromSquare className="text-danger size-3.5" />
+              <ArrowRightFromSquare className="size-3.5 text-danger" />
             </div>
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown.Popover>
     </Dropdown>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Long Press Trigger
 
-[Live example: dropdown-long-press-trigger](https://heroui.com/docs/react/components/dropdown)
 
-```tsx
+<ComponentPreview name="dropdown-long-press-trigger">
+
+````tsx
+import {Button, Dropdown, Label} from "@vezham/react-v3";
+
 export function LongPressTrigger() {
   return (
     <Dropdown trigger="longPress">
@@ -1059,57 +1147,66 @@ export function LongPressTrigger() {
           <Dropdown.Item id="save-file" textValue="Save file">
             <Label>Save file</Label>
           </Dropdown.Item>
-          <Dropdown.Item
-            id="delete-file"
-            textValue="Delete file"
-            variant="danger">
+          <Dropdown.Item id="delete-file" textValue="Delete file" variant="danger">
             <Label>Delete file</Label>
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown.Popover>
     </Dropdown>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: dropdown-custom-styles](https://heroui.com/docs/react/components/dropdown)
 
-```tsx
+<ComponentPreview name="dropdown-custom-styles">
+
+````tsx
+import {Button, Dropdown, Label} from "@vezham/react-v3";
+
 export function CustomStyles() {
   return (
     <Dropdown>
       <Button variant="secondary">Actions</Button>
-      <Dropdown.Popover className="border-border/80 bg-surface rounded-xl border p-1 shadow-sm">
+      <Dropdown.Popover className="rounded-xl border border-border/80 bg-surface p-1 shadow-sm">
         <Dropdown.Menu>
           <Dropdown.Item
-            className="data-[focused=true]:bg-default rounded-lg"
+            className="rounded-lg data-[focused=true]:bg-default"
             id="rename"
-            textValue="Rename">
+            textValue="Rename"
+          >
             <Label>Rename</Label>
           </Dropdown.Item>
           <Dropdown.Item
-            className="data-[focused=true]:bg-default rounded-lg"
+            className="rounded-lg data-[focused=true]:bg-default"
             id="duplicate"
-            textValue="Duplicate">
+            textValue="Duplicate"
+          >
             <Label>Duplicate</Label>
           </Dropdown.Item>
           <Dropdown.Item
-            className="data-[focused=true]:bg-danger-soft rounded-lg"
+            className="rounded-lg data-[focused=true]:bg-danger-soft"
             id="delete"
             textValue="Delete"
-            variant="danger">
+            variant="danger"
+          >
             <Label>Delete</Label>
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown.Popover>
     </Dropdown>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -1127,7 +1224,7 @@ To customize the Dropdown component classes, you can use the `@layer components`
   }
 
   .dropdown__popover {
-    @apply border-border bg-overlay rounded-lg border p-2;
+    @apply rounded-lg border border-border bg-overlay p-2;
   }
 
   .dropdown__menu {
@@ -1145,14 +1242,12 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The Dropdown component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/dropdown.css)):
 
 #### Base Classes [!toc]
-
 - `.dropdown` - Base dropdown container
 - `.dropdown__trigger` - The button or element that triggers the dropdown
 - `.dropdown__popover` - The popover container
 - `.dropdown__menu` - The menu container inside the popover
 
 #### State Classes [!toc]
-
 - `.dropdown__trigger[data-focus-visible="true"]` - Focused trigger state
 - `.dropdown__trigger[data-disabled="true"]` - Disabled trigger state
 - `.dropdown__trigger[data-pressed="true"]` - Pressed trigger state
@@ -1166,12 +1261,10 @@ The Dropdown component uses these CSS classes ([View source styles](https://gith
 The Dropdown component uses Menu, MenuItem, and MenuSection as base components. These classes are also available for customization:
 
 #### Menu Classes [!toc]
-
 - `.menu` - Base menu container ([menu.css](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/menu.css))
   - `[data-slot="separator"]` - Separator elements within the menu
 
 #### MenuItem Classes [!toc]
-
 - `.menu-item` - Base menu item container ([menu-item.css](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/menu-item.css))
 - `.menu-item__indicator` - Selection indicator (checkmark or dot)
   - `[data-slot="menu-item-indicator--checkmark"]` - Checkmark indicator SVG
@@ -1181,7 +1274,6 @@ The Dropdown component uses Menu, MenuItem, and MenuSection as base components. 
 - `.menu-item--danger` - Danger variant styling
 
 #### MenuItem State Classes [!toc]
-
 - `.menu-item[data-focus-visible="true"]` - Focused item state (keyboard focus)
 - `.menu-item[data-focus="true"]` - Focused item state
 - `.menu-item[data-pressed]` - Pressed item state
@@ -1195,7 +1287,6 @@ The Dropdown component uses Menu, MenuItem, and MenuSection as base components. 
 - `.menu-item[aria-selected="true"]` - Selected item (ARIA)
 
 #### MenuSection Classes [!toc]
-
 - `.menu-section` - Base menu section container ([menu-section.css](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/menu-section.css))
 
 ### Interactive States
@@ -1212,103 +1303,103 @@ The component supports both CSS pseudo-classes and data attributes for flexibili
 
 ### Dropdown
 
-| Prop           | Type                        | Default   | Description                                            |
-| -------------- | --------------------------- | --------- | ------------------------------------------------------ |
-| `isOpen`       | `boolean`                   | -         | Sets the open state of the menu (controlled)           |
-| `defaultOpen`  | `boolean`                   | -         | Sets the default open state of the menu (uncontrolled) |
-| `onOpenChange` | `(isOpen: boolean) => void` | -         | Handler called when the open state changes             |
-| `trigger`      | `"press" \| "longPress"`    | `"press"` | The type of interaction that triggers the menu         |
-| `className`    | `string`                    | -         | Additional CSS classes                                 |
-| `children`     | `ReactNode`                 | -         | Dropdown content                                       |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `isOpen` | `boolean` | - | Sets the open state of the menu (controlled) |
+| `defaultOpen` | `boolean` | - | Sets the default open state of the menu (uncontrolled) |
+| `onOpenChange` | `(isOpen: boolean) => void` | - | Handler called when the open state changes |
+| `trigger` | `"press" \| "longPress"` | `"press"` | The type of interaction that triggers the menu |
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | Dropdown content |
 
 ### Dropdown.Trigger
 
-| Prop        | Type                          | Default | Description                        |
-| ----------- | ----------------------------- | ------- | ---------------------------------- |
-| `className` | `string`                      | -       | Additional CSS classes             |
-| `children`  | `ReactNode \| RenderFunction` | -       | Trigger content or render function |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode \| RenderFunction` | - | Trigger content or render function |
 
 All [Button](https://react-spectrum.adobe.com/react-aria/Button.html) props are also supported when using a Button as the trigger.
 
 ### Dropdown.Popover
 
-| Prop        | Type                                                                                                                                                                                                                                                                                                                     | Default    | Description                                      |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | ------------------------------------------------ |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
 | `placement` | `"bottom" \| "bottom left" \| "bottom right" \| "bottom start" \| "bottom end" \| "top" \| "top left" \| "top right" \| "top start" \| "top end" \| "left" \| "left top" \| "left bottom" \| "start" \| "start top" \| "start bottom" \| "right" \| "right top" \| "right bottom" \| "end" \| "end top" \| "end bottom"` | `"bottom"` | Placement of the popover relative to the trigger |
-| `className` | `string`                                                                                                                                                                                                                                                                                                                 | -          | Additional CSS classes                           |
-| `children`  | `ReactNode`                                                                                                                                                                                                                                                                                                              | -          | Content children                                 |
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | Content children |
 
 All [Popover](https://react-spectrum.adobe.com/react-aria/Popover.html) props are also supported.
 
 ### Dropdown.Menu
 
-| Prop                  | Type                               | Default  | Description                                     |
-| --------------------- | ---------------------------------- | -------- | ----------------------------------------------- |
-| `selectionMode`       | `"single" \| "multiple" \| "none"` | `"none"` | Whether single or multiple selection is enabled |
-| `selectedKeys`        | `Iterable<Key>`                    | -        | The currently selected keys (controlled)        |
-| `defaultSelectedKeys` | `Iterable<Key>`                    | -        | The initial selected keys (uncontrolled)        |
-| `onSelectionChange`   | `(keys: Selection) => void`        | -        | Handler called when the selection changes       |
-| `disabledKeys`        | `Iterable<Key>`                    | -        | Keys of disabled items                          |
-| `onAction`            | `(key: Key) => void`               | -        | Handler called when an item is activated        |
-| `className`           | `string`                           | -        | Additional CSS classes                          |
-| `children`            | `ReactNode`                        | -        | Menu content                                    |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `selectionMode` | `"single" \| "multiple" \| "none"` | `"none"` | Whether single or multiple selection is enabled |
+| `selectedKeys` | `Iterable<Key>` | - | The currently selected keys (controlled) |
+| `defaultSelectedKeys` | `Iterable<Key>` | - | The initial selected keys (uncontrolled) |
+| `onSelectionChange` | `(keys: Selection) => void` | - | Handler called when the selection changes |
+| `disabledKeys` | `Iterable<Key>` | - | Keys of disabled items |
+| `onAction` | `(key: Key) => void` | - | Handler called when an item is activated |
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | Menu content |
 
 All [Menu](https://react-spectrum.adobe.com/react-aria/Menu.html#menu) props are also supported.
 
 ### Dropdown.Section
 
-| Prop                  | Type                        | Default | Description                                  |
-| --------------------- | --------------------------- | ------- | -------------------------------------------- |
-| `selectionMode`       | `"single" \| "multiple"`    | -       | Selection mode for items within this section |
-| `selectedKeys`        | `Iterable<Key>`             | -       | The currently selected keys (controlled)     |
-| `defaultSelectedKeys` | `Iterable<Key>`             | -       | The initial selected keys (uncontrolled)     |
-| `onSelectionChange`   | `(keys: Selection) => void` | -       | Handler called when the selection changes    |
-| `disabledKeys`        | `Iterable<Key>`             | -       | Keys of disabled items                       |
-| `className`           | `string`                    | -       | Additional CSS classes                       |
-| `children`            | `ReactNode`                 | -       | Section content                              |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `selectionMode` | `"single" \| "multiple"` | - | Selection mode for items within this section |
+| `selectedKeys` | `Iterable<Key>` | - | The currently selected keys (controlled) |
+| `defaultSelectedKeys` | `Iterable<Key>` | - | The initial selected keys (uncontrolled) |
+| `onSelectionChange` | `(keys: Selection) => void` | - | Handler called when the selection changes |
+| `disabledKeys` | `Iterable<Key>` | - | Keys of disabled items |
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | Section content |
 
 All [MenuSection](https://react-spectrum.adobe.com/react-aria/Menu.html#menusection) props are also supported.
 
 ### Dropdown.Item
 
-| Prop        | Type                          | Default     | Description                            |
-| ----------- | ----------------------------- | ----------- | -------------------------------------- |
-| `id`        | `Key`                         | -           | Unique identifier for the item         |
-| `textValue` | `string`                      | -           | Text content of the item for typeahead |
-| `variant`   | `"default" \| "danger"`       | `"default"` | Visual variant of the item             |
-| `className` | `string`                      | -           | Additional CSS classes                 |
-| `children`  | `ReactNode \| RenderFunction` | -           | Item content or render function        |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `id` | `Key` | - | Unique identifier for the item |
+| `textValue` | `string` | - | Text content of the item for typeahead |
+| `variant` | `"default" \| "danger"` | `"default"` | Visual variant of the item |
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode \| RenderFunction` | - | Item content or render function |
 
 All [MenuItem](https://react-spectrum.adobe.com/react-aria/Menu.html#menuitem) props are also supported.
 
 ### Dropdown.ItemIndicator
 
-| Prop        | Type                          | Default       | Description                                 |
-| ----------- | ----------------------------- | ------------- | ------------------------------------------- |
-| `type`      | `"checkmark" \| "dot"`        | `"checkmark"` | Type of indicator to display                |
-| `className` | `string`                      | -             | Additional CSS classes                      |
-| `children`  | `ReactNode \| RenderFunction` | -             | Custom indicator content or render function |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `type` | `"checkmark" \| "dot"` | `"checkmark"` | Type of indicator to display |
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode \| RenderFunction` | - | Custom indicator content or render function |
 
 When using a render function, these values are provided:
 
-| Prop              | Type      | Description                                   |
-| ----------------- | --------- | --------------------------------------------- |
-| `isSelected`      | `boolean` | Whether the item is selected                  |
+| Prop | Type | Description |
+|------|------|-------------|
+| `isSelected` | `boolean` | Whether the item is selected |
 | `isIndeterminate` | `boolean` | Whether the item is in an indeterminate state |
 
 ### Dropdown.SubmenuIndicator
 
-| Prop        | Type        | Default | Description              |
-| ----------- | ----------- | ------- | ------------------------ |
-| `className` | `string`    | -       | Additional CSS classes   |
-| `children`  | `ReactNode` | -       | Custom indicator content |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | Custom indicator content |
 
 ### Dropdown.SubmenuTrigger
 
-| Prop        | Type        | Default | Description             |
-| ----------- | ----------- | ------- | ----------------------- |
-| `className` | `string`    | -       | Additional CSS classes  |
-| `children`  | `ReactNode` | -       | Submenu trigger content |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | Submenu trigger content |
 
 All [SubmenuTrigger](https://react-spectrum.adobe.com/react-aria/Menu.html#submenutrigger) props are also supported.
 
@@ -1316,12 +1407,12 @@ All [SubmenuTrigger](https://react-spectrum.adobe.com/react-aria/Menu.html#subme
 
 When using render functions with Dropdown.Item, these values are provided:
 
-| Prop         | Type      | Description                       |
-| ------------ | --------- | --------------------------------- |
-| `isSelected` | `boolean` | Whether the item is selected      |
-| `isFocused`  | `boolean` | Whether the item is focused       |
-| `isDisabled` | `boolean` | Whether the item is disabled      |
-| `isPressed`  | `boolean` | Whether the item is being pressed |
+| Prop | Type | Description |
+|------|------|-------------|
+| `isSelected` | `boolean` | Whether the item is selected |
+| `isFocused` | `boolean` | Whether the item is focused |
+| `isDisabled` | `boolean` | Whether the item is disabled |
+| `isPressed` | `boolean` | Whether the item is being pressed |
 
 ## Accessibility
 

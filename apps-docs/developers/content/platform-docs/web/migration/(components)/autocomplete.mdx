@@ -3,28 +3,21 @@ title: Autocomplete
 description: Migration guide for Autocomplete from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  In v3, the v2 `Autocomplete` can be migrated to either the [v3
-  Autocomplete](/docs-ui/web/components/autocomplete) or the [v3
-  ComboBox](/docs-ui/web/components/combo-box), depending on your use case. See
-  the section below on choosing the right component. This guide focuses on
-  migrating from HeroUI v2.
+  In v3, the v2 `Autocomplete` can be migrated to either the [v3 Autocomplete](/docs-ui/web/components/autocomplete) or the [v3 ComboBox](/docs-ui/web/components/combo-box), depending on your use case. See the section below on choosing the right component. This guide focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Choosing Between Autocomplete and ComboBox
 
 V3 provides two components that replace the v2 Autocomplete:
 
-| Component        | Best For                                                          | Input Style                                                           | Built on                             |
-| ---------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------- | ------------------------------------ |
+| Component | Best For | Input Style | Built on |
+|-----------|----------|-------------|----------|
 | **Autocomplete** | Select-style picker with a search/filter field inside the popover | Button trigger that shows selected value; search input inside popover | React Aria `Select` + `Autocomplete` |
-| **ComboBox**     | Text input that filters a dropdown list as you type               | Inline text input with dropdown trigger                               | React Aria `ComboBox`                |
+| **ComboBox** | Text input that filters a dropdown list as you type | Inline text input with dropdown trigger | React Aria `ComboBox` |
 
 **Use Autocomplete** when the user picks from a predefined list and the search field should appear inside the dropdown (similar to a searchable select).
 
@@ -35,7 +28,7 @@ V3 provides two components that replace the v2 Autocomplete:
 In v2, Autocomplete was a single component that wrapped Input internally:
 
 ```tsx
-import { Autocomplete, AutocompleteItem } from '@heroui/react'
+import { Autocomplete, AutocompleteItem } from "@heroui/react";
 
 export default function App() {
   return (
@@ -43,7 +36,7 @@ export default function App() {
       <AutocompleteItem key="cat">Cat</AutocompleteItem>
       <AutocompleteItem key="dog">Dog</AutocompleteItem>
     </Autocomplete>
-  )
+  );
 }
 ```
 
@@ -52,7 +45,7 @@ export default function App() {
 ComboBox provides the most similar experience to the v2 Autocomplete, with an inline text input that filters options:
 
 ```tsx
-import { ComboBox, Input, Label, ListBox } from '@heroui/react'
+import { ComboBox, Input, Label, ListBox } from "@heroui/react";
 
 export default function App() {
   return (
@@ -75,7 +68,7 @@ export default function App() {
         </ListBox>
       </ComboBox.Popover>
     </ComboBox>
-  )
+  );
 }
 ```
 
@@ -84,16 +77,10 @@ export default function App() {
 Autocomplete provides a select-style trigger with a search/filter field inside the popover:
 
 ```tsx
-import {
-  Autocomplete,
-  Label,
-  ListBox,
-  SearchField,
-  useFilter
-} from '@heroui/react'
+import { Autocomplete, Label, SearchField, ListBox, useFilter } from "@heroui/react";
 
 export default function App() {
-  const { contains } = useFilter({ sensitivity: 'base' })
+  const { contains } = useFilter({ sensitivity: "base" });
 
   return (
     <Autocomplete>
@@ -124,7 +111,7 @@ export default function App() {
         </Autocomplete.Filter>
       </Autocomplete.Popover>
     </Autocomplete>
-  )
+  );
 }
 ```
 
@@ -155,14 +142,14 @@ export default function App() {
 
 The v3 Autocomplete introduces several subcomponents not present in v2:
 
-| Subcomponent               | Purpose                                                                                                               |
-| -------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `Autocomplete.Trigger`     | The button group that opens the popover                                                                               |
-| `Autocomplete.Value`       | Displays the currently selected value or placeholder                                                                  |
-| `Autocomplete.ClearButton` | Clears the current selection                                                                                          |
-| `Autocomplete.Indicator`   | Dropdown chevron icon (rotates when open)                                                                             |
-| `Autocomplete.Popover`     | The dropdown popover container                                                                                        |
-| `Autocomplete.Filter`      | Wraps `SearchField` and `ListBox` to enable filtering; accepts a `filter` function, `inputValue`, and `onInputChange` |
+| Subcomponent | Purpose |
+|--------------|---------|
+| `Autocomplete.Trigger` | The button group that opens the popover |
+| `Autocomplete.Value` | Displays the currently selected value or placeholder |
+| `Autocomplete.ClearButton` | Clears the current selection |
+| `Autocomplete.Indicator` | Dropdown chevron icon (rotates when open) |
+| `Autocomplete.Popover` | The dropdown popover container |
+| `Autocomplete.Filter` | Wraps `SearchField` and `ListBox` to enable filtering; accepts a `filter` function, `inputValue`, and `onInputChange` |
 
 ### 6. SearchField Integration
 
@@ -187,65 +174,67 @@ The v3 Autocomplete uses `SearchField` inside `Autocomplete.Filter` for the sear
 The v3 Autocomplete uses the `useFilter` hook (from React Aria, re-exported by `@heroui/react`) to provide locale-aware filtering functions:
 
 ```tsx
-import { useFilter } from '@heroui/react'
+import { useFilter } from "@heroui/react";
 
-const { contains } = useFilter({ sensitivity: 'base' })
+const { contains } = useFilter({ sensitivity: "base" });
 
 // Pass to Autocomplete.Filter
-;<Autocomplete.Filter filter={contains}>...</Autocomplete.Filter>
+<Autocomplete.Filter filter={contains}>
+  ...
+</Autocomplete.Filter>
 ```
 
 The hook returns `contains`, `startsWith`, and `endsWith` functions. The `sensitivity` option controls locale-aware matching (`"base"`, `"accent"`, `"case"`, `"variant"`).
 
 ### 8. Prop Changes (ComboBox)
 
-| v2 Prop                                                                  | v3 Location                   | Notes                                            |
-| ------------------------------------------------------------------------ | ----------------------------- | ------------------------------------------------ |
-| -                                                                        | `id` (on ListBox.Item)        | Item identifier for state                        |
-| -                                                                        | `textValue` (on ListBox.Item) | For accessibility (type-ahead)                   |
-| `label`                                                                  | `Label`                       | Use `Label` component                            |
-| `description`                                                            | `Description`                 | Use `Description` component                      |
-| `placeholder`                                                            | `Input`                       | `placeholder` on Input                           |
-| `selectedKey`, `onSelectionChange`, `inputValue`, `onInputChange`        | `ComboBox`                    | Same                                             |
-| `allowsCustomValue`, `allowsEmptyCollection`, `defaultFilter`            | `ComboBox`                    | Same                                             |
-| `disabledKeys`, `isDisabled`, `isRequired`, `isInvalid`, `name`          | `ComboBox`                    | Same                                             |
-| `menuTrigger`                                                            | `ComboBox`                    | `"focus"` (default), `"input"`, or `"manual"`    |
-| `variant`, `color`, `size`, `radius`                                     | -                             | Removed (use Tailwind CSS)                       |
-| `labelPlacement`                                                         | -                             | Removed (use Label positioning)                  |
-| `startContent`, `endContent`                                             | -                             | Add to Input or InputGroup                       |
-| `selectorIcon`, `clearIcon`                                              | -                             | Customize ComboBox.Trigger or implement manually |
-| `isClearable`                                                            | -                             | Implement manually                               |
-| `showScrollIndicators`                                                   | -                             | Removed                                          |
-| `classNames`                                                             | -                             | Use `className` on parts                         |
-| `popoverProps`, `listboxProps`, `inputProps`                             | -                             | Configure components directly                    |
-| `scrollShadowProps`, `scrollRef`                                         | -                             | Removed                                          |
-| `selectorButtonProps`, `clearButtonProps`, `disableSelectorIconRotation` | -                             | Removed                                          |
-| `isReadOnly`                                                             | `ComboBox`                    | `isReadOnly` prop on ComboBox                    |
-| `fullWidth`                                                              | `ComboBox`                    | `fullWidth` prop on ComboBox                     |
-| `isVirtualized`, `maxListboxHeight`, `itemHeight`                        | -                             | Removed                                          |
-| `onClose`, `onClear`                                                     | -                             | Use other event handlers                         |
-| `validationBehavior`, `validate`                                         | `ComboBox`                    | Props on ComboBox                                |
+| v2 Prop | v3 Location | Notes |
+|---------|-------------|-------|
+| - | `id` (on ListBox.Item) | Item identifier for state |
+| - | `textValue` (on ListBox.Item) | For accessibility (type-ahead) |
+| `label` | `Label` | Use `Label` component |
+| `description` | `Description` | Use `Description` component |
+| `placeholder` | `Input` | `placeholder` on Input |
+| `selectedKey`, `onSelectionChange`, `inputValue`, `onInputChange` | `ComboBox` | Same |
+| `allowsCustomValue`, `allowsEmptyCollection`, `defaultFilter` | `ComboBox` | Same |
+| `disabledKeys`, `isDisabled`, `isRequired`, `isInvalid`, `name` | `ComboBox` | Same |
+| `menuTrigger` | `ComboBox` | `"focus"` (default), `"input"`, or `"manual"` |
+| `variant`, `color`, `size`, `radius` | - | Removed (use Tailwind CSS) |
+| `labelPlacement` | - | Removed (use Label positioning) |
+| `startContent`, `endContent` | - | Add to Input or InputGroup |
+| `selectorIcon`, `clearIcon` | - | Customize ComboBox.Trigger or implement manually |
+| `isClearable` | - | Implement manually |
+| `showScrollIndicators` | - | Removed |
+| `classNames` | - | Use `className` on parts |
+| `popoverProps`, `listboxProps`, `inputProps` | - | Configure components directly |
+| `scrollShadowProps`, `scrollRef` | - | Removed |
+| `selectorButtonProps`, `clearButtonProps`, `disableSelectorIconRotation` | - | Removed |
+| `isReadOnly` | `ComboBox` | `isReadOnly` prop on ComboBox |
+| `fullWidth` | `ComboBox` | `fullWidth` prop on ComboBox |
+| `isVirtualized`, `maxListboxHeight`, `itemHeight` | - | Removed |
+| `onClose`, `onClear` | - | Use other event handlers |
+| `validationBehavior`, `validate` | `ComboBox` | Props on ComboBox |
 
 ### 9. Prop Changes (Autocomplete)
 
-| v2 Prop                                                         | v3 Location                   | Notes                                                                      |
-| --------------------------------------------------------------- | ----------------------------- | -------------------------------------------------------------------------- |
-| -                                                               | `id` (on ListBox.Item)        | Item identifier for state                                                  |
-| -                                                               | `textValue` (on ListBox.Item) | For accessibility (type-ahead)                                             |
-| `label`                                                         | `Label`                       | Use `Label` component                                                      |
-| `description`                                                   | `Description`                 | Use `Description` component                                                |
-| `placeholder`                                                   | `Autocomplete`                | `placeholder` prop on root                                                 |
-| `selectedKey` / `onSelectionChange`                             | `value` / `onChange`          | Renamed props on Autocomplete                                              |
-| `selectionMode`                                                 | `Autocomplete`                | `"single"` (default) or `"multiple"`                                       |
-| `inputValue`, `onInputChange`                                   | `Autocomplete.Filter`         | `inputValue` and `onInputChange` on Filter                                 |
-| `disabledKeys`, `isDisabled`, `isRequired`, `isInvalid`, `name` | `Autocomplete`                | Same                                                                       |
-| `variant`, `color`, `size`, `radius`                            | -                             | Removed (use Tailwind CSS); `variant` supports `"primary"` / `"secondary"` |
-| `isClearable`                                                   | `Autocomplete.ClearButton`    | Built-in subcomponent                                                      |
-| `selectorIcon`                                                  | `Autocomplete.Indicator`      | Pass custom icon as children                                               |
-| `onClear`                                                       | `Autocomplete`                | `onClear` prop on root                                                     |
-| `fullWidth`                                                     | `Autocomplete`                | `fullWidth` prop on root                                                   |
-| `classNames`                                                    | -                             | Use `className` on parts                                                   |
-| `popoverProps`, `listboxProps`, `inputProps`                    | -                             | Configure components directly                                              |
+| v2 Prop | v3 Location | Notes |
+|---------|-------------|-------|
+| - | `id` (on ListBox.Item) | Item identifier for state |
+| - | `textValue` (on ListBox.Item) | For accessibility (type-ahead) |
+| `label` | `Label` | Use `Label` component |
+| `description` | `Description` | Use `Description` component |
+| `placeholder` | `Autocomplete` | `placeholder` prop on root |
+| `selectedKey` / `onSelectionChange` | `value` / `onChange` | Renamed props on Autocomplete |
+| `selectionMode` | `Autocomplete` | `"single"` (default) or `"multiple"` |
+| `inputValue`, `onInputChange` | `Autocomplete.Filter` | `inputValue` and `onInputChange` on Filter |
+| `disabledKeys`, `isDisabled`, `isRequired`, `isInvalid`, `name` | `Autocomplete` | Same |
+| `variant`, `color`, `size`, `radius` | - | Removed (use Tailwind CSS); `variant` supports `"primary"` / `"secondary"` |
+| `isClearable` | `Autocomplete.ClearButton` | Built-in subcomponent |
+| `selectorIcon` | `Autocomplete.Indicator` | Pass custom icon as children |
+| `onClear` | `Autocomplete` | `onClear` prop on root |
+| `fullWidth` | `Autocomplete` | `fullWidth` prop on root |
+| `classNames` | - | Use `className` on parts |
+| `popoverProps`, `listboxProps`, `inputProps` | - | Configure components directly |
 
 ## Migration Examples
 
@@ -267,7 +256,6 @@ The hook returns `contains`, `startsWith`, and `endsWith` functions. The `sensit
       <AutocompleteItem key="dog">Dog</AutocompleteItem>
     </Autocomplete>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -299,7 +287,6 @@ The hook returns `contains`, `startsWith`, and `endsWith` functions. The `sensit
       </ComboBox.Popover>
     </ComboBox>
     ```
-
   </Tab>
 </Tabs>
 
@@ -321,7 +308,6 @@ The hook returns `contains`, `startsWith`, and `endsWith` functions. The `sensit
       <AutocompleteItem key="dog">Dog</AutocompleteItem>
     </Autocomplete>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -361,7 +347,6 @@ The hook returns `contains`, `startsWith`, and `endsWith` functions. The `sensit
       </Autocomplete.Popover>
     </Autocomplete>
     ```
-
   </Tab>
 </Tabs>
 
@@ -416,7 +401,6 @@ The hook returns `contains`, `startsWith`, and `endsWith` functions. The `sensit
       </ComboBox.Popover>
     </ComboBox>
     ```
-
   </Tab>
 </Tabs>
 
@@ -471,7 +455,6 @@ The hook returns `contains`, `startsWith`, and `endsWith` functions. The `sensit
       );
     }
     ```
-
   </Tab>
 </Tabs>
 
@@ -494,7 +477,6 @@ The hook returns `contains`, `startsWith`, and `endsWith` functions. The `sensit
       <AutocompleteItem key="cat">Cat</AutocompleteItem>
     </Autocomplete>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -538,7 +520,6 @@ The hook returns `contains`, `startsWith`, and `endsWith` functions. The `sensit
       <FieldError>Please select an animal</FieldError>
     </ComboBox>
     ```
-
   </Tab>
 </Tabs>
 

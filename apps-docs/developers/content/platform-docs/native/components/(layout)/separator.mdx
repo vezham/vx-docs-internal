@@ -8,16 +8,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/separator-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/separator-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/separator-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/separator-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { Separator } from 'heroui-native'
+import { Separator } from "heroui-native";
 ```
 
 ## Anatomy
@@ -78,32 +79,32 @@ Set a specific thickness value for precise control.
 ## Example
 
 ```tsx
-import { Separator, Surface } from 'heroui-native'
-import { Text, View } from 'react-native'
+import { Separator, Surface } from 'heroui-native';
+import { Text, View } from 'react-native';
 
 export default function SeparatorExample() {
   return (
     <Surface variant="secondary" className="px-6 py-7">
-      <Text className="text-foreground text-base font-medium">
+      <Text className="text-base font-medium text-foreground">
         HeroUI Native
       </Text>
-      <Text className="text-muted text-sm">
+      <Text className="text-sm text-muted">
         A modern React Native component library.
       </Text>
       <Separator className="my-4" />
-      <View className="h-5 flex-row items-center">
-        <Text className="text-foreground text-sm">Components</Text>
+      <View className="flex-row items-center h-5">
+        <Text className="text-sm text-foreground">Components</Text>
         <Separator orientation="vertical" className="mx-3" />
-        <Text className="text-foreground text-sm">Themes</Text>
+        <Text className="text-sm text-foreground">Themes</Text>
         <Separator orientation="vertical" className="mx-3" />
-        <Text className="text-foreground text-sm">Examples</Text>
+        <Text className="text-sm text-foreground">Examples</Text>
       </View>
     </Surface>
-  )
+  );
 }
 ```
 
-You can find more examples in the [GitHub repository](<https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/separator.tsx>).
+You can find more examples in the [GitHub repository](https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/separator.tsx).
 
 ## API Reference
 

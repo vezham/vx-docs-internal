@@ -7,13 +7,9 @@ links:
   tailwind: theme
 ---
 
-import {
-  CollapsibleCode,
-  ColorSectionFormField,
-  ColorSectionPrimitive,
-  ColorSectionSideBySide,
-  ColorSectionStacked
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { CollapsibleCode, ColorSectionFormField, ColorSectionPrimitive, ColorSectionSideBySide, ColorSectionStacked } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
+
 
 HeroUI Native's color system is built around semantic intent, not visual abundance. Instead of exposing large raw palettes, the system defines a small, meaningful set of color roles that cover the majority of interface needs.
 
@@ -34,12 +30,12 @@ Accent should be used intentionally and sparingly. Overuse reduces its impact an
   hoverCssValue="color-mix(in oklab, var(--accent) 90%, var(--accent-foreground) 10%)"
   foregroundVariable="--accent-foreground"
   soft={{
-    baseVariable: '--accent',
-    baseCssValue: 'color-mix(in oklab, var(--accent) 15%, transparent)',
-    hoverVariable: '--accent',
-    hoverCssValue: 'color-mix(in oklab, var(--accent) 20%, transparent)',
-    foregroundVariable: '--accent',
-    foregroundCssValue: 'var(--accent)'
+    baseVariable: "--accent",
+    baseCssValue: "color-mix(in oklab, var(--accent) 15%, transparent)",
+    hoverVariable: "--accent",
+    hoverCssValue: "color-mix(in oklab, var(--accent) 20%, transparent)",
+    foregroundVariable: "--accent",
+    foregroundCssValue: "var(--accent)",
   }}
 />
 
@@ -66,12 +62,12 @@ Success colors communicate positive outcomes, confirmations, and completed state
   hoverCssValue="color-mix(in oklab, var(--success) 90%, var(--success-foreground) 10%)"
   foregroundVariable="--success-foreground"
   soft={{
-    baseVariable: '--success',
-    baseCssValue: 'color-mix(in oklab, var(--success) 15%, transparent)',
-    hoverVariable: '--success',
-    hoverCssValue: 'color-mix(in oklab, var(--success) 20%, transparent)',
-    foregroundVariable: '--success',
-    foregroundCssValue: 'var(--success)'
+    baseVariable: "--success",
+    baseCssValue: "color-mix(in oklab, var(--success) 15%, transparent)",
+    hoverVariable: "--success",
+    hoverCssValue: "color-mix(in oklab, var(--success) 20%, transparent)",
+    foregroundVariable: "--success",
+    foregroundCssValue: "var(--success)",
   }}
 />
 
@@ -86,12 +82,12 @@ Warning colors indicate caution, risk, or actions that require attention but are
   hoverCssValue="color-mix(in oklab, var(--warning) 90%, var(--warning-foreground) 10%)"
   foregroundVariable="--warning-foreground"
   soft={{
-    baseVariable: '--warning',
-    baseCssValue: 'color-mix(in oklab, var(--warning) 15%, transparent)',
-    hoverVariable: '--warning',
-    hoverCssValue: 'color-mix(in oklab, var(--warning) 20%, transparent)',
-    foregroundVariable: '--warning',
-    foregroundCssValue: 'var(--warning)'
+    baseVariable: "--warning",
+    baseCssValue: "color-mix(in oklab, var(--warning) 15%, transparent)",
+    hoverVariable: "--warning",
+    hoverCssValue: "color-mix(in oklab, var(--warning) 20%, transparent)",
+    foregroundVariable: "--warning",
+    foregroundCssValue: "var(--warning)",
   }}
 />
 
@@ -106,12 +102,12 @@ Danger colors represent destructive, irreversible, or critical actions and state
   hoverCssValue="color-mix(in oklab, var(--danger) 90%, var(--danger-foreground) 10%)"
   foregroundVariable="--danger-foreground"
   soft={{
-    baseVariable: '--danger',
-    baseCssValue: 'color-mix(in oklab, var(--danger) 15%, transparent)',
-    hoverVariable: '--danger',
-    hoverCssValue: 'color-mix(in oklab, var(--danger) 20%, transparent)',
-    foregroundVariable: '--danger',
-    foregroundCssValue: 'var(--danger)'
+    baseVariable: "--danger",
+    baseCssValue: "color-mix(in oklab, var(--danger) 15%, transparent)",
+    hoverVariable: "--danger",
+    hoverCssValue: "color-mix(in oklab, var(--danger) 20%, transparent)",
+    foregroundVariable: "--danger",
+    foregroundCssValue: "var(--danger)",
   }}
 />
 
@@ -121,18 +117,18 @@ Foreground colors are used for primary content such as text and icons. These col
 
 <ColorSectionStacked
   lightColors={[
-    { label: 'Foreground', variable: '--foreground' },
-    { label: 'Muted', variable: '--muted' },
-    { label: 'Segment', variable: '--segment' },
-    { label: 'Overlay', variable: '--overlay' },
-    { label: 'Link', variable: '--link' }
+    { label: "Foreground", variable: "--foreground" },
+    { label: "Muted", variable: "--muted" },
+    { label: "Segment", variable: "--segment" },
+    { label: "Overlay", variable: "--overlay" },
+    { label: "Link", variable: "--link" },
   ]}
   darkColors={[
-    { label: 'Foreground', variable: '--foreground', border: true },
-    { label: 'Muted', variable: '--muted', border: true },
-    { label: 'Segment', variable: '--segment', border: true },
-    { label: 'Overlay', variable: '--overlay', border: true },
-    { label: 'Link', variable: '--link', border: true }
+    { label: "Foreground", variable: "--foreground", border: true },
+    { label: "Muted", variable: "--muted", border: true },
+    { label: "Segment", variable: "--segment", border: true },
+    { label: "Overlay", variable: "--overlay", border: true },
+    { label: "Link", variable: "--link", border: true },
   ]}
 />
 
@@ -142,40 +138,16 @@ Background colors define the base canvas of the interface. They establish overal
 
 <ColorSectionStacked
   lightColors={[
-    { label: 'Background', variable: '--background', border: true },
-    {
-      label: 'Secondary',
-      variable: '--background',
-      cssValue:
-        'color-mix(in oklab, var(--background) 96%, var(--foreground) 4%)',
-      border: true
-    },
-    {
-      label: 'Tertiary',
-      variable: '--background',
-      cssValue:
-        'color-mix(in oklab, var(--background) 92%, var(--foreground) 8%)',
-      border: true
-    },
-    { label: 'Inverse', variable: '--foreground' }
+    { label: "Background", variable: "--background", border: true },
+    { label: "Secondary", variable: "--background", cssValue: "color-mix(in oklab, var(--background) 96%, var(--foreground) 4%)", border: true },
+    { label: "Tertiary", variable: "--background", cssValue: "color-mix(in oklab, var(--background) 92%, var(--foreground) 8%)", border: true },
+    { label: "Inverse", variable: "--foreground" },
   ]}
   darkColors={[
-    { label: 'Background', variable: '--background', border: true },
-    {
-      label: 'Secondary',
-      variable: '--background',
-      cssValue:
-        'color-mix(in oklab, var(--background) 96%, var(--foreground) 4%)',
-      border: true
-    },
-    {
-      label: 'Tertiary',
-      variable: '--background',
-      cssValue:
-        'color-mix(in oklab, var(--background) 92%, var(--foreground) 8%)',
-      border: true
-    },
-    { label: 'Inverse', variable: '--foreground', border: true }
+    { label: "Background", variable: "--background", border: true },
+    { label: "Secondary", variable: "--background", cssValue: "color-mix(in oklab, var(--background) 96%, var(--foreground) 4%)", border: true },
+    { label: "Tertiary", variable: "--background", cssValue: "color-mix(in oklab, var(--background) 92%, var(--foreground) 8%)", border: true },
+    { label: "Inverse", variable: "--foreground", border: true },
   ]}
 />
 
@@ -185,14 +157,14 @@ Surface colors sit on top of backgrounds and are used for containers such as car
 
 <ColorSectionStacked
   lightColors={[
-    { label: 'Surface', variable: '--surface', border: true },
-    { label: 'Secondary', variable: '--surface-secondary', border: true },
-    { label: 'Tertiary', variable: '--surface-tertiary', border: true }
+    { label: "Surface", variable: "--surface", border: true },
+    { label: "Secondary", variable: "--surface-secondary", border: true },
+    { label: "Tertiary", variable: "--surface-tertiary", border: true },
   ]}
   darkColors={[
-    { label: 'Surface', variable: '--surface', border: true },
-    { label: 'Secondary', variable: '--surface-secondary', border: true },
-    { label: 'Tertiary', variable: '--surface-tertiary', border: true }
+    { label: "Surface", variable: "--surface", border: true },
+    { label: "Secondary", variable: "--surface-secondary", border: true },
+    { label: "Tertiary", variable: "--surface-tertiary", border: true },
   ]}
 />
 
@@ -202,11 +174,10 @@ Form field colors are specialized tokens used for inputs, controls, and interact
 
 <ColorSectionFormField
   colors={{
-    bg: '--field-background',
-    bgHover:
-      'color-mix(in oklab, var(--field-background) 90%, var(--field-foreground) 10%)',
-    placeholder: '--field-placeholder',
-    foreground: '--field-foreground'
+    bg: "--field-background",
+    bgHover: "color-mix(in oklab, var(--field-background) 90%, var(--field-foreground) 10%)",
+    placeholder: "--field-placeholder",
+    foreground: "--field-foreground",
   }}
 />
 
@@ -216,38 +187,14 @@ Separator colors are used for dividers, outlines, and subtle boundaries. They ex
 
 <ColorSectionStacked
   lightColors={[
-    { label: 'Separator', variable: '--separator', border: true },
-    {
-      label: 'Secondary',
-      variable: '--surface',
-      cssValue:
-        'color-mix(in oklab, var(--surface) 85%, var(--surface-foreground) 15%)',
-      border: true
-    },
-    {
-      label: 'Tertiary',
-      variable: '--surface',
-      cssValue:
-        'color-mix(in oklab, var(--surface) 81%, var(--surface-foreground) 19%)',
-      border: true
-    }
+    { label: "Separator", variable: "--separator", border: true },
+    { label: "Secondary", variable: "--surface", cssValue: "color-mix(in oklab, var(--surface) 85%, var(--surface-foreground) 15%)", border: true },
+    { label: "Tertiary", variable: "--surface", cssValue: "color-mix(in oklab, var(--surface) 81%, var(--surface-foreground) 19%)", border: true },
   ]}
   darkColors={[
-    { label: 'Separator', variable: '--separator', border: true },
-    {
-      label: 'Secondary',
-      variable: '--surface',
-      cssValue:
-        'color-mix(in oklab, var(--surface) 85%, var(--surface-foreground) 15%)',
-      border: true
-    },
-    {
-      label: 'Tertiary',
-      variable: '--surface',
-      cssValue:
-        'color-mix(in oklab, var(--surface) 81%, var(--surface-foreground) 19%)',
-      border: true
-    }
+    { label: "Separator", variable: "--separator", border: true },
+    { label: "Secondary", variable: "--surface", cssValue: "color-mix(in oklab, var(--surface) 85%, var(--surface-foreground) 15%)", border: true },
+    { label: "Tertiary", variable: "--surface", cssValue: "color-mix(in oklab, var(--surface) 81%, var(--surface-foreground) 19%)", border: true },
   ]}
 />
 
@@ -257,16 +204,16 @@ Other colors serve specific utility roles across the interface. They exist to st
 
 <ColorSectionStacked
   lightColors={[
-    { label: 'Border', variable: '--border' },
-    { label: 'Backdrop', variable: '--backdrop' },
-    { label: 'Overlay', variable: '--overlay', border: true },
-    { label: 'Segment', variable: '--segment', border: true }
+    { label: "Border", variable: "--border" },
+    { label: "Backdrop", variable: "--backdrop" },
+    { label: "Overlay", variable: "--overlay", border: true },
+    { label: "Segment", variable: "--segment", border: true },
   ]}
   darkColors={[
-    { label: 'Border', variable: '--border' },
-    { label: 'Backdrop', variable: '--backdrop' },
-    { label: 'Overlay', variable: '--overlay', border: true },
-    { label: 'Segment', variable: '--segment', border: true }
+    { label: "Border", variable: "--border" },
+    { label: "Backdrop", variable: "--backdrop" },
+    { label: "Overlay", variable: "--overlay", border: true },
+    { label: "Segment", variable: "--segment", border: true },
   ]}
 />
 
@@ -276,24 +223,10 @@ Primitive colors are mode agnostic values used as foundations for semantic color
 
 <ColorSectionPrimitive
   colors={[
-    {
-      label: 'White',
-      variable: '--white',
-      border: true,
-      tooltip: '--white: oklch(100% 0 0)'
-    },
-    { label: 'Black', variable: '--black', tooltip: '--black: oklch(0% 0 0)' },
-    {
-      label: 'Snow',
-      variable: '--snow',
-      border: true,
-      tooltip: '--snow: oklch(0.9911 0 0)'
-    },
-    {
-      label: 'Eclipse',
-      variable: '--eclipse',
-      tooltip: '--eclipse: oklch(0.2103 0.0059 285.89)'
-    }
+    { label: "White", variable: "--white", border: true, tooltip: "--white: oklch(100% 0 0)" },
+    { label: "Black", variable: "--black", tooltip: "--black: oklch(0% 0 0)" },
+    { label: "Snow", variable: "--snow", border: true, tooltip: "--snow: oklch(0.9911 0 0)" },
+    { label: "Eclipse", variable: "--eclipse", tooltip: "--eclipse: oklch(0.2103 0.0059 285.89)" },
   ]}
 />
 
@@ -302,14 +235,14 @@ Primitive colors are mode agnostic values used as foundations for semantic color
 **In your components:**
 
 ```tsx
-import { Text, View } from 'react-native'
+import { View, Text } from 'react-native';
 
-;<View className="bg-background flex-1 p-4">
+<View className="bg-background flex-1 p-4">
   <Text className="text-foreground mb-4">Content</Text>
   <Button variant="primary" className="bg-accent">
     <Button.Label className="text-accent-foreground">Click me</Button.Label>
   </Button>
-</View>
+</View>;
 ```
 
 **In CSS files:**
@@ -346,15 +279,14 @@ The complete theme definition can be found in ([variables.css](https://github.co
 
     /* Opacity */
     --opacity-disabled: 0.5;
-
 }
 
 @layer theme {
-:root {
-@variant light {
-/_ Base Colors _/
---background: oklch(0.9702 0 0);
---foreground: var(--eclipse);
+    :root {
+      @variant light {
+        /* Base Colors */
+        --background: oklch(0.9702 0 0);
+        --foreground: var(--eclipse);
 
         /* Surface */
         --surface: var(--white);
@@ -461,8 +393,7 @@ The complete theme definition can be found in ([variables.css](https://github.co
         --link: var(--foreground);
       }
     }
-
-}
+  }
 `}
 />
 
@@ -516,11 +447,11 @@ The complete theme definition can be found in ([variables.css](https://github.co
 Now you can use it:
 
 ```tsx
-import { Text, View } from 'react-native'
+import { View, Text } from 'react-native';
 
-;<View className="bg-info rounded-lg p-4">
+<View className="bg-info p-4 rounded-lg">
   <Text className="text-info-foreground">Info message</Text>
-</View>
+</View>;
 ```
 
 > **Note**: To learn more about theme variables and how they work in Tailwind CSS v4, see the [Tailwind CSS Theme documentation](https://tailwindcss.com/docs/theme).
@@ -534,20 +465,20 @@ The `useThemeColor` hook has been enhanced to support multiple colors selection,
 You can now select multiple colors at once, which is useful when you need to work with related color values together:
 
 ```tsx
-import { useThemeColor } from 'heroui-native'
+import { useThemeColor } from 'heroui-native';
 
 // Select multiple colors at once
 const [accent, accentForeground, success, danger] = useThemeColor([
   'accent',
   'accentForeground',
   'success',
-  'danger'
-])
+  'danger',
+]);
 
 // Use the selected colors
-;<View style={{ backgroundColor: accent }}>
+<View style={{ backgroundColor: accent }}>
   <Text style={{ color: accentForeground }}>Accent Text</Text>
-</View>
+</View>;
 ```
 
 This enhancement improves performance when working with multiple color values and makes it easier to manage complex theming scenarios where multiple colors need to be selected and applied together.

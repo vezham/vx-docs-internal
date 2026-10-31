@@ -8,16 +8,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/text-field-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/text-field-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/text-field-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/text-field-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { TextField } from 'heroui-native'
+import { TextField } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -67,13 +68,13 @@ Mark fields as required to show an asterisk in the label.
 Display error messages when the field is invalid.
 
 ```tsx
-import { FieldError, Input, Label, TextField } from 'heroui-native'
+import { FieldError, Input, Label, TextField } from 'heroui-native';
 
-;<TextField isRequired isInvalid={true}>
+<TextField isRequired isInvalid={true}>
   <Label>Email</Label>
   <Input placeholder="Enter your email" />
   <FieldError>Please enter a valid email</FieldError>
-</TextField>
+</TextField>;
 ```
 
 ### With Local Invalid State Override
@@ -81,16 +82,22 @@ import { FieldError, Input, Label, TextField } from 'heroui-native'
 Override the context's invalid state for individual components.
 
 ```tsx
-import { Description, FieldError, Input, Label, TextField } from 'heroui-native'
+import {
+  Description,
+  FieldError,
+  Input,
+  Label,
+  TextField,
+} from 'heroui-native';
 
-;<TextField isInvalid={true}>
+<TextField isInvalid={true}>
   <Label isInvalid={false}>Email</Label>
   <Input placeholder="Enter your email" isInvalid={false} />
   <Description isInvalid={false}>
     This shows despite input being invalid
   </Description>
   <FieldError>Email format is incorrect</FieldError>
-</TextField>
+</TextField>;
 ```
 
 ### Multiline Input
@@ -141,7 +148,7 @@ Customize the input appearance using className.
   <Label>Custom Styled</Label>
   <Input
     placeholder="Custom colors"
-    className="border-blue-500 bg-blue-50 focus:border-blue-700"
+    className="bg-blue-50 border-blue-500 focus:border-blue-700"
   />
 </TextField>
 ```
@@ -149,18 +156,18 @@ Customize the input appearance using className.
 ## Example
 
 ```tsx
-import { Ionicons } from '@expo/vector-icons'
-import { Description, Input, Label, TextField } from 'heroui-native'
-import { useState } from 'react'
-import { Pressable, View } from 'react-native'
-import { withUniwind } from 'uniwind'
+import { Ionicons } from '@expo/vector-icons';
+import { Description, Input, Label, TextField } from 'heroui-native';
+import { useState } from 'react';
+import { Pressable, View } from 'react-native';
+import { withUniwind } from 'uniwind';
 
-const StyledIonicons = withUniwind(Ionicons)
+const StyledIonicons = withUniwind(Ionicons);
 
 export const TextInputContent = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   return (
     <View className="gap-4">
@@ -191,12 +198,13 @@ export const TextInputContent = () => {
           <StyledIonicons
             name="lock-closed-outline"
             size={16}
-            className="text-muted absolute left-3.5"
+            className="absolute left-3.5 text-muted"
             pointerEvents="none"
           />
           <Pressable
             className="absolute right-4"
-            onPress={() => setIsPasswordVisible(!isPasswordVisible)}>
+            onPress={() => setIsPasswordVisible(!isPasswordVisible)}
+          >
             <StyledIonicons
               name={isPasswordVisible ? 'eye-off-outline' : 'eye-outline'}
               size={16}
@@ -207,8 +215,8 @@ export const TextInputContent = () => {
         <Description>Password must be at least 6 characters</Description>
       </TextField>
     </View>
-  )
-}
+  );
+};
 ```
 
 You can find more examples in the [GitHub repository](<https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/text-field.tsx>).
@@ -243,10 +251,10 @@ You can find more examples in the [GitHub repository](<https://github.com/heroui
 Hook to access the TextField context values. Must be used within a `TextField` component.
 
 ```tsx
-import { TextField, useTextField } from 'heroui-native'
+import { TextField, useTextField } from 'heroui-native';
 
 function CustomComponent() {
-  const { isDisabled, isInvalid, isRequired } = useTextField()
+  const { isDisabled, isInvalid, isRequired } = useTextField();
 
   // Use the context values...
 }

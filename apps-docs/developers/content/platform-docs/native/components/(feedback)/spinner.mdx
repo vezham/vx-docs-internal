@@ -8,16 +8,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/spinner-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/spinner-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/spinner-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/spinner-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { Spinner } from 'heroui-native'
+import { Spinner } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -109,24 +110,24 @@ const themeColorForeground = useThemeColor('foreground')
 ## Example
 
 ```tsx
-import { Ionicons } from '@expo/vector-icons'
-import { Spinner } from 'heroui-native'
-import React from 'react'
-import { Text, TouchableOpacity, View } from 'react-native'
+import { Spinner } from 'heroui-native';
+import { Ionicons } from '@expo/vector-icons';
+import React from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
 
 export default function SpinnerExample() {
-  const [isLoading, setIsLoading] = React.useState(true)
+  const [isLoading, setIsLoading] = React.useState(true);
 
   return (
-    <View className="bg-background gap-4 p-4">
-      <View className="flex-row items-center gap-2 rounded-lg bg-stone-200 p-4">
+    <View className="gap-4 p-4 bg-background">
+      <View className="flex-row items-center gap-2 p-4 rounded-lg bg-stone-200">
         <Spinner size="sm" color="default" />
         <Text className="text-stone-500">Loading content...</Text>
       </View>
 
-      <View className="items-center rounded-2xl bg-stone-200 p-8">
+      <View className="items-center p-8 rounded-2xl bg-stone-200">
         <Spinner size="lg" color="success" isLoading={isLoading} />
-        <Text className="mt-4 text-stone-500">Processing...</Text>
+        <Text className="text-stone-500 mt-4">Processing...</Text>
         <TouchableOpacity onPress={() => setIsLoading(!isLoading)}>
           <Text className="text-primary mt-2 text-sm">
             {isLoading ? 'Tap to stop' : 'Tap to start'}
@@ -134,7 +135,7 @@ export default function SpinnerExample() {
         </TouchableOpacity>
       </View>
 
-      <View className="flex-row items-center justify-center gap-4">
+      <View className="flex-row gap-4 items-center justify-center">
         <Spinner size="md" color="#EC4899">
           <Spinner.Indicator animation={{ rotation: { speed: 0.7 } }}>
             <Ionicons name="refresh" size={24} color="#EC4899" />
@@ -142,11 +143,11 @@ export default function SpinnerExample() {
         </Spinner>
       </View>
     </View>
-  )
+  );
 }
 ```
 
-You can find more examples in the [GitHub repository](<https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/spinner.tsx>).
+You can find more examples in the [GitHub repository](https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/spinner.tsx).
 
 ## API Reference
 

@@ -9,17 +9,21 @@ links:
   storybook: Components/Feedback/ProgressCircle
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { ProgressCircle } from '@heroui/react'
+import { ProgressCircle } from '@heroui/react';
 ```
 
-[Live example: progress-circle-basic](https://heroui.com/docs/react/components/progress-circle)
 
-```tsx
+<ComponentPreview name="progress-circle-basic">
+
+````tsx
+import {ProgressCircle} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <ProgressCircle aria-label="Loading" value={60}>
@@ -28,14 +32,17 @@ export function Basic() {
         <ProgressCircle.FillCircle />
       </ProgressCircle.Track>
     </ProgressCircle>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 ```tsx
-import { ProgressCircle } from '@heroui/react'
+import { ProgressCircle } from '@heroui/react';
 
 export default () => (
   <ProgressCircle aria-label="Loading" value={60}>
@@ -44,16 +51,19 @@ export default () => (
       <ProgressCircle.FillCircle />
     </ProgressCircle.Track>
   </ProgressCircle>
-)
+);
 ```
 
 ## Examples
 
 ### Sizes
 
-[Live example: progress-circle-sizes](https://heroui.com/docs/react/components/progress-circle)
 
-```tsx
+<ComponentPreview name="progress-circle-sizes">
+
+````tsx
+import {ProgressCircle} from "@vezham/react-v3";
+
 export function Sizes() {
   return (
     <div className="flex items-center gap-6">
@@ -76,15 +86,21 @@ export function Sizes() {
         </ProgressCircle.Track>
       </ProgressCircle>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Colors
 
-[Live example: progress-circle-colors](https://heroui.com/docs/react/components/progress-circle)
 
-```tsx
+<ComponentPreview name="progress-circle-colors">
+
+````tsx
+import {ProgressCircle} from "@vezham/react-v3";
+
 export function Colors() {
   return (
     <div className="flex items-center gap-6">
@@ -119,17 +135,23 @@ export function Colors() {
         </ProgressCircle.Track>
       </ProgressCircle>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Indeterminate
 
 Use `isIndeterminate` when progress cannot be determined.
 
-[Live example: progress-circle-indeterminate](https://heroui.com/docs/react/components/progress-circle)
 
-```tsx
+<ComponentPreview name="progress-circle-indeterminate">
+
+````tsx
+import {ProgressCircle} from "@vezham/react-v3";
+
 export function Indeterminate() {
   return (
     <ProgressCircle isIndeterminate aria-label="Loading">
@@ -138,15 +160,21 @@ export function Indeterminate() {
         <ProgressCircle.FillCircle />
       </ProgressCircle.Track>
     </ProgressCircle>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Label
 
-[Live example: progress-circle-with-label](https://heroui.com/docs/react/components/progress-circle)
 
-```tsx
+<ComponentPreview name="progress-circle-with-label">
+
+````tsx
+import {Label, ProgressCircle} from "@vezham/react-v3";
+
 export function WithLabel() {
   return (
     <div className="flex items-center gap-3">
@@ -158,17 +186,23 @@ export function WithLabel() {
       </ProgressCircle>
       <Label>75% Complete</Label>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Custom SVG Props
 
 Since each part is a composable component, you can override SVG attributes like `strokeWidth`, `r`, `cx`, `cy`, and `viewBox` directly.
 
-[Live example: progress-circle-custom-svg](https://heroui.com/docs/react/components/progress-circle)
 
-```tsx
+<ComponentPreview name="progress-circle-custom-svg">
+
+````tsx
+import {ProgressCircle} from "@vezham/react-v3";
+
 export function CustomSvg() {
   return (
     <div className="flex items-end gap-6">
@@ -193,23 +227,30 @@ export function CustomSvg() {
         </ProgressCircle.Track>
       </ProgressCircle>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: progress-circle-custom-styles](https://heroui.com/docs/react/components/progress-circle)
 
-```tsx
+<ComponentPreview name="progress-circle-custom-styles">
+
+````tsx
+import {ProgressCircle} from "@vezham/react-v3";
+
 export function CustomStyles() {
   return (
     <ProgressCircle
       aria-label="Sync progress"
       className="size-14 text-neutral-700 dark:text-neutral-300"
-      value={68}>
+      value={68}
+    >
       <ProgressCircle.Track>
         <ProgressCircle.TrackCircle className="stroke-neutral-200 dark:stroke-neutral-800" />
         <ProgressCircle.FillCircle
@@ -218,9 +259,12 @@ export function CustomStyles() {
         />
       </ProgressCircle.Track>
     </ProgressCircle>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -252,20 +296,17 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The ProgressCircle component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/progress-circle.css)):
 
 #### Base & Element Classes [!toc]
-
 - `.progress-circle` - Base container
 - `.progress-circle__track` - SVG element
 - `.progress-circle__track-circle` - Background circle
 - `.progress-circle__fill-circle` - Progress arc
 
 #### Size Classes [!toc]
-
 - `.progress-circle--sm` - Small size variant
 - `.progress-circle--md` - Medium size variant (default)
 - `.progress-circle--lg` - Large size variant
 
 #### Color Classes [!toc]
-
 - `.progress-circle--default` - Default color variant
 - `.progress-circle--accent` - Accent color variant
 - `.progress-circle--success` - Success color variant
@@ -278,26 +319,26 @@ The ProgressCircle component uses these CSS classes ([View source styles](https:
 
 Inherits from [React Aria ProgressBar](https://react-spectrum.adobe.com/react-aria/ProgressBar.html).
 
-| Prop              | Type                                                          | Default              | Description                         |
-| ----------------- | ------------------------------------------------------------- | -------------------- | ----------------------------------- |
-| `value`           | `number`                                                      | `0`                  | The current value                   |
-| `minValue`        | `number`                                                      | `0`                  | The minimum value                   |
-| `maxValue`        | `number`                                                      | `100`                | The maximum value                   |
-| `isIndeterminate` | `boolean`                                                     | `false`              | Whether progress is indeterminate   |
-| `size`            | `"sm" \| "md" \| "lg"`                                        | `"md"`               | Size of the circle                  |
-| `color`           | `"default" \| "accent" \| "success" \| "warning" \| "danger"` | `"accent"`           | Color of the progress arc           |
-| `formatOptions`   | `Intl.NumberFormatOptions`                                    | `{style: 'percent'}` | Number format for the value display |
-| `children`        | `ReactNode \| (values: ProgressBarRenderProps) => ReactNode`  | -                    | Content or render prop              |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `number` | `0` | The current value |
+| `minValue` | `number` | `0` | The minimum value |
+| `maxValue` | `number` | `100` | The maximum value |
+| `isIndeterminate` | `boolean` | `false` | Whether progress is indeterminate |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Size of the circle |
+| `color` | `"default" \| "accent" \| "success" \| "warning" \| "danger"` | `"accent"` | Color of the progress arc |
+| `formatOptions` | `Intl.NumberFormatOptions` | `{style: 'percent'}` | Number format for the value display |
+| `children` | `ReactNode \| (values: ProgressBarRenderProps) => ReactNode` | - | Content or render prop |
 
 ### Render Props
 
 When using the render prop pattern, these values are provided:
 
-| Prop              | Type      | Description                            |
-| ----------------- | --------- | -------------------------------------- |
-| `percentage`      | `number`  | The percentage of the progress (0-100) |
-| `valueText`       | `string`  | The formatted value text               |
-| `isIndeterminate` | `boolean` | Whether progress is indeterminate      |
+| Prop | Type | Description |
+|------|------|-------------|
+| `percentage` | `number` | The percentage of the progress (0-100) |
+| `valueText` | `string` | The formatted value text |
+| `isIndeterminate` | `boolean` | Whether progress is indeterminate |
 
 ## Related Components
 

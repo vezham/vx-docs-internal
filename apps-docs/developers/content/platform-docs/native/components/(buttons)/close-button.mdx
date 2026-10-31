@@ -8,16 +8,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/close-button-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/close-button-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/close-button-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/close-button-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { CloseButton } from 'heroui-native'
+import { CloseButton } from 'heroui-native';
 ```
 
 ## Usage
@@ -68,19 +69,19 @@ Disable the button to prevent interactions.
 ## Example
 
 ```tsx
-import { Ionicons } from '@expo/vector-icons'
-import { CloseButton, useThemeColor } from 'heroui-native'
-import { View } from 'react-native'
-import { withUniwind } from 'uniwind'
+import { CloseButton, useThemeColor } from 'heroui-native';
+import { Ionicons } from '@expo/vector-icons';
+import { View } from 'react-native';
+import { withUniwind } from 'uniwind';
 
-const StyledIonicons = withUniwind(Ionicons)
+const StyledIonicons = withUniwind(Ionicons);
 
 export default function CloseButtonExample() {
-  const themeColorForeground = useThemeColor('foreground')
-  const themeColorDanger = useThemeColor('danger')
+  const themeColorForeground = useThemeColor('foreground');
+  const themeColorDanger = useThemeColor('danger');
 
   return (
-    <View className="flex-1 items-center justify-center px-5">
+    <View className="flex-1 px-5 items-center justify-center">
       <View className="flex-row items-center gap-4">
         <CloseButton />
         <CloseButton iconProps={{ color: themeColorDanger }} />
@@ -94,11 +95,11 @@ export default function CloseButtonExample() {
         <CloseButton isDisabled />
       </View>
     </View>
-  )
+  );
 }
 ```
 
-You can find more examples in the [GitHub repository](<https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/close-button.tsx>).
+You can find more examples in the [GitHub repository](https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/close-button.tsx).
 
 ## API Reference
 

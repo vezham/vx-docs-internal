@@ -8,17 +8,21 @@ links:
   figma: true
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Chip } from '@heroui/react'
+import { Chip } from '@heroui/react';
 ```
 
-[Live example: chip-basic](https://heroui.com/docs/react/components/chip)
 
-```tsx
+<ComponentPreview name="chip-basic">
+
+````tsx
+import {Chip} from "@vezham/react-v3";
+
 export function ChipBasic() {
   return (
     <div className="flex flex-wrap items-center gap-3">
@@ -28,61 +32,69 @@ export function ChipBasic() {
       <Chip color="warning">Warning</Chip>
       <Chip color="danger">Danger</Chip>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 > Plain-text children are automatically wrapped in `<Chip.Label>`.
 
 ```tsx
-<Chip>Label text</Chip>
+<Chip>
+  Label text
+</Chip>
 ```
 
 ## Examples
 
 ### Variants
 
-[Live example: chip-variants](https://heroui.com/docs/react/components/chip)
 
-```tsx
+<ComponentPreview name="chip-variants">
+
+````tsx
+import {CircleDashed} from "@gravity-ui/icons";
+import {Chip, Separator} from "@vezham/react-v3";
+import React from "react";
+
 export function ChipVariants() {
-  const sizes = ['lg', 'md', 'sm'] as const
-  const variants = ['primary', 'secondary', 'tertiary', 'soft'] as const
-  const colors = ['accent', 'default', 'success', 'warning', 'danger'] as const
+  const sizes = ["lg", "md", "sm"] as const;
+  const variants = ["primary", "secondary", "tertiary", "soft"] as const;
+  const colors = ["accent", "default", "success", "warning", "danger"] as const;
 
   return (
     <div className="flex flex-col gap-8 overflow-x-auto">
       {sizes.map((size, index) => (
         <React.Fragment key={size}>
           <div className="flex flex-col gap-4">
-            <h3 className="text-muted text-sm font-semibold capitalize">
-              {size}
-            </h3>
+            <h3 className="text-sm font-semibold text-muted capitalize">{size}</h3>
             {/* Color labels header */}
             <div className="flex items-center gap-3">
               <div className="w-24 shrink-0" />
-              {colors.map(color => (
+              {colors.map((color) => (
                 <div
                   key={color}
                   className="flex shrink-0 items-center justify-center"
-                  style={{ width: '130px' }}>
-                  <span className="text-muted text-xs capitalize">{color}</span>
+                  style={{width: "130px"}}
+                >
+                  <span className="text-xs text-muted capitalize">{color}</span>
                 </div>
               ))}
             </div>
             <div className="flex flex-col gap-3">
-              {variants.map(variant => (
+              {variants.map((variant) => (
                 <div key={variant} className="flex items-center gap-3">
-                  <div className="text-muted w-24 shrink-0 text-sm capitalize">
-                    {variant}
-                  </div>
-                  {colors.map(color => (
+                  <div className="w-24 shrink-0 text-sm text-muted capitalize">{variant}</div>
+                  {colors.map((color) => (
                     <div
                       key={color}
                       className="flex shrink-0 items-center justify-center"
-                      style={{ width: '130px' }}>
+                      style={{width: "130px"}}
+                    >
                       <Chip color={color} size={size} variant={variant}>
                         <CircleDashed />
                         <Chip.Label>Label</Chip.Label>
@@ -98,15 +110,22 @@ export function ChipVariants() {
         </React.Fragment>
       ))}
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Statuses
 
-[Live example: chip-statuses](https://heroui.com/docs/react/components/chip)
 
-```tsx
+<ComponentPreview name="chip-statuses">
+
+````tsx
+import {Ban, Check, CircleFill, CircleInfo, TriangleExclamation} from "@gravity-ui/icons";
+import {Chip} from "@vezham/react-v3";
+
 export function ChipStatuses() {
   return (
     <div className="flex flex-col gap-4">
@@ -148,15 +167,22 @@ export function ChipStatuses() {
         </Chip>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Icons
 
-[Live example: chip-with-icon](https://heroui.com/docs/react/components/chip)
 
-```tsx
+<ComponentPreview name="chip-with-icon">
+
+````tsx
+import {ChevronDown, CircleCheckFill, CircleFill, Clock, Xmark} from "@gravity-ui/icons";
+import {Chip} from "@vezham/react-v3";
+
 export function ChipWithIcon() {
   return (
     <div className="flex flex-wrap items-center gap-3">
@@ -181,33 +207,40 @@ export function ChipWithIcon() {
         <ChevronDown width={12} />
       </Chip>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: chip-custom-styles](https://heroui.com/docs/react/components/chip)
 
-```tsx
+<ComponentPreview name="chip-custom-styles">
+
+````tsx
+import {Chip} from "@vezham/react-v3";
+
 export function CustomStyles() {
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <Chip className="bg-default-soft text-default-soft-foreground rounded-full px-3">
-        Draft
-      </Chip>
-      <Chip className="bg-warning-soft text-warning-soft-foreground rounded-full px-3">
+      <Chip className="rounded-full bg-default-soft px-3 text-default-soft-foreground">Draft</Chip>
+      <Chip className="rounded-full bg-warning-soft px-3 text-warning-soft-foreground">
         In review
       </Chip>
-      <Chip className="bg-success-soft text-success-soft-foreground rounded-full px-3">
+      <Chip className="rounded-full bg-success-soft px-3 text-success-soft-foreground">
         Published
       </Chip>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -243,12 +276,10 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The Chip component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/chip.css)):
 
 #### Base Classes [!toc]
-
 - `.chip` - Base chip container styles
 - `.chip__label` - Label text slot styles
 
 #### Color Classes [!toc]
-
 - `.chip--accent` - Accent color variant
 - `.chip--danger` - Danger color variant
 - `.chip--default` - Default color variant
@@ -256,14 +287,12 @@ The Chip component uses these CSS classes ([View source styles](https://github.c
 - `.chip--warning` - Warning color variant
 
 #### Variant Classes [!toc]
-
 - `.chip--primary` - Primary variant with filled background
 - `.chip--secondary` - Secondary variant with border
 - `.chip--tertiary` - Tertiary variant with transparent background
 - `.chip--soft` - Soft variant with lighter background
 
 #### Size Classes [!toc]
-
 - `.chip--sm` - Small size
 - `.chip--md` - Medium size (default)
 - `.chip--lg` - Large size
@@ -273,14 +302,12 @@ The Chip component uses these CSS classes ([View source styles](https://github.c
 Chips support combining variant and color classes (e.g., `.chip--secondary.chip--accent`). The following combinations have default styles defined:
 
 **Primary Variants:**
-
 - `.chip--primary.chip--accent` - Primary accent combination with filled background
 - `.chip--primary.chip--success` - Primary success combination with filled background
 - `.chip--primary.chip--warning` - Primary warning combination with filled background
 - `.chip--primary.chip--danger` - Primary danger combination with filled background
 
 **Soft Variants:**
-
 - `.chip--accent.chip--soft` - Soft accent combination with lighter background
 - `.chip--success.chip--soft` - Soft success combination with lighter background
 - `.chip--warning.chip--soft` - Soft warning combination with lighter background
@@ -292,20 +319,20 @@ Chips support combining variant and color classes (e.g., `.chip--secondary.chip-
 
 ### Chip
 
-| Prop        | Type                                                          | Default       | Description                                 |
-| ----------- | ------------------------------------------------------------- | ------------- | ------------------------------------------- |
-| `children`  | `React.ReactNode`                                             | -             | Content to display inside the chip          |
-| `className` | `string`                                                      | -             | Additional CSS classes for the root element |
-| `color`     | `"default" \| "accent" \| "success" \| "warning" \| "danger"` | `"default"`   | Color variant of the chip                   |
-| `variant`   | `"primary" \| "secondary" \| "tertiary" \| "soft"`            | `"secondary"` | Visual style variant                        |
-| `size`      | `"sm" \| "md" \| "lg"`                                        | `"md"`        | Size of the chip                            |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | Content to display inside the chip |
+| `className` | `string` | - | Additional CSS classes for the root element |
+| `color` | `"default" \| "accent" \| "success" \| "warning" \| "danger"` | `"default"` | Color variant of the chip |
+| `variant` | `"primary" \| "secondary" \| "tertiary" \| "soft"` | `"secondary"` | Visual style variant |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Size of the chip |
 
 ### Chip.Label
 
-| Prop        | Type              | Default | Description                               |
-| ----------- | ----------------- | ------- | ----------------------------------------- |
-| `children`  | `React.ReactNode` | -       | Label text content                        |
-| `className` | `string`          | -       | Additional CSS classes for the label slot |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | Label text content |
+| `className` | `string` | - | Additional CSS classes for the label slot |
 
 ## Related Components
 

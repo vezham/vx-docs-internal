@@ -3,17 +3,11 @@ title: Styling & Theming
 description: Complete guide to styling changes and theming system migration from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  This guide covers all styling-related changes between HeroUI v2 and v3,
-  including utility classes, component styles, theme system architecture, and
-  visual differences. For component-specific API changes, see individual
-  component migration guides.
+  This guide covers all styling-related changes between HeroUI v2 and v3, including utility classes, component styles, theme system architecture, and visual differences. For component-specific API changes, see individual component migration guides.
 </Callout>
 
 **Note:** The `classNames` prop has been replaced with `className` prop in v3. All components now use the standard React `className` prop instead of the `classNames` object prop from v2.
@@ -34,27 +28,27 @@ HeroUI v3 introduces significant changes to the styling system:
 
 ### Utility Classes Mapping
 
-| v2 Utility                   | v3 Equivalent                | Notes                                           |
-| ---------------------------- | ---------------------------- | ----------------------------------------------- |
-| `text-tiny`                  | `text-xs`                    | Font size: 0.75rem → 0.75rem (same)             |
-| `text-small`                 | `text-sm`                    | Font size: 0.875rem → 0.875rem (same)           |
-| `text-medium`                | `text-base`                  | Font size: 1rem → 1rem (same)                   |
-| `text-large`                 | `text-lg`                    | Font size: 1.125rem → 1.125rem (same)           |
-| `rounded-small`              | `rounded-sm`                 | Border radius: 8px → 4px (different)            |
-| `rounded-medium`             | `rounded-md`                 | Border radius: 12px → 6px (different)           |
-| `rounded-large`              | `rounded-lg`                 | Border radius: 14px → 8px (different)           |
-| `border-small`               | `border`                     | Border width: 1px → 1px (use standard Tailwind) |
-| `border-medium`              | `border-2`                   | Border width: 2px → 2px (use standard Tailwind) |
-| `border-large`               | `border-[3px]`               | Border width: 3px → 3px (use arbitrary value)   |
-| `bg-content1`                | `bg-surface` or `bg-overlay` | Content color removed, use surface/overlay      |
-| `bg-content2`                | `bg-surface-secondary`       | Content color removed, use surface level        |
-| `bg-primary`                 | `bg-accent`                  | Primary renamed to accent                       |
-| `bg-secondary`               | `bg-default`                 | Secondary color removed, use default            |
-| `bg-primary-50`              | `bg-accent-soft`             | Numbered scales removed                         |
-| `bg-primary-100`             | `bg-accent-soft`             | Numbered scales removed                         |
-| `text-primary-600`           | `text-accent`                | Numbered scales removed                         |
-| `.transition-background`     | Standard CSS transitions     | Removed utility                                 |
-| `.transition-colors-opacity` | Standard CSS transitions     | Removed utility                                 |
+| v2 Utility | v3 Equivalent | Notes |
+|-----------|--------------|-------|
+| `text-tiny` | `text-xs` | Font size: 0.75rem → 0.75rem (same) |
+| `text-small` | `text-sm` | Font size: 0.875rem → 0.875rem (same) |
+| `text-medium` | `text-base` | Font size: 1rem → 1rem (same) |
+| `text-large` | `text-lg` | Font size: 1.125rem → 1.125rem (same) |
+| `rounded-small` | `rounded-sm` | Border radius: 8px → 4px (different) |
+| `rounded-medium` | `rounded-md` | Border radius: 12px → 6px (different) |
+| `rounded-large` | `rounded-lg` | Border radius: 14px → 8px (different) |
+| `border-small` | `border` | Border width: 1px → 1px (use standard Tailwind) |
+| `border-medium` | `border-2` | Border width: 2px → 2px (use standard Tailwind) |
+| `border-large` | `border-[3px]` | Border width: 3px → 3px (use arbitrary value) |
+| `bg-content1` | `bg-surface` or `bg-overlay` | Content color removed, use surface/overlay |
+| `bg-content2` | `bg-surface-secondary` | Content color removed, use surface level |
+| `bg-primary` | `bg-accent` | Primary renamed to accent |
+| `bg-secondary` | `bg-default` | Secondary color removed, use default |
+| `bg-primary-50` | `bg-accent-soft` | Numbered scales removed |
+| `bg-primary-100` | `bg-accent-soft` | Numbered scales removed |
+| `text-primary-600` | `text-accent` | Numbered scales removed |
+| `.transition-background` | Standard CSS transitions | Removed utility |
+| `.transition-colors-opacity` | Standard CSS transitions | Removed utility |
 
 ## Utility Classes Migration
 
@@ -84,12 +78,12 @@ HeroUI v2 provided custom text size utilities that mapped to CSS variables. v3 u
 
 **Mapping Details:**
 
-| v2 Class      | Font Size       | Line Height    | v3 Class    | Font Size       | Line Height    |
-| ------------- | --------------- | -------------- | ----------- | --------------- | -------------- |
-| `text-tiny`   | 0.75rem (12px)  | 1rem (16px)    | `text-xs`   | 0.75rem (12px)  | 1rem (16px)    |
-| `text-small`  | 0.875rem (14px) | 1.25rem (20px) | `text-sm`   | 0.875rem (14px) | 1.25rem (20px) |
-| `text-medium` | 1rem (16px)     | 1.5rem (24px)  | `text-base` | 1rem (16px)     | 1.5rem (24px)  |
-| `text-large`  | 1.125rem (18px) | 1.75rem (28px) | `text-lg`   | 1.125rem (18px) | 1.75rem (28px) |
+| v2 Class | Font Size | Line Height | v3 Class | Font Size | Line Height |
+|----------|-----------|-------------|----------|-----------|-------------|
+| `text-tiny` | 0.75rem (12px) | 1rem (16px) | `text-xs` | 0.75rem (12px) | 1rem (16px) |
+| `text-small` | 0.875rem (14px) | 1.25rem (20px) | `text-sm` | 0.875rem (14px) | 1.25rem (20px) |
+| `text-medium` | 1rem (16px) | 1.5rem (24px) | `text-base` | 1rem (16px) | 1.5rem (24px) |
+| `text-large` | 1.125rem (18px) | 1.75rem (28px) | `text-lg` | 1.125rem (18px) | 1.75rem (28px) |
 
 ### Border Radius Utilities
 
@@ -115,11 +109,11 @@ v2 used custom border radius utilities (`rounded-small`, `rounded-medium`, `roun
 
 **Value Comparison:**
 
-| v2 Class         | v2 Value        | v3 Class     | v3 Value       | Difference |
-| ---------------- | --------------- | ------------ | -------------- | ---------- |
-| `rounded-small`  | 8px (0.5rem)    | `rounded-sm` | 4px (0.25rem)  | Smaller    |
-| `rounded-medium` | 12px (0.75rem)  | `rounded-md` | 6px (0.375rem) | Smaller    |
-| `rounded-large`  | 14px (0.875rem) | `rounded-lg` | 8px (0.5rem)   | Smaller    |
+| v2 Class | v2 Value | v3 Class | v3 Value | Difference |
+|----------|----------|----------|----------|------------|
+| `rounded-small` | 8px (0.5rem) | `rounded-sm` | 4px (0.25rem) | Smaller |
+| `rounded-medium` | 12px (0.75rem) | `rounded-md` | 6px (0.375rem) | Smaller |
+| `rounded-large` | 14px (0.875rem) | `rounded-lg` | 8px (0.5rem) | Smaller |
 
 **Note:** v3 uses smaller default border radius values. If you need the exact v2 values, use arbitrary values:
 
@@ -158,11 +152,11 @@ v2 provided custom border width utilities (`border-small`, `border-medium`, `bor
 
 **Mapping:**
 
-| v2 Class        | Width | v3 Class       | Width           |
-| --------------- | ----- | -------------- | --------------- |
-| `border-small`  | 1px   | `border`       | 1px             |
-| `border-medium` | 2px   | `border-2`     | 2px             |
-| `border-large`  | 3px   | `border-[3px]` | 3px (arbitrary) |
+| v2 Class | Width | v3 Class | Width |
+|----------|-------|----------|-------|
+| `border-small` | 1px | `border` | 1px |
+| `border-medium` | 2px | `border-2` | 2px |
+| `border-large` | 3px | `border-[3px]` | 3px (arbitrary) |
 
 ### Transition Utilities
 
@@ -172,17 +166,17 @@ v2 provided custom transition utilities for common animation patterns with a def
 
 v2 provided custom transition utilities with a default duration of 250ms and `ease` timing function. The following table shows which CSS properties each utility transitions:
 
-| v2 Utility                             | Transition Properties                                                                                               |
-| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `.transition-background`               | `background`                                                                                                        |
-| `.transition-colors-opacity`           | `color, background-color, border-color, text-decoration-color, fill, stroke, opacity`                               |
-| `.transition-width`                    | `width`                                                                                                             |
-| `.transition-height`                   | `height`                                                                                                            |
-| `.transition-size`                     | `width, height`                                                                                                     |
-| `.transition-left`                     | `left`                                                                                                              |
-| `.transition-transform-opacity`        | `transform, scale, opacity rotate`                                                                                  |
-| `.transition-transform-background`     | `transform, scale, background`                                                                                      |
-| `.transition-transform-colors`         | `transform, scale, color, background, background-color, border-color, text-decoration-color, fill, stroke`          |
+| v2 Utility | Transition Properties |
+|-----------|----------------------|
+| `.transition-background` | `background` |
+| `.transition-colors-opacity` | `color, background-color, border-color, text-decoration-color, fill, stroke, opacity` |
+| `.transition-width` | `width` |
+| `.transition-height` | `height` |
+| `.transition-size` | `width, height` |
+| `.transition-left` | `left` |
+| `.transition-transform-opacity` | `transform, scale, opacity rotate` |
+| `.transition-transform-background` | `transform, scale, background` |
+| `.transition-transform-colors` | `transform, scale, color, background, background-color, border-color, text-decoration-color, fill, stroke` |
 | `.transition-transform-colors-opacity` | `transform, scale, color, background, background-color, border-color, text-decoration-color, fill, stroke, opacity` |
 
 **Note:** These utilities are no longer available in v3. Use Tailwind's standard `transition-*` utilities to specify which properties to transition.
@@ -200,7 +194,6 @@ v2 provided spinner animation utilities (`.spinner-bar-animation`, `.spinner-dot
 **Custom Utilities:**
 
 v2 included utilities like:
-
 - `.leading-inherit` → Use `leading-[inherit]`
 - `.tap-highlight-transparent` → Use `[-webkit-tap-highlight-color:transparent]`
 - `.input-search-cancel-button-none` → Use custom CSS if needed
@@ -220,36 +213,36 @@ v2 used a Tailwind CSS plugin that:
 
 ```js
 // tailwind.config.js
-const { heroui } = require('@heroui/react')
+const {heroui} = require("@heroui/react");
 
 module.exports = {
   plugins: [
     heroui({
       layout: {
         fontSize: {
-          tiny: '0.75rem',
-          small: '0.875rem',
-          medium: '1rem',
-          large: '1.125rem'
+          tiny: "0.75rem",
+          small: "0.875rem",
+          medium: "1rem",
+          large: "1.125rem",
         },
         radius: {
-          small: '8px',
-          medium: '12px',
-          large: '14px'
-        }
+          small: "8px",
+          medium: "12px",
+          large: "14px",
+        },
       },
       themes: {
         light: {
           colors: {
             primary: {
               // color definitions
-            }
-          }
-        }
-      }
-    })
-  ]
-}
+            },
+          },
+        },
+      },
+    }),
+  ],
+};
 ```
 
 ### v3: CSS-First System
@@ -265,8 +258,8 @@ v3 uses a pure CSS approach:
 
 ```css
 /* globals.css */
-@import 'tailwindcss';
-@import '@heroui/styles';
+@import "tailwindcss";
+@import "@heroui/styles";
 ```
 
 **No Tailwind Config Required:**
@@ -275,14 +268,14 @@ If you only use HeroUI, you can remove `tailwind.config.js` entirely. If you hav
 
 ### Architecture Comparison
 
-| Aspect                 | v2                           | v3                     |
-| ---------------------- | ---------------------------- | ---------------------- |
-| **Styling Method**     | Tailwind plugin (JavaScript) | CSS files              |
-| **Utility Generation** | Runtime via plugin           | Pre-defined CSS        |
-| **CSS Variables**      | Generated by plugin          | Defined in CSS         |
-| **Configuration**      | `tailwind.config.js`         | CSS imports            |
-| **Customization**      | Plugin config                | CSS variable overrides |
-| **Build Dependency**   | Requires plugin              | No plugin needed       |
+| Aspect | v2 | v3 |
+|--------|----|----|
+| **Styling Method** | Tailwind plugin (JavaScript) | CSS files |
+| **Utility Generation** | Runtime via plugin | Pre-defined CSS |
+| **CSS Variables** | Generated by plugin | Defined in CSS |
+| **Configuration** | `tailwind.config.js` | CSS imports |
+| **Customization** | Plugin config | CSS variable overrides |
+| **Build Dependency** | Requires plugin | No plugin needed |
 
 ## CSS Variables & Design Tokens
 
@@ -340,11 +333,7 @@ v2 used the pattern `--heroui-{property}-{scale}` while v3 uses `--{property}` o
 ```css
 --accent: oklch(0.6204 0.195 253.83);
 --accent-foreground: var(--snow);
---accent-hover: color-mix(
-  in oklab,
-  var(--accent) 90%,
-  var(--accent-foreground) 10%
-);
+--accent-hover: color-mix(in oklab, var(--accent) 90%, var(--accent-foreground) 10%);
 ```
 
 **Key Differences:**
@@ -384,15 +373,15 @@ v2 used `primary` as the main brand color. v3 renamed it to `accent` for better 
 
 **Migration:**
 
-| v2 Class           | v3 Equivalent    | Notes                |
-| ------------------ | ---------------- | -------------------- |
-| `bg-primary`       | `bg-accent`      | Base accent color    |
-| `text-primary`     | `text-accent`    | Accent text color    |
-| `bg-primary-50`    | `bg-accent-soft` | Light accent variant |
-| `bg-primary-100`   | `bg-accent-soft` | Light accent variant |
-| `bg-primary-500`   | `bg-accent`      | Base accent color    |
-| `text-primary-600` | `text-accent`    | Accent text color    |
-| `border-accent`    | `border-accent`  | Accent border        |
+| v2 Class | v3 Equivalent | Notes |
+|----------|---------------|-------|
+| `bg-primary` | `bg-accent` | Base accent color |
+| `text-primary` | `text-accent` | Accent text color |
+| `bg-primary-50` | `bg-accent-soft` | Light accent variant |
+| `bg-primary-100` | `bg-accent-soft` | Light accent variant |
+| `bg-primary-500` | `bg-accent` | Base accent color |
+| `text-primary-600` | `text-accent` | Accent text color |
+| `border-accent` | `border-accent` | Accent border |
 
 **Note:** v3 doesn't have numbered color scales (`-50`, `-100`, `-200`, etc.). Use semantic variants like `-soft`, `-hover`, or custom Tailwind classes.
 
@@ -421,12 +410,12 @@ v2 provided a `secondary` semantic color (purple). This has been removed in v3. 
 
 **Migration:**
 
-| v2 Class           | v3 Equivalent   | Notes                                |
-| ------------------ | --------------- | ------------------------------------ |
-| `bg-secondary`     | `bg-default`    | Secondary variant uses default color |
-| `text-secondary`   | `text-accent`   | Use accent for emphasis              |
-| `bg-secondary-50`  | `bg-default`    | Use default color                    |
-| `border-secondary` | `border-accent` | Use accent border                    |
+| v2 Class | v3 Equivalent | Notes |
+|----------|---------------|-------|
+| `bg-secondary` | `bg-default` | Secondary variant uses default color |
+| `text-secondary` | `text-accent` | Use accent for emphasis |
+| `bg-secondary-50` | `bg-default` | Use default color |
+| `border-secondary` | `border-accent` | Use accent border |
 
 **Note:** In v3, "secondary" refers to a component variant style (like `button--secondary`), not a color token. The secondary variant typically uses `bg-default` and `text-accent-soft-foreground`.
 
@@ -490,13 +479,13 @@ v2 provided `content1`, `content2`, `content3`, and `content4` colors for layere
 
 **Migration Mapping:**
 
-| v2 Class      | v3 Equivalent           | Usage                                            |
-| ------------- | ----------------------- | ------------------------------------------------ |
-| `bg-content1` | `bg-surface`            | Non-overlay components (cards, accordions)       |
-| `bg-content1` | `bg-overlay`            | Floating components (tooltips, popovers, modals) |
-| `bg-content2` | `bg-surface-secondary`  | Secondary surface level                          |
-| `bg-content3` | `bg-surface-tertiary`   | Tertiary surface level                           |
-| `bg-content4` | `bg-surface-quaternary` | Quaternary surface level                         |
+| v2 Class | v3 Equivalent | Usage |
+|----------|---------------|-------|
+| `bg-content1` | `bg-surface` | Non-overlay components (cards, accordions) |
+| `bg-content1` | `bg-overlay` | Floating components (tooltips, popovers, modals) |
+| `bg-content2` | `bg-surface-secondary` | Secondary surface level |
+| `bg-content3` | `bg-surface-tertiary` | Tertiary surface level |
+| `bg-content4` | `bg-surface-quaternary` | Quaternary surface level |
 
 **Key Changes:**
 
@@ -628,7 +617,7 @@ v3 uses more consistent gap spacing:
 
 **Example: Text Utilities**
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <div>
@@ -642,8 +631,8 @@ v3 uses more consistent gap spacing:
     ```tsx
     <div>
       <h1 className="text-lg font-bold">Title</h1>
-      <p className="text-muted text-sm">Description</p>
-      <span className="text-muted text-xs">Helper</span>
+      <p className="text-sm text-muted">Description</p>
+      <span className="text-xs text-muted">Helper</span>
     </div>
     ```
   </Tab>
@@ -673,7 +662,6 @@ v3 uses more consistent gap spacing:
       <Card.Content>Content</Card.Content>
     </Card>
     ```
-
   </Tab>
 </Tabs>
 
@@ -705,7 +693,6 @@ v3 uses more consistent gap spacing:
       ],
     };
     ```
-
   </Tab>
   <Tab value="v3">
     ```css
@@ -718,7 +705,6 @@ v3 uses more consistent gap spacing:
       --accent-foreground: oklch(0.9911 0 0);
     }
     ```
-
   </Tab>
 </Tabs>
 

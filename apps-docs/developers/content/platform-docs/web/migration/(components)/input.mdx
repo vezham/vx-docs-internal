@@ -3,16 +3,11 @@ title: Input
 description: Migration guide for Input from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Input documentation](/docs-ui/web/components/input) for
-  complete API reference, styling guide, and advanced examples. This guide only
-  focuses on migrating from HeroUI v2.
+  Refer to the [v3 Input documentation](/docs-ui/web/components/input) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Key Change: Input → TextField
@@ -26,7 +21,6 @@ import {
 ### Use TextField (Most Cases)
 
 Use `TextField` when you need:
-
 - Labels
 - Descriptions
 - Error messages
@@ -36,7 +30,6 @@ Use `TextField` when you need:
 ### Use Input (Primitive Only)
 
 Use `Input` when you need:
-
 - Just a basic input element
 - Custom label/error handling
 - Integration with custom form components
@@ -46,17 +39,23 @@ Use `Input` when you need:
 In v2, `Input` was a full-featured component that accepted props for label, description, placeholder, and other elements:
 
 ```tsx
-import { Input } from '@heroui/react'
+import { Input } from "@heroui/react";
 
 export default function App() {
-  return <Input label="Email" placeholder="Enter your email" type="email" />
+  return (
+    <Input
+      label="Email"
+      placeholder="Enter your email"
+      type="email"
+    />
+  );
 }
 ```
 
 In v3, `Input` is a primitive component. For form fields with labels and validation, use `TextField` which wraps `Input` with `Label`, `Description`, and `FieldError`:
 
 ```tsx
-import { FieldError, Input, Label, TextField } from '@heroui/react'
+import { TextField, Label, Input, FieldError } from "@heroui/react";
 
 export default function App() {
   return (
@@ -65,7 +64,7 @@ export default function App() {
       <Input placeholder="Enter your email" />
       <FieldError />
     </TextField>
-  )
+  );
 }
 ```
 
@@ -73,27 +72,27 @@ export default function App() {
 
 ### 1. Component Split
 
-**v2:** Single `Input` component with all features  
+**v2:** Single `Input` component with all features
 **v3:** Split into `Input` (primitive) and `TextField` (compound component)
 
 ### 2. Prop Changes
 
-| v2 Prop                   | v3 Location            | Notes                                                                                                                                                                |
-| ------------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `label`                   | `Label`                | Use `Label` component inside `TextField`                                                                                                                             |
-| `description`             | `Description`          | Use `Description` component inside `TextField`                                                                                                                       |
-| `errorMessage`            | `FieldError`           | Use `FieldError` component inside `TextField`                                                                                                                        |
-| `variant`                 | `Input`                | Changed from multiple variants (flat, bordered, underlined, faded) to `"primary"` (default, with shadow) and `"secondary"` (lower emphasis, no shadow, for surfaces) |
-| `color`, `size`, `radius` | -                      | Removed (use Tailwind CSS)                                                                                                                                           |
-| `fullWidth`               | `Input` or `TextField` | Still supported on both `Input` and `TextField` (`fullWidth` boolean prop)                                                                                           |
-| `labelPlacement`          | -                      | Use layout with `Label`                                                                                                                                              |
-| `startContent`            | `InputGroup.Prefix`    | Use `InputGroup` with `InputGroup.Prefix` inside `TextField`                                                                                                         |
-| `endContent`              | `InputGroup.Suffix`    | Use `InputGroup` with `InputGroup.Suffix` inside `TextField`                                                                                                         |
-| `isClearable`             | -                      | Implement manually with button                                                                                                                                       |
-| `isRequired`, `isInvalid` | `TextField`            | Use on `TextField`                                                                                                                                                   |
-| `validate`                | `TextField`            | Use `validate` on `TextField`                                                                                                                                        |
-| `classNames`              | -                      | Use `className` on individual components                                                                                                                             |
-| `onValueChange`           | `Input`                | Use `onChange` event handler                                                                                                                                         |
+| v2 Prop | v3 Location | Notes |
+|---------|-------------|-------|
+| `label` | `Label` | Use `Label` component inside `TextField` |
+| `description` | `Description` | Use `Description` component inside `TextField` |
+| `errorMessage` | `FieldError` | Use `FieldError` component inside `TextField` |
+| `variant` | `Input` | Changed from multiple variants (flat, bordered, underlined, faded) to `"primary"` (default, with shadow) and `"secondary"` (lower emphasis, no shadow, for surfaces) |
+| `color`, `size`, `radius` | - | Removed (use Tailwind CSS) |
+| `fullWidth` | `Input` or `TextField` | Still supported on both `Input` and `TextField` (`fullWidth` boolean prop) |
+| `labelPlacement` | - | Use layout with `Label` |
+| `startContent` | `InputGroup.Prefix` | Use `InputGroup` with `InputGroup.Prefix` inside `TextField` |
+| `endContent` | `InputGroup.Suffix` | Use `InputGroup` with `InputGroup.Suffix` inside `TextField` |
+| `isClearable` | - | Implement manually with button |
+| `isRequired`, `isInvalid` | `TextField` | Use on `TextField` |
+| `validate` | `TextField` | Use `validate` on `TextField` |
+| `classNames` | - | Use `className` on individual components |
+| `onValueChange` | `Input` | Use `onChange` event handler |
 
 ## Migration Examples
 
@@ -108,7 +107,7 @@ export default function App() {
       label="Email"
       type="email"
     />
-    
+
     {/* With error message */}
     <Input
       errorMessage="Please enter a valid email"
@@ -116,7 +115,7 @@ export default function App() {
       label="Email"
       type="email"
     />
-    
+
     {/* Required */}
     <Input isRequired label="Email" type="email" />
     ```
@@ -157,7 +156,6 @@ export default function App() {
       <FieldError />
     </TextField>
     ```
-
   </Tab>
 </Tabs>
 
@@ -188,12 +186,10 @@ For inputs with prefix or suffix content, use the **InputGroup** compound compon
       <FieldError />
     </TextField>
     ```
-
   </Tab>
 </Tabs>
 
 **InputGroup** provides proper styling and layout for prefix/suffix content. Use:
-
 - `InputGroup.Prefix` for content before the input (replaces `startContent`)
 - `InputGroup.Suffix` for content after the input (replaces `endContent`)
 - `InputGroup.Input` for the input element itself
@@ -232,7 +228,6 @@ For inputs with prefix or suffix content, use the **InputGroup** compound compon
       <FieldError />
     </TextField>
     ```
-
   </Tab>
 </Tabs>
 
@@ -252,7 +247,6 @@ For inputs with prefix or suffix content, use the **InputGroup** compound compon
       value={value}
     />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -269,7 +263,6 @@ For inputs with prefix or suffix content, use the **InputGroup** compound compon
       <FieldError />
     </TextField>
     ```
-
   </Tab>
 </Tabs>
 
@@ -287,5 +280,5 @@ For inputs with prefix or suffix content, use the **InputGroup** compound compon
 10. **Colors Removed**: Use Tailwind CSS classes
 11. **Sizes Removed**: Use Tailwind CSS classes
 12. **Radius Removed**: Use Tailwind CSS classes
-13. **onValueChange Removed**: Use `onChange` event handler
-14. **ClassNames Removed**: Use `className` props on individual components
+12. **onValueChange Removed**: Use `onChange` event handler
+13. **ClassNames Removed**: Use `className` props on individual components

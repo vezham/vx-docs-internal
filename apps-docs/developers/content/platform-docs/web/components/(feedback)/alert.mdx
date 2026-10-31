@@ -8,17 +8,21 @@ links:
   figma: true
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Alert } from '@heroui/react'
+import { Alert } from '@heroui/react';
 ```
 
-[Live example: alert-basic](https://heroui.com/docs/react/components/alert)
 
-```tsx
+<ComponentPreview name="alert-basic">
+
+````tsx
+import {Alert, Button, CloseButton, Spinner} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <div className="grid w-full max-w-xl gap-4">
@@ -28,8 +32,8 @@ export function Basic() {
         <Alert.Content>
           <Alert.Title>New features available</Alert.Title>
           <Alert.Description>
-            Check out our latest updates including dark mode support and
-            improved accessibility features.
+            Check out our latest updates including dark mode support and improved accessibility
+            features.
           </Alert.Description>
         </Alert.Content>
       </Alert>
@@ -40,8 +44,8 @@ export function Basic() {
         <Alert.Content>
           <Alert.Title>Update available</Alert.Title>
           <Alert.Description>
-            A new version of the application is available. Please refresh to get
-            the latest features and bug fixes.
+            A new version of the application is available. Please refresh to get the latest features
+            and bug fixes.
           </Alert.Description>
           <Button className="mt-2 sm:hidden" size="sm" variant="primary">
             Refresh
@@ -102,20 +106,23 @@ export function Basic() {
         <Alert.Content>
           <Alert.Title>Scheduled maintenance</Alert.Title>
           <Alert.Description>
-            Our services will be unavailable on Sunday, March 15th from 2:00 AM
-            to 6:00 AM UTC for scheduled maintenance.
+            Our services will be unavailable on Sunday, March 15th from 2:00 AM to 6:00 AM UTC for
+            scheduled maintenance.
           </Alert.Description>
         </Alert.Content>
       </Alert>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 ```tsx
-import { Alert } from '@heroui/react'
+import { Alert } from '@heroui/react';
 
 export default () => (
   <Alert>
@@ -132,42 +139,46 @@ export default () => (
 
 ### Tailwind CSS
 
-[Live example: alert-custom-styles](https://heroui.com/docs/react/components/alert)
 
-```tsx
+<ComponentPreview name="alert-custom-styles">
+
+````tsx
+import {Alert, Button, CloseButton} from "@vezham/react-v3";
+
 export function CustomStyles() {
   return (
     <div className="w-full max-w-xl">
       <Alert
-        className="border-warning/20 from-warning/10 via-surface to-surface-secondary dark:border-warning/30 dark:from-warning/15 dark:via-surface dark:to-warning/5 relative overflow-hidden rounded-xl border bg-linear-to-br shadow-sm"
-        status="warning">
+        className="relative overflow-hidden rounded-xl border border-warning/20 bg-linear-to-br from-warning/10 via-surface to-surface-secondary shadow-sm dark:border-warning/30 dark:from-warning/15 dark:via-surface dark:to-warning/5"
+        status="warning"
+      >
         <div
           aria-hidden="true"
-          className="bg-warning/15 dark:bg-warning/25 pointer-events-none absolute -top-8 -right-8 size-28 rounded-full blur-2xl"
+          className="pointer-events-none absolute -top-8 -right-8 size-28 rounded-full bg-warning/15 blur-2xl dark:bg-warning/25"
         />
-        <Alert.Indicator className="text-warning relative" />
+        <Alert.Indicator className="relative text-warning" />
         <Alert.Content className="relative">
           <Alert.Title>Payment method expires soon</Alert.Title>
           <Alert.Description>
-            Your Visa ending in 4242 expires on March 28. Update billing to
-            avoid interrupting your Pro subscription.
+            Your Visa ending in 4242 expires on March 28. Update billing to avoid interrupting your
+            Pro subscription.
           </Alert.Description>
           <Button className="mt-3 sm:hidden" size="sm" variant="tertiary">
             Update billing
           </Button>
         </Alert.Content>
-        <Button
-          className="relative hidden shrink-0 sm:inline-flex"
-          size="sm"
-          variant="tertiary">
+        <Button className="relative hidden shrink-0 sm:inline-flex" size="sm" variant="tertiary">
           Update billing
         </Button>
         <CloseButton className="relative" />
       </Alert>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -181,7 +192,7 @@ To customize the Alert component classes, you can use the `@layer components` di
   }
 
   .alert__title {
-    @apply text-lg font-bold;
+    @apply font-bold text-lg;
   }
 
   .alert--danger {
@@ -199,7 +210,6 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The Alert component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/alert.css)):
 
 #### Base Classes [!toc]
-
 - `.alert` - Base alert container
 - `.alert__indicator` - Icon/indicator container
 - `.alert__content` - Content wrapper for title and description
@@ -207,7 +217,6 @@ The Alert component uses these CSS classes ([View source styles](https://github.
 - `.alert__description` - Alert description text
 
 #### Status Variant Classes [!toc]
-
 - `.alert--default` - Default gray status
 - `.alert--accent` - Accent blue status
 - `.alert--success` - Success green status
@@ -222,39 +231,39 @@ The Alert component is primarily informational and doesn't have interactive stat
 
 ### Alert
 
-| Prop        | Type                                                          | Default     | Description                    |
-| ----------- | ------------------------------------------------------------- | ----------- | ------------------------------ |
-| `status`    | `"default" \| "accent" \| "success" \| "warning" \| "danger"` | `"default"` | The visual status of the alert |
-| `className` | `string`                                                      | -           | Additional CSS classes         |
-| `children`  | `ReactNode`                                                   | -           | The alert content              |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `status` | `"default" \| "accent" \| "success" \| "warning" \| "danger"` | `"default"` | The visual status of the alert |
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | The alert content |
 
 ### Alert.Indicator
 
-| Prop        | Type        | Default | Description                                     |
-| ----------- | ----------- | ------- | ----------------------------------------------- |
-| `className` | `string`    | -       | Additional CSS classes                          |
-| `children`  | `ReactNode` | -       | Custom indicator icon (defaults to status icon) |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | Custom indicator icon (defaults to status icon) |
 
 ### Alert.Content
 
-| Prop        | Type        | Default | Description                               |
-| ----------- | ----------- | ------- | ----------------------------------------- |
-| `className` | `string`    | -       | Additional CSS classes                    |
-| `children`  | `ReactNode` | -       | Content (typically Title and Description) |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | Content (typically Title and Description) |
 
 ### Alert.Title
 
-| Prop        | Type        | Default | Description            |
-| ----------- | ----------- | ------- | ---------------------- |
-| `className` | `string`    | -       | Additional CSS classes |
-| `children`  | `ReactNode` | -       | The alert title text   |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | The alert title text |
 
 ### Alert.Description
 
-| Prop        | Type        | Default | Description                |
-| ----------- | ----------- | ------- | -------------------------- |
-| `className` | `string`    | -       | Additional CSS classes     |
-| `children`  | `ReactNode` | -       | The alert description text |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | The alert description text |
 
 ## Related Components
 

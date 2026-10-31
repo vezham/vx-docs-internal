@@ -5,15 +5,11 @@ github:
   pull: 6892
 ---
 
-import {
-  Callout,
-  PRContributors,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, PRContributors, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">October 28, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">October 28, 2026</span>
 </div>
 
 React Aria upgrade: HeroUI bumps `react-aria-components` to `1.22.1` (`react-aria@3.53.1`). The new [Sheet](https://heroui.com/docs/components/sheet) component provides a swipeable overlay with four placements, snap points, nested sheets, controlled state, bounded detached layouts, and coordinated dragging, scrolling, and handle-driven dismissal. [Slider](https://heroui.com/docs/components/slider) adds composable step indicators and mark labels for horizontal, vertical, single-value, and range controls, while components reduce rendering overhead. Accessibility improvements add decorative [Separator](https://heroui.com/docs/components/separator) support, preserve dialog naming in date-picker popovers, remove invalid landmark and group attributes, and improve Storybook example semantics. This release also keeps reopened overlays visible and fixes Slider RTL fills, Switch thumb jitter, Tabs indicator drift during hydration, cancelled [Drawer](https://heroui.com/docs/components/drawer) drags, stale [ScrollShadow](https://heroui.com/docs/components/scroll-shadow) edges, narrow-screen menus, autofilled fields, and Toast layouts.
@@ -22,31 +18,35 @@ React Aria upgrade: HeroUI bumps `react-aria-components` to `1.22.1` (`react-ari
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
   <Tab value="npm">
-    ```bash npm i @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    npm i @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="pnpm">
-    ```bash pnpm add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    pnpm add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="yarn">
-    ```bash yarn add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    yarn add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="bun">
-    ```bash bun add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    bun add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
 </Tabs>
 
 <Callout type="warning">
-  **Peer dependencies.** This release requires `react-aria-components@^1.22.1`
-  and `react-aria@^3.53.1`. Align your app’s installed versions when upgrading.
+  **Peer dependencies.** This release requires `react-aria-components@^1.22.1` and `react-aria@^3.53.1`. Align your app’s installed versions when upgrading.
 </Callout>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the
-  latest version" and your AI assistant will automatically compare versions and
-  apply the necessary changes. Learn more about the [HeroUI MCP
-  Server](https://heroui.com/docs/ui-for-agents/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI MCP Server](https://heroui.com/docs/ui-for-agents/mcp-server).
 </Callout>
 
 ## Dependencies

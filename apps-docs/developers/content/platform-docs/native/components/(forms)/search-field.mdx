@@ -1,7 +1,7 @@
 ---
 title: SearchField
 description: A compound search input for filtering and querying content.
-icon: updated
+status: updated
 links:
   source_native: search-field/search-field.tsx
   styles_native: search-field/search-field.styles.ts
@@ -9,16 +9,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/search-field-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/search-field-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/search-field-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/search-field-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { SearchField } from 'heroui-native'
+import { SearchField } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -35,9 +36,9 @@ import { SearchField } from 'heroui-native'
 
 - **SearchField**: Root container that accepts `value` and `onChange`, providing them to children via context. Also provides form field state (isDisabled, isInvalid, isRequired) and animation settings.
 - **SearchField.Group**: Flex-row container that positions the search icon, input, and clear button horizontally.
-- **SearchField.SearchIcon**: _(Optional)_ Magnifying glass icon positioned absolutely on the left side of the input. Supports custom children to replace the default icon. When omitted, the Input does not reserve leading space.
+- **SearchField.SearchIcon**: *(Optional)* Magnifying glass icon positioned absolutely on the left side of the input. Supports custom children to replace the default icon. When omitted, the Input does not reserve leading space.
 - **SearchField.Input**: Wraps the Input component with search-specific defaults. Reads `value` and `onChangeText` from the SearchField context automatically. Reserves leading and trailing space only when SearchIcon and ClearButton are composed.
-- **SearchField.ClearButton**: _(Optional)_ Small icon-only button to clear the search input. Automatically hidden when value is empty. Calls `onChange("")` from context on press. When omitted, the Input does not reserve trailing space; when composed but hidden (empty value), trailing padding stays so text does not jump on first keystroke.
+- **SearchField.ClearButton**: *(Optional)* Small icon-only button to clear the search input. Automatically hidden when value is empty. Calls `onChange("")` from context on press. When omitted, the Input does not reserve trailing space; when composed but hidden (empty value), trailing padding stays so text does not jump on first keystroke.
 
 ## Usage
 
@@ -93,7 +94,8 @@ Use `isInvalid` and `isRequired` on the root to control validation state. Pair w
   value={searchValue}
   onChange={setSearchValue}
   isRequired
-  isInvalid={isInvalid}>
+  isInvalid={isInvalid}
+>
   <Label>Search users</Label>
   <SearchField.Group>
     <SearchField.SearchIcon />
@@ -139,12 +141,12 @@ Set `isDisabled` on the root to disable all child components via context.
 ## Example
 
 ```tsx
-import { Description, Label, SearchField } from 'heroui-native'
-import { useState } from 'react'
-import { View } from 'react-native'
+import { Description, Label, SearchField } from 'heroui-native';
+import { useState } from 'react';
+import { View } from 'react-native';
 
 export default function SearchFieldExample() {
-  const [searchValue, setSearchValue] = useState('')
+  const [searchValue, setSearchValue] = useState('');
 
   return (
     <View className="px-5">
@@ -158,7 +160,7 @@ export default function SearchFieldExample() {
         <Description>Search by name, category, or SKU</Description>
       </SearchField>
     </View>
-  )
+  );
 }
 ```
 
@@ -240,9 +242,9 @@ Automatically hidden when the controlled `value` is an empty string. Calls `onCh
 Hook to access the search field state from context. Must be used within a `SearchField` component.
 
 ```tsx
-import { useSearchField } from 'heroui-native'
+import { useSearchField } from 'heroui-native';
 
-const { value, onChange, isDisabled, isInvalid, isRequired } = useSearchField()
+const { value, onChange, isDisabled, isInvalid, isRequired } = useSearchField();
 ```
 
 #### Returns

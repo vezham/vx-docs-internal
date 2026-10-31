@@ -8,17 +8,21 @@ links:
   figma: true
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Skeleton } from '@heroui/react'
+import { Skeleton } from '@heroui/react';
 ```
 
-[Live example: skeleton-basic](https://heroui.com/docs/react/components/skeleton)
 
-```tsx
+<ComponentPreview name="skeleton-basic">
+
+````tsx
+import {Skeleton} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <div className="shadow-panel w-[250px] space-y-5 rounded-lg bg-transparent p-4">
@@ -29,17 +33,23 @@ export function Basic() {
         <Skeleton className="h-3 w-2/5 rounded-lg" />
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Examples
 
 ### Text Content
 
-[Live example: skeleton-text-content](https://heroui.com/docs/react/components/skeleton)
 
-```tsx
+<ComponentPreview name="skeleton-text-content">
+
+````tsx
+import {Skeleton} from "@vezham/react-v3";
+
 export function TextContent() {
   return (
     <div className="w-full max-w-md space-y-3">
@@ -49,15 +59,21 @@ export function TextContent() {
       <Skeleton className="h-4 w-full rounded" />
       <Skeleton className="h-4 w-3/6 rounded" />
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### User Profile
 
-[Live example: skeleton-user-profile](https://heroui.com/docs/react/components/skeleton)
 
-```tsx
+<ComponentPreview name="skeleton-user-profile">
+
+````tsx
+import {Skeleton} from "@vezham/react-v3";
+
 export function UserProfile() {
   return (
     <div className="flex items-center gap-3">
@@ -67,19 +83,25 @@ export function UserProfile() {
         <Skeleton className="h-3 w-24 rounded-lg" />
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### List Items
 
-[Live example: skeleton-list](https://heroui.com/docs/react/components/skeleton)
 
-```tsx
+<ComponentPreview name="skeleton-list">
+
+````tsx
+import {Skeleton} from "@vezham/react-v3";
+
 export function List() {
   return (
     <div className="w-full max-w-sm space-y-4">
-      {Array.from({ length: 3 }).map((_, index) => (
+      {Array.from({length: 3}).map((_, index) => (
         <div key={index} className="flex items-center gap-3">
           <Skeleton className="h-10 w-10 shrink-0 rounded-lg" />
           <div className="flex-1 space-y-2">
@@ -89,15 +111,21 @@ export function List() {
         </div>
       ))}
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Grid
 
-[Live example: skeleton-grid](https://heroui.com/docs/react/components/skeleton)
 
-```tsx
+<ComponentPreview name="skeleton-grid">
+
+````tsx
+import {Skeleton} from "@vezham/react-v3";
+
 export function Grid() {
   return (
     <div className="grid w-full max-w-xl grid-cols-3 gap-4">
@@ -105,17 +133,23 @@ export function Grid() {
       <Skeleton className="h-24 rounded-xl" />
       <Skeleton className="h-24 rounded-xl" />
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Single Shimmer
 
 A synchronized shimmer effect that passes over all skeleton elements at once. Apply the `skeleton--shimmer` class to a parent container and set `animationType="none"` on child skeletons.
 
-[Live example: skeleton-single-shimmer](https://heroui.com/docs/react/components/skeleton)
 
-```tsx
+<ComponentPreview name="skeleton-single-shimmer">
+
+````tsx
+import {Skeleton} from "@vezham/react-v3";
+
 export function SingleShimmer() {
   return (
     <div className="skeleton--shimmer relative grid w-full max-w-xl grid-cols-3 gap-4 overflow-hidden rounded-xl">
@@ -123,20 +157,26 @@ export function SingleShimmer() {
       <Skeleton animationType="none" className="h-24 rounded-xl" />
       <Skeleton animationType="none" className="h-24 rounded-xl" />
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Animation Types
 
-[Live example: skeleton-animation-types](https://heroui.com/docs/react/components/skeleton)
 
-```tsx
+<ComponentPreview name="skeleton-animation-types">
+
+````tsx
+import {Skeleton} from "@vezham/react-v3";
+
 export function AnimationTypes() {
   return (
     <div className="grid w-full max-w-xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       <div className="space-y-2">
-        <p className="text-muted truncate text-xs">Shimmer</p>
+        <p className="truncate text-xs text-muted">Shimmer</p>
         <div className="shadow-panel space-y-3 rounded-lg bg-transparent p-4">
           <Skeleton animationType="shimmer" className="h-20 rounded-lg" />
           <Skeleton animationType="shimmer" className="h-3 w-3/5 rounded-lg" />
@@ -145,7 +185,7 @@ export function AnimationTypes() {
       </div>
 
       <div className="space-y-2">
-        <p className="text-muted truncate text-xs">Pulse</p>
+        <p className="truncate text-xs text-muted">Pulse</p>
         <div className="shadow-panel space-y-3 rounded-lg bg-transparent p-4">
           <Skeleton animationType="pulse" className="h-20 rounded-lg" />
           <Skeleton animationType="pulse" className="h-3 w-3/5 rounded-lg" />
@@ -154,7 +194,7 @@ export function AnimationTypes() {
       </div>
 
       <div className="space-y-2">
-        <p className="text-muted truncate text-xs">None</p>
+        <p className="truncate text-xs text-muted">None</p>
         <div className="shadow-panel space-y-3 rounded-lg bg-transparent p-4">
           <Skeleton animationType="none" className="h-20 rounded-lg" />
           <Skeleton animationType="none" className="h-3 w-3/5 rounded-lg" />
@@ -162,22 +202,28 @@ export function AnimationTypes() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: skeleton-custom-styles](https://heroui.com/docs/react/components/skeleton)
 
-```tsx
-const bone = 'animate-shine rounded-lg bg-neutral-200/90 dark:bg-neutral-800/90'
+<ComponentPreview name="skeleton-custom-styles">
+
+````tsx
+import {Skeleton} from "@vezham/react-v3";
+
+const bone = "animate-shine rounded-lg bg-neutral-200/90 dark:bg-neutral-800/90";
 
 export function CustomStyles() {
   return (
-    <div className="border-border/80 bg-surface w-[250px] space-y-5 rounded-xl border p-4 shadow-sm ring-1 ring-black/5 dark:ring-white/10">
+    <div className="w-[250px] space-y-5 rounded-xl border border-border/80 bg-surface p-4 shadow-sm ring-1 ring-black/5 dark:ring-white/10">
       <Skeleton className={`h-32 ${bone}`} />
       <div className="space-y-3">
         <Skeleton className={`h-3 w-3/5 ${bone}`} />
@@ -185,9 +231,12 @@ export function CustomStyles() {
         <Skeleton className={`h-3 w-2/5 ${bone}`} />
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -230,13 +279,11 @@ You can set a default animation type for all Skeleton components in your applica
 }
 
 /* You can also set different values for light/dark themes */
-.light,
-[data-theme='light'] {
+.light, [data-theme="light"] {
   --skeleton-animation: shimmer;
 }
 
-.dark,
-[data-theme='dark'] {
+.dark, [data-theme="dark"] {
   --skeleton-animation: pulse;
 }
 ```
@@ -252,11 +299,9 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The Skeleton component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/skeleton.css)):
 
 #### Base Class [!toc]
-
 `.skeleton` - Base skeleton styles with background and rounded corners
 
 #### Animation Variant Classes [!toc]
-
 - `.skeleton--shimmer` - Adds shimmer animation with gradient effect (default)
 - `.skeleton--pulse` - Adds pulse animation using Tailwind's animate-pulse
 - `.skeleton--none` - No animation, static skeleton
@@ -266,17 +311,16 @@ The Skeleton component uses these CSS classes ([View source styles](https://gith
 The Skeleton component supports three animation types, each with different visual effects:
 
 #### Shimmer Animation [!toc]
-
 The shimmer effect creates a gradient that moves across the skeleton element:
 
 ```css
 .skeleton--shimmer:before {
-  @apply animate-skeleton via-surface-3 absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent to-transparent content-[''];
+  @apply animate-skeleton via-surface-3 absolute inset-0 -translate-x-full
+         bg-gradient-to-r from-transparent to-transparent content-[''];
 }
 ```
 
 The shimmer animation is defined in the theme using:
-
 ```css
 @theme inline {
   --animate-skeleton: skeleton 2s linear infinite;
@@ -290,7 +334,6 @@ The shimmer animation is defined in the theme using:
 ```
 
 #### Pulse Animation [!toc]
-
 The pulse animation uses Tailwind's built-in `animate-pulse` utility:
 
 ```css
@@ -300,7 +343,6 @@ The pulse animation uses Tailwind's built-in `animate-pulse` utility:
 ```
 
 #### No Animation [!toc]
-
 For static skeletons without any animation:
 
 ```css
@@ -313,10 +355,10 @@ For static skeletons without any animation:
 
 ### Skeleton
 
-| Prop            | Type                             | Default                     | Description                                                                                             |
-| --------------- | -------------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
 | `animationType` | `"shimmer" \| "pulse" \| "none"` | `"shimmer"` or CSS variable | The animation type for the skeleton. Can be globally configured via `--skeleton-animation` CSS variable |
-| `className`     | `string`                         | -                           | Additional CSS classes                                                                                  |
+| `className` | `string` | - | Additional CSS classes |
 
 ## Related Components
 

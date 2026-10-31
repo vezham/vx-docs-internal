@@ -3,17 +3,11 @@ title: RangeCalendar
 description: Migration guide for RangeCalendar from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 RangeCalendar
-  documentation](/docs-ui/web/components/range-calendar) for complete API
-  reference, styling guide, and advanced examples. This guide only focuses on
-  migrating from HeroUI v2.
+  Refer to the [v3 RangeCalendar documentation](/docs-ui/web/components/range-calendar) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -21,8 +15,8 @@ import {
 In v2, `RangeCalendar` was a single component configured entirely through props:
 
 ```tsx
-import { RangeCalendar } from '@heroui/react'
-import { getLocalTimeZone, today } from '@internationalized/date'
+import { RangeCalendar } from "@heroui/react";
+import { today, getLocalTimeZone } from "@internationalized/date";
 
 export default function App() {
   return (
@@ -30,18 +24,18 @@ export default function App() {
       aria-label="Trip dates"
       defaultValue={{
         start: today(getLocalTimeZone()),
-        end: today(getLocalTimeZone()).add({ weeks: 1 })
+        end: today(getLocalTimeZone()).add({ weeks: 1 }),
       }}
     />
-  )
+  );
 }
 ```
 
 In v3, RangeCalendar uses a compound component pattern with explicit subcomponents:
 
 ```tsx
-import { RangeCalendar } from '@heroui/react'
-import { getLocalTimeZone, today } from '@internationalized/date'
+import { RangeCalendar } from "@heroui/react";
+import { today, getLocalTimeZone } from "@internationalized/date";
 
 export default function App() {
   return (
@@ -49,8 +43,9 @@ export default function App() {
       aria-label="Trip dates"
       defaultValue={{
         start: today(getLocalTimeZone()),
-        end: today(getLocalTimeZone()).add({ weeks: 1 })
-      }}>
+        end: today(getLocalTimeZone()).add({ weeks: 1 }),
+      }}
+    >
       <RangeCalendar.Header>
         <RangeCalendar.Heading />
         <RangeCalendar.NavButton slot="previous" />
@@ -58,14 +53,14 @@ export default function App() {
       </RangeCalendar.Header>
       <RangeCalendar.Grid>
         <RangeCalendar.GridHeader>
-          {day => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
+          {(day) => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
         </RangeCalendar.GridHeader>
         <RangeCalendar.GridBody>
-          {date => <RangeCalendar.Cell date={date} />}
+          {(date) => <RangeCalendar.Cell date={date} />}
         </RangeCalendar.GridBody>
       </RangeCalendar.Grid>
     </RangeCalendar>
-  )
+  );
 }
 ```
 
@@ -83,34 +78,34 @@ export default function App() {
 
 ### 3. Prop Changes
 
-| v2 Prop                     | v3 Equivalent               | Notes                                                                    |
-| --------------------------- | --------------------------- | ------------------------------------------------------------------------ |
-| `value`                     | `value`                     | Same                                                                     |
-| `defaultValue`              | `defaultValue`              | Same                                                                     |
-| `onChange`                  | `onChange`                  | Same                                                                     |
-| `focusedValue`              | `focusedValue`              | Same                                                                     |
-| `onFocusChange`             | `onFocusChange`             | Same                                                                     |
-| `minValue`                  | `minValue`                  | Same                                                                     |
-| `maxValue`                  | `maxValue`                  | Same                                                                     |
-| `isDateUnavailable`         | `isDateUnavailable`         | Same                                                                     |
-| `allowsNonContiguousRanges` | `allowsNonContiguousRanges` | Same                                                                     |
-| `isDisabled`                | `isDisabled`                | Same                                                                     |
-| `isReadOnly`                | `isReadOnly`                | Same                                                                     |
-| `isInvalid`                 | `isInvalid`                 | Same                                                                     |
-| `pageBehavior`              | `pageBehavior`              | Same                                                                     |
-| `visibleMonths`             | `visibleDuration`           | Changed to `{months: number}` object                                     |
-| `showMonthAndYearPickers`   | -                           | Use `RangeCalendar.YearPickerTrigger` and `RangeCalendar.YearPickerGrid` |
-| `onHeaderExpandedChange`    | `onYearPickerOpenChange`    | Renamed                                                                  |
-| `color`                     | -                           | Removed (use Tailwind CSS)                                               |
-| `calendarWidth`             | -                           | Removed (use `className` or Tailwind CSS)                                |
-| `weekdayStyle`              | -                           | Removed                                                                  |
-| `firstDayOfWeek`            | -                           | Use `I18nProvider` locale instead                                        |
-| `topContent`                | -                           | Place custom content inside `RangeCalendar` before the grid              |
-| `bottomContent`             | -                           | Place custom content inside `RangeCalendar` after the grid               |
-| `errorMessage`              | -                           | Removed (handle validation externally)                                   |
-| `showHelper`                | -                           | Removed                                                                  |
-| `disableAnimation`          | -                           | Removed                                                                  |
-| `classNames`                | -                           | Use `className` on individual compound components                        |
+| v2 Prop | v3 Equivalent | Notes |
+|---------|---------------|-------|
+| `value` | `value` | Same |
+| `defaultValue` | `defaultValue` | Same |
+| `onChange` | `onChange` | Same |
+| `focusedValue` | `focusedValue` | Same |
+| `onFocusChange` | `onFocusChange` | Same |
+| `minValue` | `minValue` | Same |
+| `maxValue` | `maxValue` | Same |
+| `isDateUnavailable` | `isDateUnavailable` | Same |
+| `allowsNonContiguousRanges` | `allowsNonContiguousRanges` | Same |
+| `isDisabled` | `isDisabled` | Same |
+| `isReadOnly` | `isReadOnly` | Same |
+| `isInvalid` | `isInvalid` | Same |
+| `pageBehavior` | `pageBehavior` | Same |
+| `visibleMonths` | `visibleDuration` | Changed to `{months: number}` object |
+| `showMonthAndYearPickers` | - | Use `RangeCalendar.YearPickerTrigger` and `RangeCalendar.YearPickerGrid` |
+| `onHeaderExpandedChange` | `onYearPickerOpenChange` | Renamed |
+| `color` | - | Removed (use Tailwind CSS) |
+| `calendarWidth` | - | Removed (use `className` or Tailwind CSS) |
+| `weekdayStyle` | - | Removed |
+| `firstDayOfWeek` | - | Use `I18nProvider` locale instead |
+| `topContent` | - | Place custom content inside `RangeCalendar` before the grid |
+| `bottomContent` | - | Place custom content inside `RangeCalendar` after the grid |
+| `errorMessage` | - | Removed (handle validation externally) |
+| `showHelper` | - | Removed |
+| `disableAnimation` | - | Removed |
+| `classNames` | - | Use `className` on individual compound components |
 
 ## Migration Examples
 
@@ -130,7 +125,6 @@ export default function App() {
       }}
     />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -159,7 +153,6 @@ export default function App() {
       </RangeCalendar.Grid>
     </RangeCalendar>
     ```
-
   </Tab>
 </Tabs>
 
@@ -183,7 +176,6 @@ export default function App() {
       onChange={setValue}
     />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -216,16 +208,18 @@ export default function App() {
       </RangeCalendar.Grid>
     </RangeCalendar>
     ```
-
   </Tab>
 </Tabs>
 
 ### Month and Year Pickers
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
-    <RangeCalendar aria-label="Trip dates" showMonthAndYearPickers />
+    <RangeCalendar
+      aria-label="Trip dates"
+      showMonthAndYearPickers
+    />
     ```
   </Tab>
   <Tab value="v3">
@@ -241,15 +235,15 @@ export default function App() {
       </RangeCalendar.Header>
       <RangeCalendar.Grid>
         <RangeCalendar.GridHeader>
-          {day => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
+          {(day) => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
         </RangeCalendar.GridHeader>
         <RangeCalendar.GridBody>
-          {date => <RangeCalendar.Cell date={date} />}
+          {(date) => <RangeCalendar.Cell date={date} />}
         </RangeCalendar.GridBody>
       </RangeCalendar.Grid>
       <RangeCalendar.YearPickerGrid>
         <RangeCalendar.YearPickerGridBody>
-          {year => <RangeCalendar.YearPickerCell date={year} />}
+          {(year) => <RangeCalendar.YearPickerCell date={year} />}
         </RangeCalendar.YearPickerGridBody>
       </RangeCalendar.YearPickerGrid>
     </RangeCalendar>
@@ -259,15 +253,18 @@ export default function App() {
 
 ### Multiple Months
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
-    <RangeCalendar aria-label="Trip dates" visibleMonths={2} />
+    <RangeCalendar
+      aria-label="Trip dates"
+      visibleMonths={2}
+    />
     ```
   </Tab>
   <Tab value="v3">
     ```tsx
-    <RangeCalendar aria-label="Trip dates" visibleDuration={{ months: 2 }}>
+    <RangeCalendar aria-label="Trip dates" visibleDuration={{months: 2}}>
       <RangeCalendar.Header>
         <RangeCalendar.Heading />
         <RangeCalendar.NavButton slot="previous" />
@@ -276,18 +273,18 @@ export default function App() {
       <div className="flex gap-4">
         <RangeCalendar.Grid>
           <RangeCalendar.GridHeader>
-            {day => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
+            {(day) => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
           </RangeCalendar.GridHeader>
           <RangeCalendar.GridBody>
-            {date => <RangeCalendar.Cell date={date} />}
+            {(date) => <RangeCalendar.Cell date={date} />}
           </RangeCalendar.GridBody>
         </RangeCalendar.Grid>
-        <RangeCalendar.Grid offset={{ months: 1 }}>
+        <RangeCalendar.Grid offset={{months: 1}}>
           <RangeCalendar.GridHeader>
-            {day => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
+            {(day) => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
           </RangeCalendar.GridHeader>
           <RangeCalendar.GridBody>
-            {date => <RangeCalendar.Cell date={date} />}
+            {(date) => <RangeCalendar.Cell date={date} />}
           </RangeCalendar.GridBody>
         </RangeCalendar.Grid>
       </div>
@@ -312,7 +309,6 @@ export default function App() {
       allowsNonContiguousRanges
     />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -341,19 +337,20 @@ export default function App() {
       </RangeCalendar.Grid>
     </RangeCalendar>
     ```
-
   </Tab>
 </Tabs>
 
 ### Top and Bottom Content
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <RangeCalendar
       aria-label="Trip dates"
       topContent={<p>Select your travel dates</p>}
-      bottomContent={<button onClick={handleReset}>Reset</button>}
+      bottomContent={
+        <button onClick={handleReset}>Reset</button>
+      }
     />
     ```
   </Tab>
@@ -368,10 +365,10 @@ export default function App() {
       </RangeCalendar.Header>
       <RangeCalendar.Grid>
         <RangeCalendar.GridHeader>
-          {day => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
+          {(day) => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
         </RangeCalendar.GridHeader>
         <RangeCalendar.GridBody>
-          {date => <RangeCalendar.Cell date={date} />}
+          {(date) => <RangeCalendar.Cell date={date} />}
         </RangeCalendar.GridBody>
       </RangeCalendar.Grid>
       <button onClick={handleReset}>Reset</button>
@@ -387,12 +384,12 @@ export default function App() {
 ```tsx
 <RangeCalendar
   classNames={{
-    base: 'custom-base',
-    prevButton: 'custom-prev',
-    nextButton: 'custom-next',
-    title: 'custom-title',
-    cell: 'custom-cell',
-    cellButton: 'custom-cell-button'
+    base: "custom-base",
+    prevButton: "custom-prev",
+    nextButton: "custom-next",
+    title: "custom-title",
+    cell: "custom-cell",
+    cellButton: "custom-cell-button",
   }}
 />
 ```
@@ -408,10 +405,10 @@ export default function App() {
   </RangeCalendar.Header>
   <RangeCalendar.Grid>
     <RangeCalendar.GridHeader>
-      {day => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
+      {(day) => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
     </RangeCalendar.GridHeader>
     <RangeCalendar.GridBody>
-      {date => <RangeCalendar.Cell date={date} className="custom-cell" />}
+      {(date) => <RangeCalendar.Cell date={date} className="custom-cell" />}
     </RangeCalendar.GridBody>
   </RangeCalendar.Grid>
 </RangeCalendar>

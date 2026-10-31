@@ -9,17 +9,21 @@ links:
   storybook: Components/Overlays/Drawer
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Button, Drawer } from '@heroui/react'
+import { Drawer, Button } from "@heroui/react";
 ```
 
-[Live example: drawer-basic](https://heroui.com/docs/react/components/drawer)
 
-```tsx
+<ComponentPreview name="drawer-basic">
+
+````tsx
+import {Button, Drawer} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <Drawer>
@@ -32,9 +36,8 @@ export function Basic() {
             </Drawer.Header>
             <Drawer.Body>
               <p>
-                This is a bottom drawer built with React Aria's Modal component.
-                It slides up from the bottom of the screen with a smooth CSS
-                transition.
+                This is a bottom drawer built with React Aria's Modal component. It slides up from
+                the bottom of the screen with a smooth CSS transition.
               </p>
             </Drawer.Body>
             <Drawer.Footer>
@@ -47,14 +50,17 @@ export function Basic() {
         </Drawer.Content>
       </Drawer.Backdrop>
     </Drawer>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 ```tsx
-import { Button, Drawer } from '@heroui/react'
+import { Drawer, Button } from "@heroui/react";
 
 export default () => (
   <Drawer>
@@ -73,22 +79,25 @@ export default () => (
       </Drawer.Content>
     </Drawer.Backdrop>
   </Drawer>
-)
+);
 ```
 
 ## Examples
 
 ### Placement
 
-[Live example: drawer-placements](https://heroui.com/docs/react/components/drawer)
 
-```tsx
+<ComponentPreview name="drawer-placements">
+
+````tsx
+import {Button, Drawer} from "@vezham/react-v3";
+
 export function Placements() {
-  const placements = ['bottom', 'top', 'left', 'right'] as const
+  const placements = ["bottom", "top", "left", "right"] as const;
 
   return (
     <div className="flex flex-wrap gap-4">
-      {placements.map(placement => (
+      {placements.map((placement) => (
         <Drawer key={placement}>
           <Button variant="secondary">
             {placement.charAt(0).toUpperCase() + placement.slice(1)}
@@ -97,17 +106,15 @@ export function Placements() {
             <Drawer.Content placement={placement}>
               <Drawer.Dialog>
                 <Drawer.CloseTrigger />
-                {placement === 'bottom' && <Drawer.Handle />}
+                {placement === "bottom" && <Drawer.Handle />}
                 <Drawer.Header>
                   <Drawer.Heading>
-                    {placement.charAt(0).toUpperCase() + placement.slice(1)}{' '}
-                    Drawer
+                    {placement.charAt(0).toUpperCase() + placement.slice(1)} Drawer
                   </Drawer.Heading>
                 </Drawer.Header>
                 <Drawer.Body>
                   <p>
-                    This drawer slides in from the <strong>{placement}</strong>{' '}
-                    edge of the screen.
+                    This drawer slides in from the <strong>{placement}</strong> edge of the screen.
                   </p>
                 </Drawer.Body>
                 <Drawer.Footer>
@@ -116,24 +123,30 @@ export function Placements() {
                   </Button>
                   <Button slot="close">Done</Button>
                 </Drawer.Footer>
-                {placement === 'top' && <Drawer.Handle />}
+                {placement === "top" && <Drawer.Handle />}
               </Drawer.Dialog>
             </Drawer.Content>
           </Drawer.Backdrop>
         </Drawer>
       ))}
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Non-Dismissable
 
 Set `isDismissable={false}` on `Drawer.Backdrop` to prevent closing by clicking outside or dragging. The user must interact with the drawer's action buttons.
 
-[Live example: drawer-non-dismissable](https://heroui.com/docs/react/components/drawer)
 
-```tsx
+<ComponentPreview name="drawer-non-dismissable">
+
+````tsx
+import {Button, Drawer} from "@vezham/react-v3";
+
 export function NonDismissable() {
   return (
     <Drawer>
@@ -146,8 +159,8 @@ export function NonDismissable() {
             </Drawer.Header>
             <Drawer.Body>
               <p>
-                This drawer cannot be dismissed by clicking outside or dragging.
-                You must use one of the buttons below.
+                This drawer cannot be dismissed by clicking outside or dragging. You must use one of
+                the buttons below.
               </p>
             </Drawer.Body>
             <Drawer.Footer>
@@ -160,17 +173,23 @@ export function NonDismissable() {
         </Drawer.Content>
       </Drawer.Backdrop>
     </Drawer>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Scrollable Content
 
 The `Drawer.Body` automatically handles overflow with native scrolling. Drag-to-dismiss is excluded from the body area to avoid scroll conflicts.
 
-[Live example: drawer-scrollable-content](https://heroui.com/docs/react/components/drawer)
 
-```tsx
+<ComponentPreview name="drawer-scrollable-content">
+
+````tsx
+import {Button, Drawer} from "@vezham/react-v3";
+
 export function ScrollableContent() {
   return (
     <Drawer>
@@ -184,12 +203,11 @@ export function ScrollableContent() {
               <Drawer.Heading>Terms & Conditions</Drawer.Heading>
             </Drawer.Header>
             <Drawer.Body>
-              {Array.from({ length: 20 }).map((_, i) => (
+              {Array.from({length: 20}).map((_, i) => (
                 <p key={i} className="mb-3">
-                  Paragraph {i + 1}: Lorem ipsum dolor sit amet, consectetur
-                  adipiscing elit. Nullam pulvinar risus non risus hendrerit
-                  venenatis. Pellentesque sit amet hendrerit risus, sed
-                  porttitor quam.
+                  Paragraph {i + 1}: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet hendrerit
+                  risus, sed porttitor quam.
                 </p>
               ))}
             </Drawer.Body>
@@ -203,53 +221,51 @@ export function ScrollableContent() {
         </Drawer.Content>
       </Drawer.Backdrop>
     </Drawer>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Controlled State
 
-[Live example: drawer-controlled](https://heroui.com/docs/react/components/drawer)
 
-```tsx
-'use client'
+<ComponentPreview name="drawer-controlled">
+
+````tsx
+"use client";
+
+import {Button, Drawer, useOverlayState} from "@vezham/react-v3";
+import React from "react";
 
 export function Controlled() {
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = React.useState(false);
 
-  const state = useOverlayState()
+  const state = useOverlayState();
 
   return (
     <div className="flex max-w-md flex-col gap-8">
       <div className="flex flex-col gap-3">
-        <h3 className="text-foreground text-lg font-semibold">
-          With React.useState()
-        </h3>
-        <p className="text-muted text-sm leading-relaxed text-pretty">
-          Control the drawer using React's{' '}
-          <code className="text-foreground">useState</code> hook for simple
-          state management.
+        <h3 className="text-lg font-semibold text-foreground">With React.useState()</h3>
+        <p className="text-sm leading-relaxed text-pretty text-muted">
+          Control the drawer using React's <code className="text-foreground">useState</code> hook
+          for simple state management.
         </p>
-        <div className="bg-surface flex flex-col items-start gap-3 rounded-2xl p-4 shadow-sm">
+        <div className="flex flex-col items-start gap-3 rounded-2xl bg-surface p-4 shadow-sm">
           <div className="flex w-full items-center justify-between">
-            <p className="text-muted text-xs">
-              Status:{' '}
-              <span className="text-foreground font-mono font-medium">
-                {isOpen ? 'open' : 'closed'}
+            <p className="text-xs text-muted">
+              Status:{" "}
+              <span className="font-mono font-medium text-foreground">
+                {isOpen ? "open" : "closed"}
               </span>
             </p>
           </div>
           <div className="flex gap-2">
-            <Button
-              size="sm"
-              variant="secondary"
-              onPress={() => setIsOpen(true)}>
+            <Button size="sm" variant="secondary" onPress={() => setIsOpen(true)}>
               Open Drawer
             </Button>
-            <Button
-              size="sm"
-              variant="tertiary"
-              onPress={() => setIsOpen(!isOpen)}>
+            <Button size="sm" variant="tertiary" onPress={() => setIsOpen(!isOpen)}>
               Toggle
             </Button>
           </div>
@@ -264,9 +280,9 @@ export function Controlled() {
               </Drawer.Header>
               <Drawer.Body>
                 <p>
-                  This drawer is controlled by React's <code>useState</code>{' '}
-                  hook. Pass <code>isOpen</code> and <code>onOpenChange</code>{' '}
-                  props to manage the drawer state externally.
+                  This drawer is controlled by React's <code>useState</code> hook. Pass{" "}
+                  <code>isOpen</code> and <code>onOpenChange</code> props to manage the drawer state
+                  externally.
                 </p>
               </Drawer.Body>
               <Drawer.Footer>
@@ -280,20 +296,18 @@ export function Controlled() {
       </div>
 
       <div className="flex flex-col gap-3">
-        <h3 className="text-foreground text-lg font-semibold">
-          With useOverlayState()
-        </h3>
-        <p className="text-muted text-sm leading-relaxed text-pretty">
-          Use the <code className="text-foreground">useOverlayState</code> hook
-          for a cleaner API with convenient methods like <code>open()</code>,{' '}
-          <code>close()</code>, and <code>toggle()</code>.
+        <h3 className="text-lg font-semibold text-foreground">With useOverlayState()</h3>
+        <p className="text-sm leading-relaxed text-pretty text-muted">
+          Use the <code className="text-foreground">useOverlayState</code> hook for a cleaner API
+          with convenient methods like <code>open()</code>, <code>close()</code>, and{" "}
+          <code>toggle()</code>.
         </p>
-        <div className="bg-surface flex flex-col items-start gap-3 rounded-2xl p-4 shadow-sm">
+        <div className="flex flex-col items-start gap-3 rounded-2xl bg-surface p-4 shadow-sm">
           <div className="flex w-full items-center justify-between">
-            <p className="text-muted text-xs">
-              Status:{' '}
-              <span className="text-foreground font-mono font-medium">
-                {state.isOpen ? 'open' : 'closed'}
+            <p className="text-xs text-muted">
+              Status:{" "}
+              <span className="font-mono font-medium text-foreground">
+                {state.isOpen ? "open" : "closed"}
               </span>
             </p>
           </div>
@@ -312,16 +326,14 @@ export function Controlled() {
             <Drawer.Dialog>
               <Drawer.CloseTrigger />
               <Drawer.Header>
-                <Drawer.Heading>
-                  Controlled with useOverlayState()
-                </Drawer.Heading>
+                <Drawer.Heading>Controlled with useOverlayState()</Drawer.Heading>
               </Drawer.Header>
               <Drawer.Body>
                 <p>
-                  The <code>useOverlayState</code> hook provides dedicated
-                  methods for common operations. No need to manually create
-                  callbacks—just use <code>state.open()</code>,{' '}
-                  <code>state.close()</code>, or <code>state.toggle()</code>.
+                  The <code>useOverlayState</code> hook provides dedicated methods for common
+                  operations. No need to manually create callbacks—just use{" "}
+                  <code>state.open()</code>, <code>state.close()</code>, or{" "}
+                  <code>state.toggle()</code>.
                 </p>
               </Drawer.Body>
               <Drawer.Footer>
@@ -334,15 +346,21 @@ export function Controlled() {
         </Drawer.Backdrop>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Form
 
-[Live example: drawer-with-form](https://heroui.com/docs/react/components/drawer)
 
-```tsx
+<ComponentPreview name="drawer-with-form">
+
+````tsx
+import {Button, Drawer, Input, Label, TextField} from "@vezham/react-v3";
+
 export function WithForm() {
   return (
     <Drawer>
@@ -366,10 +384,7 @@ export function WithForm() {
                 </TextField>
                 <TextField className="w-full" name="bio">
                   <Label>Bio</Label>
-                  <Input
-                    placeholder="Tell us about yourself"
-                    variant="secondary"
-                  />
+                  <Input placeholder="Tell us about yourself" variant="secondary" />
                 </TextField>
               </form>
             </Drawer.Body>
@@ -383,27 +398,33 @@ export function WithForm() {
         </Drawer.Content>
       </Drawer.Backdrop>
     </Drawer>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Navigation Drawer
 
-[Live example: drawer-navigation](https://heroui.com/docs/react/components/drawer)
 
-```tsx
+<ComponentPreview name="drawer-navigation">
+
+````tsx
+import type {ComponentType, SVGProps} from "react";
+
+import {Bars, Bell, Envelope, Gear, House, Magnifier, Person} from "@gravity-ui/icons";
+import {Button, Drawer} from "@vezham/react-v3";
+
 export function Navigation() {
-  const navItems: {
-    icon: ComponentType<SVGProps<SVGSVGElement>>
-    label: string
-  }[] = [
-    { icon: House, label: 'Home' },
-    { icon: Magnifier, label: 'Search' },
-    { icon: Bell, label: 'Notifications' },
-    { icon: Envelope, label: 'Messages' },
-    { icon: Person, label: 'Profile' },
-    { icon: Gear, label: 'Settings' }
-  ]
+  const navItems: {icon: ComponentType<SVGProps<SVGSVGElement>>; label: string}[] = [
+    {icon: House, label: "Home"},
+    {icon: Magnifier, label: "Search"},
+    {icon: Bell, label: "Notifications"},
+    {icon: Envelope, label: "Messages"},
+    {icon: Person, label: "Profile"},
+    {icon: Gear, label: "Settings"},
+  ];
 
   return (
     <Drawer>
@@ -420,12 +441,13 @@ export function Navigation() {
             </Drawer.Header>
             <Drawer.Body>
               <nav className="flex flex-col gap-1">
-                {navItems.map(item => (
+                {navItems.map((item) => (
                   <button
                     key={item.label}
-                    className="text-foreground hover:bg-default flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors"
-                    type="button">
-                    <item.icon className="text-muted size-5" />
+                    className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-foreground transition-colors hover:bg-default"
+                    type="button"
+                  >
+                    <item.icon className="size-5 text-muted" />
                     {item.label}
                   </button>
                 ))}
@@ -435,25 +457,29 @@ export function Navigation() {
         </Drawer.Content>
       </Drawer.Backdrop>
     </Drawer>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Backdrop Variants
 
-[Live example: drawer-backdrop-variants](https://heroui.com/docs/react/components/drawer)
 
-```tsx
+<ComponentPreview name="drawer-backdrop-variants">
+
+````tsx
+import {Button, Drawer} from "@vezham/react-v3";
+
 export function BackdropVariants() {
-  const variants = ['opaque', 'blur', 'transparent'] as const
+  const variants = ["opaque", "blur", "transparent"] as const;
 
   return (
     <div className="flex flex-wrap gap-4">
-      {variants.map(variant => (
+      {variants.map((variant) => (
         <Drawer key={variant}>
-          <Button variant="secondary">
-            {variant.charAt(0).toUpperCase() + variant.slice(1)}
-          </Button>
+          <Button variant="secondary">{variant.charAt(0).toUpperCase() + variant.slice(1)}</Button>
           <Drawer.Backdrop variant={variant}>
             <Drawer.Content>
               <Drawer.Dialog>
@@ -461,14 +487,12 @@ export function BackdropVariants() {
                 <Drawer.CloseTrigger />
                 <Drawer.Header>
                   <Drawer.Heading>
-                    Backdrop:{' '}
-                    {variant.charAt(0).toUpperCase() + variant.slice(1)}
+                    Backdrop: {variant.charAt(0).toUpperCase() + variant.slice(1)}
                   </Drawer.Heading>
                 </Drawer.Header>
                 <Drawer.Body>
                   <p>
-                    This drawer uses the <code>{variant}</code> backdrop
-                    variant.
+                    This drawer uses the <code>{variant}</code> backdrop variant.
                   </p>
                 </Drawer.Body>
                 <Drawer.Footer>
@@ -482,33 +506,35 @@ export function BackdropVariants() {
         </Drawer>
       ))}
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: drawer-custom-styles](https://heroui.com/docs/react/components/drawer)
 
-```tsx
+<ComponentPreview name="drawer-custom-styles">
+
+````tsx
+import {Button, Drawer} from "@vezham/react-v3";
+
 export function CustomStyles() {
   return (
     <Drawer>
       <Button variant="secondary">Open filters</Button>
       <Drawer.Backdrop variant="blur">
         <Drawer.Content placement="right">
-          <Drawer.Dialog className="border-border/80 bg-surface border-l">
+          <Drawer.Dialog className="border-l border-border/80 bg-surface">
             <Drawer.Header>
-              <Drawer.Heading className="text-foreground">
-                Filters
-              </Drawer.Heading>
+              <Drawer.Heading className="text-foreground">Filters</Drawer.Heading>
             </Drawer.Header>
             <Drawer.Body>
-              <p className="text-muted text-sm">
-                Narrow results by status, owner, or date.
-              </p>
+              <p className="text-sm text-muted">Narrow results by status, owner, or date.</p>
             </Drawer.Body>
             <Drawer.Footer>
               <Button slot="close" variant="secondary">
@@ -520,9 +546,12 @@ export function CustomStyles() {
         </Drawer.Content>
       </Drawer.Backdrop>
     </Drawer>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -606,10 +635,10 @@ The component supports these interactive states:
 
 ### Drawer
 
-| Prop       | Type                    | Default | Description                   |
-| ---------- | ----------------------- | ------- | ----------------------------- |
-| `children` | `ReactNode`             | -       | Trigger and backdrop elements |
-| `state`    | `UseOverlayStateReturn` | -       | Controlled overlay state      |
+| Prop       | Type                   | Default | Description                    |
+| ---------- | ---------------------- | ------- | ------------------------------ |
+| `children` | `ReactNode`            | -       | Trigger and backdrop elements  |
+| `state`    | `UseOverlayStateReturn` | -      | Controlled overlay state       |
 
 ### Drawer.Trigger
 
@@ -631,20 +660,20 @@ The component supports these interactive states:
 
 ### Drawer.Content
 
-| Prop        | Type                                     | Default    | Description                 |
-| ----------- | ---------------------------------------- | ---------- | --------------------------- |
-| `placement` | `"top" \| "bottom" \| "left" \| "right"` | `"bottom"` | Edge the drawer slides from |
-| `className` | `string \| (values) => string`           | -          | Content CSS classes         |
+| Prop        | Type                                          | Default    | Description               |
+| ----------- | --------------------------------------------- | ---------- | ------------------------- |
+| `placement` | `"top" \| "bottom" \| "left" \| "right"`      | `"bottom"` | Edge the drawer slides from |
+| `className` | `string \| (values) => string`                | -          | Content CSS classes       |
 
 ### Drawer.Dialog
 
-| Prop              | Type        | Default    | Description         |
-| ----------------- | ----------- | ---------- | ------------------- |
-| `children`        | `ReactNode` | -          | Dialog content      |
-| `className`       | `string`    | -          | CSS classes         |
-| `role`            | `string`    | `"dialog"` | ARIA role           |
-| `aria-label`      | `string`    | -          | Accessibility label |
-| `aria-labelledby` | `string`    | -          | ID of label element |
+| Prop               | Type                           | Default    | Description                |
+| ------------------ | ------------------------------ | ---------- | -------------------------- |
+| `children`         | `ReactNode`                    | -          | Dialog content             |
+| `className`        | `string`                       | -          | CSS classes                |
+| `role`             | `string`                       | `"dialog"` | ARIA role                  |
+| `aria-label`       | `string`                       | -          | Accessibility label        |
+| `aria-labelledby`  | `string`                       | -          | ID of label element        |
 
 ### Drawer.Header
 
@@ -655,10 +684,10 @@ The component supports these interactive states:
 
 ### Drawer.Heading
 
-| Prop        | Type        | Default | Description |
-| ----------- | ----------- | ------- | ----------- |
-| `children`  | `ReactNode` | -       | Title text  |
-| `className` | `string`    | -       | CSS classes |
+| Prop        | Type        | Default | Description  |
+| ----------- | ----------- | ------- | ------------ |
+| `children`  | `ReactNode` | -       | Title text   |
+| `className` | `string`    | -       | CSS classes  |
 
 ### Drawer.Body
 
@@ -676,9 +705,9 @@ The component supports these interactive states:
 
 ### Drawer.Handle
 
-| Prop        | Type     | Default | Description |
-| ----------- | -------- | ------- | ----------- |
-| `className` | `string` | -       | CSS classes |
+| Prop        | Type     | Default | Description          |
+| ----------- | -------- | ------- | -------------------- |
+| `className` | `string` | -       | CSS classes          |
 
 ### Drawer.CloseTrigger
 
@@ -690,18 +719,18 @@ The component supports these interactive states:
 ### useOverlayState Hook
 
 ```tsx
-import { useOverlayState } from '@heroui/react'
+import { useOverlayState } from "@heroui/react";
 
 const state = useOverlayState({
   defaultOpen: false,
-  onOpenChange: isOpen => console.log(isOpen)
-})
+  onOpenChange: (isOpen) => console.log(isOpen),
+});
 
-state.isOpen // Current state
-state.open() // Open drawer
-state.close() // Close drawer
-state.toggle() // Toggle state
-state.setOpen() // Set state directly
+state.isOpen; // Current state
+state.open(); // Open drawer
+state.close(); // Close drawer
+state.toggle(); // Toggle state
+state.setOpen(); // Set state directly
 ```
 
 ## Accessibility

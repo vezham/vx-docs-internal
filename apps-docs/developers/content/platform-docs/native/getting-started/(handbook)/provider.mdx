@@ -6,6 +6,7 @@ icon: chevrons-expand-horizontal
 
 import { Callout } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 The `HeroUINativeProvider` is the root provider component that configures and initializes HeroUI Native in your React Native application. It provides global configuration and portal management for your application.
 
 ## Overview
@@ -25,15 +26,15 @@ The provider serves as the main entry point for HeroUI Native, wrapping your app
 Wrap your application root with the provider:
 
 ```tsx
-import { HeroUINativeProvider } from 'heroui-native'
-import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { HeroUINativeProvider } from 'heroui-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <HeroUINativeProvider>{/* Your app content */}</HeroUINativeProvider>
     </GestureHandlerRootView>
-  )
+  );
 }
 ```
 
@@ -46,8 +47,8 @@ The provider accepts a `config` prop with the following options:
 Global settings for all Text components within HeroUI Native. These props are carefully selected to include only those that make sense to configure globally across all Text components in the application:
 
 ```tsx
-import { HeroUINativeProvider } from 'heroui-native'
-import type { HeroUINativeConfig } from 'heroui-native'
+import { HeroUINativeProvider } from 'heroui-native';
+import type { HeroUINativeConfig } from 'heroui-native';
 
 const config: HeroUINativeConfig = {
   textProps: {
@@ -61,16 +62,16 @@ const config: HeroUINativeConfig = {
     maxFontSizeMultiplier: 1.5,
 
     // Minimum font scale (iOS only, 0.01-1.0)
-    minimumFontScale: 0.5
-  }
-}
+    minimumFontScale: 0.5,
+  },
+};
 
 export default function App() {
   return (
     <HeroUINativeProvider config={config}>
       {/* Your app content */}
     </HeroUINativeProvider>
-  )
+  );
 }
 ```
 
@@ -79,8 +80,8 @@ export default function App() {
 Global settings for all TextInput-based components within HeroUI Native (e.g. Input, TextArea, SearchField, InputGroup, InputOTP). These props are carefully selected to include only those that make sense to configure globally across all inputs in the application:
 
 ```tsx
-import { HeroUINativeProvider } from 'heroui-native'
-import type { HeroUINativeConfig } from 'heroui-native'
+import { HeroUINativeProvider } from 'heroui-native';
+import type { HeroUINativeConfig } from 'heroui-native';
 
 const config: HeroUINativeConfig = {
   textInputProps: {
@@ -88,22 +89,21 @@ const config: HeroUINativeConfig = {
     allowFontScaling: false,
 
     // Maximum font size multiplier when allowFontScaling is enabled
-    maxFontSizeMultiplier: 1.5
-  }
-}
+    maxFontSizeMultiplier: 1.5,
+  },
+};
 
 export default function App() {
   return (
     <HeroUINativeProvider config={config}>
       {/* Your app content */}
     </HeroUINativeProvider>
-  )
+  );
 }
 ```
 
 <Callout type="info">
-  **Note**: These props are applied as defaults. Any prop passed directly to an
-  individual input component overrides the corresponding global value.
+  **Note**: These props are applied as defaults. Any prop passed directly to an individual input component overrides the corresponding global value.
 </Callout>
 
 ### Animation Configuration
@@ -113,14 +113,12 @@ Global animation configuration for the entire application:
 ```tsx
 const config: HeroUINativeConfig = {
   // Disable all animations across the application (cascades to all children)
-  animation: 'disable-all'
-}
+  animation: 'disable-all',
+};
 ```
 
 <Callout type="warning">
-  **Note**: When set to `'disable-all'`, all animations across the application
-  will be disabled. This is useful for accessibility or performance
-  optimization.
+  **Note**: When set to `'disable-all'`, all animations across the application will be disabled. This is useful for accessibility or performance optimization.
 </Callout>
 
 ### Developer Information Configuration
@@ -131,15 +129,13 @@ Control developer-facing informational messages displayed in the console:
 const config: HeroUINativeConfig = {
   devInfo: {
     // Disable styling principles information message
-    stylingPrinciples: false
-  }
-}
+    stylingPrinciples: false,
+  },
+};
 ```
 
 <Callout type="info">
-  **Note**: By default, informational messages are enabled. Set
-  `stylingPrinciples: false` to disable the styling principles message that
-  appears in the console during development.
+  **Note**: By default, informational messages are enabled. Set `stylingPrinciples: false` to disable the styling principles message that appears in the console during development.
 </Callout>
 
 ### Toast Configuration
@@ -153,20 +149,18 @@ const config: HeroUINativeConfig = {
   // Disable toast provider entirely
   toast: false,
   // or
-  toast: 'disabled'
-}
+  toast: 'disabled',
+};
 ```
 
 <Callout type="info">
-  **Note**: When toast is disabled (`false` or `'disabled'`), the
-  `ToastProvider` will not be rendered, and toast functionality will not be
-  available in your application.
+  **Note**: When toast is disabled (`false` or `'disabled'`), the `ToastProvider` will not be rendered, and toast functionality will not be available in your application.
 </Callout>
 
 **Option 2: Configure Toast Provider**
 
 ```tsx
-import { KeyboardAvoidingView } from 'react-native'
+import { KeyboardAvoidingView } from 'react-native';
 
 const config: HeroUINativeConfig = {
   toast: {
@@ -175,28 +169,29 @@ const config: HeroUINativeConfig = {
       variant: 'default',
       placement: 'top',
       isSwipeable: true,
-      animation: true
+      animation: true,
     },
     // Insets for spacing from screen edges (added to safe area insets)
     insets: {
-      top: 0, // Default: iOS = 0, Android = 12
-      bottom: 6, // Default: iOS = 6, Android = 12
-      left: 12, // Default: 12
-      right: 12 // Default: 12
+      top: 0,      // Default: iOS = 0, Android = 12
+      bottom: 6,   // Default: iOS = 6, Android = 12
+      left: 12,    // Default: 12
+      right: 12,   // Default: 12
     },
     // Maximum number of visible toasts before opacity starts fading
     maxVisibleToasts: 3,
     // Custom wrapper function to wrap the toast content
-    contentWrapper: children => (
+    contentWrapper: (children) => (
       <KeyboardAvoidingView
         behavior="padding"
         keyboardVerticalOffset={24}
-        className="flex-1">
+        className="flex-1"
+      >
         {children}
       </KeyboardAvoidingView>
-    )
-  }
-}
+    ),
+  },
+};
 ```
 
 ### Layout Direction Configuration
@@ -204,18 +199,17 @@ const config: HeroUINativeConfig = {
 Tell HeroUI Native components which layout direction they render in:
 
 ```tsx
-import { I18nManager } from 'react-native'
+import { I18nManager } from 'react-native';
 
 const config: HeroUINativeConfig = {
-  isRTL: I18nManager.isRTL
-}
+  isRTL: I18nManager.isRTL,
+};
 ```
 
 Components mirror themselves with Yoga logical properties (`start`/`end`), so most of the UI flips on its own. This flag only covers logic that runs in JavaScript, such as `Slider` gesture deltas and popover `start`/`end` alignment.
 
 <Callout type="info">
-  **Note**: `isRTL` defaults to `I18nManager.isRTL`. Set it only when your app
-  renders in a direction that differs from the global RTL state.
+  **Note**: `isRTL` defaults to `I18nManager.isRTL`. Set it only when your app renders in a direction that differs from the global RTL state.
 </Callout>
 
 To override the direction for a subtree, wrap it with `LayoutDirectionScope`, together with Uniwind's `LayoutDirection` for the `rtl:` variants and a `direction` style for Yoga layout:
@@ -232,10 +226,7 @@ To override the direction for a subtree, wrap it with `LayoutDirectionScope`, to
 ```
 
 <Callout type="warning">
-  **Note**: Portalled content renders at the app root and escapes the scope, so
-  render a `PortalHost` with a custom `name` inside it and pass the matching
-  `hostName` to the overlay. In your own components, read the effective
-  direction with the `useIsRTL` hook.
+  **Note**: Portalled content renders at the app root and escapes the scope, so render a `PortalHost` with a custom `name` inside it and pass the matching `hostName` to the overlay. In your own components, read the effective direction with the `useIsRTL` hook.
 </Callout>
 
 ## Complete Example
@@ -243,10 +234,10 @@ To override the direction for a subtree, wrap it with `LayoutDirectionScope`, to
 Here's a comprehensive example showing all configuration options:
 
 ```tsx
-import { HeroUINativeProvider } from 'heroui-native'
-import type { HeroUINativeConfig } from 'heroui-native'
-import { I18nManager } from 'react-native'
-import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { HeroUINativeProvider } from 'heroui-native';
+import type { HeroUINativeConfig } from 'heroui-native';
+import { I18nManager } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const config: HeroUINativeConfig = {
   // Global text configuration
@@ -254,18 +245,18 @@ const config: HeroUINativeConfig = {
     minimumFontScale: 0.5,
     maxFontSizeMultiplier: 1.5,
     allowFontScaling: true,
-    adjustsFontSizeToFit: false
+    adjustsFontSizeToFit: false,
   },
   // Global text input configuration
   textInputProps: {
     allowFontScaling: true,
-    maxFontSizeMultiplier: 1.5
+    maxFontSizeMultiplier: 1.5,
   },
   // Global animation configuration
   animation: 'disable-all', // Optional: disable all animations
   // Developer information messages configuration
   devInfo: {
-    stylingPrinciples: true // Optional: disable styling principles message
+    stylingPrinciples: true, // Optional: disable styling principles message
   },
   // Global layout direction (defaults to I18nManager.isRTL)
   isRTL: I18nManager.isRTL,
@@ -274,21 +265,21 @@ const config: HeroUINativeConfig = {
   toast: {
     defaultProps: {
       variant: 'default',
-      placement: 'top'
+      placement: 'top',
     },
     insets: {
       top: 0,
       bottom: 6,
       left: 12,
-      right: 12
+      right: 12,
     },
-    maxVisibleToasts: 3
-  }
+    maxVisibleToasts: 3,
+  },
   // Option 2: Disable toast entirely
   // toast: false,
   // or
   // toast: 'disabled',
-}
+};
 
 export default function App() {
   return (
@@ -297,7 +288,7 @@ export default function App() {
         <YourApp />
       </HeroUINativeProvider>
     </GestureHandlerRootView>
-  )
+  );
 }
 ```
 
@@ -307,23 +298,23 @@ When using Expo Router, wrap your root layout:
 
 ```tsx
 // app/_layout.tsx
-import { Stack } from 'expo-router'
-import { HeroUINativeProvider } from 'heroui-native'
-import type { HeroUINativeConfig } from 'heroui-native'
+import { HeroUINativeProvider } from 'heroui-native';
+import type { HeroUINativeConfig } from 'heroui-native';
+import { Stack } from 'expo-router';
 
 const config: HeroUINativeConfig = {
   textProps: {
     minimumFontScale: 0.5,
-    maxFontSizeMultiplier: 1.5
-  }
-}
+    maxFontSizeMultiplier: 1.5,
+  },
+};
 
 export default function RootLayout() {
   return (
     <HeroUINativeProvider config={config}>
       <Stack />
     </HeroUINativeProvider>
-  )
+  );
 }
 ```
 
@@ -346,10 +337,7 @@ HeroUINativeProvider
 ```
 
 <Callout type="info">
-  **Note**: The `ToastProvider` is conditionally rendered based on the `toast`
-  configuration. If `toast` is set to `false` or `'disabled'`, the
-  `ToastProvider` will not be rendered, and the app content and `PortalHost`
-  will be rendered directly under `TextInputComponentProvider`.
+  **Note**: The `ToastProvider` is conditionally rendered based on the `toast` configuration. If `toast` is set to `false` or `'disabled'`, the `ToastProvider` will not be rendered, and the app content and `PortalHost` will be rendered directly under `TextInputComponentProvider`.
 </Callout>
 
 ### Safe Area Insets Handling
@@ -372,16 +360,16 @@ Use `HeroUINativeProviderRaw` when you want full control over which dependencies
 
 ```tsx
 import {
+  HeroUINativeProviderRaw,
   type HeroUINativeConfigRaw,
-  HeroUINativeProviderRaw
-} from 'heroui-native/provider-raw'
-import { GestureHandlerRootView } from 'react-native-gesture-handler'
+} from 'heroui-native/provider-raw';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const config: HeroUINativeConfigRaw = {
   textProps: {
-    maxFontSizeMultiplier: 1.5
-  }
-}
+    maxFontSizeMultiplier: 1.5,
+  },
+};
 
 export default function App() {
   return (
@@ -390,7 +378,7 @@ export default function App() {
         {/* Your app content */}
       </HeroUINativeProviderRaw>
     </GestureHandlerRootView>
-  )
+  );
 }
 ```
 
@@ -399,9 +387,9 @@ export default function App() {
 If you need toast or portal functionality with the raw provider, add them yourself:
 
 ```tsx
-import { PortalHost } from 'heroui-native/portal'
-import { HeroUINativeProviderRaw } from 'heroui-native/provider-raw'
-import { ToastProvider } from 'heroui-native/toast'
+import { HeroUINativeProviderRaw } from 'heroui-native/provider-raw';
+import { PortalHost } from 'heroui-native/portal';
+import { ToastProvider } from 'heroui-native/toast';
 
 export default function App() {
   return (
@@ -413,7 +401,7 @@ export default function App() {
         </ToastProvider>
       </HeroUINativeProviderRaw>
     </GestureHandlerRootView>
-  )
+  );
 }
 ```
 
@@ -463,24 +451,27 @@ function App() {
   return (
     <HeroUINativeProvider
       config={{
-        textProps: {/* inline config */}
-      }}>
+        textProps: {
+          /* inline config */
+        },
+      }}
+    >
       {/* ... */}
     </HeroUINativeProvider>
-  )
+  );
 }
 
 // ✅ Good
 const config: HeroUINativeConfig = {
   textProps: {
-    maxFontSizeMultiplier: 1.5
-  }
-}
+    maxFontSizeMultiplier: 1.5,
+  },
+};
 
 function App() {
   return (
     <HeroUINativeProvider config={config}>{/* ... */}</HeroUINativeProvider>
-  )
+  );
 }
 ```
 
@@ -494,9 +485,9 @@ const config: HeroUINativeConfig = {
     // Allow font scaling for accessibility
     allowFontScaling: true,
     // But limit maximum scale
-    maxFontSizeMultiplier: 1.5
-  }
-}
+    maxFontSizeMultiplier: 1.5,
+  },
+};
 ```
 
 ## TypeScript Support
@@ -504,21 +495,21 @@ const config: HeroUINativeConfig = {
 The provider is fully typed. Import types for better IDE support:
 
 ```tsx
-import { type HeroUINativeConfig, HeroUINativeProvider } from 'heroui-native'
+import { HeroUINativeProvider, type HeroUINativeConfig } from 'heroui-native';
 
 const config: HeroUINativeConfig = {
   // Full type safety and autocomplete
   textProps: {
     allowFontScaling: true,
-    maxFontSizeMultiplier: 1.5
+    maxFontSizeMultiplier: 1.5,
   },
   textInputProps: {
     allowFontScaling: true,
-    maxFontSizeMultiplier: 1.5
+    maxFontSizeMultiplier: 1.5,
   },
   animation: 'disable-all', // Optional: disable all animations
   devInfo: {
-    stylingPrinciples: true // Optional: disable styling principles message
+    stylingPrinciples: true, // Optional: disable styling principles message
   },
   isRTL: false, // Optional: layout direction, defaults to I18nManager.isRTL
   // Toast configuration options:
@@ -527,16 +518,16 @@ const config: HeroUINativeConfig = {
   toast: {
     defaultProps: {
       variant: 'default',
-      placement: 'top'
+      placement: 'top',
     },
     insets: {
       top: 0,
       bottom: 6,
       left: 12,
-      right: 12
-    }
-  }
-}
+      right: 12,
+    },
+  },
+};
 ```
 
 ## Related

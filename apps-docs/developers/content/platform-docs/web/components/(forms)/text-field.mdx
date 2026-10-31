@@ -9,34 +9,38 @@ links:
   figma: true
 ---
 
-import {
-  RelatedComponents,
-  RelatedShowcases
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents, RelatedShowcases } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { TextField } from '@heroui/react'
+import { TextField } from '@heroui/react';
 ```
 
-[Live example: textfield-basic](https://heroui.com/docs/react/components/text-field)
 
-```tsx
+<ComponentPreview name="textfield-basic">
+
+````tsx
+import {Input, Label, TextField} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <TextField className="w-full max-w-64" name="email" type="email">
       <Label>Email</Label>
       <Input placeholder="Enter your email" />
     </TextField>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 ```tsx
-import { Description, FieldError, Input, Label, TextField } from '@heroui/react'
+import {TextField, Label, Input, Description, FieldError} from '@heroui/react';
 
 export default () => (
   <TextField>
@@ -48,8 +52,8 @@ export default () => (
 )
 ```
 
-> **TextField** combines label, input, description, and error into a single accessible component.
-> For standalone inputs, use **[Input](/docs-ui/web/components/input)** or **[TextArea](/docs-ui/web/components/text-area)**.
+>  **TextField** combines label, input, description, and error into a single accessible component.
+For standalone inputs, use **[Input](/docs-ui/web/components/input)** or **[TextArea](/docs-ui/web/components/text-area)**.
 
 ## Examples
 
@@ -57,9 +61,12 @@ export default () => (
 
 When used inside a [Surface](/docs-ui/web/components/surface) component, use `variant="secondary"` on Input or TextArea components to apply the lower emphasis variant suitable for surface backgrounds.
 
-[Live example: textfield-on-surface](https://heroui.com/docs/react/components/text-field)
 
-```tsx
+<ComponentPreview name="textfield-on-surface">
+
+````tsx
+import {Description, Input, Label, Surface, TextArea, TextField} from "@vezham/react-v3";
+
 export function OnSurface() {
   return (
     <Surface className="flex w-full min-w-[340px] flex-col gap-4 rounded-3xl p-6">
@@ -74,23 +81,25 @@ export function OnSurface() {
       </TextField>
       <TextField name="bio" variant="secondary">
         <Label>Bio</Label>
-        <TextArea
-          className="w-full"
-          placeholder="Tell us about yourself..."
-          rows={4}
-        />
+        <TextArea className="w-full" placeholder="Tell us about yourself..." rows={4} />
         <Description>Minimum 4 rows</Description>
       </TextField>
     </Surface>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Description
 
-[Live example: textfield-with-description](https://heroui.com/docs/react/components/text-field)
 
-```tsx
+<ComponentPreview name="textfield-with-description">
+
+````tsx
+import {Description, Input, Label, TextField} from "@vezham/react-v3";
+
 export function WithDescription() {
   return (
     <TextField className="w-full max-w-64" name="username">
@@ -98,15 +107,21 @@ export function WithDescription() {
       <Input placeholder="Enter username" />
       <Description>Choose a unique username for your account</Description>
     </TextField>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Required Field
 
-[Live example: textfield-required](https://heroui.com/docs/react/components/text-field)
 
-```tsx
+<ComponentPreview name="textfield-required">
+
+````tsx
+import {Description, Input, Label, TextField} from "@vezham/react-v3";
+
 export function Required() {
   return (
     <TextField isRequired className="w-full max-w-64" name="fullName">
@@ -114,35 +129,43 @@ export function Required() {
       <Input placeholder="John Doe" />
       <Description>This field is required</Description>
     </TextField>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Disabled State
 
-[Live example: textfield-disabled](https://heroui.com/docs/react/components/text-field)
 
-```tsx
+<ComponentPreview name="textfield-disabled">
+
+````tsx
+import {Description, Input, Label, TextField} from "@vezham/react-v3";
+
 export function Disabled() {
   return (
-    <TextField
-      isDisabled
-      className="w-full max-w-64"
-      name="accountId"
-      value="USR-12345">
+    <TextField isDisabled className="w-full max-w-64" name="accountId" value="USR-12345">
       <Label>Account ID</Label>
       <Input placeholder="Auto-generated" />
       <Description>This field cannot be edited</Description>
     </TextField>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Full Width
 
-[Live example: textfield-full-width](https://heroui.com/docs/react/components/text-field)
 
-```tsx
+<ComponentPreview name="textfield-full-width">
+
+````tsx
+import {FieldError, Input, Label, TextField} from "@vezham/react-v3";
+
 export function FullWidth() {
   return (
     <div className="w-[400px] space-y-4">
@@ -156,25 +179,32 @@ export function FullWidth() {
         <FieldError>Password must be longer than 8 characters</FieldError>
       </TextField>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Validation
 
 Use `isInvalid` together with `FieldError` to surface validation messages.
 
-[Live example: textfield-validation](https://heroui.com/docs/react/components/text-field)
 
-```tsx
-'use client'
+<ComponentPreview name="textfield-validation">
+
+````tsx
+"use client";
+
+import {Description, FieldError, Input, Label, TextArea, TextField} from "@vezham/react-v3";
+import React from "react";
 
 export function Validation() {
-  const [username, setUsername] = React.useState('')
-  const [bio, setBio] = React.useState('')
+  const [username, setUsername] = React.useState("");
+  const [bio, setBio] = React.useState("");
 
-  const isUsernameInvalid = username.length > 0 && username.length < 3
-  const isBioInvalid = bio.length > 0 && bio.length < 20
+  const isUsernameInvalid = username.length > 0 && username.length < 3;
+  const isBioInvalid = bio.length > 0 && bio.length < 20;
 
   return (
     <div className="flex w-full max-w-64 flex-col gap-4">
@@ -183,7 +213,8 @@ export function Validation() {
         isInvalid={isUsernameInvalid}
         name="username"
         value={username}
-        onChange={setUsername}>
+        onChange={setUsername}
+      >
         <Label>Username</Label>
         <Input placeholder="jane_doe" />
         {isUsernameInvalid ? (
@@ -193,12 +224,7 @@ export function Validation() {
         )}
       </TextField>
 
-      <TextField
-        isRequired
-        isInvalid={isBioInvalid}
-        name="bio"
-        value={bio}
-        onChange={setBio}>
+      <TextField isRequired isInvalid={isBioInvalid} name="bio" value={bio} onChange={setBio}>
         <Label>Bio</Label>
         <TextArea placeholder="Tell us about yourself..." />
         {isBioInvalid ? (
@@ -208,22 +234,29 @@ export function Validation() {
         )}
       </TextField>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Controlled
 
 Control the value to synchronize counters, previews, or formatting.
 
-[Live example: textfield-controlled](https://heroui.com/docs/react/components/text-field)
 
-```tsx
-'use client'
+<ComponentPreview name="textfield-controlled">
+
+````tsx
+"use client";
+
+import {Description, Input, Label, TextArea, TextField} from "@vezham/react-v3";
+import React from "react";
 
 export function Controlled() {
-  const [name, setName] = React.useState('')
-  const [bio, setBio] = React.useState('')
+  const [name, setName] = React.useState("");
+  const [bio, setBio] = React.useState("");
 
   return (
     <div className="flex w-full max-w-64 flex-col gap-4">
@@ -238,15 +271,21 @@ export function Controlled() {
         <Description>Characters: {bio.length} / 200</Description>
       </TextField>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Error Message
 
-[Live example: textfield-with-error](https://heroui.com/docs/react/components/text-field)
 
-```tsx
+<ComponentPreview name="textfield-with-error">
+
+````tsx
+import {FieldError, Input, Label, TextField} from "@vezham/react-v3";
+
 export function WithError() {
   return (
     <TextField isInvalid className="w-full max-w-64" name="email" type="email">
@@ -254,17 +293,23 @@ export function WithError() {
       <Input placeholder="user@example.com" />
       <FieldError>Please enter a valid email address</FieldError>
     </TextField>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### TextArea
 
 Use [TextArea](/docs-ui/web/components/text-area) instead of [Input](/docs-ui/web/components/input) for multiline content.
 
-[Live example: textfield-textarea](https://heroui.com/docs/react/components/text-field)
 
-```tsx
+<ComponentPreview name="textfield-textarea">
+
+````tsx
+import {Description, Label, TextArea, TextField} from "@vezham/react-v3";
+
 export function TextAreaExample() {
   return (
     <TextField className="w-full max-w-64" name="message">
@@ -272,15 +317,21 @@ export function TextAreaExample() {
       <TextArea placeholder="Write your message here..." rows={4} />
       <Description>Maximum 500 characters</Description>
     </TextField>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Input Types
 
-[Live example: textfield-input-types](https://heroui.com/docs/react/components/text-field)
 
-```tsx
+<ComponentPreview name="textfield-input-types">
+
+````tsx
+import {Input, Label, TextField} from "@vezham/react-v3";
+
 export function InputTypes() {
   return (
     <div className="flex w-full max-w-64 flex-col gap-4">
@@ -309,55 +360,69 @@ export function InputTypes() {
         <Input placeholder="+1 (555) 000-0000" />
       </TextField>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Render Function
 
-[Live example: textfield-render-function](https://heroui.com/docs/react/components/text-field)
 
-```tsx
-'use client'
+<ComponentPreview name="textfield-render-function">
+
+````tsx
+"use client";
+
+import {Input, Label, TextField} from "@vezham/react-v3";
 
 export function RenderFunction() {
   return (
     <TextField
       className="w-full max-w-64"
       name="email"
-      render={props => <div {...props} data-custom="foo" />}
-      type="email">
+      render={(props) => <div {...props} data-custom="foo" />}
+      type="email"
+    >
       <Label>Email</Label>
       <Input placeholder="Enter your email" />
     </TextField>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: text-field-custom-styles](https://heroui.com/docs/react/components/text-field)
 
-```tsx
+<ComponentPreview name="text-field-custom-styles">
+
+````tsx
+import {Input, Label, TextField} from "@vezham/react-v3";
+
 const fieldClass =
-  'rounded-xl border border-border/80 bg-surface shadow-sm ring-1 ring-black/5 transition-[box-shadow,border-color] focus-visible:ring-2 focus-visible:ring-neutral-400/25 dark:ring-white/10 dark:focus-visible:ring-neutral-500/30'
+  "rounded-xl border border-border/80 bg-surface shadow-sm ring-1 ring-black/5 transition-[box-shadow,border-color] focus-visible:ring-2 focus-visible:ring-neutral-400/25 dark:ring-white/10 dark:focus-visible:ring-neutral-500/30";
 
 export function CustomStyles() {
   return (
     <TextField className="w-full max-w-64 gap-1.5" name="email" type="email">
-      <Label className="font-medium text-neutral-800 dark:text-neutral-100">
-        Email
-      </Label>
+      <Label className="font-medium text-neutral-800 dark:text-neutral-100">Email</Label>
       <Input
         className={`text-sm text-neutral-800 placeholder:text-neutral-400 dark:text-neutral-100 dark:placeholder:text-neutral-500 ${fieldClass}`}
         placeholder="you@email.com"
       />
     </TextField>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -370,13 +435,13 @@ TextField has minimal default styling. Override the `.textfield` class to custom
   }
 
   /* When invalid, the description is hidden automatically */
-  .textfield[data-invalid='true'] [data-slot='description'],
-  .textfield[aria-invalid='true'] [data-slot='description'] {
+  .textfield[data-invalid="true"] [data-slot="description"],
+  .textfield[aria-invalid="true"] [data-slot="description"] {
     @apply hidden;
   }
 
   /* Description has default padding */
-  .textfield [data-slot='description'] {
+  .textfield [data-slot="description"] {
     @apply px-1;
   }
 }
@@ -411,55 +476,55 @@ TextField inherits all props from React Aria's [TextField](https://react-spectru
 
 #### Base Props
 
-| Prop        | Type                                                                           | Default | Description                                                      |
-| ----------- | ------------------------------------------------------------------------------ | ------- | ---------------------------------------------------------------- |
-| `children`  | `React.ReactNode \| (values: TextFieldRenderProps) => React.ReactNode`         | -       | Child components (Label, Input, etc.) or render function.        |
-| `className` | `string \| (values: TextFieldRenderProps) => string`                           | -       | CSS classes for styling, supports render props.                  |
-| `style`     | `React.CSSProperties \| (values: TextFieldRenderProps) => React.CSSProperties` | -       | Inline styles, supports render props.                            |
-| `fullWidth` | `boolean`                                                                      | `false` | Whether the text field should take full width of its container   |
-| `id`        | `string`                                                                       | -       | The element's unique identifier.                                 |
-| `render`    | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, TextFieldRenderProps>`   | -       | Overrides the default DOM element with a custom render function. |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode \| (values: TextFieldRenderProps) => React.ReactNode` | - | Child components (Label, Input, etc.) or render function. |
+| `className` | `string \| (values: TextFieldRenderProps) => string` | - | CSS classes for styling, supports render props. |
+| `style` | `React.CSSProperties \| (values: TextFieldRenderProps) => React.CSSProperties` | - | Inline styles, supports render props. |
+| `fullWidth` | `boolean` | `false` | Whether the text field should take full width of its container |
+| `id` | `string` | - | The element's unique identifier. |
+| `render` | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, TextFieldRenderProps>` | - | Overrides the default DOM element with a custom render function.|
 
 #### Validation Props
 
-| Prop                 | Type                                                              | Default    | Description                                                    |
-| -------------------- | ----------------------------------------------------------------- | ---------- | -------------------------------------------------------------- |
-| `isRequired`         | `boolean`                                                         | `false`    | Whether user input is required before form submission.         |
-| `isInvalid`          | `boolean`                                                         | -          | Whether the value is invalid.                                  |
-| `validate`           | `(value: string) => ValidationError \| true \| null \| undefined` | -          | Custom validation function.                                    |
-| `validationBehavior` | `'native' \| 'aria'`                                              | `'native'` | Whether to use native HTML form validation or ARIA attributes. |
-| `validationErrors`   | `string[]`                                                        | -          | Server-side validation errors.                                 |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `isRequired` | `boolean` | `false` | Whether user input is required before form submission. |
+| `isInvalid` | `boolean` | - | Whether the value is invalid. |
+| `validate` | `(value: string) => ValidationError \| true \| null \| undefined` | - | Custom validation function. |
+| `validationBehavior` | `'native' \| 'aria'` | `'native'` | Whether to use native HTML form validation or ARIA attributes. |
+| `validationErrors` | `string[]` | - | Server-side validation errors. |
 
 #### Value Props
 
-| Prop           | Type                      | Default | Description                            |
-| -------------- | ------------------------- | ------- | -------------------------------------- |
-| `value`        | `string`                  | -       | Current value (controlled).            |
-| `defaultValue` | `string`                  | -       | Default value (uncontrolled).          |
-| `onChange`     | `(value: string) => void` | -       | Handler called when the value changes. |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | - | Current value (controlled). |
+| `defaultValue` | `string` | - | Default value (uncontrolled). |
+| `onChange` | `(value: string) => void` | - | Handler called when the value changes. |
 
 #### State Props
 
-| Prop         | Type      | Default | Description                                        |
-| ------------ | --------- | ------- | -------------------------------------------------- |
-| `isDisabled` | `boolean` | -       | Whether the input is disabled.                     |
-| `isReadOnly` | `boolean` | -       | Whether the input can be selected but not changed. |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `isDisabled` | `boolean` | - | Whether the input is disabled. |
+| `isReadOnly` | `boolean` | - | Whether the input can be selected but not changed. |
 
 #### Form Props
 
-| Prop        | Type      | Default | Description                                          |
-| ----------- | --------- | ------- | ---------------------------------------------------- |
-| `name`      | `string`  | -       | Name of the input element, for HTML form submission. |
-| `autoFocus` | `boolean` | -       | Whether the element should receive focus on render.  |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `name` | `string` | - | Name of the input element, for HTML form submission. |
+| `autoFocus` | `boolean` | - | Whether the element should receive focus on render. |
 
 #### Accessibility Props
 
-| Prop               | Type     | Default | Description                                           |
-| ------------------ | -------- | ------- | ----------------------------------------------------- |
-| `aria-label`       | `string` | -       | Accessibility label when no visible label is present. |
-| `aria-labelledby`  | `string` | -       | ID of elements that label this field.                 |
-| `aria-describedby` | `string` | -       | ID of elements that describe this field.              |
-| `aria-details`     | `string` | -       | ID of elements with additional details.               |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `aria-label` | `string` | - | Accessibility label when no visible label is present. |
+| `aria-labelledby` | `string` | - | ID of elements that label this field. |
+| `aria-describedby` | `string` | - | ID of elements that describe this field. |
+| `aria-details` | `string` | - | ID of elements with additional details. |
 
 ### Composition Components
 
@@ -476,7 +541,7 @@ Each of these components has its own props API. Use them directly within TextFie
 ```tsx
 <TextField isRequired isInvalid={hasError}>
   <Label>Email Address</Label>
-  <Input type="email" value={email} onChange={e => setEmail(e.target.value)} />
+  <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
   <Description>We'll never share your email.</Description>
   <FieldError>Please enter a valid email address.</FieldError>
 </TextField>
@@ -486,15 +551,15 @@ Each of these components has its own props API. Use them directly within TextFie
 
 When using render props with `className`, `style`, or `children`, these values are available:
 
-| Prop             | Type      | Description                                                                |
-| ---------------- | --------- | -------------------------------------------------------------------------- |
-| `isDisabled`     | `boolean` | Whether the field is disabled.                                             |
-| `isInvalid`      | `boolean` | Whether the field is currently invalid.                                    |
-| `isReadOnly`     | `boolean` | Whether the field is read-only.                                            |
-| `isRequired`     | `boolean` | Whether the field is required.                                             |
-| `isFocused`      | `boolean` | Whether the field is currently focused (DEPRECATED - use `isFocusWithin`). |
-| `isFocusWithin`  | `boolean` | Whether any child element is focused.                                      |
-| `isFocusVisible` | `boolean` | Whether focus is visible (keyboard navigation).                            |
+| Prop | Type | Description |
+|------|------|-------------|
+| `isDisabled` | `boolean` | Whether the field is disabled. |
+| `isInvalid` | `boolean` | Whether the field is currently invalid. |
+| `isReadOnly` | `boolean` | Whether the field is read-only. |
+| `isRequired` | `boolean` | Whether the field is required. |
+| `isFocused` | `boolean` | Whether the field is currently focused (DEPRECATED - use `isFocusWithin`). |
+| `isFocusWithin` | `boolean` | Whether any child element is focused. |
+| `isFocusVisible` | `boolean` | Whether focus is visible (keyboard navigation). |
 
 ## Related Showcases
 

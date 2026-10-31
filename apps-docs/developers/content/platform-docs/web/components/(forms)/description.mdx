@@ -7,17 +7,21 @@ links:
   styles: description.css
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Description } from '@heroui/react'
+import { Description } from '@heroui/react';
 ```
 
-[Live example: description-basic](https://heroui.com/docs/react/components/description)
 
-```tsx
+<ComponentPreview name="description-basic">
+
+````tsx
+import {Description, Input, Label} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <div className="flex flex-col gap-1">
@@ -33,9 +37,12 @@ export function Basic() {
         We'll never share your email with anyone else.
       </Description>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Examples
 
@@ -44,11 +51,7 @@ export function Basic() {
 ```tsx
 <div className="flex flex-col gap-1">
   <Label htmlFor="password">Password</Label>
-  <Input
-    id="password"
-    type="password"
-    aria-describedby="password-description"
-  />
+  <Input id="password" type="password" aria-describedby="password-description" />
   <Description id="password-description">
     Must be at least 8 characters with one uppercase letter
   </Description>
@@ -58,9 +61,9 @@ export function Basic() {
 ### Integration with TextField
 
 ```tsx
-import { Description, Input, Label, TextField } from '@heroui/react'
+import {TextField, Label, Input, Description} from '@heroui/react';
 
-;<TextField type="email">
+<TextField type="email">
   <Label>Email</Label>
   <Input placeholder="Enter your email" />
   <Description>We'll never share your email</Description>
@@ -73,23 +76,27 @@ When using the [TextField](./text-field) component, accessibility attributes are
 
 ### Tailwind CSS
 
-[Live example: description-custom-styles](https://heroui.com/docs/react/components/description)
 
-```tsx
+<ComponentPreview name="description-custom-styles">
+
+````tsx
+import {Description, Input, Label} from "@vezham/react-v3";
+
 export function CustomStyles() {
   return (
     <div className="flex w-64 flex-col gap-1">
       <Label htmlFor="workspace-slug">Workspace URL</Label>
       <Input id="workspace-slug" placeholder="acme" type="text" />
-      <Description
-        className="leading-relaxed tracking-wide"
-        id="workspace-slug-hint">
+      <Description className="leading-relaxed tracking-wide" id="workspace-slug-hint">
         Lowercase letters and hyphens only. Used in app.heroui.com/acme
       </Description>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -119,10 +126,10 @@ The Description component uses these CSS classes ([View source styles](https://g
 
 ### Description
 
-| Prop        | Type        | Default | Description                    |
-| ----------- | ----------- | ------- | ------------------------------ |
-| `className` | `string`    | -       | Additional CSS classes         |
-| `children`  | `ReactNode` | -       | The content of the description |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | The content of the description |
 
 ## Accessibility
 

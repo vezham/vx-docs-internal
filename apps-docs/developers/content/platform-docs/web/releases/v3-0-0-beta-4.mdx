@@ -5,23 +5,15 @@ github:
   pull: 6121
 ---
 
-import {
-  Callout,
-  DocsImage,
-  PRContributors,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, ComponentPreview, DocsImage, PRContributors, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">January 20, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">January 20, 2026</span>
 </div>
 
 <Callout type="warning">
-  **Critical Build Issue Fixed**: This version (beta.4) had a critical build
-  issue that has been fixed in **beta.5**. Please upgrade to
-  `@heroui/styles@3.0.0-beta.5` and `@heroui/react@3.0.0-beta.5` to ensure
-  proper TypeScript declaration generation and export resolution.
+  **Critical Build Issue Fixed**: This version (beta.4) had a critical build issue that has been fixed in **beta.5**. Please upgrade to `@heroui/styles@3.0.0-beta.5` and `@heroui/react@3.0.0-beta.5` to ensure proper TypeScript declaration generation and export resolution.
 </Callout>
 
 This release introduces the new [Theme Builder](https://heroui.com/themes) for visual theme customization, three new components ([Autocomplete](https://heroui.com/docs/components/autocomplete), [Breadcrumbs](https://heroui.com/docs/components/breadcrumbs), [Toast](https://heroui.com/docs/components/toast)), adds secondary variant to [Tabs](https://heroui.com/docs/components/tabs), primary/secondary variants to [Input](https://heroui.com/docs/components/input) and [InputGroup](https://heroui.com/docs/components/input-group), TextArea support for InputGroup, and ⚠️ **breaking changes** removing Link's underline variants and the `isInSurface` prop from form components.
@@ -37,26 +29,31 @@ This release introduces the new [Theme Builder](https://heroui.com/themes) for v
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
   <Tab value="npm">
-    ```bash npm i @heroui/styles@beta @heroui/react@beta ```
+    ```bash
+    npm i @heroui/styles@beta @heroui/react@beta
+    ```
   </Tab>
   <Tab value="pnpm">
-    ```bash pnpm add @heroui/styles@beta @heroui/react@beta ```
+    ```bash
+    pnpm add @heroui/styles@beta @heroui/react@beta
+    ```
   </Tab>
   <Tab value="yarn">
-    ```bash yarn add @heroui/styles@beta @heroui/react@beta ```
+    ```bash
+    yarn add @heroui/styles@beta @heroui/react@beta
+    ```
   </Tab>
   <Tab value="bun">
-    ```bash bun add @heroui/styles@beta @heroui/react@beta ```
+    ```bash
+    bun add @heroui/styles@beta @heroui/react@beta
+    ```
   </Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the
-  latest version" and your AI assistant will automatically compare versions and
-  apply the necessary changes. Learn more about the [HeroUI MCP
-  Server](https://heroui.com/docs/ui-for-agents/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI MCP Server](https://heroui.com/docs/ui-for-agents/mcp-server).
 </Callout>
 
 ## What's New
@@ -66,7 +63,6 @@ Update to the latest version:
 We're excited to introduce the **[Theme Builder](https://heroui.com/themes)** - a powerful visual tool for creating and customizing HeroUI themes. Build your perfect theme with real-time preview and export ready-to-use CSS.
 
 **Key features:**
-
 - **Visual Color Editing**: Adjust colors using OKLCH color pickers with intuitive sliders for lightness, chroma, and hue
 - **Real-time Preview**: See your changes instantly on live component previews
 - **Custom Accent Colors**: Define your brand colors and watch them propagate across all components
@@ -87,10 +83,13 @@ This release introduces **3 new** essential components:
 
 ### Autocomplete
 
-[Live example: autocomplete-default](https://heroui.com/docs/react/releases/v3-0-0-beta-4)
 
-```tsx
-'use client'
+<ComponentPreview name="autocomplete-default">
+
+````tsx
+"use client";
+
+import type {Key} from "@vezham/react-v3";
 
 import {
   Autocomplete,
@@ -100,26 +99,27 @@ import {
   SearchField,
   Tag,
   TagGroup,
-  useFilter
-} from '@heroui/react'
+  useFilter,
+} from "@vezham/react-v3";
+import {useState} from "react";
 
 export default function Default() {
-  const { contains } = useFilter({ sensitivity: 'base' })
+  const {contains} = useFilter({sensitivity: "base"});
 
-  const [selectedKeys, setSelectedKeys] = useState<Key[]>([])
+  const [selectedKeys, setSelectedKeys] = useState<Key[]>([]);
 
   const items = [
-    { id: 'florida', name: 'Florida' },
-    { id: 'delaware', name: 'Delaware' },
-    { id: 'california', name: 'California' },
-    { id: 'texas', name: 'Texas' },
-    { id: 'new-york', name: 'New York' },
-    { id: 'washington', name: 'Washington' }
-  ]
+    {id: "florida", name: "Florida"},
+    {id: "delaware", name: "Delaware"},
+    {id: "california", name: "California"},
+    {id: "texas", name: "Texas"},
+    {id: "new-york", name: "New York"},
+    {id: "washington", name: "Washington"},
+  ];
 
   const onRemoveTags = (keys: Set<Key>) => {
-    setSelectedKeys(prev => prev.filter(key => !keys.has(key)))
-  }
+    setSelectedKeys((prev) => prev.filter((key) => !keys.has(key)));
+  };
 
   return (
     <Autocomplete
@@ -127,56 +127,50 @@ export default function Default() {
       placeholder="Select states"
       selectionMode="multiple"
       value={selectedKeys}
-      onChange={(keys: Key | Key[] | null) => setSelectedKeys(keys as Key[])}>
+      onChange={(keys: Key | Key[] | null) => setSelectedKeys(keys as Key[])}
+    >
       <Label>States to Visit</Label>
       <Autocomplete.Trigger>
         <Autocomplete.Value>
-          {({ defaultChildren, isPlaceholder, state }: any) => {
+          {({defaultChildren, isPlaceholder, state}: any) => {
             if (isPlaceholder || state.selectedItems.length === 0) {
-              return defaultChildren
+              return defaultChildren;
             }
 
-            const selectedItemsKeys = state.selectedItems.map(
-              (item: any) => item.key
-            )
+            const selectedItemsKeys = state.selectedItems.map((item: any) => item.key);
 
             return (
               <TagGroup size="sm" onRemove={onRemoveTags}>
                 <TagGroup.List>
                   {selectedItemsKeys.map((selectedItemKey: Key) => {
-                    const item = items.find(s => s.id === selectedItemKey)
+                    const item = items.find((s) => s.id === selectedItemKey);
 
-                    if (!item) return null
+                    if (!item) return null;
 
                     return (
                       <Tag key={item.id} id={item.id}>
                         {item.name}
                       </Tag>
-                    )
+                    );
                   })}
                 </TagGroup.List>
               </TagGroup>
-            )
+            );
           }}
         </Autocomplete.Value>
         <Autocomplete.Indicator />
       </Autocomplete.Trigger>
       <Autocomplete.Popover>
         <Autocomplete.Filter filter={contains}>
-          <SearchField
-            autoFocus
-            aria-label="Search options"
-            name="search"
-            variant="secondary">
+          <SearchField autoFocus aria-label="Search options" name="search" variant="secondary">
             <SearchField.Group>
               <SearchField.SearchIcon />
               <SearchField.Input placeholder="Search..." />
               <SearchField.ClearButton />
             </SearchField.Group>
           </SearchField>
-          <ListBox
-            renderEmptyState={() => <EmptyState>No results found</EmptyState>}>
-            {items.map(item => (
+          <ListBox renderEmptyState={() => <EmptyState>No results found</EmptyState>}>
+            {items.map((item) => (
               <ListBox.Item key={item.id} id={item.id} textValue={item.name}>
                 {item.name}
                 <ListBox.ItemIndicator />
@@ -186,16 +180,22 @@ export default function Default() {
         </Autocomplete.Filter>
       </Autocomplete.Popover>
     </Autocomplete>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Breadcrumbs
 
-[Live example: breadcrumbs-basic](https://heroui.com/docs/react/releases/v3-0-0-beta-4)
 
-```tsx
-'use client'
+<ComponentPreview name="breadcrumbs-basic">
+
+````tsx
+"use client";
+
+import {Breadcrumbs} from "@vezham/react-v3";
 
 export default function BreadcrumbsBasic() {
   return (
@@ -205,21 +205,27 @@ export default function BreadcrumbsBasic() {
       <Breadcrumbs.Item href="#">Electronics</Breadcrumbs.Item>
       <Breadcrumbs.Item>Laptop</Breadcrumbs.Item>
     </Breadcrumbs>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Toast
 
 <Callout type="warning">
-  This component is currently in preview and some features might not work as
-  expected.
+  This  component is currently in preview and some features might not work as expected.
 </Callout>
 
-[Live example: toast-variants](https://heroui.com/docs/react/releases/v3-0-0-beta-4)
 
-```tsx
-'use client'
+<ComponentPreview name="toast-variants">
+
+````tsx
+"use client";
+
+import {HardDrive, Persons} from "@gravity-ui/icons";
+import {Button, toast} from "@vezham/react-v3";
 
 export function Variants() {
   return (
@@ -229,31 +235,30 @@ export function Variants() {
           size="sm"
           variant="tertiary"
           onPress={() => {
-            const id = toast('You have been invited to join a team', {
+            const id = toast("You have been invited to join a team", {
               actionProps: {
-                children: 'Dismiss',
+                children: "Dismiss",
                 onPress: () => toast.close(id),
-                variant: 'tertiary'
+                variant: "tertiary",
               },
-              description: 'Bob sent you an invitation to join HeroUI team',
+              description: "Bob sent you an invitation to join HeroUI team",
               indicator: <Persons />,
-              variant: 'default'
-            })
-          }}>
+              variant: "default",
+            });
+          }}
+        >
           Default toast
         </Button>
         <Button
           size="sm"
           variant="secondary"
           onPress={() => {
-            const id = toast.info('You have 2 credits left', {
-              actionProps: {
-                children: 'Upgrade',
-                onPress: () => toast.close(id)
-              },
-              description: 'Get a paid plan for more credits'
-            })
-          }}>
+            const id = toast.info("You have 2 credits left", {
+              actionProps: {children: "Upgrade", onPress: () => toast.close(id)},
+              description: "Get a paid plan for more credits",
+            });
+          }}
+        >
           Accent toast
         </Button>
         <Button
@@ -261,15 +266,16 @@ export function Variants() {
           size="sm"
           variant="tertiary"
           onPress={() => {
-            const id = toast.success('You have upgraded your plan', {
+            const id = toast.success("You have upgraded your plan", {
               actionProps: {
-                children: 'Billing',
-                className: 'bg-success text-success-foreground',
-                onPress: () => toast.close(id)
+                children: "Billing",
+                className: "bg-success text-success-foreground",
+                onPress: () => toast.close(id),
               },
-              description: 'You can continue using HeroUI Chat'
-            })
-          }}>
+              description: "You can continue using HeroUI Chat",
+            });
+          }}
+        >
           Success toast
         </Button>
         <Button
@@ -277,39 +283,40 @@ export function Variants() {
           size="sm"
           variant="tertiary"
           onPress={() => {
-            const id = toast.warning('You have no credits left', {
+            const id = toast.warning("You have no credits left", {
               actionProps: {
-                children: 'Upgrade',
-                className: 'bg-warning text-warning-foreground',
-                onPress: () => toast.close(id)
+                children: "Upgrade",
+                className: "bg-warning text-warning-foreground",
+                onPress: () => toast.close(id),
               },
-              description: 'Upgrade to a paid plan to continue'
-            })
-          }}>
+              description: "Upgrade to a paid plan to continue",
+            });
+          }}
+        >
           Warning toast
         </Button>
         <Button
           size="sm"
           variant="danger-soft"
           onPress={() => {
-            const id = toast.danger('Storage is full', {
-              actionProps: {
-                children: 'Remove',
-                onPress: () => toast.close(id),
-                variant: 'danger'
-              },
+            const id = toast.danger("Storage is full", {
+              actionProps: {children: "Remove", onPress: () => toast.close(id), variant: "danger"},
               description:
-                'Remove files to release space. Adding more text to demonstrate longer content display',
-              indicator: <HardDrive />
-            })
-          }}>
+                "Remove files to release space. Adding more text to demonstrate longer content display",
+              indicator: <HardDrive />,
+            });
+          }}
+        >
           Danger toast
         </Button>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Component Improvements
 
@@ -317,9 +324,12 @@ export function Variants() {
 
 Added a new `secondary` variant to [Tabs](https://heroui.com/docs/components/tabs) with an underline indicator style. The secondary variant supports both horizontal and vertical orientations.
 
-[Live example: tabs-secondary](https://heroui.com/docs/react/releases/v3-0-0-beta-4)
 
-```tsx
+<ComponentPreview name="tabs-secondary">
+
+````tsx
+import {Tabs} from "@vezham/react-v3";
+
 export function Secondary() {
   return (
     <Tabs className="w-full max-w-md" variant="secondary">
@@ -349,9 +359,12 @@ export function Secondary() {
         <p>Generate and download detailed reports.</p>
       </Tabs.Panel>
     </Tabs>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 **Usage:**
 
@@ -381,18 +394,24 @@ Added `primary` and `secondary` variants to the [Input](https://heroui.com/docs/
 - **`primary`** (default): Standard styling with shadow, suitable for most use cases
 - **`secondary`**: Lower emphasis variant without shadow, suitable for use in Surface components
 
-[Live example: input-variants](https://heroui.com/docs/react/releases/v3-0-0-beta-4)
 
-```tsx
+<ComponentPreview name="input-variants">
+
+````tsx
+import {Input} from "@vezham/react-v3";
+
 export function Variants() {
   return (
     <div className="flex w-[240px] flex-col gap-2">
       <Input fullWidth placeholder="Primary input" variant="primary" />
       <Input fullWidth placeholder="Secondary input" variant="secondary" />
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### InputGroup Enhancements
 
@@ -400,32 +419,38 @@ The [InputGroup](https://heroui.com/docs/components/input-group) component recei
 
 **TextArea Support**: Use `InputGroup.TextArea` for multiline text inputs with prefix and suffix elements.
 
-[Live example: input-group-with-textarea](https://heroui.com/docs/react/releases/v3-0-0-beta-4)
 
-```tsx
-'use client'
+<ComponentPreview name="input-group-with-textarea">
+
+````tsx
+"use client";
+
+import {ArrowUp, At, Microphone, PlugConnection, Plus} from "@gravity-ui/icons";
+import {Button, InputGroup, Kbd, Spinner, TextField, Tooltip} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function WithTextArea() {
-  const [value, setValue] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [value, setValue] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = () => {
-    if (!value.trim()) return
+    if (!value.trim()) return;
 
-    setIsSubmitting(true)
+    setIsSubmitting(true);
 
     setTimeout(() => {
-      setIsSubmitting(false)
-      setValue('')
-    }, 1000)
-  }
+      setIsSubmitting(false);
+      setValue("");
+    }, 1000);
+  };
 
   return (
     <TextField
       fullWidth
       aria-label="Prompt input"
       className="flex w-sm flex-col sm:w-lg"
-      name="prompt">
+      name="prompt"
+    >
       <InputGroup fullWidth className="flex flex-col gap-2 rounded-3xl py-2">
         <InputGroup.Prefix className="px-3 py-0">
           <Button aria-label="Add context" size="sm" variant="outline">
@@ -438,15 +463,11 @@ export function WithTextArea() {
           placeholder="Assign tasks or ask anything..."
           rows={5}
           value={value}
-          onChange={event => setValue(event.target.value)}
+          onChange={(event) => setValue(event.target.value)}
         />
         <InputGroup.Suffix className="flex w-full items-center gap-1.5 px-3 py-0">
           <Tooltip delay={0}>
-            <Button
-              isIconOnly
-              aria-label="Attach file"
-              size="sm"
-              variant="tertiary">
+            <Button isIconOnly aria-label="Attach file" size="sm" variant="tertiary">
               <Plus />
             </Button>
             <Tooltip.Content>
@@ -454,11 +475,7 @@ export function WithTextArea() {
             </Tooltip.Content>
           </Tooltip>
           <Tooltip delay={0}>
-            <Button
-              isIconOnly
-              aria-label="Connect Apps"
-              size="sm"
-              variant="tertiary">
+            <Button isIconOnly aria-label="Connect Apps" size="sm" variant="tertiary">
               <PlugConnection />
             </Button>
             <Tooltip.Content>
@@ -467,11 +484,7 @@ export function WithTextArea() {
           </Tooltip>
           <div className="ms-auto flex items-center gap-1.5">
             <Tooltip delay={0}>
-              <Button
-                isIconOnly
-                aria-label="Voice input"
-                size="sm"
-                variant="ghost">
+              <Button isIconOnly aria-label="Voice input" size="sm" variant="ghost">
                 <Microphone />
               </Button>
               <Tooltip.Content>
@@ -484,14 +497,9 @@ export function WithTextArea() {
                 aria-label="Send prompt"
                 isDisabled={!value.trim()}
                 isPending={isSubmitting}
-                onPress={handleSubmit}>
-                {({ isPending }) =>
-                  isPending ? (
-                    <Spinner color="current" size="sm" />
-                  ) : (
-                    <ArrowUp />
-                  )
-                }
+                onPress={handleSubmit}
+              >
+                {({isPending}) => (isPending ? <Spinner color="current" size="sm" /> : <ArrowUp />)}
               </Button>
               <Tooltip.Content className="flex items-center gap-1">
                 <p className="text-xs">Send</p>
@@ -504,15 +512,22 @@ export function WithTextArea() {
         </InputGroup.Suffix>
       </InputGroup>
     </TextField>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 **Variants**: Added `primary` and `secondary` variants matching the Input component.
 
-[Live example: input-group-variants](https://heroui.com/docs/react/releases/v3-0-0-beta-4)
 
-```tsx
+<ComponentPreview name="input-group-variants">
+
+````tsx
+import {Envelope} from "@gravity-ui/icons";
+import {InputGroup, Label, TextField} from "@vezham/react-v3";
+
 export function Variants() {
   return (
     <div className="flex flex-col gap-4">
@@ -520,7 +535,7 @@ export function Variants() {
         <Label>Primary variant</Label>
         <InputGroup variant="primary">
           <InputGroup.Prefix>
-            <Envelope className="text-muted size-4" />
+            <Envelope className="size-4 text-muted" />
           </InputGroup.Prefix>
           <InputGroup.Input placeholder="name@email.com" />
         </InputGroup>
@@ -529,34 +544,40 @@ export function Variants() {
         <Label>Secondary variant</Label>
         <InputGroup variant="secondary">
           <InputGroup.Prefix>
-            <Envelope className="text-muted size-4" />
+            <Envelope className="size-4 text-muted" />
           </InputGroup.Prefix>
           <InputGroup.Input placeholder="name@email.com" />
         </InputGroup>
       </TextField>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Button & ButtonGroup Outline Variants
 
 Added a new `outline` variant to both [Button](https://heroui.com/docs/components/button) and [ButtonGroup](https://heroui.com/docs/components/button-group) components for outlined styling.
 
-[Live example: release-button-outline-variant](https://heroui.com/docs/react/releases/v3-0-0-beta-4)
 
-```tsx
+<ComponentPreview name="release-button-outline-variant">
+
+````tsx
+import {Button, ButtonGroup} from "@vezham/react-v3";
+
 export function OutlineVariant() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">Button</p>
+        <p className="text-sm text-muted">Button</p>
         <div className="flex flex-wrap gap-3">
           <Button variant="outline">Outline</Button>
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">ButtonGroup</p>
+        <p className="text-sm text-muted">ButtonGroup</p>
         <ButtonGroup variant="outline">
           <Button>First</Button>
           <Button>Second</Button>
@@ -564,29 +585,34 @@ export function OutlineVariant() {
         </ButtonGroup>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### AlertDialog Size Support
 
 Added size support to [AlertDialog](https://heroui.com/docs/components/alert-dialog) component, allowing you to control the dialog size.
 
-[Live example: alert-dialog-sizes](https://heroui.com/docs/react/releases/v3-0-0-beta-4)
 
-```tsx
-'use client'
+<ComponentPreview name="alert-dialog-sizes">
+
+````tsx
+"use client";
+
+import {Rocket} from "@gravity-ui/icons";
+import {AlertDialog, Button} from "@vezham/react-v3";
 
 export function Sizes() {
-  const sizes = ['xs', 'sm', 'md', 'lg', 'cover'] as const
+  const sizes = ["xs", "sm", "md", "lg", "cover"] as const;
 
   return (
     <div className="flex flex-wrap gap-4">
-      {sizes.map(size => (
+      {sizes.map((size) => (
         <AlertDialog key={size}>
-          <Button variant="secondary">
-            {size.charAt(0).toUpperCase() + size.slice(1)}
-          </Button>
+          <Button variant="secondary">{size.charAt(0).toUpperCase() + size.slice(1)}</Button>
           <AlertDialog.Backdrop>
             <AlertDialog.Container size={size}>
               <AlertDialog.Dialog>
@@ -601,22 +627,18 @@ export function Sizes() {
                 </AlertDialog.Header>
                 <AlertDialog.Body>
                   <p>
-                    {size === 'cover' ? (
+                    {size === "cover" ? (
                       <>
-                        This alert dialog uses the <code>cover</code> size
-                        variant. It spans the full screen with margins: 16px on
-                        mobile and 40px on desktop. Maintains rounded corners
-                        and standard padding. Perfect for critical confirmations
-                        that need maximum width while preserving alert dialog
-                        aesthetics.
+                        This alert dialog uses the <code>cover</code> size variant. It spans the
+                        full screen with margins: 16px on mobile and 40px on desktop. Maintains
+                        rounded corners and standard padding. Perfect for critical confirmations
+                        that need maximum width while preserving alert dialog aesthetics.
                       </>
                     ) : (
                       <>
-                        This alert dialog uses the <code>{size}</code> size
-                        variant. On mobile devices, all sizes adapt to near
-                        full-width for optimal viewing. On desktop, each size
-                        provides a different maximum width to suit various
-                        content needs.
+                        This alert dialog uses the <code>{size}</code> size variant. On mobile
+                        devices, all sizes adapt to near full-width for optimal viewing. On desktop,
+                        each size provides a different maximum width to suit various content needs.
                       </>
                     )}
                   </p>
@@ -633,17 +655,23 @@ export function Sizes() {
         </AlertDialog>
       ))}
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Checkbox Animation Improvements
 
 Faster animation and increased stroke width for better feedback on [Checkbox](https://heroui.com/docs/components/checkbox).
 
-[Live example: checkbox-basic](https://heroui.com/docs/react/releases/v3-0-0-beta-4)
 
-```tsx
+<ComponentPreview name="checkbox-basic">
+
+````tsx
+import {Checkbox} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <Checkbox name="basic-terms">
@@ -654,16 +682,18 @@ export function Basic() {
         Accept terms and conditions
       </Checkbox.Content>
     </Checkbox>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Link Text Decoration
 
 The [Link](https://heroui.com/docs/components/link) component now uses Tailwind CSS classes for text decoration instead of built-in variants. This provides more flexibility and follows Tailwind conventions.
 
 **Available Tailwind utilities:**
-
 - `underline` - Always visible underline
 - `no-underline` - Remove underline
 - `hover:underline` - Underline appears on hover
@@ -671,16 +701,17 @@ The [Link](https://heroui.com/docs/components/link) component now uses Tailwind 
 - `decoration-1`, `decoration-2`, `decoration-4` - Control thickness
 - `underline-offset-1`, `underline-offset-2`, etc. - Adjust spacing
 
-[Live example: link-underline-and-offset](https://heroui.com/docs/react/releases/v3-0-0-beta-4)
 
-```tsx
+<ComponentPreview name="link-underline-and-offset">
+
+````tsx
+import {Link} from "@vezham/react-v3";
+
 export function LinkUnderlineAndOffset() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">
-          Default hover underline
-        </p>
+        <p className="text-sm font-medium text-muted">Default hover underline</p>
         <Link href="#">
           Hover to see the underline
           <Link.Icon />
@@ -688,9 +719,7 @@ export function LinkUnderlineAndOffset() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">
-          Always visible underline
-        </p>
+        <p className="text-sm font-medium text-muted">Always visible underline</p>
         <Link className="underline" href="#">
           Underline always visible
           <Link.Icon />
@@ -698,7 +727,7 @@ export function LinkUnderlineAndOffset() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">No underline</p>
+        <p className="text-sm font-medium text-muted">No underline</p>
         <Link className="no-underline" href="#">
           Link without any underline
           <Link.Icon />
@@ -706,9 +735,7 @@ export function LinkUnderlineAndOffset() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">
-          Changing the underline offset
-        </p>
+        <p className="text-sm font-medium text-muted">Changing the underline offset</p>
         <div className="flex flex-col gap-3">
           <Link className="underline-offset-1" href="#">
             Offset 1 (1px space)
@@ -729,9 +756,12 @@ export function LinkUnderlineAndOffset() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## ⚠️ Breaking Changes
 
@@ -740,7 +770,6 @@ export function LinkUnderlineAndOffset() {
 The Link component's built-in `underline` and `underlineOffset` props have been removed. Use Tailwind CSS classes instead for text decoration.
 
 **Before:**
-
 ```tsx
 <Link href="#" underline="hover" underlineOffset={4}>
   Link text
@@ -748,15 +777,13 @@ The Link component's built-in `underline` and `underlineOffset` props have been 
 ```
 
 **After:**
-
 ```tsx
-<Link href="#" className="underline-offset-4 hover:underline">
+<Link href="#" className="hover:underline underline-offset-4">
   Link text
 </Link>
 ```
 
 **Available Tailwind classes:**
-
 - `underline`, `no-underline`, `hover:underline` - Decoration line
 - `decoration-primary`, `decoration-muted`, etc. - Decoration color
 - `decoration-solid`, `decoration-dashed`, `decoration-dotted` - Decoration style
@@ -770,7 +797,6 @@ For more details, see the [Link documentation](https://heroui.com/docs/component
 The `isInSurface` prop and automatic surface detection have been removed from form-based components. Instead, use the `variant="secondary"` prop when placing form components inside Surface, Card, or other surface-based containers.
 
 **Before:**
-
 ```tsx
 <Surface>
   {/* Input automatically detected surface context */}
@@ -779,7 +805,6 @@ The `isInSurface` prop and automatic surface detection have been removed from fo
 ```
 
 **After:**
-
 ```tsx
 <Surface>
   {/* Use variant="secondary" for surface backgrounds */}
@@ -788,7 +813,6 @@ The `isInSurface` prop and automatic surface detection have been removed from fo
 ```
 
 **Affected components:**
-
 - Input
 - InputGroup
 - TextField
@@ -826,36 +850,32 @@ The `secondary` variant provides lower emphasis styling without shadow, which is
 HeroUI now provides direct exports from react-aria-components for easier access to primitives and utilities. These exports are particularly useful for [React Aria Framework setup](https://react-aria.adobe.com/frameworks).
 
 **Providers:**
-
 - `RouterProvider` - Configure React Aria links to use your client-side router
 - `I18nProvider` - Set the locale used by React Aria components
 
 **Hooks and Utilities:**
-
 - `isRTL` - Check if a locale is right-to-left
 - `useLocale` - Access the current locale and direction
 - `useFilter` - Filter and sort collections
 
 **Components:**
-
 - `Collection` - Collection component for managing lists
 - `ListBoxLoadMoreItem` - ListBox item for loading more items
 
 **i18n Utilities:**
-
 - `getLocalizationScript` - Get localization script for server-side rendering (from `react-aria-components/i18n`)
 
 All of these can be imported directly from `@heroui/react`:
 
 ```tsx
 import {
-  I18nProvider,
   RouterProvider,
-  getLocalizationScript,
+  I18nProvider,
   isRTL,
+  useLocale,
   useFilter,
-  useLocale
-} from '@heroui/react'
+  getLocalizationScript
+} from "@heroui/react";
 ```
 
 ## Links

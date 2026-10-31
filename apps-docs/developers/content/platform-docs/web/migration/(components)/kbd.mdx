@@ -3,16 +3,11 @@ title: Kbd
 description: Migration guide for Kbd from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Kbd documentation](/docs-ui/web/components/kbd) for complete
-  API reference, styling guide, and advanced examples. This guide only focuses
-  on migrating from HeroUI v2.
+  Refer to the [v3 Kbd documentation](/docs-ui/web/components/kbd) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,17 +15,17 @@ import {
 In v2, Kbd used a `keys` prop to automatically render keyboard keys:
 
 ```tsx
-import { Kbd } from '@heroui/react'
+import { Kbd } from "@heroui/react";
 
 export default function App() {
-  return <Kbd keys={['command']}>K</Kbd>
+  return <Kbd keys={["command"]}>K</Kbd>;
 }
 ```
 
 In v3, Kbd requires manual definition of keys using compound components:
 
 ```tsx
-import { Kbd } from '@heroui/react'
+import { Kbd } from "@heroui/react";
 
 export default function App() {
   return (
@@ -38,7 +33,7 @@ export default function App() {
       <Kbd.Abbr keyValue="command" />
       <Kbd.Content>K</Kbd.Content>
     </Kbd>
-  )
+  );
 }
 ```
 
@@ -51,21 +46,21 @@ export default function App() {
 
 ### 2. Prop Changes
 
-| v2 Prop      | v3 Location | Notes                                                        |
-| ------------ | ----------- | ------------------------------------------------------------ |
-| `keys`       | -           | Removed (use `Kbd.Abbr` with `keyValue`)                     |
-| `classNames` | -           | Use `className`                                              |
-| -            | `Kbd`       | New `variant` prop (`default` \| `light`)                    |
-| -            | `Kbd.Key`   | New subcomponent for key text (alternative to `Kbd.Content`) |
+| v2 Prop | v3 Location | Notes |
+|---------|-------------|-------|
+| `keys` | - | Removed (use `Kbd.Abbr` with `keyValue`) |
+| `classNames` | - | Use `className` |
+| - | `Kbd` | New `variant` prop (`default` \| `light`) |
+| - | `Kbd.Key` | New subcomponent for key text (alternative to `Kbd.Content`) |
 
 ## Migration Examples
 
 ### Variants
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
-    <Kbd keys={['command']}>K</Kbd>
+    <Kbd keys={["command"]}>K</Kbd>
     ```
   </Tab>
   <Tab value="v3">
@@ -92,18 +87,14 @@ v3 provides two subcomponents for key text content:
 Both can be used interchangeably for wrapping the non-modifier key text:
 
 ```tsx
-{
-  /* Using Kbd.Key */
-}
-;<Kbd>
+{/* Using Kbd.Key */}
+<Kbd>
   <Kbd.Abbr keyValue="command" />
   <Kbd.Key>K</Kbd.Key>
 </Kbd>
 
-{
-  /* Using Kbd.Content */
-}
-;<Kbd>
+{/* Using Kbd.Content */}
+<Kbd>
   <Kbd.Abbr keyValue="command" />
   <Kbd.Content>K</Kbd.Content>
 </Kbd>
@@ -125,19 +116,15 @@ Kbd (Root)
 The `keyValue` prop accepts the same keyboard key types as v2:
 
 **Modifier Keys:**
-
 - `command`, `shift`, `ctrl`, `option`, `alt`, `win`
 
 **Special Keys:**
-
 - `enter`, `delete`, `escape`, `tab`, `space`, `capslock`, `help`
 
 **Navigation Keys:**
-
 - `up`, `down`, `left`, `right`, `pageup`, `pagedown`, `home`, `end`
 
 **Function Keys:**
-
 - `fn`
 
 ## Summary

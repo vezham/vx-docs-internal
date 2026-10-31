@@ -1,20 +1,16 @@
 ---
 title: v1.0.3
-description: New Text typography component, ScrollShadow inverted support, Tabs RTL indicator fix, optional Avatar alt prop, Select indicator unification, and form field style refinements
+description:
+  New Text typography component, ScrollShadow inverted support, Tabs RTL indicator fix, optional Avatar alt prop, Select indicator unification, and form field style refinements
 github:
   pull: 400
 ---
 
-import {
-  Callout,
-  NativeTryOnDevice,
-  NativeVideoPlayerView,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, NativeTryOnDevice, NativeVideoPlayerView, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">May 11, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">May 11, 2026</span>
 </div>
 
 HeroUI Native v1.0.3 introduces the new `Text` typography primitive with a compound API for headings, paragraphs, and inline code, while delivering important fixes for `ScrollShadow` with inverted lists, `Tabs` indicator alignment in RTL layouts, and `Select.TriggerIndicator` animation when using custom children. This release also refines visual styles across `Button`, `Chip`, and `Input`, makes the `Avatar` `alt` prop optional, and corrects inner padding behavior for `TextField` and `SearchField`.
@@ -23,18 +19,31 @@ HeroUI Native v1.0.3 introduces the new `Text` typography primitive with a compo
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
-  <Tab value="npm">```bash npm i heroui-native ```</Tab>
-  <Tab value="pnpm">``` bash pnpm add heroui-native ```</Tab>
-  <Tab value="yarn">```bash yarn add heroui-native ```</Tab>
-  <Tab value="bun">```bash bun add heroui-native ```</Tab>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
+<Tab value="npm">
+  ```bash
+  npm i heroui-native
+  ```
+</Tab>
+<Tab value="pnpm">
+  ``` bash
+  pnpm add heroui-native
+  ```
+</Tab>
+<Tab value="yarn">
+  ```bash
+  yarn add heroui-native
+  ```
+</Tab>
+<Tab value="bun">
+  ```bash
+  bun add heroui-native
+  ```
+</Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
-  the latest version" and your AI assistant will automatically compare versions
-  and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs-ui/native/getting-started/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI Native MCP Server](/docs-ui/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -56,8 +65,8 @@ The `Text` component is a typography primitive that renders styled text via sema
 <NativeVideoPlayerView
   target="component"
   slug="text"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/text-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/text-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/text-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/text-docs-dark.mp4"
 />
 
 **Features:**
@@ -74,12 +83,12 @@ The `Text` component is a typography primitive that renders styled text via sema
 **Usage:**
 
 ```tsx
-import { Text } from 'heroui-native'
-import { View } from 'react-native'
+import { Text } from "heroui-native";
+import { View } from "react-native";
 
 export function Example() {
   return (
-    <View className="flex-1 justify-center gap-4 px-5">
+    <View className="flex-1 justify-center px-5 gap-4">
       <Text.Heading type="h1">Welcome</Text.Heading>
       <Text.Heading type="h3">Getting Started</Text.Heading>
       <Text.Paragraph>
@@ -90,7 +99,7 @@ export function Example() {
       </Text.Paragraph>
       <Text.Code>npm install heroui-native</Text.Code>
     </View>
-  )
+  );
 }
 ```
 
@@ -152,12 +161,12 @@ The [Avatar](/docs-ui/native/components/avatar) component's `alt` prop is now op
 **New Capability:**
 
 ```tsx
-import { Avatar } from 'heroui-native'
+import { Avatar } from "heroui-native";
 
-;<Avatar>
-  <Avatar.Image source={{ uri: 'https://example.com/avatar.jpg' }} />
+<Avatar>
+  <Avatar.Image source={{ uri: "https://example.com/avatar.jpg" }} />
   <Avatar.Fallback>JD</Avatar.Fallback>
-</Avatar>
+</Avatar>;
 ```
 
 Existing code that passes an explicit `alt` continues to work unchanged — the prop simply gains a sensible default when omitted. The `RootProps` type now reflects `alt?: string` with a JSDoc `@default 'Avatar'`, and the component documentation has been updated to match.

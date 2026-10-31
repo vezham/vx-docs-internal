@@ -9,34 +9,41 @@ links:
   figma: true
 ---
 
-import {
-  RelatedComponents,
-  RelatedShowcases
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents, RelatedShowcases } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Button } from '@heroui/react'
+import { Button } from '@heroui/react';
 ```
 
-[Live example: button-basic](https://heroui.com/docs/react/components/button)
 
-```tsx
-'use client'
+<ComponentPreview name="button-basic">
+
+````tsx
+"use client";
+
+import {Button} from "@vezham/react-v3";
 
 export function Basic() {
-  return <Button onPress={() => console.log('Button pressed')}>Click me</Button>
+  return <Button onPress={() => console.log("Button pressed")}>Click me</Button>;
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Examples
 
 ### Variants
 
-[Live example: button-variants](https://heroui.com/docs/react/components/button)
 
-```tsx
+<ComponentPreview name="button-variants">
+
+````tsx
+import {Button} from "@vezham/react-v3";
+
 export function Variants() {
   return (
     <div className="flex flex-wrap gap-3">
@@ -48,15 +55,21 @@ export function Variants() {
       <Button variant="danger">Danger</Button>
       <Button variant="danger-soft">Danger Soft</Button>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Sizes
 
-[Live example: button-sizes](https://heroui.com/docs/react/components/button)
 
-```tsx
+<ComponentPreview name="button-sizes">
+
+````tsx
+import {Button} from "@vezham/react-v3";
+
 export function Sizes() {
   return (
     <div className="flex items-center gap-3">
@@ -64,15 +77,22 @@ export function Sizes() {
       <Button size="md">Medium</Button>
       <Button size="lg">Large</Button>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Icons
 
-[Live example: button-with-icons](https://heroui.com/docs/react/components/button)
 
-```tsx
+<ComponentPreview name="button-with-icons">
+
+````tsx
+import {Envelope, Globe, Plus, TrashBin} from "@gravity-ui/icons";
+import {Button} from "@vezham/react-v3";
+
 export function WithIcons() {
   return (
     <div className="flex flex-wrap gap-3">
@@ -93,15 +113,22 @@ export function WithIcons() {
         Delete
       </Button>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Icon Only
 
-[Live example: button-icon-only](https://heroui.com/docs/react/components/button)
 
-```tsx
+<ComponentPreview name="button-icon-only">
+
+````tsx
+import {Ellipsis, Gear, TrashBin} from "@gravity-ui/icons";
+import {Button} from "@vezham/react-v3";
+
 export function IconOnly() {
   return (
     <div className="flex gap-3">
@@ -115,64 +142,85 @@ export function IconOnly() {
         <TrashBin />
       </Button>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Loading
 
-[Live example: button-loading](https://heroui.com/docs/react/components/button)
 
-```tsx
-'use client'
+<ComponentPreview name="button-loading">
+
+````tsx
+"use client";
+
+import {Button, Spinner} from "@vezham/react-v3";
 
 export function Loading() {
   return (
     <Button isPending>
-      {({ isPending }) => (
+      {({isPending}) => (
         <>
           {isPending ? <Spinner color="current" size="sm" /> : null}
           Uploading...
         </>
       )}
     </Button>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Loading State
 
-[Live example: button-loading-state](https://heroui.com/docs/react/components/button)
 
-```tsx
-'use client'
+<ComponentPreview name="button-loading-state">
+
+````tsx
+"use client";
+
+import {Paperclip} from "@gravity-ui/icons";
+import {Button, Spinner} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function LoadingState() {
-  const [isLoading, setLoading] = useState(false)
+  const [isLoading, setLoading] = useState(false);
 
   const handlePress = () => {
-    setLoading(true)
-    setTimeout(() => setLoading(false), 2000)
-  }
+    setLoading(true);
+    setTimeout(() => setLoading(false), 2000);
+  };
 
   return (
     <Button isPending={isLoading} onPress={handlePress}>
-      {({ isPending }) => (
+      {({isPending}) => (
         <>
           {isPending ? <Spinner color="current" size="sm" /> : <Paperclip />}
-          {isPending ? 'Uploading...' : 'Upload File'}
+          {isPending ? "Uploading..." : "Upload File"}
         </>
       )}
     </Button>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Full Width
 
-[Live example: button-full-width](https://heroui.com/docs/react/components/button)
 
-```tsx
+<ComponentPreview name="button-full-width">
+
+````tsx
+import {Plus} from "@gravity-ui/icons";
+import {Button} from "@vezham/react-v3";
+
 export function FullWidth() {
   return (
     <div className="w-[400px] space-y-3">
@@ -182,15 +230,21 @@ export function FullWidth() {
         With Icon
       </Button>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Disabled State
 
-[Live example: button-disabled](https://heroui.com/docs/react/components/button)
 
-```tsx
+<ComponentPreview name="button-disabled">
+
+````tsx
+import {Button} from "@vezham/react-v3";
+
 export function Disabled() {
   return (
     <div className="flex flex-wrap gap-3">
@@ -211,15 +265,22 @@ export function Disabled() {
         Danger
       </Button>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Social Buttons
 
-[Live example: button-social](https://heroui.com/docs/react/components/button)
 
-```tsx
+<ComponentPreview name="button-social">
+
+````tsx
+import {Button} from "@vezham/react-v3";
+import {Icon} from "@iconify/react";
+
 export function Social() {
   return (
     <div className="flex w-full max-w-xs flex-col gap-3">
@@ -236,89 +297,109 @@ export function Social() {
         Sign in with Apple
       </Button>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Render Function
 
-[Live example: button-render-function](https://heroui.com/docs/react/components/button)
 
-```tsx
-'use client'
+<ComponentPreview name="button-render-function">
+
+````tsx
+"use client";
+
+import {Button} from "@vezham/react-v3";
 
 export function RenderFunction() {
   return (
     <Button
-      render={(props, { isPressed }) => (
-        <button {...props} data-custom={isPressed ? 'pressed' : 'bar'} />
-      )}>
+      render={(props, {isPressed}) => (
+        <button {...props} data-custom={isPressed ? "pressed" : "bar"} />
+      )}
+    >
       Press me
     </Button>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Adding custom variants
 
 You can extend HeroUI components by wrapping them and adding your own custom variants.
 
-[Live example: button-custom-variants](https://heroui.com/docs/react/components/button)
 
-```tsx
+<ComponentPreview name="button-custom-variants">
+
+````tsx
+import type {ButtonProps} from "@vezham/react-v3";
+import type {VariantProps} from "tailwind-variants";
+
+import {Button, buttonVariants} from "@vezham/react-v3";
+import {tv} from "tailwind-variants";
+
 const myButtonVariants = tv({
-  base: 'text-md font-semibold shadow-md text-shadow-lg data-[pending=true]:opacity-40',
+  base: "text-md font-semibold shadow-md text-shadow-lg data-[pending=true]:opacity-40",
   defaultVariants: {
-    radius: 'full',
-    variant: 'primary'
+    radius: "full",
+    variant: "primary",
   },
   extend: buttonVariants,
   variants: {
     radius: {
-      full: 'rounded-full',
-      lg: 'rounded-lg',
-      md: 'rounded-md',
-      sm: 'rounded-sm'
+      full: "rounded-full",
+      lg: "rounded-lg",
+      md: "rounded-md",
+      sm: "rounded-sm",
     },
     size: {
-      lg: 'h-12 px-8',
-      md: 'h-11 px-6',
-      sm: 'h-10 px-4',
-      xl: 'h-13 px-10'
+      lg: "h-12 px-8",
+      md: "h-11 px-6",
+      sm: "h-10 px-4",
+      xl: "h-13 px-10",
     },
     variant: {
-      primary:
-        'text-white dark:bg-white/10 dark:text-white dark:hover:bg-white/15'
-    }
-  }
-})
+      primary: "text-white dark:bg-white/10 dark:text-white dark:hover:bg-white/15",
+    },
+  },
+});
 
-type MyButtonVariants = VariantProps<typeof myButtonVariants>
-export type MyButtonProps = Omit<ButtonProps, 'className'> &
-  MyButtonVariants & { className?: string }
+type MyButtonVariants = VariantProps<typeof myButtonVariants>;
+export type MyButtonProps = Omit<ButtonProps, "className"> &
+  MyButtonVariants & {className?: string};
 
-function CustomButton({ className, radius, variant, ...props }: MyButtonProps) {
-  return (
-    <Button
-      className={myButtonVariants({ className, radius, variant })}
-      {...props}
-    />
-  )
+function CustomButton({className, radius, variant, ...props}: MyButtonProps) {
+  return <Button className={myButtonVariants({className, radius, variant})} {...props} />;
 }
 
 export function CustomVariants() {
-  return <CustomButton>Custom Button</CustomButton>
+  return <CustomButton>Custom Button</CustomButton>;
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Adding Ripple Effect
 
 The Button component supports ripple effects through composition, allowing you to nest ripple components as children. This example uses [m3-ripple](https://github.com/saltyaom/m3-ripple).
 
-[Live example: button-ripple-effect](https://heroui.com/docs/react/components/button)
 
-```tsx
-'use client'
+<ComponentPreview name="button-ripple-effect">
+
+````tsx
+"use client";
+
+import {Button} from "@vezham/react-v3";
+import {Ripple} from "m3-ripple";
+
+import "m3-ripple/ripple.css";
 
 export function RippleEffect() {
   return (
@@ -326,18 +407,24 @@ export function RippleEffect() {
       <Ripple />
       Click me
     </Button>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: button-custom-styles](https://heroui.com/docs/react/components/button)
+
+<ComponentPreview name="button-custom-styles">
 
 ````tsx
-'use client'
+"use client";
+
+import {Button} from "@vezham/react-v3";
 
 /**
  * The `gradient-border` class below depends on a global utility.
@@ -378,13 +465,17 @@ export function CustomStyles() {
       variant="ghost"
       style={{
         boxShadow:
-          'rgba(0, 0, 0, 0.02) 0px 1px 6px, rgba(0, 0, 0, 0.02) 0px 3px 12px, rgba(0, 0, 0, 0.01) 0px 8px 24px, rgba(0, 0, 0, 0.02) 0px 18px 40px, rgba(0, 0, 0, 0.02) 0px 40px 80px'
-      }}>
+          "rgba(0, 0, 0, 0.02) 0px 1px 6px, rgba(0, 0, 0, 0.02) 0px 3px 12px, rgba(0, 0, 0, 0.01) 0px 8px 24px, rgba(0, 0, 0, 0.02) 0px 18px 40px, rgba(0, 0, 0, 0.02) 0px 40px 80px",
+      }}
+    >
       Upgrade
     </Button>
-  )
+  );
 }
 ````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -412,14 +503,12 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The Button component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/button.css)):
 
 #### Base & Size Classes [!toc]
-
 - `.button` - Base button styles
 - `.button--sm` - Small size variant
 - `.button--md` - Medium size variant
 - `.button--lg` - Large size variant
 
 #### Variant Classes [!toc]
-
 - `.button--primary`
 - `.button--secondary`
 - `.button--tertiary`
@@ -429,7 +518,6 @@ The Button component uses these CSS classes ([View source styles](https://github
 - `.button--danger-soft`
 
 #### Modifier Classes [!toc]
-
 - `.button--icon-only`
 - `.button--icon-only.button--sm`
 - `.button--icon-only.button--lg`
@@ -448,30 +536,30 @@ The button supports both CSS pseudo-classes and data attributes for flexibility:
 
 ### Button
 
-| Prop         | Type                                                                                          | Default     | Description                                                      |
-| ------------ | --------------------------------------------------------------------------------------------- | ----------- | ---------------------------------------------------------------- |
-| `variant`    | `'primary' \| 'secondary' \| 'tertiary' \| 'outline' \| 'ghost' \| 'danger' \| 'danger-soft'` | `'primary'` | Visual style variant                                             |
-| `size`       | `'sm' \| 'md' \| 'lg'`                                                                        | `'md'`      | Size of the button                                               |
-| `fullWidth`  | `boolean`                                                                                     | `false`     | Whether the button should take full width of its container       |
-| `isDisabled` | `boolean`                                                                                     | `false`     | Whether the button is disabled                                   |
-| `isPending`  | `boolean`                                                                                     | `false`     | Whether the button is in a loading state                         |
-| `isIconOnly` | `boolean`                                                                                     | `false`     | Whether the button contains only an icon                         |
-| `onPress`    | `(e: PressEvent) => void`                                                                     | -           | Handler called when the button is pressed                        |
-| `children`   | `React.ReactNode \| (values: ButtonRenderProps) => React.ReactNode`                           | -           | Button content or render prop                                    |
-| `render`     | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, ButtonRenderProps>`                     | -           | Overrides the default DOM element with a custom render function. |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'primary' \| 'secondary' \| 'tertiary' \| 'outline' \| 'ghost' \| 'danger' \| 'danger-soft'` | `'primary'` | Visual style variant |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the button |
+| `fullWidth` | `boolean` | `false` | Whether the button should take full width of its container |
+| `isDisabled` | `boolean` | `false` | Whether the button is disabled |
+| `isPending` | `boolean` | `false` | Whether the button is in a loading state |
+| `isIconOnly` | `boolean` | `false` | Whether the button contains only an icon |
+| `onPress` | `(e: PressEvent) => void` | - | Handler called when the button is pressed |
+| `children` | `React.ReactNode \| (values: ButtonRenderProps) => React.ReactNode` | - | Button content or render prop |
+| `render` | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, ButtonRenderProps>` | - | Overrides the default DOM element with a custom render function.|
 
 ### Render Props
 
 When using the render prop pattern, these values are provided:
 
-| Prop             | Type      | Description                                    |
-| ---------------- | --------- | ---------------------------------------------- |
-| `isPending`      | `boolean` | Whether the button is in a loading state       |
-| `isPressed`      | `boolean` | Whether the button is currently pressed        |
-| `isHovered`      | `boolean` | Whether the button is hovered                  |
-| `isFocused`      | `boolean` | Whether the button is focused                  |
+| Prop | Type | Description |
+|------|------|-------------|
+| `isPending` | `boolean` | Whether the button is in a loading state |
+| `isPressed` | `boolean` | Whether the button is currently pressed |
+| `isHovered` | `boolean` | Whether the button is hovered |
+| `isFocused` | `boolean` | Whether the button is focused |
 | `isFocusVisible` | `boolean` | Whether the button should show focus indicator |
-| `isDisabled`     | `boolean` | Whether the button is disabled                 |
+| `isDisabled` | `boolean` | Whether the button is disabled |
 
 ## Related Showcases
 

@@ -9,17 +9,22 @@ links:
   figma: true
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { ToggleButton, ToggleButtonGroup } from '@heroui/react'
+import { ToggleButtonGroup, ToggleButton } from '@heroui/react';
 ```
 
-[Live example: toggle-button-group-basic](https://heroui.com/docs/react/components/toggle-button-group)
 
-```tsx
+<ComponentPreview name="toggle-button-group-basic">
+
+````tsx
+import {Bold, Italic, Strikethrough, Underline} from "@gravity-ui/icons";
+import {ToggleButton, ToggleButtonGroup} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <ToggleButtonGroup selectionMode="multiple">
@@ -39,14 +44,17 @@ export function Basic() {
         <Strikethrough />
       </ToggleButton>
     </ToggleButtonGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 ```tsx
-import { ToggleButton, ToggleButtonGroup } from '@heroui/react'
+import { ToggleButtonGroup, ToggleButton } from '@heroui/react';
 
 export default () => (
   <ToggleButtonGroup selectionMode="multiple">
@@ -60,21 +68,25 @@ export default () => (
       Third
     </ToggleButton>
   </ToggleButtonGroup>
-)
+);
 ```
 
 ## Examples
 
 ### Sizes
 
-[Live example: toggle-button-group-sizes](https://heroui.com/docs/react/components/toggle-button-group)
 
-```tsx
+<ComponentPreview name="toggle-button-group-sizes">
+
+````tsx
+import {Bold, Italic, Strikethrough, Underline} from "@gravity-ui/icons";
+import {ToggleButton, ToggleButtonGroup} from "@vezham/react-v3";
+
 export function Sizes() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">
-        <span className="text-muted text-sm">Small</span>
+        <span className="text-sm text-muted">Small</span>
         <ToggleButtonGroup selectionMode="multiple" size="sm">
           <ToggleButton isIconOnly aria-label="Bold" id="bold">
             <Bold />
@@ -87,17 +99,14 @@ export function Sizes() {
             <ToggleButtonGroup.Separator />
             <Underline />
           </ToggleButton>
-          <ToggleButton
-            isIconOnly
-            aria-label="Strikethrough"
-            id="strikethrough">
+          <ToggleButton isIconOnly aria-label="Strikethrough" id="strikethrough">
             <ToggleButtonGroup.Separator />
             <Strikethrough />
           </ToggleButton>
         </ToggleButtonGroup>
       </div>
       <div className="flex flex-col gap-2">
-        <span className="text-muted text-sm">Medium (default)</span>
+        <span className="text-sm text-muted">Medium (default)</span>
         <ToggleButtonGroup selectionMode="multiple" size="md">
           <ToggleButton isIconOnly aria-label="Bold" id="bold">
             <Bold />
@@ -110,17 +119,14 @@ export function Sizes() {
             <ToggleButtonGroup.Separator />
             <Underline />
           </ToggleButton>
-          <ToggleButton
-            isIconOnly
-            aria-label="Strikethrough"
-            id="strikethrough">
+          <ToggleButton isIconOnly aria-label="Strikethrough" id="strikethrough">
             <ToggleButtonGroup.Separator />
             <Strikethrough />
           </ToggleButton>
         </ToggleButtonGroup>
       </div>
       <div className="flex flex-col gap-2">
-        <span className="text-muted text-sm">Large</span>
+        <span className="text-sm text-muted">Large</span>
         <ToggleButtonGroup selectionMode="multiple" size="lg">
           <ToggleButton isIconOnly aria-label="Bold" id="bold">
             <Bold />
@@ -133,30 +139,34 @@ export function Sizes() {
             <ToggleButtonGroup.Separator />
             <Underline />
           </ToggleButton>
-          <ToggleButton
-            isIconOnly
-            aria-label="Strikethrough"
-            id="strikethrough">
+          <ToggleButton isIconOnly aria-label="Strikethrough" id="strikethrough">
             <ToggleButtonGroup.Separator />
             <Strikethrough />
           </ToggleButton>
         </ToggleButtonGroup>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Orientation
 
-[Live example: toggle-button-group-orientation](https://heroui.com/docs/react/components/toggle-button-group)
 
-```tsx
+<ComponentPreview name="toggle-button-group-orientation">
+
+````tsx
+import {Bold, Italic, Underline} from "@gravity-ui/icons";
+import {ToggleButton, ToggleButtonGroup} from "@vezham/react-v3";
+
 export function Orientation() {
   return (
     <div className="flex items-start gap-8">
       <div className="flex flex-col gap-2">
-        <span className="text-muted text-sm">Horizontal</span>
+        <span className="text-sm text-muted">Horizontal</span>
         <ToggleButtonGroup orientation="horizontal" selectionMode="multiple">
           <ToggleButton isIconOnly aria-label="Bold" id="bold">
             <Bold />
@@ -172,7 +182,7 @@ export function Orientation() {
         </ToggleButtonGroup>
       </div>
       <div className="flex flex-col gap-2">
-        <span className="text-muted text-sm">Vertical</span>
+        <span className="text-sm text-muted">Vertical</span>
         <ToggleButtonGroup orientation="vertical" selectionMode="multiple">
           <ToggleButton isIconOnly aria-label="Bold" id="bold">
             <Bold />
@@ -188,15 +198,19 @@ export function Orientation() {
         </ToggleButtonGroup>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Full Width
 
-[Live example: toggle-button-group-full-width](https://heroui.com/docs/react/components/toggle-button-group)
 
-```tsx
+<ComponentPreview name="toggle-button-group-full-width">
+
+````tsx
 import {
   Bold,
   Italic,
@@ -204,8 +218,9 @@ import {
   TextAlignCenter,
   TextAlignLeft,
   TextAlignRight,
-  Underline
-} from '@gravity-ui/icons'
+  Underline,
+} from "@gravity-ui/icons";
+import {ToggleButton, ToggleButtonGroup} from "@vezham/react-v3";
 
 export function FullWidth() {
   return (
@@ -244,20 +259,27 @@ export function FullWidth() {
         </ToggleButton>
       </ToggleButtonGroup>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Disabled
 
-[Live example: toggle-button-group-disabled](https://heroui.com/docs/react/components/toggle-button-group)
 
-```tsx
+<ComponentPreview name="toggle-button-group-disabled">
+
+````tsx
+import {Bold, Italic, Underline} from "@gravity-ui/icons";
+import {ToggleButton, ToggleButtonGroup} from "@vezham/react-v3";
+
 export function Disabled() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">
-        <span className="text-muted text-sm">All buttons disabled</span>
+        <span className="text-sm text-muted">All buttons disabled</span>
         <ToggleButtonGroup isDisabled selectionMode="multiple">
           <ToggleButton isIconOnly aria-label="Bold" id="bold">
             <Bold />
@@ -273,7 +295,7 @@ export function Disabled() {
         </ToggleButtonGroup>
       </div>
       <div className="flex flex-col gap-2">
-        <span className="text-muted text-sm">Individual button disabled</span>
+        <span className="text-sm text-muted">Individual button disabled</span>
         <ToggleButtonGroup selectionMode="multiple">
           <ToggleButton isIconOnly aria-label="Bold" id="bold">
             <Bold />
@@ -289,17 +311,24 @@ export function Disabled() {
         </ToggleButtonGroup>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Without Separator
 
 Simply omit the `<ToggleButtonGroup.Separator />` component from your buttons.
 
-[Live example: toggle-button-group-without-separator](https://heroui.com/docs/react/components/toggle-button-group)
 
-```tsx
+<ComponentPreview name="toggle-button-group-without-separator">
+
+````tsx
+import {Bold, Italic, Strikethrough, Underline} from "@gravity-ui/icons";
+import {ToggleButton, ToggleButtonGroup} from "@vezham/react-v3";
+
 export function WithoutSeparator() {
   return (
     <ToggleButtonGroup selectionMode="multiple">
@@ -316,22 +345,29 @@ export function WithoutSeparator() {
         <Strikethrough />
       </ToggleButton>
     </ToggleButtonGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Detached
 
 Use `isDetached` to separate buttons with gaps instead of connecting them.
 
-[Live example: toggle-button-group-attached](https://heroui.com/docs/react/components/toggle-button-group)
 
-```tsx
+<ComponentPreview name="toggle-button-group-attached">
+
+````tsx
+import {Bold, Italic, Strikethrough, Underline} from "@gravity-ui/icons";
+import {ToggleButton, ToggleButtonGroup} from "@vezham/react-v3";
+
 export function Attached() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">
-        <span className="text-muted text-sm">Attached (default)</span>
+        <span className="text-sm text-muted">Attached (default)</span>
         <ToggleButtonGroup selectionMode="multiple">
           <ToggleButton isIconOnly aria-label="Bold" id="bold">
             <Bold />
@@ -344,17 +380,14 @@ export function Attached() {
             <ToggleButtonGroup.Separator />
             <Underline />
           </ToggleButton>
-          <ToggleButton
-            isIconOnly
-            aria-label="Strikethrough"
-            id="strikethrough">
+          <ToggleButton isIconOnly aria-label="Strikethrough" id="strikethrough">
             <ToggleButtonGroup.Separator />
             <Strikethrough />
           </ToggleButton>
         </ToggleButtonGroup>
       </div>
       <div className="flex flex-col gap-2">
-        <span className="text-muted text-sm">Detached</span>
+        <span className="text-sm text-muted">Detached</span>
         <ToggleButtonGroup isDetached selectionMode="multiple">
           <ToggleButton isIconOnly aria-label="Bold" id="bold">
             <Bold />
@@ -365,26 +398,27 @@ export function Attached() {
           <ToggleButton isIconOnly aria-label="Underline" id="underline">
             <Underline />
           </ToggleButton>
-          <ToggleButton
-            isIconOnly
-            aria-label="Strikethrough"
-            id="strikethrough">
+          <ToggleButton isIconOnly aria-label="Strikethrough" id="strikethrough">
             <Strikethrough />
           </ToggleButton>
         </ToggleButtonGroup>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Selection Mode
 
 Use `selectionMode="single"` for mutually exclusive choices or `selectionMode="multiple"` for independent toggles.
 
-[Live example: toggle-button-group-selection-mode](https://heroui.com/docs/react/components/toggle-button-group)
 
-```tsx
+<ComponentPreview name="toggle-button-group-selection-mode">
+
+````tsx
 import {
   Bold,
   Italic,
@@ -392,17 +426,16 @@ import {
   TextAlignCenter,
   TextAlignLeft,
   TextAlignRight,
-  Underline
-} from '@gravity-ui/icons'
+  Underline,
+} from "@gravity-ui/icons";
+import {ToggleButton, ToggleButtonGroup} from "@vezham/react-v3";
 
 export function SelectionMode() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">
-        <span className="text-muted text-sm">Single selection</span>
-        <ToggleButtonGroup
-          defaultSelectedKeys={['center']}
-          selectionMode="single">
+        <span className="text-sm text-muted">Single selection</span>
+        <ToggleButtonGroup defaultSelectedKeys={["center"]} selectionMode="single">
           <ToggleButton id="left">
             <TextAlignLeft />
             Left
@@ -420,10 +453,8 @@ export function SelectionMode() {
         </ToggleButtonGroup>
       </div>
       <div className="flex flex-col gap-2">
-        <span className="text-muted text-sm">Multiple selection</span>
-        <ToggleButtonGroup
-          defaultSelectedKeys={['bold', 'underline']}
-          selectionMode="multiple">
+        <span className="text-sm text-muted">Multiple selection</span>
+        <ToggleButtonGroup defaultSelectedKeys={["bold", "underline"]} selectionMode="multiple">
           <ToggleButton isIconOnly aria-label="Bold" id="bold">
             <Bold />
           </ToggleButton>
@@ -435,36 +466,44 @@ export function SelectionMode() {
             <ToggleButtonGroup.Separator />
             <Underline />
           </ToggleButton>
-          <ToggleButton
-            isIconOnly
-            aria-label="Strikethrough"
-            id="strikethrough">
+          <ToggleButton isIconOnly aria-label="Strikethrough" id="strikethrough">
             <ToggleButtonGroup.Separator />
             <Strikethrough />
           </ToggleButton>
         </ToggleButtonGroup>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Controlled
 
-[Live example: toggle-button-group-controlled](https://heroui.com/docs/react/components/toggle-button-group)
 
-```tsx
-'use client'
+<ComponentPreview name="toggle-button-group-controlled">
+
+````tsx
+"use client";
+
+import type {Key} from "@vezham/react-v3";
+
+import {Bold, Italic, Strikethrough, Underline} from "@gravity-ui/icons";
+import {ToggleButton, ToggleButtonGroup} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function Controlled() {
-  const [selectedKeys, setSelectedKeys] = useState(new Set<Key>(['bold']))
+  const [selectedKeys, setSelectedKeys] = useState(new Set<Key>(["bold"]));
 
   return (
     <div className="flex flex-col gap-4">
       <ToggleButtonGroup
         selectedKeys={selectedKeys}
         selectionMode="multiple"
-        onSelectionChange={setSelectedKeys}>
+        onSelectionChange={setSelectedKeys}
+      >
         <ToggleButton isIconOnly aria-label="Bold" id="bold">
           <Bold />
         </ToggleButton>
@@ -481,58 +520,57 @@ export function Controlled() {
           <Strikethrough />
         </ToggleButton>
       </ToggleButtonGroup>
-      <p className="text-muted text-sm">
-        Selected:{' '}
+      <p className="text-sm text-muted">
+        Selected:{" "}
         <span className="font-medium">
-          {selectedKeys.size > 0 ? [...selectedKeys].join(', ') : 'None'}
+          {selectedKeys.size > 0 ? [...selectedKeys].join(", ") : "None"}
         </span>
       </p>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: toggle-button-group-custom-styles](https://heroui.com/docs/react/components/toggle-button-group)
 
-```tsx
+<ComponentPreview name="toggle-button-group-custom-styles">
+
+````tsx
+import {Bold, Italic, Underline} from "@gravity-ui/icons";
+import {ToggleButton, ToggleButtonGroup} from "@vezham/react-v3";
+
 const toggleClass =
-  'rounded-lg text-muted data-[selected=true]:bg-accent-soft data-[selected=true]:text-accent-soft-foreground'
+  "rounded-lg text-muted data-[selected=true]:bg-accent-soft data-[selected=true]:text-accent-soft-foreground";
 
 export function CustomStyles() {
   return (
     <ToggleButtonGroup
       aria-label="Text formatting"
-      className="border-border/80 bg-surface gap-1 rounded-xl border p-1 shadow-sm"
-      selectionMode="multiple">
-      <ToggleButton
-        isIconOnly
-        aria-label="Bold"
-        className={toggleClass}
-        id="bold">
+      className="gap-1 rounded-xl border border-border/80 bg-surface p-1 shadow-sm"
+      selectionMode="multiple"
+    >
+      <ToggleButton isIconOnly aria-label="Bold" className={toggleClass} id="bold">
         <Bold />
       </ToggleButton>
-      <ToggleButton
-        isIconOnly
-        aria-label="Italic"
-        className={toggleClass}
-        id="italic">
+      <ToggleButton isIconOnly aria-label="Italic" className={toggleClass} id="italic">
         <Italic />
       </ToggleButton>
-      <ToggleButton
-        isIconOnly
-        aria-label="Underline"
-        className={toggleClass}
-        id="underline">
+      <ToggleButton isIconOnly aria-label="Underline" className={toggleClass} id="underline">
         <Underline />
       </ToggleButton>
     </ToggleButtonGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -564,7 +602,6 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The ToggleButtonGroup component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/toggle-button-group.css)):
 
 #### Base & Layout Classes [!toc]
-
 - `.toggle-button-group` - Base container styles
 - `.toggle-button-group--horizontal` - Horizontal orientation
 - `.toggle-button-group--vertical` - Vertical orientation
@@ -572,7 +609,6 @@ The ToggleButtonGroup component uses these CSS classes ([View source styles](htt
 - `.toggle-button-group__separator` - Separator element between buttons
 
 #### Modifier Classes [!toc]
-
 - `.toggle-button-group--detached` - Detached mode (separated buttons with gaps)
 
 ## API Reference
@@ -581,25 +617,25 @@ The ToggleButtonGroup component uses these CSS classes ([View source styles](htt
 
 Inherits from [React Aria ToggleButtonGroup](https://react-aria.adobe.com/ToggleButtonGroup).
 
-| Prop                     | Type                         | Default        | Description                                      |
-| ------------------------ | ---------------------------- | -------------- | ------------------------------------------------ |
-| `selectionMode`          | `"single" \| "multiple"`     | `"single"`     | Whether one or multiple buttons can be selected  |
-| `selectedKeys`           | `Iterable<Key>`              | -              | Controlled selection state                       |
-| `defaultSelectedKeys`    | `Iterable<Key>`              | -              | Default selected keys (uncontrolled)             |
-| `onSelectionChange`      | `(keys: Set<Key>) => void`   | -              | Called when selection changes                    |
-| `disallowEmptySelection` | `boolean`                    | `false`        | Prevents clearing all selections                 |
-| `orientation`            | `"horizontal" \| "vertical"` | `"horizontal"` | Layout direction                                 |
-| `size`                   | `"sm" \| "md" \| "lg"`       | `"md"`         | Size propagated to child ToggleButtons           |
-| `isDetached`             | `boolean`                    | `false`        | Whether buttons are visually separated with gaps |
-| `fullWidth`              | `boolean`                    | `false`        | Whether the group fills available width          |
-| `isDisabled`             | `boolean`                    | `false`        | Disables all buttons in the group                |
-| `className`              | `string`                     | -              | Additional CSS classes                           |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `selectionMode` | `"single" \| "multiple"` | `"single"` | Whether one or multiple buttons can be selected |
+| `selectedKeys` | `Iterable<Key>` | - | Controlled selection state |
+| `defaultSelectedKeys` | `Iterable<Key>` | - | Default selected keys (uncontrolled) |
+| `onSelectionChange` | `(keys: Set<Key>) => void` | - | Called when selection changes |
+| `disallowEmptySelection` | `boolean` | `false` | Prevents clearing all selections |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Layout direction |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Size propagated to child ToggleButtons |
+| `isDetached` | `boolean` | `false` | Whether buttons are visually separated with gaps |
+| `fullWidth` | `boolean` | `false` | Whether the group fills available width |
+| `isDisabled` | `boolean` | `false` | Disables all buttons in the group |
+| `className` | `string` | - | Additional CSS classes |
 
 ### ToggleButtonGroup.Separator
 
-| Prop        | Type     | Default | Description            |
-| ----------- | -------- | ------- | ---------------------- |
-| `className` | `string` | -       | Additional CSS classes |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
 
 ## Note
 

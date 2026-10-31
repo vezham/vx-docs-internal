@@ -6,6 +6,7 @@ icon: book
 
 import { DocsImage } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 HeroUI Native follows 9 core principles that prioritize clarity, accessibility, customization, and developer experience.
 
 ## Core Principles
@@ -20,6 +21,7 @@ Use semantic naming (primary, secondary, tertiary) instead of visual description
   alt="Semantic Intent Hierarchy"
 />
 
+
 ```tsx
 // ✅ Semantic variants communicate hierarchy
 <Button variant="primary">Save</Button>
@@ -27,21 +29,21 @@ Use semantic naming (primary, secondary, tertiary) instead of visual description
 <Button variant="tertiary">Cancel</Button>
 ```
 
-| Variant       | Purpose                           | Usage            |
-| ------------- | --------------------------------- | ---------------- |
-| **Primary**   | Main action to move forward       | 1 per context    |
-| **Secondary** | Alternative actions               | Multiple allowed |
-| **Tertiary**  | Dismissive actions (cancel, skip) | Sparingly        |
-| **Danger**    | Destructive actions               | When needed      |
+| Variant | Purpose | Usage |
+|---------|---------|-------|
+| **Primary** | Main action to move forward | 1 per context |
+| **Secondary** | Alternative actions | Multiple allowed |
+| **Tertiary** | Dismissive actions (cancel, skip) | Sparingly |
+| **Danger** | Destructive actions | When needed |
 
 ### 2. Accessibility as Foundation
 
 Accessibility follows mobile development best practices with proper touch accessibility, focus management, and screen reader support built into every component. All components include proper accessibility labels and semantic structure for VoiceOver (iOS) and TalkBack (Android).
 
 ```tsx
-import { Tabs } from 'heroui-native'
+import { Tabs } from 'heroui-native';
 
-;<Tabs value="profile" onValueChange={setActiveTab}>
+<Tabs value="profile" onValueChange={setActiveTab}>
   <Tabs.List>
     <Tabs.Indicator />
     <Tabs.Trigger value="profile">
@@ -62,9 +64,9 @@ Compound components let you rearrange, customize, or omit parts as needed. Use d
 
 ```tsx
 // Compose parts to build exactly what you need
-import { Accordion } from 'heroui-native'
+import { Accordion } from 'heroui-native';
 
-;<Accordion>
+<Accordion>
   <Accordion.Item value="1">
     <Accordion.Trigger>
       Question Text
@@ -129,22 +131,22 @@ import { Button, Chip, Avatar } from 'heroui-native';
 Full TypeScript support with IntelliSense, auto-completion, and compile-time error detection. Extend types for custom components.
 
 ```tsx
-import type { ButtonRootProps } from 'heroui-native'
+import type { ButtonRootProps } from 'heroui-native';
 
 // Type-safe props and event handlers
-;<Button
-  variant="primary" // Autocomplete: primary | secondary | tertiary | ghost | danger | danger-soft
-  size="md" // Type checked: sm | md | lg
-  onPress={() => {
-    // Properly typed press handler
-    console.log('Button pressed')
-  }}>
+<Button
+  variant="primary"  // Autocomplete: primary | secondary | tertiary | ghost | danger | danger-soft
+  size="md"          // Type checked: sm | md | lg
+  onPress={() => {   // Properly typed press handler
+    console.log('Button pressed');
+  }}
+>
   <Button.Label>Click me</Button.Label>
 </Button>
 
 // Extend types for custom components
 interface CustomButtonProps extends Omit<ButtonRootProps, 'variant'> {
-  intent: 'save' | 'cancel' | 'delete'
+  intent: 'save' | 'cancel' | 'delete';
 }
 ```
 
@@ -161,7 +163,7 @@ Beautiful defaults out-of-the-box. Transform the entire look with CSS variables 
 @layer theme {
   @variant light {
     --accent: oklch(0.65 0.25 270); /* Custom indigo accent */
-    --background: oklch(0.98 0 0); /* Custom background */
+    --background: oklch(0.98 0 0);  /* Custom background */
   }
 
   @variant dark {

@@ -3,16 +3,11 @@ title: Pagination
 description: Migration guide for Pagination from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Pagination documentation](/docs-ui/web/components/pagination)
-  for complete API reference, styling guide, and advanced examples. This guide
-  only focuses on migrating from HeroUI v2.
+  Refer to the [v3 Pagination documentation](/docs-ui/web/components/pagination) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,17 +15,19 @@ import {
 In v2, `Pagination` was a single component that handled all rendering internally via props:
 
 ```tsx
-import { Pagination } from '@heroui/react'
+import { Pagination } from "@heroui/react";
 
 export default function App() {
-  return <Pagination total={10} initialPage={1} showControls />
+  return (
+    <Pagination total={10} initialPage={1} showControls />
+  );
 }
 ```
 
 In v3, Pagination uses a compound component pattern where you compose each part explicitly:
 
 ```tsx
-import { Pagination } from '@heroui/react'
+import { Pagination } from "@heroui/react";
 
 export default function App() {
   return (
@@ -63,7 +60,7 @@ export default function App() {
         </Pagination.Item>
       </Pagination.Content>
     </Pagination>
-  )
+  );
 }
 ```
 
@@ -81,29 +78,29 @@ export default function App() {
 
 ### 3. Prop Changes
 
-| v2 Prop                  | v3 Equivalent                                                               | Notes                                                    |
-| ------------------------ | --------------------------------------------------------------------------- | -------------------------------------------------------- |
-| `total`                  | -                                                                           | Removed (compose items manually)                         |
-| `page`                   | -                                                                           | Manage active state via `isActive` on `Pagination.Link`  |
-| `initialPage`            | -                                                                           | Manage state externally                                  |
-| `onChange`               | -                                                                           | Use `onPress` on individual `Pagination.Link` components |
-| `siblings`               | -                                                                           | Removed (compose items manually)                         |
-| `boundaries`             | -                                                                           | Removed (compose items manually)                         |
-| `dotsJump`               | -                                                                           | Removed (handle ellipsis click manually)                 |
-| `loop`                   | -                                                                           | Removed (implement manually)                             |
-| `showControls`           | -                                                                           | Compose `Pagination.Previous` and `Pagination.Next`      |
-| `isCompact`              | -                                                                           | Removed (style with Tailwind CSS)                        |
-| `showShadow`             | -                                                                           | Removed (use Tailwind `shadow-*` classes)                |
-| `size`                   | `Pagination` `size`                                                         | Same (`sm`, `md`, `lg`)                                  |
-| `variant`                | -                                                                           | Removed (use Tailwind CSS)                               |
-| `color`                  | -                                                                           | Removed (use Tailwind CSS)                               |
-| `radius`                 | -                                                                           | Removed (use Tailwind CSS)                               |
-| `isDisabled`             | `isDisabled` on `Pagination.Link`, `Pagination.Previous`, `Pagination.Next` | Per-item instead of global                               |
-| `disableCursorAnimation` | -                                                                           | Removed                                                  |
-| `disableAnimation`       | -                                                                           | Removed                                                  |
-| `renderItem`             | -                                                                           | Compose items directly                                   |
-| `getItemAriaLabel`       | -                                                                           | Set `aria-label` on individual items                     |
-| `classNames`             | -                                                                           | Use `className` on individual compound components        |
+| v2 Prop | v3 Equivalent | Notes |
+|---------|---------------|-------|
+| `total` | - | Removed (compose items manually) |
+| `page` | - | Manage active state via `isActive` on `Pagination.Link` |
+| `initialPage` | - | Manage state externally |
+| `onChange` | - | Use `onPress` on individual `Pagination.Link` components |
+| `siblings` | - | Removed (compose items manually) |
+| `boundaries` | - | Removed (compose items manually) |
+| `dotsJump` | - | Removed (handle ellipsis click manually) |
+| `loop` | - | Removed (implement manually) |
+| `showControls` | - | Compose `Pagination.Previous` and `Pagination.Next` |
+| `isCompact` | - | Removed (style with Tailwind CSS) |
+| `showShadow` | - | Removed (use Tailwind `shadow-*` classes) |
+| `size` | `Pagination` `size` | Same (`sm`, `md`, `lg`) |
+| `variant` | - | Removed (use Tailwind CSS) |
+| `color` | - | Removed (use Tailwind CSS) |
+| `radius` | - | Removed (use Tailwind CSS) |
+| `isDisabled` | `isDisabled` on `Pagination.Link`, `Pagination.Previous`, `Pagination.Next` | Per-item instead of global |
+| `disableCursorAnimation` | - | Removed |
+| `disableAnimation` | - | Removed |
+| `renderItem` | - | Compose items directly |
+| `getItemAriaLabel` | - | Set `aria-label` on individual items |
+| `classNames` | - | Use `className` on individual compound components |
 
 ### 4. Hook Changes
 
@@ -121,7 +118,6 @@ export default function App() {
 
     <Pagination total={10} initialPage={1} />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -143,7 +139,6 @@ export default function App() {
       </Pagination.Content>
     </Pagination>
     ```
-
   </Tab>
 </Tabs>
 
@@ -188,7 +183,6 @@ export default function App() {
       </Pagination.Content>
     </Pagination>
     ```
-
   </Tab>
 </Tabs>
 
@@ -258,7 +252,6 @@ export default function App() {
       </Pagination.Content>
     </Pagination>
     ```
-
   </Tab>
 </Tabs>
 
@@ -298,7 +291,6 @@ export default function App() {
       </Pagination.Content>
     </Pagination>
     ```
-
   </Tab>
 </Tabs>
 
@@ -325,7 +317,6 @@ export default function App() {
       </Pagination.Content>
     </Pagination>
     ```
-
   </Tab>
 </Tabs>
 
@@ -361,7 +352,6 @@ export default function App() {
       </Pagination.Content>
     </Pagination>
     ```
-
   </Tab>
 </Tabs>
 
@@ -372,13 +362,13 @@ export default function App() {
 ```tsx
 <Pagination
   classNames={{
-    base: 'custom-base',
-    wrapper: 'custom-wrapper',
-    prev: 'custom-prev',
-    next: 'custom-next',
-    item: 'custom-item',
-    cursor: 'custom-cursor',
-    ellipsis: 'custom-ellipsis'
+    base: "custom-base",
+    wrapper: "custom-wrapper",
+    prev: "custom-prev",
+    next: "custom-next",
+    item: "custom-item",
+    cursor: "custom-cursor",
+    ellipsis: "custom-ellipsis",
   }}
 />
 ```
@@ -394,9 +384,7 @@ export default function App() {
       </Pagination.Previous>
     </Pagination.Item>
     <Pagination.Item>
-      <Pagination.Link isActive className="custom-cursor">
-        1
-      </Pagination.Link>
+      <Pagination.Link isActive className="custom-cursor">1</Pagination.Link>
     </Pagination.Item>
     <Pagination.Item>
       <Pagination.Ellipsis className="custom-ellipsis" />

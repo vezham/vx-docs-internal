@@ -9,17 +9,21 @@ links:
   storybook: Components/Feedback/ProgressBar
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Label, ProgressBar } from '@heroui/react'
+import { ProgressBar, Label } from '@heroui/react';
 ```
 
-[Live example: progress-bar-basic](https://heroui.com/docs/react/components/progress-bar)
 
-```tsx
+<ComponentPreview name="progress-bar-basic">
+
+````tsx
+import {Label, ProgressBar} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <ProgressBar aria-label="Loading" className="w-64" value={60}>
@@ -29,14 +33,17 @@ export function Basic() {
         <ProgressBar.Fill />
       </ProgressBar.Track>
     </ProgressBar>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 ```tsx
-import { Label, ProgressBar } from '@heroui/react'
+import { ProgressBar, Label } from '@heroui/react';
 
 export default () => (
   <ProgressBar value={60}>
@@ -46,16 +53,19 @@ export default () => (
       <ProgressBar.Fill />
     </ProgressBar.Track>
   </ProgressBar>
-)
+);
 ```
 
 ## Examples
 
 ### Sizes
 
-[Live example: progress-bar-sizes](https://heroui.com/docs/react/components/progress-bar)
 
-```tsx
+<ComponentPreview name="progress-bar-sizes">
+
+````tsx
+import {Label, ProgressBar} from "@vezham/react-v3";
+
 export function Sizes() {
   return (
     <div className="flex w-64 flex-col gap-6">
@@ -81,15 +91,21 @@ export function Sizes() {
         </ProgressBar.Track>
       </ProgressBar>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Colors
 
-[Live example: progress-bar-colors](https://heroui.com/docs/react/components/progress-bar)
 
-```tsx
+<ComponentPreview name="progress-bar-colors">
+
+````tsx
+import {Label, ProgressBar} from "@vezham/react-v3";
+
 export function Colors() {
   return (
     <div className="flex w-64 flex-col gap-6">
@@ -129,17 +145,23 @@ export function Colors() {
         </ProgressBar.Track>
       </ProgressBar>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Without Label
 
 When no visible label is needed, use `aria-label` for accessibility.
 
-[Live example: progress-bar-without-label](https://heroui.com/docs/react/components/progress-bar)
 
-```tsx
+<ComponentPreview name="progress-bar-without-label">
+
+````tsx
+import {ProgressBar} from "@vezham/react-v3";
+
 export function WithoutLabel() {
   return (
     <ProgressBar aria-label="Loading progress" className="w-64" value={45}>
@@ -147,17 +169,23 @@ export function WithoutLabel() {
         <ProgressBar.Fill />
       </ProgressBar.Track>
     </ProgressBar>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Indeterminate
 
 Use `isIndeterminate` when progress cannot be determined.
 
-[Live example: progress-bar-indeterminate](https://heroui.com/docs/react/components/progress-bar)
 
-```tsx
+<ComponentPreview name="progress-bar-indeterminate">
+
+````tsx
+import {Label, ProgressBar} from "@vezham/react-v3";
+
 export function Indeterminate() {
   return (
     <ProgressBar isIndeterminate aria-label="Loading" className="w-64">
@@ -166,38 +194,45 @@ export function Indeterminate() {
         <ProgressBar.Fill />
       </ProgressBar.Track>
     </ProgressBar>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Custom Value Scale
 
 Use `minValue`, `maxValue`, and `formatOptions` to customize the value range and display format.
 
-[Live example: progress-bar-custom-value](https://heroui.com/docs/react/components/progress-bar)
 
-```tsx
-'use client'
+<ComponentPreview name="progress-bar-custom-value">
 
-const formatStyleOptions: { label: string; value: string }[] = [
-  { label: 'Currency', value: 'currency' },
-  { label: 'Percent', value: 'percent' },
-  { label: 'Decimal', value: 'decimal' },
-  { label: 'Unit', value: 'unit' }
-]
+````tsx
+"use client";
+
+import {Label, ListBox, NumberField, ProgressBar, Select, Separator} from "@vezham/react-v3";
+import {useState} from "react";
+
+const formatStyleOptions: {label: string; value: string}[] = [
+  {label: "Currency", value: "currency"},
+  {label: "Percent", value: "percent"},
+  {label: "Decimal", value: "decimal"},
+  {label: "Unit", value: "unit"},
+];
 
 const formatOptionsMap: Record<string, Intl.NumberFormatOptions> = {
-  currency: { currency: 'USD', style: 'currency' },
-  decimal: { style: 'decimal' },
-  percent: { style: 'percent' },
-  unit: { style: 'unit', unit: 'mile' }
-}
+  currency: {currency: "USD", style: "currency"},
+  decimal: {style: "decimal"},
+  percent: {style: "percent"},
+  unit: {style: "unit", unit: "mile"},
+};
 
 export function CustomValue() {
-  const [value, setValue] = useState(750)
-  const [minValue, setMinValue] = useState(0)
-  const [maxValue, setMaxValue] = useState(1000)
-  const [format, setFormat] = useState<string>('percent')
+  const [value, setValue] = useState(750);
+  const [minValue, setMinValue] = useState(0);
+  const [maxValue, setMaxValue] = useState(1000);
+  const [format, setFormat] = useState<string>("percent");
 
   return (
     <div className="flex w-full flex-col gap-6 md:flex-row md:items-center md:gap-10">
@@ -208,7 +243,8 @@ export function CustomValue() {
           formatOptions={formatOptionsMap[format]}
           maxValue={maxValue}
           minValue={minValue}
-          value={value}>
+          value={value}
+        >
           <Label>Progress</Label>
           <ProgressBar.Output />
           <ProgressBar.Track>
@@ -221,14 +257,15 @@ export function CustomValue() {
       <Separator className="hidden md:block" orientation="vertical" />
 
       <div className="flex max-w-52 flex-col gap-3">
-        <Label className="text-muted text-xs font-medium">Options</Label>
+        <Label className="text-xs font-medium text-muted">Options</Label>
 
         <NumberField
           maxValue={maxValue}
           minValue={minValue}
           value={value}
           variant="secondary"
-          onChange={v => setValue(v)}>
+          onChange={(v) => setValue(v)}
+        >
           <Label>Value</Label>
           <NumberField.Group>
             <NumberField.DecrementButton />
@@ -242,10 +279,11 @@ export function CustomValue() {
           minValue={0}
           value={minValue}
           variant="secondary"
-          onChange={v => {
-            setMinValue(v)
-            if (value < v) setValue(v)
-          }}>
+          onChange={(v) => {
+            setMinValue(v);
+            if (value < v) setValue(v);
+          }}
+        >
           <Label>Min Value</Label>
           <NumberField.Group>
             <NumberField.DecrementButton />
@@ -259,10 +297,11 @@ export function CustomValue() {
           minValue={minValue + 1}
           value={maxValue}
           variant="secondary"
-          onChange={v => {
-            setMaxValue(v)
-            if (value > v) setValue(v)
-          }}>
+          onChange={(v) => {
+            setMaxValue(v);
+            if (value > v) setValue(v);
+          }}
+        >
           <Label>Max Value</Label>
           <NumberField.Group>
             <NumberField.DecrementButton />
@@ -271,10 +310,7 @@ export function CustomValue() {
           </NumberField.Group>
         </NumberField>
 
-        <Select
-          value={format}
-          variant="secondary"
-          onChange={key => setFormat(key as string)}>
+        <Select value={format} variant="secondary" onChange={(key) => setFormat(key as string)}>
           <Label>Format</Label>
           <Select.Trigger>
             <Select.Value />
@@ -282,11 +318,8 @@ export function CustomValue() {
           </Select.Trigger>
           <Select.Popover>
             <ListBox>
-              {formatStyleOptions.map(option => (
-                <ListBox.Item
-                  key={option.value}
-                  id={option.value}
-                  textValue={option.label}>
+              {formatStyleOptions.map((option) => (
+                <ListBox.Item key={option.value} id={option.value} textValue={option.label}>
                   {option.label}
                   <ListBox.ItemIndicator />
                 </ListBox.Item>
@@ -296,31 +329,38 @@ export function CustomValue() {
         </Select>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: progress-bar-custom-styles](https://heroui.com/docs/react/components/progress-bar)
 
-```tsx
+<ComponentPreview name="progress-bar-custom-styles">
+
+````tsx
+import {Label, ProgressBar} from "@vezham/react-v3";
+
 export function CustomStyles() {
   return (
     <ProgressBar aria-label="Upload progress" className="w-64" value={45}>
-      <Label className="text-foreground font-medium">
-        Uploading resume.pdf
-      </Label>
-      <ProgressBar.Output className="text-muted text-xs tabular-nums" />
-      <ProgressBar.Track className="bg-default rounded-full">
-        <ProgressBar.Fill className="bg-accent rounded-full" />
+      <Label className="font-medium text-foreground">Uploading resume.pdf</Label>
+      <ProgressBar.Output className="text-xs text-muted tabular-nums" />
+      <ProgressBar.Track className="rounded-full bg-default">
+        <ProgressBar.Fill className="rounded-full bg-accent" />
       </ProgressBar.Track>
     </ProgressBar>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -352,20 +392,17 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The ProgressBar component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/progress-bar.css)):
 
 #### Base & Element Classes [!toc]
-
 - `.progress-bar` - Base container (grid layout)
 - `.progress-bar__output` - Value text display
 - `.progress-bar__track` - Track background
 - `.progress-bar__fill` - Filled portion of the track
 
 #### Size Classes [!toc]
-
 - `.progress-bar--sm` - Small size variant (thinner track)
 - `.progress-bar--md` - Medium size variant (default)
 - `.progress-bar--lg` - Large size variant (thicker track)
 
 #### Color Classes [!toc]
-
 - `.progress-bar--default` - Default color variant
 - `.progress-bar--accent` - Accent color variant
 - `.progress-bar--success` - Success color variant
@@ -378,27 +415,27 @@ The ProgressBar component uses these CSS classes ([View source styles](https://g
 
 Inherits from [React Aria ProgressBar](https://react-spectrum.adobe.com/react-aria/ProgressBar.html).
 
-| Prop              | Type                                                          | Default              | Description                         |
-| ----------------- | ------------------------------------------------------------- | -------------------- | ----------------------------------- |
-| `value`           | `number`                                                      | `0`                  | The current value                   |
-| `minValue`        | `number`                                                      | `0`                  | The minimum value                   |
-| `maxValue`        | `number`                                                      | `100`                | The maximum value                   |
-| `isIndeterminate` | `boolean`                                                     | `false`              | Whether progress is indeterminate   |
-| `size`            | `"sm" \| "md" \| "lg"`                                        | `"md"`               | Size of the progress track          |
-| `color`           | `"default" \| "accent" \| "success" \| "warning" \| "danger"` | `"accent"`           | Color of the fill bar               |
-| `formatOptions`   | `Intl.NumberFormatOptions`                                    | `{style: 'percent'}` | Number format for the value display |
-| `valueLabel`      | `ReactNode`                                                   | -                    | Custom value label content          |
-| `children`        | `ReactNode \| (values: ProgressBarRenderProps) => ReactNode`  | -                    | Content or render prop              |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `number` | `0` | The current value |
+| `minValue` | `number` | `0` | The minimum value |
+| `maxValue` | `number` | `100` | The maximum value |
+| `isIndeterminate` | `boolean` | `false` | Whether progress is indeterminate |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Size of the progress track |
+| `color` | `"default" \| "accent" \| "success" \| "warning" \| "danger"` | `"accent"` | Color of the fill bar |
+| `formatOptions` | `Intl.NumberFormatOptions` | `{style: 'percent'}` | Number format for the value display |
+| `valueLabel` | `ReactNode` | - | Custom value label content |
+| `children` | `ReactNode \| (values: ProgressBarRenderProps) => ReactNode` | - | Content or render prop |
 
 ### Render Props
 
 When using the render prop pattern, these values are provided:
 
-| Prop              | Type      | Description                            |
-| ----------------- | --------- | -------------------------------------- |
-| `percentage`      | `number`  | The percentage of the progress (0-100) |
-| `valueText`       | `string`  | The formatted value text               |
-| `isIndeterminate` | `boolean` | Whether progress is indeterminate      |
+| Prop | Type | Description |
+|------|------|-------------|
+| `percentage` | `number` | The percentage of the progress (0-100) |
+| `valueText` | `string` | The formatted value text |
+| `isIndeterminate` | `boolean` | Whether progress is indeterminate |
 
 ## Related Components
 

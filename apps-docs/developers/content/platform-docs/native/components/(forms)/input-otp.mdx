@@ -8,16 +8,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/input-otp-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/input-otp-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/input-otp-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/input-otp-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { InputOTP } from 'heroui-native'
+import { InputOTP } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -55,7 +56,7 @@ import { InputOTP } from 'heroui-native'
 Create a 6-digit OTP input with grouped slots and separator.
 
 ```tsx
-<InputOTP maxLength={6} onComplete={code => console.log(code)}>
+<InputOTP maxLength={6} onComplete={(code) => console.log(code)}>
   <InputOTP.Group>
     <InputOTP.Slot index={0} />
     <InputOTP.Slot index={1} />
@@ -75,7 +76,7 @@ Create a 6-digit OTP input with grouped slots and separator.
 Create a simple 4-digit PIN input.
 
 ```tsx
-<InputOTP maxLength={4} onComplete={code => console.log(code)}>
+<InputOTP maxLength={4} onComplete={(code) => console.log(code)}>
   <InputOTP.Slot index={0} />
   <InputOTP.Slot index={1} />
   <InputOTP.Slot index={2} />
@@ -91,11 +92,12 @@ Provide custom placeholder characters for each slot position.
 <InputOTP
   maxLength={6}
   placeholder="——————"
-  onComplete={code => console.log(code)}>
+  onComplete={(code) => console.log(code)}
+>
   <InputOTP.Group>
     {({ slots }) => (
       <>
-        {slots.map(slot => (
+        {slots.map((slot) => (
           <InputOTP.Slot key={slot.index} index={slot.index} />
         ))}
       </>
@@ -109,9 +111,9 @@ Provide custom placeholder characters for each slot position.
 Control the OTP value programmatically.
 
 ```tsx
-const [value, setValue] = useState('')
+const [value, setValue] = useState('');
 
-;<InputOTP value={value} onChange={setValue} maxLength={6}>
+<InputOTP value={value} onChange={setValue} maxLength={6}>
   <InputOTP.Group>
     <InputOTP.Slot index={0} />
     <InputOTP.Slot index={1} />
@@ -123,7 +125,7 @@ const [value, setValue] = useState('')
     <InputOTP.Slot index={4} />
     <InputOTP.Slot index={5} />
   </InputOTP.Group>
-</InputOTP>
+</InputOTP>;
 ```
 
 ### With Validation
@@ -151,13 +153,14 @@ Display validation errors when the OTP is invalid.
 Restrict input to specific character patterns using regex. Three predefined patterns are available: `REGEXP_ONLY_DIGITS` (matches digits 0-9), `REGEXP_ONLY_CHARS` (matches alphabetic characters a-z, A-Z), and `REGEXP_ONLY_DIGITS_AND_CHARS` (matches both digits and alphabetic characters).
 
 ```tsx
-import { InputOTP, REGEXP_ONLY_CHARS } from 'heroui-native'
+import { InputOTP, REGEXP_ONLY_CHARS } from 'heroui-native';
 
-;<InputOTP
+<InputOTP
   maxLength={6}
   pattern={REGEXP_ONLY_CHARS}
   inputMode="text"
-  onComplete={code => console.log(code)}>
+  onComplete={(code) => console.log(code)}
+>
   <InputOTP.Group>
     <InputOTP.Slot index={0} />
     <InputOTP.Slot index={1} />
@@ -169,7 +172,7 @@ import { InputOTP, REGEXP_ONLY_CHARS } from 'heroui-native'
     <InputOTP.Slot index={4} />
     <InputOTP.Slot index={5} />
   </InputOTP.Group>
-</InputOTP>
+</InputOTP>;
 ```
 
 ### Custom Layout
@@ -181,11 +184,12 @@ Use render props in Group to create custom slot layouts.
   <InputOTP.Group>
     {({ slots, isFocused, isInvalid }) => (
       <>
-        {slots.map(slot => (
+        {slots.map((slot) => (
           <InputOTP.Slot
             key={slot.index}
             index={slot.index}
-            className={cn('custom-class', slot.isActive && 'active-class')}>
+            className={cn('custom-class', slot.isActive && 'active-class')}
+          >
             <InputOTP.SlotPlaceholder />
             <InputOTP.SlotValue />
             <InputOTP.SlotCaret />
@@ -204,10 +208,10 @@ When rendering an InputOTP inside a `BottomSheet`, use the `useBottomSheetAwareH
 > **Note**: `useBottomSheetAwareHandlers` must be used inside a `BottomSheet`. Call it from a child component rendered inside `BottomSheet.Content` — outside of a `BottomSheet` context the returned handlers are no-ops.
 
 ```tsx
-import { InputOTP, useBottomSheetAwareHandlers } from 'heroui-native'
+import { InputOTP, useBottomSheetAwareHandlers } from 'heroui-native';
 
 const BottomSheetOTPInput = () => {
-  const { onFocus, onBlur } = useBottomSheetAwareHandlers()
+  const { onFocus, onBlur } = useBottomSheetAwareHandlers();
 
   return (
     <InputOTP maxLength={6} onFocus={onFocus} onBlur={onBlur}>
@@ -223,29 +227,29 @@ const BottomSheetOTPInput = () => {
         <InputOTP.Slot index={5} />
       </InputOTP.Group>
     </InputOTP>
-  )
-}
+  );
+};
 ```
 
 ## Example
 
 ```tsx
-import { Description, InputOTP, type InputOTPRef, Label } from 'heroui-native'
-import { useRef } from 'react'
-import { View } from 'react-native'
+import { InputOTP, Label, Description, type InputOTPRef } from 'heroui-native';
+import { View } from 'react-native';
+import { useRef } from 'react';
 
 export default function InputOTPExample() {
-  const ref = useRef<InputOTPRef>(null)
+  const ref = useRef<InputOTPRef>(null);
 
   const onComplete = (code: string) => {
-    console.log('OTP completed:', code)
+    console.log('OTP completed:', code);
     setTimeout(() => {
-      ref.current?.clear()
-    }, 1000)
-  }
+      ref.current?.clear();
+    }, 1000);
+  };
 
   return (
-    <View className="flex-1 items-center justify-center px-5">
+    <View className="flex-1 px-5 items-center justify-center">
       <View>
         <Label>Verify account</Label>
         <Description className="mb-3">
@@ -266,39 +270,39 @@ export default function InputOTPExample() {
         </InputOTP>
       </View>
     </View>
-  )
+  );
 }
 ```
 
-You can find more examples in the [GitHub repository](<https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/input-otp.tsx>).
+You can find more examples in the [GitHub repository](https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/input-otp.tsx).
 
 ## API Reference
 
 ### InputOTP
 
-| prop                       | type                          | default     | description                                                                                                             |
-| -------------------------- | ----------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `maxLength`                | `number`                      | -           | Maximum length of the OTP (required)                                                                                    |
-| `value`                    | `string`                      | -           | Controlled value for the OTP input                                                                                      |
-| `defaultValue`             | `string`                      | -           | Default value for uncontrolled usage                                                                                    |
-| `onChange`                 | `(value: string) => void`     | -           | Callback when value changes                                                                                             |
-| `onComplete`               | `(value: string) => void`     | -           | Handler called when all slots are filled                                                                                |
-| `isDisabled`               | `boolean`                     | `false`     | Whether the input is disabled                                                                                           |
-| `isInvalid`                | `boolean`                     | `false`     | Whether the input is in an invalid state                                                                                |
-| `pattern`                  | `string`                      | -           | Regex pattern for allowed characters (e.g., REGEXP_ONLY_DIGITS, REGEXP_ONLY_CHARS)                                      |
-| `inputMode`                | `TextInputProps['inputMode']` | `'numeric'` | Input mode for the input                                                                                                |
-| `placeholder`              | `string`                      | -           | Placeholder text for the input. Each character corresponds to a slot position                                           |
-| `placeholderTextColor`     | `string`                      | -           | Placeholder text color for all slots                                                                                    |
-| `placeholderTextClassName` | `string`                      | -           | Placeholder text class name for all slots                                                                               |
-| `pasteTransformer`         | `(text: string) => string`    | -           | Transform pasted text (e.g., remove hyphens). Defaults to removing non-matching characters                              |
-| `onFocus`                  | `(e: FocusEvent) => void`     | -           | Handler for focus events                                                                                                |
-| `onBlur`                   | `(e: BlurEvent) => void`      | -           | Handler for blur events                                                                                                 |
-| `textInputProps`           | `Omit<TextInputProps, ...>`   | -           | Additional props to pass to the underlying TextInput component                                                          |
-| `children`                 | `React.ReactNode`             | -           | Children elements to be rendered inside the InputOTP                                                                    |
-| `className`                | `string`                      | -           | Additional CSS classes to apply                                                                                         |
-| `style`                    | `PressableProps['style']`     | -           | Style to pass to the container Pressable component                                                                      |
+| prop                       | type                          | default     | description                                                                                |
+| -------------------------- | ----------------------------- | ----------- | ------------------------------------------------------------------------------------------ |
+| `maxLength`                | `number`                      | -           | Maximum length of the OTP (required)                                                       |
+| `value`                    | `string`                      | -           | Controlled value for the OTP input                                                         |
+| `defaultValue`             | `string`                      | -           | Default value for uncontrolled usage                                                       |
+| `onChange`                 | `(value: string) => void`     | -           | Callback when value changes                                                                |
+| `onComplete`               | `(value: string) => void`     | -           | Handler called when all slots are filled                                                   |
+| `isDisabled`               | `boolean`                     | `false`     | Whether the input is disabled                                                              |
+| `isInvalid`                | `boolean`                     | `false`     | Whether the input is in an invalid state                                                   |
+| `pattern`                  | `string`                      | -           | Regex pattern for allowed characters (e.g., REGEXP_ONLY_DIGITS, REGEXP_ONLY_CHARS)         |
+| `inputMode`                | `TextInputProps['inputMode']` | `'numeric'` | Input mode for the input                                                                   |
+| `placeholder`              | `string`                      | -           | Placeholder text for the input. Each character corresponds to a slot position              |
+| `placeholderTextColor`     | `string`                      | -           | Placeholder text color for all slots                                                       |
+| `placeholderTextClassName` | `string`                      | -           | Placeholder text class name for all slots                                                  |
+| `pasteTransformer`         | `(text: string) => string`    | -           | Transform pasted text (e.g., remove hyphens). Defaults to removing non-matching characters |
+| `onFocus`                  | `(e: FocusEvent) => void`     | -           | Handler for focus events                                                                   |
+| `onBlur`                   | `(e: BlurEvent) => void`      | -           | Handler for blur events                                                                    |
+| `textInputProps`           | `Omit<TextInputProps, ...>`   | -           | Additional props to pass to the underlying TextInput component                             |
+| `children`                 | `React.ReactNode`             | -           | Children elements to be rendered inside the InputOTP                                       |
+| `className`                | `string`                      | -           | Additional CSS classes to apply                                                            |
+| `style`                    | `PressableProps['style']`     | -           | Style to pass to the container Pressable component                                         |
 | `isBottomSheetAware`       | `boolean`                     | `true`      | Whether the InputOTP automatically handles keyboard state when rendered inside a BottomSheet. Set to `false` to disable |
-| `animation`                | `"disable-all" \| undefined`  | `undefined` | Animation configuration. Use `"disable-all"` to disable all animations including children                               |
+| `animation`                | `"disable-all" \| undefined`  | `undefined` | Animation configuration. Use `"disable-all"` to disable all animations including children  |
 
 ### InputOTP.Group
 
@@ -321,14 +325,14 @@ You can find more examples in the [GitHub repository](<https://github.com/heroui
 
 ### InputOTP.Slot
 
-| prop           | type              | default | description                                                                                                                                                                                                              |
-| -------------- | ----------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `index`        | `number`          | -       | Zero-based index of the slot (required). Must be between 0 and maxLength - 1                                                                                                                                             |
-| `children`     | `React.ReactNode` | -       | Custom slot content. If not provided, defaults to SlotPlaceholder, SlotValue, and SlotCaret                                                                                                                              |
-| `className`    | `string`          | -       | Additional CSS classes to apply                                                                                                                                                                                          |
-| `style`        | `ViewStyle`       | -       | Additional styles to apply                                                                                                                                                                                               |
-| `background`   | `React.ReactNode` | -       | Background layer behind the slot content. `undefined` renders the theme-aware default (fallback color follows the variant: primary → field token, secondary → default token); custom node replaces it; `null` removes it |
-| `...ViewProps` | `ViewProps`       | -       | All standard React Native View props are supported                                                                                                                                                                       |
+| prop           | type              | default | description                                                                                 |
+| -------------- | ----------------- | ------- | ------------------------------------------------------------------------------------------- |
+| `index`        | `number`          | -       | Zero-based index of the slot (required). Must be between 0 and maxLength - 1                |
+| `children`     | `React.ReactNode` | -       | Custom slot content. If not provided, defaults to SlotPlaceholder, SlotValue, and SlotCaret |
+| `className`    | `string`          | -       | Additional CSS classes to apply                                                             |
+| `style`        | `ViewStyle`       | -       | Additional styles to apply                                                                  |
+| `background` | `React.ReactNode` | - | Background layer behind the slot content. `undefined` renders the theme-aware default (fallback color follows the variant: primary → field token, secondary → default token); custom node replaces it; `null` removes it |
+| `...ViewProps` | `ViewProps`       | -       | All standard React Native View props are supported                                          |
 
 ### InputOTP.SlotBackground
 
@@ -417,7 +421,7 @@ Hook to access the InputOTP root context. Must be used within an `InputOTP` comp
 
 ```tsx
 const { value, maxLength, isFocused, isDisabled, isInvalid, slots } =
-  useInputOTP()
+  useInputOTP();
 ```
 
 ### useInputOTPSlot
@@ -425,5 +429,5 @@ const { value, maxLength, isFocused, isDisabled, isInvalid, slots } =
 Hook to access the InputOTP.Slot context. Must be used within an `InputOTP.Slot` component.
 
 ```tsx
-const { slot, isActive, isCaretVisible } = useInputOTPSlot()
+const { slot, isActive, isCaretVisible } = useInputOTPSlot();
 ```

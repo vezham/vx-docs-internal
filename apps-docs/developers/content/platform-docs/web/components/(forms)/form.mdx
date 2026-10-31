@@ -6,35 +6,37 @@ links:
   rac: https://react-spectrum.adobe.com/react-aria/Form.html
 ---
 
-import {
-  RelatedComponents,
-  RelatedShowcases
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents, RelatedShowcases } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Form } from '@heroui/react'
+import { Form } from '@heroui/react';
 ```
 
-[Live example: form-basic](https://heroui.com/docs/react/components/form)
 
-```tsx
-'use client'
+<ComponentPreview name="form-basic">
+
+````tsx
+"use client";
+
+import {Check} from "@gravity-ui/icons";
+import {Button, Description, FieldError, Form, Input, Label, TextField} from "@vezham/react-v3";
 
 export function Basic() {
   const onSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    const data: Record<string, string> = {}
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data: Record<string, string> = {};
 
     // Convert FormData to plain object
     formData.forEach((value, key) => {
-      data[key] = value.toString()
-    })
+      data[key] = value.toString();
+    });
 
-    alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`)
-  }
+    alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`);
+  };
 
   return (
     <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
@@ -42,13 +44,14 @@ export function Basic() {
         isRequired
         name="email"
         type="email"
-        validate={value => {
+        validate={(value) => {
           if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-            return 'Please enter a valid email address'
+            return "Please enter a valid email address";
           }
 
-          return null
-        }}>
+          return null;
+        }}
+      >
         <Label>Email</Label>
         <Input placeholder="john@example.com" />
         <FieldError />
@@ -59,24 +62,23 @@ export function Basic() {
         minLength={8}
         name="password"
         type="password"
-        validate={value => {
+        validate={(value) => {
           if (value.length < 8) {
-            return 'Password must be at least 8 characters'
+            return "Password must be at least 8 characters";
           }
           if (!/[A-Z]/.test(value)) {
-            return 'Password must contain at least one uppercase letter'
+            return "Password must contain at least one uppercase letter";
           }
           if (!/[0-9]/.test(value)) {
-            return 'Password must contain at least one number'
+            return "Password must contain at least one number";
           }
 
-          return null
-        }}>
+          return null;
+        }}
+      >
         <Label>Password</Label>
         <Input placeholder="Enter your password" />
-        <Description>
-          Must be at least 8 characters with 1 uppercase and 1 number
-        </Description>
+        <Description>Must be at least 8 characters with 1 uppercase and 1 number</Description>
         <FieldError />
       </TextField>
 
@@ -90,20 +92,23 @@ export function Basic() {
         </Button>
       </div>
     </Form>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 ```tsx
-import { Button, Form } from '@heroui/react'
+import {Form, Button} from '@heroui/react';
 
 export default () => (
   <Form>
     {/* Form fields go here */}
-    <Button type="submit" />
-    <Button type="reset" />
+    <Button type="submit"/>
+    <Button type="reset"/>
   </Form>
 )
 ```
@@ -112,41 +117,47 @@ export default () => (
 
 ### Render Function
 
-[Live example: form-render-function](https://heroui.com/docs/react/components/form)
 
-```tsx
-'use client'
+<ComponentPreview name="form-render-function">
+
+````tsx
+"use client";
+
+import {Check} from "@gravity-ui/icons";
+import {Button, Description, FieldError, Form, Input, Label, TextField} from "@vezham/react-v3";
 
 export function RenderFunction() {
   const onSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    const data: Record<string, string> = {}
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data: Record<string, string> = {};
 
     // Convert FormData to plain object
     formData.forEach((value, key) => {
-      data[key] = value.toString()
-    })
+      data[key] = value.toString();
+    });
 
-    alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`)
-  }
+    alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`);
+  };
 
   return (
     <Form
       className="flex w-96 flex-col gap-4"
-      render={props => <form {...props} data-custom="foo" />}
-      onSubmit={onSubmit}>
+      render={(props) => <form {...props} data-custom="foo" />}
+      onSubmit={onSubmit}
+    >
       <TextField
         isRequired
         name="email"
         type="email"
-        validate={value => {
+        validate={(value) => {
           if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-            return 'Please enter a valid email address'
+            return "Please enter a valid email address";
           }
 
-          return null
-        }}>
+          return null;
+        }}
+      >
         <Label>Email</Label>
         <Input placeholder="john@example.com" />
         <FieldError />
@@ -157,24 +168,23 @@ export function RenderFunction() {
         minLength={8}
         name="password"
         type="password"
-        validate={value => {
+        validate={(value) => {
           if (value.length < 8) {
-            return 'Password must be at least 8 characters'
+            return "Password must be at least 8 characters";
           }
           if (!/[A-Z]/.test(value)) {
-            return 'Password must contain at least one uppercase letter'
+            return "Password must contain at least one uppercase letter";
           }
           if (!/[0-9]/.test(value)) {
-            return 'Password must contain at least one number'
+            return "Password must contain at least one number";
           }
 
-          return null
-        }}>
+          return null;
+        }}
+      >
         <Label>Password</Label>
         <Input placeholder="Enter your password" />
-        <Description>
-          Must be at least 8 characters with 1 uppercase and 1 number
-        </Description>
+        <Description>Must be at least 8 characters with 1 uppercase and 1 number</Description>
         <FieldError />
       </TextField>
 
@@ -188,24 +198,31 @@ export function RenderFunction() {
         </Button>
       </div>
     </Form>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: form-custom-styles](https://heroui.com/docs/react/components/form)
 
-```tsx
-'use client'
+<ComponentPreview name="form-custom-styles">
+
+````tsx
+"use client";
+
+import {Button, Form, Input, Label, TextField} from "@vezham/react-v3";
 
 export function CustomStyles() {
   return (
     <Form
-      className="border-border/80 bg-surface flex w-80 flex-col gap-3 rounded-xl border p-4 shadow-sm"
-      onSubmit={e => e.preventDefault()}>
+      className="flex w-80 flex-col gap-3 rounded-xl border border-border/80 bg-surface p-4 shadow-sm"
+      onSubmit={(e) => e.preventDefault()}
+    >
       <TextField isRequired name="email" type="email">
         <Label>Work email</Label>
         <Input className="bg-field" placeholder="you@company.com" />
@@ -214,9 +231,12 @@ export function CustomStyles() {
         Continue
       </Button>
     </Form>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -228,7 +248,7 @@ To customize form layout and spacing, use the `className` prop on `<Form>` or ad
 ```css
 @layer components {
   .form-layout {
-    @apply border-border bg-surface flex flex-col gap-4 rounded-xl border p-4 shadow-sm;
+    @apply flex flex-col gap-4 rounded-xl border border-border bg-surface p-4 shadow-sm;
   }
 }
 ```
@@ -253,22 +273,22 @@ HeroUI follows the [BEM](https://getbem.com/) methodology for components that sh
 
 The Form component is a wrapper around React Aria's Form primitive that provides form validation and submission handling capabilities.
 
-| Prop                 | Type                                                                           | Default    | Description                                                                                                                                             |
-| -------------------- | ------------------------------------------------------------------------------ | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `action`             | `string \| FormHTMLAttributes['action']`                                       | -          | The URL to submit the form data to.                                                                                                                     |
-| `className`          | `string`                                                                       | -          | Tailwind CSS classes applied to the form element.                                                                                                       |
-| `children`           | `React.ReactNode`                                                              | -          | Form content (fields, buttons, etc.).                                                                                                                   |
-| `encType`            | `'application/x-www-form-urlencoded' \| 'multipart/form-data' \| 'text/plain'` | -          | The encoding type for form data submission.                                                                                                             |
-| `method`             | `'get' \| 'post'`                                                              | -          | The HTTP method to use when submitting the form.                                                                                                        |
-| `onInvalid`          | `(event: SyntheticEvent<HTMLFormElement>) => void`                             | -          | Handler called when the form validation fails. By default, the first invalid field will be focused. Use `preventDefault()` to customize focus behavior. |
-| `onReset`            | `(event: SyntheticEvent<HTMLFormElement>) => void`                             | -          | Handler called when the form is reset.                                                                                                                  |
-| `onSubmit`           | `(event: SyntheticEvent<HTMLFormElement>) => void`                             | -          | Handler called when the form is submitted.                                                                                                              |
-| `target`             | `'_self' \| '_blank' \| '_parent' \| '_top'`                                   | -          | Where to display the response after submitting the form.                                                                                                |
-| `validationBehavior` | `'native' \| 'aria'`                                                           | `'native'` | Whether to use native HTML validation or ARIA validation. 'native' blocks form submission, 'aria' displays errors in realtime.                          |
-| `validationErrors`   | `ValidationErrors`                                                             | -          | Server-side validation errors mapped by field name. Displayed immediately and cleared when user modifies the field.                                     |
-| `aria-label`         | `string`                                                                       | -          | Accessibility label for the form.                                                                                                                       |
-| `aria-labelledby`    | `string`                                                                       | -          | ID of element that labels the form. Creates a form landmark when provided.                                                                              |
-| `render`             | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, undefined>`              | -          | Overrides the default DOM element with a custom render function.                                                                                        |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `action` | `string \| FormHTMLAttributes['action']` | - | The URL to submit the form data to. |
+| `className` | `string` | - | Tailwind CSS classes applied to the form element. |
+| `children` | `React.ReactNode` | - | Form content (fields, buttons, etc.). |
+| `encType` | `'application/x-www-form-urlencoded' \| 'multipart/form-data' \| 'text/plain'` | - | The encoding type for form data submission. |
+| `method` | `'get' \| 'post'` | - | The HTTP method to use when submitting the form. |
+| `onInvalid` | `(event: SyntheticEvent<HTMLFormElement>) => void` | - | Handler called when the form validation fails. By default, the first invalid field will be focused. Use `preventDefault()` to customize focus behavior. |
+| `onReset` | `(event: SyntheticEvent<HTMLFormElement>) => void` | - | Handler called when the form is reset. |
+| `onSubmit` | `(event: SyntheticEvent<HTMLFormElement>) => void` | - | Handler called when the form is submitted. |
+| `target` | `'_self' \| '_blank' \| '_parent' \| '_top'` | - | Where to display the response after submitting the form. |
+| `validationBehavior` | `'native' \| 'aria'` | `'native'` | Whether to use native HTML validation or ARIA validation. 'native' blocks form submission, 'aria' displays errors in realtime. |
+| `validationErrors` | `ValidationErrors` | - | Server-side validation errors mapped by field name. Displayed immediately and cleared when user modifies the field. |
+| `aria-label` | `string` | - | Accessibility label for the form. |
+| `aria-labelledby` | `string` | - | ID of element that labels the form. Creates a form landmark when provided. |
+| `render` | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, undefined>` | - | Overrides the default DOM element with a custom render function.|
 
 ### Form Validation
 
@@ -300,13 +320,13 @@ Forms can be submitted in several ways:
 Example with FormData:
 
 ```tsx
-import type { SyntheticEvent } from 'react'
+import type {SyntheticEvent} from "react";
 
 function handleSubmit(e: SyntheticEvent<HTMLFormElement>) {
-  e.preventDefault()
-  const formData = new FormData(e.currentTarget)
-  const data = Object.fromEntries(formData)
-  console.log('Form data:', data)
+  e.preventDefault();
+  const formData = new FormData(e.currentTarget);
+  const data = Object.fromEntries(formData);
+  console.log('Form data:', data);
 }
 ```
 
@@ -325,7 +345,6 @@ All field components automatically integrate with the Form's validation and subm
 ### Advanced Usage
 
 For more advanced use cases including:
-
 - Custom validation context
 - Form context providers
 - Integration with third-party libraries

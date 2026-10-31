@@ -1,80 +1,82 @@
 ---
 title: AvatarGroup
 description: Display a stacked or grid group of avatars with overflow counting
-icon: new
+status: new
 links:
   source: avatar-group/avatar-group.tsx
   styles: avatar-group.css
   storybook: Components/Media/AvatarGroup
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Avatar, AvatarGroup } from '@heroui/react'
+import { AvatarGroup, Avatar } from '@heroui/react';
 ```
 
-[Live example: avatar-group-basic](https://heroui.com/docs/react/components/avatar-group)
 
-```tsx
+<ComponentPreview name="avatar-group-basic">
+
+````tsx
+import {Avatar, AvatarGroup} from "@vezham/react-v3";
+
 const users = [
   {
     id: 1,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg',
-    name: 'John Doe'
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg",
+    name: "John Doe",
   },
   {
     id: 2,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg',
-    name: 'Kate Wilson'
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg",
+    name: "Kate Wilson",
   },
   {
     id: 3,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/purple.jpg',
-    name: 'Emily Chen'
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/purple.jpg",
+    name: "Emily Chen",
   },
   {
     id: 4,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/orange.jpg',
-    name: 'Michael Brown'
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/orange.jpg",
+    name: "Michael Brown",
   },
   {
     id: 5,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/red.jpg',
-    name: 'Olivia Davis'
-  }
-]
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/red.jpg",
+    name: "Olivia Davis",
+  },
+];
 
 export function Basic() {
   return (
     <AvatarGroup>
-      {users.slice(0, 4).map(user => (
+      {users.slice(0, 4).map((user) => (
         <Avatar key={user.id}>
           <Avatar.Image alt={user.name} src={user.image} />
           <Avatar.Fallback>
             {user.name
-              .split(' ')
-              .map(n => n[0])
-              .join('')}
+              .split(" ")
+              .map((n) => n[0])
+              .join("")}
           </Avatar.Fallback>
         </Avatar>
       ))}
     </AvatarGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 ```tsx
-import { Avatar, AvatarGroup } from '@heroui/react'
+import { AvatarGroup, Avatar } from '@heroui/react';
 
 export default () => (
   <AvatarGroup>
@@ -84,284 +86,293 @@ export default () => (
     </Avatar>
     <AvatarGroup.Count /> {/* Optional explicit child */}
   </AvatarGroup>
-)
+);
 ```
 
 ## Examples
 
 ### Max
 
-[Live example: avatar-group-max](https://heroui.com/docs/react/components/avatar-group)
 
-```tsx
+<ComponentPreview name="avatar-group-max">
+
+````tsx
+import {Avatar, AvatarGroup} from "@vezham/react-v3";
+
 const users = [
   {
     id: 1,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg',
-    name: 'John Doe'
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg",
+    name: "John Doe",
   },
   {
     id: 2,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg',
-    name: 'Kate Wilson'
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg",
+    name: "Kate Wilson",
   },
   {
     id: 3,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/purple.jpg',
-    name: 'Emily Chen'
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/purple.jpg",
+    name: "Emily Chen",
   },
   {
     id: 4,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/orange.jpg',
-    name: 'Michael Brown'
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/orange.jpg",
+    name: "Michael Brown",
   },
   {
     id: 5,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/red.jpg',
-    name: 'Olivia Davis'
-  }
-]
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/red.jpg",
+    name: "Olivia Davis",
+  },
+];
 
 export function Max() {
   return (
     <AvatarGroup max={3}>
-      {users.map(user => (
+      {users.map((user) => (
         <Avatar key={user.id}>
           <Avatar.Image alt={user.name} src={user.image} />
           <Avatar.Fallback>
             {user.name
-              .split(' ')
-              .map(n => n[0])
-              .join('')}
+              .split(" ")
+              .map((n) => n[0])
+              .join("")}
           </Avatar.Fallback>
         </Avatar>
       ))}
     </AvatarGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Count
 
-[Live example: avatar-group-count](https://heroui.com/docs/react/components/avatar-group)
 
-```tsx
+<ComponentPreview name="avatar-group-count">
+
+````tsx
+import {Avatar, AvatarGroup} from "@vezham/react-v3";
+
 const users = [
   {
     id: 1,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg',
-    name: 'John Doe'
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg",
+    name: "John Doe",
   },
   {
     id: 2,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg',
-    name: 'Kate Wilson'
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg",
+    name: "Kate Wilson",
   },
   {
     id: 3,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/purple.jpg',
-    name: 'Emily Chen'
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/purple.jpg",
+    name: "Emily Chen",
   },
   {
     id: 4,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/orange.jpg',
-    name: 'Michael Brown'
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/orange.jpg",
+    name: "Michael Brown",
   },
   {
     id: 5,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/red.jpg',
-    name: 'Olivia Davis'
-  }
-]
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/red.jpg",
+    name: "Olivia Davis",
+  },
+];
 
 export function Count() {
-  const total = 12
+  const total = 12;
 
   return (
     <AvatarGroup size="sm">
-      {users.slice(0, 3).map(user => (
+      {users.slice(0, 3).map((user) => (
         <Avatar key={user.id}>
           <Avatar.Image alt={user.name} src={user.image} />
           <Avatar.Fallback>
             {user.name
-              .split(' ')
-              .map(n => n[0])
-              .join('')}
+              .split(" ")
+              .map((n) => n[0])
+              .join("")}
           </Avatar.Fallback>
         </Avatar>
       ))}
       <AvatarGroup.Count>+{total - 3}</AvatarGroup.Count>
     </AvatarGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Sizes
 
-[Live example: avatar-group-sizes](https://heroui.com/docs/react/components/avatar-group)
 
-```tsx
+<ComponentPreview name="avatar-group-sizes">
+
+````tsx
+import {Avatar, AvatarGroup} from "@vezham/react-v3";
+
 const users = [
   {
     id: 1,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg',
-    name: 'John Doe'
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg",
+    name: "John Doe",
   },
   {
     id: 2,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg',
-    name: 'Kate Wilson'
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg",
+    name: "Kate Wilson",
   },
   {
     id: 3,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/purple.jpg',
-    name: 'Emily Chen'
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/purple.jpg",
+    name: "Emily Chen",
   },
   {
     id: 4,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/orange.jpg',
-    name: 'Michael Brown'
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/orange.jpg",
+    name: "Michael Brown",
   },
   {
     id: 5,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/red.jpg',
-    name: 'Olivia Davis'
-  }
-]
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/red.jpg",
+    name: "Olivia Davis",
+  },
+];
 
 export function Sizes() {
   return (
     <div className="flex flex-col items-center gap-6">
       <div className="flex flex-col items-center gap-2">
-        <p className="text-muted text-sm">Small</p>
+        <p className="text-sm text-muted">Small</p>
         <AvatarGroup size="sm">
-          {users.slice(0, 4).map(user => (
+          {users.slice(0, 4).map((user) => (
             <Avatar key={user.id}>
               <Avatar.Image alt={user.name} src={user.image} />
               <Avatar.Fallback>
                 {user.name
-                  .split(' ')
-                  .map(n => n[0])
-                  .join('')}
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")}
               </Avatar.Fallback>
             </Avatar>
           ))}
         </AvatarGroup>
       </div>
       <div className="flex flex-col items-center gap-2">
-        <p className="text-muted text-sm">Medium (default)</p>
+        <p className="text-sm text-muted">Medium (default)</p>
         <AvatarGroup size="md">
-          {users.slice(0, 4).map(user => (
+          {users.slice(0, 4).map((user) => (
             <Avatar key={user.id}>
               <Avatar.Image alt={user.name} src={user.image} />
               <Avatar.Fallback>
                 {user.name
-                  .split(' ')
-                  .map(n => n[0])
-                  .join('')}
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")}
               </Avatar.Fallback>
             </Avatar>
           ))}
         </AvatarGroup>
       </div>
       <div className="flex flex-col items-center gap-2">
-        <p className="text-muted text-sm">Large</p>
+        <p className="text-sm text-muted">Large</p>
         <AvatarGroup size="lg">
-          {users.slice(0, 4).map(user => (
+          {users.slice(0, 4).map((user) => (
             <Avatar key={user.id}>
               <Avatar.Image alt={user.name} src={user.image} />
               <Avatar.Fallback>
                 {user.name
-                  .split(' ')
-                  .map(n => n[0])
-                  .join('')}
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")}
               </Avatar.Fallback>
             </Avatar>
           ))}
         </AvatarGroup>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Grid
 
-[Live example: avatar-group-grid](https://heroui.com/docs/react/components/avatar-group)
 
-```tsx
+<ComponentPreview name="avatar-group-grid">
+
+````tsx
+import {Avatar, AvatarGroup} from "@vezham/react-v3";
+
 const users = [
   {
     id: 1,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg',
-    name: 'John Doe'
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg",
+    name: "John Doe",
   },
   {
     id: 2,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg',
-    name: 'Kate Wilson'
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg",
+    name: "Kate Wilson",
   },
   {
     id: 3,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/purple.jpg',
-    name: 'Emily Chen'
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/purple.jpg",
+    name: "Emily Chen",
   },
   {
     id: 4,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/orange.jpg',
-    name: 'Michael Brown'
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/orange.jpg",
+    name: "Michael Brown",
   },
   {
     id: 5,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/red.jpg',
-    name: 'Olivia Davis'
-  }
-]
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/red.jpg",
+    name: "Olivia Davis",
+  },
+];
 
 export function Grid() {
   return (
     <AvatarGroup isGrid max={5}>
-      {users.map(user => (
+      {users.map((user) => (
         <Avatar key={user.id}>
           <Avatar.Image alt={user.name} src={user.image} />
           <Avatar.Fallback>
             {user.name
-              .split(' ')
-              .map(n => n[0])
-              .join('')}
+              .split(" ")
+              .map((n) => n[0])
+              .join("")}
           </Avatar.Fallback>
         </Avatar>
       ))}
     </AvatarGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Overlap
 
-[Live example: avatar-group-overlap](https://heroui.com/docs/react/components/avatar-group)
 
-```tsx
+<ComponentPreview name="avatar-group-overlap">
+
+````tsx
+import type {ReactNode} from "react";
+
+import {Avatar, AvatarGroup} from "@vezham/react-v3";
+
 const STRIPE_STYLES = `
 @keyframes ag-stripes {
   to { background-position: 24px 24px; }
@@ -379,21 +390,18 @@ const STRIPE_STYLES = `
   background-size: 24px 24px;
   animation: ag-stripes 2.8s linear infinite;
 }
-`
+`;
 
-function StripeBackdrop({ children }: { children: ReactNode }) {
+function StripeBackdrop({children}: {children: ReactNode}) {
   return (
     <div className="relative inline-flex rounded-xl p-6">
-      <div
-        aria-hidden
-        className="ag-stripes pointer-events-none absolute inset-0 rounded-xl"
-      />
+      <div aria-hidden className="ag-stripes pointer-events-none absolute inset-0 rounded-xl" />
       <div className="relative z-10">{children}</div>
     </div>
-  )
+  );
 }
 
-function DemoGroup({ overlap }: { overlap: 'clip' | 'ring' }) {
+function DemoGroup({overlap}: {overlap: "clip" | "ring"}) {
   return (
     <AvatarGroup overlap={overlap} size="lg">
       <Avatar>
@@ -418,7 +426,7 @@ function DemoGroup({ overlap }: { overlap: 'clip' | 'ring' }) {
       </Avatar>
       <AvatarGroup.Count>+2</AvatarGroup.Count>
     </AvatarGroup>
-  )
+  );
 }
 
 export function Overlap() {
@@ -426,67 +434,72 @@ export function Overlap() {
     <div className="flex flex-col items-start gap-6">
       <style>{STRIPE_STYLES}</style>
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">clip</p>
+        <p className="text-sm text-muted">clip</p>
         <StripeBackdrop>
           <DemoGroup overlap="clip" />
         </StripeBackdrop>
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm">ring</p>
+        <p className="text-sm text-muted">ring</p>
         <StripeBackdrop>
           <DemoGroup overlap="ring" />
         </StripeBackdrop>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: avatar-group-custom-styles](https://heroui.com/docs/react/components/avatar-group)
 
-```tsx
+<ComponentPreview name="avatar-group-custom-styles">
+
+````tsx
+import {Person} from "@gravity-ui/icons";
+import {Avatar, AvatarGroup} from "@vezham/react-v3";
+
 const assignees = [
   {
     id: 1,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg',
-    name: 'John Doe'
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg",
+    name: "John Doe",
   },
   {
     id: 2,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg',
-    name: 'Kate Wilson'
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg",
+    name: "Kate Wilson",
   },
   {
     id: 3,
-    image:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/purple.jpg',
-    name: 'Emily Chen'
-  }
-] as const
+    image: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/purple.jpg",
+    name: "Emily Chen",
+  },
+] as const;
 
 export function CustomStyles() {
   return (
-    <div className="border-border/70 bg-surface/95 dark:border-border/80 dark:bg-surface/90 inline-flex items-center gap-2.5 rounded-full border py-1 pr-3 pl-1 shadow-sm ring-1 ring-black/[0.04] dark:ring-white/10">
+    <div className="inline-flex items-center gap-2.5 rounded-full border border-border/70 bg-surface/95 py-1 pr-3 pl-1 shadow-sm ring-1 ring-black/[0.04] dark:border-border/80 dark:bg-surface/90 dark:ring-white/10">
       <AvatarGroup
         aria-label="Assignees"
         className="[--avatar-group-overlap:0.7rem] [--avatar-group-seam:2px]"
         overlap="clip"
         role="group"
-        size="sm">
-        {assignees.map(user => (
+        size="sm"
+      >
+        {assignees.map((user) => (
           <Avatar key={user.id}>
             <Avatar.Image alt={user.name} src={user.image} />
             <Avatar.Fallback>
               {user.name
-                .split(' ')
-                .map(part => part[0])
-                .join('')}
+                .split(" ")
+                .map((part) => part[0])
+                .join("")}
             </Avatar.Fallback>
           </Avatar>
         ))}
@@ -497,11 +510,14 @@ export function CustomStyles() {
         </Avatar>
         <AvatarGroup.Count>+3</AvatarGroup.Count>
       </AvatarGroup>
-      <span className="text-foreground text-sm font-medium">Assignees</span>
+      <span className="text-sm font-medium text-foreground">Assignees</span>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -530,7 +546,6 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The AvatarGroup component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/avatar-group.css)):
 
 #### Base Classes [!toc]
-
 - `.avatar-group` - Base avatar group container
 - `.avatar-group--grid` - Grid layout modifier (no overlap)
 - `.avatar-group--clip` - Transparent seam tracing the next avatar's outline (default stacked overlap)
@@ -543,28 +558,28 @@ Stacked layout uses negative margin between siblings (`--avatar-group-overlap`, 
 
 ### AvatarGroup
 
-| Prop        | Type                                                          | Default  | Description                                                                                       |
-| ----------- | ------------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------- |
-| `size`      | `'sm' \| 'md' \| 'lg'`                                        | `'md'`   | Size applied to child Avatars (and the overflow count) when they omit `size` (synced with Avatar) |
-| `color`     | `'default' \| 'accent' \| 'success' \| 'warning' \| 'danger'` | -        | Color applied to child Avatars (and the overflow count) when they omit `color`                    |
-| `variant`   | `'default' \| 'soft'`                                         | -        | Variant applied to child Avatars (and the overflow count) when they omit `variant`                |
-| `max`       | `number`                                                      | -        | Maximum number of avatar children to render; omit to show all                                     |
-| `isGrid`    | `boolean`                                                     | `false`  | Whether to use a wrapping grid layout without overlap                                             |
-| `overlap`   | `'clip' \| 'ring'`                                            | `'clip'` | Stacked overlap style: transparent seam (default) or box-shadow ring; ignored when `isGrid`       |
-| `className` | `string`                                                      | -        | Additional CSS classes                                                                            |
-| `children`  | `React.ReactNode`                                             | -        | Avatar components (and optional `AvatarGroup.Count`) to group together                            |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size applied to child Avatars (and the overflow count) when they omit `size` (synced with Avatar) |
+| `color` | `'default' \| 'accent' \| 'success' \| 'warning' \| 'danger'` | - | Color applied to child Avatars (and the overflow count) when they omit `color` |
+| `variant` | `'default' \| 'soft'` | - | Variant applied to child Avatars (and the overflow count) when they omit `variant` |
+| `max` | `number` | - | Maximum number of avatar children to render; omit to show all |
+| `isGrid` | `boolean` | `false` | Whether to use a wrapping grid layout without overlap |
+| `overlap` | `'clip' \| 'ring'` | `'clip'` | Stacked overlap style: transparent seam (default) or box-shadow ring; ignored when `isGrid` |
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `React.ReactNode` | - | Avatar components (and optional `AvatarGroup.Count`) to group together |
 
 ### AvatarGroup.Count
 
 Composes `Avatar` + `Avatar.Fallback` for the overflow indicator. Not truncated by `max`.
 
-| Prop        | Type                                                          | Default | Description                     |
-| ----------- | ------------------------------------------------------------- | ------- | ------------------------------- |
-| `children`  | `React.ReactNode`                                             | -       | Count content (e.g. `+3`)       |
-| `size`      | `'sm' \| 'md' \| 'lg'`                                        | -       | Override size from the group    |
-| `color`     | `'default' \| 'accent' \| 'success' \| 'warning' \| 'danger'` | -       | Override color from the group   |
-| `variant`   | `'default' \| 'soft'`                                         | -       | Override variant from the group |
-| `className` | `string`                                                      | -       | Additional CSS classes          |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | Count content (e.g. `+3`) |
+| `size` | `'sm' \| 'md' \| 'lg'` | - | Override size from the group |
+| `color` | `'default' \| 'accent' \| 'success' \| 'warning' \| 'danger'` | - | Override color from the group |
+| `variant` | `'default' \| 'soft'` | - | Override variant from the group |
+| `className` | `string` | - | Additional CSS classes |
 
 ## Note
 

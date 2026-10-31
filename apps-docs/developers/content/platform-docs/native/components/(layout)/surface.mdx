@@ -8,16 +8,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/surface-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/surface-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/surface-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/surface-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { Surface } from 'heroui-native'
+import { Surface } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -94,14 +95,14 @@ Disable all animations including children by using the `"disable-all"` value for
 {
   /* Disable all animations including children */
 }
-;<Surface animation="disable-all">No Animations</Surface>
+<Surface animation="disable-all">No Animations</Surface>;
 ```
 
 ## Example
 
 ```tsx
-import { Surface } from 'heroui-native'
-import { Text, View } from 'react-native'
+import { Surface } from 'heroui-native';
+import { Text, View } from 'react-native';
 
 export default function SurfaceExample() {
   return (
@@ -129,11 +130,11 @@ export default function SurfaceExample() {
         </AppText>
       </Surface>
     </View>
-  )
+  );
 }
 ```
 
-You can find more examples in the [GitHub repository](<https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/surface.tsx>).
+You can find more examples in the [GitHub repository](https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/surface.tsx).
 
 ## API Reference
 

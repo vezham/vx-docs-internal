@@ -14,8 +14,8 @@ By default, the `PortalHost` is included in the `HeroUINativeProvider`, so there
 For advanced use cases, you can import `Portal` and `PortalHost` directly from `heroui-native` to create custom portal implementations:
 
 ```tsx
-import { Portal, PortalHost } from 'heroui-native'
-import { Text, View } from 'react-native'
+import { Portal, PortalHost } from "heroui-native";
+import { View, Text } from "react-native";
 
 function AppLayout() {
   return (
@@ -32,17 +32,17 @@ function AppLayout() {
       {/* Portal host positioned at the top of the screen */}
       <PortalHost name="notification-host" />
     </View>
-  )
+  );
 }
 
 function CustomNotification() {
   return (
     <Portal name="notification-portal" hostName="notification-host">
-      <View className="absolute top-0 right-0 left-0 bg-blue-500 p-4">
+      <View className="absolute top-0 left-0 right-0 bg-blue-500 p-4">
         <Text>This notification appears at the top via Portal</Text>
       </View>
     </Portal>
-  )
+  );
 }
 ```
 
@@ -59,8 +59,8 @@ To avoid this, keep the state of interactive components (like text inputs) insid
 ```tsx
 // ❌ Problematic: State in parent causes re-renders that affect portal content
 function ParentComponent() {
-  const [dialogOpen, setDialogOpen] = useState(false)
-  const [inputValue, setInputValue] = useState('') // State in parent
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [inputValue, setInputValue] = useState(""); // State in parent
 
   return (
     <Dialog isOpen={dialogOpen} onOpenChange={setDialogOpen}>
@@ -75,12 +75,12 @@ function ParentComponent() {
         />
       </Dialog.Portal>
     </Dialog>
-  )
+  );
 }
 
 // ✅ Correct: State managed inside separate component within portal
 function ParentComponent() {
-  const [dialogOpen, setDialogOpen] = useState(false)
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   return (
     <Dialog isOpen={dialogOpen} onOpenChange={setDialogOpen}>
@@ -94,12 +94,12 @@ function ParentComponent() {
         />
       </Dialog.Portal>
     </Dialog>
-  )
+  );
 }
 
 function DialogFormContent({ onClose }: { onClose: () => void }) {
-  const [inputValue, setInputValue] = useState('') // State inside portal
-  const [error, setError] = useState('')
+  const [inputValue, setInputValue] = useState(""); // State inside portal
+  const [error, setError] = useState("");
 
   return (
     <Dialog.Content>
@@ -111,7 +111,7 @@ function DialogFormContent({ onClose }: { onClose: () => void }) {
       <FieldError>{error}</FieldError>
       <Button onPress={onClose}>Close</Button>
     </Dialog.Content>
-  )
+  );
 }
 ```
 
@@ -123,17 +123,17 @@ In the correct pattern, the `DialogFormContent` component manages its own state 
 
 By default, children of all Portal components will be rendered as its own children.
 
-| Prop | Type     | Note                                                |
-| ---- | -------- | --------------------------------------------------- |
-| name | `string` | Provide when it is used as a custom host (optional) |
+| Prop | Type     | Note                                                      |
+|------|----------|-----------------------------------------------------------|
+| name | `string` | Provide when it is used as a custom host (optional)       |
 
 ### Portal
 
-| Prop     | Type              | Note                                                                                  |
-| -------- | ----------------- | ------------------------------------------------------------------------------------- |
-| name\*   | `string`          | Unique value otherwise the portal with the same name will replace the original portal |
-| hostName | `string`          | Provide when its children are to be rendered in a custom host (optional)              |
-| children | `React.ReactNode` | The content to render in the portal                                                   |
+| Prop      | Type     | Note                                                      |
+|-----------|----------|-----------------------------------------------------------|
+| name*     | `string` | Unique value otherwise the portal with the same name will replace the original portal |
+| hostName  | `string` | Provide when its children are to be rendered in a custom host (optional) |
+| children  | `React.ReactNode` | The content to render in the portal |
 
 \* Required prop
 

@@ -5,17 +5,11 @@ github:
   pull: 347
 ---
 
-import {
-  Callout,
-  NativeTryOnDevice,
-  NativeVideoPlayerView,
-  Tab,
-  Tabs,
-  VideoPlayer
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, NativeTryOnDevice, NativeVideoPlayerView, Tab, Tabs, VideoPlayer } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">March 19, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">March 19, 2026</span>
 </div>
 
 <VideoPlayer
@@ -30,18 +24,31 @@ import {
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
-  <Tab value="npm">```bash npm i heroui-native ```</Tab>
-  <Tab value="pnpm">``` bash pnpm add heroui-native ```</Tab>
-  <Tab value="yarn">```bash yarn add heroui-native ```</Tab>
-  <Tab value="bun">```bash bun add heroui-native ```</Tab>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
+<Tab value="npm">
+  ```bash
+  npm i heroui-native
+  ```
+</Tab>
+<Tab value="pnpm">
+  ``` bash
+  pnpm add heroui-native
+  ```
+</Tab>
+<Tab value="yarn">
+  ```bash
+  yarn add heroui-native
+  ```
+</Tab>
+<Tab value="bun">
+  ```bash
+  bun add heroui-native
+  ```
+</Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
-  the latest version" and your AI assistant will automatically compare versions
-  and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs-ui/native/getting-started/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI Native MCP Server](/docs-ui/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -57,8 +64,8 @@ The new [LinkButton](/docs-ui/native/components/button) compound component rende
 <NativeVideoPlayerView
   target="component"
   slug="link-button"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/link-button-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/link-button-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/link-button-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/link-button-docs-dark.mp4"
 />
 
 **Features:**
@@ -72,14 +79,14 @@ The new [LinkButton](/docs-ui/native/components/button) compound component rende
 **Usage:**
 
 ```tsx
-import { LinkButton } from 'heroui-native'
+import { LinkButton } from "heroui-native";
 
 export function TermsLink() {
   return (
-    <LinkButton onPress={() => openURL('https://example.com/terms')}>
+    <LinkButton onPress={() => openURL("https://example.com/terms")}>
       <LinkButton.Label>Terms of Service</LinkButton.Label>
     </LinkButton>
-  )
+  );
 }
 ```
 
@@ -116,13 +123,13 @@ The `useThemeColor` hook now returns a `ThemeColorValue` branded type for single
 **New behavior:**
 
 ```tsx
-import { useThemeColor } from 'heroui-native'
+import { useThemeColor } from "heroui-native";
 
 // Correct — direct assignment
-const mutedColor = useThemeColor('muted')
+const mutedColor = useThemeColor("muted");
 
 // Incorrect — IDE immediately surfaces `never` type
-const [color] = useThemeColor('muted') // color: never
+const [color] = useThemeColor("muted"); // color: never
 ```
 
 `ThemeColorValue` extends `string`, so it is assignable everywhere a `string` is expected. Existing call sites are unaffected at runtime. The `_colorValueBrand` symbol is declared with `declare const` so it has zero runtime footprint.
@@ -136,12 +143,12 @@ The `useBottomSheetAwareHandlers` hook is now exported as a public API, giving c
 **Usage:**
 
 ```tsx
-import { Input, useBottomSheetAwareHandlers } from 'heroui-native'
+import { useBottomSheetAwareHandlers, Input } from "heroui-native";
 
 export function BottomSheetInput() {
-  const { onFocus, onBlur } = useBottomSheetAwareHandlers()
+  const { onFocus, onBlur } = useBottomSheetAwareHandlers();
 
-  return <Input onFocus={onFocus} onBlur={onBlur} placeholder="Type here..." />
+  return <Input onFocus={onFocus} onBlur={onBlur} placeholder="Type here..." />;
 }
 ```
 
@@ -156,14 +163,14 @@ The `isBottomSheetAware` prop has been removed from `Input` and `InputOTP`. Prev
 **Migration:**
 
 ```tsx
-// After
-import { useBottomSheetAwareHandlers } from 'heroui-native'
-
 // Before
-;<Input isBottomSheetAware placeholder="Type here..." />
+<Input isBottomSheetAware placeholder="Type here..." />
 
-const { onFocus, onBlur } = useBottomSheetAwareHandlers()
-;<Input onFocus={onFocus} onBlur={onBlur} placeholder="Type here..." />
+// After
+import { useBottomSheetAwareHandlers } from "heroui-native";
+
+const { onFocus, onBlur } = useBottomSheetAwareHandlers();
+<Input onFocus={onFocus} onBlur={onBlur} placeholder="Type here..." />
 ```
 
 This applies to any `Input` or `InputOTP` rendered inside a `BottomSheet`. Components used outside of bottom sheets are unaffected.

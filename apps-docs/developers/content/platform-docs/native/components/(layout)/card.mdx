@@ -8,16 +8,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/card-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/card-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/card-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/card-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { Card } from 'heroui-native'
+import { Card } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -112,16 +113,16 @@ Use an image as an absolute positioned background.
 ## Example
 
 ```tsx
-import { Ionicons } from '@expo/vector-icons'
-import { Button, Card } from 'heroui-native'
-import { View } from 'react-native'
+import { Button, Card } from 'heroui-native';
+import { Ionicons } from '@expo/vector-icons';
+import { View } from 'react-native';
 
 export default function CardExample() {
   return (
     <Card>
       <View className="gap-4">
         <Card.Body className="mb-4">
-          <View className="mb-2 gap-1">
+          <View className="gap-1 mb-2">
             <Card.Title className="text-pink-500">$450</Card.Title>
             <Card.Title>Living room Sofa • Collection 2025</Card.Title>
           </View>
@@ -139,11 +140,11 @@ export default function CardExample() {
         </Card.Footer>
       </View>
     </Card>
-  )
+  );
 }
 ```
 
-You can find more examples in the [GitHub repository](<https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/card.tsx>).
+You can find more examples in the [GitHub repository](https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/card.tsx).
 
 ## API Reference
 

@@ -5,16 +5,11 @@ github:
   pull: 214
 ---
 
-import {
-  Callout,
-  NativeTryOnDevice,
-  NativeVideoPlayerView,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, NativeTryOnDevice, NativeVideoPlayerView, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">January 13, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">January 13, 2026</span>
 </div>
 
 Beta 12 introduces three essential form components—InputOTP, Label, and Description—that enhance form building capabilities in React Native applications. This release also includes critical fixes for Popover close behavior, popup controlled state management, border radius configuration, and adds variant style prop support across multiple form components. These improvements provide developers with more robust form components and better control over component styling and behavior.
@@ -23,18 +18,31 @@ Beta 12 introduces three essential form components—InputOTP, Label, and Descri
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
-  <Tab value="npm">```bash npm i heroui-native@beta ```</Tab>
-  <Tab value="pnpm">``` bash pnpm add heroui-native@beta ```</Tab>
-  <Tab value="yarn">```bash yarn add heroui-native@beta ```</Tab>
-  <Tab value="bun">```bash bun add heroui-native@beta ```</Tab>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
+<Tab value="npm">
+  ```bash
+  npm i heroui-native@beta
+  ```
+</Tab>
+<Tab value="pnpm">
+  ``` bash
+  pnpm add heroui-native@beta
+  ```
+</Tab>
+<Tab value="yarn">
+  ```bash
+  yarn add heroui-native@beta
+  ```
+</Tab>
+<Tab value="bun">
+  ```bash
+  bun add heroui-native@beta
+  ```
+</Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
-  the latest version" and your AI assistant will automatically compare versions
-  and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs-ui/native/getting-started/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI Native MCP Server](/docs-ui/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -58,8 +66,8 @@ The InputOTP component provides a complete solution for one-time password input 
 <NativeVideoPlayerView
   target="component"
   slug="input-otp"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/input-otp-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/input-otp-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/input-otp-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/input-otp-docs-dark.mp4"
 />
 
 **Features:**
@@ -76,13 +84,13 @@ The InputOTP component provides a complete solution for one-time password input 
 **Usage:**
 
 ```tsx
-import { Description, InputOTP, Label } from 'heroui-native'
+import { InputOTP, Label, Description } from "heroui-native";
 
 export function Example() {
   return (
     <>
       <Label>Verify account</Label>
-      <InputOTP maxLength={6} onComplete={code => console.log(code)}>
+      <InputOTP maxLength={6} onComplete={(code) => console.log(code)}>
         <InputOTP.Group>
           <InputOTP.Slot index={0} />
           <InputOTP.Slot index={1} />
@@ -97,7 +105,7 @@ export function Example() {
       </InputOTP>
       <Description>We've sent a code to your email</Description>
     </>
-  )
+  );
 }
 ```
 
@@ -112,8 +120,8 @@ The Label component provides accessible labeling for form fields with built-in s
 <NativeVideoPlayerView
   target="component"
   slug="label"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/label-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/label-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/label-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/label-docs-dark.mp4"
 />
 
 **Features:**
@@ -128,7 +136,7 @@ The Label component provides accessible labeling for form fields with built-in s
 **Usage:**
 
 ```tsx
-import { Label, TextField } from 'heroui-native'
+import { Label, TextField } from "heroui-native";
 
 export function Example() {
   return (
@@ -136,7 +144,7 @@ export function Example() {
       <Label isRequired>Password</Label>
       <TextField.Input placeholder="Create a password" secureTextEntry />
     </TextField>
-  )
+  );
 }
 ```
 
@@ -151,8 +159,8 @@ The Description component provides accessible helper text and descriptions for f
 <NativeVideoPlayerView
   target="component"
   slug="description"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/description-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/description-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/description-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/description-docs-dark.mp4"
 />
 
 **Features:**
@@ -165,7 +173,7 @@ The Description component provides accessible helper text and descriptions for f
 **Usage:**
 
 ```tsx
-import { Description, TextField } from 'heroui-native'
+import { Description, TextField } from "heroui-native";
 
 export function Example() {
   return (
@@ -180,7 +188,7 @@ export function Example() {
         We'll never share your email with anyone else.
       </Description>
     </TextField>
-  )
+  );
 }
 ```
 
@@ -256,19 +264,18 @@ The `HeroUINativeProvider` component now supports `devInfo` configuration option
 **New Capability:**
 
 ```tsx
-import { HeroUINativeProvider } from 'heroui-native'
+import { HeroUINativeProvider } from "heroui-native";
 
 export function App() {
   return (
     <HeroUINativeProvider
-      devInfo={
-        {
-          // Configuration options for development
-        }
-      }>
+      devInfo={{
+        // Configuration options for development
+      }}
+    >
       {/* Your app content */}
     </HeroUINativeProvider>
-  )
+  );
 }
 ```
 

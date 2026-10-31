@@ -3,42 +3,45 @@ title: v3.0.0-alpha.34
 description: Essentials for building forms with a clean API Form, TextField, RadioGroup, Label, Input, Fieldset and more.
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, ComponentPreview, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">October 15, 2025</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">October 15, 2025</span>
 </div>
 
 This release introduces Form-based components, form field tokens, reorganizes Storybook, and aligns data-slot markers across components.
+
 
 ## Installation
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
   <Tab value="npm">
-    ```bash npm i @heroui/styles@alpha @heroui/react@alpha ```
+    ```bash
+    npm i @heroui/styles@alpha @heroui/react@alpha
+    ```
   </Tab>
   <Tab value="pnpm">
-    ```bash pnpm add @heroui/styles@alpha @heroui/react@alpha ```
+    ```bash
+    pnpm add @heroui/styles@alpha @heroui/react@alpha
+    ```
   </Tab>
   <Tab value="yarn">
-    ```bash yarn add @heroui/styles@alpha @heroui/react@alpha ```
+    ```bash
+    yarn add @heroui/styles@alpha @heroui/react@alpha
+    ```
   </Tab>
   <Tab value="bun">
-    ```bash bun add @heroui/styles@alpha @heroui/react@alpha ```
+    ```bash
+    bun add @heroui/styles@alpha @heroui/react@alpha
+    ```
   </Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the
-  latest version" and your AI assistant will automatically compare versions and
-  apply the necessary changes. Learn more about the [HeroUI MCP
-  Server](https://heroui.com/docs/ui-for-agents/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI MCP Server](https://heroui.com/docs/ui-for-agents/mcp-server).
 </Callout>
 
 ## What's New
@@ -49,9 +52,12 @@ We've introduced a comprehensive set of form-based components built on React Ari
 
 #### Description
 
-[Live example: description-basic](https://heroui.com/docs/react/releases/v3-0-0-alpha-34)
 
-```tsx
+<ComponentPreview name="description-basic">
+
+````tsx
+import {Description, Input, Label} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <div className="flex flex-col gap-1">
@@ -67,20 +73,27 @@ export function Basic() {
         We'll never share your email with anyone else.
       </Description>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 #### FieldError
 
-[Live example: field-error-basic](https://heroui.com/docs/react/releases/v3-0-0-alpha-34)
 
-```tsx
-'use client'
+<ComponentPreview name="field-error-basic">
+
+````tsx
+"use client";
+
+import {FieldError, Input, Label, TextField} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function Basic() {
-  const [value, setValue] = useState('jr')
-  const isInvalid = value.length > 0 && value.length < 3
+  const [value, setValue] = useState("jr");
+  const isInvalid = value.length > 0 && value.length < 3;
 
   return (
     <TextField className="w-64" isInvalid={isInvalid}>
@@ -89,21 +102,26 @@ export function Basic() {
         id="username"
         placeholder="Enter username"
         value={value}
-        onChange={e => setValue(e.target.value)}
+        onChange={(e) => setValue(e.target.value)}
       />
       <FieldError>Username must be at least 3 characters</FieldError>
     </TextField>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 #### Fieldset
 
-[Live example: fieldset-basic](https://heroui.com/docs/react/releases/v3-0-0-alpha-34)
 
-```tsx
-'use client'
+<ComponentPreview name="fieldset-basic">
 
+````tsx
+"use client";
+
+import {FloppyDisk} from "@gravity-ui/icons";
 import {
   Button,
   Description,
@@ -114,22 +132,22 @@ import {
   Input,
   Label,
   TextArea,
-  TextField
-} from '@heroui/react'
+  TextField,
+} from "@vezham/react-v3";
 
 export function Basic() {
   const onSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    const data: Record<string, string> = {}
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data: Record<string, string> = {};
 
     // Convert FormData to plain object
     formData.forEach((value, key) => {
-      data[key] = value.toString()
-    })
+      data[key] = value.toString();
+    });
 
-    alert('Form submitted successfully!')
-  }
+    alert("Form submitted successfully!");
+  };
 
   return (
     <Form className="w-full max-w-96" onSubmit={onSubmit}>
@@ -140,13 +158,14 @@ export function Basic() {
           <TextField
             isRequired
             name="name"
-            validate={value => {
+            validate={(value) => {
               if (value.length < 3) {
-                return 'Name must be at least 3 characters'
+                return "Name must be at least 3 characters";
               }
 
-              return null
-            }}>
+              return null;
+            }}
+          >
             <Label>Name</Label>
             <Input placeholder="John Doe" />
             <FieldError />
@@ -159,13 +178,14 @@ export function Basic() {
           <TextField
             isRequired
             name="bio"
-            validate={value => {
+            validate={(value) => {
               if (value.length < 10) {
-                return 'Bio must be at least 10 characters'
+                return "Bio must be at least 10 characters";
               }
 
-              return null
-            }}>
+              return null;
+            }}
+          >
             <Label>Bio</Label>
             <TextArea placeholder="Tell us about yourself..." />
             <Description>Minimum 10 characters</Description>
@@ -183,30 +203,37 @@ export function Basic() {
         </Fieldset.Actions>
       </Fieldset>
     </Form>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 #### Form
 
-[Live example: form-basic](https://heroui.com/docs/react/releases/v3-0-0-alpha-34)
 
-```tsx
-'use client'
+<ComponentPreview name="form-basic">
+
+````tsx
+"use client";
+
+import {Check} from "@gravity-ui/icons";
+import {Button, Description, FieldError, Form, Input, Label, TextField} from "@vezham/react-v3";
 
 export function Basic() {
   const onSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    const data: Record<string, string> = {}
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data: Record<string, string> = {};
 
     // Convert FormData to plain object
     formData.forEach((value, key) => {
-      data[key] = value.toString()
-    })
+      data[key] = value.toString();
+    });
 
-    alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`)
-  }
+    alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`);
+  };
 
   return (
     <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
@@ -214,13 +241,14 @@ export function Basic() {
         isRequired
         name="email"
         type="email"
-        validate={value => {
+        validate={(value) => {
           if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-            return 'Please enter a valid email address'
+            return "Please enter a valid email address";
           }
 
-          return null
-        }}>
+          return null;
+        }}
+      >
         <Label>Email</Label>
         <Input placeholder="john@example.com" />
         <FieldError />
@@ -231,24 +259,23 @@ export function Basic() {
         minLength={8}
         name="password"
         type="password"
-        validate={value => {
+        validate={(value) => {
           if (value.length < 8) {
-            return 'Password must be at least 8 characters'
+            return "Password must be at least 8 characters";
           }
           if (!/[A-Z]/.test(value)) {
-            return 'Password must contain at least one uppercase letter'
+            return "Password must contain at least one uppercase letter";
           }
           if (!/[0-9]/.test(value)) {
-            return 'Password must contain at least one number'
+            return "Password must contain at least one number";
           }
 
-          return null
-        }}>
+          return null;
+        }}
+      >
         <Label>Password</Label>
         <Input placeholder="Enter your password" />
-        <Description>
-          Must be at least 8 characters with 1 uppercase and 1 number
-        </Description>
+        <Description>Must be at least 8 characters with 1 uppercase and 1 number</Description>
         <FieldError />
       </TextField>
 
@@ -262,47 +289,58 @@ export function Basic() {
         </Button>
       </div>
     </Form>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 #### Input
 
-[Live example: input-basic](https://heroui.com/docs/react/releases/v3-0-0-alpha-34)
 
-```tsx
+<ComponentPreview name="input-basic">
+
+````tsx
+import {Input} from "@vezham/react-v3";
+
 export function Basic() {
-  return (
-    <Input aria-label="Name" className="w-64" placeholder="Enter your name" />
-  )
+  return <Input aria-label="Name" className="w-64" placeholder="Enter your name" />;
 }
-```
+````
+
+</ComponentPreview>
+
 
 #### Label
 
-[Live example: label-basic](https://heroui.com/docs/react/releases/v3-0-0-alpha-34)
 
-```tsx
+<ComponentPreview name="label-basic">
+
+````tsx
+import {Input, Label} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <div className="flex flex-col gap-1">
       <Label htmlFor="name">Name</Label>
-      <Input
-        className="w-64"
-        id="name"
-        placeholder="Enter your name"
-        type="text"
-      />
+      <Input className="w-64" id="name" placeholder="Enter your name" type="text" />
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 #### RadioGroup
 
-[Live example: radio-group-basic](https://heroui.com/docs/react/releases/v3-0-0-alpha-34)
 
-```tsx
+<ComponentPreview name="radio-group-basic">
+
+````tsx
+import {Description, Label, Radio, RadioGroup} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <RadioGroup defaultValue="premium" name="plan">
@@ -336,30 +374,42 @@ export function Basic() {
         <Description>Unlimited messages</Description>
       </Radio>
     </RadioGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 #### TextField
 
-[Live example: textfield-basic](https://heroui.com/docs/react/releases/v3-0-0-alpha-34)
 
-```tsx
+<ComponentPreview name="textfield-basic">
+
+````tsx
+import {Input, Label, TextField} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <TextField className="w-full max-w-64" name="email" type="email">
       <Label>Email</Label>
       <Input placeholder="Enter your email" />
     </TextField>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 #### TextArea
 
-[Live example: textarea-basic](https://heroui.com/docs/react/releases/v3-0-0-alpha-34)
 
-```tsx
+<ComponentPreview name="textarea-basic">
+
+````tsx
+import {TextArea} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <TextArea
@@ -367,9 +417,12 @@ export function Basic() {
       className="h-32 w-96"
       placeholder="Share a quick project update..."
     />
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Form Field Tokens
 
@@ -388,7 +441,6 @@ Reorganized Storybook by category for better navigation and component discovery.
 Aligned data-slot markers across components for consistent styling and customization. This standardization makes it easier to target specific component parts with CSS selectors and improves the overall developer experience when customizing component styles.
 
 Components now use consistent `data-slot` attributes like:
-
 - `data-slot="base"` for the root element
 - `data-slot="label"` for label text
 - `data-slot="description"` for description text
@@ -398,7 +450,7 @@ This allows for predictable CSS targeting across all form components:
 
 ```css
 .radio {
-  [data-slot='label'] {
+  [data-slot="label"] {
     /* Styles apply to radio labels */
   }
 }
@@ -407,9 +459,9 @@ This allows for predictable CSS targeting across all form components:
 ## Documentation Improvements
 
 ### Component Documentation
-
 - **[Link](https://heroui.com/docs/components/link)**: Added Anatomy, and examples with Icon. Updated Link and Link.Icon props section.
 - **[Description](https://heroui.com/docs/components/description)**, **[FieldError](https://heroui.com/docs/components/field-error)**, **[Fieldset](https://heroui.com/docs/components/fieldset)**, **[Form](https://heroui.com/docs/components/form)**, **[Input](https://heroui.com/docs/components/input)**, **[Label](https://heroui.com/docs/components/label)**, **[RadioGroup](https://heroui.com/docs/components/radio-group)**, **[TextField](https://heroui.com/docs/components/text-field)**, and **[TextArea](https://heroui.com/docs/components/textarea)**: New documentation with usage examples
+
 
 ## Migration Guide
 

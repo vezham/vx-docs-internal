@@ -3,16 +3,11 @@ title: Table
 description: Migration guide for Table from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Table documentation](/docs-ui/web/components/table) for
-  complete API reference, styling guide, and advanced examples. This guide only
-  focuses on migrating from HeroUI v2.
+  Refer to the [v3 Table documentation](/docs-ui/web/components/table) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,14 +15,7 @@ import {
 In v2, Table used separate named imports for each part:
 
 ```tsx
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableColumn,
-  TableHeader,
-  TableRow
-} from '@heroui/react'
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@heroui/react";
 
 export default function App() {
   return (
@@ -43,14 +31,14 @@ export default function App() {
         </TableRow>
       </TableBody>
     </Table>
-  )
+  );
 }
 ```
 
 In v3, Table uses the compound component pattern with dot notation and adds `Table.ScrollContainer` and `Table.Content`:
 
 ```tsx
-import { Table } from '@heroui/react'
+import { Table } from "@heroui/react";
 
 export default function App() {
   return (
@@ -70,7 +58,7 @@ export default function App() {
         </Table.Content>
       </Table.ScrollContainer>
     </Table>
-  )
+  );
 }
 ```
 
@@ -90,42 +78,42 @@ export default function App() {
 
 ### 3. Prop Changes
 
-| v2 Prop                        | v3 Equivalent                            | Notes                                                                |
-| ------------------------------ | ---------------------------------------- | -------------------------------------------------------------------- |
-| `aria-label`                   | `Table.Content` `aria-label`             | Moved to `Table.Content`                                             |
-| `selectionMode`                | `Table.Content` `selectionMode`          | Moved to `Table.Content`                                             |
-| `selectedKeys`                 | `Table.Content` `selectedKeys`           | Moved to `Table.Content`                                             |
-| `defaultSelectedKeys`          | `Table.Content` `defaultSelectedKeys`    | Moved to `Table.Content`                                             |
-| `onSelectionChange`            | `Table.Content` `onSelectionChange`      | Moved to `Table.Content`                                             |
-| `sortDescriptor`               | `Table.Content` `sortDescriptor`         | Moved to `Table.Content`                                             |
-| `onSortChange`                 | `Table.Content` `onSortChange`           | Moved to `Table.Content`                                             |
-| `disabledKeys`                 | `Table.Content` `disabledKeys`           | Moved to `Table.Content`                                             |
-| `disallowEmptySelection`       | `Table.Content` `disallowEmptySelection` | Moved to `Table.Content`                                             |
-| `selectionBehavior`            | `Table.Content` `selectionBehavior`      | Moved to `Table.Content`                                             |
-| `disabledBehavior`             | `Table.Content` `disabledBehavior`       | Moved to `Table.Content`                                             |
-| `onRowAction`                  | `Table.Content` `onRowAction`            | Moved to `Table.Content`                                             |
-| `onCellAction`                 | `Table.Content` `onCellAction`           | Moved to `Table.Content`                                             |
-| `topContent`                   | -                                        | Place content inside `Table` before `Table.ScrollContainer`          |
-| `bottomContent`                | -                                        | Use `Table.Footer`                                                   |
-| `topContentPlacement`          | -                                        | Removed (compose layout directly)                                    |
-| `bottomContentPlacement`       | -                                        | Removed (compose layout directly)                                    |
-| `color`                        | -                                        | Removed (use Tailwind CSS)                                           |
-| `variant`                      | `Table` `variant`                        | Changed to `"primary"` (card-style, default) or `"secondary"` (flat) |
-| `layout`                       | -                                        | Removed                                                              |
-| `radius`                       | -                                        | Removed (use Tailwind CSS)                                           |
-| `shadow`                       | -                                        | Removed (use Tailwind CSS)                                           |
-| `isStriped`                    | -                                        | Removed (use Tailwind CSS)                                           |
-| `isCompact`                    | -                                        | Removed (use Tailwind CSS)                                           |
-| `isHeaderSticky`               | -                                        | Removed (use Tailwind CSS `sticky top-0`)                            |
-| `fullWidth`                    | -                                        | Removed (full width by default)                                      |
-| `removeWrapper`                | -                                        | Removed (compose layout directly)                                    |
-| `hideHeader`                   | -                                        | Removed (omit `Table.Header` or use CSS)                             |
-| `isVirtualized`                | -                                        | Use React Aria `Virtualizer` wrapper                                 |
-| `maxTableHeight`               | -                                        | Use CSS or Virtualizer                                               |
-| `rowHeight`                    | -                                        | Use `TableLayout` with Virtualizer                                   |
-| `isKeyboardNavigationDisabled` | -                                        | Removed                                                              |
-| `disableAnimation`             | -                                        | Removed                                                              |
-| `classNames`                   | -                                        | Use `className` on individual compound components                    |
+| v2 Prop | v3 Equivalent | Notes |
+|---------|---------------|-------|
+| `aria-label` | `Table.Content` `aria-label` | Moved to `Table.Content` |
+| `selectionMode` | `Table.Content` `selectionMode` | Moved to `Table.Content` |
+| `selectedKeys` | `Table.Content` `selectedKeys` | Moved to `Table.Content` |
+| `defaultSelectedKeys` | `Table.Content` `defaultSelectedKeys` | Moved to `Table.Content` |
+| `onSelectionChange` | `Table.Content` `onSelectionChange` | Moved to `Table.Content` |
+| `sortDescriptor` | `Table.Content` `sortDescriptor` | Moved to `Table.Content` |
+| `onSortChange` | `Table.Content` `onSortChange` | Moved to `Table.Content` |
+| `disabledKeys` | `Table.Content` `disabledKeys` | Moved to `Table.Content` |
+| `disallowEmptySelection` | `Table.Content` `disallowEmptySelection` | Moved to `Table.Content` |
+| `selectionBehavior` | `Table.Content` `selectionBehavior` | Moved to `Table.Content` |
+| `disabledBehavior` | `Table.Content` `disabledBehavior` | Moved to `Table.Content` |
+| `onRowAction` | `Table.Content` `onRowAction` | Moved to `Table.Content` |
+| `onCellAction` | `Table.Content` `onCellAction` | Moved to `Table.Content` |
+| `topContent` | - | Place content inside `Table` before `Table.ScrollContainer` |
+| `bottomContent` | - | Use `Table.Footer` |
+| `topContentPlacement` | - | Removed (compose layout directly) |
+| `bottomContentPlacement` | - | Removed (compose layout directly) |
+| `color` | - | Removed (use Tailwind CSS) |
+| `variant` | `Table` `variant` | Changed to `"primary"` (card-style, default) or `"secondary"` (flat) |
+| `layout` | - | Removed |
+| `radius` | - | Removed (use Tailwind CSS) |
+| `shadow` | - | Removed (use Tailwind CSS) |
+| `isStriped` | - | Removed (use Tailwind CSS) |
+| `isCompact` | - | Removed (use Tailwind CSS) |
+| `isHeaderSticky` | - | Removed (use Tailwind CSS `sticky top-0`) |
+| `fullWidth` | - | Removed (full width by default) |
+| `removeWrapper` | - | Removed (compose layout directly) |
+| `hideHeader` | - | Removed (omit `Table.Header` or use CSS) |
+| `isVirtualized` | - | Use React Aria `Virtualizer` wrapper |
+| `maxTableHeight` | - | Use CSS or Virtualizer |
+| `rowHeight` | - | Use `TableLayout` with Virtualizer |
+| `isKeyboardNavigationDisabled` | - | Removed |
+| `disableAnimation` | - | Removed |
+| `classNames` | - | Use `className` on individual compound components |
 
 ### 4. Selection with Checkboxes
 
@@ -176,7 +164,6 @@ export default function App() {
       </TableBody>
     </Table>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -206,7 +193,6 @@ export default function App() {
       </Table.ScrollContainer>
     </Table>
     ```
-
   </Tab>
 </Tabs>
 
@@ -237,7 +223,6 @@ export default function App() {
       </TableBody>
     </Table>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -268,7 +253,6 @@ export default function App() {
       </Table.ScrollContainer>
     </Table>
     ```
-
   </Tab>
 </Tabs>
 
@@ -301,7 +285,6 @@ export default function App() {
       </TableBody>
     </Table>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -344,7 +327,6 @@ export default function App() {
       </Table.ScrollContainer>
     </Table>
     ```
-
   </Tab>
 </Tabs>
 
@@ -376,7 +358,6 @@ export default function App() {
       </TableBody>
     </Table>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -408,19 +389,21 @@ export default function App() {
       </Table.ScrollContainer>
     </Table>
     ```
-
   </Tab>
 </Tabs>
 
 ### With Pagination (Bottom Content)
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Table
       aria-label="Users"
-      bottomContent={<Pagination total={10} page={page} onChange={setPage} />}
-      bottomContentPlacement="outside">
+      bottomContent={
+        <Pagination total={10} page={page} onChange={setPage} />
+      }
+      bottomContentPlacement="outside"
+    >
       {/* ... */}
     </Table>
     ```
@@ -433,7 +416,9 @@ export default function App() {
           {/* Header and Body */}
         </Table.Content>
       </Table.ScrollContainer>
-      <Table.Footer>{/* Pagination component */}</Table.Footer>
+      <Table.Footer>
+        {/* Pagination component */}
+      </Table.Footer>
     </Table>
     ```
   </Tab>
@@ -441,10 +426,12 @@ export default function App() {
 
 ### Empty State
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
-    <TableBody emptyContent="No rows to display.">{[]}</TableBody>
+    <TableBody emptyContent="No rows to display.">
+      {[]}
+    </TableBody>
     ```
   </Tab>
   <Tab value="v3">
@@ -452,8 +439,9 @@ export default function App() {
     <Table.Body
       items={[]}
       renderEmptyState={() => (
-        <p className="py-4 text-center">No rows to display.</p>
-      )}>
+        <p className="text-center py-4">No rows to display.</p>
+      )}
+    >
       {[]}
     </Table.Body>
     ```
@@ -467,14 +455,14 @@ export default function App() {
 ```tsx
 <Table
   classNames={{
-    base: 'custom-base',
-    wrapper: 'custom-wrapper',
-    table: 'custom-table',
-    thead: 'custom-header',
-    tbody: 'custom-body',
-    tr: 'custom-row',
-    th: 'custom-column',
-    td: 'custom-cell'
+    base: "custom-base",
+    wrapper: "custom-wrapper",
+    table: "custom-table",
+    thead: "custom-header",
+    tbody: "custom-body",
+    tr: "custom-row",
+    th: "custom-column",
+    td: "custom-cell",
   }}
 />
 ```

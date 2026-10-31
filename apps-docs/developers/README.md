@@ -10,8 +10,8 @@ UI library documentation uses the notebook layout:
   retain the locale routes and currently fall back to English.
 
 The imported content lives in `content/platform-docs/{web,native}`. It includes
-Getting Started, Components, Releases, and Web Migration. Web examples contain
-the upstream example source and links to live HeroUI previews. Images and native
+Getting Started, Components, Releases, and Web Migration. Web examples run locally through a lazy-loaded demo registry, with Preview and Code
+tabs for every example. Executable sources live in `src/demos/heroui`. Images and native
 videos use upstream media URLs. Search, Markdown endpoints, and LLM exports
 include these collections.
 

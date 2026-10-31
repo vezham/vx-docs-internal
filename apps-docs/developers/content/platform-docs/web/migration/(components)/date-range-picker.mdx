@@ -3,17 +3,11 @@ title: DateRangePicker
 description: Migration guide for DateRangePicker from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 DateRangePicker
-  documentation](/docs-ui/web/components/date-range-picker) for complete API
-  reference, styling guide, and advanced examples. This guide only focuses on
-  migrating from HeroUI v2.
+  Refer to the [v3 DateRangePicker documentation](/docs-ui/web/components/date-range-picker) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -21,17 +15,19 @@ import {
 In v2, `DateRangePicker` was a single self-contained component with props for label, inputs, calendar, and time fields:
 
 ```tsx
-import { DateRangePicker } from '@heroui/react'
+import { DateRangePicker } from "@heroui/react";
 
 export default function App() {
-  return <DateRangePicker label="Trip dates" />
+  return (
+    <DateRangePicker label="Trip dates" />
+  );
 }
 ```
 
 In v3, DateRangePicker uses a composition-first API where you compose `DateField` and `RangeCalendar` explicitly:
 
 ```tsx
-import { DateField, DateRangePicker, Label, RangeCalendar } from '@heroui/react'
+import { DateField, DateRangePicker, Label, RangeCalendar } from "@heroui/react";
 
 export default function App() {
   return (
@@ -40,11 +36,11 @@ export default function App() {
       <DateField.Group>
         <DateField.InputContainer>
           <DateField.Input slot="start">
-            {segment => <DateField.Segment segment={segment} />}
+            {(segment) => <DateField.Segment segment={segment} />}
           </DateField.Input>
           <DateRangePicker.RangeSeparator />
           <DateField.Input slot="end">
-            {segment => <DateField.Segment segment={segment} />}
+            {(segment) => <DateField.Segment segment={segment} />}
           </DateField.Input>
         </DateField.InputContainer>
         <DateField.Suffix>
@@ -65,18 +61,16 @@ export default function App() {
           </RangeCalendar.Header>
           <RangeCalendar.Grid>
             <RangeCalendar.GridHeader>
-              {day => (
-                <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>
-              )}
+              {(day) => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
             </RangeCalendar.GridHeader>
             <RangeCalendar.GridBody>
-              {date => <RangeCalendar.Cell date={date} />}
+              {(date) => <RangeCalendar.Cell date={date} />}
             </RangeCalendar.GridBody>
           </RangeCalendar.Grid>
         </RangeCalendar>
       </DateRangePicker.Popover>
     </DateRangePicker>
-  )
+  );
 }
 ```
 
@@ -89,66 +83,66 @@ export default function App() {
 
 ### 2. Composition Parts
 
-| v3 Component                       | Description                                                                                          |
-| ---------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `DateRangePicker`                  | Root container and state owner                                                                       |
-| `DateRangePicker.Trigger`          | Button that opens the calendar popover                                                               |
-| `DateRangePicker.TriggerIndicator` | Calendar icon (default) or custom indicator                                                          |
-| `DateRangePicker.RangeSeparator`   | Separator between start and end date inputs (defaults to " - ")                                      |
-| `DateRangePicker.Popover`          | Popover wrapper for the range calendar                                                               |
-| `DateField.Group`                  | Input group wrapper                                                                                  |
-| `DateField.InputContainer`         | Container for start/end inputs and separator                                                         |
-| `DateField.Input slot="start"`     | Start date segmented input                                                                           |
-| `DateField.Input slot="end"`       | End date segmented input                                                                             |
-| `DateField.Segment`                | Individual date segment (month, day, year)                                                           |
-| `DateField.Suffix`                 | Suffix slot for the trigger button                                                                   |
-| `RangeCalendar`                    | Full range calendar component (see [RangeCalendar migration](/docs-ui/web/migration/range-calendar)) |
-| `Label`                            | External label component                                                                             |
+| v3 Component | Description |
+|-----------|-------------|
+| `DateRangePicker` | Root container and state owner |
+| `DateRangePicker.Trigger` | Button that opens the calendar popover |
+| `DateRangePicker.TriggerIndicator` | Calendar icon (default) or custom indicator |
+| `DateRangePicker.RangeSeparator` | Separator between start and end date inputs (defaults to " - ") |
+| `DateRangePicker.Popover` | Popover wrapper for the range calendar |
+| `DateField.Group` | Input group wrapper |
+| `DateField.InputContainer` | Container for start/end inputs and separator |
+| `DateField.Input slot="start"` | Start date segmented input |
+| `DateField.Input slot="end"` | End date segmented input |
+| `DateField.Segment` | Individual date segment (month, day, year) |
+| `DateField.Suffix` | Suffix slot for the trigger button |
+| `RangeCalendar` | Full range calendar component (see [RangeCalendar migration](/docs-ui/web/migration/range-calendar)) |
+| `Label` | External label component |
 
 ### 3. Prop Changes
 
-| v2 Prop                     | v3 Equivalent             | Notes                                                                    |
-| --------------------------- | ------------------------- | ------------------------------------------------------------------------ |
-| `value`                     | `value`                   | Same                                                                     |
-| `defaultValue`              | `defaultValue`            | Same                                                                     |
-| `onChange`                  | `onChange`                | Same                                                                     |
-| `minValue`                  | `minValue`                | Same                                                                     |
-| `maxValue`                  | `maxValue`                | Same                                                                     |
-| `isDisabled`                | `isDisabled`              | Same                                                                     |
-| `isReadOnly`                | `isReadOnly`              | Same                                                                     |
-| `isRequired`                | `isRequired`              | Same                                                                     |
-| `isInvalid`                 | `isInvalid`               | Same                                                                     |
-| `isOpen`                    | `isOpen`                  | Same                                                                     |
-| `defaultOpen`               | `defaultOpen`             | Same                                                                     |
-| `onOpenChange`              | `onOpenChange`            | Same                                                                     |
-| `granularity`               | `granularity`             | Same                                                                     |
-| `hourCycle`                 | `hourCycle`               | Same                                                                     |
-| `hideTimeZone`              | `hideTimeZone`            | Same                                                                     |
-| `shouldForceLeadingZeros`   | `shouldForceLeadingZeros` | Same                                                                     |
-| `allowsNonContiguousRanges` | -                         | Set on `RangeCalendar` directly                                          |
-| `pageBehavior`              | -                         | Set on `RangeCalendar` directly                                          |
-| `label`                     | -                         | Use `Label` component                                                    |
-| `description`               | -                         | Use `Description` component                                              |
-| `errorMessage`              | -                         | Use `FieldError` component                                               |
-| `variant`                   | -                         | Use `DateField.Group` `variant` prop or Tailwind CSS                     |
-| `color`                     | -                         | Removed (use Tailwind CSS)                                               |
-| `size`                      | -                         | Removed (use Tailwind CSS)                                               |
-| `radius`                    | -                         | Removed (use Tailwind CSS)                                               |
-| `labelPlacement`            | -                         | Control layout with Tailwind CSS                                         |
-| `selectorIcon`              | -                         | Pass children to `DateRangePicker.TriggerIndicator`                      |
-| `selectorButtonPlacement`   | -                         | Compose trigger position via `DateField.Prefix` or `DateField.Suffix`    |
-| `visibleMonths`             | -                         | Use `RangeCalendar` `visibleDuration` prop                               |
-| `showMonthAndYearPickers`   | -                         | Use `RangeCalendar.YearPickerTrigger` and `RangeCalendar.YearPickerGrid` |
-| `calendarProps`             | -                         | Pass props directly to `RangeCalendar`                                   |
-| `popoverProps`              | -                         | Pass props directly to `DateRangePicker.Popover`                         |
-| `selectorButtonProps`       | -                         | Pass props directly to `DateRangePicker.Trigger`                         |
-| `timeInputProps`            | -                         | Compose time input separately                                            |
-| `calendarWidth`             | -                         | Removed (use Tailwind CSS)                                               |
-| `validate`                  | -                         | Handle validation externally                                             |
-| `placeholderValue`          | `placeholderValue`        | Same                                                                     |
-| `autoFocus`                 | `autoFocus`               | Same                                                                     |
-| `disableAnimation`          | -                         | Removed                                                                  |
-| `classNames`                | -                         | Use `className` on individual components                                 |
+| v2 Prop | v3 Equivalent | Notes |
+|---------|---------------|-------|
+| `value` | `value` | Same |
+| `defaultValue` | `defaultValue` | Same |
+| `onChange` | `onChange` | Same |
+| `minValue` | `minValue` | Same |
+| `maxValue` | `maxValue` | Same |
+| `isDisabled` | `isDisabled` | Same |
+| `isReadOnly` | `isReadOnly` | Same |
+| `isRequired` | `isRequired` | Same |
+| `isInvalid` | `isInvalid` | Same |
+| `isOpen` | `isOpen` | Same |
+| `defaultOpen` | `defaultOpen` | Same |
+| `onOpenChange` | `onOpenChange` | Same |
+| `granularity` | `granularity` | Same |
+| `hourCycle` | `hourCycle` | Same |
+| `hideTimeZone` | `hideTimeZone` | Same |
+| `shouldForceLeadingZeros` | `shouldForceLeadingZeros` | Same |
+| `allowsNonContiguousRanges` | - | Set on `RangeCalendar` directly |
+| `pageBehavior` | - | Set on `RangeCalendar` directly |
+| `label` | - | Use `Label` component |
+| `description` | - | Use `Description` component |
+| `errorMessage` | - | Use `FieldError` component |
+| `variant` | - | Use `DateField.Group` `variant` prop or Tailwind CSS |
+| `color` | - | Removed (use Tailwind CSS) |
+| `size` | - | Removed (use Tailwind CSS) |
+| `radius` | - | Removed (use Tailwind CSS) |
+| `labelPlacement` | - | Control layout with Tailwind CSS |
+| `selectorIcon` | - | Pass children to `DateRangePicker.TriggerIndicator` |
+| `selectorButtonPlacement` | - | Compose trigger position via `DateField.Prefix` or `DateField.Suffix` |
+| `visibleMonths` | - | Use `RangeCalendar` `visibleDuration` prop |
+| `showMonthAndYearPickers` | - | Use `RangeCalendar.YearPickerTrigger` and `RangeCalendar.YearPickerGrid` |
+| `calendarProps` | - | Pass props directly to `RangeCalendar` |
+| `popoverProps` | - | Pass props directly to `DateRangePicker.Popover` |
+| `selectorButtonProps` | - | Pass props directly to `DateRangePicker.Trigger` |
+| `timeInputProps` | - | Compose time input separately |
+| `calendarWidth` | - | Removed (use Tailwind CSS) |
+| `validate` | - | Handle validation externally |
+| `placeholderValue` | `placeholderValue` | Same |
+| `autoFocus` | `autoFocus` | Same |
+| `disableAnimation` | - | Removed |
+| `classNames` | - | Use `className` on individual components |
 
 ## Migration Examples
 
@@ -161,7 +155,6 @@ export default function App() {
 
     <DateRangePicker label="Trip dates" />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -207,7 +200,6 @@ export default function App() {
       </DateRangePicker.Popover>
     </DateRangePicker>
     ```
-
   </Tab>
 </Tabs>
 
@@ -231,7 +223,6 @@ export default function App() {
       onChange={setValue}
     />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -281,7 +272,6 @@ export default function App() {
       </DateRangePicker.Popover>
     </DateRangePicker>
     ```
-
   </Tab>
 </Tabs>
 
@@ -329,7 +319,6 @@ export default function App() {
       </DateRangePicker.Popover>
     </DateRangePicker>
     ```
-
   </Tab>
 </Tabs>
 
@@ -345,7 +334,6 @@ export default function App() {
       selectorIcon={<Icon icon="gravity-ui:calendar" />}
     />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -378,13 +366,12 @@ export default function App() {
       </DateRangePicker.Popover>
     </DateRangePicker>
     ```
-
   </Tab>
 </Tabs>
 
 ### With Visible Months and Year Picker
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <DateRangePicker
@@ -401,11 +388,11 @@ export default function App() {
       <DateField.Group>
         <DateField.InputContainer>
           <DateField.Input slot="start">
-            {segment => <DateField.Segment segment={segment} />}
+            {(segment) => <DateField.Segment segment={segment} />}
           </DateField.Input>
           <DateRangePicker.RangeSeparator />
           <DateField.Input slot="end">
-            {segment => <DateField.Segment segment={segment} />}
+            {(segment) => <DateField.Segment segment={segment} />}
           </DateField.Input>
         </DateField.InputContainer>
         <DateField.Suffix>
@@ -415,9 +402,7 @@ export default function App() {
         </DateField.Suffix>
       </DateField.Group>
       <DateRangePicker.Popover>
-        <RangeCalendar
-          aria-label="Choose trip dates"
-          visibleDuration={{ months: 2 }}>
+        <RangeCalendar aria-label="Choose trip dates" visibleDuration={{months: 2}}>
           <RangeCalendar.Header>
             <RangeCalendar.YearPickerTrigger>
               <RangeCalendar.YearPickerTriggerHeading />
@@ -429,28 +414,24 @@ export default function App() {
           <div className="flex gap-4">
             <RangeCalendar.Grid>
               <RangeCalendar.GridHeader>
-                {day => (
-                  <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>
-                )}
+                {(day) => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
               </RangeCalendar.GridHeader>
               <RangeCalendar.GridBody>
-                {date => <RangeCalendar.Cell date={date} />}
+                {(date) => <RangeCalendar.Cell date={date} />}
               </RangeCalendar.GridBody>
             </RangeCalendar.Grid>
-            <RangeCalendar.Grid offset={{ months: 1 }}>
+            <RangeCalendar.Grid offset={{months: 1}}>
               <RangeCalendar.GridHeader>
-                {day => (
-                  <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>
-                )}
+                {(day) => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
               </RangeCalendar.GridHeader>
               <RangeCalendar.GridBody>
-                {date => <RangeCalendar.Cell date={date} />}
+                {(date) => <RangeCalendar.Cell date={date} />}
               </RangeCalendar.GridBody>
             </RangeCalendar.Grid>
           </div>
           <RangeCalendar.YearPickerGrid>
             <RangeCalendar.YearPickerGridBody>
-              {year => <RangeCalendar.YearPickerCell date={year} />}
+              {(year) => <RangeCalendar.YearPickerCell date={year} />}
             </RangeCalendar.YearPickerGridBody>
           </RangeCalendar.YearPickerGrid>
         </RangeCalendar>
@@ -467,13 +448,13 @@ export default function App() {
 ```tsx
 <DateRangePicker
   classNames={{
-    base: 'custom-base',
-    label: 'custom-label',
-    selectorButton: 'custom-trigger',
-    selectorIcon: 'custom-icon',
-    separator: 'custom-separator',
-    popoverContent: 'custom-popover',
-    calendar: 'custom-calendar'
+    base: "custom-base",
+    label: "custom-label",
+    selectorButton: "custom-trigger",
+    selectorIcon: "custom-icon",
+    separator: "custom-separator",
+    popoverContent: "custom-popover",
+    calendar: "custom-calendar",
   }}
 />
 ```
@@ -486,11 +467,11 @@ export default function App() {
   <DateField.Group>
     <DateField.InputContainer>
       <DateField.Input slot="start">
-        {segment => <DateField.Segment segment={segment} />}
+        {(segment) => <DateField.Segment segment={segment} />}
       </DateField.Input>
       <DateRangePicker.RangeSeparator className="custom-separator" />
       <DateField.Input slot="end">
-        {segment => <DateField.Segment segment={segment} />}
+        {(segment) => <DateField.Segment segment={segment} />}
       </DateField.Input>
     </DateField.InputContainer>
     <DateField.Suffix>

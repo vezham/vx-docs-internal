@@ -3,11 +3,8 @@ title: Image
 description: Migration guide for Image from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="warning">
   The Image component has been **removed** in HeroUI v3. Use native HTML `<img>` element or Next.js `Image` component with Tailwind CSS classes instead.
@@ -17,29 +14,29 @@ import {
 
 ### 1. Component Removal
 
-**v2:** `<Image>` component from `@heroui/react`  
+**v2:** `<Image>` component from `@heroui/react`
 **v3:** Native HTML `<img>` element or Next.js `Image` component
 
 ### 2. Features Mapping
 
 The v2 Image component had several features that need to be replaced:
 
-| v2 Feature                           | v3 Equivalent                | Notes                                                        |
-| ------------------------------------ | ---------------------------- | ------------------------------------------------------------ |
-| `radius` prop                        | `rounded-*` Tailwind classes | Use `rounded-sm`, `rounded-md`, `rounded-lg`, `rounded-full` |
-| `shadow` prop                        | `shadow-*` Tailwind classes  | Use `shadow-sm`, `shadow-md`, `shadow-lg`                    |
-| `isBlurred` prop                     | Manual blur implementation   | Use CSS `filter: blur()` or Tailwind `blur-*` utilities      |
-| `isZoomed` prop                      | Manual hover zoom            | Use `hover:scale-*` Tailwind classes                         |
-| `fallbackSrc` prop                   | Manual error handling        | Use `onError` handler with state                             |
-| `disableSkeleton` / Loading skeleton | Manual loading state         | Use React state + conditional rendering                      |
-| `removeWrapper` prop                 | Direct rendering             | No wrapper needed, render `<img>` directly                   |
+| v2 Feature | v3 Equivalent | Notes |
+|-----------|---------------|-------|
+| `radius` prop | `rounded-*` Tailwind classes | Use `rounded-sm`, `rounded-md`, `rounded-lg`, `rounded-full` |
+| `shadow` prop | `shadow-*` Tailwind classes | Use `shadow-sm`, `shadow-md`, `shadow-lg` |
+| `isBlurred` prop | Manual blur implementation | Use CSS `filter: blur()` or Tailwind `blur-*` utilities |
+| `isZoomed` prop | Manual hover zoom | Use `hover:scale-*` Tailwind classes |
+| `fallbackSrc` prop | Manual error handling | Use `onError` handler with state |
+| `disableSkeleton` / Loading skeleton | Manual loading state | Use React state + conditional rendering |
+| `removeWrapper` prop | Direct rendering | No wrapper needed, render `<img>` directly |
 
 ## Structure Changes
 
 In v2, `Image` was a component wrapper around the native `<img>` element:
 
 ```tsx
-import { Image } from '@heroui/react'
+import { Image } from "@heroui/react";
 
 export default function App() {
   return (
@@ -49,7 +46,7 @@ export default function App() {
       width={300}
       height={200}
     />
-  )
+  );
 }
 ```
 
@@ -65,7 +62,7 @@ export default function App() {
       height={200}
       className="rounded-lg"
     />
-  )
+  );
 }
 ```
 
@@ -87,7 +84,6 @@ If you're using Next.js, use the optimized `Image` component:
       height={200}
     />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -101,13 +97,12 @@ If you're using Next.js, use the optimized `Image` component:
       className="rounded-lg"
     />
     ```
-
   </Tab>
 </Tabs>
 
 ### With Zoom Effect
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Image isZoomed src="..." alt="..." />
@@ -128,7 +123,7 @@ If you're using Next.js, use the optimized `Image` component:
 
 ### With Blur Effect
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Image isBlurred src="..." alt="..." />
@@ -137,12 +132,16 @@ If you're using Next.js, use the optimized `Image` component:
   <Tab value="v3">
     ```tsx
     <div className="relative">
-      <img src="..." alt="..." className="relative z-10" />
+      <img
+        src="..."
+        alt="..."
+        className="relative z-10"
+      />
       <img
         src="..."
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 z-0 h-full w-full scale-105 object-cover opacity-30 blur-lg saturate-150"
+        className="absolute inset-0 z-0 h-full w-full scale-105 object-cover blur-lg opacity-30 saturate-150"
       />
     </div>
     ```
@@ -184,7 +183,6 @@ If you're using Next.js, use the optimized `Image` component:
       alt="Example"
     />
     ```
-
   </Tab>
 </Tabs>
 
@@ -232,13 +230,12 @@ If you're using Next.js, use the optimized `Image` component:
 
     <ImageWithSkeleton src="https://example.com/image.jpg" alt="Example" />
     ```
-
   </Tab>
 </Tabs>
 
 ### Combined Features
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Image
@@ -267,7 +264,7 @@ If you're using Next.js, use the optimized `Image` component:
         src="https://example.com/image.jpg"
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 z-0 h-full w-full scale-105 object-cover opacity-30 blur-lg saturate-150"
+        className="absolute inset-0 z-0 h-full w-full scale-105 object-cover blur-lg opacity-30 saturate-150"
       />
     </div>
     ```
@@ -290,7 +287,6 @@ If you frequently use images with similar features, you can create a reusable co
       isZoomed
     />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -402,7 +398,6 @@ If you frequently use images with similar features, you can create a reusable co
       fallbackSrc="/fallback.jpg"
     />
     ```
-
   </Tab>
 </Tabs>
 
@@ -444,7 +439,6 @@ If you frequently use images with similar features, you can create a reusable co
       );
     }
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -517,9 +511,9 @@ If you're using Next.js, the `Image` component from `next/image` provides:
 - Built-in loading states
 
 ```tsx
-import Image from 'next/image'
+import Image from "next/image";
 
-;<Image
+<Image
   src="/image.jpg"
   alt="Example"
   width={300}

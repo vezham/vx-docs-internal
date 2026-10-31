@@ -3,70 +3,69 @@ title: Snippet
 description: Migration guide for Snippet from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="warning">
-  The Snippet component has been **removed** in HeroUI v3. Use native HTML
-  elements with Tailwind CSS classes and implement copy functionality manually
-  using the Clipboard API.
+  The Snippet component has been **removed** in HeroUI v3. Use native HTML elements with Tailwind CSS classes and implement copy functionality manually using the Clipboard API.
 </Callout>
 
 ## Key Changes
 
 ### 1. Component Removal
 
-**v2:** `<Snippet>` component from `@heroui/react`  
+**v2:** `<Snippet>` component from `@heroui/react`
 **v3:** Native HTML elements (`<pre>`, `<code>`) with manual copy implementation
 
 ### 2. Features Mapping
 
 The v2 Snippet component had the following features that need to be replaced:
 
-| v2 Feature                                       | v3 Equivalent                 | Notes                                 |
-| ------------------------------------------------ | ----------------------------- | ------------------------------------- |
-| Copy button                                      | Manual Button + Clipboard API | Use `navigator.clipboard.writeText()` |
-| Copy tooltip                                     | Tooltip component             | Use v3 Tooltip component              |
-| Symbol prefix                                    | Manual rendering              | Add symbol as text content            |
-| Multi-line support                               | Array mapping                 | Map over array of strings             |
-| Variants (`flat`, `solid`, `bordered`, `shadow`) | Tailwind classes              | Use background/border utilities       |
-| Colors (`default`, `primary`, etc.)              | Tailwind classes              | Use color utilities                   |
-| Sizes (`sm`, `md`, `lg`)                         | Tailwind text sizes           | Use `text-sm`, `text-base`, `text-lg` |
-| Radius                                           | Tailwind border radius        | Use `rounded-*` classes               |
+| v2 Feature | v3 Equivalent | Notes |
+|-----------|---------------|-------|
+| Copy button | Manual Button + Clipboard API | Use `navigator.clipboard.writeText()` |
+| Copy tooltip | Tooltip component | Use v3 Tooltip component |
+| Symbol prefix | Manual rendering | Add symbol as text content |
+| Multi-line support | Array mapping | Map over array of strings |
+| Variants (`flat`, `solid`, `bordered`, `shadow`) | Tailwind classes | Use background/border utilities |
+| Colors (`default`, `primary`, etc.) | Tailwind classes | Use color utilities |
+| Sizes (`sm`, `md`, `lg`) | Tailwind text sizes | Use `text-sm`, `text-base`, `text-lg` |
+| Radius | Tailwind border radius | Use `rounded-*` classes |
 
 ## Structure Changes
 
 In v2, `Snippet` was a component wrapper with built-in copy functionality:
 
 ```tsx
-import { Snippet } from '@heroui/react'
+import { Snippet } from "@heroui/react";
 
 export default function App() {
-  return <Snippet symbol="$">npm install @heroui/react</Snippet>
+  return (
+    <Snippet symbol="$">
+      npm install @heroui/react
+    </Snippet>
+  );
 }
 ```
 
 In v3, use native HTML elements with manual copy implementation:
 
 ```tsx
-import { Button, Tooltip } from '@heroui/react'
-import { useState } from 'react'
+import { Button, Tooltip } from "@heroui/react";
+import { useState } from "react";
 
 export default function App() {
-  const [copied, setCopied] = useState(false)
+  const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
-    await navigator.clipboard.writeText('npm install @heroui/react')
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
+    await navigator.clipboard.writeText("npm install @heroui/react");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
-    <div className="bg-default-100 flex items-center gap-2 rounded-lg px-3 py-1.5">
-      <pre className="font-mono text-sm">
+    <div className="flex items-center gap-2 rounded-lg bg-default-100 px-3 py-1.5">
+      <pre className="text-sm font-mono">
         <span className="text-default-500">$ </span>
         npm install @heroui/react
       </pre>
@@ -76,15 +75,14 @@ export default function App() {
           aria-label="Copy"
           size="sm"
           variant="ghost"
-          onPress={handleCopy}>
-          {copied ? '✓' : '📋'}
+          onPress={handleCopy}
+        >
+          {copied ? "✓" : "📋"}
         </Button>
-        <Tooltip.Content>
-          {copied ? 'Copied!' : 'Copy to clipboard'}
-        </Tooltip.Content>
+        <Tooltip.Content>{copied ? "Copied!" : "Copy to clipboard"}</Tooltip.Content>
       </Tooltip>
     </div>
-  )
+  );
 }
 ```
 
@@ -150,43 +148,52 @@ export default function App() {
       );
     }
     ```
-
   </Tab>
 </Tabs>
 
 ### Styling Options
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     {/* With variants */}
     <Snippet variant="bordered" color="primary">
       npm install @heroui/react
     </Snippet>
+
     {/* Without symbol */}
-    <Snippet hideSymbol>npm install @heroui/react</Snippet>
+    <Snippet hideSymbol>
+      npm install @heroui/react
+    </Snippet>
+
     {/* Without copy button */}
-    <Snippet hideCopyButton>npm install @heroui/react</Snippet>
+    <Snippet hideCopyButton>
+      npm install @heroui/react
+    </Snippet>
     ```
   </Tab>
   <Tab value="v3">
     ```tsx
     {/* With variants */}
-    <div className="border-accent flex items-center gap-2 rounded-lg border bg-transparent px-3 py-1.5">
-      <pre className="text-accent font-mono text-sm">
+    <div className="flex items-center gap-2 rounded-lg border border-accent bg-transparent px-3 py-1.5">
+      <pre className="text-sm font-mono text-accent">
         <span className="text-accent/60">$ </span>
         npm install @heroui/react
       </pre>
       {/* Copy button */}
     </div>
+
     {/* Without symbol */}
-    <div className="bg-default-100 flex items-center gap-2 rounded-lg px-3 py-1.5">
-      <pre className="font-mono text-sm">npm install @heroui/react</pre>
+    <div className="flex items-center gap-2 rounded-lg bg-default-100 px-3 py-1.5">
+      <pre className="text-sm font-mono">
+        npm install @heroui/react
+      </pre>
       {/* Copy button */}
     </div>
+
     {/* Without copy button */}
-    <div className="bg-default-100 rounded-lg px-3 py-1.5">
-      <pre className="font-mono text-sm">
+    <div className="rounded-lg bg-default-100 px-3 py-1.5">
+      <pre className="text-sm font-mono">
         <span className="text-default-500">$ </span>
         npm install @heroui/react
       </pre>
@@ -213,7 +220,6 @@ Since Snippet functionality is commonly needed, here's a complete reusable compo
       npm install @heroui/react
     </Snippet>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -369,7 +375,6 @@ Since Snippet functionality is commonly needed, here's a complete reusable compo
       npm install @heroui/react
     </Snippet>
     ```
-
   </Tab>
 </Tabs>
 
@@ -396,7 +401,6 @@ Since Snippet functionality is commonly needed, here's a complete reusable compo
 ## Clipboard API Notes
 
 The Clipboard API requires:
-
 - HTTPS (or localhost for development)
 - User interaction (can't be called automatically)
 - Browser support (modern browsers)
@@ -406,17 +410,17 @@ For fallback support:
 ```tsx
 const handleCopy = async (text: string) => {
   try {
-    await navigator.clipboard.writeText(text)
+    await navigator.clipboard.writeText(text);
   } catch (error) {
     // Fallback for older browsers
-    const textArea = document.createElement('textarea')
-    textArea.value = text
-    textArea.style.position = 'fixed'
-    textArea.style.opacity = '0'
-    document.body.appendChild(textArea)
-    textArea.select()
-    document.execCommand('copy')
-    document.body.removeChild(textArea)
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.position = "fixed";
+    textArea.style.opacity = "0";
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textArea);
   }
-}
+};
 ```

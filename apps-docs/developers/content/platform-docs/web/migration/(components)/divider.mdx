@@ -3,28 +3,23 @@ title: Divider
 description: Migration guide for Divider (renamed to Separator) from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Separator documentation](/docs-ui/web/components/separator)
-  for complete API reference, styling guide, and advanced examples. This guide
-  only focuses on migrating from HeroUI v2.
+  Refer to the [v3 Separator documentation](/docs-ui/web/components/separator) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Component Rename
 
-**v2:** `Divider`  
+**v2:** `Divider`
 **v3:** `Separator`
 
 ## Key Changes
 
 ### 1. Component Name
 
-**v2:** `Divider`  
+**v2:** `Divider`
 **v3:** `Separator`
 
 ### 2. Variant Prop
@@ -33,18 +28,18 @@ import {
 
 ### 3. Props Comparison
 
-| Prop          | v2  | v3  | Notes                                             |
-| ------------- | --- | --- | ------------------------------------------------- |
-| `orientation` | ✅  | ✅  | Same: `"horizontal"` \| `"vertical"`              |
-| `className`   | ✅  | ✅  | Same                                              |
-| `variant`     | ❌  | ✅  | New: `"default"` \| `"secondary"` \| `"tertiary"` |
+| Prop | v2 | v3 | Notes |
+|------|----|----|-------|
+| `orientation` | ✅ | ✅ | Same: `"horizontal"` \| `"vertical"` |
+| `className` | ✅ | ✅ | Same |
+| `variant` | ❌ | ✅ | New: `"default"` \| `"secondary"` \| `"tertiary"` |
 
 ## Structure Changes
 
 In v2, the component was named `Divider`:
 
 ```tsx
-import { Divider } from '@heroui/react'
+import { Divider } from "@heroui/react";
 
 export default function App() {
   return (
@@ -53,14 +48,14 @@ export default function App() {
       <Divider />
       <p>Content below</p>
     </div>
-  )
+  );
 }
 ```
 
 In v3, the component has been renamed to `Separator`:
 
 ```tsx
-import { Separator } from '@heroui/react'
+import { Separator } from "@heroui/react";
 
 export default function App() {
   return (
@@ -69,7 +64,7 @@ export default function App() {
       <Separator />
       <p>Content below</p>
     </div>
-  )
+  );
 }
 ```
 
@@ -77,7 +72,7 @@ export default function App() {
 
 ### With Variant
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     {/* v2 has no variant prop */}

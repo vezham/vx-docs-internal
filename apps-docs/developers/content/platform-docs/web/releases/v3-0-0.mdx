@@ -3,16 +3,11 @@ title: Introducing HeroUI v3
 description: A ground-up rewrite for React and React Native. 75+ web components, 37 native components, Tailwind CSS v4, React Aria, compound architecture, and built for AI-assisted development.
 ---
 
-import {
-  Callout,
-  DocsImage,
-  Tab,
-  Tabs,
-  VideoPlayer
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, ComponentPreview, DocsImage, Tab, Tabs, VideoPlayer } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">March 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">March 2026</span>
 </div>
 
 <VideoPlayer
@@ -90,9 +85,10 @@ Here's what the compound pattern looks like in practice:
 
 More lines of code. But every piece is a real element you can style, move, or replace. The pattern runs through the entire library, from Accordion to Toast.
 
-[Live example: accordion-basic](https://heroui.com/docs/react/releases/v3-0-0)
 
-```tsx
+<ComponentPreview name="accordion-basic">
+
+````tsx
 import {
   ArrowsRotateLeft,
   Box,
@@ -100,47 +96,47 @@ import {
   CreditCard,
   PlanetEarth,
   Receipt,
-  ShoppingBag
-} from '@gravity-ui/icons'
+  ShoppingBag,
+} from "@gravity-ui/icons";
+import {Accordion} from "@vezham/react-v3";
 
 const items = [
   {
     content:
       "Browse our products, add items to your cart, and proceed to checkout. You'll need to provide shipping and payment information to complete your purchase.",
     icon: <ShoppingBag />,
-    title: 'How do I place an order?'
+    title: "How do I place an order?",
   },
   {
     content:
       "Yes, you can modify or cancel your order before it's shipped. Once your order is processed, you can't make changes.",
     icon: <Receipt />,
-    title: 'Can I modify or cancel my order?'
+    title: "Can I modify or cancel my order?",
   },
   {
-    content:
-      'We accept all major credit cards, including Visa, Mastercard, and American Express.',
+    content: "We accept all major credit cards, including Visa, Mastercard, and American Express.",
     icon: <CreditCard />,
-    title: 'What payment methods do you accept?'
+    title: "What payment methods do you accept?",
   },
   {
     content:
-      'Shipping costs vary based on your location and the size of your order. We offer free shipping for orders over $50.',
+      "Shipping costs vary based on your location and the size of your order. We offer free shipping for orders over $50.",
     icon: <Box />,
-    title: 'How much does shipping cost?'
+    title: "How much does shipping cost?",
   },
   {
     content:
-      'Yes, we ship to most countries. Please check our shipping rates and policies for more information.',
+      "Yes, we ship to most countries. Please check our shipping rates and policies for more information.",
     icon: <PlanetEarth />,
-    title: 'Do you ship internationally?'
+    title: "Do you ship internationally?",
   },
   {
     content:
       "If you're not satisfied with your purchase, you can request a refund within 30 days of purchase. Please contact our customer support team for assistance.",
     icon: <ArrowsRotateLeft />,
-    title: 'How do I request a refund?'
-  }
-]
+    title: "How do I request a refund?",
+  },
+];
 
 export function Basic() {
   return (
@@ -150,9 +146,7 @@ export function Basic() {
           <Accordion.Heading>
             <Accordion.Trigger>
               {item.icon ? (
-                <span className="text-muted me-3 size-4 shrink-0">
-                  {item.icon}
-                </span>
+                <span className="me-3 size-4 shrink-0 text-muted">{item.icon}</span>
               ) : null}
               {item.title}
               <Accordion.Indicator>
@@ -166,9 +160,12 @@ export function Basic() {
         </Accordion.Item>
       ))}
     </Accordion>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 Each compound component shares state through React context. The root component creates a style context, and every child consumes it. You never pass classNames down manually:
 
@@ -182,9 +179,12 @@ Each compound component shares state through React context. The root component c
 </Alert>
 ```
 
-[Live example: alert-basic](https://heroui.com/docs/react/releases/v3-0-0)
 
-```tsx
+<ComponentPreview name="alert-basic">
+
+````tsx
+import {Alert, Button, CloseButton, Spinner} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <div className="grid w-full max-w-xl gap-4">
@@ -194,8 +194,8 @@ export function Basic() {
         <Alert.Content>
           <Alert.Title>New features available</Alert.Title>
           <Alert.Description>
-            Check out our latest updates including dark mode support and
-            improved accessibility features.
+            Check out our latest updates including dark mode support and improved accessibility
+            features.
           </Alert.Description>
         </Alert.Content>
       </Alert>
@@ -206,8 +206,8 @@ export function Basic() {
         <Alert.Content>
           <Alert.Title>Update available</Alert.Title>
           <Alert.Description>
-            A new version of the application is available. Please refresh to get
-            the latest features and bug fixes.
+            A new version of the application is available. Please refresh to get the latest features
+            and bug fixes.
           </Alert.Description>
           <Button className="mt-2 sm:hidden" size="sm" variant="primary">
             Refresh
@@ -268,15 +268,18 @@ export function Basic() {
         <Alert.Content>
           <Alert.Title>Scheduled maintenance</Alert.Title>
           <Alert.Description>
-            Our services will be unavailable on Sunday, March 15th from 2:00 AM
-            to 6:00 AM UTC for scheduled maintenance.
+            Our services will be unavailable on Sunday, March 15th from 2:00 AM to 6:00 AM UTC for
+            scheduled maintenance.
           </Alert.Description>
         </Alert.Content>
       </Alert>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Progressive Disclosure
 
@@ -299,9 +302,12 @@ Components support both simple and compound usage. Start with the one-liner. Add
 </Button>
 ```
 
-[Live example: button-variants](https://heroui.com/docs/react/releases/v3-0-0)
 
-```tsx
+<ComponentPreview name="button-variants">
+
+````tsx
+import {Button} from "@vezham/react-v3";
+
 export function Variants() {
   return (
     <div className="flex flex-wrap gap-3">
@@ -313,9 +319,12 @@ export function Variants() {
       <Button variant="danger">Danger</Button>
       <Button variant="danger-soft">Danger Soft</Button>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Tailwind CSS v4 + CSS Variables
 
@@ -335,8 +344,7 @@ Theming runs on Tailwind CSS v4's native CSS variable layer with OKLCH colors. E
 Tailwind's `@theme` directive maps these tokens to utility classes. `bg-accent`, `text-foreground`, `rounded-lg` all resolve to CSS variables. Light and dark mode switch by swapping the values:
 
 ```css
-.dark,
-[data-theme='dark'] {
+.dark, [data-theme="dark"] {
   --background: oklch(12% 0.005 285.823);
   --foreground: oklch(0.9911 0 0);
   --surface: oklch(0.2103 0.0059 285.89);
@@ -346,8 +354,8 @@ Tailwind's `@theme` directive maps these tokens to utility classes. `bg-accent`,
 No provider component. No JavaScript theme object. One CSS import, two lines:
 
 ```css
-@import 'tailwindcss';
-@import '@heroui/styles';
+@import "tailwindcss";
+@import "@heroui/styles";
 ```
 
 ### BEM Classes
@@ -374,11 +382,11 @@ Create a theme by defining your own token set. Everything cascades from there:
 
 ```css
 @layer base {
-  [data-theme='ocean'] {
-    --accent: oklch(0.45 0.15 230);
+  [data-theme="ocean"] {
+    --accent: oklch(0.450 0.150 230);
     --background: oklch(0.985 0.015 225);
     --radius: 0.75rem;
-    --border: oklch(0.5 0.06 230 / 22%);
+    --border: oklch(0.50 0.060 230 / 22%);
   }
 }
 ```
@@ -386,7 +394,7 @@ Create a theme by defining your own token set. Everything cascades from there:
 Apply it with a single data attribute:
 
 ```html
-<html data-theme="ocean"></html>
+<html data-theme="ocean">
 ```
 
 The [Theme Builder](https://heroui.com/themes) generates these variables visually. Pick colors, adjust radius and spacing, export the CSS.
@@ -396,11 +404,11 @@ The [Theme Builder](https://heroui.com/themes) generates these variables visuall
 Import the full library or pick individual component styles:
 
 ```css
-@import 'tailwindcss';
-@import '@heroui/styles/base' layer(base);
-@import '@heroui/styles/themes/default' layer(theme);
-@import '@heroui/styles/components/button.css' layer(components);
-@import '@heroui/styles/components/card.css' layer(components);
+@import "tailwindcss";
+@import "@heroui/styles/base" layer(base);
+@import "@heroui/styles/themes/default" layer(theme);
+@import "@heroui/styles/components/button.css" layer(components);
+@import "@heroui/styles/components/card.css" layer(components);
 ```
 
 Ship only the CSS you use. No unused component styles in production.
@@ -415,7 +423,7 @@ All component animations use CSS transitions and keyframes tied to data attribut
 }
 
 .button:active,
-.button[data-pressed='true'] {
+.button[data-pressed="true"] {
   transform: scale(0.97);
 }
 ```
@@ -445,12 +453,12 @@ The data attribute overrides the system setting. Set `data-reduce-motion="false"
 Framer Motion, Motion One, or any CSS animation library works alongside HeroUI's built-in transitions:
 
 ```tsx
-import { Button } from '@heroui/react'
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
+import { Button } from "@heroui/react";
 
-const MotionButton = motion(Button)
+const MotionButton = motion(Button);
 
-;<MotionButton whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+<MotionButton whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
   Animated
 </MotionButton>
 ```
@@ -461,19 +469,20 @@ const MotionButton = motion(Button)
 
 Six components: Calendar, RangeCalendar, DateField, DatePicker, DateRangePicker, and TimeField. Built on React Aria's internationalized date library with Gregorian, Buddhist, Persian, and other calendar systems by default. Keyboard navigation, screen reader labels, and locale-aware formatting come free.
 
-[Live example: date-picker-basic](https://heroui.com/docs/react/releases/v3-0-0)
 
-```tsx
-'use client'
+<ComponentPreview name="date-picker-basic">
+
+````tsx
+"use client";
+
+import {Calendar, DateField, DatePicker, Label} from "@vezham/react-v3";
 
 export function Basic() {
   return (
     <DatePicker className="w-72" name="date">
       <Label>Date</Label>
       <DateField.Group fullWidth>
-        <DateField.Input>
-          {segment => <DateField.Segment segment={segment} />}
-        </DateField.Input>
+        <DateField.Input>{(segment) => <DateField.Segment segment={segment} />}</DateField.Input>
         <DateField.Suffix>
           <DatePicker.Trigger>
             <DatePicker.TriggerIndicator />
@@ -492,28 +501,32 @@ export function Basic() {
           </Calendar.Header>
           <Calendar.Grid>
             <Calendar.GridHeader>
-              {day => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
+              {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
             </Calendar.GridHeader>
-            <Calendar.GridBody>
-              {date => <Calendar.Cell date={date} />}
-            </Calendar.GridBody>
+            <Calendar.GridBody>{(date) => <Calendar.Cell date={date} />}</Calendar.GridBody>
           </Calendar.Grid>
           <Calendar.YearPickerGrid>
             <Calendar.YearPickerGridBody>
-              {({ year }) => <Calendar.YearPickerCell year={year} />}
+              {({year}) => <Calendar.YearPickerCell year={year} />}
             </Calendar.YearPickerGridBody>
           </Calendar.YearPickerGrid>
         </Calendar>
       </DatePicker.Popover>
     </DatePicker>
-  )
+  );
 }
-```
+````
 
-[Live example: range-calendar-basic](https://heroui.com/docs/react/releases/v3-0-0)
+</ComponentPreview>
 
-```tsx
-'use client'
+
+
+<ComponentPreview name="range-calendar-basic">
+
+````tsx
+"use client";
+
+import {RangeCalendar} from "@vezham/react-v3";
 
 export function Basic() {
   return (
@@ -525,24 +538,30 @@ export function Basic() {
       </RangeCalendar.Header>
       <RangeCalendar.Grid>
         <RangeCalendar.GridHeader>
-          {day => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
+          {(day) => <RangeCalendar.HeaderCell>{day}</RangeCalendar.HeaderCell>}
         </RangeCalendar.GridHeader>
         <RangeCalendar.GridBody>
-          {date => <RangeCalendar.Cell date={date} />}
+          {(date) => <RangeCalendar.Cell date={date} />}
         </RangeCalendar.GridBody>
       </RangeCalendar.Grid>
     </RangeCalendar>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Color
 
 Six color components: ColorPicker, ColorArea, ColorSlider, ColorField, ColorSwatch, and ColorSwatchPicker. Pick from a 2D area, adjust hue and alpha sliders, enter hex values, or select from a swatch palette.
 
-[Live example: color-picker-basic](https://heroui.com/docs/react/releases/v3-0-0)
 
-```tsx
+<ComponentPreview name="color-picker-basic">
+
+````tsx
+import {ColorArea, ColorPicker, ColorSlider, ColorSwatch, Label} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <ColorPicker defaultValue="#0485F7">
@@ -556,7 +575,8 @@ export function Basic() {
           className="max-w-full"
           colorSpace="hsb"
           xChannel="saturation"
-          yChannel="brightness">
+          yChannel="brightness"
+        >
           <ColorArea.Thumb />
         </ColorArea>
         <ColorSlider channel="hue" className="gap-1 px-1" colorSpace="hsb">
@@ -568,120 +588,127 @@ export function Basic() {
         </ColorSlider>
       </ColorPicker.Popover>
     </ColorPicker>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Data
 
 Need a table with sorting, row selection, column resizing, async loading, and custom cells? Table does all of that. Large datasets get virtualization via React Aria's `Virtualizer`. ListBox shares the same virtualization support.
 
-[Live example: table-virtualization](https://heroui.com/docs/react/releases/v3-0-0)
 
-```tsx
-'use client'
+<ComponentPreview name="table-virtualization">
+
+````tsx
+"use client";
+
+import {Table, TableLayout, Virtualizer} from "@vezham/react-v3";
 
 interface User {
-  id: number
-  name: string
-  role: string
-  email: string
+  id: number;
+  name: string;
+  role: string;
+  email: string;
 }
 
 export function Virtualization() {
   const roles = [
-    'Software Engineer',
-    'Senior Engineer',
-    'Staff Engineer',
-    'Product Manager',
-    'Designer',
-    'Data Analyst',
-    'QA Engineer',
-    'DevOps Engineer',
-    'Marketing Manager',
-    'Sales Representative'
-  ]
+    "Software Engineer",
+    "Senior Engineer",
+    "Staff Engineer",
+    "Product Manager",
+    "Designer",
+    "Data Analyst",
+    "QA Engineer",
+    "DevOps Engineer",
+    "Marketing Manager",
+    "Sales Representative",
+  ];
 
   const firstNames = [
-    'Emma',
-    'Liam',
-    'Olivia',
-    'Noah',
-    'Ava',
-    'James',
-    'Sophia',
-    'Oliver',
-    'Isabella',
-    'Lucas',
-    'Mia',
-    'Ethan',
-    'Charlotte',
-    'Mason',
-    'Amelia',
-    'Logan',
-    'Harper',
-    'Alexander',
-    'Ella',
-    'Benjamin'
-  ]
+    "Emma",
+    "Liam",
+    "Olivia",
+    "Noah",
+    "Ava",
+    "James",
+    "Sophia",
+    "Oliver",
+    "Isabella",
+    "Lucas",
+    "Mia",
+    "Ethan",
+    "Charlotte",
+    "Mason",
+    "Amelia",
+    "Logan",
+    "Harper",
+    "Alexander",
+    "Ella",
+    "Benjamin",
+  ];
 
   const lastNames = [
-    'Smith',
-    'Johnson',
-    'Williams',
-    'Brown',
-    'Jones',
-    'Garcia',
-    'Miller',
-    'Davis',
-    'Rodriguez',
-    'Martinez',
-    'Anderson',
-    'Taylor',
-    'Thomas',
-    'Jackson',
-    'White',
-    'Harris',
-    'Clark',
-    'Lewis',
-    'Robinson',
-    'Walker'
-  ]
+    "Smith",
+    "Johnson",
+    "Williams",
+    "Brown",
+    "Jones",
+    "Garcia",
+    "Miller",
+    "Davis",
+    "Rodriguez",
+    "Martinez",
+    "Anderson",
+    "Taylor",
+    "Thomas",
+    "Jackson",
+    "White",
+    "Harris",
+    "Clark",
+    "Lewis",
+    "Robinson",
+    "Walker",
+  ];
 
   function generateUsers(count: number): User[] {
-    const users: User[] = []
+    const users: User[] = [];
 
     for (let i = 0; i < count; i++) {
-      const firstName = firstNames[i % firstNames.length]
-      const lastName =
-        lastNames[Math.floor(i / firstNames.length) % lastNames.length]
-      const name = `${firstName} ${lastName}`
+      const firstName = firstNames[i % firstNames.length];
+      const lastName = lastNames[Math.floor(i / firstNames.length) % lastNames.length];
+      const name = `${firstName} ${lastName}`;
 
       users.push({
         email: `${firstName?.toLowerCase()}.${lastName?.toLowerCase()}@acme.com`,
         id: i + 1,
         name,
-        role: roles[i % roles.length] || ''
-      })
+        role: roles[i % roles.length] || "",
+      });
     }
 
-    return users
+    return users;
   }
 
-  const virtualizedUsers = generateUsers(1000)
+  const virtualizedUsers = generateUsers(1000);
 
   return (
     <Virtualizer
       layout={TableLayout}
       layoutOptions={{
         headingHeight: 42,
-        rowHeight: 42
-      }}>
+        rowHeight: 42,
+      }}
+    >
       <Table>
         <Table.ScrollContainer>
           <Table.Content
             aria-label="Virtualized table with 1000 rows"
-            className="h-[300px] min-w-[700px] overflow-auto">
+            className="h-[300px] min-w-[700px] overflow-auto"
+          >
             <Table.Header className="h-full w-full">
               <Table.Column isRowHeader id="name" minWidth={160}>
                 Name
@@ -694,7 +721,7 @@ export function Virtualization() {
               </Table.Column>
             </Table.Header>
             <Table.Body items={virtualizedUsers}>
-              {user => (
+              {(user) => (
                 <Table.Row>
                   <Table.Cell>{user.name}</Table.Cell>
                   <Table.Cell>{user.role}</Table.Cell>
@@ -706,17 +733,23 @@ export function Virtualization() {
         </Table.ScrollContainer>
       </Table>
     </Virtualizer>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Forms
 
 Thirteen form components: TextField, Select, Autocomplete, ComboBox, Checkbox, CheckboxGroup, RadioGroup, Switch, InputOTP, NumberField, SearchField, Slider, and Fieldset. All integrate with React Aria's form validation. `isRequired`, `isInvalid`, and custom error messages through FieldError work across every one.
 
-[Live example: select-default](https://heroui.com/docs/react/releases/v3-0-0)
 
-```tsx
+<ComponentPreview name="select-default">
+
+````tsx
+import {Label, ListBox, Select} from "@vezham/react-v3";
+
 export function Default() {
   return (
     <Select className="w-[256px]" placeholder="Select one">
@@ -754,21 +787,25 @@ export function Default() {
         </ListBox>
       </Select.Popover>
     </Select>
-  )
+  );
 }
-```
+````
 
-[Live example: input-otp-basic](https://heroui.com/docs/react/releases/v3-0-0)
+</ComponentPreview>
 
-```tsx
+
+
+<ComponentPreview name="input-otp-basic">
+
+````tsx
+import {InputOTP, Label, Link} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <div className="flex w-[280px] flex-col gap-2">
       <div className="flex flex-col gap-1">
         <Label>Verify account</Label>
-        <p className="text-muted text-sm">
-          We&apos;ve sent a code to a****@gmail.com
-        </p>
+        <p className="text-sm text-muted">We&apos;ve sent a code to a****@gmail.com</p>
       </div>
       <InputOTP maxLength={6}>
         <InputOTP.Group>
@@ -784,23 +821,29 @@ export function Basic() {
         </InputOTP.Group>
       </InputOTP>
       <div className="flex items-center gap-[5px] px-1 pt-1">
-        <p className="text-muted text-sm">Didn&apos;t receive a code?</p>
+        <p className="text-sm text-muted">Didn&apos;t receive a code?</p>
         <Link className="text-foreground underline" href="#">
           Resend
         </Link>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Overlays
 
 Seven overlay components. Drawer supports four placements with drag-to-dismiss gestures. Toast stacks notifications with auto-dismiss and promise support. Menu composes with submenus and sections. Plus Modal, AlertDialog, Popover, and Tooltip.
 
-[Live example: drawer-basic](https://heroui.com/docs/react/releases/v3-0-0)
 
-```tsx
+<ComponentPreview name="drawer-basic">
+
+````tsx
+import {Button, Drawer} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <Drawer>
@@ -813,9 +856,8 @@ export function Basic() {
             </Drawer.Header>
             <Drawer.Body>
               <p>
-                This is a bottom drawer built with React Aria's Modal component.
-                It slides up from the bottom of the screen with a smooth CSS
-                transition.
+                This is a bottom drawer built with React Aria's Modal component. It slides up from
+                the bottom of the screen with a smooth CSS transition.
               </p>
             </Drawer.Body>
             <Drawer.Footer>
@@ -828,14 +870,21 @@ export function Basic() {
         </Drawer.Content>
       </Drawer.Backdrop>
     </Drawer>
-  )
+  );
 }
-```
+````
 
-[Live example: toast-default](https://heroui.com/docs/react/releases/v3-0-0)
+</ComponentPreview>
 
-```tsx
-'use client'
+
+
+<ComponentPreview name="toast-default">
+
+````tsx
+"use client";
+
+import {Persons} from "@gravity-ui/icons";
+import {Button, toast} from "@vezham/react-v3";
 
 export function Default() {
   return (
@@ -844,31 +893,38 @@ export function Default() {
         size="sm"
         variant="secondary"
         onPress={() => {
-          const id = toast('You have been invited to join a team', {
+          const id = toast("You have been invited to join a team", {
             actionProps: {
-              children: 'Dismiss',
+              children: "Dismiss",
               onPress: () => toast.close(id),
-              variant: 'tertiary'
+              variant: "tertiary",
             },
-            description: 'Bob sent you an invitation to join HeroUI team',
+            description: "Bob sent you an invitation to join HeroUI team",
             indicator: <Persons />,
-            variant: 'default'
-          })
-        }}>
+            variant: "default",
+          });
+        }}
+      >
         Show toast
       </Button>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Navigation
 
 Tabs, Accordion, Breadcrumbs, Pagination, and Link. Tabs support horizontal and vertical orientation. Accordion supports single or multiple expanded panels.
 
-[Live example: tabs-basic](https://heroui.com/docs/react/releases/v3-0-0)
 
-```tsx
+<ComponentPreview name="tabs-basic">
+
+````tsx
+import {Tabs} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <Tabs className="w-full max-w-md">
@@ -898,17 +954,23 @@ export function Basic() {
         <p>Generate and download detailed reports.</p>
       </Tabs.Panel>
     </Tabs>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Feedback
 
 ProgressBar and ProgressCircle handle determinate + indeterminate states. Meter maps values to semantic colors: green for safe, yellow for cautious, red for critical. Skeleton and Spinner round out the set.
 
-[Live example: meter-colors](https://heroui.com/docs/react/releases/v3-0-0)
 
-```tsx
+<ComponentPreview name="meter-colors">
+
+````tsx
+import {Label, Meter} from "@vezham/react-v3";
+
 export function Colors() {
   return (
     <div className="flex w-64 flex-col gap-6">
@@ -948,13 +1010,19 @@ export function Colors() {
         </Meter.Track>
       </Meter>
     </div>
-  )
+  );
 }
-```
+````
 
-[Live example: skeleton-basic](https://heroui.com/docs/react/releases/v3-0-0)
+</ComponentPreview>
 
-```tsx
+
+
+<ComponentPreview name="skeleton-basic">
+
+````tsx
+import {Skeleton} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <div className="shadow-panel w-[250px] space-y-5 rounded-lg bg-transparent p-4">
@@ -965,22 +1033,29 @@ export function Basic() {
         <Skeleton className="h-3 w-2/5 rounded-lg" />
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Buttons & Toggles
 
 Button, ButtonGroup, ToggleButton, ToggleButtonGroup, CloseButton, and Toolbar. ButtonGroup connects buttons with shared borders and supports vertical orientation. Toolbar groups buttons, toggles, and separators into an accessible `role="toolbar"` container.
 
-[Live example: toggle-button-group-attached](https://heroui.com/docs/react/releases/v3-0-0)
 
-```tsx
+<ComponentPreview name="toggle-button-group-attached">
+
+````tsx
+import {Bold, Italic, Strikethrough, Underline} from "@gravity-ui/icons";
+import {ToggleButton, ToggleButtonGroup} from "@vezham/react-v3";
+
 export function Attached() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">
-        <span className="text-muted text-sm">Attached (default)</span>
+        <span className="text-sm text-muted">Attached (default)</span>
         <ToggleButtonGroup selectionMode="multiple">
           <ToggleButton isIconOnly aria-label="Bold" id="bold">
             <Bold />
@@ -993,17 +1068,14 @@ export function Attached() {
             <ToggleButtonGroup.Separator />
             <Underline />
           </ToggleButton>
-          <ToggleButton
-            isIconOnly
-            aria-label="Strikethrough"
-            id="strikethrough">
+          <ToggleButton isIconOnly aria-label="Strikethrough" id="strikethrough">
             <ToggleButtonGroup.Separator />
             <Strikethrough />
           </ToggleButton>
         </ToggleButtonGroup>
       </div>
       <div className="flex flex-col gap-2">
-        <span className="text-muted text-sm">Detached</span>
+        <span className="text-sm text-muted">Detached</span>
         <ToggleButtonGroup isDetached selectionMode="multiple">
           <ToggleButton isIconOnly aria-label="Bold" id="bold">
             <Bold />
@@ -1014,18 +1086,18 @@ export function Attached() {
           <ToggleButton isIconOnly aria-label="Underline" id="underline">
             <Underline />
           </ToggleButton>
-          <ToggleButton
-            isIconOnly
-            aria-label="Strikethrough"
-            id="strikethrough">
+          <ToggleButton isIconOnly aria-label="Strikethrough" id="strikethrough">
             <Strikethrough />
           </ToggleButton>
         </ToggleButtonGroup>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Granular Imports
 
@@ -1086,7 +1158,7 @@ HeroUI Native is a brand-new library shipping alongside v3 for the web. Differen
 
 Scan the QR code with your device's camera or [Expo Go](https://expo.dev/go) to explore all 37 components live:
 
-<div className="my-6 flex justify-center">
+<div className="flex justify-center my-6">
   <img
     width="200"
     src="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/images/qr-code-native.png"
@@ -1099,8 +1171,7 @@ Scan the QR code with your device's camera or [Expo Go](https://expo.dev/go) to 
 </div>
 
 <Callout type="info">
-  **Android users:** If scanning the QR code redirects to a browser and shows a
-  404 error, open Expo Go first and use its built-in QR scanner instead.
+  **Android users:** If scanning the QR code redirects to a browser and shows a 404 error, open Expo Go first and use its built-in QR scanner instead.
 </Callout>
 
 ### 37 Components
@@ -1108,9 +1179,9 @@ Scan the QR code with your device's camera or [Expo Go](https://expo.dev/go) to 
 Forms, navigation, overlays, feedback, layout. From Button, Input, and Checkbox to Dialog, BottomSheet, Select, Toast, and InputOTP. Components follow the compound pattern:
 
 ```tsx
-import { Button, Dialog } from 'heroui-native'
+import { Dialog, Button } from "heroui-native";
 
-;<Dialog>
+<Dialog>
   <Dialog.Trigger asChild>
     <Button variant="primary">Open</Button>
   </Dialog.Trigger>
@@ -1156,9 +1227,9 @@ Teams working on both web and mobile share knowledge and patterns. The learning 
 Both platforms read from the same token set. Colors like `accent`, `surface`, `danger`, and `success` resolve identically across web and native. Your brand stays consistent without maintaining two separate systems.
 
 ```tsx
-import { Text, View } from 'react-native'
+import { View, Text } from "react-native";
 
-;<View className="bg-surface rounded-lg p-4">
+<View className="bg-surface p-4 rounded-lg">
   <Text className="text-foreground text-lg font-semibold">Card Title</Text>
   <Text className="text-muted text-sm">Consistent on web and mobile.</Text>
 </View>
@@ -1177,13 +1248,14 @@ Tailwind CSS v4 on both platforms. [Uniwind](https://uniwind.dev/) on native, st
 Every animated native component exposes a single `animation` prop. Values, timing, spring configs, enter/exit transitions controlled from one place. Reanimated powers the math, but you never touch it directly:
 
 ```tsx
-import { Switch } from 'heroui-native'
+import { Switch } from "heroui-native";
 
-;<Switch
+<Switch
   animation={{
     scale: { value: [1, 0.9] },
-    backgroundColor: { value: ['#172554', '#eab308'] }
-  }}>
+    backgroundColor: { value: ["#172554", "#eab308"] },
+  }}
+>
   <Switch.Thumb />
 </Switch>
 ```
@@ -1228,9 +1300,9 @@ No other React Native component library does this.
 Each native component has its own entry point. Import only what you use:
 
 ```tsx
-import { Button } from 'heroui-native/button'
-import { Card } from 'heroui-native/card'
-import { HeroUINativeProvider } from 'heroui-native/provider'
+import { HeroUINativeProvider } from "heroui-native/provider";
+import { Button } from "heroui-native/button";
+import { Card } from "heroui-native/card";
 ```
 
 ### AI Tooling for Native
@@ -1279,27 +1351,59 @@ Pre-sale pricing is live. v2 Pro customers get an upgrade discount. Use the same
 
 ### React (Web)
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
-  <Tab value="npm">```bash npm i @heroui/styles @heroui/react ```</Tab>
-  <Tab value="pnpm">```bash pnpm add @heroui/styles @heroui/react ```</Tab>
-  <Tab value="yarn">```bash yarn add @heroui/styles @heroui/react ```</Tab>
-  <Tab value="bun">```bash bun add @heroui/styles @heroui/react ```</Tab>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
+  <Tab value="npm">
+    ```bash
+    npm i @heroui/styles @heroui/react
+    ```
+  </Tab>
+  <Tab value="pnpm">
+    ```bash
+    pnpm add @heroui/styles @heroui/react
+    ```
+  </Tab>
+  <Tab value="yarn">
+    ```bash
+    yarn add @heroui/styles @heroui/react
+    ```
+  </Tab>
+  <Tab value="bun">
+    ```bash
+    bun add @heroui/styles @heroui/react
+    ```
+  </Tab>
 </Tabs>
 
 Add two lines to your CSS:
 
 ```css
-@import 'tailwindcss';
-@import '@heroui/styles';
+@import "tailwindcss";
+@import "@heroui/styles";
 ```
 
 ### React Native
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
-  <Tab value="npm">```bash npm install heroui-native ```</Tab>
-  <Tab value="pnpm">```bash pnpm add heroui-native ```</Tab>
-  <Tab value="yarn">```bash yarn add heroui-native ```</Tab>
-  <Tab value="bun">```bash bun add heroui-native ```</Tab>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
+  <Tab value="npm">
+    ```bash
+    npm install heroui-native
+    ```
+  </Tab>
+  <Tab value="pnpm">
+    ```bash
+    pnpm add heroui-native
+    ```
+  </Tab>
+  <Tab value="yarn">
+    ```bash
+    yarn add heroui-native
+    ```
+  </Tab>
+  <Tab value="bun">
+    ```bash
+    bun add heroui-native
+    ```
+  </Tab>
 </Tabs>
 
 See the [React docs](/docs-ui/web/getting-started/quick-start) and [React Native docs](/docs-ui/native/getting-started/quick-start) for full setup guides (peer dependencies, Uniwind config, and provider setup).

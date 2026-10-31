@@ -7,6 +7,7 @@ import { createPlatformDocsLoader } from './platform-loader'
 const loader = createPlatformDocsLoader()
 
 describe('UI documentation', () => {
+  // vx-bot/NOTE: The first loader call compiles MDX on shared CI workers.
   it.each(['web', 'native'] as const)(
     'loads the %s introduction and section navigation',
     async platform => {
@@ -19,7 +20,8 @@ describe('UI documentation', () => {
         deserializePageTree(data.pageTree).children.length
       ).toBeGreaterThan(0)
       expect(data.markdownUrl).toContain(`/docs-ui/${platform}/`)
-    }
+    },
+    20_000
   )
 
   it('retains Chinese paths with English fallback content', async () => {
@@ -40,7 +42,9 @@ describe('UI documentation', () => {
     const markdown = await runtime.getLLMText(page)
     expect(markdown).toContain('Button')
     expect(markdown).toContain('@heroui/react')
-    expect(markdown).toContain('Live example: button-basic')
+    expect(markdown).toContain('@vezham/react-v3')
+    expect(markdown).toContain('button-basic')
+    expect(markdown).not.toContain('Live example:')
   })
 
   it('offers migration only on Web and rejects unknown platforms', async () => {

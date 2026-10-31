@@ -9,45 +9,44 @@ links:
   figma: true
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { ColorSwatchPicker, parseColor } from '@heroui/react'
+import { ColorSwatchPicker, parseColor } from '@heroui/react';
 ```
 
-[Live example: color-swatch-picker-basic](https://heroui.com/docs/react/components/color-swatch-picker)
 
-```tsx
-const colors = [
-  '#F43F5E',
-  '#D946EF',
-  '#8B5CF6',
-  '#3B82F6',
-  '#06B6D4',
-  '#10B981',
-  '#84CC16'
-]
+<ComponentPreview name="color-swatch-picker-basic">
+
+````tsx
+import {ColorSwatchPicker} from "@vezham/react-v3";
+
+const colors = ["#F43F5E", "#D946EF", "#8B5CF6", "#3B82F6", "#06B6D4", "#10B981", "#84CC16"];
 
 export function Basic() {
   return (
     <ColorSwatchPicker>
-      {colors.map(color => (
+      {colors.map((color) => (
         <ColorSwatchPicker.Item key={color} color={color}>
           <ColorSwatchPicker.Swatch />
           <ColorSwatchPicker.Indicator />
         </ColorSwatchPicker.Item>
       ))}
     </ColorSwatchPicker>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 ```tsx
-import { ColorSwatchPicker } from '@heroui/react'
+import { ColorSwatchPicker } from '@heroui/react';
 
 export default () => (
   <ColorSwatchPicker>
@@ -64,33 +63,28 @@ export default () => (
       <ColorSwatchPicker.Indicator />
     </ColorSwatchPicker.Item>
   </ColorSwatchPicker>
-)
+);
 ```
 
 ## Examples
 
 ### Variants
 
-[Live example: color-swatch-picker-variants](https://heroui.com/docs/react/components/color-swatch-picker)
 
-```tsx
-const colors = [
-  '#F43F5E',
-  '#D946EF',
-  '#8B5CF6',
-  '#3B82F6',
-  '#06B6D4',
-  '#10B981',
-  '#84CC16'
-]
+<ComponentPreview name="color-swatch-picker-variants">
+
+````tsx
+import {ColorSwatchPicker} from "@vezham/react-v3";
+
+const colors = ["#F43F5E", "#D946EF", "#8B5CF6", "#3B82F6", "#06B6D4", "#10B981", "#84CC16"];
 
 export function Variants() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">
-        <span className="text-muted text-sm">Circle (default)</span>
+        <span className="text-sm text-muted">Circle (default)</span>
         <ColorSwatchPicker variant="circle">
-          {colors.map(color => (
+          {colors.map((color) => (
             <ColorSwatchPicker.Item key={color} color={color}>
               <ColorSwatchPicker.Swatch />
               <ColorSwatchPicker.Indicator />
@@ -99,9 +93,9 @@ export function Variants() {
         </ColorSwatchPicker>
       </div>
       <div className="flex flex-col gap-2">
-        <span className="text-muted text-sm">Square</span>
+        <span className="text-sm text-muted">Square</span>
         <ColorSwatchPicker variant="square">
-          {colors.map(color => (
+          {colors.map((color) => (
             <ColorSwatchPicker.Item key={color} color={color}>
               <ColorSwatchPicker.Swatch />
               <ColorSwatchPicker.Indicator />
@@ -110,35 +104,33 @@ export function Variants() {
         </ColorSwatchPicker>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Sizes
 
-[Live example: color-swatch-picker-sizes](https://heroui.com/docs/react/components/color-swatch-picker)
 
-```tsx
-const colors = [
-  '#F43F5E',
-  '#D946EF',
-  '#8B5CF6',
-  '#3B82F6',
-  '#06B6D4',
-  '#10B981',
-  '#84CC16'
-]
+<ComponentPreview name="color-swatch-picker-sizes">
 
-const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const
+````tsx
+import {ColorSwatchPicker} from "@vezham/react-v3";
+
+const colors = ["#F43F5E", "#D946EF", "#8B5CF6", "#3B82F6", "#06B6D4", "#10B981", "#84CC16"];
+
+const sizes = ["xs", "sm", "md", "lg", "xl"] as const;
 
 export function Sizes() {
   return (
     <div className="flex flex-col gap-6">
-      {sizes.map(size => (
+      {sizes.map((size) => (
         <div key={size} className="flex items-center gap-4">
-          <span className="text-muted w-8 text-sm">{size}</span>
+          <span className="w-8 text-sm text-muted">{size}</span>
           <ColorSwatchPicker size={size}>
-            {colors.map(color => (
+            {colors.map((color) => (
               <ColorSwatchPicker.Item key={color} color={color}>
                 <ColorSwatchPicker.Swatch />
                 <ColorSwatchPicker.Indicator />
@@ -148,154 +140,146 @@ export function Sizes() {
         </div>
       ))}
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Disabled
 
-[Live example: color-swatch-picker-disabled](https://heroui.com/docs/react/components/color-swatch-picker)
 
-```tsx
-const colors = [
-  '#F43F5E',
-  '#D946EF',
-  '#8B5CF6',
-  '#3B82F6',
-  '#06B6D4',
-  '#10B981',
-  '#84CC16'
-]
+<ComponentPreview name="color-swatch-picker-disabled">
+
+````tsx
+import {ColorSwatchPicker} from "@vezham/react-v3";
+
+const colors = ["#F43F5E", "#D946EF", "#8B5CF6", "#3B82F6", "#06B6D4", "#10B981", "#84CC16"];
 
 export function Disabled() {
   return (
     <ColorSwatchPicker>
-      {colors.map(color => (
+      {colors.map((color) => (
         <ColorSwatchPicker.Item key={color} isDisabled color={color}>
           <ColorSwatchPicker.Swatch />
           <ColorSwatchPicker.Indicator />
         </ColorSwatchPicker.Item>
       ))}
     </ColorSwatchPicker>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Stack Layout
 
-[Live example: color-swatch-picker-stack-layout](https://heroui.com/docs/react/components/color-swatch-picker)
 
-```tsx
-const colors = [
-  '#F43F5E',
-  '#D946EF',
-  '#8B5CF6',
-  '#3B82F6',
-  '#06B6D4',
-  '#10B981',
-  '#84CC16'
-]
+<ComponentPreview name="color-swatch-picker-stack-layout">
+
+````tsx
+import {ColorSwatchPicker} from "@vezham/react-v3";
+
+const colors = ["#F43F5E", "#D946EF", "#8B5CF6", "#3B82F6", "#06B6D4", "#10B981", "#84CC16"];
 
 export function StackLayout() {
   return (
     <ColorSwatchPicker layout="stack">
-      {colors.map(color => (
+      {colors.map((color) => (
         <ColorSwatchPicker.Item key={color} color={color}>
           <ColorSwatchPicker.Swatch />
           <ColorSwatchPicker.Indicator />
         </ColorSwatchPicker.Item>
       ))}
     </ColorSwatchPicker>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Default Value
 
-[Live example: color-swatch-picker-default-value](https://heroui.com/docs/react/components/color-swatch-picker)
 
-```tsx
-const colors = [
-  '#F43F5E',
-  '#D946EF',
-  '#8B5CF6',
-  '#3B82F6',
-  '#06B6D4',
-  '#10B981',
-  '#84CC16'
-]
+<ComponentPreview name="color-swatch-picker-default-value">
+
+````tsx
+import {ColorSwatchPicker} from "@vezham/react-v3";
+
+const colors = ["#F43F5E", "#D946EF", "#8B5CF6", "#3B82F6", "#06B6D4", "#10B981", "#84CC16"];
 
 export function DefaultValue() {
   return (
     <ColorSwatchPicker defaultValue="#8B5CF6">
-      {colors.map(color => (
+      {colors.map((color) => (
         <ColorSwatchPicker.Item key={color} color={color}>
           <ColorSwatchPicker.Swatch />
           <ColorSwatchPicker.Indicator />
         </ColorSwatchPicker.Item>
       ))}
     </ColorSwatchPicker>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Controlled
 
-[Live example: color-swatch-picker-controlled](https://heroui.com/docs/react/components/color-swatch-picker)
 
-```tsx
-'use client'
+<ComponentPreview name="color-swatch-picker-controlled">
 
-const colors = [
-  '#F43F5E',
-  '#D946EF',
-  '#8B5CF6',
-  '#3B82F6',
-  '#06B6D4',
-  '#10B981',
-  '#84CC16'
-]
+````tsx
+"use client";
+
+import {ColorSwatchPicker, parseColor} from "@vezham/react-v3";
+import {useState} from "react";
+
+const colors = ["#F43F5E", "#D946EF", "#8B5CF6", "#3B82F6", "#06B6D4", "#10B981", "#84CC16"];
 
 export function Controlled() {
-  const [value, setValue] = useState(parseColor('#F43F5E'))
+  const [value, setValue] = useState(parseColor("#F43F5E"));
 
   return (
     <div className="flex flex-col gap-4">
       <ColorSwatchPicker value={value} onChange={setValue}>
-        {colors.map(color => (
+        {colors.map((color) => (
           <ColorSwatchPicker.Item key={color} color={color}>
             <ColorSwatchPicker.Swatch />
             <ColorSwatchPicker.Indicator />
           </ColorSwatchPicker.Item>
         ))}
       </ColorSwatchPicker>
-      <p className="text-muted text-sm">
-        Selected: <span className="font-medium">{value.toString('hex')}</span>
+      <p className="text-sm text-muted">
+        Selected: <span className="font-medium">{value.toString("hex")}</span>
       </p>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Custom Indicator
 
-[Live example: color-swatch-picker-custom-indicator](https://heroui.com/docs/react/components/color-swatch-picker)
 
-```tsx
+<ComponentPreview name="color-swatch-picker-custom-indicator">
+
+````tsx
+import {HeartFill} from "@gravity-ui/icons";
+import {ColorSwatchPicker} from "@vezham/react-v3";
+
 export function CustomIndicator() {
-  const colors = [
-    '#F43F5E',
-    '#D946EF',
-    '#8B5CF6',
-    '#3B82F6',
-    '#06B6D4',
-    '#10B981',
-    '#84CC16'
-  ]
+  const colors = ["#F43F5E", "#D946EF", "#8B5CF6", "#3B82F6", "#06B6D4", "#10B981", "#84CC16"];
 
   return (
     <ColorSwatchPicker>
-      {colors.map(color => (
+      {colors.map((color) => (
         <ColorSwatchPicker.Item key={color} color={color}>
           <ColorSwatchPicker.Swatch />
           <ColorSwatchPicker.Indicator>
@@ -304,74 +288,74 @@ export function CustomIndicator() {
         </ColorSwatchPicker.Item>
       ))}
     </ColorSwatchPicker>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Render Function
 
-[Live example: color-swatch-picker-render-function](https://heroui.com/docs/react/components/color-swatch-picker)
 
-```tsx
-'use client'
+<ComponentPreview name="color-swatch-picker-render-function">
 
-const colors = [
-  '#F43F5E',
-  '#D946EF',
-  '#8B5CF6',
-  '#3B82F6',
-  '#06B6D4',
-  '#10B981',
-  '#84CC16'
-]
+````tsx
+"use client";
+
+import {ColorSwatchPicker} from "@vezham/react-v3";
+
+const colors = ["#F43F5E", "#D946EF", "#8B5CF6", "#3B82F6", "#06B6D4", "#10B981", "#84CC16"];
 
 export function RenderFunction() {
   return (
-    <ColorSwatchPicker render={props => <div {...props} data-custom="foo" />}>
-      {colors.map(color => (
+    <ColorSwatchPicker render={(props) => <div {...props} data-custom="foo" />}>
+      {colors.map((color) => (
         <ColorSwatchPicker.Item key={color} color={color}>
           <ColorSwatchPicker.Swatch />
           <ColorSwatchPicker.Indicator />
         </ColorSwatchPicker.Item>
       ))}
     </ColorSwatchPicker>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: color-swatch-picker-custom-styles](https://heroui.com/docs/react/components/color-swatch-picker)
 
-```tsx
-const colors = [
-  '#F43F5E',
-  '#D946EF',
-  '#8B5CF6',
-  '#3B82F6',
-  '#06B6D4',
-  '#10B981',
-  '#84CC16'
-]
+<ComponentPreview name="color-swatch-picker-custom-styles">
+
+````tsx
+import {ColorSwatchPicker} from "@vezham/react-v3";
+
+const colors = ["#F43F5E", "#D946EF", "#8B5CF6", "#3B82F6", "#06B6D4", "#10B981", "#84CC16"];
 
 export function CustomStyles() {
   return (
     <ColorSwatchPicker
-      className="border-border/80 bg-surface ring-accent/5 rounded-2xl border p-4 shadow-sm ring-1"
+      className="rounded-2xl border border-border/80 bg-surface p-4 shadow-sm ring-1 ring-accent/5"
       defaultValue="#8B5CF6"
-      variant="square">
-      {colors.map(color => (
+      variant="square"
+    >
+      {colors.map((color) => (
         <ColorSwatchPicker.Item key={`custom-styles-${color}`} color={color}>
           <ColorSwatchPicker.Swatch />
           <ColorSwatchPicker.Indicator />
         </ColorSwatchPicker.Item>
       ))}
     </ColorSwatchPicker>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -403,13 +387,11 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The ColorSwatchPicker component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/color-swatch-picker.css)):
 
 #### Base & Structure [!toc]
-
 - `.color-swatch-picker` - Base container (flex layout)
 - `.color-swatch-picker__item` - Individual swatch item wrapper
 - `.color-swatch-picker__swatch` - The color swatch visual element
 
 #### Size Classes [!toc]
-
 - `.color-swatch-picker--xs` - Extra small (16px)
 - `.color-swatch-picker--sm` - Small (24px)
 - `.color-swatch-picker--md` - Medium (32px, default)
@@ -417,12 +399,10 @@ The ColorSwatchPicker component uses these CSS classes ([View source styles](htt
 - `.color-swatch-picker--xl` - Extra large (40px)
 
 #### Shape Variants [!toc]
-
 - `.color-swatch-picker--circle` - Circle shape (default)
 - `.color-swatch-picker--square` - Square shape with rounded corners
 
 #### Layout Classes [!toc]
-
 - `.color-swatch-picker--grid` - Horizontal wrapping layout (default)
 - `.color-swatch-picker--stack` - Vertical stacked layout
 
@@ -441,49 +421,49 @@ The component supports both CSS pseudo-classes and data attributes for flexibili
 
 Inherits from [React Aria ColorSwatchPicker](https://react-spectrum.adobe.com/react-aria/ColorSwatchPicker.html).
 
-| Prop           | Type                                                                                 | Default    | Description                                                      |
-| -------------- | ------------------------------------------------------------------------------------ | ---------- | ---------------------------------------------------------------- |
-| `value`        | `string \| Color`                                                                    | -          | The current selected color (controlled)                          |
-| `defaultValue` | `string \| Color`                                                                    | -          | The default selected color (uncontrolled)                        |
-| `onChange`     | `(value: Color) => void`                                                             | -          | Handler called when selection changes                            |
-| `size`         | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`                                               | `"md"`     | Size of the swatches                                             |
-| `variant`      | `"circle" \| "square"`                                                               | `"circle"` | Shape of the swatches                                            |
-| `layout`       | `"grid" \| "stack"`                                                                  | `"grid"`   | Layout direction                                                 |
-| `className`    | `string`                                                                             | -          | Additional CSS classes                                           |
-| `children`     | `React.ReactNode`                                                                    | -          | ColorSwatchPicker.Item elements                                  |
-| `render`       | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, ColorSwatchPickerRenderProps>` | -          | Overrides the default DOM element with a custom render function. |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string \| Color` | - | The current selected color (controlled) |
+| `defaultValue` | `string \| Color` | - | The default selected color (uncontrolled) |
+| `onChange` | `(value: Color) => void` | - | Handler called when selection changes |
+| `size` | `"xs" \| "sm" \| "md" \| "lg" \| "xl"` | `"md"` | Size of the swatches |
+| `variant` | `"circle" \| "square"` | `"circle"` | Shape of the swatches |
+| `layout` | `"grid" \| "stack"` | `"grid"` | Layout direction |
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `React.ReactNode` | - | ColorSwatchPicker.Item elements |
+| `render` | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, ColorSwatchPickerRenderProps>` | - | Overrides the default DOM element with a custom render function.|
 
 ### ColorSwatchPicker.Item
 
-| Prop         | Type                                                                                     | Default      | Description                                                      |
-| ------------ | ---------------------------------------------------------------------------------------- | ------------ | ---------------------------------------------------------------- |
-| `color`      | `string \| Color`                                                                        | **Required** | The color of the swatch                                          |
-| `isDisabled` | `boolean`                                                                                | `false`      | Whether the item is disabled                                     |
-| `className`  | `string`                                                                                 | -            | Additional CSS classes                                           |
-| `children`   | `React.ReactNode`                                                                        | -            | ColorSwatchPicker.Swatch element                                 |
-| `render`     | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, ColorSwatchPickerItemRenderProps>` | -            | Overrides the default DOM element with a custom render function. |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `color` | `string \| Color` | **Required** | The color of the swatch |
+| `isDisabled` | `boolean` | `false` | Whether the item is disabled |
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `React.ReactNode` | - | ColorSwatchPicker.Swatch element |
+| `render` | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, ColorSwatchPickerItemRenderProps>` | - | Overrides the default DOM element with a custom render function.|
 
 ### ColorSwatchPicker.Swatch
 
-| Prop        | Type     | Default | Description            |
-| ----------- | -------- | ------- | ---------------------- |
-| `className` | `string` | -       | Additional CSS classes |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
 
 ### parseColor
 
 The `parseColor` function is re-exported from React Aria Components for convenience:
 
 ```tsx
-import { parseColor } from '@heroui/react'
+import { parseColor } from '@heroui/react';
 
 // Parse hex color
-const red = parseColor('#ff0000')
+const red = parseColor('#ff0000');
 
 // Parse RGB
-const green = parseColor('rgb(0, 255, 0)')
+const green = parseColor('rgb(0, 255, 0)');
 
 // Parse HSL
-const blue = parseColor('hsl(240, 100%, 50%)')
+const blue = parseColor('hsl(240, 100%, 50%)');
 ```
 
 ## Related Components

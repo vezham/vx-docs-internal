@@ -3,16 +3,11 @@ title: Accordion
 description: Migration guide for Accordion from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Accordion documentation](/docs-ui/web/components/accordion)
-  for complete API reference, styling guide, and advanced examples. This guide
-  only focuses on migrating from HeroUI v2.
+  Refer to the [v3 Accordion documentation](/docs-ui/web/components/accordion) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,26 +15,32 @@ import {
 In v2, `AccordionItem` was a self-contained component that accepted props for title, subtitle, content, and other elements:
 
 ```tsx
-import { Accordion, AccordionItem } from '@heroui/react'
+import { Accordion, AccordionItem } from "@heroui/react";
 
 export default function App() {
   return (
     <Accordion>
-      <AccordionItem key="1" title="Accordion 1">
+      <AccordionItem
+        key="1"
+        title="Accordion 1"
+      >
         Content here
       </AccordionItem>
-      <AccordionItem key="2" title="Accordion 2">
+      <AccordionItem
+        key="2"
+        title="Accordion 2"
+      >
         Content here
       </AccordionItem>
     </Accordion>
-  )
+  );
 }
 ```
 
 In v3, Accordion uses a compound component pattern with explicit subcomponents:
 
 ```tsx
-import { Accordion } from '@heroui/react'
+import { Accordion } from "@heroui/react";
 
 export default function App() {
   return (
@@ -67,7 +68,7 @@ export default function App() {
         </Accordion.Panel>
       </Accordion.Item>
     </Accordion>
-  )
+  );
 }
 ```
 
@@ -75,30 +76,30 @@ export default function App() {
 
 ### 1. Component Structure
 
-**v2:** Single `AccordionItem` component with props  
+**v2:** Single `AccordionItem` component with props
 **v3:** Compound components: `Accordion.Item`, `Accordion.Heading`, `Accordion.Trigger`, `Accordion.Panel`, `Accordion.Body`, `Accordion.Indicator`
 
 ### 2. Prop Changes
 
-| v2 Prop                                                        | v3 Location | Notes                                                     |
-| -------------------------------------------------------------- | ----------- | --------------------------------------------------------- |
-| `selectedKeys`                                                 | `Accordion` | Renamed to `expandedKeys`; type `Iterable<Key>`           |
-| `defaultSelectedKeys`                                          | `Accordion` | Renamed to `defaultExpandedKeys`                          |
-| `onSelectionChange`                                            | `Accordion` | Renamed to `onExpandedChange`; `(keys: Set<Key>) => void` |
-| `selectionMode="multiple"`                                     | `Accordion` | Use `allowsMultipleExpanded` (boolean)                    |
-| `isCompact`                                                    | -           | Removed (use Tailwind CSS e.g. `text-sm`, `py-2`)         |
-| `hideIndicator`                                                | -           | Omit `<Accordion.Indicator />` to hide                    |
-| `disableAnimation`, `disableIndicatorAnimation`, `motionProps` | -           | Removed (animations not supported / use CSS)              |
-| `showDivider`, `dividerProps`                                  | -           | Removed (add dividers manually or use `Divider`)          |
-| `keepContentMounted`                                           | -           | Removed (content always mounted in v3)                    |
-| `selectionBehavior`, `disallowEmptySelection`                  | -           | Removed (not applicable)                                  |
-| `itemClasses`                                                  | -           | Use `className` on items                                  |
-| `startContent`                                                 | -           | Place content in `<Accordion.Trigger>`                    |
-| `title`, `subtitle`                                            | -           | Place content in `<Accordion.Trigger>`                    |
+| v2 Prop | v3 Location | Notes |
+|---------|-------------|-------|
+| `selectedKeys` | `Accordion` | Renamed to `expandedKeys`; type `Iterable<Key>` |
+| `defaultSelectedKeys` | `Accordion` | Renamed to `defaultExpandedKeys` |
+| `onSelectionChange` | `Accordion` | Renamed to `onExpandedChange`; `(keys: Set<Key>) => void` |
+| `selectionMode="multiple"` | `Accordion` | Use `allowsMultipleExpanded` (boolean) |
+| `isCompact` | - | Removed (use Tailwind CSS e.g. `text-sm`, `py-2`) |
+| `hideIndicator` | - | Omit `<Accordion.Indicator />` to hide |
+| `disableAnimation`, `disableIndicatorAnimation`, `motionProps` | - | Removed (animations not supported / use CSS) |
+| `showDivider`, `dividerProps` | - | Removed (add dividers manually or use `Divider`) |
+| `keepContentMounted` | - | Removed (content always mounted in v3) |
+| `selectionBehavior`, `disallowEmptySelection` | - | Removed (not applicable) |
+| `itemClasses` | - | Use `className` on items |
+| `startContent` | - | Place content in `<Accordion.Trigger>` |
+| `title`, `subtitle` | - | Place content in `<Accordion.Trigger>` |
 
 ### 3. Variants
 
-**v2 Variants:** `light`, `shadow`, `bordered`, `splitted`  
+**v2 Variants:** `light`, `shadow`, `bordered`, `splitted`
 **v3 Variants:** `default`, `surface`
 
 The v3 variants are simplified. To achieve similar effects to v2 variants:
@@ -110,7 +111,7 @@ The v3 variants are simplified. To achieve similar effects to v2 variants:
 
 ### 4. Item Identification
 
-**v2:** React's `key` was used for both list reconciliation and expanded state.  
+**v2:** React's `key` was used for both list reconciliation and expanded state.
 **v3:** Use `id` on `Accordion.Item` for expanded state; keep React's `key` on items in lists.
 
 ## Migration Examples
@@ -137,7 +138,6 @@ The v3 variants are simplified. To achieve similar effects to v2 variants:
       </AccordionItem>
     </Accordion>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -175,7 +175,6 @@ The v3 variants are simplified. To achieve similar effects to v2 variants:
       </Accordion.Item>
     </Accordion>
     ```
-
   </Tab>
 </Tabs>
 
@@ -197,7 +196,6 @@ The v3 variants are simplified. To achieve similar effects to v2 variants:
       </AccordionItem>
     </Accordion>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -221,7 +219,6 @@ The v3 variants are simplified. To achieve similar effects to v2 variants:
       </Accordion.Item>
     </Accordion>
     ```
-
   </Tab>
 </Tabs>
 
@@ -244,7 +241,6 @@ The v3 variants are simplified. To achieve similar effects to v2 variants:
       </AccordionItem>
     </Accordion>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -278,16 +274,18 @@ The v3 variants are simplified. To achieve similar effects to v2 variants:
       </Accordion.Item>
     </Accordion>
     ```
-
   </Tab>
 </Tabs>
 
 ### Disabled Items and Default Expanded Keys
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
-    <Accordion defaultExpandedKeys={['1']} disabledKeys={['2']}>
+    <Accordion
+      defaultExpandedKeys={["1"]}
+      disabledKeys={["2"]}
+    >
       <AccordionItem key="1" title="Item 1">
         Content 1
       </AccordionItem>
@@ -299,7 +297,7 @@ The v3 variants are simplified. To achieve similar effects to v2 variants:
   </Tab>
   <Tab value="v3">
     ```tsx
-    <Accordion defaultExpandedKeys={['1']}>
+    <Accordion defaultExpandedKeys={["1"]}>
       <Accordion.Item id="1">
         <Accordion.Heading>
           <Accordion.Trigger>
@@ -334,9 +332,9 @@ The v3 variants are simplified. To achieve similar effects to v2 variants:
 ```tsx
 <AccordionItem
   classNames={{
-    base: 'custom-base',
-    title: 'custom-title',
-    content: 'custom-content'
+    base: "custom-base",
+    title: "custom-title",
+    content: "custom-content"
   }}
 />
 ```
@@ -352,7 +350,9 @@ The v3 variants are simplified. To achieve similar effects to v2 variants:
     </Accordion.Trigger>
   </Accordion.Heading>
   <Accordion.Panel>
-    <Accordion.Body className="custom-content">Content</Accordion.Body>
+    <Accordion.Body className="custom-content">
+      Content
+    </Accordion.Body>
   </Accordion.Panel>
 </Accordion.Item>
 ```

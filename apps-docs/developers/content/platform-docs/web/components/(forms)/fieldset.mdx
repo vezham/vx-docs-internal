@@ -7,22 +7,22 @@ links:
   storybook: Components/Forms/Fieldset
 ---
 
-import {
-  RelatedComponents,
-  RelatedShowcases
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents, RelatedShowcases } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Fieldset } from '@heroui/react'
+import { Fieldset } from '@heroui/react';
 ```
 
-[Live example: fieldset-basic](https://heroui.com/docs/react/components/fieldset)
 
-```tsx
-'use client'
+<ComponentPreview name="fieldset-basic">
 
+````tsx
+"use client";
+
+import {FloppyDisk} from "@gravity-ui/icons";
 import {
   Button,
   Description,
@@ -33,22 +33,22 @@ import {
   Input,
   Label,
   TextArea,
-  TextField
-} from '@heroui/react'
+  TextField,
+} from "@vezham/react-v3";
 
 export function Basic() {
   const onSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    const data: Record<string, string> = {}
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data: Record<string, string> = {};
 
     // Convert FormData to plain object
     formData.forEach((value, key) => {
-      data[key] = value.toString()
-    })
+      data[key] = value.toString();
+    });
 
-    alert('Form submitted successfully!')
-  }
+    alert("Form submitted successfully!");
+  };
 
   return (
     <Form className="w-full max-w-96" onSubmit={onSubmit}>
@@ -59,13 +59,14 @@ export function Basic() {
           <TextField
             isRequired
             name="name"
-            validate={value => {
+            validate={(value) => {
               if (value.length < 3) {
-                return 'Name must be at least 3 characters'
+                return "Name must be at least 3 characters";
               }
 
-              return null
-            }}>
+              return null;
+            }}
+          >
             <Label>Name</Label>
             <Input placeholder="John Doe" />
             <FieldError />
@@ -78,13 +79,14 @@ export function Basic() {
           <TextField
             isRequired
             name="bio"
-            validate={value => {
+            validate={(value) => {
               if (value.length < 10) {
-                return 'Bio must be at least 10 characters'
+                return "Bio must be at least 10 characters";
               }
 
-              return null
-            }}>
+              return null;
+            }}
+          >
             <Label>Bio</Label>
             <TextArea placeholder="Tell us about yourself..." />
             <Description>Minimum 10 characters</Description>
@@ -102,20 +104,27 @@ export function Basic() {
         </Fieldset.Actions>
       </Fieldset>
     </Form>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 ```tsx
-import { Fieldset } from '@heroui/react'
+import { Fieldset } from '@heroui/react';
 
 export default () => (
   <Fieldset>
     <Fieldset.Legend />
-    <Fieldset.Group>{/* form fields go here */}</Fieldset.Group>
-    <Fieldset.Actions>{/* action buttons go here */}</Fieldset.Actions>
+    <Fieldset.Group>
+      {/* form fields go here */}
+    </Fieldset.Group>
+    <Fieldset.Actions>
+      {/* action buttons go here */}
+    </Fieldset.Actions>
   </Fieldset>
 )
 ```
@@ -126,11 +135,13 @@ export default () => (
 
 When used inside a [Surface](/docs-ui/web/components/surface) component, use `variant="secondary"` on form controls (Input, TextArea, etc.) to apply the lower emphasis variant suitable for surface backgrounds.
 
-[Live example: fieldset-on-surface](https://heroui.com/docs/react/components/fieldset)
 
-```tsx
-'use client'
+<ComponentPreview name="fieldset-on-surface">
 
+````tsx
+"use client";
+
+import {FloppyDisk} from "@gravity-ui/icons";
 import {
   Button,
   Description,
@@ -141,25 +152,26 @@ import {
   Label,
   Surface,
   TextArea,
-  TextField
-} from '@heroui/react'
+  TextField,
+} from "@vezham/react-v3";
+import React from "react";
 
 export function OnSurface() {
   const onSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    const data: Record<string, string> = {}
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data: Record<string, string> = {};
 
     // Convert FormData to plain object
     formData.forEach((value, key) => {
-      data[key] = value.toString()
-    })
+      data[key] = value.toString();
+    });
 
-    alert('Form submitted successfully!')
-  }
+    alert("Form submitted successfully!");
+  };
 
   return (
-    <div className="bg-surface flex items-center justify-center rounded-3xl p-6">
+    <div className="flex items-center justify-center rounded-3xl bg-surface p-6">
       <Surface className="w-full min-w-[380px]">
         <Form onSubmit={onSubmit}>
           <Fieldset className="w-full">
@@ -169,13 +181,14 @@ export function OnSurface() {
               <TextField
                 isRequired
                 name="name"
-                validate={value => {
+                validate={(value) => {
                   if (value.length < 3) {
-                    return 'Name must be at least 3 characters'
+                    return "Name must be at least 3 characters";
                   }
 
-                  return null
-                }}>
+                  return null;
+                }}
+              >
                 <Label>Name</Label>
                 <Input placeholder="John Doe" variant="secondary" />
                 <FieldError />
@@ -188,18 +201,16 @@ export function OnSurface() {
               <TextField
                 isRequired
                 name="bio"
-                validate={value => {
+                validate={(value) => {
                   if (value.length < 10) {
-                    return 'Bio must be at least 10 characters'
+                    return "Bio must be at least 10 characters";
                   }
 
-                  return null
-                }}>
+                  return null;
+                }}
+              >
                 <Label>Bio</Label>
-                <TextArea
-                  placeholder="Tell us about yourself..."
-                  variant="secondary"
-                />
+                <TextArea placeholder="Tell us about yourself..." variant="secondary" />
                 <Description>Minimum 10 characters</Description>
                 <FieldError />
               </TextField>
@@ -217,19 +228,24 @@ export function OnSurface() {
         </Form>
       </Surface>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: fieldset-custom-styles](https://heroui.com/docs/react/components/fieldset)
 
-```tsx
-'use client'
+<ComponentPreview name="fieldset-custom-styles">
 
+````tsx
+"use client";
+
+import {FloppyDisk} from "@gravity-ui/icons";
 import {
   Button,
   Description,
@@ -240,20 +256,20 @@ import {
   Input,
   Label,
   TextArea,
-  TextField
-} from '@heroui/react'
+  TextField,
+} from "@vezham/react-v3";
 
 const shell =
-  'rounded-xl border border-border/70 bg-linear-to-b from-neutral-50/90 to-white p-4 ring-1 ring-black/5 dark:from-neutral-900/80 dark:to-neutral-900 dark:ring-white/10'
+  "rounded-xl border border-border/70 bg-linear-to-b from-neutral-50/90 to-white p-4 ring-1 ring-black/5 dark:from-neutral-900/80 dark:to-neutral-900 dark:ring-white/10";
 
 const field =
-  'rounded-xl border border-border/80 bg-surface shadow-sm ring-1 ring-black/5 transition-[box-shadow,border-color] focus-visible:ring-2 focus-visible:ring-neutral-400/25 dark:ring-white/10 dark:focus-visible:ring-neutral-500/30'
+  "rounded-xl border border-border/80 bg-surface shadow-sm ring-1 ring-black/5 transition-[box-shadow,border-color] focus-visible:ring-2 focus-visible:ring-neutral-400/25 dark:ring-white/10 dark:focus-visible:ring-neutral-500/30";
 
 export function CustomStyles() {
   const onSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    alert('Form submitted successfully!')
-  }
+    e.preventDefault();
+    alert("Form submitted successfully!");
+  };
 
   return (
     <Form className="w-full max-w-96" onSubmit={onSubmit}>
@@ -268,13 +284,14 @@ export function CustomStyles() {
           <TextField
             isRequired
             name="name"
-            validate={value => {
+            validate={(value) => {
               if (value.length < 3) {
-                return 'Name must be at least 3 characters'
+                return "Name must be at least 3 characters";
               }
 
-              return null
-            }}>
+              return null;
+            }}
+          >
             <Label>Name</Label>
             <Input className={field} placeholder="John Doe" />
             <FieldError />
@@ -287,18 +304,16 @@ export function CustomStyles() {
           <TextField
             isRequired
             name="bio"
-            validate={value => {
+            validate={(value) => {
               if (value.length < 10) {
-                return 'Bio must be at least 10 characters'
+                return "Bio must be at least 10 characters";
               }
 
-              return null
-            }}>
+              return null;
+            }}
+          >
             <Label>Bio</Label>
-            <TextArea
-              className={field}
-              placeholder="Tell us about yourself..."
-            />
+            <TextArea className={field} placeholder="Tell us about yourself..." />
             <Description>Minimum 10 characters</Description>
             <FieldError />
           </TextField>
@@ -314,9 +329,12 @@ export function CustomStyles() {
         </Fieldset.Actions>
       </Fieldset>
     </Form>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -325,7 +343,7 @@ Use the `@layer components` directive to target Fieldset [BEM](https://getbem.co
 ```css
 @layer components {
   .fieldset {
-    @apply border-border/60 bg-surface shadow-field gap-5 rounded-xl border p-6;
+    @apply gap-5 rounded-xl border border-border/60 bg-surface p-6 shadow-field;
   }
 
   .fieldset__legend {
@@ -361,35 +379,35 @@ The Fieldset compound component exposes these CSS selectors:
 
 ### Fieldset
 
-| Prop          | Type                                        | Default                                         | Description                                               |
-| ------------- | ------------------------------------------- | ----------------------------------------------- | --------------------------------------------------------- |
-| `className`   | `string`                                    | -                                               | Tailwind CSS classes applied to the root element.         |
-| `children`    | `React.ReactNode`                           | -                                               | Fieldset content (legend, groups, descriptions, actions). |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Tailwind CSS classes applied to the root element. |
+| `children` | `React.ReactNode` | - | Fieldset content (legend, groups, descriptions, actions). |
 | `nativeProps` | `React.HTMLAttributes<HTMLFieldSetElement>` | Supports native fieldset attributes and events. |
 
 ### Fieldset.Legend
 
-| Prop          | Type                                      | Default | Description                              |
-| ------------- | ----------------------------------------- | ------- | ---------------------------------------- |
-| `className`   | `string`                                  | -       | Tailwind classes for the legend element. |
-| `children`    | `React.ReactNode`                         | -       | Legend content, usually plain text.      |
-| `nativeProps` | `React.HTMLAttributes<HTMLLegendElement>` | -       | Native legend attributes.                |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Tailwind classes for the legend element. |
+| `children` | `React.ReactNode` | - | Legend content, usually plain text. |
+| `nativeProps` | `React.HTMLAttributes<HTMLLegendElement>` |  - | Native legend attributes. |
 
 ### Fieldset.Group
 
-| Prop          | Type                                   | Default | Description                                    |
-| ------------- | -------------------------------------- | ------- | ---------------------------------------------- |
-| `className`   | `string`                               | -       | Layout and spacing classes for grouped fields. |
-| `children`    | `React.ReactNode`                      | -       | Form controls to group inside the fieldset.    |
-| `nativeProps` | `React.HTMLAttributes<HTMLDivElement>` | -       | Native div attributes.                         |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Layout and spacing classes for grouped fields. |
+| `children` | `React.ReactNode` | - | Form controls to group inside the fieldset. |
+| `nativeProps` | `React.HTMLAttributes<HTMLDivElement>` | - | Native div attributes. |
 
 ### Fieldset.Actions
 
-| Prop          | Type                                   | Default | Description                                       |
-| ------------- | -------------------------------------- | ------- | ------------------------------------------------- |
-| `className`   | `string`                               | -       | Tailwind classes to align action buttons or text. |
-| `children`    | `React.ReactNode`                      | -       | Action buttons or helper text.                    |
-| `nativeProps` | `React.HTMLAttributes<HTMLDivElement>` | -       | Native div attributes.                            |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Tailwind classes to align action buttons or text. |
+| `children` | `React.ReactNode` | - | Action buttons or helper text. |
+| `nativeProps` | `React.HTMLAttributes<HTMLDivElement>` | - | Native div attributes. |
 
 ## Related Showcases
 

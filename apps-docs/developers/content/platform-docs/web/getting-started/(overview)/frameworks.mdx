@@ -4,28 +4,28 @@ description: Integrate HeroUI with your framework
 icon: layers
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Next.js
 
 ### 1. Create a Next.js project
 
-<Tabs items={['App Router', 'Pages Router']}>
-  <Tab value="App Router">```bash npx heroui-cli@latest init -t app ```</Tab>
+<Tabs items={["App Router", "Pages Router"]}>
+  <Tab value="App Router">
+    ```bash
+    npx heroui-cli@latest init -t app
+    ```
+  </Tab>
   <Tab value="Pages Router">
-    ```bash npx heroui-cli@latest init -t pages ```
+    ```bash
+    npx heroui-cli@latest init -t pages
+    ```
   </Tab>
 </Tabs>
 
 <Callout>
-  `-t` skips the template picker. You are still prompted for a project name and
-  package manager — pass them directly to skip all prompts: `npx
-  heroui-cli@latest init my-app -t app -p pnpm`. Then open your new folder and
-  install dependencies (for example `pnpm install`).
+  `-t` skips the template picker. You are still prompted for a project name and package manager — pass them directly to skip all prompts: `npx heroui-cli@latest init my-app -t app -p pnpm`. Then open your new folder and install dependencies (for example `pnpm install`).
 </Callout>
 
 ### 2. Use your first HeroUI component
@@ -45,7 +45,6 @@ import {
       );
     }
     ```
-
   </Tab>
   <Tab value="Pages Router">
     Example: `pages/index.tsx`
@@ -61,13 +60,11 @@ import {
       );
     }
     ```
-
   </Tab>
 </Tabs>
 
 <Callout>
-  HeroUI v3 does not require a provider. Components work directly after
-  installation and style import.
+  HeroUI v3 does not require a provider. Components work directly after installation and style import.
 </Callout>
 
 ### 3. Locale Setup (Optional)
@@ -78,24 +75,25 @@ In your root layout, determine the user's preferred language and set the `lang` 
 
 ```tsx
 // app/layout.tsx
-import { isRTL } from '@heroui/react'
-import { headers } from 'next/headers'
+import {headers} from 'next/headers';
+import {isRTL} from '@heroui/react';
+import {ClientProviders} from './provider';
 
-import { ClientProviders } from './provider'
-
-export default async function RootLayout({ children }) {
+export default async function RootLayout({children}) {
   // Get the user's preferred language from the Accept-Language header.
   // You could also get this from a database, URL param, etc.
-  const acceptLanguage = (await headers()).get('accept-language')
-  const lang = acceptLanguage?.split(/[,;]/)[0] || 'en-US'
+  const acceptLanguage = (await headers()).get('accept-language');
+  const lang = acceptLanguage?.split(/[,;]/)[0] || 'en-US';
 
   return (
     <html lang={lang} dir={isRTL(lang) ? 'rtl' : 'ltr'}>
       <body>
-        <ClientProviders lang={lang}>{children}</ClientProviders>
+        <ClientProviders lang={lang}>
+          {children}
+        </ClientProviders>
       </body>
     </html>
-  )
+  );
 }
 ```
 
@@ -103,12 +101,16 @@ Create `app/provider.tsx`. This should render an `I18nProvider` to set the local
 
 ```tsx
 // app/provider.tsx
-'use client'
+"use client";
 
-import { I18nProvider } from '@heroui/react'
+import {I18nProvider} from '@heroui/react';
 
-export function ClientProviders({ lang, children }) {
-  return <I18nProvider locale={lang}>{children}</I18nProvider>
+export function ClientProviders({lang, children}) {
+  return (
+    <I18nProvider locale={lang}>
+      {children}
+    </I18nProvider>
+  );
 }
 ```
 
@@ -123,10 +125,7 @@ npx heroui-cli@latest init -t vite
 ```
 
 <Callout>
-  `-t` skips the template picker. You are still prompted for a project name and
-  package manager — pass them directly to skip all prompts: `npx
-  heroui-cli@latest init my-app -t vite -p pnpm`. Then open your new folder and
-  install dependencies (for example `pnpm install`).
+  `-t` skips the template picker. You are still prompted for a project name and package manager — pass them directly to skip all prompts: `npx heroui-cli@latest init my-app -t vite -p pnpm`. Then open your new folder and install dependencies (for example `pnpm install`).
 </Callout>
 
 ### 2. Use your first HeroUI component
@@ -134,22 +133,21 @@ npx heroui-cli@latest init -t vite
 Example: `src/App.tsx`
 
 ```tsx
-import { Button } from '@heroui/react'
+import {Button} from "@heroui/react";
 
 function App() {
   return (
     <main className="flex min-h-screen items-center justify-center">
       <Button variant="tertiary">Hello HeroUI</Button>
     </main>
-  )
+  );
 }
 
-export default App
+export default App;
 ```
 
 <Callout>
-  HeroUI v3 does not require a provider. Components work directly after
-  installation and style import.
+  HeroUI v3 does not require a provider. Components work directly after installation and style import.
 </Callout>
 
 ## React Router
@@ -161,10 +159,7 @@ npx heroui-cli@latest init -t react-router
 ```
 
 <Callout>
-  `-t` skips the template picker. You are still prompted for a project name and
-  package manager — pass them directly to skip all prompts: `npx
-  heroui-cli@latest init my-app -t react-router -p pnpm`. Then open your new
-  folder and install dependencies (for example `pnpm install`).
+  `-t` skips the template picker. You are still prompted for a project name and package manager — pass them directly to skip all prompts: `npx heroui-cli@latest init my-app -t react-router -p pnpm`. Then open your new folder and install dependencies (for example `pnpm install`).
 </Callout>
 
 ### 2. Use your first HeroUI component
@@ -172,21 +167,19 @@ npx heroui-cli@latest init -t react-router
 Example: `app/routes/_index.tsx`
 
 ```tsx
-import { Button } from '@heroui/react'
+import {Button} from "@heroui/react";
 
 export default function Index() {
   return (
     <main className="flex min-h-screen items-center justify-center">
       <Button variant="tertiary">Hello HeroUI</Button>
     </main>
-  )
+  );
 }
 ```
 
 <Callout>
-  The template loads styles with `import "./tailwind.css";` in `app/root.tsx`.
-  HeroUI v3 does not require a provider. Components work directly after
-  installation and style import.
+  The template loads styles with `import "./tailwind.css";` in `app/root.tsx`. HeroUI v3 does not require a provider. Components work directly after installation and style import.
 </Callout>
 
 ## Other Frameworks
@@ -194,18 +187,32 @@ export default function Index() {
 `@heroui/react` requires React because its behavior is built on React Aria. The design system itself lives in `@heroui/styles` — a package with no React dependency that ships HeroUI's BEM classes and framework-agnostic variant functions. You can use it from Vue, Svelte, Angular, or plain HTML.
 
 <Callout type="warning">
-  This gives you HeroUI's visual design, not its behavior. Keyboard navigation,
-  focus management, and ARIA attributes come from React Aria in `@heroui/react`,
-  so you are responsible for them in your own components.
+  This gives you HeroUI's visual design, not its behavior. Keyboard navigation, focus management, and ARIA attributes come from React Aria in `@heroui/react`, so you are responsible for them in your own components.
 </Callout>
 
 ### 1. Install the styles package
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
-  <Tab value="npm">```bash npm i @heroui/styles ```</Tab>
-  <Tab value="pnpm">```bash pnpm add @heroui/styles ```</Tab>
-  <Tab value="yarn">```bash yarn add @heroui/styles ```</Tab>
-  <Tab value="bun">```bash bun add @heroui/styles ```</Tab>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
+  <Tab value="npm">
+    ```bash
+    npm i @heroui/styles
+    ```
+  </Tab>
+  <Tab value="pnpm">
+    ```bash
+    pnpm add @heroui/styles
+    ```
+  </Tab>
+  <Tab value="yarn">
+    ```bash
+    yarn add @heroui/styles
+    ```
+  </Tab>
+  <Tab value="bun">
+    ```bash
+    bun add @heroui/styles
+    ```
+  </Tab>
 </Tabs>
 
 ### 2. Import the styles
@@ -220,7 +227,6 @@ export default function Index() {
     ```
 
     This is the only option where Tailwind utility classes work alongside HeroUI classes.
-
   </Tab>
   <Tab value="Prebuilt CSS">
     Import the compiled stylesheet from your entry file. No Tailwind build required:
@@ -228,7 +234,6 @@ export default function Index() {
     ```ts
     import "@heroui/styles/dist/heroui.min.css";
     ```
-
   </Tab>
   <Tab value="CDN">
     No build step at all:
@@ -236,14 +241,11 @@ export default function Index() {
     ```html
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@heroui/styles@3/dist/heroui.min.css" />
     ```
-
   </Tab>
 </Tabs>
 
 <Callout>
-  The prebuilt and CDN bundles contain HeroUI's component classes and theme
-  tokens, but not Tailwind's utility classes. If you also want utilities like
-  `flex` or `gap-4`, use the Tailwind CSS v4 option.
+  The prebuilt and CDN bundles contain HeroUI's component classes and theme tokens, but not Tailwind's utility classes. If you also want utilities like `flex` or `gap-4`, use the Tailwind CSS v4 option.
 </Callout>
 
 ### 3. Use your first HeroUI component
@@ -266,7 +268,6 @@ Apply the BEM classes directly, or generate them with a variant function for typ
       <button class="button button--primary">Hello HeroUI</button>
     </template>
     ```
-
   </Tab>
   <Tab value="Svelte">
     ```svelte
@@ -281,7 +282,6 @@ Apply the BEM classes directly, or generate them with a variant function for typ
     <!-- Or with BEM classes directly -->
     <button class="button button--primary">Hello HeroUI</button>
     ```
-
   </Tab>
   <Tab value="Angular">
     ```ts
@@ -302,7 +302,6 @@ Apply the BEM classes directly, or generate them with a variant function for typ
       buttonClass = buttonVariants({variant: "primary"});
     }
     ```
-
   </Tab>
   <Tab value="HTML">
     ```html
@@ -334,20 +333,16 @@ HeroUI's CSS targets both native pseudo-classes and `data-*` attributes, so sema
 
 States the browser cannot infer must be set by you. The most common are:
 
-| Attribute                                      | Purpose                                              |
-| ---------------------------------------------- | ---------------------------------------------------- |
-| `data-selected="true"`                         | Selected items in menus, list boxes, and tabs        |
-| `data-entering="true"` / `data-exiting="true"` | Enter and exit animations for overlays               |
-| `data-placement="top"`                         | Arrow and offset direction for popovers and tooltips |
-| `data-invalid="true"`                          | Validation styling on form fields                    |
-| `data-slot="..."`                              | Marks child parts of compound components             |
+| Attribute | Purpose |
+| --- | --- |
+| `data-selected="true"` | Selected items in menus, list boxes, and tabs |
+| `data-entering="true"` / `data-exiting="true"` | Enter and exit animations for overlays |
+| `data-placement="top"` | Arrow and offset direction for popovers and tooltips |
+| `data-invalid="true"` | Validation styling on form fields |
+| `data-slot="..."` | Marks child parts of compound components |
 
 <Callout>
-  Stateless components such as button, chip, card, and skeleton work as drop-in
-  markup. Overlays and collections (select, menu, popover, date picker) depend
-  on state you would have to manage yourself — consider keeping those in React,
-  or read the `data-*` selectors in the component's CSS file to see what is
-  required.
+  Stateless components such as button, chip, card, and skeleton work as drop-in markup. Overlays and collections (select, menu, popover, date picker) depend on state you would have to manage yourself — consider keeping those in React, or read the `data-*` selectors in the component's CSS file to see what is required.
 </Callout>
 
 ### 5. Theming
@@ -355,14 +350,10 @@ States the browser cannot infer must be set by you. The most common are:
 Dark mode is driven by a `.dark` class or a `data-theme="dark"` attribute on any ancestor element:
 
 ```html
-<html class="dark">
-  ...
-</html>
+<html class="dark">...</html>
 
 <!-- or -->
-<html data-theme="dark">
-  ...
-</html>
+<html data-theme="dark">...</html>
 ```
 
 Override the theme by redefining CSS variables:

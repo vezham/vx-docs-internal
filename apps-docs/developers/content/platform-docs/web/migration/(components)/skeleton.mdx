@@ -3,16 +3,11 @@ title: Skeleton
 description: Migration guide for Skeleton from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Skeleton documentation](/docs-ui/web/components/skeleton) for
-  complete API reference, styling guide, and advanced examples. This guide only
-  focuses on migrating from HeroUI v2.
+  Refer to the [v3 Skeleton documentation](/docs-ui/web/components/skeleton) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,36 +15,36 @@ import {
 In v2, Skeleton wrapped children and showed/hid them based on `isLoaded`:
 
 ```tsx
-import { Skeleton } from '@heroui/react'
+import { Skeleton } from "@heroui/react";
 
 export default function App() {
-  const isLoaded = false
+  const isLoaded = false;
 
   return (
     <Skeleton isLoaded={isLoaded}>
-      <div className="bg-secondary h-24" />
+      <div className="h-24 bg-secondary" />
     </Skeleton>
-  )
+  );
 }
 ```
 
 In v3, Skeleton is a standalone placeholder that you control visibility of manually:
 
 ```tsx
-import { Skeleton } from '@heroui/react'
+import { Skeleton } from "@heroui/react";
 
 export default function App() {
-  const isLoaded = false
+  const isLoaded = false;
 
   return (
     <>
       {!isLoaded ? (
         <Skeleton className="h-24 rounded-lg" />
       ) : (
-        <div className="bg-secondary h-24" />
+        <div className="h-24 bg-secondary" />
       )}
     </>
-  )
+  );
 }
 ```
 
@@ -57,17 +52,17 @@ export default function App() {
 
 ### 1. Component Behavior
 
-**v2:** Wrapped children and showed/hid them based on `isLoaded`  
+**v2:** Wrapped children and showed/hid them based on `isLoaded`
 **v3:** Standalone placeholder - you control visibility manually
 
 ### 2. Prop Changes
 
-| v2 Prop            | v3 Location     | Notes                                                                        |
-| ------------------ | --------------- | ---------------------------------------------------------------------------- |
-| `isLoaded`         | —               | Control visibility manually with conditional rendering                       |
+| v2 Prop | v3 Location | Notes |
+|---------|-------------|-------|
+| `isLoaded` | — | Control visibility manually with conditional rendering |
 | `disableAnimation` | `animationType` | Use `animationType="shimmer" \| "pulse" \| "none"` (use `"none"` to disable) |
-| `classNames`       | —               | Use `className` prop directly                                                |
-| `children`         | —               | Skeleton no longer wraps content                                             |
+| `classNames` | — | Use `className` prop directly |
+| `children` | — | Skeleton no longer wraps content |
 
 ### 3. New Props
 
@@ -88,7 +83,6 @@ export default function App() {
       <div className="h-24 rounded-lg bg-secondary" />
     </Skeleton>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -102,18 +96,17 @@ export default function App() {
       <div className="h-24 rounded-lg bg-secondary" />
     )}
     ```
-
   </Tab>
 </Tabs>
 
 ### Standalone Skeleton
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <div className="flex items-center gap-3">
-      <Skeleton className="flex h-12 w-12 rounded-full" />
-      <div className="flex w-full flex-col gap-2">
+      <Skeleton className="flex rounded-full w-12 h-12" />
+      <div className="w-full flex flex-col gap-2">
         <Skeleton className="h-3 w-3/5 rounded-lg" />
         <Skeleton className="h-3 w-4/5 rounded-lg" />
       </div>
@@ -148,7 +141,6 @@ export default function App() {
       <div className="h-24 bg-default-300" />
     </Skeleton>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -161,7 +153,6 @@ export default function App() {
     {/* No animation */}
     <Skeleton animationType="none" className="h-24 rounded-lg" />
     ```
-
   </Tab>
 </Tabs>
 
@@ -188,7 +179,6 @@ export default function App() {
       </div>
     </Card>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -216,7 +206,6 @@ export default function App() {
       )}
     </Card>
     ```
-
   </Tab>
 </Tabs>
 
@@ -225,10 +214,8 @@ export default function App() {
 In v3, you can create a synchronized shimmer that passes over all skeleton elements at once. Apply the `skeleton--shimmer` class to a parent container and set `animationType="none"` on each child Skeleton:
 
 ```tsx
-{
-  /* The parent container drives a single shimmer across all children */
-}
-;<div className="skeleton--shimmer space-y-4 rounded-lg p-4">
+{/* The parent container drives a single shimmer across all children */}
+<div className="skeleton--shimmer space-y-4 rounded-lg p-4">
   <Skeleton animationType="none" className="h-32 rounded-lg" />
   <div className="space-y-3">
     <Skeleton animationType="none" className="h-3 w-3/5 rounded-lg" />

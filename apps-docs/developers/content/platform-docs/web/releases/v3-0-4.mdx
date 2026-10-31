@@ -5,16 +5,11 @@ github:
   pull: 6483
 ---
 
-import {
-  Callout,
-  PRContributors,
-  Tab,
-  Tabs,
-  VideoPlayer
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, ComponentPreview, PRContributors, Tab, Tabs, VideoPlayer } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">May 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">May 2026</span>
 </div>
 
 Patch release: new `Typography` compound component ported from HeroUI Pro, a docs theme selector for previewing components in different themes, `min()`-capped border-radius tokens across 45+ component CSS files, reworked Table focus rings, and fixes for Checkbox, Autocomplete, Tooltip, and form field padding.
@@ -23,26 +18,31 @@ Patch release: new `Typography` compound component ported from HeroUI Pro, a doc
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
   <Tab value="npm">
-    ```bash npm i @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    npm i @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="pnpm">
-    ```bash pnpm add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    pnpm add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="yarn">
-    ```bash yarn add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    yarn add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="bun">
-    ```bash bun add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    bun add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the
-  latest version" and your AI assistant will automatically compare versions and
-  apply the necessary changes. Learn more about the [HeroUI MCP
-  Server](https://heroui.com/docs/ui-for-agents/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI MCP Server](https://heroui.com/docs/ui-for-agents/mcp-server).
 </Callout>
 
 ## What's New
@@ -51,95 +51,94 @@ Update to the latest version:
 
 New compound component for structured typography, ported from HeroUI Pro ([#6479](https://github.com/heroui-inc/heroui/pull/6479)). Renders the right HTML element automatically — `<h1>`–`<h6>`, `<p>`, or `<code>` — based on the sub-component or `type` prop.
 
-[Live example: typography-typography-scale](https://heroui.com/docs/react/releases/v3-0-4)
 
-```tsx
+<ComponentPreview name="typography-typography-scale">
+
+````tsx
+import {Typography} from "@vezham/react-v3";
+
 const scale = [
   {
-    label: 'h1',
-    meta: '36px / 600 / 1.11 / tight',
-    sample: 'Build better interfaces',
-    type: 'h1' as const
+    label: "h1",
+    meta: "36px / 600 / 1.11 / tight",
+    sample: "Build better interfaces",
+    type: "h1" as const,
   },
   {
-    label: 'h2',
-    meta: '30px / 600 / 1.17 / tight',
-    sample: 'Built for the intelligence age',
-    type: 'h2' as const
+    label: "h2",
+    meta: "30px / 600 / 1.17 / tight",
+    sample: "Built for the intelligence age",
+    type: "h2" as const,
   },
   {
-    label: 'h3',
-    meta: '24px / 600 / 1.25 / tight',
-    sample: 'Pricing on your terms',
-    type: 'h3' as const
+    label: "h3",
+    meta: "24px / 600 / 1.25 / tight",
+    sample: "Pricing on your terms",
+    type: "h3" as const,
   },
   {
-    label: 'h4',
-    meta: '20px / 600 / 1.33 / tight',
-    sample: 'Apply to the startup program',
-    type: 'h4' as const
+    label: "h4",
+    meta: "20px / 600 / 1.33 / tight",
+    sample: "Apply to the startup program",
+    type: "h4" as const,
   },
   {
-    label: 'h5',
-    meta: '18px / 600 / 1.39 / tight',
-    sample: 'Card titles',
-    type: 'h5' as const
+    label: "h5",
+    meta: "18px / 600 / 1.39 / tight",
+    sample: "Card titles",
+    type: "h5" as const,
   },
   {
-    label: 'h6',
-    meta: '16px / 600 / 1.50 / tight',
-    sample: 'Smaller feature headers',
-    type: 'h6' as const
+    label: "h6",
+    meta: "16px / 600 / 1.50 / tight",
+    sample: "Smaller feature headers",
+    type: "h6" as const,
   },
   {
-    label: 'body',
-    meta: '16px / 400 / 1.75',
-    sample:
-      'Primary body text used across documentation, marketing copy, and descriptions.',
-    type: 'body' as const
+    label: "body",
+    meta: "16px / 400 / 1.75",
+    sample: "Primary body text used across documentation, marketing copy, and descriptions.",
+    type: "body" as const,
   },
   {
-    label: 'body-sm',
-    meta: '14px / 400 / 1.50',
-    sample: 'Secondary body, table cells, navigation, and sidebar items.',
-    type: 'body-sm' as const
+    label: "body-sm",
+    meta: "14px / 400 / 1.50",
+    sample: "Secondary body, table cells, navigation, and sidebar items.",
+    type: "body-sm" as const,
   },
   {
-    label: 'body-xs',
-    meta: '12px / 400 / 1.25',
-    sample: 'Captions, badges, helper text, and fine print.',
-    type: 'body-xs' as const
+    label: "body-xs",
+    meta: "12px / 400 / 1.25",
+    sample: "Captions, badges, helper text, and fine print.",
+    type: "body-xs" as const,
   },
   {
-    label: 'code',
-    meta: '14px / mono',
-    sample: 'pnpm add @heroui/react',
-    type: 'code' as const
-  }
-] as const
+    label: "code",
+    meta: "14px / mono",
+    sample: "pnpm add @vezham/react-v3",
+    type: "code" as const,
+  },
+] as const;
 
 export const TypographyScale = () => {
   return (
-    <div className="divide-border flex w-full flex-col divide-y">
-      {scale.map(row => (
-        <div
-          key={row.label}
-          className="grid grid-cols-[160px_1fr] items-center gap-8 py-5">
+    <div className="flex w-full flex-col divide-y divide-border">
+      {scale.map((row) => (
+        <div key={row.label} className="grid grid-cols-[160px_1fr] items-center gap-8 py-5">
           <div className="flex shrink-0 flex-col gap-0.5">
-            <span className="text-foreground text-sm font-semibold">
-              {row.label}
-            </span>
-            <span className="text-muted text-xs whitespace-nowrap">
-              {row.meta}
-            </span>
+            <span className="text-sm font-semibold text-foreground">{row.label}</span>
+            <span className="text-xs whitespace-nowrap text-muted">{row.meta}</span>
           </div>
           <Typography type={row.type}>{row.sample}</Typography>
         </div>
       ))}
     </div>
-  )
-}
-```
+  );
+};
+````
+
+</ComponentPreview>
+
 
 Sub-components: `Typography.Heading`, `Typography.Paragraph`, `Typography.Code`, `Typography.Prose`.
 
@@ -150,9 +149,7 @@ Wrap mixed content in `Typography.Prose` for automatic prose spacing:
 ```tsx
 <Typography.Prose>
   <Typography.Heading level={3}>Getting Started</Typography.Heading>
-  <Typography.Paragraph>
-    Install the package and import the component.
-  </Typography.Paragraph>
+  <Typography.Paragraph>Install the package and import the component.</Typography.Paragraph>
 </Typography.Prose>
 ```
 

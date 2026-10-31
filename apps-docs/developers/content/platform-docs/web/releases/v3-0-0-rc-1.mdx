@@ -5,16 +5,11 @@ github:
   pull: 6285
 ---
 
-import {
-  Callout,
-  DocsImage,
-  PRContributors,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, ComponentPreview, DocsImage, PRContributors, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">March 14, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">March 14, 2026</span>
 </div>
 
 Seven new components: [Drawer](https://heroui.com/docs/components/drawer), [ToggleButton](https://heroui.com/docs/components/toggle-button), [ToggleButtonGroup](https://heroui.com/docs/components/toggle-button-group), [Meter](https://heroui.com/docs/components/meter), [ProgressBar](https://heroui.com/docs/components/progress-bar), [ProgressCircle](https://heroui.com/docs/components/progress-circle), and [Toolbar](https://heroui.com/docs/components/toolbar). Table and ListBox gain virtualization, ButtonGroup gets a `Separator` sub-component + vertical orientation, and React Aria Components is bumped to v1.16.0.
@@ -30,22 +25,31 @@ Seven new components: [Drawer](https://heroui.com/docs/components/drawer), [Togg
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
-  <Tab value="npm">```bash npm i @heroui/styles@rc @heroui/react@rc ```</Tab>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
+  <Tab value="npm">
+    ```bash
+    npm i @heroui/styles@rc @heroui/react@rc
+    ```
+  </Tab>
   <Tab value="pnpm">
-    ```bash pnpm add @heroui/styles@rc @heroui/react@rc ```
+    ```bash
+    pnpm add @heroui/styles@rc @heroui/react@rc
+    ```
   </Tab>
   <Tab value="yarn">
-    ```bash yarn add @heroui/styles@rc @heroui/react@rc ```
+    ```bash
+    yarn add @heroui/styles@rc @heroui/react@rc
+    ```
   </Tab>
-  <Tab value="bun">```bash bun add @heroui/styles@rc @heroui/react@rc ```</Tab>
+  <Tab value="bun">
+    ```bash
+    bun add @heroui/styles@rc @heroui/react@rc
+    ```
+  </Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the
-  latest version" and your AI assistant will automatically compare versions and
-  apply the necessary changes. Learn more about the [HeroUI MCP
-  Server](https://heroui.com/docs/ui-for-agents/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI MCP Server](https://heroui.com/docs/ui-for-agents/mcp-server).
 </Callout>
 
 ## What's New
@@ -64,9 +68,12 @@ Update to the latest version:
 
 Slide-out panel overlay with top/bottom/left/right placement, drag-to-dismiss gestures, and backdrop variants. Compound parts: `Trigger`, `Backdrop`, `Content`, `Dialog`, `Header`, `Heading`, `Body`, `Footer`, `Handle`, `CloseTrigger`.
 
-[Live example: drawer-basic](https://heroui.com/docs/react/releases/v3-0-0-rc-1)
 
-```tsx
+<ComponentPreview name="drawer-basic">
+
+````tsx
+import {Button, Drawer} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <Drawer>
@@ -79,9 +86,8 @@ export function Basic() {
             </Drawer.Header>
             <Drawer.Body>
               <p>
-                This is a bottom drawer built with React Aria's Modal component.
-                It slides up from the bottom of the screen with a smooth CSS
-                transition.
+                This is a bottom drawer built with React Aria's Modal component. It slides up from
+                the bottom of the screen with a smooth CSS transition.
               </p>
             </Drawer.Body>
             <Drawer.Footer>
@@ -94,21 +100,27 @@ export function Basic() {
         </Drawer.Content>
       </Drawer.Backdrop>
     </Drawer>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 **Placements:**
 
-[Live example: drawer-placements](https://heroui.com/docs/react/releases/v3-0-0-rc-1)
 
-```tsx
+<ComponentPreview name="drawer-placements">
+
+````tsx
+import {Button, Drawer} from "@vezham/react-v3";
+
 export function Placements() {
-  const placements = ['bottom', 'top', 'left', 'right'] as const
+  const placements = ["bottom", "top", "left", "right"] as const;
 
   return (
     <div className="flex flex-wrap gap-4">
-      {placements.map(placement => (
+      {placements.map((placement) => (
         <Drawer key={placement}>
           <Button variant="secondary">
             {placement.charAt(0).toUpperCase() + placement.slice(1)}
@@ -117,17 +129,15 @@ export function Placements() {
             <Drawer.Content placement={placement}>
               <Drawer.Dialog>
                 <Drawer.CloseTrigger />
-                {placement === 'bottom' && <Drawer.Handle />}
+                {placement === "bottom" && <Drawer.Handle />}
                 <Drawer.Header>
                   <Drawer.Heading>
-                    {placement.charAt(0).toUpperCase() + placement.slice(1)}{' '}
-                    Drawer
+                    {placement.charAt(0).toUpperCase() + placement.slice(1)} Drawer
                   </Drawer.Heading>
                 </Drawer.Header>
                 <Drawer.Body>
                   <p>
-                    This drawer slides in from the <strong>{placement}</strong>{' '}
-                    edge of the screen.
+                    This drawer slides in from the <strong>{placement}</strong> edge of the screen.
                   </p>
                 </Drawer.Body>
                 <Drawer.Footer>
@@ -136,22 +146,28 @@ export function Placements() {
                   </Button>
                   <Button slot="close">Done</Button>
                 </Drawer.Footer>
-                {placement === 'top' && <Drawer.Handle />}
+                {placement === "top" && <Drawer.Handle />}
               </Drawer.Dialog>
             </Drawer.Content>
           </Drawer.Backdrop>
         </Drawer>
       ))}
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 **With Form:**
 
-[Live example: drawer-with-form](https://heroui.com/docs/react/releases/v3-0-0-rc-1)
 
-```tsx
+<ComponentPreview name="drawer-with-form">
+
+````tsx
+import {Button, Drawer, Input, Label, TextField} from "@vezham/react-v3";
+
 export function WithForm() {
   return (
     <Drawer>
@@ -175,10 +191,7 @@ export function WithForm() {
                 </TextField>
                 <TextField className="w-full" name="bio">
                   <Label>Bio</Label>
-                  <Input
-                    placeholder="Tell us about yourself"
-                    variant="secondary"
-                  />
+                  <Input placeholder="Tell us about yourself" variant="secondary" />
                 </TextField>
               </form>
             </Drawer.Body>
@@ -192,32 +205,46 @@ export function WithForm() {
         </Drawer.Content>
       </Drawer.Backdrop>
     </Drawer>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Toggle Button
 
 Stateful toggle between selected and unselected. All button variants and sizes, icon-only mode, controlled or uncontrolled.
 
-[Live example: toggle-button-basic](https://heroui.com/docs/react/releases/v3-0-0-rc-1)
 
-```tsx
+<ComponentPreview name="toggle-button-basic">
+
+````tsx
+import {Heart} from "@gravity-ui/icons";
+import {ToggleButton} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <ToggleButton>
       <Heart />
       Like
     </ToggleButton>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 **Variants:**
 
-[Live example: toggle-button-variants](https://heroui.com/docs/react/releases/v3-0-0-rc-1)
 
-```tsx
+<ComponentPreview name="toggle-button-variants">
+
+````tsx
+import {Heart} from "@gravity-ui/icons";
+import {ToggleButton} from "@vezham/react-v3";
+
 export function Variants() {
   return (
     <div className="flex items-center gap-3">
@@ -230,17 +257,24 @@ export function Variants() {
         Ghost
       </ToggleButton>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Toggle Button Group
 
 Single or multi-select toggle group. Attached (connected) and detached layouts, vertical orientation, full-width, and a `Separator` sub-component.
 
-[Live example: toggle-button-group-basic](https://heroui.com/docs/react/releases/v3-0-0-rc-1)
 
-```tsx
+<ComponentPreview name="toggle-button-group-basic">
+
+````tsx
+import {Bold, Italic, Strikethrough, Underline} from "@gravity-ui/icons";
+import {ToggleButton, ToggleButtonGroup} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <ToggleButtonGroup selectionMode="multiple">
@@ -260,15 +294,19 @@ export function Basic() {
         <Strikethrough />
       </ToggleButton>
     </ToggleButtonGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 **Selection Mode:**
 
-[Live example: toggle-button-group-selection-mode](https://heroui.com/docs/react/releases/v3-0-0-rc-1)
 
-```tsx
+<ComponentPreview name="toggle-button-group-selection-mode">
+
+````tsx
 import {
   Bold,
   Italic,
@@ -276,17 +314,16 @@ import {
   TextAlignCenter,
   TextAlignLeft,
   TextAlignRight,
-  Underline
-} from '@gravity-ui/icons'
+  Underline,
+} from "@gravity-ui/icons";
+import {ToggleButton, ToggleButtonGroup} from "@vezham/react-v3";
 
 export function SelectionMode() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">
-        <span className="text-muted text-sm">Single selection</span>
-        <ToggleButtonGroup
-          defaultSelectedKeys={['center']}
-          selectionMode="single">
+        <span className="text-sm text-muted">Single selection</span>
+        <ToggleButtonGroup defaultSelectedKeys={["center"]} selectionMode="single">
           <ToggleButton id="left">
             <TextAlignLeft />
             Left
@@ -304,10 +341,8 @@ export function SelectionMode() {
         </ToggleButtonGroup>
       </div>
       <div className="flex flex-col gap-2">
-        <span className="text-muted text-sm">Multiple selection</span>
-        <ToggleButtonGroup
-          defaultSelectedKeys={['bold', 'underline']}
-          selectionMode="multiple">
+        <span className="text-sm text-muted">Multiple selection</span>
+        <ToggleButtonGroup defaultSelectedKeys={["bold", "underline"]} selectionMode="multiple">
           <ToggleButton isIconOnly aria-label="Bold" id="bold">
             <Bold />
           </ToggleButton>
@@ -319,30 +354,34 @@ export function SelectionMode() {
             <ToggleButtonGroup.Separator />
             <Underline />
           </ToggleButton>
-          <ToggleButton
-            isIconOnly
-            aria-label="Strikethrough"
-            id="strikethrough">
+          <ToggleButton isIconOnly aria-label="Strikethrough" id="strikethrough">
             <ToggleButtonGroup.Separator />
             <Strikethrough />
           </ToggleButton>
         </ToggleButtonGroup>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 **Attached Mode:**
 
-[Live example: toggle-button-group-attached](https://heroui.com/docs/react/releases/v3-0-0-rc-1)
 
-```tsx
+<ComponentPreview name="toggle-button-group-attached">
+
+````tsx
+import {Bold, Italic, Strikethrough, Underline} from "@gravity-ui/icons";
+import {ToggleButton, ToggleButtonGroup} from "@vezham/react-v3";
+
 export function Attached() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">
-        <span className="text-muted text-sm">Attached (default)</span>
+        <span className="text-sm text-muted">Attached (default)</span>
         <ToggleButtonGroup selectionMode="multiple">
           <ToggleButton isIconOnly aria-label="Bold" id="bold">
             <Bold />
@@ -355,17 +394,14 @@ export function Attached() {
             <ToggleButtonGroup.Separator />
             <Underline />
           </ToggleButton>
-          <ToggleButton
-            isIconOnly
-            aria-label="Strikethrough"
-            id="strikethrough">
+          <ToggleButton isIconOnly aria-label="Strikethrough" id="strikethrough">
             <ToggleButtonGroup.Separator />
             <Strikethrough />
           </ToggleButton>
         </ToggleButtonGroup>
       </div>
       <div className="flex flex-col gap-2">
-        <span className="text-muted text-sm">Detached</span>
+        <span className="text-sm text-muted">Detached</span>
         <ToggleButtonGroup isDetached selectionMode="multiple">
           <ToggleButton isIconOnly aria-label="Bold" id="bold">
             <Bold />
@@ -376,26 +412,29 @@ export function Attached() {
           <ToggleButton isIconOnly aria-label="Underline" id="underline">
             <Underline />
           </ToggleButton>
-          <ToggleButton
-            isIconOnly
-            aria-label="Strikethrough"
-            id="strikethrough">
+          <ToggleButton isIconOnly aria-label="Strikethrough" id="strikethrough">
             <Strikethrough />
           </ToggleButton>
         </ToggleButtonGroup>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Meter
 
 Value within a known range — disk usage, password strength, quotas. Compound parts: `Root`, `Output`, `Track`, `Fill`.
 
-[Live example: meter-basic](https://heroui.com/docs/react/releases/v3-0-0-rc-1)
 
-```tsx
+<ComponentPreview name="meter-basic">
+
+````tsx
+import {Label, Meter} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <Meter aria-label="Storage" className="w-64" value={60}>
@@ -405,15 +444,21 @@ export function Basic() {
         <Meter.Fill />
       </Meter.Track>
     </Meter>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 **Colors:**
 
-[Live example: meter-colors](https://heroui.com/docs/react/releases/v3-0-0-rc-1)
 
-```tsx
+<ComponentPreview name="meter-colors">
+
+````tsx
+import {Label, Meter} from "@vezham/react-v3";
+
 export function Colors() {
   return (
     <div className="flex w-64 flex-col gap-6">
@@ -453,17 +498,23 @@ export function Colors() {
         </Meter.Track>
       </Meter>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Progress Bar
 
 Linear progress indicator with determinate + indeterminate states, color variants, sizes, and custom value display. Compound parts: `Root`, `Output`, `Track`, `Fill`.
 
-[Live example: progress-bar-basic](https://heroui.com/docs/react/releases/v3-0-0-rc-1)
 
-```tsx
+<ComponentPreview name="progress-bar-basic">
+
+````tsx
+import {Label, ProgressBar} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <ProgressBar aria-label="Loading" className="w-64" value={60}>
@@ -473,15 +524,21 @@ export function Basic() {
         <ProgressBar.Fill />
       </ProgressBar.Track>
     </ProgressBar>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 **Indeterminate:**
 
-[Live example: progress-bar-indeterminate](https://heroui.com/docs/react/releases/v3-0-0-rc-1)
 
-```tsx
+<ComponentPreview name="progress-bar-indeterminate">
+
+````tsx
+import {Label, ProgressBar} from "@vezham/react-v3";
+
 export function Indeterminate() {
   return (
     <ProgressBar isIndeterminate aria-label="Loading" className="w-64">
@@ -490,17 +547,23 @@ export function Indeterminate() {
         <ProgressBar.Fill />
       </ProgressBar.Track>
     </ProgressBar>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Progress Circle
 
 Circular SVG progress with `TrackCircle` and `FillCircle` sub-components for direct SVG control. Determinate + indeterminate states.
 
-[Live example: progress-circle-basic](https://heroui.com/docs/react/releases/v3-0-0-rc-1)
 
-```tsx
+<ComponentPreview name="progress-circle-basic">
+
+````tsx
+import {ProgressCircle} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <ProgressCircle aria-label="Loading" value={60}>
@@ -509,15 +572,21 @@ export function Basic() {
         <ProgressCircle.FillCircle />
       </ProgressCircle.Track>
     </ProgressCircle>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 **Custom SVG:**
 
-[Live example: progress-circle-custom-svg](https://heroui.com/docs/react/releases/v3-0-0-rc-1)
 
-```tsx
+<ComponentPreview name="progress-circle-custom-svg">
+
+````tsx
+import {ProgressCircle} from "@vezham/react-v3";
+
 export function CustomSvg() {
   return (
     <div className="flex items-end gap-6">
@@ -542,25 +611,30 @@ export function CustomSvg() {
         </ProgressCircle.Track>
       </ProgressCircle>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Toolbar
 
 Groups buttons, toggle buttons, and separators into an accessible toolbar. Horizontal or vertical orientation, composes with `ButtonGroup` and `ToggleButtonGroup`.
 
-[Live example: toolbar-basic](https://heroui.com/docs/react/releases/v3-0-0-rc-1)
 
-```tsx
+<ComponentPreview name="toolbar-basic">
+
+````tsx
+import {Bold, Copy, Italic, Scissors, Underline} from "@gravity-ui/icons";
 import {
   Button,
   ButtonGroup,
   Separator,
   ToggleButton,
   ToggleButtonGroup,
-  Toolbar
-} from '@heroui/react'
+  Toolbar,
+} from "@vezham/react-v3";
 
 export function Basic() {
   return (
@@ -589,15 +663,19 @@ export function Basic() {
         </Button>
       </ButtonGroup>
     </Toolbar>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 **With Button Group:**
 
-[Live example: toolbar-with-button-group](https://heroui.com/docs/react/releases/v3-0-0-rc-1)
 
-```tsx
+<ComponentPreview name="toolbar-with-button-group">
+
+````tsx
 import {
   ArrowUturnCcwLeft,
   ArrowUturnCwRight,
@@ -606,16 +684,16 @@ import {
   TextAlignCenter,
   TextAlignLeft,
   TextAlignRight,
-  Underline
-} from '@gravity-ui/icons'
+  Underline,
+} from "@gravity-ui/icons";
 import {
   Button,
   ButtonGroup,
   Separator,
   ToggleButton,
   ToggleButtonGroup,
-  Toolbar
-} from '@heroui/react'
+  Toolbar,
+} from "@vezham/react-v3";
 
 export function WithButtonGroup() {
   return (
@@ -660,9 +738,12 @@ export function WithButtonGroup() {
         </Button>
       </ButtonGroup>
     </Toolbar>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Component Improvements
 
@@ -670,9 +751,10 @@ export function WithButtonGroup() {
 
 New `ButtonGroup.Separator` sub-component adds an explicit visual divider between buttons. Works in both horizontal and vertical orientations.
 
-[Live example: button-group-basic](https://heroui.com/docs/react/releases/v3-0-0-rc-1)
 
-```tsx
+<ComponentPreview name="button-group-basic">
+
+````tsx
 import {
   ChevronDown,
   ChevronLeft,
@@ -689,8 +771,9 @@ import {
   TextAlignRight,
   ThumbsDown,
   ThumbsUp,
-  Video
-} from '@gravity-ui/icons'
+  Video,
+} from "@gravity-ui/icons";
+import {Button, ButtonGroup, Chip, Description, Dropdown, Label} from "@vezham/react-v3";
 
 export function Basic() {
   return (
@@ -709,31 +792,32 @@ export function Basic() {
                 <Dropdown.Item
                   className="flex flex-col items-start gap-1"
                   id="merge"
-                  textValue="Create a merge commit">
+                  textValue="Create a merge commit"
+                >
                   <Label>Create a merge commit</Label>
                   <Description>
-                    All commits from this branch will be added to the base
-                    branch
+                    All commits from this branch will be added to the base branch
                   </Description>
                 </Dropdown.Item>
                 <Dropdown.Item
                   className="flex flex-col items-start gap-1"
                   id="squash-and-merge"
-                  textValue="Squash and merge">
+                  textValue="Squash and merge"
+                >
                   <Label>Squash and merge</Label>
                   <Description>
-                    The 14 commits from this branch will be combined into one
-                    commit in the base branch
+                    The 14 commits from this branch will be combined into one commit in the base
+                    branch
                   </Description>
                 </Dropdown.Item>
                 <Dropdown.Item
                   className="flex flex-col items-start gap-1"
                   id="rebase-and-merge"
-                  textValue="Rebase and merge">
+                  textValue="Rebase and merge"
+                >
                   <Label>Rebase and merge</Label>
                   <Description>
-                    The 14 commits from this branch will be rebased and added to
-                    the base branch
+                    The 14 commits from this branch will be rebased and added to the base branch
                   </Description>
                 </Dropdown.Item>
               </Dropdown.Menu>
@@ -872,120 +956,127 @@ export function Basic() {
         </ButtonGroup>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Table & ListBox Virtualization
 
 Table and ListBox now support virtualization via React Aria's `Virtualizer` for large datasets. `Virtualizer`, `TableLayout`, and `ListLayout` are re-exported from `@heroui/react`.
 
-[Live example: table-virtualization](https://heroui.com/docs/react/releases/v3-0-0-rc-1)
 
-```tsx
-'use client'
+<ComponentPreview name="table-virtualization">
+
+````tsx
+"use client";
+
+import {Table, TableLayout, Virtualizer} from "@vezham/react-v3";
 
 interface User {
-  id: number
-  name: string
-  role: string
-  email: string
+  id: number;
+  name: string;
+  role: string;
+  email: string;
 }
 
 export function Virtualization() {
   const roles = [
-    'Software Engineer',
-    'Senior Engineer',
-    'Staff Engineer',
-    'Product Manager',
-    'Designer',
-    'Data Analyst',
-    'QA Engineer',
-    'DevOps Engineer',
-    'Marketing Manager',
-    'Sales Representative'
-  ]
+    "Software Engineer",
+    "Senior Engineer",
+    "Staff Engineer",
+    "Product Manager",
+    "Designer",
+    "Data Analyst",
+    "QA Engineer",
+    "DevOps Engineer",
+    "Marketing Manager",
+    "Sales Representative",
+  ];
 
   const firstNames = [
-    'Emma',
-    'Liam',
-    'Olivia',
-    'Noah',
-    'Ava',
-    'James',
-    'Sophia',
-    'Oliver',
-    'Isabella',
-    'Lucas',
-    'Mia',
-    'Ethan',
-    'Charlotte',
-    'Mason',
-    'Amelia',
-    'Logan',
-    'Harper',
-    'Alexander',
-    'Ella',
-    'Benjamin'
-  ]
+    "Emma",
+    "Liam",
+    "Olivia",
+    "Noah",
+    "Ava",
+    "James",
+    "Sophia",
+    "Oliver",
+    "Isabella",
+    "Lucas",
+    "Mia",
+    "Ethan",
+    "Charlotte",
+    "Mason",
+    "Amelia",
+    "Logan",
+    "Harper",
+    "Alexander",
+    "Ella",
+    "Benjamin",
+  ];
 
   const lastNames = [
-    'Smith',
-    'Johnson',
-    'Williams',
-    'Brown',
-    'Jones',
-    'Garcia',
-    'Miller',
-    'Davis',
-    'Rodriguez',
-    'Martinez',
-    'Anderson',
-    'Taylor',
-    'Thomas',
-    'Jackson',
-    'White',
-    'Harris',
-    'Clark',
-    'Lewis',
-    'Robinson',
-    'Walker'
-  ]
+    "Smith",
+    "Johnson",
+    "Williams",
+    "Brown",
+    "Jones",
+    "Garcia",
+    "Miller",
+    "Davis",
+    "Rodriguez",
+    "Martinez",
+    "Anderson",
+    "Taylor",
+    "Thomas",
+    "Jackson",
+    "White",
+    "Harris",
+    "Clark",
+    "Lewis",
+    "Robinson",
+    "Walker",
+  ];
 
   function generateUsers(count: number): User[] {
-    const users: User[] = []
+    const users: User[] = [];
 
     for (let i = 0; i < count; i++) {
-      const firstName = firstNames[i % firstNames.length]
-      const lastName =
-        lastNames[Math.floor(i / firstNames.length) % lastNames.length]
-      const name = `${firstName} ${lastName}`
+      const firstName = firstNames[i % firstNames.length];
+      const lastName = lastNames[Math.floor(i / firstNames.length) % lastNames.length];
+      const name = `${firstName} ${lastName}`;
 
       users.push({
         email: `${firstName?.toLowerCase()}.${lastName?.toLowerCase()}@acme.com`,
         id: i + 1,
         name,
-        role: roles[i % roles.length] || ''
-      })
+        role: roles[i % roles.length] || "",
+      });
     }
 
-    return users
+    return users;
   }
 
-  const virtualizedUsers = generateUsers(1000)
+  const virtualizedUsers = generateUsers(1000);
 
   return (
     <Virtualizer
       layout={TableLayout}
       layoutOptions={{
         headingHeight: 42,
-        rowHeight: 42
-      }}>
+        rowHeight: 42,
+      }}
+    >
       <Table>
         <Table.ScrollContainer>
           <Table.Content
             aria-label="Virtualized table with 1000 rows"
-            className="h-[300px] min-w-[700px] overflow-auto">
+            className="h-[300px] min-w-[700px] overflow-auto"
+          >
             <Table.Header className="h-full w-full">
               <Table.Column isRowHeader id="name" minWidth={160}>
                 Name
@@ -998,7 +1089,7 @@ export function Virtualization() {
               </Table.Column>
             </Table.Header>
             <Table.Body items={virtualizedUsers}>
-              {user => (
+              {(user) => (
                 <Table.Row>
                   <Table.Cell>{user.name}</Table.Cell>
                   <Table.Cell>{user.role}</Table.Cell>
@@ -1010,22 +1101,29 @@ export function Virtualization() {
         </Table.ScrollContainer>
       </Table>
     </Virtualizer>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### ButtonGroup Orientation
 
 `ButtonGroup` accepts an `orientation` prop (`"horizontal"` | `"vertical"`) with correct border-radius handling and separator direction for both axes. The root element was upgraded from `<div>` to React Aria's `Group` for proper `role="group"` semantics.
 
-[Live example: button-group-orientation](https://heroui.com/docs/react/releases/v3-0-0-rc-1)
 
-```tsx
+<ComponentPreview name="button-group-orientation">
+
+````tsx
+import {TextAlignCenter, TextAlignJustify, TextAlignLeft, TextAlignRight} from "@gravity-ui/icons";
+import {Button, ButtonGroup} from "@vezham/react-v3";
+
 export function Orientation() {
   return (
     <div className="flex items-start gap-8">
       <div className="flex flex-col gap-2">
-        <span className="text-muted text-sm">Horizontal</span>
+        <span className="text-sm text-muted">Horizontal</span>
         <ButtonGroup orientation="horizontal" variant="tertiary">
           <Button isIconOnly aria-label="Align left">
             <TextAlignLeft />
@@ -1045,7 +1143,7 @@ export function Orientation() {
         </ButtonGroup>
       </div>
       <div className="flex flex-col gap-2">
-        <span className="text-muted text-sm">Vertical</span>
+        <span className="text-sm text-muted">Vertical</span>
         <ButtonGroup orientation="vertical" variant="tertiary">
           <Button isIconOnly aria-label="Align left">
             <TextAlignLeft />
@@ -1065,9 +1163,12 @@ export function Orientation() {
         </ButtonGroup>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### ButtonGroup Focus Ring
 
@@ -1089,15 +1190,15 @@ import { Button } from "@heroui/react/button";
 
 Upgraded `react-aria-components` from v1.15.1 to v1.16.0 and related packages:
 
-| Package                   | Old     | New     |
-| ------------------------- | ------- | ------- |
-| `react-aria-components`   | 1.15.1  | 1.16.0  |
-| `@react-aria/i18n`        | 3.12.15 | 3.12.16 |
-| `@react-aria/utils`       | 3.33.0  | 3.33.1  |
-| `@react-types/shared`     | 3.33.0  | 3.33.1  |
-| `@react-types/color`      | 3.1.3   | 3.1.4   |
-| `@internationalized/date` | 3.11.0  | 3.12.0  |
-| `@react-stately/data`     | 3.15.1  | 3.15.2  |
+| Package | Old | New |
+|---------|-----|-----|
+| `react-aria-components` | 1.15.1 | 1.16.0 |
+| `@react-aria/i18n` | 3.12.15 | 3.12.16 |
+| `@react-aria/utils` | 3.33.0 | 3.33.1 |
+| `@react-types/shared` | 3.33.0 | 3.33.1 |
+| `@react-types/color` | 3.1.3 | 3.1.4 |
+| `@internationalized/date` | 3.11.0 | 3.12.0 |
+| `@react-stately/data` | 3.15.1 | 3.15.2 |
 
 ## Bug Fixes
 

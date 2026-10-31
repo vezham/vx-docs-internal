@@ -7,31 +7,33 @@ links:
   styles: label.css
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Label } from '@heroui/react'
+import { Label } from '@heroui/react';
 ```
 
-[Live example: label-basic](https://heroui.com/docs/react/components/label)
 
-```tsx
+<ComponentPreview name="label-basic">
+
+````tsx
+import {Input, Label} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <div className="flex flex-col gap-1">
       <Label htmlFor="name">Name</Label>
-      <Input
-        className="w-64"
-        id="name"
-        placeholder="Enter your name"
-        type="text"
-      />
+      <Input className="w-64" id="name" placeholder="Enter your name" type="text" />
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Examples
 
@@ -66,22 +68,26 @@ export function Basic() {
 
 ### Tailwind CSS
 
-[Live example: label-custom-styles](https://heroui.com/docs/react/components/label)
 
-```tsx
+<ComponentPreview name="label-custom-styles">
+
+````tsx
+import {Input, Label} from "@vezham/react-v3";
+
 export function CustomStyles() {
   return (
     <div className="flex flex-col gap-1.5">
-      <Label
-        className="text-accent text-xs font-semibold tracking-wide uppercase"
-        htmlFor="repo">
+      <Label className="text-xs font-semibold tracking-wide text-accent uppercase" htmlFor="repo">
         Repository
       </Label>
-      <Input className="bg-field w-64" id="repo" placeholder="heroui/react" />
+      <Input className="w-64 bg-field" id="repo" placeholder="heroui/react" />
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -90,7 +96,7 @@ To customize the Label component classes, you can use the `@layer components` di
 ```css
 @layer components {
   .label {
-    @apply text-foreground font-semibold;
+    @apply font-semibold text-foreground;
   }
 
   .label--required::after {
@@ -118,7 +124,6 @@ The Label component uses these CSS classes ([View source styles](https://github.
 - `.label--invalid` or `[data-invalid="true"] .label` or `[aria-invalid="true"] .label` - Invalid state styling (danger/red text color)
 
 **Note**: The required asterisk is smartly applied using role and data-slot detection. It excludes:
-
 - Elements with `role="group"`, `role="radiogroup"`, or `role="checkboxgroup"`
 - Elements with `data-slot="radio"` or `data-slot="checkbox"`
 
@@ -128,14 +133,14 @@ This prevents duplicate asterisks when using group components with required fiel
 
 ### Label
 
-| Prop         | Type        | Default | Description                                        |
-| ------------ | ----------- | ------- | -------------------------------------------------- |
-| `htmlFor`    | `string`    | -       | The id of the element the label is associated with |
-| `isRequired` | `boolean`   | `false` | Whether to display a required indicator            |
-| `isDisabled` | `boolean`   | `false` | Whether the label is in a disabled state           |
-| `isInvalid`  | `boolean`   | `false` | Whether the label is in an invalid state           |
-| `className`  | `string`    | -       | Additional CSS classes                             |
-| `children`   | `ReactNode` | -       | The content of the label                           |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `htmlFor` | `string` | - | The id of the element the label is associated with |
+| `isRequired` | `boolean` | `false` | Whether to display a required indicator |
+| `isDisabled` | `boolean` | `false` | Whether the label is in a disabled state |
+| `isInvalid` | `boolean` | `false` | Whether the label is in an invalid state |
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | The content of the label |
 
 ## Accessibility
 

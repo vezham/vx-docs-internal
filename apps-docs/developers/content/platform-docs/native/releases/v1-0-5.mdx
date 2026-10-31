@@ -1,19 +1,16 @@
 ---
 title: v1.0.5
-description: Split border-field token fixes width/color merge conflict, Typography Dynamic Type support, provider text input configuration, single-mount popover animations, Select icon color fix, Expo 57 / RN 0.86 upgrade
+description:
+  Split border-field token fixes width/color merge conflict, Typography Dynamic Type support, provider text input configuration, single-mount popover animations, Select icon color fix, Expo 57 / RN 0.86 upgrade
 github:
   pull: 439
 ---
 
-import {
-  Callout,
-  NativeTryOnDevice,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, NativeTryOnDevice, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">July 2, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">July 2, 2026</span>
 </div>
 
 HeroUI Native v1.0.5 resolves a long-standing `border-field` merge conflict by splitting the field border into separate width and color tokens and configuring `tailwind-variants` globally, migrating Input, InputOTP, Radio, and Checkbox to outline-based focus, active, and invalid states. This release also brings iOS Dynamic Type support to Typography, adds provider-level text input configuration, reworks Popover, Menu, and Select entering animations to mount content only once, aligns the Select check icon with the `accent-soft-foreground` token, and upgrades the toolchain to Expo 57 / React Native 0.86.
@@ -22,18 +19,31 @@ HeroUI Native v1.0.5 resolves a long-standing `border-field` merge conflict by s
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
-  <Tab value="npm">```bash npm i heroui-native ```</Tab>
-  <Tab value="pnpm">``` bash pnpm add heroui-native ```</Tab>
-  <Tab value="yarn">```bash yarn add heroui-native ```</Tab>
-  <Tab value="bun">```bash bun add heroui-native ```</Tab>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
+<Tab value="npm">
+  ```bash
+  npm i heroui-native
+  ```
+</Tab>
+<Tab value="pnpm">
+  ``` bash
+  pnpm add heroui-native
+  ```
+</Tab>
+<Tab value="yarn">
+  ```bash
+  yarn add heroui-native
+  ```
+</Tab>
+<Tab value="bun">
+  ```bash
+  bun add heroui-native
+  ```
+</Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
-  the latest version" and your AI assistant will automatically compare versions
-  and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs-ui/native/getting-started/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI Native MCP Server](/docs-ui/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -95,7 +105,7 @@ The [HeroUINativeProvider](/docs-ui/native/getting-started/provider) (and `HeroU
 **New Capability:**
 
 ```tsx
-import { HeroUINativeProvider } from 'heroui-native'
+import { HeroUINativeProvider } from "heroui-native";
 
 export function App() {
   return (
@@ -103,12 +113,13 @@ export function App() {
       config={{
         textInputProps: {
           allowFontScaling: true,
-          maxFontSizeMultiplier: 1.5
-        }
-      }}>
+          maxFontSizeMultiplier: 1.5,
+        },
+      }}
+    >
       {/* Your app */}
     </HeroUINativeProvider>
-  )
+  );
 }
 ```
 

@@ -8,16 +8,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/switch-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/switch-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/switch-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/switch-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { Switch } from 'heroui-native'
+import { Switch } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -93,12 +94,13 @@ Customize animations for the switch root and thumb components.
   animation={{
     scale: {
       value: [1, 0.9],
-      timingConfig: { duration: 200 }
+      timingConfig: { duration: 200 },
     },
     backgroundColor: {
-      value: ['#172554', '#eab308']
-    }
-  }}>
+      value: ['#172554', '#eab308'],
+    },
+  }}
+>
   <Switch.Thumb
     animation={{
       left: {
@@ -106,12 +108,12 @@ Customize animations for the switch root and thumb components.
         springConfig: {
           damping: 30,
           stiffness: 300,
-          mass: 1
-        }
+          mass: 1,
+        },
       },
       backgroundColor: {
-        value: ['#dbeafe', '#854d0e']
-      }
+        value: ['#dbeafe', '#854d0e'],
+      },
     }}
   />
 </Switch>
@@ -125,41 +127,42 @@ Disable animations entirely or only for specific components.
 {
   /* Disable all animations including children */
 }
-;<Switch animation="disable-all">
+<Switch animation="disable-all">
   <Switch.Thumb />
-</Switch>
+</Switch>;
 
 {
   /* Disable only root animations, thumb can still animate */
 }
-;<Switch>
+<Switch>
   <Switch.Thumb animation={false} />
-</Switch>
+</Switch>;
 ```
 
 ## Example
 
 ```tsx
-import { Ionicons } from '@expo/vector-icons'
-import { Switch } from 'heroui-native'
-import React from 'react'
-import { View } from 'react-native'
-import Animated, { ZoomIn } from 'react-native-reanimated'
+import { Switch } from 'heroui-native';
+import { Ionicons } from '@expo/vector-icons';
+import React from 'react';
+import { View } from 'react-native';
+import Animated, { ZoomIn } from 'react-native-reanimated';
 
 export default function SwitchExample() {
-  const [darkMode, setDarkMode] = React.useState(false)
+  const [darkMode, setDarkMode] = React.useState(false);
 
   return (
     <View className="flex-row gap-4">
       <Switch
         isSelected={darkMode}
         onSelectedChange={setDarkMode}
-        className="h-[32px] w-[56px]"
+        className="w-[56px] h-[32px]"
         animation={{
           backgroundColor: {
-            value: ['#172554', '#eab308']
-          }
-        }}>
+            value: ['#172554', '#eab308'],
+          },
+        }}
+      >
         <Switch.Thumb
           className="size-[22px]"
           animation={{
@@ -168,9 +171,9 @@ export default function SwitchExample() {
               springConfig: {
                 damping: 30,
                 stiffness: 300,
-                mass: 1
-              }
-            }
+                mass: 1,
+              },
+            },
           }}
         />
         <Switch.StartContent className="left-2">
@@ -189,27 +192,27 @@ export default function SwitchExample() {
         </Switch.EndContent>
       </Switch>
     </View>
-  )
+  );
 }
 ```
 
-You can find more examples in the [GitHub repository](<https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/switch.tsx>).
+You can find more examples in the [GitHub repository](https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/switch.tsx).
 
 ## API Reference
 
 ### Switch
 
-| prop                        | type                                                                 | default     | description                                                                                                                                          |
-| --------------------------- | -------------------------------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `children`                  | `React.ReactNode \| ((props: SwitchRenderProps) => React.ReactNode)` | `undefined` | Content to render inside the switch, or a render function                                                                                            |
-| `isSelected`                | `boolean`                                                            | `undefined` | Whether the switch is currently selected                                                                                                             |
-| `isDisabled`                | `boolean`                                                            | `false`     | Whether the switch is disabled and cannot be interacted with                                                                                         |
-| `className`                 | `string`                                                             | `undefined` | Custom class name for the switch                                                                                                                     |
-| `animation`                 | `SwitchRootAnimation`                                                | -           | Animation configuration                                                                                                                              |
-| `isAnimatedStyleActive`     | `boolean`                                                            | `true`      | Whether animated styles (react-native-reanimated) are active                                                                                         |
-| `onSelectedChange`          | `(isSelected: boolean) => void`                                      | -           | Callback fired when the switch selection state changes                                                                                               |
-| `background`                | `React.ReactNode`                                                    | -           | Background layer behind the switch content. `undefined` renders the theme-aware default while unselected; custom node replaces it; `null` removes it |
-| `...AnimatedPressableProps` | `AnimatedProps<PressableProps>`                                      | -           | All React Native Reanimated Pressable props are supported                                                                                            |
+| prop                        | type                                                                 | default     | description                                                  |
+| --------------------------- | -------------------------------------------------------------------- | ----------- | ------------------------------------------------------------ |
+| `children`                  | `React.ReactNode \| ((props: SwitchRenderProps) => React.ReactNode)` | `undefined` | Content to render inside the switch, or a render function    |
+| `isSelected`                | `boolean`                                                            | `undefined` | Whether the switch is currently selected                     |
+| `isDisabled`                | `boolean`                                                            | `false`     | Whether the switch is disabled and cannot be interacted with |
+| `className`                 | `string`                                                             | `undefined` | Custom class name for the switch                             |
+| `animation`                 | `SwitchRootAnimation`                                                | -           | Animation configuration                                      |
+| `isAnimatedStyleActive`     | `boolean`                                                            | `true`      | Whether animated styles (react-native-reanimated) are active |
+| `onSelectedChange`          | `(isSelected: boolean) => void`                                      | -           | Callback fired when the switch selection state changes       |
+| `background` | `React.ReactNode` | - | Background layer behind the switch content. `undefined` renders the theme-aware default while unselected; custom node replaces it; `null` removes it |
+| `...AnimatedPressableProps` | `AnimatedProps<PressableProps>`                                      | -           | All React Native Reanimated Pressable props are supported    |
 
 #### SwitchRenderProps
 
@@ -303,24 +306,24 @@ A hook that provides access to the Switch context. This is useful when building 
 **Example:**
 
 ```tsx
-import { useSwitch } from 'heroui-native'
+import { useSwitch } from 'heroui-native';
 
 function CustomSwitchContent() {
-  const { isSelected, isDisabled } = useSwitch()
+  const { isSelected, isDisabled } = useSwitch();
 
   return (
     <View>
       <Text>Status: {isSelected ? 'On' : 'Off'}</Text>
       {isDisabled && <Text>Disabled</Text>}
     </View>
-  )
+  );
 }
 
 // Usage
-;<Switch>
+<Switch>
   <CustomSwitchContent />
   <Switch.Thumb />
-</Switch>
+</Switch>;
 ```
 
 ## Special Notes
@@ -330,7 +333,7 @@ function CustomSwitchContent() {
 If you need to apply a border to the switch root, use the `outline` style properties instead of `border`. This ensures the border doesn't affect the internal layout calculations for the thumb position:
 
 ```tsx
-<Switch className="outline-accent outline">
+<Switch className="outline outline-accent">
   <Switch.Thumb />
 </Switch>
 ```
@@ -342,9 +345,9 @@ Using `outline` keeps the border visual without impacting the switch's internal 
 The Switch component integrates seamlessly with ControlField for press state sharing:
 
 ```tsx
-import { ControlField, Description, Label } from 'heroui-native'
+import { Description, ControlField, Label } from 'heroui-native';
 
-;<ControlField isSelected={isSelected} onSelectedChange={setIsSelected}>
+<ControlField isSelected={isSelected} onSelectedChange={setIsSelected}>
   <View className="flex-1">
     <Label>Enable notifications</Label>
     <Description>Receive push notifications</Description>

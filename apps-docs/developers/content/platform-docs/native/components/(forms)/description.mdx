@@ -8,16 +8,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/description-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/description-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/description-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/description-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { Description } from 'heroui-native'
+import { Description } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -94,12 +95,12 @@ When `hideOnInvalid` is `true`, the description will be hidden when the field is
 ## Example
 
 ```tsx
-import { Description, TextField } from 'heroui-native'
-import { View } from 'react-native'
+import { Description, TextField } from 'heroui-native';
+import { View } from 'react-native';
 
 export default function DescriptionExample() {
   return (
-    <View className="flex-1 justify-center gap-8 px-5">
+    <View className="flex-1 justify-center px-5 gap-8">
       <TextField>
         <Label>Email address</Label>
         <Input
@@ -119,7 +120,7 @@ export default function DescriptionExample() {
         </Description>
       </TextField>
     </View>
-  )
+  );
 }
 ```
 

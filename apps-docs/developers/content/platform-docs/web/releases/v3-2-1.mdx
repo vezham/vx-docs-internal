@@ -5,15 +5,11 @@ github:
   pull: 6654
 ---
 
-import {
-  Callout,
-  PRContributors,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, PRContributors, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">June 17, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">June 17, 2026</span>
 </div>
 
 Patch release: `@heroui/react` no longer bundles its own copy of `react-aria`. The `react-aria` subpaths are now externalized in the Rollup build, so they resolve to the version installed in your project — preventing a duplicated, vendored copy of `react-aria` from shipping inside `@heroui/react`. This release also fixes `SwitchGroup` horizontal layout by rendering the missing `switch-group__items` wrapper.
@@ -22,26 +18,31 @@ Patch release: `@heroui/react` no longer bundles its own copy of `react-aria`. T
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
   <Tab value="npm">
-    ```bash npm i @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    npm i @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="pnpm">
-    ```bash pnpm add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    pnpm add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="yarn">
-    ```bash yarn add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    yarn add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="bun">
-    ```bash bun add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    bun add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the
-  latest version" and your AI assistant will automatically compare versions and
-  apply the necessary changes. Learn more about the [HeroUI MCP
-  Server](https://heroui.com/docs/ui-for-agents/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI MCP Server](https://heroui.com/docs/ui-for-agents/mcp-server).
 </Callout>
 
 ## Bug Fixes

@@ -1,17 +1,14 @@
 ---
 title: v1.0.11
-description: Component CSS moves to the components cascade layer, Expo SDK 58 and React Native 0.88 are supported, Gesture Handler 3 peer dependency is accepted, Slider drops floating point noise, ScrollShadow stays scroll-driven with Reduce Motion, and BottomSheet controlled reopen is fixed
+description:
+  Component CSS moves to the components cascade layer, Expo SDK 58 and React Native 0.88 are supported, Gesture Handler 3 peer dependency is accepted, Slider drops floating point noise, ScrollShadow stays scroll-driven with Reduce Motion, and BottomSheet controlled reopen is fixed
 ---
 
-import {
-  Callout,
-  NativeTryOnDevice,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, NativeTryOnDevice, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">October 20, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">October 20, 2026</span>
 </div>
 
 HeroUI Native v1.0.11 wraps component CSS in Tailwind's `components` cascade layer so user utilities can override component defaults, adds Expo SDK 58 / React Native 0.88 / Gesture Handler 3 support, fixes Slider floating point noise with decimal steps, keeps ScrollShadow scroll-driven when Reduce Motion is enabled, and resolves several overlay and input bugs on Android.
@@ -20,18 +17,31 @@ HeroUI Native v1.0.11 wraps component CSS in Tailwind's `components` cascade lay
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
-  <Tab value="npm">```bash npm i heroui-native ```</Tab>
-  <Tab value="pnpm">``` bash pnpm add heroui-native ```</Tab>
-  <Tab value="yarn">```bash yarn add heroui-native ```</Tab>
-  <Tab value="bun">```bash bun add heroui-native ```</Tab>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
+<Tab value="npm">
+  ```bash
+  npm i heroui-native
+  ```
+</Tab>
+<Tab value="pnpm">
+  ``` bash
+  pnpm add heroui-native
+  ```
+</Tab>
+<Tab value="yarn">
+  ```bash
+  yarn add heroui-native
+  ```
+</Tab>
+<Tab value="bun">
+  ```bash
+  bun add heroui-native
+  ```
+</Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
-  the latest version" and your AI assistant will automatically compare versions
-  and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs-ui/native/getting-started/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI Native MCP Server](/docs-ui/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device

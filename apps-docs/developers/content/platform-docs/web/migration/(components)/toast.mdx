@@ -3,16 +3,11 @@ title: Toast
 description: Migration guide for Toast from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Toast documentation](/docs-ui/web/components/toast) for
-  complete API reference, styling guide, and advanced examples. This guide only
-  focuses on migrating from HeroUI v2.
+  Refer to the [v3 Toast documentation](/docs-ui/web/components/toast) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,27 +15,31 @@ import {
 In v2, Toast used a provider and hook pattern:
 
 ```tsx
-import { ToastProvider, useToast } from '@heroui/react'
+import { ToastProvider, useToast } from "@heroui/react";
 
 function App() {
   return (
     <ToastProvider>
       <MyComponent />
     </ToastProvider>
-  )
+  );
 }
 
 function MyComponent() {
-  const { toast } = useToast()
+  const { toast } = useToast();
 
-  return <button onClick={() => toast.show('Hello!')}>Show Toast</button>
+  return (
+    <button onClick={() => toast.show("Hello!")}>
+      Show Toast
+    </button>
+  );
 }
 ```
 
 In v3, Toast uses a provider component and a global `toast()` function:
 
 ```tsx
-import { Toast } from '@heroui/react'
+import { Toast } from "@heroui/react";
 
 function App() {
   return (
@@ -48,11 +47,15 @@ function App() {
       <Toast.Provider />
       <MyComponent />
     </>
-  )
+  );
 }
 
 function MyComponent() {
-  return <button onClick={() => toast('Hello!')}>Show Toast</button>
+  return (
+    <button onClick={() => toast("Hello!")}>
+      Show Toast
+    </button>
+  );
 }
 ```
 
@@ -60,28 +63,27 @@ function MyComponent() {
 
 ### 1. Provider Pattern
 
-**v2:** Required `ToastProvider` wrapper  
+**v2:** Required `ToastProvider` wrapper
 **v3:** Uses `Toast.Provider` component (can be placed anywhere)
 
 ### 2. Hook → Function
 
-**v2:** Used `useToast()` hook  
+**v2:** Used `useToast()` hook
 **v3:** Uses `toast()` function directly
 
 ### 3. API Changes
 
-**v2:** Used `toast.show()` method  
+**v2:** Used `toast.show()` method
 **v3:** `toast()` is a function with helper methods (`toast.success()`, `toast.danger()`, etc.)
 
 ### 4. Variant Names
 
-**v2:** Variants like `success`, `error`, `warning`, `info`  
+**v2:** Variants like `success`, `error`, `warning`, `info`
 **v3:** Variants: `default`, `accent`, `success`, `warning`, `danger`
 
 ### 5. Compound Component Structure
 
 **v3:** Toast uses compound components for custom rendering:
-
 - `Toast` - Main toast container
 - `Toast.Content` - Content wrapper
 - `Toast.Title` - Title text
@@ -109,7 +111,6 @@ function MyComponent() {
       variant: "success"
     });
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -119,7 +120,6 @@ function MyComponent() {
       description: "Your changes have been saved"
     });
     ```
-
   </Tab>
 </Tabs>
 
@@ -135,7 +135,6 @@ function MyComponent() {
     toast.show({ variant: "warning", title: "Warning" });
     toast.show({ variant: "info", title: "Info" });
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -146,7 +145,6 @@ function MyComponent() {
     toast.warning("Warning");
     toast.info("Info");
     ```
-
   </Tab>
 </Tabs>
 
@@ -166,7 +164,6 @@ function MyComponent() {
       }
     };
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -180,7 +177,6 @@ function MyComponent() {
       });
     };
     ```
-
   </Tab>
 </Tabs>
 
@@ -198,7 +194,6 @@ function MyComponent() {
       )
     });
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -214,7 +209,6 @@ function MyComponent() {
       )}
     </Toast.Provider>
     ```
-
   </Tab>
 </Tabs>
 

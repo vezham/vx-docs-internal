@@ -8,17 +8,21 @@ links:
   figma: true
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Kbd } from '@heroui/react'
+import { Kbd } from "@heroui/react";
 ```
 
-[Live example: kbd-basic](https://heroui.com/docs/react/components/kbd)
 
-```tsx
+<ComponentPreview name="kbd-basic">
+
+````tsx
+import {Kbd} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <div className="flex items-center gap-4">
@@ -39,30 +43,36 @@ export function Basic() {
         <Kbd.Content>D</Kbd.Content>
       </Kbd>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 ```tsx
-import { Kbd } from '@heroui/react'
+import { Kbd } from "@heroui/react";
 
 export default () => (
   <Kbd>
     <Kbd.Abbr title="Command">⌘</Kbd.Abbr>
     <Kbd.Content>K</Kbd.Content>
   </Kbd>
-)
+);
 ```
 
 ## Examples
 
 ### Variants
 
-[Live example: kbd-variants](https://heroui.com/docs/react/components/kbd)
 
-```tsx
+<ComponentPreview name="kbd-variants">
+
+````tsx
+import {Kbd} from "@vezham/react-v3";
+
 export function Variants() {
   return (
     <div className="flex flex-col gap-4">
@@ -124,20 +134,26 @@ export function Variants() {
         </Kbd>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Navigation Keys
 
-[Live example: kbd-navigation-keys](https://heroui.com/docs/react/components/kbd)
 
-```tsx
+<ComponentPreview name="kbd-navigation-keys">
+
+````tsx
+import {Kbd} from "@vezham/react-v3";
+
 export function NavigationKeys() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-2">
-        <span className="text-muted text-sm">Arrow Keys:</span>
+        <span className="text-sm text-muted">Arrow Keys:</span>
         <div className="flex items-center gap-2">
           <Kbd>
             <Kbd.Abbr keyValue="up" />
@@ -154,7 +170,7 @@ export function NavigationKeys() {
         </div>
       </div>
       <div className="flex items-center gap-2">
-        <span className="text-muted text-sm">Page Navigation:</span>
+        <span className="text-sm text-muted">Page Navigation:</span>
         <div className="flex items-center gap-2">
           <Kbd>
             <Kbd.Abbr keyValue="pageup" />
@@ -171,91 +187,103 @@ export function NavigationKeys() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Inline Usage
 
-[Live example: kbd-inline-usage](https://heroui.com/docs/react/components/kbd)
 
-```tsx
+<ComponentPreview name="kbd-inline-usage">
+
+````tsx
+import {Kbd} from "@vezham/react-v3";
+
 export function InlineUsage() {
   return (
     <div className="space-y-4">
       <p className="text-sm">
-        Press{' '}
+        Press{" "}
         <Kbd>
           <Kbd.Content>Esc</Kbd.Content>
-        </Kbd>{' '}
+        </Kbd>{" "}
         to close the dialog.
       </p>
       <p className="text-sm">
-        Use{' '}
+        Use{" "}
         <Kbd>
           <Kbd.Abbr keyValue="command" />
           <Kbd.Content>K</Kbd.Content>
-        </Kbd>{' '}
+        </Kbd>{" "}
         to open the command palette.
       </p>
       <p className="text-sm">
-        Navigate with{' '}
+        Navigate with{" "}
         <Kbd>
           <Kbd.Abbr keyValue="up" />
-        </Kbd>{' '}
-        and{' '}
+        </Kbd>{" "}
+        and{" "}
         <Kbd>
           <Kbd.Abbr keyValue="down" />
-        </Kbd>{' '}
+        </Kbd>{" "}
         arrow keys.
       </p>
       <p className="text-sm">
-        Save your work with{' '}
+        Save your work with{" "}
         <Kbd>
           <Kbd.Abbr keyValue="command" />
           <Kbd.Content>S</Kbd.Content>
-        </Kbd>{' '}
+        </Kbd>{" "}
         regularly.
       </p>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Instructional Text
 
-[Live example: kbd-instructional-text](https://heroui.com/docs/react/components/kbd)
 
-```tsx
+<ComponentPreview name="kbd-instructional-text">
+
+````tsx
+import {Kbd} from "@vezham/react-v3";
+
 export function InstructionalText() {
   return (
     <div className="space-y-3">
-      <div className="bg-surface rounded-lg p-4">
+      <div className="rounded-lg bg-surface p-4">
         <h4 className="mb-2 text-sm font-semibold">Quick Actions</h4>
         <ul className="space-y-2 text-sm">
           <li>
-            • Open search:{' '}
+            • Open search:{" "}
             <Kbd>
               <Kbd.Abbr keyValue="command" />
               <Kbd.Content>K</Kbd.Content>
             </Kbd>
           </li>
           <li>
-            • Toggle sidebar:{' '}
+            • Toggle sidebar:{" "}
             <Kbd>
               <Kbd.Abbr keyValue="command" />
               <Kbd.Content>B</Kbd.Content>
             </Kbd>
           </li>
           <li>
-            • New file:{' '}
+            • New file:{" "}
             <Kbd>
               <Kbd.Abbr keyValue="command" />
               <Kbd.Content>N</Kbd.Content>
             </Kbd>
           </li>
           <li>
-            • Quick save:{' '}
+            • Quick save:{" "}
             <Kbd>
               <Kbd.Abbr keyValue="command" />
               <Kbd.Content>S</Kbd.Content>
@@ -264,75 +292,90 @@ export function InstructionalText() {
         </ul>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Special Keys
 
-[Live example: kbd-special-keys](https://heroui.com/docs/react/components/kbd)
 
-```tsx
+<ComponentPreview name="kbd-special-keys">
+
+````tsx
+import {Kbd} from "@vezham/react-v3";
+
 export function SpecialKeys() {
   return (
     <div className="space-y-3">
       <p className="text-sm">
-        Press{' '}
+        Press{" "}
         <Kbd>
           <Kbd.Abbr keyValue="enter" />
-        </Kbd>{' '}
-        to confirm or{' '}
+        </Kbd>{" "}
+        to confirm or{" "}
         <Kbd>
           <Kbd.Abbr keyValue="escape" />
-        </Kbd>{' '}
+        </Kbd>{" "}
         to cancel.
       </p>
       <p className="text-sm">
-        Use{' '}
+        Use{" "}
         <Kbd>
           <Kbd.Abbr keyValue="tab" />
-        </Kbd>{' '}
-        to navigate between form fields and{' '}
+        </Kbd>{" "}
+        to navigate between form fields and{" "}
         <Kbd>
           <Kbd.Abbr keyValue="shift" />
           <Kbd.Abbr keyValue="tab" />
-        </Kbd>{' '}
+        </Kbd>{" "}
         to go back.
       </p>
       <p className="text-sm">
-        Hold{' '}
+        Hold{" "}
         <Kbd>
           <Kbd.Abbr keyValue="space" />
-        </Kbd>{' '}
+        </Kbd>{" "}
         to temporarily enable panning mode.
       </p>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: kbd-custom-styles](https://heroui.com/docs/react/components/kbd)
 
-```tsx
+<ComponentPreview name="kbd-custom-styles">
+
+````tsx
+import {Kbd} from "@vezham/react-v3";
+
 export function CustomStyles() {
   return (
     <div className="flex items-center gap-3">
-      <Kbd className="bg-accent-soft text-accent-soft-foreground rounded-lg px-2.5">
+      <Kbd className="rounded-lg bg-accent-soft px-2.5 text-accent-soft-foreground">
         <Kbd.Abbr keyValue="command" />
         <Kbd.Content>K</Kbd.Content>
       </Kbd>
-      <Kbd className="bg-default text-muted rounded-lg px-2.5">
+      <Kbd className="rounded-lg bg-default px-2.5 text-muted">
         <Kbd.Abbr keyValue="shift" />
         <Kbd.Content>P</Kbd.Content>
       </Kbd>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -342,7 +385,7 @@ To customize the Kbd component classes, you can use the `@layer components` dire
 ```css
 @layer components {
   .kbd {
-    @apply border-gray-300 bg-gray-100 dark:bg-gray-800;
+    @apply bg-gray-100 dark:bg-gray-800 border-gray-300;
   }
 
   .kbd__abbr {
@@ -373,26 +416,26 @@ The Kbd component uses these CSS classes ([View source styles](https://github.co
 
 ### Kbd
 
-| Prop        | Type              | Default  | Description        |
-| ----------- | ----------------- | -------- | ------------------ | --------------------------- |
-| `children`  | `React.ReactNode` | -        | Content of the key |
-| `variant`   | `"default"        | "light"` | `default`          | Variant of the keyboard key |
-| `className` | `string`          | -        | Custom CSS classes |
+| Prop        | Type              | Default | Description            |
+| ----------- | ----------------- | ------- | ---------------------- |
+| `children`  | `React.ReactNode` | -       | Content of the key     |
+| `variant`   | `"default" | "light"` | `default`       | Variant of the keyboard key |
+| `className` | `string`          | -       | Custom CSS classes     |
 
 ### Kbd.Abbr
 
-| Prop        | Type              | Default | Description                                               |
-| ----------- | ----------------- | ------- | --------------------------------------------------------- |
-| `title`     | `string`          | -       | Title attribute for accessibility (e.g., "Command" for ⌘) |
-| `children`  | `React.ReactNode` | -       | The symbol or text to display (e.g., ⌘, ⌥, ⇧)             |
-| `className` | `string`          | -       | Custom CSS classes                                        |
+| Prop        | Type     | Default | Description                                                                                                                               |
+| ----------- | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`     | `string` | -       | Title attribute for accessibility (e.g., "Command" for ⌘)                                                                               |
+| `children`  | `React.ReactNode` | -       | The symbol or text to display (e.g., ⌘, ⌥, ⇧)                                                                                          |
+| `className` | `string` | -       | Custom CSS classes                                                                                                                       |
 
 ### Kbd.Key
 
-| Prop        | Type              | Default | Description             |
-| ----------- | ----------------- | ------- | ----------------------- |
-| `children`  | `React.ReactNode` | -       | Text content of the key |
-| `className` | `string`          | -       | Custom CSS classes      |
+| Prop        | Type              | Default | Description                        |
+| ----------- | ----------------- | ------- | ---------------------------------- |
+| `children`  | `React.ReactNode` | -       | Text content of the key            |
+| `className` | `string`          | -       | Custom CSS classes                 |
 
 ### Kbd.Content Type
 

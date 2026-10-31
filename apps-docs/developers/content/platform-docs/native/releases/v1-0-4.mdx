@@ -1,19 +1,16 @@
 ---
 title: v1.0.4
-description: Typography component renames Text, refined soft-foreground theme tokens with optional vibrant palette, iOS native modal offset guidance, Expo 56 / React Native 0.85 example upgrade
+description:
+  Typography component renames Text, refined soft-foreground theme tokens with optional vibrant palette, iOS native modal offset guidance, Expo 56 / React Native 0.85 example upgrade
 github:
   pull: 420
 ---
 
-import {
-  Callout,
-  NativeTryOnDevice,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, NativeTryOnDevice, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">May 26, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">May 26, 2026</span>
 </div>
 
 HeroUI Native v1.0.4 renames the `Text` typography primitive to `Typography` to free up React Native's `Text` name and align with semantic typography usage, while keeping the existing `Text` exports as deprecated aliases for a seamless upgrade. This release also refines soft-foreground color tokens across Alert, Avatar, Button, Chip, and Toast for better contrast on soft backgrounds, ships a new optional `heroui-native/styles/vibrant` palette, documents the iOS native-modal offset workaround for Menu, Popover, and Select, and upgrades the example app to Expo 56 / React Native 0.85.
@@ -22,18 +19,31 @@ HeroUI Native v1.0.4 renames the `Text` typography primitive to `Typography` to 
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
-  <Tab value="npm">```bash npm i heroui-native ```</Tab>
-  <Tab value="pnpm">``` bash pnpm add heroui-native ```</Tab>
-  <Tab value="yarn">```bash yarn add heroui-native ```</Tab>
-  <Tab value="bun">```bash bun add heroui-native ```</Tab>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
+<Tab value="npm">
+  ```bash
+  npm i heroui-native
+  ```
+</Tab>
+<Tab value="pnpm">
+  ``` bash
+  pnpm add heroui-native
+  ```
+</Tab>
+<Tab value="yarn">
+  ```bash
+  yarn add heroui-native
+  ```
+</Tab>
+<Tab value="bun">
+  ```bash
+  bun add heroui-native
+  ```
+</Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
-  the latest version" and your AI assistant will automatically compare versions
-  and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs-ui/native/getting-started/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI Native MCP Server](/docs-ui/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -47,12 +57,12 @@ Update to the latest version:
 The library's typography primitive has been renamed from `Text` to `Typography` to avoid clashing with React Native's built-in `Text` and to better describe its purpose as a semantic typography system. The component's API, variants, and behavior are unchanged — only the public name moves.
 
 ```tsx
-import { Typography } from 'heroui-native'
-import { View } from 'react-native'
+import { Typography } from "heroui-native";
+import { View } from "react-native";
 
 export function Example() {
   return (
-    <View className="flex-1 justify-center gap-4 px-5">
+    <View className="flex-1 justify-center px-5 gap-4">
       <Typography.Heading type="h1">Welcome</Typography.Heading>
       <Typography.Heading type="h3">Getting Started</Typography.Heading>
       <Typography.Paragraph>
@@ -63,7 +73,7 @@ export function Example() {
       </Typography.Paragraph>
       <Typography.Code>npm install heroui-native</Typography.Code>
     </View>
-  )
+  );
 }
 ```
 
@@ -76,9 +86,7 @@ export function Example() {
 - JSDoc and component docs updated to reference Typography and the new docs URL
 
 <Callout type="info">
-  **No migration required.** Existing `import {Text} from "heroui-native"`
-  continues to work via deprecated re-exports. Migrate to `Typography` at your
-  convenience before a future major release removes the deprecated aliases.
+  **No migration required.** Existing `import { Text } from "heroui-native"` continues to work via deprecated re-exports. Migrate to `Typography` at your convenience before a future major release removes the deprecated aliases.
 </Callout>
 
 **Related PR:** [#417](https://github.com/heroui-inc/heroui-native/pull/417)
@@ -91,10 +99,11 @@ A new optional `heroui-native/styles/vibrant` stylesheet is available for apps t
 
 ```ts
 // Default refined soft-foreground palette
-import 'heroui-native/styles'
+import "heroui-native/styles";
+
 // Or, opt into the vibrant palette
-import 'heroui-native/styles'
-import 'heroui-native/styles/vibrant'
+import "heroui-native/styles";
+import "heroui-native/styles/vibrant";
 ```
 
 Import `heroui-native/styles/vibrant` after the base styles to override soft-foreground tokens with the more saturated values. No component code changes are required to opt in.
@@ -138,14 +147,14 @@ The [`useThemeColor`](/docs-ui/native/getting-started/theming) hook now exposes 
 **New Capability:**
 
 ```tsx
-import { useThemeColor } from 'heroui-native'
+import { useThemeColor } from "heroui-native";
 
 const colors = useThemeColor([
-  'default-soft',
-  'default-soft-foreground',
-  'surface-foreground',
-  'backdrop'
-])
+  "default-soft",
+  "default-soft-foreground",
+  "surface-foreground",
+  "backdrop",
+]);
 ```
 
 **Changes:**
@@ -208,14 +217,14 @@ The [Menu](/docs-ui/native/components/menu), [Popover](/docs-ui/native/component
 **Usage example:**
 
 ```tsx
-import { Popover } from 'heroui-native'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Popover } from "heroui-native";
 
-const insets = useSafeAreaInsets()
+const insets = useSafeAreaInsets();
 
-;<Popover.Content presentation="popover" offset={insets.top + 20}>
+<Popover.Content presentation="popover" offset={insets.top + 20}>
   {/* ... */}
-</Popover.Content>
+</Popover.Content>;
 ```
 
 This is a documentation-only change — no API or runtime behavior was modified.
@@ -244,17 +253,18 @@ The `Text` component and related exports are now **deprecated** in favor of `Typ
 
 ```tsx
 // Deprecated (still works)
-import { Text, type TextProps, textClassNames } from 'heroui-native'
+import { Text, textClassNames, type TextProps } from "heroui-native";
+
+<Text.Heading type="h1">Welcome</Text.Heading>;
+
 // Recommended
 import {
   Typography,
+  typographyClassNames,
   type TypographyProps,
-  typographyClassNames
-} from 'heroui-native'
+} from "heroui-native";
 
-;<Text.Heading type="h1">Welcome</Text.Heading>
-
-;<Typography.Heading type="h1">Welcome</Typography.Heading>
+<Typography.Heading type="h1">Welcome</Typography.Heading>;
 ```
 
 **Related PR:** [#417](https://github.com/heroui-inc/heroui-native/pull/417)

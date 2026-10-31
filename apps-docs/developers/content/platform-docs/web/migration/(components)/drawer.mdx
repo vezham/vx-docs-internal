@@ -3,16 +3,11 @@ title: Drawer
 description: Migration guide for Drawer from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Drawer documentation](/docs-ui/web/components/drawer) for
-  complete API reference, styling guide, and advanced examples. This guide only
-  focuses on migrating from HeroUI v2.
+  Refer to the [v3 Drawer documentation](/docs-ui/web/components/drawer) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,25 +15,17 @@ import {
 In v2, `Drawer` shared the same API as `Modal`, using `DrawerContent`, `DrawerHeader`, `DrawerBody`, and `DrawerFooter` with a render callback pattern:
 
 ```tsx
-import {
-  Button,
-  Drawer,
-  DrawerBody,
-  DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  useDisclosure
-} from '@heroui/react'
+import { Drawer, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, Button, useDisclosure } from "@heroui/react";
 
 export default function App() {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure()
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <>
       <Button onPress={onOpen}>Open Drawer</Button>
       <Drawer isOpen={isOpen} onOpenChange={onOpenChange} placement="right">
         <DrawerContent>
-          {onClose => (
+          {(onClose) => (
             <>
               <DrawerHeader>Drawer Title</DrawerHeader>
               <DrawerBody>
@@ -52,14 +39,14 @@ export default function App() {
         </DrawerContent>
       </Drawer>
     </>
-  )
+  );
 }
 ```
 
 In v3, Drawer uses a compound component pattern with explicit subcomponents and built-in trigger support:
 
 ```tsx
-import { Button, Drawer } from '@heroui/react'
+import { Drawer, Button } from "@heroui/react";
 
 export default function App() {
   return (
@@ -83,7 +70,7 @@ export default function App() {
         </Drawer.Content>
       </Drawer.Backdrop>
     </Drawer>
-  )
+  );
 }
 ```
 
@@ -108,24 +95,24 @@ export default function App() {
 
 ### 4. Prop Changes
 
-| v2 Prop                     | v3 Equivalent                                 | Notes                                                                                                                                |
-| --------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `isOpen`                    | `Drawer.Backdrop` `isOpen`                    | Or use `useOverlayState`                                                                                                             |
-| `onOpenChange`              | `Drawer.Backdrop` `onOpenChange`              | Or use `useOverlayState`                                                                                                             |
-| `onClose`                   | -                                             | Use `onOpenChange` or `slot="close"` on buttons                                                                                      |
-| `placement`                 | `Drawer.Content` `placement`                  | `"right"` → `"right"`, `"left"` → `"left"`, `"top"` → `"top"`, `"bottom"` → `"bottom"`. Default changed from `"right"` to `"bottom"` |
-| `size`                      | -                                             | Removed (use Tailwind CSS on `Drawer.Dialog`)                                                                                        |
-| `radius`                    | -                                             | Removed (use Tailwind CSS)                                                                                                           |
-| `backdrop`                  | `Drawer.Backdrop` `variant`                   | Same values: `"opaque"`, `"blur"`, `"transparent"`                                                                                   |
-| `isDismissable`             | `Drawer.Backdrop` `isDismissable`             | Same                                                                                                                                 |
-| `isKeyboardDismissDisabled` | `Drawer.Backdrop` `isKeyboardDismissDisabled` | Same                                                                                                                                 |
-| `shouldBlockScroll`         | -                                             | Always blocks scroll in v3                                                                                                           |
-| `hideCloseButton`           | -                                             | Omit `Drawer.CloseTrigger` to hide                                                                                                   |
-| `closeButton`               | -                                             | Pass custom content to `Drawer.CloseTrigger`                                                                                         |
-| `motionProps`               | -                                             | Removed (CSS-based animations in v3)                                                                                                 |
-| `disableAnimation`          | -                                             | Removed                                                                                                                              |
-| `portalContainer`           | -                                             | Removed                                                                                                                              |
-| `classNames`                | -                                             | Use `className` on individual compound components                                                                                    |
+| v2 Prop | v3 Equivalent | Notes |
+|---------|---------------|-------|
+| `isOpen` | `Drawer.Backdrop` `isOpen` | Or use `useOverlayState` |
+| `onOpenChange` | `Drawer.Backdrop` `onOpenChange` | Or use `useOverlayState` |
+| `onClose` | - | Use `onOpenChange` or `slot="close"` on buttons |
+| `placement` | `Drawer.Content` `placement` | `"right"` → `"right"`, `"left"` → `"left"`, `"top"` → `"top"`, `"bottom"` → `"bottom"`. Default changed from `"right"` to `"bottom"` |
+| `size` | - | Removed (use Tailwind CSS on `Drawer.Dialog`) |
+| `radius` | - | Removed (use Tailwind CSS) |
+| `backdrop` | `Drawer.Backdrop` `variant` | Same values: `"opaque"`, `"blur"`, `"transparent"` |
+| `isDismissable` | `Drawer.Backdrop` `isDismissable` | Same |
+| `isKeyboardDismissDisabled` | `Drawer.Backdrop` `isKeyboardDismissDisabled` | Same |
+| `shouldBlockScroll` | - | Always blocks scroll in v3 |
+| `hideCloseButton` | - | Omit `Drawer.CloseTrigger` to hide |
+| `closeButton` | - | Pass custom content to `Drawer.CloseTrigger` |
+| `motionProps` | - | Removed (CSS-based animations in v3) |
+| `disableAnimation` | - | Removed |
+| `portalContainer` | - | Removed |
+| `classNames` | - | Use `className` on individual compound components |
 
 ### 5. Hook Changes
 
@@ -134,10 +121,10 @@ export default function App() {
 
 ```tsx
 // v2
-const { isOpen, onOpen, onOpenChange } = useDisclosure()
+const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
 // v3
-const state = useOverlayState()
+const state = useOverlayState();
 // state.isOpen, state.open(), state.close(), state.toggle()
 ```
 
@@ -169,7 +156,6 @@ const state = useOverlayState()
       </Drawer>
     </>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -193,18 +179,17 @@ const state = useOverlayState()
       </Drawer.Backdrop>
     </Drawer>
     ```
-
   </Tab>
 </Tabs>
 
 ### Placement
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Drawer isOpen={isOpen} onOpenChange={onOpenChange} placement="left">
       <DrawerContent>
-        {onClose => (
+        {(onClose) => (
           <>
             <DrawerHeader>Left Drawer</DrawerHeader>
             <DrawerBody>Content</DrawerBody>
@@ -236,12 +221,12 @@ const state = useOverlayState()
 
 ### Backdrop Variant
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Drawer isOpen={isOpen} onOpenChange={onOpenChange} backdrop="blur">
       <DrawerContent>
-        {onClose => (
+        {(onClose) => (
           <>
             <DrawerHeader>Blurred Backdrop</DrawerHeader>
             <DrawerBody>Content</DrawerBody>
@@ -297,7 +282,6 @@ const state = useOverlayState()
       </Drawer>
     </>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -325,22 +309,22 @@ const state = useOverlayState()
       </Drawer>
     </>
     ```
-
   </Tab>
 </Tabs>
 
 ### Non-Dismissable
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Drawer
       isOpen={isOpen}
       onOpenChange={onOpenChange}
       isDismissable={false}
-      hideCloseButton>
+      hideCloseButton
+    >
       <DrawerContent>
-        {onClose => (
+        {(onClose) => (
           <>
             <DrawerHeader>Confirm Action</DrawerHeader>
             <DrawerBody>Are you sure?</DrawerBody>
@@ -382,13 +366,13 @@ const state = useOverlayState()
 ```tsx
 <Drawer
   classNames={{
-    wrapper: 'custom-wrapper',
-    base: 'custom-base',
-    backdrop: 'custom-backdrop',
-    header: 'custom-header',
-    body: 'custom-body',
-    footer: 'custom-footer',
-    closeButton: 'custom-close'
+    wrapper: "custom-wrapper",
+    base: "custom-base",
+    backdrop: "custom-backdrop",
+    header: "custom-header",
+    body: "custom-body",
+    footer: "custom-footer",
+    closeButton: "custom-close",
   }}
 />
 ```

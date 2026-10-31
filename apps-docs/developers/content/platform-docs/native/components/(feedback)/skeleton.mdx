@@ -6,21 +6,19 @@ links:
   styles_native: skeleton/skeleton.styles.ts
 ---
 
-import {
-  Callout,
-  NativeVideoPlayerView
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/skeleton-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/skeleton-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/skeleton-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/skeleton-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { Skeleton } from 'heroui-native'
+import { Skeleton } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -47,7 +45,7 @@ Show skeleton while loading, then display content when ready.
 
 ```tsx
 <Skeleton isLoading={isLoading} className="h-20 rounded-lg">
-  <View className="bg-primary h-20 rounded-lg">
+  <View className="h-20 bg-primary rounded-lg">
     <Text>Loaded Content</Text>
   </View>
 </Skeleton>
@@ -64,9 +62,7 @@ Control the animation style with the `variant` prop.
 ```
 
 <Callout type="info">
-  `variant="none"` skips the default `FadeIn`/`FadeOut` layout animations. To
-  restore enter/exit animations on a `none` skeleton, pass explicit
-  `animation.entering` and `animation.exiting` values.
+  `variant="none"` skips the default `FadeIn`/`FadeOut` layout animations. To restore enter/exit animations on a `none` skeleton, pass explicit `animation.entering` and `animation.exiting` values.
 </Callout>
 
 ### Custom Shimmer Configuration
@@ -81,9 +77,10 @@ Customize the shimmer effect with duration, speed, and highlight color.
     shimmer: {
       duration: 2000,
       speed: 2,
-      highlightColor: 'rgba(59, 130, 246, 0.3)'
-    }
-  }}>
+      highlightColor: 'rgba(59, 130, 246, 0.3)',
+    },
+  }}
+>
   ...
 </Skeleton>
 ```
@@ -100,9 +97,10 @@ Configure pulse animation with duration and opacity range.
     pulse: {
       duration: 500,
       minOpacity: 0.1,
-      maxOpacity: 0.8
-    }
-  }}>
+      maxOpacity: 0.8,
+    },
+  }}
+>
   ...
 </Skeleton>
 ```
@@ -127,7 +125,8 @@ Apply custom Reanimated transitions when skeleton appears or disappears.
   entering={FadeIn.duration(300)}
   exiting={FadeOut.duration(300)}
   isLoading={isLoading}
-  className="h-20 w-full rounded-lg">
+  className="h-20 w-full rounded-lg"
+>
   ...
 </Skeleton>
 ```
@@ -135,16 +134,16 @@ Apply custom Reanimated transitions when skeleton appears or disappears.
 ## Example
 
 ```tsx
-import { Avatar, Card, Skeleton } from 'heroui-native'
-import { useState } from 'react'
-import { Image, Text, View } from 'react-native'
+import { Avatar, Card, Skeleton } from 'heroui-native';
+import { useState } from 'react';
+import { Image, Text, View } from 'react-native';
 
 export default function SkeletonExample() {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   return (
     <Card className="p-4">
-      <View className="mb-4 flex-row items-center gap-3">
+      <View className="flex-row items-center gap-3 mb-4">
         <Skeleton isLoading={isLoading} className="h-10 w-10 rounded-full">
           <Avatar size="sm" alt="Avatar">
             <Avatar.Image source={{ uri: 'https://i.pravatar.cc/150?img=4' }} />
@@ -154,10 +153,10 @@ export default function SkeletonExample() {
 
         <View className="flex-1 gap-1">
           <Skeleton isLoading={isLoading} className="h-3 w-32 rounded-md">
-            <Text className="text-foreground font-semibold">John Doe</Text>
+            <Text className="font-semibold text-foreground">John Doe</Text>
           </Skeleton>
           <Skeleton isLoading={isLoading} className="h-3 w-24 rounded-md">
-            <Text className="text-muted text-sm">@johndoe</Text>
+            <Text className="text-sm text-muted">@johndoe</Text>
           </Skeleton>
         </View>
       </View>
@@ -168,24 +167,25 @@ export default function SkeletonExample() {
         animation={{
           shimmer: {
             duration: 1500,
-            speed: 1
-          }
-        }}>
-        <View className="bg-surface-tertiary h-48 overflow-hidden rounded-lg">
+            speed: 1,
+          },
+        }}
+      >
+        <View className="h-48 bg-surface-tertiary rounded-lg overflow-hidden">
           <Image
             source={{
-              uri: 'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/backgrounds/cards/car1.jpg'
+              uri: 'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/backgrounds/cards/car1.jpg',
             }}
             className="h-full w-full"
           />
         </View>
       </Skeleton>
     </Card>
-  )
+  );
 }
 ```
 
-You can find more examples in the [GitHub repository](<https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/skeleton.tsx>).
+You can find more examples in the [GitHub repository](https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/skeleton.tsx).
 
 ## API Reference
 

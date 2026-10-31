@@ -8,16 +8,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/label-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/label-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/label-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/label-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { Label } from 'heroui-native'
+import { Label } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -68,9 +69,9 @@ Show an asterisk indicator for required fields using the `isRequired` prop.
 Display labels in an invalid state to indicate validation errors.
 
 ```tsx
-import { FieldError, Label, TextField } from 'heroui-native'
+import { FieldError, Label, TextField } from 'heroui-native';
 
-;<TextField isInvalid>
+<TextField isInvalid>
   <Label isInvalid>Confirm password</Label>
   <Input
     placeholder="Confirm your password"
@@ -112,9 +113,10 @@ Apply custom styles using className, classNames, or styles props.
   <Label.Text
     className="text-lg"
     classNames={{
-      text: 'font-bold',
-      asterisk: 'text-danger'
-    }}>
+      text: "font-bold",
+      asterisk: "text-danger"
+    }}
+  >
     Custom styled label
   </Label.Text>
 </Label>
@@ -123,12 +125,12 @@ Apply custom styles using className, classNames, or styles props.
 ## Example
 
 ```tsx
-import { FieldError, Label, TextField } from 'heroui-native'
-import { View } from 'react-native'
+import { FieldError, Label, TextField } from 'heroui-native';
+import { View } from 'react-native';
 
 export default function LabelExample() {
   return (
-    <View className="flex-1 justify-center gap-8 px-5">
+    <View className="flex-1 justify-center px-5 gap-8">
       <TextField>
         <Label>Username</Label>
         <Input placeholder="Choose a username" />
@@ -152,11 +154,11 @@ export default function LabelExample() {
         <Input value="Premium" />
       </TextField>
     </View>
-  )
+  );
 }
 ```
 
-You can find more examples in the [GitHub repository](<https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/label.tsx>).
+You can find more examples in the [GitHub repository](https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/label.tsx).
 
 ## API Reference
 

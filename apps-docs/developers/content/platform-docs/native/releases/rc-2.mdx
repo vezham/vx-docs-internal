@@ -5,16 +5,11 @@ github:
   pull: 298
 ---
 
-import {
-  Callout,
-  NativeTryOnDevice,
-  NativeVideoPlayerView,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, NativeTryOnDevice, NativeVideoPlayerView, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">February 20, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">February 20, 2026</span>
 </div>
 
 RC 2 continues the march toward production readiness with three new components—SearchField, ListGroup, and Slider—and a powerful multi-selection mode for Select backed by type-safe generics. The Button feedback API has been refactored into a cleaner unified `feedbackVariant` + `animation` prop pattern, and peer dependency constraints are relaxed for broader compatibility with Expo SDK 55. Several Select and Avatar bug fixes round out the release.
@@ -23,18 +18,31 @@ RC 2 continues the march toward production readiness with three new components�
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
-  <Tab value="npm">```bash npm i heroui-native ```</Tab>
-  <Tab value="pnpm">``` bash pnpm add heroui-native ```</Tab>
-  <Tab value="yarn">```bash yarn add heroui-native ```</Tab>
-  <Tab value="bun">```bash bun add heroui-native ```</Tab>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
+<Tab value="npm">
+  ```bash
+  npm i heroui-native
+  ```
+</Tab>
+<Tab value="pnpm">
+  ``` bash
+  pnpm add heroui-native
+  ```
+</Tab>
+<Tab value="yarn">
+  ```bash
+  yarn add heroui-native
+  ```
+</Tab>
+<Tab value="bun">
+  ```bash
+  bun add heroui-native
+  ```
+</Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
-  the latest version" and your AI assistant will automatically compare versions
-  and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs-ui/native/getting-started/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI Native MCP Server](/docs-ui/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -58,8 +66,8 @@ The Slider component supports single-value and range (multi-thumb) modes, horizo
 <NativeVideoPlayerView
   target="component"
   slug="slider"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/slider-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/slider-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/slider-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/slider-docs-dark.mp4"
 />
 
 **Features:**
@@ -77,7 +85,7 @@ The Slider component supports single-value and range (multi-thumb) modes, horizo
 **Usage:**
 
 ```tsx
-import { Slider } from 'heroui-native'
+import { Slider } from "heroui-native";
 
 export function BasicSlider() {
   return (
@@ -88,7 +96,7 @@ export function BasicSlider() {
         <Slider.Thumb />
       </Slider.Track>
     </Slider>
-  )
+  );
 }
 
 export function RangeSlider() {
@@ -106,7 +114,7 @@ export function RangeSlider() {
         )}
       </Slider.Track>
     </Slider>
-  )
+  );
 }
 ```
 
@@ -121,8 +129,8 @@ The ListGroup component renders grouped list items inside a Surface container, p
 <NativeVideoPlayerView
   target="component"
   slug="list-group"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/list-group-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/list-group-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/list-group-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/list-group-docs-dark.mp4"
 />
 
 **Features:**
@@ -136,21 +144,19 @@ The ListGroup component renders grouped list items inside a Surface container, p
 **Usage:**
 
 ```tsx
-import { ListGroup } from 'heroui-native'
+import { ListGroup } from "heroui-native";
 
 export function Example() {
   return (
     <ListGroup>
-      <ListGroup.Item onPress={() => console.log('Profile')}>
+      <ListGroup.Item onPress={() => console.log("Profile")}>
         <ListGroup.ItemContent>
           <ListGroup.ItemTitle>Profile</ListGroup.ItemTitle>
-          <ListGroup.ItemDescription>
-            Manage your account
-          </ListGroup.ItemDescription>
+          <ListGroup.ItemDescription>Manage your account</ListGroup.ItemDescription>
         </ListGroup.ItemContent>
         <ListGroup.ItemSuffix />
       </ListGroup.Item>
-      <ListGroup.Item onPress={() => console.log('Settings')}>
+      <ListGroup.Item onPress={() => console.log("Settings")}>
         <ListGroup.ItemContent>
           <ListGroup.ItemTitle>Settings</ListGroup.ItemTitle>
           <ListGroup.ItemDescription>App preferences</ListGroup.ItemDescription>
@@ -158,7 +164,7 @@ export function Example() {
         <ListGroup.ItemSuffix />
       </ListGroup.Item>
     </ListGroup>
-  )
+  );
 }
 ```
 
@@ -173,8 +179,8 @@ The SearchField component provides a dedicated input for search and filtering sc
 <NativeVideoPlayerView
   target="component"
   slug="search-field"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/search-field-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/search-field-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/search-field-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/search-field-docs-dark.mp4"
 />
 
 **Features:**
@@ -189,7 +195,7 @@ The SearchField component provides a dedicated input for search and filtering sc
 **Usage:**
 
 ```tsx
-import { Label, SearchField } from 'heroui-native'
+import { Label, SearchField } from "heroui-native";
 
 export function Example() {
   return (
@@ -201,7 +207,7 @@ export function Example() {
         <SearchField.ClearButton />
       </SearchField.Group>
     </SearchField>
-  )
+  );
 }
 ```
 
@@ -223,7 +229,7 @@ The [Select](/docs-ui/native/components/select) component now supports multi-ite
 **Usage:**
 
 ```tsx
-import { Select } from 'heroui-native'
+import { Select } from "heroui-native";
 
 export function MultiSelect() {
   return (
@@ -240,7 +246,7 @@ export function MultiSelect() {
         </Select.Content>
       </Select.Portal>
     </Select>
-  )
+  );
 }
 ```
 
@@ -255,10 +261,12 @@ A new compound sub-component for opt-in scale animation composability. `Pressabl
 **Usage:**
 
 ```tsx
-import { PressableFeedback } from 'heroui-native'
+import { PressableFeedback } from "heroui-native";
 
-;<PressableFeedback.Scale>
-  <ListGroup.Item onPress={handlePress}>{/* item content */}</ListGroup.Item>
+<PressableFeedback.Scale>
+  <ListGroup.Item onPress={handlePress}>
+    {/* item content */}
+  </ListGroup.Item>
 </PressableFeedback.Scale>
 ```
 

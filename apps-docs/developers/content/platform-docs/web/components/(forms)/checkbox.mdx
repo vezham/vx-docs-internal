@@ -1,7 +1,7 @@
 ---
 title: Checkbox
 description: Checkboxes allow users to select multiple items from a list of individual items, or to mark one individual item as selected.
-icon: updated
+status: updated
 links:
   rac: CheckboxField
   source: checkbox/checkbox.tsx
@@ -10,17 +10,21 @@ links:
   figma: true
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Checkbox } from '@heroui/react'
+import { Checkbox } from '@heroui/react';
 ```
 
-[Live example: checkbox-basic](https://heroui.com/docs/react/components/checkbox)
 
-```tsx
+<ComponentPreview name="checkbox-basic">
+
+````tsx
+import {Checkbox} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <Checkbox name="basic-terms">
@@ -31,14 +35,17 @@ export function Basic() {
         Accept terms and conditions
       </Checkbox.Content>
     </Checkbox>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 ```tsx
-import { Checkbox, Description, FieldError } from '@heroui/react'
+import { Checkbox, Description, FieldError } from '@heroui/react';
 
 export default () => (
   <Checkbox>
@@ -51,7 +58,7 @@ export default () => (
     <Description /> {/* Optional — field-level help text */}
     <FieldError /> {/* Optional — validation message */}
   </Checkbox>
-)
+);
 ```
 
 ## Examples
@@ -63,14 +70,17 @@ The Checkbox component supports two visual variants:
 - **`primary`** (default) - Standard styling with default background, suitable for most use cases
 - **`secondary`** - Lower emphasis variant, suitable for use in Surface components
 
-[Live example: checkbox-variants](https://heroui.com/docs/react/components/checkbox)
 
-```tsx
+<ComponentPreview name="checkbox-variants">
+
+````tsx
+import {Checkbox, Description} from "@vezham/react-v3";
+
 export function Variants() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Primary variant</p>
+        <p className="text-sm font-medium text-muted">Primary variant</p>
         <Checkbox id="primary" name="primary" variant="primary">
           <Checkbox.Content>
             <Checkbox.Control>
@@ -82,7 +92,7 @@ export function Variants() {
         </Checkbox>
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Secondary variant</p>
+        <p className="text-sm font-medium text-muted">Secondary variant</p>
         <Checkbox id="secondary" name="secondary" variant="secondary">
           <Checkbox.Content>
             <Checkbox.Control>
@@ -94,15 +104,21 @@ export function Variants() {
         </Checkbox>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Full Rounded
 
-[Live example: checkbox-full-rounded](https://heroui.com/docs/react/components/checkbox)
 
-```tsx
+<ComponentPreview name="checkbox-full-rounded">
+
+````tsx
+import {Checkbox, Label} from "@vezham/react-v3";
+
 export function FullRounded() {
   return (
     <div className="flex flex-col gap-6">
@@ -110,7 +126,8 @@ export function FullRounded() {
         <Label className="text-muted">Rounded checkboxes</Label>
         <Checkbox
           className="[&_[data-slot='checkbox-default-indicator--checkmark']]:size-2"
-          name="small-rounded">
+          name="small-rounded"
+        >
           <Checkbox.Content>
             <Checkbox.Control className="size-3 rounded-full before:rounded-full">
               <Checkbox.Indicator />
@@ -142,7 +159,8 @@ export function FullRounded() {
       <div className="flex flex-col gap-3">
         <Checkbox
           className="[&_[data-slot='checkbox-default-indicator--checkmark']]:size-4"
-          name="xl-rounded">
+          name="xl-rounded"
+        >
           <Checkbox.Content>
             <Checkbox.Control className="size-6 rounded-full before:rounded-full">
               <Checkbox.Indicator />
@@ -152,15 +170,21 @@ export function FullRounded() {
         </Checkbox>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Disabled
 
-[Live example: checkbox-disabled](https://heroui.com/docs/react/components/checkbox)
 
-```tsx
+<ComponentPreview name="checkbox-disabled">
+
+````tsx
+import {Checkbox, Description} from "@vezham/react-v3";
+
 export function Disabled() {
   return (
     <Checkbox isDisabled id="feature">
@@ -172,15 +196,21 @@ export function Disabled() {
       </Checkbox.Content>
       <Description>This feature is coming soon</Description>
     </Checkbox>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### External Label
 
-[Live example: checkbox-external-label](https://heroui.com/docs/react/components/checkbox)
 
-```tsx
+<ComponentPreview name="checkbox-external-label">
+
+````tsx
+import {Checkbox, Label} from "@vezham/react-v3";
+
 export function ExternalLabel() {
   return (
     <div className="flex items-center gap-3">
@@ -193,15 +223,21 @@ export function ExternalLabel() {
       </Checkbox>
       <Label htmlFor="label-marketing">Send me marketing emails</Label>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With Description
 
-[Live example: checkbox-with-description](https://heroui.com/docs/react/components/checkbox)
 
-```tsx
+<ComponentPreview name="checkbox-with-description">
+
+````tsx
+import {Checkbox, Description} from "@vezham/react-v3";
+
 export function WithDescription() {
   return (
     <Checkbox name="description-notifications">
@@ -211,19 +247,23 @@ export function WithDescription() {
         </Checkbox.Control>
         Email notifications
       </Checkbox.Content>
-      <Description>
-        Get notified when someone mentions you in a comment
-      </Description>
+      <Description>Get notified when someone mentions you in a comment</Description>
     </Checkbox>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Default Selected
 
-[Live example: checkbox-default-selected](https://heroui.com/docs/react/components/checkbox)
 
-```tsx
+<ComponentPreview name="checkbox-default-selected">
+
+````tsx
+import {Checkbox} from "@vezham/react-v3";
+
 export function DefaultSelected() {
   return (
     <Checkbox defaultSelected id="default-notifications">
@@ -234,15 +274,21 @@ export function DefaultSelected() {
         Enable email notifications
       </Checkbox.Content>
     </Checkbox>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Invalid
 
-[Live example: checkbox-invalid](https://heroui.com/docs/react/components/checkbox)
 
-```tsx
+<ComponentPreview name="checkbox-invalid">
+
+````tsx
+import {Checkbox, FieldError} from "@vezham/react-v3";
+
 export function Invalid() {
   return (
     <Checkbox isInvalid isRequired name="agreement">
@@ -254,26 +300,30 @@ export function Invalid() {
       </Checkbox.Content>
       <FieldError>You must accept the terms to continue</FieldError>
     </Checkbox>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Controlled
 
-[Live example: checkbox-controlled](https://heroui.com/docs/react/components/checkbox)
 
-```tsx
-'use client'
+<ComponentPreview name="checkbox-controlled">
+
+````tsx
+"use client";
+
+import {Checkbox} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function Controlled() {
-  const [isSelected, setIsSelected] = useState(true)
+  const [isSelected, setIsSelected] = useState(true);
 
   return (
     <div className="flex flex-col gap-3">
-      <Checkbox
-        id="email-notifications"
-        isSelected={isSelected}
-        onChange={setIsSelected}>
+      <Checkbox id="email-notifications" isSelected={isSelected} onChange={setIsSelected}>
         <Checkbox.Content>
           <Checkbox.Control>
             <Checkbox.Indicator />
@@ -281,27 +331,31 @@ export function Controlled() {
           Email notifications
         </Checkbox.Content>
       </Checkbox>
-      <p className="text-muted text-sm">
-        Status:{' '}
-        <span className="font-medium">
-          {isSelected ? 'Enabled' : 'Disabled'}
-        </span>
+      <p className="text-sm text-muted">
+        Status: <span className="font-medium">{isSelected ? "Enabled" : "Disabled"}</span>
       </p>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Indeterminate
 
-[Live example: checkbox-indeterminate](https://heroui.com/docs/react/components/checkbox)
 
-```tsx
-'use client'
+<ComponentPreview name="checkbox-indeterminate">
+
+````tsx
+"use client";
+
+import {Checkbox, Description} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function Indeterminate() {
-  const [isIndeterminate, setIsIndeterminate] = useState(true)
-  const [isSelected, setIsSelected] = useState(false)
+  const [isIndeterminate, setIsIndeterminate] = useState(true);
+  const [isSelected, setIsSelected] = useState(false);
 
   return (
     <Checkbox
@@ -309,9 +363,10 @@ export function Indeterminate() {
       isIndeterminate={isIndeterminate}
       isSelected={isSelected}
       onChange={(selected: boolean) => {
-        setIsSelected(selected)
-        setIsIndeterminate(false)
-      }}>
+        setIsSelected(selected);
+        setIsIndeterminate(false);
+      }}
+    >
       <Checkbox.Content>
         <Checkbox.Control>
           <Checkbox.Indicator />
@@ -320,28 +375,35 @@ export function Indeterminate() {
       </Checkbox.Content>
       <Description>Shows indeterminate state (dash icon)</Description>
     </Checkbox>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Form Integration
 
-[Live example: checkbox-form](https://heroui.com/docs/react/components/checkbox)
 
-```tsx
-'use client'
+<ComponentPreview name="checkbox-form">
+
+````tsx
+"use client";
+
+import {Button, Checkbox} from "@vezham/react-v3";
+import React from "react";
 
 export function Form() {
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const formData = new FormData(e.target as HTMLFormElement)
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
 
     alert(
       `Form submitted with:\n${Array.from(formData.entries())
         .map(([key, value]) => `${key}: ${value}`)
-        .join('\n')}`
-    )
-  }
+        .join("\n")}`,
+    );
+  };
 
   return (
     <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -375,50 +437,60 @@ export function Form() {
         Submit
       </Button>
     </form>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Render Props
 
-[Live example: checkbox-render-props](https://heroui.com/docs/react/components/checkbox)
 
-```tsx
-'use client'
+<ComponentPreview name="checkbox-render-props">
+
+````tsx
+"use client";
+
+import {Checkbox, Description} from "@vezham/react-v3";
 
 export function RenderProps() {
   return (
     <Checkbox id="render-props-terms">
-      {({ isSelected }) => (
+      {({isSelected}) => (
         <>
           <Checkbox.Content>
             <Checkbox.Control>
               <Checkbox.Indicator />
             </Checkbox.Control>
-            {isSelected ? 'Terms accepted' : 'Accept terms'}
+            {isSelected ? "Terms accepted" : "Accept terms"}
           </Checkbox.Content>
           <Description>
-            {isSelected
-              ? 'Thank you for accepting'
-              : 'Please read and accept the terms'}
+            {isSelected ? "Thank you for accepting" : "Please read and accept the terms"}
           </Description>
         </>
       )}
     </Checkbox>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Render Function
 
-[Live example: checkbox-render-function](https://heroui.com/docs/react/components/checkbox)
 
-```tsx
-'use client'
+<ComponentPreview name="checkbox-render-function">
+
+````tsx
+"use client";
+
+import {Checkbox} from "@vezham/react-v3";
 
 export function RenderFunction() {
   return (
-    <Checkbox render={props => <div {...props} data-custom="bar" />}>
+    <Checkbox render={(props) => <div {...props} data-custom="bar" />}>
       <Checkbox.Content>
         <Checkbox.Control>
           <Checkbox.Indicator />
@@ -426,16 +498,22 @@ export function RenderFunction() {
         Accept terms and conditions
       </Checkbox.Content>
     </Checkbox>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Custom Indicator
 
-[Live example: checkbox-custom-indicator](https://heroui.com/docs/react/components/checkbox)
 
-```tsx
-'use client'
+<ComponentPreview name="checkbox-custom-indicator">
+
+````tsx
+"use client";
+
+import {Checkbox} from "@vezham/react-v3";
 
 export function CustomIndicator() {
   return (
@@ -444,7 +522,7 @@ export function CustomIndicator() {
         <Checkbox.Content>
           <Checkbox.Control>
             <Checkbox.Indicator>
-              {({ isSelected }) =>
+              {({isSelected}) =>
                 isSelected ? (
                   <svg fill="currentColor" viewBox="0 0 24 24">
                     <path
@@ -463,7 +541,7 @@ export function CustomIndicator() {
         <Checkbox.Content>
           <Checkbox.Control>
             <Checkbox.Indicator>
-              {({ isSelected }) =>
+              {({isSelected}) =>
                 isSelected ? (
                   <svg fill="none" viewBox="0 0 24 24">
                     <path
@@ -492,12 +570,9 @@ export function CustomIndicator() {
         <Checkbox.Content>
           <Checkbox.Control>
             <Checkbox.Indicator>
-              {({ isIndeterminate }) =>
+              {({isIndeterminate}) =>
                 isIndeterminate ? (
-                  <svg
-                    stroke="currentColor"
-                    strokeWidth={3}
-                    viewBox="0 0 24 24">
+                  <svg stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24">
                     <line x1="21" x2="3" y1="12" y2="12" />
                   </svg>
                 ) : null
@@ -508,17 +583,23 @@ export function CustomIndicator() {
         </Checkbox.Content>
       </Checkbox>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: checkbox-custom-styles](https://heroui.com/docs/react/components/checkbox)
 
-```tsx
+<ComponentPreview name="checkbox-custom-styles">
+
+````tsx
+import {Checkbox} from "@vezham/react-v3";
+
 export function CustomStyles() {
   return (
     <Checkbox id="custom">
@@ -529,9 +610,12 @@ export function CustomStyles() {
         Custom styled checkbox
       </Checkbox.Content>
     </Checkbox>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -541,11 +625,11 @@ To customize the Checkbox component classes, you can use the `@layer components`
 ```css
 @layer components {
   .checkbox {
-    @apply inline-flex items-center gap-3;
+    @apply inline-flex gap-3 items-center;
   }
 
   .checkbox__control {
-    @apply size-5 rounded border-2 border-gray-400 data-[selected=true]:border-blue-500 data-[selected=true]:bg-blue-500;
+    @apply size-5 border-2 border-gray-400 rounded data-[selected=true]:bg-blue-500 data-[selected=true]:border-blue-500;
 
     /* Animated background indicator */
     &::before {
@@ -558,7 +642,7 @@ To customize the Checkbox component classes, you can use the `@layer components`
     }
 
     /* Show indicator when selected */
-    &[data-selected='true']::before {
+    &[data-selected="true"]::before {
       @apply scale-100 opacity-100;
     }
   }
@@ -606,45 +690,45 @@ The checkbox supports both CSS pseudo-classes and data attributes for flexibilit
 
 Inherits from [React Aria CheckboxField](https://react-spectrum.adobe.com/react-aria/Checkbox.html).
 
-| Prop                 | Type                                                                             | Default     | Description                                                                                                                                                        |
-| -------------------- | -------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `isSelected`         | `boolean`                                                                        | `false`     | Whether the checkbox is checked                                                                                                                                    |
-| `defaultSelected`    | `boolean`                                                                        | `false`     | Whether the checkbox is checked by default (uncontrolled)                                                                                                          |
-| `isIndeterminate`    | `boolean`                                                                        | `false`     | Whether the checkbox is in an indeterminate state                                                                                                                  |
-| `isDisabled`         | `boolean`                                                                        | `false`     | Whether the checkbox is disabled                                                                                                                                   |
-| `isInvalid`          | `boolean`                                                                        | `false`     | Whether the checkbox is invalid                                                                                                                                    |
-| `isReadOnly`         | `boolean`                                                                        | `false`     | Whether the checkbox is read only                                                                                                                                  |
-| `isRequired`         | `boolean`                                                                        | `false`     | Whether the checkbox must be selected                                                                                                                              |
-| `validate`           | `(value: boolean) => ValidationError \| true \| null \| undefined`               | -           | Custom validation function                                                                                                                                         |
-| `validationBehavior` | `'native' \| 'aria'`                                                             | `'native'`  | Whether to use native HTML form validation or ARIA                                                                                                                 |
-| `variant`            | `"primary" \| "secondary"`                                                       | `"primary"` | Visual variant of the component. `primary` is the default style with shadow. `secondary` is a lower emphasis variant without shadow, suitable for use in surfaces. |
-| `name`               | `string`                                                                         | -           | The name of the input element, used when submitting an HTML form                                                                                                   |
-| `value`              | `string`                                                                         | -           | The value of the input element, used when submitting an HTML form                                                                                                  |
-| `onChange`           | `(isSelected: boolean) => void`                                                  | -           | Handler called when the checkbox value changes                                                                                                                     |
-| `children`           | `React.ReactNode \| (values: CheckboxFieldRenderProps) => React.ReactNode`       | -           | Checkbox content or field render prop                                                                                                                              |
-| `render`             | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, CheckboxFieldRenderProps>` | -           | Overrides the default DOM element with a custom render function.                                                                                                   |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `isSelected` | `boolean` | `false` | Whether the checkbox is checked |
+| `defaultSelected` | `boolean` | `false` | Whether the checkbox is checked by default (uncontrolled) |
+| `isIndeterminate` | `boolean` | `false` | Whether the checkbox is in an indeterminate state |
+| `isDisabled` | `boolean` | `false` | Whether the checkbox is disabled |
+| `isInvalid` | `boolean` | `false` | Whether the checkbox is invalid |
+| `isReadOnly` | `boolean` | `false` | Whether the checkbox is read only |
+| `isRequired` | `boolean` | `false` | Whether the checkbox must be selected |
+| `validate` | `(value: boolean) => ValidationError \| true \| null \| undefined` | - | Custom validation function |
+| `validationBehavior` | `'native' \| 'aria'` | `'native'` | Whether to use native HTML form validation or ARIA |
+| `variant` | `"primary" \| "secondary"` | `"primary"` | Visual variant of the component. `primary` is the default style with shadow. `secondary` is a lower emphasis variant without shadow, suitable for use in surfaces. |
+| `name` | `string` | - | The name of the input element, used when submitting an HTML form |
+| `value` | `string` | - | The value of the input element, used when submitting an HTML form |
+| `onChange` | `(isSelected: boolean) => void` | - | Handler called when the checkbox value changes |
+| `children` | `React.ReactNode \| (values: CheckboxFieldRenderProps) => React.ReactNode` | - | Checkbox content or field render prop |
+| `render` | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, CheckboxFieldRenderProps>` | - | Overrides the default DOM element with a custom render function.|
 
 ### Checkbox.Content
 
 The clickable `<label>` that wraps the control and label text. Put `Checkbox.Control` and the `Label` inside it; keep `Description`/`FieldError` as siblings of `Checkbox.Content`. For a checkbox with no label, omit the `Label` and pass an `aria-label` on `Checkbox`.
 
-| Prop        | Type                                                                        | Default | Description                                               |
-| ----------- | --------------------------------------------------------------------------- | ------- | --------------------------------------------------------- |
-| `children`  | `React.ReactNode \| (values: CheckboxButtonRenderProps) => React.ReactNode` | -       | Button content (control + label), or a button render prop |
-| `className` | `string \| (values: CheckboxButtonRenderProps) => string`                   | -       | Classes applied to the clickable label                    |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode \| (values: CheckboxButtonRenderProps) => React.ReactNode` | - | Button content (control + label), or a button render prop |
+| `className` | `string \| (values: CheckboxButtonRenderProps) => string` | - | Classes applied to the clickable label |
 
 ### CheckboxFieldRenderProps
 
 When using a render prop on the root `Checkbox`, these field-level values are provided:
 
-| Prop              | Type      | Description                                       |
-| ----------------- | --------- | ------------------------------------------------- |
-| `isSelected`      | `boolean` | Whether the checkbox is currently checked         |
+| Prop | Type | Description |
+|------|------|-------------|
+| `isSelected` | `boolean` | Whether the checkbox is currently checked |
 | `isIndeterminate` | `boolean` | Whether the checkbox is in an indeterminate state |
-| `isDisabled`      | `boolean` | Whether the checkbox is disabled                  |
-| `isReadOnly`      | `boolean` | Whether the checkbox is read only                 |
-| `isInvalid`       | `boolean` | Whether the checkbox is invalid                   |
-| `isRequired`      | `boolean` | Whether the checkbox is required                  |
+| `isDisabled` | `boolean` | Whether the checkbox is disabled |
+| `isReadOnly` | `boolean` | Whether the checkbox is read only |
+| `isInvalid` | `boolean` | Whether the checkbox is invalid |
+| `isRequired` | `boolean` | Whether the checkbox is required |
 
 ### CheckboxButtonRenderProps
 

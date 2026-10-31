@@ -8,16 +8,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/tag-group-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/tag-group-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/tag-group-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/tag-group-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { TagGroup } from 'heroui-native'
+import { TagGroup } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -89,18 +90,19 @@ Allow multiple tags to be selected simultaneously.
 Control selection state with `selectedKeys` and `onSelectionChange`.
 
 ```tsx
-const [selected, setSelected] = useState(new Set(['news']))
+const [selected, setSelected] = useState(new Set(['news']));
 
-;<TagGroup
+<TagGroup
   selectionMode="single"
   selectedKeys={selected}
-  onSelectionChange={setSelected}>
+  onSelectionChange={setSelected}
+>
   <TagGroup.List>
     <TagGroup.Item id="news">News</TagGroup.Item>
     <TagGroup.Item id="travel">Travel</TagGroup.Item>
     <TagGroup.Item id="gaming">Gaming</TagGroup.Item>
   </TagGroup.List>
-</TagGroup>
+</TagGroup>;
 ```
 
 ### Variants
@@ -154,23 +156,23 @@ Add remove buttons to tags by providing `onRemove` and placing `TagGroup.ItemRem
 ```tsx
 const [tags, setTags] = useState([
   { id: 'news', name: 'News' },
-  { id: 'travel', name: 'Travel' }
-])
+  { id: 'travel', name: 'Travel' },
+]);
 
-const onRemove = keys => {
-  setTags(prev => prev.filter(tag => !keys.has(tag.id)))
-}
+const onRemove = (keys) => {
+  setTags((prev) => prev.filter((tag) => !keys.has(tag.id)));
+};
 
-;<TagGroup selectionMode="single" onRemove={onRemove}>
+<TagGroup selectionMode="single" onRemove={onRemove}>
   <TagGroup.List>
-    {tags.map(tag => (
+    {tags.map((tag) => (
       <TagGroup.Item key={tag.id} id={tag.id}>
         <TagGroup.ItemLabel>{tag.name}</TagGroup.ItemLabel>
         <TagGroup.ItemRemoveButton />
       </TagGroup.Item>
     ))}
   </TagGroup.List>
-</TagGroup>
+</TagGroup>;
 ```
 
 ### Render Function Children
@@ -207,9 +209,10 @@ Render custom content when the list has no tags.
 <TagGroup onRemove={onRemove}>
   <TagGroup.List
     renderEmptyState={() => (
-      <Text className="text-muted text-sm">No categories found</Text>
-    )}>
-    {tags.map(tag => (
+      <Text className="text-sm text-muted">No categories found</Text>
+    )}
+  >
+    {tags.map((tag) => (
       <TagGroup.Item key={tag.id} id={tag.id}>
         <TagGroup.ItemLabel>{tag.name}</TagGroup.ItemLabel>
         <TagGroup.ItemRemoveButton />
@@ -238,13 +241,16 @@ Disable individual tags or the entire group.
 ## Example
 
 ```tsx
-import { Description, FieldError, Label, TagGroup } from 'heroui-native'
-import { useMemo, useState } from 'react'
-import { View } from 'react-native'
+import { TagGroup, Label, Description, FieldError } from 'heroui-native';
+import { useState, useMemo } from 'react';
+import { View } from 'react-native';
 
 export default function TagGroupExample() {
-  const [selected, setSelected] = useState(new Set())
-  const isInvalid = useMemo(() => Array.from(selected).length === 0, [selected])
+  const [selected, setSelected] = useState(new Set());
+  const isInvalid = useMemo(
+    () => Array.from(selected).length === 0,
+    [selected]
+  );
 
   return (
     <View className="gap-4">
@@ -252,7 +258,8 @@ export default function TagGroupExample() {
         selectedKeys={selected}
         selectionMode="multiple"
         onSelectionChange={setSelected}
-        isInvalid={isInvalid}>
+        isInvalid={isInvalid}
+      >
         <Label isInvalid={false}>Amenities</Label>
         <TagGroup.List>
           <TagGroup.Item id="laundry">Laundry</TagGroup.Item>
@@ -267,7 +274,7 @@ export default function TagGroupExample() {
         <FieldError>Please select at least one category</FieldError>
       </TagGroup>
     </View>
-  )
+  );
 }
 ```
 
@@ -316,15 +323,15 @@ Use `animation="disable-all"` to disable all animations including children. Omit
 
 ### TagGroup.Item
 
-| prop                | type                                                                    | default | description                                                                                                                                                                            |
-| ------------------- | ----------------------------------------------------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `children`          | `React.ReactNode \| ((renderProps: TagRenderProps) => React.ReactNode)` | -       | Tag content: string, elements, or a render function receiving TagRenderProps                                                                                                           |
-| `id`                | `TagKey`                                                                | -       | Unique identifier for this tag                                                                                                                                                         |
-| `isDisabled`        | `boolean`                                                               | -       | Whether this specific tag is disabled                                                                                                                                                  |
-| `className`         | `string`                                                                | -       | Additional CSS classes for the tag                                                                                                                                                     |
-| `style`             | `StyleProp<ViewStyle>`                                                  | -       | Additional styles for the tag                                                                                                                                                          |
-| `background`        | `React.ReactNode`                                                       | -       | Background layer behind the tag surface. `undefined` renders the theme-aware default while unselected (fallback color follows the variant); custom node replaces it; `null` removes it |
-| `...PressableProps` | `PressableProps`                                                        | -       | All standard React Native Pressable props are supported                                                                                                                                |
+| prop                | type                                                                    | default | description                                                                  |
+| ------------------- | ----------------------------------------------------------------------- | ------- | ---------------------------------------------------------------------------- |
+| `children`          | `React.ReactNode \| ((renderProps: TagRenderProps) => React.ReactNode)` | -       | Tag content: string, elements, or a render function receiving TagRenderProps |
+| `id`                | `TagKey`                                                                | -       | Unique identifier for this tag                                               |
+| `isDisabled`        | `boolean`                                                               | -       | Whether this specific tag is disabled                                        |
+| `className`         | `string`                                                                | -       | Additional CSS classes for the tag                                           |
+| `style`             | `StyleProp<ViewStyle>`                                                  | -       | Additional styles for the tag                                                |
+| `background` | `React.ReactNode` | - | Background layer behind the tag surface. `undefined` renders the theme-aware default while unselected (fallback color follows the variant); custom node replaces it; `null` removes it |
+| `...PressableProps` | `PressableProps`                                                        | -       | All standard React Native Pressable props are supported                      |
 
 #### TagRenderProps
 
@@ -375,7 +382,7 @@ Absolute-fill container rendered behind the tag surface. With no children, the a
 Hook to access the tag group root context. Must be used within a `TagGroup` component.
 
 ```tsx
-import { useTagGroup } from 'heroui-native'
+import { useTagGroup } from 'heroui-native';
 
 const {
   selectedKeys,
@@ -385,8 +392,8 @@ const {
   onRemove,
   isDisabled,
   isInvalid,
-  isRequired
-} = useTagGroup()
+  isRequired,
+} = useTagGroup();
 ```
 
 #### Returns
@@ -407,9 +414,9 @@ const {
 Hook to access the tag item context. Must be used within a `TagGroup.Item` component.
 
 ```tsx
-import { useTagGroupItem } from 'heroui-native'
+import { useTagGroupItem } from 'heroui-native';
 
-const { id, isSelected, isDisabled, allowsRemoving } = useTagGroupItem()
+const { id, isSelected, isDisabled, allowsRemoving } = useTagGroupItem();
 ```
 
 #### Returns

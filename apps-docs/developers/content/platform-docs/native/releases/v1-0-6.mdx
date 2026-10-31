@@ -1,19 +1,16 @@
 ---
 title: v1.0.6
-description: Component styles migrated to dedicated BEM-named CSS files, PortalHost ghost-sheet fix by keying portal subtrees by name
+description:
+  Component styles migrated to dedicated BEM-named CSS files, PortalHost ghost-sheet fix by keying portal subtrees by name
 github:
   pull: 452
 ---
 
-import {
-  Callout,
-  NativeTryOnDevice,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, NativeTryOnDevice, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">July 21, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">July 21, 2026</span>
 </div>
 
 HeroUI Native v1.0.6 centralizes styling by migrating every component from inline Tailwind class strings to dedicated BEM-named CSS files under `src/styles/components`, keeping the `tv()` slots as thin references to those classes for easier overriding and maintenance. This release also fixes a `PortalHost` reconciliation bug where sheets, dialogs, and popovers could inherit each other's state across screens — producing "ghost" open sheets — by keying each portal subtree by its unique name.
@@ -22,18 +19,31 @@ HeroUI Native v1.0.6 centralizes styling by migrating every component from inlin
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
-  <Tab value="npm">```bash npm i heroui-native ```</Tab>
-  <Tab value="pnpm">``` bash pnpm add heroui-native ```</Tab>
-  <Tab value="yarn">```bash yarn add heroui-native ```</Tab>
-  <Tab value="bun">```bash bun add heroui-native ```</Tab>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
+<Tab value="npm">
+  ```bash
+  npm i heroui-native
+  ```
+</Tab>
+<Tab value="pnpm">
+  ``` bash
+  pnpm add heroui-native
+  ```
+</Tab>
+<Tab value="yarn">
+  ```bash
+  yarn add heroui-native
+  ```
+</Tab>
+<Tab value="bun">
+  ```bash
+  bun add heroui-native
+  ```
+</Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
-  the latest version" and your AI assistant will automatically compare versions
-  and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs-ui/native/getting-started/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI Native MCP Server](/docs-ui/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device

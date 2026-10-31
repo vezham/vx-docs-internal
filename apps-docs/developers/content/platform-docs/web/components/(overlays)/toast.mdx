@@ -1,7 +1,7 @@
 ---
 title: Toast
 description: Display temporary notifications and messages to users with automatic dismissal and customizable placement
-icon: updated
+status: updated
 links:
   rac: Toast
   source: toast/toast.tsx
@@ -10,18 +10,23 @@ links:
   figma: true
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Toast, toast } from '@heroui/react'
+import { Toast, toast } from '@heroui/react';
 ```
 
-[Live example: toast-default](https://heroui.com/docs/react/components/toast)
 
-```tsx
-'use client'
+<ComponentPreview name="toast-default">
+
+````tsx
+"use client";
+
+import {Persons} from "@gravity-ui/icons";
+import {Button, toast} from "@vezham/react-v3";
 
 export function Default() {
   return (
@@ -30,23 +35,27 @@ export function Default() {
         size="sm"
         variant="secondary"
         onPress={() => {
-          const id = toast('You have been invited to join a team', {
+          const id = toast("You have been invited to join a team", {
             actionProps: {
-              children: 'Dismiss',
+              children: "Dismiss",
               onPress: () => toast.close(id),
-              variant: 'tertiary'
+              variant: "tertiary",
             },
-            description: 'Bob sent you an invitation to join HeroUI team',
+            description: "Bob sent you an invitation to join HeroUI team",
             indicator: <Persons />,
-            variant: 'default'
-          })
-        }}>
+            variant: "default",
+          });
+        }}
+      >
         Show toast
       </Button>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
@@ -68,10 +77,14 @@ export function Default() {
 
 ### Variants
 
-[Live example: toast-variants](https://heroui.com/docs/react/components/toast)
 
-```tsx
-'use client'
+<ComponentPreview name="toast-variants">
+
+````tsx
+"use client";
+
+import {HardDrive, Persons} from "@gravity-ui/icons";
+import {Button, toast} from "@vezham/react-v3";
 
 export function Variants() {
   return (
@@ -81,31 +94,30 @@ export function Variants() {
           size="sm"
           variant="tertiary"
           onPress={() => {
-            const id = toast('You have been invited to join a team', {
+            const id = toast("You have been invited to join a team", {
               actionProps: {
-                children: 'Dismiss',
+                children: "Dismiss",
                 onPress: () => toast.close(id),
-                variant: 'tertiary'
+                variant: "tertiary",
               },
-              description: 'Bob sent you an invitation to join HeroUI team',
+              description: "Bob sent you an invitation to join HeroUI team",
               indicator: <Persons />,
-              variant: 'default'
-            })
-          }}>
+              variant: "default",
+            });
+          }}
+        >
           Default toast
         </Button>
         <Button
           size="sm"
           variant="secondary"
           onPress={() => {
-            const id = toast.info('You have 2 credits left', {
-              actionProps: {
-                children: 'Upgrade',
-                onPress: () => toast.close(id)
-              },
-              description: 'Get a paid plan for more credits'
-            })
-          }}>
+            const id = toast.info("You have 2 credits left", {
+              actionProps: {children: "Upgrade", onPress: () => toast.close(id)},
+              description: "Get a paid plan for more credits",
+            });
+          }}
+        >
           Accent toast
         </Button>
         <Button
@@ -113,15 +125,16 @@ export function Variants() {
           size="sm"
           variant="tertiary"
           onPress={() => {
-            const id = toast.success('You have upgraded your plan', {
+            const id = toast.success("You have upgraded your plan", {
               actionProps: {
-                children: 'Billing',
-                className: 'bg-success text-success-foreground',
-                onPress: () => toast.close(id)
+                children: "Billing",
+                className: "bg-success text-success-foreground",
+                onPress: () => toast.close(id),
               },
-              description: 'You can continue using HeroUI Chat'
-            })
-          }}>
+              description: "You can continue using HeroUI Chat",
+            });
+          }}
+        >
           Success toast
         </Button>
         <Button
@@ -129,102 +142,103 @@ export function Variants() {
           size="sm"
           variant="tertiary"
           onPress={() => {
-            const id = toast.warning('You have no credits left', {
+            const id = toast.warning("You have no credits left", {
               actionProps: {
-                children: 'Upgrade',
-                className: 'bg-warning text-warning-foreground',
-                onPress: () => toast.close(id)
+                children: "Upgrade",
+                className: "bg-warning text-warning-foreground",
+                onPress: () => toast.close(id),
               },
-              description: 'Upgrade to a paid plan to continue'
-            })
-          }}>
+              description: "Upgrade to a paid plan to continue",
+            });
+          }}
+        >
           Warning toast
         </Button>
         <Button
           size="sm"
           variant="danger-soft"
           onPress={() => {
-            const id = toast.danger('Storage is full', {
-              actionProps: {
-                children: 'Remove',
-                onPress: () => toast.close(id),
-                variant: 'danger'
-              },
+            const id = toast.danger("Storage is full", {
+              actionProps: {children: "Remove", onPress: () => toast.close(id), variant: "danger"},
               description:
-                'Remove files to release space. Adding more text to demonstrate longer content display',
-              indicator: <HardDrive />
-            })
-          }}>
+                "Remove files to release space. Adding more text to demonstrate longer content display",
+              indicator: <HardDrive />,
+            });
+          }}
+        >
           Danger toast
         </Button>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Placements
 
-[Live example: toast-placements](https://heroui.com/docs/react/components/toast)
 
-```tsx
-'use client'
+<ComponentPreview name="toast-placements">
 
-type Placement = NonNullable<ToastVariants['placement']>
+````tsx
+"use client";
 
-const placements = [
-  'top start',
-  'top',
-  'top end',
-  'bottom start',
-  'bottom',
-  'bottom end'
-] as const
+import type {ToastVariants} from "@vezham/react-v3";
+
+import {Button, Toast, ToastQueue} from "@vezham/react-v3";
+
+type Placement = NonNullable<ToastVariants["placement"]>;
+
+const placements = ["top start", "top", "top end", "bottom start", "bottom", "bottom end"] as const;
 
 // Create a separate queue for each placement
 const placementQueues = Object.fromEntries(
-  placements.map(p => [p, new ToastQueue({ maxVisibleToasts: 3 })])
-) as Record<Placement, ToastQueue>
+  placements.map((p) => [p, new ToastQueue({maxVisibleToasts: 3})]),
+) as Record<Placement, ToastQueue>;
 
 export function Placements() {
   const showToast = (placement: Placement) => {
     placementQueues[placement].add({
-      description: 'Event has been created',
-      title: 'Event created',
-      variant: 'default'
-    })
-  }
+      description: "Event has been created",
+      title: "Event created",
+      variant: "default",
+    });
+  };
 
   return (
     <div className="flex h-full flex-col items-center justify-center gap-6">
       {/* Render a ToastProvider for each placement */}
-      {placements.map(p => (
+      {placements.map((p) => (
         <Toast.Provider key={p} placement={p} queue={placementQueues[p]} />
       ))}
       <div className="flex max-w-xs flex-wrap justify-center gap-2">
-        {placements.map(p => (
-          <Button
-            key={p}
-            size="sm"
-            variant="secondary"
-            onPress={() => showToast(p)}>
+        {placements.map((p) => (
+          <Button key={p} size="sm" variant="secondary" onPress={() => showToast(p)}>
             {p}
           </Button>
         ))}
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Expanded Stack
 
-[Live example: toast-expanded](https://heroui.com/docs/react/components/toast)
 
-```tsx
-'use client'
+<ComponentPreview name="toast-expanded">
 
-const queue = new ToastQueue()
+````tsx
+"use client";
+
+import {Button, Toast, ToastQueue} from "@vezham/react-v3";
+
+const queue = new ToastQueue();
 
 export function Expanded() {
   return (
@@ -240,82 +254,85 @@ export function Expanded() {
         variant="secondary"
         onPress={() => {
           queue.add({
-            title: 'Simple message',
-            variant: 'default'
-          })
+            title: "Simple message",
+            variant: "default",
+          });
           setTimeout(() => {
             queue.add({
-              title: 'Operation completed',
-              variant: 'success'
-            })
-          }, 400)
+              title: "Operation completed",
+              variant: "success",
+            });
+          }, 400);
           setTimeout(() => {
             queue.add({
-              title: 'New update available',
-              variant: 'accent'
-            })
-          }, 800)
-        }}>
+              title: "New update available",
+              variant: "accent",
+            });
+          }, 800);
+        }}
+      >
         Show 3 toasts
       </Button>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Simple Toasts
 
-[Live example: toast-simple](https://heroui.com/docs/react/components/toast)
 
-```tsx
-'use client'
+<ComponentPreview name="toast-simple">
+
+````tsx
+"use client";
+
+import {Button, toast} from "@vezham/react-v3";
 
 export function Simple() {
   return (
     <div className="flex h-full max-w-xl flex-col items-center justify-center">
       <div className="flex w-full flex-wrap items-center justify-center gap-4">
-        <Button
-          size="sm"
-          variant="secondary"
-          onPress={() => toast('Simple message')}>
+        <Button size="sm" variant="secondary" onPress={() => toast("Simple message")}>
           Default
         </Button>
-        <Button
-          size="sm"
-          variant="secondary"
-          onPress={() => toast.success('Operation completed')}>
+        <Button size="sm" variant="secondary" onPress={() => toast.success("Operation completed")}>
           Success
         </Button>
-        <Button
-          size="sm"
-          variant="secondary"
-          onPress={() => toast.info('New update available')}>
+        <Button size="sm" variant="secondary" onPress={() => toast.info("New update available")}>
           Info
         </Button>
         <Button
           size="sm"
           variant="secondary"
-          onPress={() => toast.warning('Please check your settings')}>
+          onPress={() => toast.warning("Please check your settings")}
+        >
           Warning
         </Button>
-        <Button
-          size="sm"
-          variant="secondary"
-          onPress={() => toast.danger('Something went wrong')}>
+        <Button size="sm" variant="secondary" onPress={() => toast.danger("Something went wrong")}>
           Error
         </Button>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Custom Indicators
 
-[Live example: toast-custom-indicator](https://heroui.com/docs/react/components/toast)
 
-```tsx
-'use client'
+<ComponentPreview name="toast-custom-indicator">
+
+````tsx
+"use client";
+
+import {Star} from "@gravity-ui/icons";
+import {Button, toast} from "@vezham/react-v3";
 
 export function CustomIndicator() {
   return (
@@ -324,23 +341,30 @@ export function CustomIndicator() {
         size="sm"
         variant="secondary"
         onPress={() =>
-          toast('Custom icon indicator', {
-            indicator: <Star />
+          toast("Custom icon indicator", {
+            indicator: <Star />,
           })
-        }>
+        }
+      >
         Custom indicator
       </Button>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Custom Toast Rendering
 
-[Live example: toast-custom-toast](https://heroui.com/docs/react/components/toast)
 
-```tsx
-'use client'
+<ComponentPreview name="toast-custom-toast">
+
+````tsx
+"use client";
+
+import type {ToastContentValue} from "@vezham/react-v3";
 
 import {
   Button,
@@ -349,23 +373,24 @@ import {
   ToastDescription,
   ToastIndicator,
   ToastQueue,
-  ToastTitle
-} from '@heroui/react'
+  ToastTitle,
+} from "@vezham/react-v3";
 
 export function CustomToast() {
-  const customQueue = new ToastQueue()
+  const customQueue = new ToastQueue();
 
   return (
     <div className="flex h-full max-w-xl flex-col items-center justify-center">
       <Toast.Provider placement="bottom" queue={customQueue}>
-        {({ toast: toastItem }) => {
-          const content = toastItem.content as ToastContentValue
+        {({toast: toastItem}) => {
+          const content = toastItem.content as ToastContentValue;
 
           return (
             <Toast
-              className="border-border rounded-xl border"
+              className="rounded-xl border border-border"
               toast={toastItem}
-              variant={content.variant}>
+              variant={content.variant}
+            >
               <ToastContent>
                 <div className="flex items-center gap-2">
                   <ToastIndicator
@@ -386,7 +411,7 @@ export function CustomToast() {
               </ToastContent>
               <Toast.CloseButton className="absolute end-2 top-1/2 -translate-y-1/2 border-none bg-transparent opacity-100 [&>svg]:size-4" />
             </Toast>
-          )
+          );
         }}
       </Toast.Provider>
       <Button
@@ -394,60 +419,61 @@ export function CustomToast() {
         variant="secondary"
         onPress={() => {
           customQueue.add({
-            description: 'This uses a custom render function',
-            title: 'Custom layout toast',
-            variant: 'default'
-          })
-        }}>
+            description: "This uses a custom render function",
+            title: "Custom layout toast",
+            variant: "default",
+          });
+        }}
+      >
         Custom toast
       </Button>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Promise & Loading
 
-[Live example: toast-promise](https://heroui.com/docs/react/components/toast)
 
-```tsx
-'use client'
+<ComponentPreview name="toast-promise">
 
-const uploadFile = (): Promise<{ filename: string; size: number }> => {
-  return new Promise<{ filename: string; size: number }>(resolve => {
-    setTimeout(() => resolve({ filename: 'document.pdf', size: 1024 }), 2000)
-  })
-}
+````tsx
+"use client";
+
+import {Button, toast} from "@vezham/react-v3";
+
+const uploadFile = (): Promise<{filename: string; size: number}> => {
+  return new Promise<{filename: string; size: number}>((resolve) => {
+    setTimeout(() => resolve({filename: "document.pdf", size: 1024}), 2000);
+  });
+};
 
 const createEvent = (): Promise<never> => {
   return new Promise<never>((_, reject) => {
-    setTimeout(
-      () => reject(new Error('Network error. Please try again.')),
-      2000
-    )
-  })
-}
+    setTimeout(() => reject(new Error("Network error. Please try again.")), 2000);
+  });
+};
 
-const saveData = (): Promise<{ count: number }> => {
-  return new Promise<{ count: number }>((resolve, reject) => {
+const saveData = (): Promise<{count: number}> => {
+  return new Promise<{count: number}>((resolve, reject) => {
     setTimeout(() => {
       if (Math.random() > 0.5) {
-        resolve({ count: 42 })
+        resolve({count: 42});
       } else {
-        reject(new Error('Failed to save data'))
+        reject(new Error("Failed to save data"));
       }
-    }, 2000)
-  })
-}
+    }, 2000);
+  });
+};
 
-const fetchUser = (): Promise<{ name: string; email: string }> => {
-  return new Promise<{ name: string; email: string }>(resolve => {
-    setTimeout(
-      () => resolve({ email: 'john@example.com', name: 'John Doe' }),
-      2000
-    )
-  })
-}
+const fetchUser = (): Promise<{name: string; email: string}> => {
+  return new Promise<{name: string; email: string}>((resolve) => {
+    setTimeout(() => resolve({email: "john@example.com", name: "John Doe"}), 2000);
+  });
+};
 
 export function PromiseDemo() {
   return (
@@ -456,7 +482,7 @@ export function PromiseDemo() {
       <div className="w-full space-y-3">
         <div className="text-center">
           <h3 className="text-sm font-medium">Using toast.promise()</h3>
-          <p className="text-muted text-xs">
+          <p className="text-xs text-muted">
             Automatically handles loading, success, and error states
           </p>
         </div>
@@ -466,12 +492,12 @@ export function PromiseDemo() {
             variant="secondary"
             onPress={() => {
               toast.promise(uploadFile(), {
-                error: 'Failed to upload file',
-                loading: 'Uploading file...',
-                success: data =>
-                  `File ${data.filename} uploaded (${data.size}KB)`
-              })
-            }}>
+                error: "Failed to upload file",
+                loading: "Uploading file...",
+                success: (data) => `File ${data.filename} uploaded (${data.size}KB)`,
+              });
+            }}
+          >
             Upload file
           </Button>
           <Button
@@ -479,11 +505,12 @@ export function PromiseDemo() {
             variant="secondary"
             onPress={() => {
               toast.promise(createEvent(), {
-                error: err => err.message,
-                loading: 'Creating event...',
-                success: 'Event created'
-              })
-            }}>
+                error: (err) => err.message,
+                loading: "Creating event...",
+                success: "Event created",
+              });
+            }}
+          >
             Create event (error)
           </Button>
           <Button
@@ -491,11 +518,12 @@ export function PromiseDemo() {
             variant="secondary"
             onPress={() => {
               toast.promise(saveData(), {
-                error: err => err.message,
-                loading: 'Saving changes...',
-                success: data => `Saved ${data.count} items`
-              })
-            }}>
+                error: (err) => err.message,
+                loading: "Saving changes...",
+                success: (data) => `Saved ${data.count} items`,
+              });
+            }}
+          >
             Save data (random)
           </Button>
           <Button
@@ -503,11 +531,12 @@ export function PromiseDemo() {
             variant="secondary"
             onPress={() => {
               toast.promise(fetchUser(), {
-                error: 'Failed to fetch user',
-                loading: 'Loading user...',
-                success: data => `Welcome back, ${data.name}!`
-              })
-            }}>
+                error: "Failed to fetch user",
+                loading: "Loading user...",
+                success: (data) => `Welcome back, ${data.name}!`,
+              });
+            }}
+          >
             Fetch user
           </Button>
         </div>
@@ -517,90 +546,98 @@ export function PromiseDemo() {
       <div className="w-full space-y-3">
         <div className="text-center">
           <h3 className="text-sm font-medium">Manual Loading State</h3>
-          <p className="text-muted text-xs">
-            Manually control loading state with isLoading prop
-          </p>
+          <p className="text-xs text-muted">Manually control loading state with isLoading prop</p>
         </div>
         <div className="flex w-full flex-wrap items-center justify-center gap-4">
           <Button
             size="sm"
             variant="secondary"
             onPress={() => {
-              const loadingId = toast('Uploading file...', {
-                description: 'Please wait while we upload your file',
+              const loadingId = toast("Uploading file...", {
+                description: "Please wait while we upload your file",
                 isLoading: true,
-                timeout: 0
-              })
+                timeout: 0,
+              });
 
               setTimeout(() => {
-                toast.update(loadingId, 'File uploaded', {
-                  description: 'Your file has been uploaded successfully',
-                  variant: 'success'
-                })
-              }, 3000)
-            }}>
+                toast.update(loadingId, "File uploaded", {
+                  description: "Your file has been uploaded successfully",
+                  variant: "success",
+                });
+              }, 3000);
+            }}
+          >
             Upload with loading
           </Button>
           <Button
             size="sm"
             variant="secondary"
             onPress={() => {
-              const loadingId = toast('Processing payment...', {
+              const loadingId = toast("Processing payment...", {
                 isLoading: true,
-                timeout: 0
-              })
+                timeout: 0,
+              });
 
               setTimeout(() => {
-                toast.update(loadingId, 'Payment processed', {
-                  description: 'Your payment has been processed successfully',
-                  variant: 'success'
-                })
-              }, 2500)
-            }}>
+                toast.update(loadingId, "Payment processed", {
+                  description: "Your payment has been processed successfully",
+                  variant: "success",
+                });
+              }, 2500);
+            }}
+          >
             Payment processing
           </Button>
           <Button
             size="sm"
             variant="secondary"
             onPress={() => {
-              const loadingId = toast('Saving changes...', {
+              const loadingId = toast("Saving changes...", {
                 isLoading: true,
-                timeout: 0
-              })
+                timeout: 0,
+              });
 
               setTimeout(() => {
-                toast.update(loadingId, 'Failed to save', {
-                  description: 'Please try again',
-                  variant: 'danger'
-                })
-              }, 2000)
-            }}>
+                toast.update(loadingId, "Failed to save", {
+                  description: "Please try again",
+                  variant: "danger",
+                });
+              }, 2000);
+            }}
+          >
             Loading to error
           </Button>
         </div>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Callbacks
 
-[Live example: toast-callbacks](https://heroui.com/docs/react/components/toast)
 
-```tsx
-'use client'
+<ComponentPreview name="toast-callbacks">
+
+````tsx
+"use client";
+
+import {Button, toast} from "@vezham/react-v3";
+import React from "react";
 
 export function Callbacks() {
-  const [closedHistory, setClosedHistory] = React.useState<
-    Array<{ message: string; time: string }>
-  >([])
+  const [closedHistory, setClosedHistory] = React.useState<Array<{message: string; time: string}>>(
+    [],
+  );
 
   const addToHistory = (message: string) => {
-    const time = new Date().toLocaleTimeString()
+    const time = new Date().toLocaleTimeString();
 
-    setClosedHistory(prev => [{ message, time }, ...prev].slice(0, 5))
-  }
+    setClosedHistory((prev) => [{message, time}, ...prev].slice(0, 5));
+  };
 
   return (
     <div className="flex h-full max-w-2xl flex-col items-center justify-center gap-6">
@@ -610,52 +647,56 @@ export function Callbacks() {
           size="sm"
           variant="secondary"
           onPress={() =>
-            toast('File saved', {
+            toast("File saved", {
               onClose: () => {
-                addToHistory('File saved (closed after 3 seconds)')
+                addToHistory("File saved (closed after 3 seconds)");
               },
-              timeout: 3000
+              timeout: 3000,
             })
-          }>
+          }
+        >
           Custom timeout (3s)
         </Button>
         <Button
           size="sm"
           variant="secondary"
           onPress={() =>
-            toast('Changes saved', {
+            toast("Changes saved", {
               onClose: () => {
-                addToHistory('Changes saved (closed after 10 seconds)')
+                addToHistory("Changes saved (closed after 10 seconds)");
               },
-              timeout: 10000
+              timeout: 10000,
             })
-          }>
+          }
+        >
           Custom timeout (10s)
         </Button>
         <Button
           size="sm"
           variant="secondary"
           onPress={() =>
-            toast.success('Event created', {
+            toast.success("Event created", {
               onClose: () => {
-                addToHistory('Event created (closed after default timeout)')
-              }
+                addToHistory("Event created (closed after default timeout)");
+              },
             })
-          }>
+          }
+        >
           With onClose callback
         </Button>
         <Button
           size="sm"
           variant="secondary"
           onPress={() =>
-            toast('Important notification', {
-              description: 'This toast will stay until dismissed',
+            toast("Important notification", {
+              description: "This toast will stay until dismissed",
               onClose: () => {
-                addToHistory('Important notification (manually closed)')
+                addToHistory("Important notification (manually closed)");
               },
-              timeout: 0
+              timeout: 0,
             })
-          }>
+          }
+        >
           Persistent toast
         </Button>
       </div>
@@ -669,40 +710,37 @@ export function Callbacks() {
               className="h-6 text-xs"
               size="sm"
               variant="tertiary"
-              onPress={() => setClosedHistory([])}>
+              onPress={() => setClosedHistory([])}
+            >
               Clear
             </Button>
           )}
         </div>
-        <div className="border-border bg-surface min-h-[120px] space-y-2 rounded-lg border p-4">
+        <div className="min-h-[120px] space-y-2 rounded-lg border border-border bg-surface p-4">
           {closedHistory.length === 0 ? (
-            <p className="text-muted text-sm">
-              No toasts closed yet. Try closing one above!
-            </p>
+            <p className="text-sm text-muted">No toasts closed yet. Try closing one above!</p>
           ) : (
             closedHistory.map((item, index) => (
               <div
                 key={`${item.time}-${index}`}
-                className="animate-in border-border bg-default fade-in slide-in-from-top-2 flex items-start justify-between gap-3 rounded-md border px-3 py-2 text-sm duration-200"
+                className="flex animate-in items-start justify-between gap-3 rounded-md border border-border bg-default px-3 py-2 text-sm duration-200 fade-in slide-in-from-top-2"
                 style={{
-                  animationDelay: `${index * 50}ms`
-                }}>
+                  animationDelay: `${index * 50}ms`,
+                }}
+              >
                 <div className="flex-1">
                   <span className="font-medium">{item.message}</span>
-                  <span className="text-muted ms-2 text-xs">({item.time})</span>
+                  <span className="ms-2 text-xs text-muted">({item.time})</span>
                 </div>
-                <div className="bg-success/10 text-success-soft-foreground flex h-5 w-5 shrink-0 items-center justify-center rounded-full">
+                <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-success/10 text-success-soft-foreground">
                   <svg
                     className="size-3"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
-                    viewBox="0 0 24 24">
-                    <path
-                      d="M5 13l4 4L19 7"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
               </div>
@@ -711,21 +749,27 @@ export function Callbacks() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Custom Queues
 
-[Live example: toast-custom-queue](https://heroui.com/docs/react/components/toast)
 
-```tsx
-'use client'
+<ComponentPreview name="toast-custom-queue">
+
+````tsx
+"use client";
+
+import {Button, Toast, ToastQueue} from "@vezham/react-v3";
 
 export function CustomQueue() {
-  const notificationQueue = new ToastQueue({ maxVisibleToasts: 2 })
-  const errorQueue = new ToastQueue({ maxVisibleToasts: 3 })
-  const successQueue = new ToastQueue({ maxVisibleToasts: 1 })
+  const notificationQueue = new ToastQueue({maxVisibleToasts: 2});
+  const errorQueue = new ToastQueue({maxVisibleToasts: 3});
+  const successQueue = new ToastQueue({maxVisibleToasts: 1});
 
   return (
     <div className="flex h-full max-w-4xl items-center justify-center gap-4">
@@ -737,11 +781,12 @@ export function CustomQueue() {
           variant="secondary"
           onPress={() => {
             notificationQueue.add({
-              description: 'You have a new message',
-              title: 'New notification',
-              variant: 'default'
-            })
-          }}>
+              description: "You have a new message",
+              title: "New notification",
+              variant: "default",
+            });
+          }}
+        >
           Add notification (max 2)
         </Button>
       </div>
@@ -754,11 +799,12 @@ export function CustomQueue() {
           variant="danger-soft"
           onPress={() => {
             errorQueue.add({
-              description: 'Failed to save changes',
-              title: 'Error occurred',
-              variant: 'danger'
-            })
-          }}>
+              description: "Failed to save changes",
+              title: "Error occurred",
+              variant: "danger",
+            });
+          }}
+        >
           Add error (max 3)
         </Button>
       </div>
@@ -773,32 +819,38 @@ export function CustomQueue() {
           onPress={() => {
             successQueue.add({
               description: `Operation ${Date.now()}`,
-              title: 'Success!',
-              variant: 'success'
-            })
-          }}>
+              title: "Success!",
+              variant: "success",
+            });
+          }}
+        >
           Add success (max 1)
         </Button>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Setup
 
 Render the provider in the root of your app.
 
 ```tsx
-import { Button, Toast, toast } from '@heroui/react'
+import { Toast, Button, toast } from '@heroui/react';
 
 function App() {
   return (
     <div>
       <Toast.Provider />
-      <Button onPress={() => toast('Simple message')}>Show toast</Button>
+      <Button onPress={() => toast("Simple message")}>
+        Show toast
+      </Button>
     </div>
-  )
+  );
 }
 ```
 
@@ -806,10 +858,13 @@ function App() {
 
 ### Tailwind CSS
 
-[Live example: toast-custom-styles](https://heroui.com/docs/react/components/toast)
 
-```tsx
-'use client'
+<ComponentPreview name="toast-custom-styles">
+
+````tsx
+"use client";
+
+import type {ToastContentValue} from "@vezham/react-v3";
 
 import {
   Button,
@@ -818,23 +873,24 @@ import {
   ToastDescription,
   ToastIndicator,
   ToastQueue,
-  ToastTitle
-} from '@heroui/react'
+  ToastTitle,
+} from "@vezham/react-v3";
 
 export function CustomStyles() {
-  const queue = new ToastQueue()
+  const queue = new ToastQueue();
 
   return (
     <div className="flex flex-col items-center gap-4">
       <Toast.Provider placement="bottom" queue={queue}>
-        {({ toast: toastItem }) => {
-          const content = toastItem.content as ToastContentValue
+        {({toast: toastItem}) => {
+          const content = toastItem.content as ToastContentValue;
 
           return (
             <Toast
-              className="border-border/80 bg-surface rounded-xl border shadow-lg ring-1 ring-black/5 dark:ring-white/10"
+              className="rounded-xl border border-border/80 bg-surface shadow-lg ring-1 ring-black/5 dark:ring-white/10"
               toast={toastItem}
-              variant={content.variant}>
+              variant={content.variant}
+            >
               <ToastContent>
                 <div className="flex items-center gap-2.5">
                   <ToastIndicator
@@ -856,7 +912,7 @@ export function CustomStyles() {
                 </div>
               </ToastContent>
             </Toast>
-          )
+          );
         }}
       </Toast.Provider>
       <Button
@@ -864,17 +920,21 @@ export function CustomStyles() {
         variant="secondary"
         onPress={() => {
           queue.add({
-            description: 'Draft synced',
-            title: 'Saved',
-            variant: 'default'
-          })
-        }}>
+            description: "Draft synced",
+            title: "Saved",
+            variant: "default",
+          });
+        }}
+      >
         Show toast
       </Button>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -902,7 +962,6 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The Toast component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/toast.css)):
 
 #### Base Classes [!toc]
-
 - `.toast` - Base toast container
 - `.toast-region` - Toast region container
 - `.toast__content` - Content wrapper for title and description
@@ -913,7 +972,6 @@ The Toast component uses these CSS classes ([View source styles](https://github.
 - `.toast__close-button` - Close button container
 
 #### Variant Classes [!toc]
-
 - `.toast--default` - Default gray variant
 - `.toast--accent` - Accent blue variant
 - `.toast--success` - Success green variant
@@ -936,73 +994,73 @@ The component supports various states:
 
 ### Toast.Provider
 
-| Prop               | Type                                                                              | Default              | Description                                                                                                                                                                                                                                                                                           |
-| ------------------ | --------------------------------------------------------------------------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `placement`        | `"top start" \| "top" \| "top end" \| "bottom start" \| "bottom" \| "bottom end"` | `"bottom"`           | Placement of the toast region                                                                                                                                                                                                                                                                         |
-| `gap`              | `number`                                                                          | `12`                 | The gap between toasts in pixels                                                                                                                                                                                                                                                                      |
-| `isExpanded`       | `boolean`                                                                         | `false`              | Force the stack into its expanded layout (does not pause timers)                                                                                                                                                                                                                                      |
-| `maxVisibleToasts` | `number`                                                                          | `3`                  | Maximum number of toasts to display at once                                                                                                                                                                                                                                                           |
-| `hotkey`           | `string[]`                                                                        | `["altKey", "KeyT"]` | Hotkey that moves focus to the toast region and expands the stack. Modifiers match `KeyboardEvent` boolean properties (e.g. `"altKey"`), other keys match `event.code` (e.g. `"KeyT"`). Modifiers you leave out must be up, so `Alt`+`T` does not also fire on `Ctrl`+`Alt`+`T`. Pass `[]` to disable |
-| `scaleFactor`      | `number`                                                                          | `0.05`               | Scale factor for stacked toasts (0-1)                                                                                                                                                                                                                                                                 |
-| `width`            | `number \| string`                                                                | `460`                | Width of the toast in pixels or CSS value                                                                                                                                                                                                                                                             |
-| `queue`            | `ToastQueue<T>`                                                                   | -                    | Custom toast queue instance                                                                                                                                                                                                                                                                           |
-| `children`         | `ReactNode \| ((props: {toast: QueuedToast<T>}) => ReactNode)`                    | -                    | Custom render function or children                                                                                                                                                                                                                                                                    |
-| `className`        | `string`                                                                          | -                    | Additional CSS classes                                                                                                                                                                                                                                                                                |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `placement` | `"top start" \| "top" \| "top end" \| "bottom start" \| "bottom" \| "bottom end"` | `"bottom"` | Placement of the toast region |
+| `gap` | `number` | `12` | The gap between toasts in pixels |
+| `isExpanded` | `boolean` | `false` | Force the stack into its expanded layout (does not pause timers) |
+| `maxVisibleToasts` | `number` | `3` | Maximum number of toasts to display at once |
+| `hotkey` | `string[]` | `["altKey", "KeyT"]` | Hotkey that moves focus to the toast region and expands the stack. Modifiers match `KeyboardEvent` boolean properties (e.g. `"altKey"`), other keys match `event.code` (e.g. `"KeyT"`). Modifiers you leave out must be up, so `Alt`+`T` does not also fire on `Ctrl`+`Alt`+`T`. Pass `[]` to disable |
+| `scaleFactor` | `number` | `0.05` | Scale factor for stacked toasts (0-1) |
+| `width` | `number \| string` | `460` | Width of the toast in pixels or CSS value |
+| `queue` | `ToastQueue<T>` | - | Custom toast queue instance |
+| `children` | `ReactNode \| ((props: {toast: QueuedToast<T>}) => ReactNode)` | - | Custom render function or children |
+| `className` | `string` | - | Additional CSS classes |
 
 ### Toast
 
-| Prop          | Type                                                          | Default     | Description                                        |
-| ------------- | ------------------------------------------------------------- | ----------- | -------------------------------------------------- |
-| `toast`       | `QueuedToast<T>`                                              | -           | Toast data from queue (required)                   |
-| `variant`     | `"default" \| "accent" \| "success" \| "warning" \| "danger"` | `"default"` | Visual variant of the toast                        |
-| `placement`   | `ToastVariants["placement"]`                                  | -           | Placement (inherited from Provider)                |
-| `scaleFactor` | `number`                                                      | -           | Scale factor (inherited from Provider)             |
-| `className`   | `string`                                                      | -           | Additional CSS classes                             |
-| `children`    | `ReactNode`                                                   | -           | Toast content (ToastContent, ToastIndicator, etc.) |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `toast` | `QueuedToast<T>` | - | Toast data from queue (required) |
+| `variant` | `"default" \| "accent" \| "success" \| "warning" \| "danger"` | `"default"` | Visual variant of the toast |
+| `placement` | `ToastVariants["placement"]` | - | Placement (inherited from Provider) |
+| `scaleFactor` | `number` | - | Scale factor (inherited from Provider) |
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | Toast content (ToastContent, ToastIndicator, etc.) |
 
 ### Toast.Content
 
-| Prop        | Type        | Default | Description                                         |
-| ----------- | ----------- | ------- | --------------------------------------------------- |
-| `children`  | `ReactNode` | -       | Content (typically ToastTitle and ToastDescription) |
-| `className` | `string`    | -       | Additional CSS classes                              |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Content (typically ToastTitle and ToastDescription) |
+| `className` | `string` | - | Additional CSS classes |
 
 ### Toast.Indicator
 
-| Prop        | Type                       | Default | Description                                      |
-| ----------- | -------------------------- | ------- | ------------------------------------------------ |
-| `variant`   | `ToastVariants["variant"]` | -       | Variant for default icon                         |
-| `children`  | `ReactNode`                | -       | Custom indicator icon (defaults to variant icon) |
-| `className` | `string`                   | -       | Additional CSS classes                           |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `ToastVariants["variant"]` | - | Variant for default icon |
+| `children` | `ReactNode` | - | Custom indicator icon (defaults to variant icon) |
+| `className` | `string` | - | Additional CSS classes |
 
 ### Toast.Title
 
-| Prop        | Type        | Default | Description            |
-| ----------- | ----------- | ------- | ---------------------- |
-| `children`  | `ReactNode` | -       | Title text             |
-| `className` | `string`    | -       | Additional CSS classes |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Title text |
+| `className` | `string` | - | Additional CSS classes |
 
 ### Toast.Description
 
-| Prop        | Type        | Default | Description            |
-| ----------- | ----------- | ------- | ---------------------- |
-| `children`  | `ReactNode` | -       | Description text       |
-| `className` | `string`    | -       | Additional CSS classes |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Description text |
+| `className` | `string` | - | Additional CSS classes |
 
 ### Toast.ActionButton
 
-| Prop               | Type        | Default | Description                        |
-| ------------------ | ----------- | ------- | ---------------------------------- |
-| `children`         | `ReactNode` | -       | Action button content              |
-| `className`        | `string`    | -       | Additional CSS classes             |
-| All `Button` props | -           | -       | Accepts all Button component props |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Action button content |
+| `className` | `string` | - | Additional CSS classes |
+| All `Button` props | - | - | Accepts all Button component props |
 
 ### Toast.CloseButton
 
-| Prop                    | Type     | Default | Description                             |
-| ----------------------- | -------- | ------- | --------------------------------------- |
-| `className`             | `string` | -       | Additional CSS classes                  |
-| All `CloseButton` props | -        | -       | Accepts all CloseButton component props |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| All `CloseButton` props | - | - | Accepts all CloseButton component props |
 
 ### ToastQueue
 
@@ -1010,104 +1068,107 @@ A `ToastQueue` manages the state for a `<Toast.Provider>`. The state is stored o
 
 #### Constructor Options
 
-| Option             | Type                       | Default | Description                                                                                                                                     |
-| ------------------ | -------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `exitDuration`     | `number`                   | `300`   | How long a closing toast stays mounted for its exit animation (0 removes immediately)                                                           |
-| `maxVisibleToasts` | `number`                   | `3`     | Maximum number of toasts to display at once (visual only)                                                                                       |
-| `wrapUpdate`       | `(fn: () => void) => void` | -       | Function to wrap state updates (e.g. `document.startViewTransition`); by default updates are applied directly and animated with CSS transitions |
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `exitDuration` | `number` | `300` | How long a closing toast stays mounted for its exit animation (0 removes immediately) |
+| `maxVisibleToasts` | `number` | `3` | Maximum number of toasts to display at once (visual only) |
+| `wrapUpdate` | `(fn: () => void) => void` | - | Function to wrap state updates (e.g. `document.startViewTransition`); by default updates are applied directly and animated with CSS transitions |
 
 #### Methods
 
-| Method      | Parameters                                                                      | Returns      | Description                                                                                                                                                                                      |
-| ----------- | ------------------------------------------------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `add`       | `(content: T, options?: ToastOptions)`                                          | `string`     | Add a toast to the queue, returns toast key                                                                                                                                                      |
-| `update`    | `(key: string, content: T, options?: {timeout?: number; onClose?: () => void})` | `boolean`    | Update a toast in place, preserving its stack position; `timeout` restarts the countdown (0 keeps it open), omit it to keep the current countdown. Returns `false` if the toast no longer exists |
-| `close`     | `(key: string)`                                                                 | `void`       | Close a toast by its key                                                                                                                                                                         |
-| `pauseAll`  | `()`                                                                            | `void`       | Pause all toast timers                                                                                                                                                                           |
-| `resumeAll` | `()`                                                                            | `void`       | Resume all toast timers                                                                                                                                                                          |
-| `clear`     | `()`                                                                            | `void`       | Close all toasts (each toast animates out and fires its `onClose`)                                                                                                                               |
-| `subscribe` | `(fn: () => void)`                                                              | `() => void` | Subscribe to queue changes, returns unsubscribe function                                                                                                                                         |
+| Method | Parameters | Returns | Description |
+|--------|------------|---------|-------------|
+| `add` | `(content: T, options?: ToastOptions)` | `string` | Add a toast to the queue, returns toast key |
+| `update` | `(key: string, content: T, options?: {timeout?: number; onClose?: () => void})` | `boolean` | Update a toast in place, preserving its stack position; `timeout` restarts the countdown (0 keeps it open), omit it to keep the current countdown. Returns `false` if the toast no longer exists |
+| `close` | `(key: string)` | `void` | Close a toast by its key |
+| `pauseAll` | `()` | `void` | Pause all toast timers |
+| `resumeAll` | `()` | `void` | Resume all toast timers |
+| `clear` | `()` | `void` | Close all toasts (each toast animates out and fires its `onClose`) |
+| `subscribe` | `(fn: () => void)` | `() => void` | Subscribe to queue changes, returns unsubscribe function |
 
 ### toast Function
 
 The default `toast` function provides convenient methods for showing toasts:
 
 ```tsx
-import { toast } from '@heroui/react'
+import { toast } from '@heroui/react';
 
 // Basic toast (auto-dismisses after 4 seconds by default)
-toast('Event has been created')
+toast("Event has been created");
 
 // Variant methods (also auto-dismiss after 4 seconds by default)
-toast.success('File saved')
-toast.info('New update available')
-toast.warning('Please check your settings')
-toast.danger('Something went wrong')
+toast.success("File saved");
+toast.info("New update available");
+toast.warning("Please check your settings");
+toast.danger("Something went wrong");
 
 // With options. The returned id lets the action close its own toast.
-const eventId = toast('Event has been created', {
-  description: 'Your event has been scheduled for tomorrow',
-  variant: 'default',
+const eventId = toast("Event has been created", {
+  description: "Your event has been scheduled for tomorrow",
+  variant: "default",
   timeout: 5000, // Custom timeout: 5 seconds
-  onClose: () => console.log('Closed'),
+  onClose: () => console.log("Closed"),
   actionProps: {
-    children: 'View',
-    onPress: () => toast.close(eventId)
+    children: "View",
+    onPress: () => toast.close(eventId),
   },
-  indicator: <CustomIcon />
-})
+  indicator: <CustomIcon />,
+});
 
 // Update an existing toast in place (keeps its position in the stack).
 // Options you omit are inherited, so pass `timeout` to start a countdown
 // on a toast that was created persistent.
-const id = toast('Saving…', { timeout: 0 })
-toast.update(id, 'Saved', { variant: 'success', timeout: 4000 })
+const id = toast("Saving…", { timeout: 0 });
+toast.update(id, "Saved", { variant: "success", timeout: 4000 });
 
 // Promise support (automatically shows loading spinner). The loading toast
 // updates in place when the promise settles — same toast, same stack
 // position; the auto-dismiss countdown starts at that point.
-toast.promise(uploadFile(), {
-  loading: 'Uploading file...',
-  success: data => `File ${data.filename} uploaded`,
-  error: 'Failed to upload file'
-})
+toast.promise(
+  uploadFile(),
+  {
+    loading: "Uploading file...",
+    success: (data) => `File ${data.filename} uploaded`,
+    error: "Failed to upload file",
+  }
+);
 
 // Manual loading state (persistent toast - no auto-dismiss)
-const loadingId = toast('Creating event...', {
+const loadingId = toast("Creating event...", {
   isLoading: true,
-  timeout: 0 // Persistent toast that doesn't auto-dismiss
-})
+  timeout: 0, // Persistent toast that doesn't auto-dismiss
+});
 
 // Later, update in place and start the auto-dismiss countdown
-toast.update(loadingId, 'Event created', { variant: 'success', timeout: 4000 })
+toast.update(loadingId, "Event created", { variant: "success", timeout: 4000 });
 
 // Queue methods
-toast.close(key)
-toast.clear()
-toast.pauseAll()
-toast.resumeAll()
+toast.close(key);
+toast.clear();
+toast.pauseAll();
+toast.resumeAll();
 ```
 
 #### toast Options
 
-| Option        | Type                                                          | Default     | Description                                                                                                                    |
-| ------------- | ------------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `title`       | `ReactNode`                                                   | -           | Toast title (first parameter for variant methods)                                                                              |
-| `description` | `ReactNode`                                                   | -           | Optional description text                                                                                                      |
-| `variant`     | `"default" \| "accent" \| "success" \| "warning" \| "danger"` | `"default"` | Visual variant                                                                                                                 |
-| `indicator`   | `ReactNode`                                                   | -           | Custom indicator icon (null to hide)                                                                                           |
-| `actionProps` | `ButtonProps`                                                 | -           | Props for action button                                                                                                        |
-| `isLoading`   | `boolean`                                                     | `false`     | Show loading spinner instead of indicator                                                                                      |
-| `timeout`     | `number`                                                      | `4000`      | Auto-dismiss timeout in milliseconds. Defaults to 4000ms (4 seconds). Set to `0` for persistent toasts that don't auto-dismiss |
-| `onClose`     | `() => void`                                                  | -           | Called when the toast is dismissed, as its exit animation starts                                                               |
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `title` | `ReactNode` | - | Toast title (first parameter for variant methods) |
+| `description` | `ReactNode` | - | Optional description text |
+| `variant` | `"default" \| "accent" \| "success" \| "warning" \| "danger"` | `"default"` | Visual variant |
+| `indicator` | `ReactNode` | - | Custom indicator icon (null to hide) |
+| `actionProps` | `ButtonProps` | - | Props for action button |
+| `isLoading` | `boolean` | `false` | Show loading spinner instead of indicator |
+| `timeout` | `number` | `4000` | Auto-dismiss timeout in milliseconds. Defaults to 4000ms (4 seconds). Set to `0` for persistent toasts that don't auto-dismiss |
+| `onClose` | `() => void` | - | Called when the toast is dismissed, as its exit animation starts |
 
 #### toast.promise Options
 
-| Option    | Type                                         | Default | Description                                |
-| --------- | -------------------------------------------- | ------- | ------------------------------------------ |
-| `loading` | `ReactNode`                                  | -       | Message shown while promise is pending     |
-| `success` | `ReactNode \| ((data: T) => ReactNode)`      | -       | Message shown on success (can be function) |
-| `error`   | `ReactNode \| ((error: Error) => ReactNode)` | -       | Message shown on error (can be function)   |
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `loading` | `ReactNode` | - | Message shown while promise is pending |
+| `success` | `ReactNode \| ((data: T) => ReactNode)` | - | Message shown on success (can be function) |
+| `error` | `ReactNode \| ((error: Error) => ReactNode)` | - | Message shown on error (can be function) |
 
 ## Accessibility
 

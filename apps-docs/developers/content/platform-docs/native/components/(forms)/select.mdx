@@ -1,7 +1,7 @@
 ---
 title: Select
 description: Displays a list of options for the user to pick from — triggered by a button.
-icon: updated
+status: updated
 links:
   source_native: select/select.tsx
   styles_native: select/select.styles.ts
@@ -9,16 +9,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/select-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/select-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/select-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/select-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { Select } from 'heroui-native'
+import { Select } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -123,7 +124,7 @@ Control the width of the select content using the `width` prop. This only works 
 {
   /* Fixed width in pixels */
 }
-;<Select>
+<Select>
   <Select.Trigger>...</Select.Trigger>
   <Select.Portal>
     <Select.Overlay />
@@ -131,12 +132,12 @@ Control the width of the select content using the `width` prop. This only works 
       <Select.Item value="1" label="Item 1" />
     </Select.Content>
   </Select.Portal>
-</Select>
+</Select>;
 
 {
   /* Match trigger width */
 }
-;<Select>
+<Select>
   <Select.Trigger>...</Select.Trigger>
   <Select.Portal>
     <Select.Overlay />
@@ -144,12 +145,12 @@ Control the width of the select content using the `width` prop. This only works 
       <Select.Item value="1" label="Item 1" />
     </Select.Content>
   </Select.Portal>
-</Select>
+</Select>;
 
 {
   /* Full width (100%) */
 }
-;<Select>
+<Select>
   <Select.Trigger>...</Select.Trigger>
   <Select.Portal>
     <Select.Overlay />
@@ -157,12 +158,12 @@ Control the width of the select content using the `width` prop. This only works 
       <Select.Item value="1" label="Item 1" />
     </Select.Content>
   </Select.Portal>
-</Select>
+</Select>;
 
 {
   /* Auto-size to content (default) */
 }
-;<Select>
+<Select>
   <Select.Trigger>...</Select.Trigger>
   <Select.Portal>
     <Select.Overlay />
@@ -170,7 +171,7 @@ Control the width of the select content using the `width` prop. This only works 
       <Select.Item value="1" label="Item 1" />
     </Select.Content>
   </Select.Portal>
-</Select>
+</Select>;
 ```
 
 ### Bottom Sheet Presentation
@@ -220,14 +221,14 @@ Customize item appearance with custom content and indicators.
     <Select.Overlay />
     <Select.Content presentation="popover">
       <Select.Item value="us" label="United States">
-        <View className="flex-1 flex-row items-center gap-3">
+        <View className="flex-row items-center gap-3 flex-1">
           <Text>🇺🇸</Text>
           <Select.ItemLabel />
         </View>
         <Select.ItemIndicator />
       </Select.Item>
       <Select.Item value="uk" label="United Kingdom">
-        <View className="flex-1 flex-row items-center gap-3">
+        <View className="flex-row items-center gap-3 flex-1">
           <Text>🇬🇧</Text>
           <Select.ItemLabel />
         </View>
@@ -251,7 +252,7 @@ Use a render function on `Select.Item` to access state and customize content bas
       <Select.Item value="us" label="United States">
         {({ isSelected, value, isDisabled }) => (
           <>
-            <View className="flex-1 flex-row items-center gap-3">
+            <View className="flex-row items-center gap-3 flex-1">
               <Text>🇺🇸</Text>
               <Select.ItemLabel
                 className={
@@ -266,7 +267,7 @@ Use a render function on `Select.Item` to access state and customize content bas
       <Select.Item value="uk" label="United Kingdom">
         {({ isSelected }) => (
           <>
-            <View className="flex-1 flex-row items-center gap-3">
+            <View className="flex-row items-center gap-3 flex-1">
               <Text>🇬🇧</Text>
               <Select.ItemLabel
                 className={
@@ -354,14 +355,15 @@ Use the `unstyled` variant when composing a custom trigger with other components
 Control the select state programmatically.
 
 ```tsx
-const [value, setValue] = useState()
-const [isOpen, setIsOpen] = useState(false)
+const [value, setValue] = useState();
+const [isOpen, setIsOpen] = useState(false);
 
-;<Select
+<Select
   value={value}
   onValueChange={setValue}
   isOpen={isOpen}
-  onOpenChange={setIsOpen}>
+  onOpenChange={setIsOpen}
+>
   <Select.Trigger>
     <Select.Value placeholder="Select..." />
     <Select.TriggerIndicator />
@@ -373,29 +375,29 @@ const [isOpen, setIsOpen] = useState(false)
       <Select.Item value="2" label="Option 2" />
     </Select.Content>
   </Select.Portal>
-</Select>
+</Select>;
 ```
 
 ## Example
 
 ```tsx
-import { Select, Separator } from 'heroui-native'
-import React, { useState } from 'react'
+import { Select, Separator } from 'heroui-native';
+import React, { useState } from 'react';
 
 type SelectOption = {
-  value: string
-  label: string
-}
+  value: string;
+  label: string;
+};
 
 const US_STATES: SelectOption[] = [
   { value: 'CA', label: 'California' },
   { value: 'NY', label: 'New York' },
   { value: 'TX', label: 'Texas' },
-  { value: 'FL', label: 'Florida' }
-]
+  { value: 'FL', label: 'Florida' },
+];
 
 export default function SelectExample() {
-  const [value, setValue] = useState<SelectOption | undefined>()
+  const [value, setValue] = useState<SelectOption | undefined>();
 
   return (
     <Select value={value} onValueChange={setValue}>
@@ -416,30 +418,30 @@ export default function SelectExample() {
         </Select.Content>
       </Select.Portal>
     </Select>
-  )
+  );
 }
 ```
 
-You can find more examples in the [GitHub repository](<https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/select.tsx>).
+You can find more examples in the [GitHub repository](https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/select.tsx).
 
 ## API Reference
 
 ### Select
 
-| prop            | type                                              | default     | description                                                            |
-| --------------- | ------------------------------------------------- | ----------- | ---------------------------------------------------------------------- |
-| `children`      | `ReactNode`                                       | -           | The content of the select                                              |
+| prop            | type                                      | default     | description                                                            |
+| --------------- | ----------------------------------------- | ----------- | ---------------------------------------------------------------------- |
+| `children`      | `ReactNode`                               | -           | The content of the select                                              |
 | `value`         | `SelectOption \| SelectOption[]`                  | -           | The selected value(s) (controlled mode)                                |
 | `onValueChange` | `(value: SelectOption \| SelectOption[]) => void` | -           | Callback when the value changes                                        |
 | `defaultValue`  | `SelectOption \| SelectOption[]`                  | -           | The default selected value(s) (uncontrolled mode)                      |
-| `isOpen`        | `boolean`                                         | -           | Whether the select is open (controlled mode)                           |
-| `isDefaultOpen` | `boolean`                                         | -           | Whether the select is open when initially rendered (uncontrolled mode) |
-| `onOpenChange`  | `(isOpen: boolean) => void`                       | -           | Callback when the select open state changes                            |
-| `isDisabled`    | `boolean`                                         | `false`     | Whether the select is disabled                                         |
-| `presentation`  | `'popover' \| 'bottom-sheet' \| 'dialog'`         | `'popover'` | Presentation mode for the select content                               |
-| `animation`     | `SelectRootAnimation`                             | -           | Animation configuration                                                |
-| `asChild`       | `boolean`                                         | `false`     | Whether to render as a child element                                   |
-| `...ViewProps`  | `ViewProps`                                       | -           | All standard React Native View props are supported                     |
+| `isOpen`        | `boolean`                                 | -           | Whether the select is open (controlled mode)                           |
+| `isDefaultOpen` | `boolean`                                 | -           | Whether the select is open when initially rendered (uncontrolled mode) |
+| `onOpenChange`  | `(isOpen: boolean) => void`               | -           | Callback when the select open state changes                            |
+| `isDisabled`    | `boolean`                                 | `false`     | Whether the select is disabled                                         |
+| `presentation`  | `'popover' \| 'bottom-sheet' \| 'dialog'` | `'popover'` | Presentation mode for the select content                               |
+| `animation`     | `SelectRootAnimation`                     | -           | Animation configuration                                                |
+| `asChild`       | `boolean`                                 | `false`     | Whether to render as a child element                                   |
+| `...ViewProps`  | `ViewProps`                               | -           | All standard React Native View props are supported                     |
 
 #### SelectRootAnimation
 
@@ -535,15 +537,15 @@ Animation configuration for Select.TriggerIndicator component. Can be:
 
 ### Select.Portal
 
-| prop                                         | type        | default | description                                                                                                                                                                                                      |
-| -------------------------------------------- | ----------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `children`                                   | `ReactNode` | -       | The portal content (required)                                                                                                                                                                                    |
-| `disableFullWindowOverlay`                   | `boolean`   | `false` | When true on iOS, uses View instead of FullWindowOverlay. Enables element inspector; overlay won't appear above native modals                                                                                    |
-| `unstable_accessibilityContainerViewIsModal` | `boolean`   | `false` | Controls whether VoiceOver treats the overlay window as a modal container. When `true`, VoiceOver is restricted to elements inside the overlay. iOS only. Unstable: may change with react-native-screens updates |
-| `className`                                  | `string`    | -       | Additional CSS classes for the portal container                                                                                                                                                                  |
-| `hostName`                                   | `string`    | -       | Optional name of the host element for the portal                                                                                                                                                                 |
-| `forceMount`                                 | `boolean`   | -       | Whether to force mount the component in the DOM                                                                                                                                                                  |
-| `...ViewProps`                               | `ViewProps` | -       | All standard React Native View props are supported                                                                                                                                                               |
+| prop                       | type        | default | description                                                                                                                   |
+| -------------------------- | ----------- | ------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `children`                 | `ReactNode` | -       | The portal content (required)                                                                                                 |
+| `disableFullWindowOverlay` | `boolean`   | `false` | When true on iOS, uses View instead of FullWindowOverlay. Enables element inspector; overlay won't appear above native modals |
+| `unstable_accessibilityContainerViewIsModal` | `boolean` | `false` | Controls whether VoiceOver treats the overlay window as a modal container. When `true`, VoiceOver is restricted to elements inside the overlay. iOS only. Unstable: may change with react-native-screens updates |
+| `className`                | `string`    | -       | Additional CSS classes for the portal container                                                                               |
+| `hostName`                 | `string`    | -       | Optional name of the host element for the portal                                                                              |
+| `forceMount`               | `boolean`   | -       | Whether to force mount the component in the DOM                                                                               |
+| `...ViewProps`             | `ViewProps` | -       | All standard React Native View props are supported                                                                            |
 
 ### Select.Overlay
 
@@ -708,9 +710,9 @@ When using a render function for `children`, the following props are provided:
 
 #### SelectItemIndicatorIconProps
 
-| prop    | type     | default                            | description       |
-| ------- | -------- | ---------------------------------- | ----------------- |
-| `size`  | `number` | `16`                               | Size of the icon  |
+| prop    | type     | default          | description       |
+| ------- | -------- | ---------------- | ----------------- |
+| `size`  | `number` | `16`             | Size of the icon  |
 | `color` | `string` | theme accent-soft-foreground color | Color of the icon |
 
 ## Hooks
@@ -720,7 +722,7 @@ When using a render function for `children`, the following props are provided:
 Hook to access the Select root context. Returns the select state and control functions.
 
 ```tsx
-import { useSelect } from 'heroui-native'
+import { useSelect } from 'heroui-native';
 
 const {
   isOpen,
@@ -734,24 +736,24 @@ const {
   setContentLayout,
   nativeID,
   value,
-  onValueChange
-} = useSelect()
+  onValueChange,
+} = useSelect();
 ```
 
 #### Return Value
 
-| property             | type                                               | description                                               |
-| -------------------- | -------------------------------------------------- | --------------------------------------------------------- |
-| `isOpen`             | `boolean`                                          | Whether the select is currently open                      |
-| `onOpenChange`       | `(open: boolean) => void`                          | Callback to change the open state                         |
-| `isDefaultOpen`      | `boolean \| undefined`                             | Whether the select is open by default (uncontrolled mode) |
-| `isDisabled`         | `boolean \| undefined`                             | Whether the select is disabled                            |
-| `presentation`       | `'popover' \| 'bottom-sheet' \| 'dialog'`          | Presentation mode for the select content                  |
-| `triggerPosition`    | `LayoutPosition \| null`                           | Position of the trigger element relative to viewport      |
-| `setTriggerPosition` | `(position: LayoutPosition \| null) => void`       | Updates the trigger element's position                    |
-| `contentLayout`      | `LayoutRectangle \| null`                          | Layout measurements of the select content                 |
-| `setContentLayout`   | `(layout: LayoutRectangle \| null) => void`        | Updates the content layout measurements                   |
-| `nativeID`           | `string`                                           | Unique identifier for the select instance                 |
+| property             | type                                         | description                                               |
+| -------------------- | -------------------------------------------- | --------------------------------------------------------- |
+| `isOpen`             | `boolean`                                    | Whether the select is currently open                      |
+| `onOpenChange`       | `(open: boolean) => void`                    | Callback to change the open state                         |
+| `isDefaultOpen`      | `boolean \| undefined`                       | Whether the select is open by default (uncontrolled mode) |
+| `isDisabled`         | `boolean \| undefined`                       | Whether the select is disabled                            |
+| `presentation`       | `'popover' \| 'bottom-sheet' \| 'dialog'`    | Presentation mode for the select content                  |
+| `triggerPosition`    | `LayoutPosition \| null`                     | Position of the trigger element relative to viewport      |
+| `setTriggerPosition` | `(position: LayoutPosition \| null) => void` | Updates the trigger element's position                    |
+| `contentLayout`      | `LayoutRectangle \| null`                    | Layout measurements of the select content                 |
+| `setContentLayout`   | `(layout: LayoutRectangle \| null) => void`  | Updates the content layout measurements                   |
+| `nativeID`           | `string`                                     | Unique identifier for the select instance                 |
 | `value`              | `SelectOption \| SelectOption[]`                   | Currently selected option                                 |
 | `onValueChange`      | `(option: SelectOption \| SelectOption[]) => void` | Callback fired when the selected value changes            |
 
@@ -762,10 +764,10 @@ const {
 Hook to access the Select animation state values within custom components or compound components.
 
 ```tsx
-import { useSelectAnimation } from 'heroui-native'
+import { useSelectAnimation } from 'heroui-native';
 
 const { selectState, progress, isDragging, isGestureReleaseAnimationRunning } =
-  useSelectAnimation()
+  useSelectAnimation();
 ```
 
 #### Return Value
@@ -790,9 +792,9 @@ const { selectState, progress, isDragging, isGestureReleaseAnimationRunning } =
 Hook to access the Select Item context. Returns the item's value and label.
 
 ```tsx
-import { useSelectItem } from 'heroui-native'
+import { useSelectItem } from 'heroui-native';
 
-const { itemValue, label } = useSelectItem()
+const { itemValue, label } = useSelectItem();
 ```
 
 #### Return Value
@@ -813,11 +815,11 @@ Select uses FullWindowOverlay on iOS. To enable the React Native element inspect
 When a `Select` is opened inside a screen presented as a native modal (`presentation: 'modal' | 'formSheet' | 'pageSheet'`), the dropdown may render shifted upward. In the new architecture (Fabric), `react-native-screens` marks `RNSModalScreen` as a Fabric root, so the trigger's position is reported relative to the modal's origin while `FullWindowOverlay` (where the dropdown is mounted) is anchored to the iOS application window. Compensate by adding `safeAreaInsets.top` to `offset`:
 
 ```tsx
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const insets = useSafeAreaInsets()
+const insets = useSafeAreaInsets();
 
-;<Select.Content presentation="popover" offset={insets.top + 10}>
+<Select.Content presentation="popover" offset={insets.top + 10}>
   ...
-</Select.Content>
+</Select.Content>;
 ```

@@ -3,17 +3,11 @@ title: ScrollShadow
 description: Migration guide for ScrollShadow from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 ScrollShadow
-  documentation](/docs-ui/web/components/scroll-shadow) for complete API
-  reference, styling guide, and advanced examples. This guide only focuses on
-  migrating from HeroUI v2.
+  Refer to the [v3 ScrollShadow documentation](/docs-ui/web/components/scroll-shadow) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -21,20 +15,28 @@ import {
 In v2, `ScrollShadow` was a wrapper component:
 
 ```tsx
-import { ScrollShadow } from '@heroui/scroll-shadow'
+import { ScrollShadow } from "@heroui/scroll-shadow";
 
 export default function App() {
-  return <ScrollShadow>{/* scrollable content */}</ScrollShadow>
+  return (
+    <ScrollShadow>
+      {/* scrollable content */}
+    </ScrollShadow>
+  );
 }
 ```
 
 In v3, `ScrollShadow` has the same basic structure but with more configuration options:
 
 ```tsx
-import { ScrollShadow } from '@heroui/react'
+import { ScrollShadow } from "@heroui/react";
 
 export default function App() {
-  return <ScrollShadow>{/* scrollable content */}</ScrollShadow>
+  return (
+    <ScrollShadow>
+      {/* scrollable content */}
+    </ScrollShadow>
+  );
 }
 ```
 
@@ -42,23 +44,22 @@ export default function App() {
 
 ### 1. Import Path
 
-**v2:** Imported from `@heroui/scroll-shadow` package  
+**v2:** Imported from `@heroui/scroll-shadow` package
 **v3:** Imported from `@heroui/react` unified package
 
 ### 2. Visibility Control
 
-**v2:** `visibility` prop controlled shadow placement  
+**v2:** `visibility` prop controlled shadow placement
 **v3:** Enhanced `visibility` prop with more options and `onVisibilityChange` callback
 
 ### 3. Shadow Size Control
 
-**v2:** Shadow size was fixed or limited customization  
+**v2:** Shadow size was fixed or limited customization
 **v3:** `size` prop allows custom shadow size in pixels
 
 ### 4. Enhanced Props
 
 **v3:** New props available:
-
 - `size` - Shadow size in pixels (default: 40)
 - `offset` - Scroll offset before showing shadows (default: 0)
 - `isEnabled` - Enable/disable shadow detection (default: true)
@@ -70,10 +71,12 @@ export default function App() {
 
 ### Custom Shadow Size
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
-    <ScrollShadow>{/* Shadow size was fixed */}</ScrollShadow>
+    <ScrollShadow>
+      {/* Shadow size was fixed */}
+    </ScrollShadow>
     ```
   </Tab>
   <Tab value="v3">
@@ -116,13 +119,12 @@ export default function App() {
       );
     }
     ```
-
   </Tab>
 </Tabs>
 
 ### Variant
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <ScrollShadow>

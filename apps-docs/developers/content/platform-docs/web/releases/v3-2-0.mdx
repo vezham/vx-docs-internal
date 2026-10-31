@@ -5,15 +5,11 @@ github:
   pull: 6616
 ---
 
-import {
-  Callout,
-  PRContributors,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, ComponentPreview, PRContributors, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">June 15, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">June 15, 2026</span>
 </div>
 
 Calendar gains week and day views, a reworked year picker, and range demos built on React Aria 1.18. [Autocomplete](https://heroui.com/docs/components/autocomplete) adds a Virtualizer example for large option lists. [Tooltip](https://heroui.com/docs/components/tooltip) adds theme variables for global show and hide delays. The toggles (`Radio`, `Checkbox`, `Switch`) move to React Aria's `*Field` + `*Button` composition. This release also rolls in patch fixes for virtualized lists, grouped-field autofill, toast and fieldset behavior, and scroll and RTL styles.
@@ -24,26 +20,31 @@ Calendar gains week and day views, a reworked year picker, and range demos built
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
   <Tab value="npm">
-    ```bash npm i @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    npm i @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="pnpm">
-    ```bash pnpm add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    pnpm add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="yarn">
-    ```bash yarn add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    yarn add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="bun">
-    ```bash bun add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    bun add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Prompt "Hey Cursor, update HeroUI to the latest
-  version" and your AI assistant will compare versions and apply the necessary
-  changes. Learn more about the [HeroUI MCP
-  Server](https://heroui.com/docs/ui-for-agents/mcp-server).
+  **Using AI assistants?** Prompt "Hey Cursor, update HeroUI to the latest version" and your AI assistant will compare versions and apply the necessary changes. Learn more about the [HeroUI MCP Server](https://heroui.com/docs/ui-for-agents/mcp-server).
 </Callout>
 
 ## What's New
@@ -59,30 +60,35 @@ Update to the latest version:
 
 **Week view:**
 
-[Live example: calendar-week-view](https://heroui.com/docs/react/releases/v3-2-0)
 
-```tsx
-'use client'
+<ComponentPreview name="calendar-week-view">
+
+````tsx
+"use client";
+
+import {Calendar, Label, ListBox, Select} from "@vezham/react-v3";
+import {useState} from "react";
 
 const weekOptions = [
-  { id: '1', name: '1 week' },
-  { id: '2', name: '2 weeks' },
-  { id: '3', name: '3 weeks' },
-  { id: '4', name: '4 weeks' },
-  { id: '5', name: '5 weeks' },
-  { id: '6', name: '6 weeks' },
-  { id: '8', name: '8 weeks' }
-] as const
+  {id: "1", name: "1 week"},
+  {id: "2", name: "2 weeks"},
+  {id: "3", name: "3 weeks"},
+  {id: "4", name: "4 weeks"},
+  {id: "5", name: "5 weeks"},
+  {id: "6", name: "6 weeks"},
+  {id: "8", name: "8 weeks"},
+] as const;
 
 export function WeekView() {
-  const [weeks, setWeeks] = useState(1)
+  const [weeks, setWeeks] = useState(1);
 
   return (
     <div className="flex flex-col items-center gap-6">
       <Select
         className="w-40"
         value={String(weeks)}
-        onChange={value => value && setWeeks(Number(value))}>
+        onChange={(value) => value && setWeeks(Number(value))}
+      >
         <Label>Visible weeks</Label>
         <Select.Trigger>
           <Select.Value />
@@ -90,11 +96,8 @@ export function WeekView() {
         </Select.Trigger>
         <Select.Popover>
           <ListBox>
-            {weekOptions.map(option => (
-              <ListBox.Item
-                key={option.id}
-                id={option.id}
-                textValue={option.name}>
+            {weekOptions.map((option) => (
+              <ListBox.Item key={option.id} id={option.id} textValue={option.name}>
                 {option.name}
                 <ListBox.ItemIndicator />
               </ListBox.Item>
@@ -103,7 +106,7 @@ export function WeekView() {
         </Select.Popover>
       </Select>
 
-      <Calendar aria-label="Week view" visibleDuration={{ weeks }}>
+      <Calendar aria-label="Week view" visibleDuration={{weeks}}>
         <Calendar.Header>
           <Calendar.Heading />
           <Calendar.NavButton slot="previous" />
@@ -111,44 +114,50 @@ export function WeekView() {
         </Calendar.Header>
         <Calendar.Grid>
           <Calendar.GridHeader>
-            {day => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
+            {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
           </Calendar.GridHeader>
-          <Calendar.GridBody>
-            {date => <Calendar.Cell date={date} />}
-          </Calendar.GridBody>
+          <Calendar.GridBody>{(date) => <Calendar.Cell date={date} />}</Calendar.GridBody>
         </Calendar.Grid>
       </Calendar>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 **Day view:**
 
-[Live example: calendar-day-view](https://heroui.com/docs/react/releases/v3-2-0)
 
-```tsx
-'use client'
+<ComponentPreview name="calendar-day-view">
+
+````tsx
+"use client";
+
+import {Calendar, Label, ListBox, Select} from "@vezham/react-v3";
+import {useState} from "react";
 
 const dayOptions = [
-  { id: '1', name: '1 day' },
-  { id: '5', name: '5 days' },
-  { id: '7', name: '7 days' },
-  { id: '8', name: '8 days' },
-  { id: '10', name: '10 days' },
-  { id: '14', name: '14 days' },
-  { id: '21', name: '21 days' }
-] as const
+  {id: "1", name: "1 day"},
+  {id: "5", name: "5 days"},
+  {id: "7", name: "7 days"},
+  {id: "8", name: "8 days"},
+  {id: "10", name: "10 days"},
+  {id: "14", name: "14 days"},
+  {id: "21", name: "21 days"},
+] as const;
 
 export function DayView() {
-  const [days, setDays] = useState(5)
+  const [days, setDays] = useState(5);
 
   return (
     <div className="flex flex-col items-center gap-6">
       <Select
         className="w-40"
         value={String(days)}
-        onChange={value => value && setDays(Number(value))}>
+        onChange={(value) => value && setDays(Number(value))}
+      >
         <Label>Visible days</Label>
         <Select.Trigger>
           <Select.Value />
@@ -156,11 +165,8 @@ export function DayView() {
         </Select.Trigger>
         <Select.Popover>
           <ListBox>
-            {dayOptions.map(option => (
-              <ListBox.Item
-                key={option.id}
-                id={option.id}
-                textValue={option.name}>
+            {dayOptions.map((option) => (
+              <ListBox.Item key={option.id} id={option.id} textValue={option.name}>
                 {option.name}
                 <ListBox.ItemIndicator />
               </ListBox.Item>
@@ -169,7 +175,7 @@ export function DayView() {
         </Select.Popover>
       </Select>
 
-      <Calendar aria-label="Day view" visibleDuration={{ days }}>
+      <Calendar aria-label="Day view" visibleDuration={{days}}>
         <Calendar.Header>
           <Calendar.Heading />
           <Calendar.NavButton slot="previous" />
@@ -177,35 +183,38 @@ export function DayView() {
         </Calendar.Header>
         <Calendar.Grid>
           <Calendar.GridHeader>
-            {day => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
+            {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
           </Calendar.GridHeader>
-          <Calendar.GridBody>
-            {date => <Calendar.Cell date={date} />}
-          </Calendar.GridBody>
+          <Calendar.GridBody>{(date) => <Calendar.Cell date={date} />}</Calendar.GridBody>
         </Calendar.Grid>
       </Calendar>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 **Multiple selection:**
 
-[Live example: calendar-multiple-selection](https://heroui.com/docs/react/releases/v3-2-0)
 
-```tsx
-'use client'
+<ComponentPreview name="calendar-multiple-selection">
+
+````tsx
+"use client";
+
+import type {DateValue} from "@internationalized/date";
+
+import {Calendar, Description} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function MultipleSelection() {
-  const [value, setValue] = useState<readonly DateValue[]>([])
+  const [value, setValue] = useState<readonly DateValue[]>([]);
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <Calendar
-        aria-label="Event dates"
-        selectionMode="multiple"
-        value={value}
-        onChange={setValue}>
+      <Calendar aria-label="Event dates" selectionMode="multiple" value={value} onChange={setValue}>
         <Calendar.Header>
           <Calendar.Heading />
           <Calendar.NavButton slot="previous" />
@@ -213,22 +222,21 @@ export function MultipleSelection() {
         </Calendar.Header>
         <Calendar.Grid>
           <Calendar.GridHeader>
-            {day => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
+            {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
           </Calendar.GridHeader>
-          <Calendar.GridBody>
-            {date => <Calendar.Cell date={date} />}
-          </Calendar.GridBody>
+          <Calendar.GridBody>{(date) => <Calendar.Cell date={date} />}</Calendar.GridBody>
         </Calendar.Grid>
       </Calendar>
       <Description className="text-center">
-        {value?.length
-          ? `${value.length} date(s) selected`
-          : 'Select multiple dates'}
+        {value?.length ? `${value.length} date(s) selected` : "Select multiple dates"}
       </Description>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Autocomplete
 
@@ -239,10 +247,13 @@ Virtualizer support for large option lists, with docs, Storybook, and style fixe
 
 **Virtualization:**
 
-[Live example: autocomplete-virtualization](https://heroui.com/docs/react/releases/v3-2-0)
 
-```tsx
-'use client'
+<ComponentPreview name="autocomplete-virtualization">
+
+````tsx
+"use client";
+
+import type {Key} from "@vezham/react-v3";
 
 import {
   Autocomplete,
@@ -253,93 +264,92 @@ import {
   ListLayout,
   SearchField,
   Virtualizer,
-  useFilter
-} from '@heroui/react'
+  useFilter,
+} from "@vezham/react-v3";
+import {useMemo, useState} from "react";
 
 interface User {
-  email: string
-  id: number
-  name: string
+  email: string;
+  id: number;
+  name: string;
 }
 
 function generateUsers(n: number): User[] {
   const firstNames = [
-    'Emma',
-    'Liam',
-    'Olivia',
-    'Noah',
-    'Ava',
-    'James',
-    'Sophia',
-    'Oliver',
-    'Isabella',
-    'Lucas',
-    'Mia',
-    'Ethan',
-    'Charlotte',
-    'Mason',
-    'Amelia',
-    'Logan',
-    'Harper',
-    'Alexander',
-    'Ella',
-    'Benjamin'
-  ]
+    "Emma",
+    "Liam",
+    "Olivia",
+    "Noah",
+    "Ava",
+    "James",
+    "Sophia",
+    "Oliver",
+    "Isabella",
+    "Lucas",
+    "Mia",
+    "Ethan",
+    "Charlotte",
+    "Mason",
+    "Amelia",
+    "Logan",
+    "Harper",
+    "Alexander",
+    "Ella",
+    "Benjamin",
+  ];
   const lastNames = [
-    'Smith',
-    'Johnson',
-    'Williams',
-    'Brown',
-    'Jones',
-    'Garcia',
-    'Miller',
-    'Davis',
-    'Rodriguez',
-    'Martinez',
-    'Anderson',
-    'Taylor',
-    'Thomas',
-    'Jackson',
-    'White',
-    'Harris',
-    'Clark',
-    'Lewis',
-    'Robinson',
-    'Walker'
-  ]
-  const users: User[] = []
+    "Smith",
+    "Johnson",
+    "Williams",
+    "Brown",
+    "Jones",
+    "Garcia",
+    "Miller",
+    "Davis",
+    "Rodriguez",
+    "Martinez",
+    "Anderson",
+    "Taylor",
+    "Thomas",
+    "Jackson",
+    "White",
+    "Harris",
+    "Clark",
+    "Lewis",
+    "Robinson",
+    "Walker",
+  ];
+  const users: User[] = [];
 
   for (let i = 0; i < n; i++) {
-    const firstName = firstNames[i % firstNames.length]!
-    const lastName =
-      lastNames[Math.floor(i / firstNames.length) % lastNames.length]!
-    const name = `${firstName} ${lastName}`
+    const firstName = firstNames[i % firstNames.length]!;
+    const lastName = lastNames[Math.floor(i / firstNames.length) % lastNames.length]!;
+    const name = `${firstName} ${lastName}`;
 
     users.push({
       email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}@acme.com`,
       id: i + 1,
-      name
-    })
+      name,
+    });
   }
 
-  return users
+  return users;
 }
 
 export function Virtualization() {
-  const [selectedKey, setSelectedKey] = useState<Key | null>(null)
-  const [searchQuery, setSearchQuery] = useState('')
-  const { contains } = useFilter({ sensitivity: 'base' })
+  const [selectedKey, setSelectedKey] = useState<Key | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const {contains} = useFilter({sensitivity: "base"});
 
-  const allUsers = useMemo(() => generateUsers(1000), [])
+  const allUsers = useMemo(() => generateUsers(1000), []);
 
   const filteredUsers = useMemo(() => {
-    if (!searchQuery) return allUsers
+    if (!searchQuery) return allUsers;
 
     return allUsers.filter(
-      user =>
-        contains(user.name, searchQuery) || contains(user.email, searchQuery)
-    )
-  }, [allUsers, contains, searchQuery])
+      (user) => contains(user.name, searchQuery) || contains(user.email, searchQuery),
+    );
+  }, [allUsers, contains, searchQuery]);
 
   return (
     <Autocomplete
@@ -348,7 +358,8 @@ export function Virtualization() {
       placeholder="Select a user"
       selectionMode="single"
       value={selectedKey}
-      onChange={setSelectedKey}>
+      onChange={setSelectedKey}
+    >
       <Label>User</Label>
       <Autocomplete.Trigger>
         <Autocomplete.Value />
@@ -356,28 +367,26 @@ export function Virtualization() {
         <Autocomplete.Indicator />
       </Autocomplete.Trigger>
       <Autocomplete.Popover>
-        <Autocomplete.Filter
-          inputValue={searchQuery}
-          onInputChange={setSearchQuery}>
+        <Autocomplete.Filter inputValue={searchQuery} onInputChange={setSearchQuery}>
           <SearchField
             autoFocus
             aria-label="Search users"
             className="sticky top-0 z-10"
             name="search"
-            variant="secondary">
+            variant="secondary"
+          >
             <SearchField.Group>
               <SearchField.SearchIcon />
               <SearchField.Input placeholder="Search users..." />
               <SearchField.ClearButton />
             </SearchField.Group>
           </SearchField>
-          <Virtualizer layout={ListLayout} layoutOptions={{ rowHeight: 50 }}>
+          <Virtualizer layout={ListLayout} layoutOptions={{rowHeight: 50}}>
             <ListBox
               items={filteredUsers}
-              renderEmptyState={() => (
-                <EmptyState>No results found</EmptyState>
-              )}>
-              {user => (
+              renderEmptyState={() => <EmptyState>No results found</EmptyState>}
+            >
+              {(user) => (
                 <ListBox.Item id={user.id} textValue={user.name}>
                   <div className="flex flex-col">
                     <Label>{user.name}</Label>
@@ -391,9 +400,12 @@ export function Virtualization() {
         </Autocomplete.Filter>
       </Autocomplete.Popover>
     </Autocomplete>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Table.SortableColumnHeader
 
@@ -401,7 +413,7 @@ export function Virtualization() {
 
 ```tsx
 <Table.Column allowsSorting>
-  {({ sortDirection }) => (
+  {({sortDirection}) => (
     <Table.SortableColumnHeader sortDirection={sortDirection}>
       Name
     </Table.SortableColumnHeader>
@@ -413,77 +425,59 @@ export function Virtualization() {
 - **Custom indicator**: Pass `indicator`, or hide it with `showIndicator={false}`
 - **Style slots**: `.table__sortable-column-header` + `.table__sortable-column-indicator`
 
-[Live example: table-sorting](https://heroui.com/docs/react/releases/v3-2-0)
 
-```tsx
-'use client'
+<ComponentPreview name="table-sorting">
+
+````tsx
+"use client";
+
+import type {SortDescriptor} from "@vezham/react-v3";
+
+import {Table} from "@vezham/react-v3";
+import {useMemo, useState} from "react";
 
 interface User {
-  id: number
-  name: string
-  role: string
-  status: string
-  email: string
+  id: number;
+  name: string;
+  role: string;
+  status: string;
+  email: string;
 }
 
 const users: User[] = [
+  {email: "kate@acme.com", id: 1, name: "Kate Moore", role: "CEO", status: "Active"},
+  {email: "john@acme.com", id: 2, name: "John Smith", role: "CTO", status: "Active"},
+  {email: "sara@acme.com", id: 3, name: "Sara Johnson", role: "CMO", status: "On Leave"},
+  {email: "michael@acme.com", id: 4, name: "Michael Brown", role: "CFO", status: "Active"},
   {
-    email: 'kate@acme.com',
-    id: 1,
-    name: 'Kate Moore',
-    role: 'CEO',
-    status: 'Active'
-  },
-  {
-    email: 'john@acme.com',
-    id: 2,
-    name: 'John Smith',
-    role: 'CTO',
-    status: 'Active'
-  },
-  {
-    email: 'sara@acme.com',
-    id: 3,
-    name: 'Sara Johnson',
-    role: 'CMO',
-    status: 'On Leave'
-  },
-  {
-    email: 'michael@acme.com',
-    id: 4,
-    name: 'Michael Brown',
-    role: 'CFO',
-    status: 'Active'
-  },
-  {
-    email: 'emily@acme.com',
+    email: "emily@acme.com",
     id: 5,
-    name: 'Emily Davis',
-    role: 'Product Manager',
-    status: 'Inactive'
-  }
-]
+    name: "Emily Davis",
+    role: "Product Manager",
+    status: "Inactive",
+  },
+];
 
 export function Sorting() {
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>({
-    column: 'name',
-    direction: 'ascending'
-  })
+    column: "name",
+    direction: "ascending",
+  });
 
   const sortedUsers = useMemo(() => {
     return [...users].sort((a, b) => {
-      const col = sortDescriptor.column as keyof User
-      const first = String(a[col])
-      const second = String(b[col])
-      let cmp = first.localeCompare(second)
+      const col = sortDescriptor.column as keyof User;
+      const first = String(a[col]);
+      const second = String(b[col]);
+      let cmp = first.localeCompare(second);
 
-      if (sortDescriptor.direction === 'descending') {
-        cmp *= -1
+      if (sortDescriptor.direction === "descending") {
+        cmp *= -1;
       }
 
-      return cmp
-    })
-  }, [sortDescriptor])
+      return cmp;
+    });
+  }, [sortDescriptor]);
 
   return (
     <Table>
@@ -492,31 +486,32 @@ export function Sorting() {
           aria-label="Sortable table"
           className="min-w-[600px]"
           sortDescriptor={sortDescriptor}
-          onSortChange={setSortDescriptor}>
+          onSortChange={setSortDescriptor}
+        >
           <Table.Header>
             <Table.Column allowsSorting isRowHeader id="name">
-              {({ sortDirection }) => (
+              {({sortDirection}) => (
                 <Table.SortableColumnHeader sortDirection={sortDirection}>
                   Name
                 </Table.SortableColumnHeader>
               )}
             </Table.Column>
             <Table.Column allowsSorting id="role">
-              {({ sortDirection }) => (
+              {({sortDirection}) => (
                 <Table.SortableColumnHeader sortDirection={sortDirection}>
                   Role
                 </Table.SortableColumnHeader>
               )}
             </Table.Column>
             <Table.Column allowsSorting id="status">
-              {({ sortDirection }) => (
+              {({sortDirection}) => (
                 <Table.SortableColumnHeader sortDirection={sortDirection}>
                   Status
                 </Table.SortableColumnHeader>
               )}
             </Table.Column>
             <Table.Column allowsSorting id="email">
-              {({ sortDirection }) => (
+              {({sortDirection}) => (
                 <Table.SortableColumnHeader sortDirection={sortDirection}>
                   Email
                 </Table.SortableColumnHeader>
@@ -524,7 +519,7 @@ export function Sorting() {
             </Table.Column>
           </Table.Header>
           <Table.Body>
-            {sortedUsers.map(user => (
+            {sortedUsers.map((user) => (
               <Table.Row key={user.id} id={user.id}>
                 <Table.Cell>{user.name}</Table.Cell>
                 <Table.Cell>{user.role}</Table.Cell>
@@ -536,9 +531,12 @@ export function Sorting() {
         </Table.Content>
       </Table.ScrollContainer>
     </Table>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Tooltip delay theme variables
 
@@ -559,9 +557,7 @@ Override them globally:
 Individual `delay` and `closeDelay` props still override these values on specific tooltips.
 
 <Callout type="warning">
-  **Behavior change:** With the default HeroUI theme, tooltip delays now default
-  to `1500ms` / `500ms` instead of the previous React Aria defaults of `700ms` /
-  `0ms`. Set the CSS variables or props explicitly to preserve the old timing.
+  **Behavior change:** With the default HeroUI theme, tooltip delays now default to `1500ms` / `500ms` instead of the previous React Aria defaults of `700ms` / `0ms`. Set the CSS variables or props explicitly to preserve the old timing.
 </Callout>
 
 ## Component Fixes
@@ -677,12 +673,12 @@ These toggles now use React Aria's `*Field` + `*Button` composition under the ho
 
 **Migration summary**
 
-| v3.1                                                         | v3.2                                                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `X.Control` and `X.Content` are siblings                     | `X.Control` nests inside `X.Content`                                     |
+| v3.1 | v3.2 |
+|------|------|
+| `X.Control` and `X.Content` are siblings | `X.Control` nests inside `X.Content` |
 | `X.Content` is a layout `<div>` wrapping `Label` + help text | `X.Content` is the clickable `<label>` wrapping `X.Control` + label text |
-| Label provided via `<Label>` inside `X.Content`              | Label is **plain text** inside `X.Content` (no nested `<Label>`)         |
-| `Description` / `FieldError` inside `X.Content`              | `Description` / `FieldError` as siblings of `X.Content`                  |
+| Label provided via `<Label>` inside `X.Content` | Label is **plain text** inside `X.Content` (no nested `<Label>`) |
+| `Description` / `FieldError` inside `X.Content` | `Description` / `FieldError` as siblings of `X.Content` |
 
 **External label** — to use a standalone `Label`, place it outside the toggle and link it with `htmlFor` + the toggle `id`:
 

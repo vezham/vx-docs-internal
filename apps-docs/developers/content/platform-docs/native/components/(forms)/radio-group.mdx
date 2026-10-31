@@ -8,16 +8,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/radio-group-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/radio-group-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/radio-group-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/radio-group-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { RadioGroup } from 'heroui-native'
+import { RadioGroup } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -66,10 +67,10 @@ RadioGroup with simple string children automatically renders title and indicator
 Add descriptive text below each radio option for additional context.
 
 ```tsx
-import { Description, Label, Radio, RadioGroup } from 'heroui-native'
-import { View } from 'react-native'
+import { RadioGroup, Radio, Label, Description } from 'heroui-native';
+import { View } from 'react-native';
 
-;<RadioGroup value={value} onValueChange={setValue}>
+<RadioGroup value={value} onValueChange={setValue}>
   <RadioGroup.Item value="standard">
     <View>
       <Label>Standard Shipping</Label>
@@ -84,7 +85,7 @@ import { View } from 'react-native'
     </View>
     <Radio />
   </RadioGroup.Item>
-</RadioGroup>
+</RadioGroup>;
 ```
 
 ### Custom Indicator
@@ -92,9 +93,9 @@ import { View } from 'react-native'
 Replace the default indicator thumb with custom content using `Radio` sub-components.
 
 ```tsx
-import { Label, Radio, RadioGroup } from 'heroui-native'
+import { RadioGroup, Radio, Label } from 'heroui-native';
 
-;<RadioGroup value={value} onValueChange={setValue}>
+<RadioGroup value={value} onValueChange={setValue}>
   <RadioGroup.Item value="custom">
     {({ isSelected }) => (
       <>
@@ -111,7 +112,7 @@ import { Label, Radio, RadioGroup } from 'heroui-native'
       </>
     )}
   </RadioGroup.Item>
-</RadioGroup>
+</RadioGroup>;
 ```
 
 ### With Render Function
@@ -119,9 +120,9 @@ import { Label, Radio, RadioGroup } from 'heroui-native'
 Use a render function on RadioGroup.Item to access state and customize the entire content.
 
 ```tsx
-import { Label, Radio, RadioGroup } from 'heroui-native'
+import { RadioGroup, Radio, Label } from 'heroui-native';
 
-;<RadioGroup value={value} onValueChange={setValue}>
+<RadioGroup value={value} onValueChange={setValue}>
   <RadioGroup.Item value="option1">
     {({ isSelected, isInvalid, isDisabled }) => (
       <>
@@ -132,7 +133,7 @@ import { Label, Radio, RadioGroup } from 'heroui-native'
       </>
     )}
   </RadioGroup.Item>
-</RadioGroup>
+</RadioGroup>;
 ```
 
 ### With Error Message
@@ -140,10 +141,10 @@ import { Label, Radio, RadioGroup } from 'heroui-native'
 Display validation errors below the radio group.
 
 ```tsx
-import { FieldError, RadioGroup } from 'heroui-native'
+import { RadioGroup, FieldError } from 'heroui-native';
 
 function RadioGroupWithError() {
-  const [value, setValue] = React.useState<string | undefined>(undefined)
+  const [value, setValue] = React.useState<string | undefined>(undefined);
 
   return (
     <RadioGroup value={value} onValueChange={setValue} isInvalid={!value}>
@@ -153,7 +154,7 @@ function RadioGroupWithError() {
         Please select an option to continue
       </FieldError>
     </RadioGroup>
-  )
+  );
 }
 ```
 
@@ -166,13 +167,13 @@ import {
   Radio,
   RadioGroup,
   Separator,
-  Surface
-} from 'heroui-native'
-import React from 'react'
-import { View } from 'react-native'
+  Surface,
+} from 'heroui-native';
+import React from 'react';
+import { View } from 'react-native';
 
 export default function RadioGroupExample() {
-  const [selection, setSelection] = React.useState('desc1')
+  const [selection, setSelection] = React.useState('desc1');
 
   return (
     <Surface className="w-full">
@@ -202,7 +203,7 @@ export default function RadioGroupExample() {
         </RadioGroup.Item>
       </RadioGroup>
     </Surface>
-  )
+  );
 }
 ```
 
@@ -280,12 +281,12 @@ Animation configuration for radio root component. Can be:
 
 ### Radio.Indicator
 
-| prop                   | type                       | default     | description                                                                                                                                                                                         |
-| ---------------------- | -------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `children`             | `React.ReactNode`          | `undefined` | Content for the radio indicator                                                                                                                                                                     |
-| `className`            | `string`                   | `undefined` | Additional CSS classes for the indicator                                                                                                                                                            |
-| `background`           | `React.ReactNode`          | -           | Background layer behind the indicator content. `undefined` renders the theme-aware default for the `secondary` variant while unselected and not invalid; custom node replaces it; `null` removes it |
-| `...AnimatedViewProps` | `AnimatedProps<ViewProps>` | -           | All Reanimated Animated.View props are supported                                                                                                                                                    |
+| prop                   | type                       | default     | description                                      |
+| ---------------------- | -------------------------- | ----------- | ------------------------------------------------ |
+| `children`             | `React.ReactNode`          | `undefined` | Content for the radio indicator                  |
+| `className`            | `string`                   | `undefined` | Additional CSS classes for the indicator         |
+| `background` | `React.ReactNode` | - | Background layer behind the indicator content. `undefined` renders the theme-aware default for the `secondary` variant while unselected and not invalid; custom node replaces it; `null` removes it |
+| `...AnimatedViewProps` | `AnimatedProps<ViewProps>` | -           | All Reanimated Animated.View props are supported |
 
 ### Radio.IndicatorBackground
 

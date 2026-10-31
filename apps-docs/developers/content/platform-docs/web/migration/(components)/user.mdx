@@ -3,35 +3,31 @@ title: User
 description: Migration guide for User from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="warning">
-  The User component has been **removed** in HeroUI v3. Compose user displays
-  manually using Avatar and text elements with Tailwind CSS classes.
+  The User component has been **removed** in HeroUI v3. Compose user displays manually using Avatar and text elements with Tailwind CSS classes.
 </Callout>
 
 ## Key Changes
 
 ### 1. Component Removal
 
-**v2:** `<User>` component from `@heroui/react`  
+**v2:** `<User>` component from `@heroui/react`
 **v3:** Manual composition using `Avatar` + text elements
 
 ### 2. Features Mapping
 
 The v2 User component had the following features that need to be replaced:
 
-| v2 Feature         | v3 Equivalent         | Notes                                     |
-| ------------------ | --------------------- | ----------------------------------------- |
-| `name` prop        | Text element          | Render name as text or heading            |
-| `description` prop | Text element          | Render description as text                |
-| `avatarProps` prop | `Avatar` component    | Use v3 Avatar component directly          |
+| v2 Feature | v3 Equivalent | Notes |
+|-----------|---------------|-------|
+| `name` prop | Text element | Render name as text or heading |
+| `description` prop | Text element | Render description as text |
+| `avatarProps` prop | `Avatar` component | Use v3 Avatar component directly |
 | `isFocusable` prop | Manual focus handling | Add `tabIndex` and focus styles if needed |
-| `classNames` prop  | Tailwind classes      | Apply classes directly to elements        |
+| `classNames` prop | Tailwind classes | Apply classes directly to elements |
 
 ## Structure Changes
 
@@ -40,17 +36,17 @@ The v2 User component had the following features that need to be replaced:
 In v2, `User` was a convenience component combining Avatar with name:
 
 ```tsx
-import { User } from '@heroui/react'
+import { User } from "@heroui/react";
 
 export default function App() {
   return (
     <User
       name="Junior Garcia"
       avatarProps={{
-        src: 'https://example.com/avatar.jpg'
+        src: "https://example.com/avatar.jpg",
       }}
     />
-  )
+  );
 }
 ```
 
@@ -59,7 +55,7 @@ export default function App() {
 In v3, compose user displays manually using Avatar and text elements:
 
 ```tsx
-import { Avatar } from '@heroui/react'
+import { Avatar } from "@heroui/react";
 
 export default function App() {
   return (
@@ -73,7 +69,7 @@ export default function App() {
       </Avatar>
       <span className="text-sm">Junior Garcia</span>
     </div>
-  )
+  );
 }
 ```
 
@@ -94,7 +90,6 @@ export default function App() {
       }}
     />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -114,7 +109,6 @@ export default function App() {
       </div>
     </div>
     ```
-
   </Tab>
 </Tabs>
 
@@ -137,7 +131,6 @@ export default function App() {
       }}
     />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -157,7 +150,6 @@ export default function App() {
       <span className="text-sm">Junior Garcia</span>
     </div>
     ```
-
   </Tab>
 </Tabs>
 
@@ -180,7 +172,6 @@ export default function App() {
       }}
     />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -202,7 +193,6 @@ export default function App() {
       </div>
     </div>
     ```
-
   </Tab>
 </Tabs>
 
@@ -231,7 +221,6 @@ export default function App() {
       }}
     />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -266,7 +255,6 @@ export default function App() {
       <span className="text-sm">Junior Garcia</span>
     </button>
     ```
-
   </Tab>
 </Tabs>
 
@@ -287,7 +275,6 @@ Since User displays are commonly needed, here's a reusable component:
       }}
     />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -389,7 +376,6 @@ Since User displays are commonly needed, here's a reusable component:
       avatarAlt="Junior Garcia"
     />
     ```
-
   </Tab>
 </Tabs>
 
@@ -427,7 +413,7 @@ The v2 User component used these base styles that you should replicate:
 
 ```tsx
 <div className="space-y-2">
-  {users.map(user => (
+  {users.map((user) => (
     <div key={user.id} className="inline-flex items-center gap-2">
       <Avatar>
         <Avatar.Image src={user.avatar} alt={user.name} />
@@ -435,7 +421,9 @@ The v2 User component used these base styles that you should replicate:
       </Avatar>
       <div className="flex flex-col items-start">
         <span className="text-sm">{user.name}</span>
-        {user.role && <span className="text-muted text-xs">{user.role}</span>}
+        {user.role && (
+          <span className="text-xs text-muted">{user.role}</span>
+        )}
       </div>
     </div>
   ))}
@@ -446,15 +434,16 @@ The v2 User component used these base styles that you should replicate:
 
 ```tsx
 <button
-  className="focus-visible:ring-focus hover:bg-default-100 inline-flex items-center gap-2 rounded-sm outline-none focus-visible:ring-2"
-  onClick={() => handleUserClick(user)}>
+  className="inline-flex items-center gap-2 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-focus hover:bg-default-100"
+  onClick={() => handleUserClick(user)}
+>
   <Avatar>
     <Avatar.Image src={user.avatar} alt={user.name} />
     <Avatar.Fallback>{getInitials(user.name)}</Avatar.Fallback>
   </Avatar>
   <div className="flex flex-col items-start">
     <span className="text-sm">{user.name}</span>
-    <span className="text-muted text-xs">{user.email}</span>
+    <span className="text-xs text-muted">{user.email}</span>
   </div>
 </button>
 ```

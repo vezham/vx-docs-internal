@@ -5,19 +5,15 @@ github:
   pull: 5923
 ---
 
-import {
-  Callout,
-  DocsImage,
-  PRContributors,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, ComponentPreview, DocsImage, PRContributors, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">December 19, 2025</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">December 19, 2025</span>
 </div>
 
 This release introduces seven new components ([ButtonGroup](https://heroui.com/docs/components/button-group), [DateField](https://heroui.com/docs/components/date-field), [ErrorMessage](https://heroui.com/docs/components/error-message), [ScrollShadow](https://heroui.com/docs/components/scroll-shadow), [SearchField](https://heroui.com/docs/components/search-field), [TagGroup](https://heroui.com/docs/components/tag-group), [TimeField](https://heroui.com/docs/components/time-field)), adds `fullWidth` support for form components and `hideSeparator` to [Tabs](https://heroui.com/docs/components/tabs), [ButtonGroup](https://heroui.com/docs/components/button-group), and [Accordion](https://heroui.com/docs/components/accordion), includes style fixes, and ⚠️ **breaking changes** removing the `asChild` prop and updating [AlertDialog](https://heroui.com/docs/components/alert-dialog) & [Modal](https://heroui.com/docs/components/modal) backdrop variants.
+
 
 <DocsImage
   src="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/versions/beta-3-light@2x.jpg"
@@ -26,30 +22,36 @@ This release introduces seven new components ([ButtonGroup](https://heroui.com/d
   href="https://heroui.com/docs/changelog/v3-0-0-beta-3"
 />
 
+
 ## Installation
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
   <Tab value="npm">
-    ```bash npm i @heroui/styles@beta @heroui/react@beta ```
+    ```bash
+    npm i @heroui/styles@beta @heroui/react@beta
+    ```
   </Tab>
   <Tab value="pnpm">
-    ```bash pnpm add @heroui/styles@beta @heroui/react@beta ```
+    ```bash
+    pnpm add @heroui/styles@beta @heroui/react@beta
+    ```
   </Tab>
   <Tab value="yarn">
-    ```bash yarn add @heroui/styles@beta @heroui/react@beta ```
+    ```bash
+    yarn add @heroui/styles@beta @heroui/react@beta
+    ```
   </Tab>
   <Tab value="bun">
-    ```bash bun add @heroui/styles@beta @heroui/react@beta ```
+    ```bash
+    bun add @heroui/styles@beta @heroui/react@beta
+    ```
   </Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the
-  latest version" and your AI assistant will automatically compare versions and
-  apply the necessary changes. Learn more about the [HeroUI MCP
-  Server](https://heroui.com/docs/ui-for-agents/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI MCP Server](https://heroui.com/docs/ui-for-agents/mcp-server).
 </Callout>
 
 ## What's New
@@ -68,9 +70,10 @@ This release introduces **7 new** essential components:
 
 ### ButtonGroup
 
-[Live example: button-group-basic](https://heroui.com/docs/react/releases/v3-0-0-beta-3)
 
-```tsx
+<ComponentPreview name="button-group-basic">
+
+````tsx
 import {
   ChevronDown,
   ChevronLeft,
@@ -87,8 +90,9 @@ import {
   TextAlignRight,
   ThumbsDown,
   ThumbsUp,
-  Video
-} from '@gravity-ui/icons'
+  Video,
+} from "@gravity-ui/icons";
+import {Button, ButtonGroup, Chip, Description, Dropdown, Label} from "@vezham/react-v3";
 
 export function Basic() {
   return (
@@ -107,31 +111,32 @@ export function Basic() {
                 <Dropdown.Item
                   className="flex flex-col items-start gap-1"
                   id="merge"
-                  textValue="Create a merge commit">
+                  textValue="Create a merge commit"
+                >
                   <Label>Create a merge commit</Label>
                   <Description>
-                    All commits from this branch will be added to the base
-                    branch
+                    All commits from this branch will be added to the base branch
                   </Description>
                 </Dropdown.Item>
                 <Dropdown.Item
                   className="flex flex-col items-start gap-1"
                   id="squash-and-merge"
-                  textValue="Squash and merge">
+                  textValue="Squash and merge"
+                >
                   <Label>Squash and merge</Label>
                   <Description>
-                    The 14 commits from this branch will be combined into one
-                    commit in the base branch
+                    The 14 commits from this branch will be combined into one commit in the base
+                    branch
                   </Description>
                 </Dropdown.Item>
                 <Dropdown.Item
                   className="flex flex-col items-start gap-1"
                   id="rebase-and-merge"
-                  textValue="Rebase and merge">
+                  textValue="Rebase and merge"
+                >
                   <Label>Rebase and merge</Label>
                   <Description>
-                    The 14 commits from this branch will be rebased and added to
-                    the base branch
+                    The 14 commits from this branch will be rebased and added to the base branch
                   </Description>
                 </Dropdown.Item>
               </Dropdown.Menu>
@@ -270,47 +275,61 @@ export function Basic() {
         </ButtonGroup>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### DateField
 
-[Live example: date-field-basic](https://heroui.com/docs/react/releases/v3-0-0-beta-3)
 
-```tsx
-'use client'
+<ComponentPreview name="date-field-basic">
+
+````tsx
+"use client";
+
+import {DateField, Label} from "@vezham/react-v3";
 
 export function Basic() {
   return (
     <DateField className="w-[256px]" name="date">
       <Label>Date</Label>
       <DateField.Group>
-        <DateField.Input>
-          {segment => <DateField.Segment segment={segment} />}
-        </DateField.Input>
+        <DateField.Input>{(segment) => <DateField.Segment segment={segment} />}</DateField.Input>
       </DateField.Group>
     </DateField>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### ErrorMessage
 
-[Live example: error-message-basic](https://heroui.com/docs/react/releases/v3-0-0-beta-3)
 
-```tsx
-'use client'
+<ComponentPreview name="error-message-basic">
+
+````tsx
+"use client";
+
+import type {Key} from "@vezham/react-v3";
+
+import {Description, ErrorMessage, Label, Tag, TagGroup} from "@vezham/react-v3";
+import {useMemo, useState} from "react";
 
 export function ErrorMessageBasic() {
-  const [selected, setSelected] = useState<Iterable<Key>>(new Set())
-  const isInvalid = useMemo(() => Array.from(selected).length === 0, [selected])
+  const [selected, setSelected] = useState<Iterable<Key>>(new Set());
+  const isInvalid = useMemo(() => Array.from(selected).length === 0, [selected]);
 
   return (
     <TagGroup
       selectedKeys={selected}
       selectionMode="multiple"
-      onSelectionChange={keys => setSelected(keys)}>
+      onSelectionChange={(keys) => setSelected(keys)}
+    >
       <Label>Required Categories</Label>
       <TagGroup.List>
         <Tag id="news">News</Tag>
@@ -319,19 +338,23 @@ export function ErrorMessageBasic() {
         <Tag id="shopping">Shopping</Tag>
       </TagGroup.List>
       <Description>Select at least one category</Description>
-      <ErrorMessage>
-        {!!isInvalid && <>Please select at least one category</>}
-      </ErrorMessage>
+      <ErrorMessage>{!!isInvalid && <>Please select at least one category</>}</ErrorMessage>
     </TagGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### SearchField
 
-[Live example: search-field-basic](https://heroui.com/docs/react/releases/v3-0-0-beta-3)
 
-```tsx
+<ComponentPreview name="search-field-basic">
+
+````tsx
+import {Label, SearchField} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <SearchField name="search">
@@ -342,25 +365,31 @@ export function Basic() {
         <SearchField.ClearButton />
       </SearchField.Group>
     </SearchField>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### ScrollShadow
 
-[Live example: scroll-shadow-orientation](https://heroui.com/docs/react/releases/v3-0-0-beta-3)
 
-```tsx
+<ComponentPreview name="scroll-shadow-orientation">
+
+````tsx
+import {Card, ScrollShadow} from "@vezham/react-v3";
+
 const images = [
-  'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/robot1.jpeg',
-  'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/avocado.jpeg',
-  'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/oranges.jpeg'
-]
+  "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/robot1.jpeg",
+  "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/avocado.jpeg",
+  "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/oranges.jpeg",
+];
 
 export default function Orientation() {
   const getRandomImage = (idx: number) => {
-    return images[idx % images.length]
-  }
+    return images[idx % images.length];
+  };
 
   return (
     <div className="w-full sm:max-w-sm">
@@ -369,12 +398,11 @@ export default function Orientation() {
         <Card className="w-full p-0">
           <ScrollShadow className="max-h-[240px] p-4" orientation="vertical">
             <div className="space-y-4">
-              {Array.from({ length: 10 }).map((_, idx) => (
+              {Array.from({length: 10}).map((_, idx) => (
                 <p key={`scroll-shadow-lorem-content-${idx}`}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                  Morbi accumsan cursus enim, sed ultricies sapien.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar risus non
+                  risus hendrerit venenatis. Pellentesque sit amet hendrerit risus, sed porttitor
+                  quam. Morbi accumsan cursus enim, sed ultricies sapien.
                 </p>
               ))}
             </div>
@@ -387,11 +415,12 @@ export default function Orientation() {
         <Card className="w-full p-0">
           <ScrollShadow className="p-4" orientation="horizontal">
             <div className="flex flex-row gap-4">
-              {Array.from({ length: 10 }).map((_, idx) => (
+              {Array.from({length: 10}).map((_, idx) => (
                 <Card
                   key={`scroll-shadow-lorem-cards-${idx}`}
                   className="flex min-w-[200px] flex-row gap-3 p-1"
-                  variant="transparent">
+                  variant="transparent"
+                >
                   <img
                     alt="Lorem Card"
                     className="aspect-square h-16 w-16 shrink-0 rounded-xl object-cover select-none sm:h-20 sm:w-20"
@@ -399,12 +428,8 @@ export default function Orientation() {
                     src={getRandomImage(idx)}
                   />
                   <div className="flex flex-1 flex-col justify-center gap-1">
-                    <Card.Title className="text-sm">
-                      Bridging the Future
-                    </Card.Title>
-                    <Card.Description className="text-xs">
-                      Today, 6:30 PM
-                    </Card.Description>
+                    <Card.Title className="text-sm">Bridging the Future</Card.Title>
+                    <Card.Description className="text-xs">Today, 6:30 PM</Card.Description>
                   </div>
                 </Card>
               ))}
@@ -413,16 +438,23 @@ export default function Orientation() {
         </Card>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### TagGroup
 
-[Live example: tag-group-basic](https://heroui.com/docs/react/releases/v3-0-0-beta-3)
 
-```tsx
-'use client'
+<ComponentPreview name="tag-group-basic">
+
+````tsx
+"use client";
+
+import {PlanetEarth, Rocket, ShoppingBag, SquareArticle} from "@gravity-ui/icons";
+import {Tag, TagGroup} from "@vezham/react-v3";
 
 export function TagGroupBasic() {
   return (
@@ -446,37 +478,44 @@ export function TagGroupBasic() {
         </Tag>
       </TagGroup.List>
     </TagGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### TimeField
 
-[Live example: time-field-basic](https://heroui.com/docs/react/releases/v3-0-0-beta-3)
 
-```tsx
-'use client'
+<ComponentPreview name="time-field-basic">
+
+````tsx
+"use client";
+
+import {Label, TimeField} from "@vezham/react-v3";
 
 export function Basic() {
   return (
     <TimeField className="w-[256px]" name="time">
       <Label>Time</Label>
       <TimeField.Group>
-        <TimeField.Input>
-          {segment => <TimeField.Segment segment={segment} />}
-        </TimeField.Input>
+        <TimeField.Input>{(segment) => <TimeField.Segment segment={segment} />}</TimeField.Input>
       </TimeField.Group>
     </TimeField>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
+
 
 ### Full-Width Support
 
 Added `fullWidth` support to form and input components, allowing them to span the full width of their container. This is particularly useful for creating consistent form layouts and responsive designs.
 
 **Supported components:**
-
 - [ButtonGroup](https://heroui.com/docs/components/button-group)
 - [Button](https://heroui.com/docs/components/button)
 - [ComboBox](https://heroui.com/docs/components/combo-box)
@@ -498,26 +537,18 @@ Added `fullWidth` support to form and input components, allowing them to span th
 Added `hideSeparator` prop to [Tabs](https://heroui.com/docs/components/tabs), [ButtonGroup](https://heroui.com/docs/components/button-group), and [Accordion](https://heroui.com/docs/components/accordion) components, allowing you to hide separator lines between items for a cleaner, more minimal appearance.
 
 **Tabs:**
-
 ```tsx
 <Tabs hideSeparator>
   <Tabs.ListContainer>
     <Tabs.List aria-label="Options">
-      <Tabs.Tab id="overview">
-        Overview
-        <Tabs.Indicator />
-      </Tabs.Tab>
-      <Tabs.Tab id="analytics">
-        Analytics
-        <Tabs.Indicator />
-      </Tabs.Tab>
+      <Tabs.Tab id="overview">Overview<Tabs.Indicator /></Tabs.Tab>
+      <Tabs.Tab id="analytics">Analytics<Tabs.Indicator /></Tabs.Tab>
     </Tabs.List>
   </Tabs.ListContainer>
 </Tabs>
 ```
 
 **ButtonGroup:**
-
 ```tsx
 <ButtonGroup hideSeparator>
   <Button>First</Button>
@@ -527,7 +558,6 @@ Added `hideSeparator` prop to [Tabs](https://heroui.com/docs/components/tabs), [
 ```
 
 **Accordion:**
-
 ```tsx
 <Accordion hideSeparator>
   <Accordion.Item>
@@ -552,14 +582,12 @@ Integrated [@gravity-ui/icons](https://github.com/gravity-ui/icons) into documen
 Upgraded [react-aria-components](https://react-aria.adobe.com/releases/v1-14-0) to v1.14.0. This release includes:
 
 **Enhancements:**
-
 - SearchField: Added `isReadOnly` and `isRequired` to render props
 - Tooltip: Added `shouldCloseOnPress` prop
 - Tabs: Support for animated transitions between tab panels
 - Miscellaneous: Support for `setState` callback in `useControlledState`
 
 **Fixes:**
-
 - ComboBox: Fixed VoiceOver announcement not respecting `aria-label` of ListBoxItem
 - Date and Time: Enhanced error handling for absolute date and date time strings
 - NumberField: Prevented incrementing/decrementing when scrolling on mobile
@@ -629,7 +657,6 @@ Update all instances of `backdropVariant="solid"` to `backdropVariant="opaque"` 
 ```
 
 **Available backdrop variants:**
-
 - `"opaque"` - Dark backdrop that completely obscures the background (formerly `"solid"`)
 - `"blur"` - Blurred backdrop that softly obscures the background
 - `"transparent"` - Transparent backdrop that keeps the background visible

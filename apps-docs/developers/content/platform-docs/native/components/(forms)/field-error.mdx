@@ -8,16 +8,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/field-error-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/field-error-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/field-error-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/field-error-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { FieldError } from 'heroui-native'
+import { FieldError } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -43,11 +44,9 @@ The FieldError component displays error messages when validation fails.
 Control when the error appears using the `isInvalid` prop. When used inside a form field component (like TextField), FieldError automatically consumes the form-item-state context.
 
 ```tsx
-const [isInvalid, setIsInvalid] = useState(false)
+const [isInvalid, setIsInvalid] = useState(false);
 
-;<FieldError isInvalid={isInvalid}>
-  Please enter a valid email address
-</FieldError>
+<FieldError isInvalid={isInvalid}>Please enter a valid email address</FieldError>;
 ```
 
 ### With Form Fields
@@ -55,9 +54,9 @@ const [isInvalid, setIsInvalid] = useState(false)
 FieldError automatically consumes form state from TextField via the form-item-state context.
 
 ```tsx
-import { FieldError, Label, TextField } from 'heroui-native'
+import { FieldError, Label, TextField } from 'heroui-native';
 
-;<TextField isRequired isInvalid={true}>
+<TextField isRequired isInvalid={true}>
   <Label>Email</Label>
   <Input placeholder="Enter your email" />
   <FieldError>Please enter a valid email address</FieldError>
@@ -72,7 +71,7 @@ Pass custom React components as children instead of strings.
 <FieldError isInvalid={true}>
   <View className="flex-row items-center">
     <Icon name="alert-circle" />
-    <Text className="text-danger ml-2">Invalid input</Text>
+    <Text className="ml-2 text-danger">Invalid input</Text>
   </View>
 </FieldError>
 ```
@@ -82,16 +81,17 @@ Pass custom React components as children instead of strings.
 Override default entering and exiting animations using the `animation` prop.
 
 ```tsx
-import { SlideInDown, SlideOutUp } from 'react-native-reanimated'
+import { SlideInDown, SlideOutUp } from 'react-native-reanimated';
 
-;<FieldError
+<FieldError
   isInvalid={true}
   animation={{
     entering: { value: SlideInDown.duration(200) },
-    exiting: { value: SlideOutUp.duration(150) }
-  }}>
+    exiting: { value: SlideOutUp.duration(150) },
+  }}
+>
   Field validation failed
-</FieldError>
+</FieldError>;
 ```
 
 Disable animations entirely:
@@ -112,8 +112,9 @@ Apply custom styles to the container and text elements.
   className="mt-2"
   classNames={{
     container: 'bg-danger/10 p-2 rounded',
-    text: 'text-xs font-medium'
-  }}>
+    text: 'text-xs font-medium',
+  }}
+>
   Password must be at least 8 characters
 </FieldError>
 ```
@@ -128,8 +129,9 @@ Pass additional props to the Text component when children is a string.
   textProps={{
     numberOfLines: 1,
     ellipsizeMode: 'tail',
-    style: { letterSpacing: 0.5 }
-  }}>
+    style: { letterSpacing: 0.5 },
+  }}
+>
   This is a very long error message that might need to be truncated
 </FieldError>
 ```
@@ -137,19 +139,19 @@ Pass additional props to the Text component when children is a string.
 ## Example
 
 ```tsx
-import { Description, FieldError, Label, TextField } from 'heroui-native'
-import { useState } from 'react'
-import { View } from 'react-native'
+import { Description, FieldError, Label, TextField } from 'heroui-native';
+import { useState } from 'react';
+import { View } from 'react-native';
 
 export default function FieldErrorExample() {
-  const [email, setEmail] = useState('')
-  const [isInvalid, setIsInvalid] = useState(false)
+  const [email, setEmail] = useState('');
+  const [isInvalid, setIsInvalid] = useState(false);
 
-  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const handleBlur = () => {
-    setIsInvalid(email !== '' && !isValidEmail)
-  }
+    setIsInvalid(email !== '' && !isValidEmail);
+  };
 
   return (
     <View className="p-4">
@@ -163,15 +165,17 @@ export default function FieldErrorExample() {
           keyboardType="email-address"
           autoCapitalize="none"
         />
-        <Description>We'll use this to contact you</Description>
+        <Description>
+          We'll use this to contact you
+        </Description>
         <FieldError>Please enter a valid email address</FieldError>
       </TextField>
     </View>
-  )
+  );
 }
 ```
 
-You can find more examples in the [GitHub repository](<https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/field-error.tsx>).
+You can find more examples in the [GitHub repository](https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/field-error.tsx).
 
 ## API Reference
 

@@ -5,15 +5,11 @@ github:
   pull: 360
 ---
 
-import {
-  Callout,
-  NativeTryOnDevice,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, NativeTryOnDevice, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">April 1, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">April 1, 2026</span>
 </div>
 
 HeroUI Native v1.0.1 is a patch release focused on reliability and developer experience. It resolves a race condition in the Toast provider that caused stale animation values, corrects disabled-state styling across seven components to use the native `disabled:` modifier, and introduces a new `--backdrop` theme variable for overlay components.
@@ -22,18 +18,31 @@ HeroUI Native v1.0.1 is a patch release focused on reliability and developer exp
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
-  <Tab value="npm">```bash npm i heroui-native ```</Tab>
-  <Tab value="pnpm">``` bash pnpm add heroui-native ```</Tab>
-  <Tab value="yarn">```bash yarn add heroui-native ```</Tab>
-  <Tab value="bun">```bash bun add heroui-native ```</Tab>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
+<Tab value="npm">
+  ```bash
+  npm i heroui-native
+  ```
+</Tab>
+<Tab value="pnpm">
+  ``` bash
+  pnpm add heroui-native
+  ```
+</Tab>
+<Tab value="yarn">
+  ```bash
+  yarn add heroui-native
+  ```
+</Tab>
+<Tab value="bun">
+  ```bash
+  bun add heroui-native
+  ```
+</Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
-  the latest version" and your AI assistant will automatically compare versions
-  and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs-ui/native/getting-started/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI Native MCP Server](/docs-ui/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -49,10 +58,10 @@ A new `--backdrop` top-level style variable has been added to the theme system, 
 **New capability:**
 
 ```tsx
-import { Dialog } from 'heroui-native'
+import { Dialog } from "heroui-native";
 
 // Dialog and Bottom Sheet overlays now use bg-backdrop automatically
-;<Dialog>
+<Dialog>
   <Dialog.Content>
     {/* Content renders over the themed backdrop */}
   </Dialog.Content>

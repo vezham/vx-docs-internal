@@ -9,17 +9,21 @@ links:
   storybook: Components/Controls/Slider
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Slider } from '@heroui/react'
+import { Slider } from '@heroui/react';
 ```
 
-[Live example: slider-default](https://heroui.com/docs/react/components/slider)
 
-```tsx
+<ComponentPreview name="slider-default">
+
+````tsx
+import {Label, Slider} from "@vezham/react-v3";
+
 export function Default() {
   return (
     <Slider className="w-full max-w-xs" defaultValue={30}>
@@ -30,14 +34,17 @@ export function Default() {
         <Slider.Thumb />
       </Slider.Track>
     </Slider>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Anatomy
 
 ```tsx
-import { Label, Slider } from '@heroui/react'
+import { Slider, Label } from '@heroui/react';
 
 export default () => (
   <Slider step={10}>
@@ -67,9 +74,12 @@ Place `Slider.Steps` inside `Slider.Track` to display a dot at each increment de
 
 Dots start at `minValue`. If `maxValue` is not on a step, no extra dot is added at that endpoint. Invalid ranges and ranges requiring more than 1,000 dots omit the indicators.
 
-[Live example: slider-with-steps](https://heroui.com/docs/react/components/slider)
 
-```tsx
+<ComponentPreview name="slider-with-steps">
+
+````tsx
+import {Label, Slider} from "@vezham/react-v3";
+
 export function WithSteps() {
   return (
     <Slider className="w-full max-w-xs" defaultValue={40} step={10}>
@@ -81,9 +91,12 @@ export function WithSteps() {
         <Slider.Thumb />
       </Slider.Track>
     </Slider>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Marks
 
@@ -91,9 +104,12 @@ Place `Slider.Marks` directly after `Slider.Track` as a sibling, and add `Slider
 
 Use children for custom labels. Without children, a mark displays its value using the slider's locale and `formatOptions`. Marks outside the slider's bounds, or with non-finite values, are not rendered. Marks are labels; they do not change the value or snapping behavior.
 
-[Live example: slider-with-marks](https://heroui.com/docs/react/components/slider)
 
-```tsx
+<ComponentPreview name="slider-with-marks">
+
+````tsx
+import {Label, Slider} from "@vezham/react-v3";
+
 export function WithMarks() {
   return (
     <Slider className="w-full max-w-xs" defaultValue={40}>
@@ -110,24 +126,26 @@ export function WithMarks() {
         <Slider.Mark value={100}>Max</Slider.Mark>
       </Slider.Marks>
     </Slider>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Steps and Marks
 
 Combine dots and labels independently. Fractional steps are supported; this example uses `step={0.1}` with labels at `0`, `0.5`, and `1`.
 
-[Live example: slider-with-steps-and-marks](https://heroui.com/docs/react/components/slider)
 
-```tsx
+<ComponentPreview name="slider-with-steps-and-marks">
+
+````tsx
+import {Label, Slider} from "@vezham/react-v3";
+
 export function WithStepsAndMarks() {
   return (
-    <Slider
-      className="w-full max-w-xs"
-      defaultValue={0.4}
-      maxValue={1}
-      step={0.1}>
+    <Slider className="w-full max-w-xs" defaultValue={0.4} maxValue={1} step={0.1}>
       <Label>Volume</Label>
       <Slider.Output />
       <Slider.Track>
@@ -141,30 +159,32 @@ export function WithStepsAndMarks() {
         <Slider.Mark value={1} />
       </Slider.Marks>
     </Slider>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Range with Steps and Marks
 
 For a single thumb, dots and marks from the minimum through the selected value receive `data-filled="true"`. For a range, only those between the first and last thumbs receive it, including the endpoints.
 
-[Live example: slider-range-with-steps-and-marks](https://heroui.com/docs/react/components/slider)
 
-```tsx
-'use client'
+<ComponentPreview name="slider-range-with-steps-and-marks">
+
+````tsx
+"use client";
+
+import {Label, Slider} from "@vezham/react-v3";
 
 export function RangeWithStepsAndMarks() {
   return (
-    <Slider
-      className="w-full max-w-xs"
-      defaultValue={[0.2, 0.8]}
-      maxValue={1}
-      step={0.1}>
+    <Slider className="w-full max-w-xs" defaultValue={[0.2, 0.8]} maxValue={1} step={0.1}>
       <Label>Range</Label>
       <Slider.Output />
       <Slider.Track>
-        {({ state }) => (
+        {({state}) => (
           <>
             <Slider.Fill />
             <Slider.Steps />
@@ -180,26 +200,27 @@ export function RangeWithStepsAndMarks() {
         <Slider.Mark value={1} />
       </Slider.Marks>
     </Slider>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Vertical Steps and Marks
 
 Dots and labels follow `orientation="vertical"` automatically. Give vertical sliders a container with a defined height. Horizontal indicators also follow the locale's right-to-left direction.
 
-[Live example: slider-vertical-with-steps-and-marks](https://heroui.com/docs/react/components/slider)
 
-```tsx
+<ComponentPreview name="slider-vertical-with-steps-and-marks">
+
+````tsx
+import {Label, Slider} from "@vezham/react-v3";
+
 export function VerticalWithStepsAndMarks() {
   return (
     <div className="flex h-64 items-center justify-center">
-      <Slider
-        className="h-full"
-        defaultValue={0.4}
-        maxValue={1}
-        orientation="vertical"
-        step={0.1}>
+      <Slider className="h-full" defaultValue={0.4} maxValue={1} orientation="vertical" step={0.1}>
         <Label>Volume</Label>
         <Slider.Output />
         <Slider.Track>
@@ -214,15 +235,21 @@ export function VerticalWithStepsAndMarks() {
         </Slider.Marks>
       </Slider>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Disabled
 
-[Live example: slider-disabled](https://heroui.com/docs/react/components/slider)
 
-```tsx
+<ComponentPreview name="slider-disabled">
+
+````tsx
+import {Label, Slider} from "@vezham/react-v3";
+
 export function Disabled() {
   return (
     <Slider isDisabled className="w-full max-w-xs" defaultValue={30}>
@@ -233,21 +260,24 @@ export function Disabled() {
         <Slider.Thumb />
       </Slider.Track>
     </Slider>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Range Slider Anatomy
 
 ```tsx
-import { Label, Slider } from '@heroui/react'
+import { Slider, Label } from '@heroui/react';
 
 export default () => (
   <Slider defaultValue={[25, 75]}>
     <Label />
     <Slider.Output />
     <Slider.Track>
-      {({ state }) => (
+      {({state}) => (
         <>
           <Slider.Fill />
           {state.values.map((_, i) => (
@@ -262,9 +292,12 @@ export default () => (
 
 ### Vertical
 
-[Live example: slider-vertical](https://heroui.com/docs/react/components/slider)
 
-```tsx
+<ComponentPreview name="slider-vertical">
+
+````tsx
+import {Label, Slider} from "@vezham/react-v3";
+
 export function Vertical() {
   return (
     <div className="flex h-64 items-center justify-center">
@@ -277,30 +310,37 @@ export function Vertical() {
         </Slider.Track>
       </Slider>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Range
 
-[Live example: slider-range](https://heroui.com/docs/react/components/slider)
 
-```tsx
-'use client'
+<ComponentPreview name="slider-range">
+
+````tsx
+"use client";
+
+import {Label, Slider} from "@vezham/react-v3";
 
 export function Range() {
   return (
     <Slider
       className="w-full max-w-xs"
       defaultValue={[100, 500]}
-      formatOptions={{ currency: 'USD', style: 'currency' }}
+      formatOptions={{currency: "USD", style: "currency"}}
       maxValue={1000}
       minValue={0}
-      step={50}>
+      step={50}
+    >
       <Label>Price Range</Label>
       <Slider.Output />
       <Slider.Track>
-        {({ state }) => (
+        {({state}) => (
           <>
             <Slider.Fill />
             {state.values.map((_, i) => (
@@ -310,31 +350,39 @@ export function Range() {
         )}
       </Slider.Track>
     </Slider>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Controlled Value
 
 Control the value with `value` and `onChange`.
 
-[Live example: slider-controlled](https://heroui.com/docs/react/components/slider)
 
-```tsx
-'use client'
+<ComponentPreview name="slider-controlled">
+
+````tsx
+"use client";
+
+import {Label, Slider} from "@vezham/react-v3";
+import {useState} from "react";
 
 export function Controlled() {
-  const [value, setValue] = useState(25)
+  const [value, setValue] = useState(25);
 
   return (
     <div className="flex w-full max-w-xs flex-col gap-4">
       <Slider
         value={value}
-        onChange={nextValue => {
-          if (typeof nextValue === 'number') {
-            setValue(nextValue)
+        onChange={(nextValue) => {
+          if (typeof nextValue === "number") {
+            setValue(nextValue);
           }
-        }}>
+        }}
+      >
         <Label>Volume</Label>
         <Slider.Output />
         <Slider.Track>
@@ -342,25 +390,32 @@ export function Controlled() {
           <Slider.Thumb />
         </Slider.Track>
       </Slider>
-      <p className="text-muted text-sm">Current value: {value}</p>
+      <p className="text-sm text-muted">Current value: {value}</p>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Custom Value Formatting
 
 Use `formatOptions` to format the displayed value. This example formats it as USD.
 
-[Live example: slider-custom-value-formatting](https://heroui.com/docs/react/components/slider)
 
-```tsx
+<ComponentPreview name="slider-custom-value-formatting">
+
+````tsx
+import {Label, Slider} from "@vezham/react-v3";
+
 export function CustomValueFormatting() {
   return (
     <Slider
       className="w-full max-w-xs"
       defaultValue={60}
-      formatOptions={{ currency: 'USD', style: 'currency' }}>
+      formatOptions={{currency: "USD", style: "currency"}}
+    >
       <Label>Price</Label>
       <Slider.Output />
       <Slider.Track>
@@ -368,30 +423,34 @@ export function CustomValueFormatting() {
         <Slider.Thumb />
       </Slider.Track>
     </Slider>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Custom Output
 
 Customize `Slider.Output` to control how the selected values are shown.
 
-[Live example: slider-custom-output](https://heroui.com/docs/react/components/slider)
 
-```tsx
-'use client'
+<ComponentPreview name="slider-custom-output">
+
+````tsx
+"use client";
+
+import {Label, Slider} from "@vezham/react-v3";
 
 export function CustomOutput() {
   return (
     <Slider className="w-full max-w-xs" defaultValue={[25, 75]}>
       <Label>Range</Label>
       <Slider.Output>
-        {({ state }) =>
-          state.values.map((_, i) => state.getThumbValueLabel(i)).join(' – ')
-        }
+        {({state}) => state.values.map((_, i) => state.getThumbValueLabel(i)).join(" – ")}
       </Slider.Output>
       <Slider.Track>
-        {({ state }) => (
+        {({state}) => (
           <>
             <Slider.Fill />
             {state.values.map((_, i) => (
@@ -401,23 +460,30 @@ export function CustomOutput() {
         )}
       </Slider.Track>
     </Slider>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Render Function
 
-[Live example: slider-render-function](https://heroui.com/docs/react/components/slider)
 
-```tsx
-'use client'
+<ComponentPreview name="slider-render-function">
+
+````tsx
+"use client";
+
+import {Label, Slider} from "@vezham/react-v3";
 
 export function RenderFunction() {
   return (
     <Slider
       className="w-full max-w-xs"
       defaultValue={30}
-      render={props => <div {...props} data-custom="foo" />}>
+      render={(props) => <div {...props} data-custom="foo" />}
+    >
       <Label>Volume</Label>
       <Slider.Output />
       <Slider.Track>
@@ -425,30 +491,39 @@ export function RenderFunction() {
         <Slider.Thumb />
       </Slider.Track>
     </Slider>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: slider-custom-styles](https://heroui.com/docs/react/components/slider)
 
-```tsx
+<ComponentPreview name="slider-custom-styles">
+
+````tsx
+import {Label, Slider} from "@vezham/react-v3";
+
 export function CustomStyles() {
   return (
     <Slider className="w-full max-w-xs" defaultValue={40}>
-      <Label className="text-foreground font-medium">Brightness</Label>
-      <Slider.Output className="text-muted text-xs tabular-nums" />
+      <Label className="font-medium text-foreground">Brightness</Label>
+      <Slider.Output className="text-xs text-muted tabular-nums" />
       <Slider.Track className="bg-default">
         <Slider.Fill className="bg-accent" />
         <Slider.Thumb className="bg-accent after:bg-accent-foreground" />
       </Slider.Track>
     </Slider>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -462,19 +537,19 @@ To customize the Slider component classes, you can use the `@layer components` d
   }
 
   .slider__output {
-    @apply text-muted text-sm;
+    @apply text-sm text-muted;
   }
 
   .slider__track {
-    @apply bg-surface-secondary relative h-2 w-full rounded-full;
+    @apply relative h-2 w-full rounded-full bg-surface-secondary;
   }
 
   .slider__fill {
-    @apply bg-accent absolute h-full rounded-full;
+    @apply absolute h-full rounded-full bg-accent;
   }
 
   .slider__thumb {
-    @apply bg-accent border-background size-4 rounded-full border-2;
+    @apply size-4 rounded-full bg-accent border-2 border-background;
   }
 }
 ```
@@ -488,7 +563,6 @@ HeroUI follows the [BEM](https://getbem.com/) methodology to ensure component va
 The Slider component uses these CSS classes ([View source styles](https://github.com/heroui-inc/heroui/blob/v3/packages/styles/components/slider.css)):
 
 #### Base Classes [!toc]
-
 - `.slider` - Base slider container
 - `.slider__output` - Output element displaying current value(s)
 - `.slider__track` - Track element containing fill, optional step dots, and thumbs
@@ -500,7 +574,6 @@ The Slider component uses these CSS classes ([View source styles](https://github
 - `.slider__mark` - Individual value-positioned label
 
 #### State Classes [!toc]
-
 - `.slider[data-disabled="true"]` - Disabled slider state
 - `.slider[data-orientation="vertical"]` - Vertical orientation
 - `.slider__thumb[data-dragging="true"]` - Thumb being dragged
@@ -513,14 +586,14 @@ The Slider component uses these CSS classes ([View source styles](https://github
 
 ### Indicator Data Attributes
 
-| Attribute              | Applies to                           | Description                                                                    |
-| ---------------------- | ------------------------------------ | ------------------------------------------------------------------------------ |
-| `data-slot`            | Steps, step dots, marks, mark labels | `slider-steps`, `slider-step`, `slider-marks`, and `slider-mark`, respectively |
-| `data-value`           | Step dots and mark labels            | The numeric value represented by the indicator                                 |
-| `data-filled="true"`   | Step dots and mark labels            | The value is within the selected interval, including endpoints                 |
-| `data-disabled="true"` | Steps, step dots, marks, mark labels | Inherits the slider's disabled state                                           |
-| `data-orientation`     | Steps and marks containers           | `horizontal` or `vertical`                                                     |
-| `data-direction`       | Steps and marks containers           | `ltr` or `rtl`, derived from the locale                                        |
+| Attribute | Applies to | Description |
+|-----------|------------|-------------|
+| `data-slot` | Steps, step dots, marks, mark labels | `slider-steps`, `slider-step`, `slider-marks`, and `slider-mark`, respectively |
+| `data-value` | Step dots and mark labels | The numeric value represented by the indicator |
+| `data-filled="true"` | Step dots and mark labels | The value is within the selected interval, including endpoints |
+| `data-disabled="true"` | Steps, step dots, marks, mark labels | Inherits the slider's disabled state |
+| `data-orientation` | Steps and marks containers | `horizontal` or `vertical` |
+| `data-direction` | Steps and marks containers | `ltr` or `rtl`, derived from the locale |
 
 ### Interactive States
 
@@ -535,102 +608,102 @@ The component supports both CSS pseudo-classes and data attributes for flexibili
 
 ### Slider
 
-| Prop              | Type                                                                      | Default        | Description                                                             |
-| ----------------- | ------------------------------------------------------------------------- | -------------- | ----------------------------------------------------------------------- |
-| `value`           | `number \| number[]`                                                      | -              | The current value (controlled)                                          |
-| `defaultValue`    | `number \| number[]`                                                      | -              | The default value (uncontrolled)                                        |
-| `onChange`        | `(value: number \| number[]) => void`                                     | -              | Handler called when the value changes                                   |
-| `onChangeEnd`     | `(value: number \| number[]) => void`                                     | -              | Handler called when dragging ends                                       |
-| `minValue`        | `number`                                                                  | `0`            | The slider's minimum value                                              |
-| `maxValue`        | `number`                                                                  | `100`          | The slider's maximum value                                              |
-| `step`            | `number`                                                                  | `1`            | Value increment and spacing between dots when `Slider.Steps` is present |
-| `formatOptions`   | `Intl.NumberFormatOptions`                                                | -              | The display format of the value label                                   |
-| `orientation`     | `"horizontal" \| "vertical"`                                              | `"horizontal"` | The orientation of the slider                                           |
-| `isDisabled`      | `boolean`                                                                 | -              | Whether the slider is disabled                                          |
-| `aria-label`      | `string`                                                                  | -              | Accessibility label for the slider                                      |
-| `aria-labelledby` | `string`                                                                  | -              | ID of element that labels the slider                                    |
-| `className`       | `string`                                                                  | -              | Additional CSS classes                                                  |
-| `children`        | `ReactNode \| RenderFunction`                                             | -              | Slider content or render function                                       |
-| `render`          | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, SliderRenderProps>` | -              | Overrides the default DOM element with a custom render function.        |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `number \| number[]` | - | The current value (controlled) |
+| `defaultValue` | `number \| number[]` | - | The default value (uncontrolled) |
+| `onChange` | `(value: number \| number[]) => void` | - | Handler called when the value changes |
+| `onChangeEnd` | `(value: number \| number[]) => void` | - | Handler called when dragging ends |
+| `minValue` | `number` | `0` | The slider's minimum value |
+| `maxValue` | `number` | `100` | The slider's maximum value |
+| `step` | `number` | `1` | Value increment and spacing between dots when `Slider.Steps` is present |
+| `formatOptions` | `Intl.NumberFormatOptions` | - | The display format of the value label |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | The orientation of the slider |
+| `isDisabled` | `boolean` | - | Whether the slider is disabled |
+| `aria-label` | `string` | - | Accessibility label for the slider |
+| `aria-labelledby` | `string` | - | ID of element that labels the slider |
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode \| RenderFunction` | - | Slider content or render function |
+| `render` | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, SliderRenderProps>` | - | Overrides the default DOM element with a custom render function.|
 
 ### Slider.Output
 
-| Prop        | Type                                                                            | Default | Description                                                      |
-| ----------- | ------------------------------------------------------------------------------- | ------- | ---------------------------------------------------------------- |
-| `className` | `string`                                                                        | -       | Additional CSS classes                                           |
-| `children`  | `ReactNode \| RenderFunction`                                                   | -       | Output content or render function                                |
-| `render`    | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, SliderOutputRenderProps>` | -       | Overrides the default DOM element with a custom render function. |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode \| RenderFunction` | - | Output content or render function |
+| `render` | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, SliderOutputRenderProps>` | - | Overrides the default DOM element with a custom render function.|
 
 ### Slider.Track
 
-| Prop        | Type                                                                           | Default | Description                                                      |
-| ----------- | ------------------------------------------------------------------------------ | ------- | ---------------------------------------------------------------- |
-| `className` | `string`                                                                       | -       | Additional CSS classes                                           |
-| `children`  | `ReactNode \| RenderFunction`                                                  | -       | Track content or render function                                 |
-| `render`    | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, SliderTrackRenderProps>` | -       | Overrides the default DOM element with a custom render function. |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode \| RenderFunction` | - | Track content or render function |
+| `render` | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, SliderTrackRenderProps>` | - | Overrides the default DOM element with a custom render function.|
 
 ### Slider.Fill
 
-| Prop        | Type            | Default | Description            |
-| ----------- | --------------- | ------- | ---------------------- |
-| `className` | `string`        | -       | Additional CSS classes |
-| `style`     | `CSSProperties` | -       | Inline styles          |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes |
+| `style` | `CSSProperties` | - | Inline styles |
 
 ### Slider.Thumb
 
-| Prop         | Type                                                                           | Default | Description                                                      |
-| ------------ | ------------------------------------------------------------------------------ | ------- | ---------------------------------------------------------------- |
-| `index`      | `number`                                                                       | `0`     | Index of the thumb within the slider                             |
-| `isDisabled` | `boolean`                                                                      | -       | Whether this thumb is disabled                                   |
-| `name`       | `string`                                                                       | -       | The name of the input element, used when submitting an HTML form |
-| `className`  | `string`                                                                       | -       | Additional CSS classes                                           |
-| `children`   | `ReactNode \| RenderFunction`                                                  | -       | Thumb content or render function                                 |
-| `render`     | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, SliderThumbRenderProps>` | -       | Overrides the default DOM element with a custom render function. |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `index` | `number` | `0` | Index of the thumb within the slider |
+| `isDisabled` | `boolean` | - | Whether this thumb is disabled |
+| `name` | `string` | - | The name of the input element, used when submitting an HTML form |
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode \| RenderFunction` | - | Thumb content or render function |
+| `render` | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, SliderThumbRenderProps>` | - | Overrides the default DOM element with a custom render function.|
 
 ### Slider.Steps
 
 Renders decorative dots inside `Slider.Track` using the root slider's bounds and step. It generates its own children and accepts standard DOM props and a ref.
 
-| Prop        | Type                                                              | Default | Description                                                     |
-| ----------- | ----------------------------------------------------------------- | ------- | --------------------------------------------------------------- |
-| `className` | `string`                                                          | -       | Additional CSS classes for the container                        |
-| `style`     | `CSSProperties`                                                   | -       | Inline styles for the container                                 |
-| `render`    | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, undefined>` | -       | Overrides the default DOM element with a custom render function |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | - | Additional CSS classes for the container |
+| `style` | `CSSProperties` | - | Inline styles for the container |
+| `render` | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, undefined>` | - | Overrides the default DOM element with a custom render function |
 
 ### Slider.Marks
 
 Contains `Slider.Mark` children. Place it directly inside `Slider`, after `Slider.Track`. Accepts standard DOM props and a ref.
 
-| Prop        | Type                                                              | Default | Description                                                     |
-| ----------- | ----------------------------------------------------------------- | ------- | --------------------------------------------------------------- |
-| `children`  | `ReactNode`                                                       | -       | Mark labels                                                     |
-| `className` | `string`                                                          | -       | Additional CSS classes for the container                        |
-| `style`     | `CSSProperties`                                                   | -       | Inline styles for the container                                 |
-| `render`    | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, undefined>` | -       | Overrides the default DOM element with a custom render function |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Mark labels |
+| `className` | `string` | - | Additional CSS classes for the container |
+| `style` | `CSSProperties` | - | Inline styles for the container |
+| `render` | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, undefined>` | - | Overrides the default DOM element with a custom render function |
 
 ### Slider.Mark
 
 A label positioned at a value within `Slider.Marks`. Accepts standard DOM props and a ref.
 
-| Prop        | Type                                                              | Default         | Description                                                                               |
-| ----------- | ----------------------------------------------------------------- | --------------- | ----------------------------------------------------------------------------------------- |
-| `value`     | `number`                                                          | Required        | Value at which to position the label; non-finite or out-of-bounds values are not rendered |
-| `children`  | `ReactNode`                                                       | Formatted value | Custom label content; otherwise uses the slider's locale and `formatOptions`              |
-| `className` | `string`                                                          | -               | Additional CSS classes                                                                    |
-| `style`     | `CSSProperties`                                                   | -               | Additional inline styles; value positioning is managed automatically                      |
-| `render`    | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, undefined>` | -               | Overrides the default DOM element with a custom render function                           |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `number` | Required | Value at which to position the label; non-finite or out-of-bounds values are not rendered |
+| `children` | `ReactNode` | Formatted value | Custom label content; otherwise uses the slider's locale and `formatOptions` |
+| `className` | `string` | - | Additional CSS classes |
+| `style` | `CSSProperties` | - | Additional inline styles; value positioning is managed automatically |
+| `render` | `DOMRenderFunction<keyof React.JSX.IntrinsicElements, undefined>` | - | Overrides the default DOM element with a custom render function |
 
 ### Render Props
 
 When using render functions with Slider.Output or Slider.Track, these values are provided:
 
-| Prop                 | Type                         | Description                                              |
-| -------------------- | ---------------------------- | -------------------------------------------------------- |
-| `state`              | `SliderState`                | The state of the slider                                  |
-| `values`             | `number[]`                   | Values managed by the slider by thumb index              |
-| `getThumbValueLabel` | `(index: number) => string`  | Returns the string label for the specified thumb's value |
-| `orientation`        | `"horizontal" \| "vertical"` | The orientation of the slider                            |
-| `isDisabled`         | `boolean`                    | Whether the slider is disabled                           |
+| Prop | Type | Description |
+|------|------|-------------|
+| `state` | `SliderState` | The state of the slider |
+| `values` | `number[]` | Values managed by the slider by thumb index |
+| `getThumbValueLabel` | `(index: number) => string` | Returns the string label for the specified thumb's value |
+| `orientation` | `"horizontal" \| "vertical"` | The orientation of the slider |
+| `isDisabled` | `boolean` | Whether the slider is disabled |
 
 ## Accessibility
 

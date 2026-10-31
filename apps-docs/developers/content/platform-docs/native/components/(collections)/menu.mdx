@@ -1,7 +1,7 @@
 ---
 title: Menu
 description: A floating context menu with positioning, selection groups, and multiple presentation modes.
-icon: updated
+status: updated
 links:
   source_native: menu/menu.tsx
   styles_native: menu/menu.styles.ts
@@ -9,16 +9,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/menu-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/menu-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/menu-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/menu-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { Menu, SubMenu } from 'heroui-native'
+import { Menu, SubMenu } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -126,9 +127,9 @@ Add secondary description text to menu items alongside titles.
 Use `Menu.Group` with `selectionMode="single"` to allow one selected item at a time.
 
 ```tsx
-const [theme, setTheme] = useState<Set<MenuKey>>(() => new Set(['system']))
+const [theme, setTheme] = useState<Set<MenuKey>>(() => new Set(['system']));
 
-;<Menu>
+<Menu>
   <Menu.Trigger>...</Menu.Trigger>
   <Menu.Portal>
     <Menu.Overlay />
@@ -137,7 +138,8 @@ const [theme, setTheme] = useState<Set<MenuKey>>(() => new Set(['system']))
       <Menu.Group
         selectionMode="single"
         selectedKeys={theme}
-        onSelectionChange={setTheme}>
+        onSelectionChange={setTheme}
+      >
         <Menu.Item id="light">
           <Menu.ItemIndicator />
           <Menu.ItemTitle>Light</Menu.ItemTitle>
@@ -153,7 +155,7 @@ const [theme, setTheme] = useState<Set<MenuKey>>(() => new Set(['system']))
       </Menu.Group>
     </Menu.Content>
   </Menu.Portal>
-</Menu>
+</Menu>;
 ```
 
 ### Multiple Selection
@@ -163,9 +165,9 @@ Use `selectionMode="multiple"` to allow selecting multiple items simultaneously.
 ```tsx
 const [textStyles, setTextStyles] = useState<Set<MenuKey>>(
   () => new Set(['bold', 'italic'])
-)
+);
 
-;<Menu>
+<Menu>
   <Menu.Trigger>...</Menu.Trigger>
   <Menu.Portal>
     <Menu.Overlay />
@@ -174,7 +176,8 @@ const [textStyles, setTextStyles] = useState<Set<MenuKey>>(
       <Menu.Group
         selectionMode="multiple"
         selectedKeys={textStyles}
-        onSelectionChange={setTextStyles}>
+        onSelectionChange={setTextStyles}
+      >
         <Menu.Item id="bold">
           <Menu.ItemIndicator />
           <Menu.ItemTitle>Bold</Menu.ItemTitle>
@@ -190,7 +193,7 @@ const [textStyles, setTextStyles] = useState<Set<MenuKey>>(
       </Menu.Group>
     </Menu.Content>
   </Menu.Portal>
-</Menu>
+</Menu>;
 ```
 
 ### With SubMenu
@@ -211,7 +214,7 @@ Nest a `SubMenu` inside `Menu.Content` to reveal additional items on press.
       <SubMenu>
         <SubMenu.Trigger textValue="Focus">
           <SubMenu.TriggerIndicator />
-          <Text className="text-foreground flex-1 text-base font-medium">
+          <Text className="flex-1 text-base font-medium text-foreground">
             Focus
           </Text>
         </SubMenu.Trigger>
@@ -311,7 +314,8 @@ Use `variant="dot"` on `Menu.ItemIndicator` to show a filled circle instead of a
       <Menu.Group
         selectionMode="single"
         selectedKeys={alignment}
-        onSelectionChange={setAlignment}>
+        onSelectionChange={setAlignment}
+      >
         <Menu.Item id="left">
           <Menu.ItemIndicator variant="dot" />
           <Menu.ItemTitle>Left</Menu.ItemTitle>
@@ -333,18 +337,18 @@ Use `variant="dot"` on `Menu.ItemIndicator` to show a filled circle instead of a
 ## Example
 
 ```tsx
-import type { MenuKey } from 'heroui-native'
-import { Button, Menu, Separator } from 'heroui-native'
-import { useState } from 'react'
-import { Text, View } from 'react-native'
+import type { MenuKey } from 'heroui-native';
+import { Button, Menu, Separator } from 'heroui-native';
+import { useState } from 'react';
+import { Text, View } from 'react-native';
 
 export default function MenuExample() {
   const [textStyles, setTextStyles] = useState<Set<MenuKey>>(
     () => new Set(['bold', 'italic'])
-  )
+  );
   const [alignment, setAlignment] = useState<Set<MenuKey>>(
     () => new Set(['left'])
-  )
+  );
 
   return (
     <Menu>
@@ -358,21 +362,22 @@ export default function MenuExample() {
           <Menu.Group
             selectionMode="multiple"
             selectedKeys={textStyles}
-            onSelectionChange={setTextStyles}>
+            onSelectionChange={setTextStyles}
+          >
             <Menu.Item id="bold">
               <Menu.ItemIndicator />
               <Menu.ItemTitle>Bold</Menu.ItemTitle>
-              <Text className="text-muted text-sm">⌘ B</Text>
+              <Text className="text-sm text-muted">⌘ B</Text>
             </Menu.Item>
             <Menu.Item id="italic">
               <Menu.ItemIndicator />
               <Menu.ItemTitle>Italic</Menu.ItemTitle>
-              <Text className="text-muted text-sm">⌘ I</Text>
+              <Text className="text-sm text-muted">⌘ I</Text>
             </Menu.Item>
             <Menu.Item id="underline">
               <Menu.ItemIndicator />
               <Menu.ItemTitle>Underline</Menu.ItemTitle>
-              <Text className="text-muted text-sm">⌘ U</Text>
+              <Text className="text-sm text-muted">⌘ U</Text>
             </Menu.Item>
           </Menu.Group>
           <Separator className="mx-2 my-2 opacity-75" />
@@ -380,7 +385,8 @@ export default function MenuExample() {
           <Menu.Group
             selectionMode="single"
             selectedKeys={alignment}
-            onSelectionChange={setAlignment}>
+            onSelectionChange={setAlignment}
+          >
             <Menu.Item id="left">
               <Menu.ItemIndicator variant="dot" />
               <Menu.ItemTitle>Left</Menu.ItemTitle>
@@ -397,7 +403,7 @@ export default function MenuExample() {
         </Menu.Content>
       </Menu.Portal>
     </Menu>
-  )
+  );
 }
 ```
 
@@ -437,14 +443,14 @@ Animation configuration for menu root component. Can be:
 
 ### Menu.Portal
 
-| prop                                         | type              | default | description                                                                                                                                                                                                      |
-| -------------------------------------------- | ----------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `children`                                   | `React.ReactNode` | -       | The portal content                                                                                                                                                                                               |
-| `className`                                  | `string`          | -       | Additional CSS class for the portal container                                                                                                                                                                    |
-| `disableFullWindowOverlay`                   | `boolean`         | `false` | Use a regular View instead of FullWindowOverlay on iOS                                                                                                                                                           |
-| `unstable_accessibilityContainerViewIsModal` | `boolean`         | `false` | Controls whether VoiceOver treats the overlay window as a modal container. When `true`, VoiceOver is restricted to elements inside the overlay. iOS only. Unstable: may change with react-native-screens updates |
-| `hostName`                                   | `string`          | -       | Optional name of the host element for the portal                                                                                                                                                                 |
-| `forceMount`                                 | `boolean`         | -       | Force mount the portal regardless of open state                                                                                                                                                                  |
+| prop                       | type              | default | description                                            |
+| -------------------------- | ----------------- | ------- | ------------------------------------------------------ |
+| `children`                 | `React.ReactNode` | -       | The portal content                                     |
+| `className`                | `string`          | -       | Additional CSS class for the portal container          |
+| `disableFullWindowOverlay` | `boolean`         | `false` | Use a regular View instead of FullWindowOverlay on iOS |
+| `unstable_accessibilityContainerViewIsModal` | `boolean` | `false` | Controls whether VoiceOver treats the overlay window as a modal container. When `true`, VoiceOver is restricted to elements inside the overlay. iOS only. Unstable: may change with react-native-screens updates |
+| `hostName`                 | `string`          | -       | Optional name of the host element for the portal       |
+| `forceMount`               | `boolean`         | -       | Force mount the portal regardless of open state        |
 
 ### Menu.Overlay
 
@@ -677,7 +683,8 @@ Replace it via the `background` prop on `SubMenu` — a custom node takes over t
         style={StyleSheet.absoluteFill}
       />
     </SubMenu.Background>
-  }>
+  }
+>
   ...
 </SubMenu>
 ```
@@ -750,9 +757,9 @@ Animation configuration for the trigger indicator rotation. Can be:
 Hook to access the menu root context. Must be used within a `Menu` component.
 
 ```tsx
-import { useMenu } from 'heroui-native'
+import { useMenu } from 'heroui-native';
 
-const { isOpen, onOpenChange, presentation, isDisabled } = useMenu()
+const { isOpen, onOpenChange, presentation, isDisabled } = useMenu();
 ```
 
 #### Returns
@@ -770,9 +777,9 @@ const { isOpen, onOpenChange, presentation, isDisabled } = useMenu()
 Hook to access the menu item context. Must be used within a `Menu.Item` component.
 
 ```tsx
-import { useMenuItem } from 'heroui-native'
+import { useMenuItem } from 'heroui-native';
 
-const { id, isSelected, isDisabled, variant } = useMenuItem()
+const { id, isSelected, isDisabled, variant } = useMenuItem();
 ```
 
 #### Returns
@@ -789,9 +796,9 @@ const { id, isSelected, isDisabled, variant } = useMenuItem()
 Hook to access the menu animation context. Must be used within a `Menu` component.
 
 ```tsx
-import { useMenuAnimation } from 'heroui-native'
+import { useMenuAnimation } from 'heroui-native';
 
-const { progress, isDragging } = useMenuAnimation()
+const { progress, isDragging } = useMenuAnimation();
 ```
 
 #### Returns
@@ -806,9 +813,9 @@ const { progress, isDragging } = useMenuAnimation()
 Hook to access the sub-menu context. Must be used within a `SubMenu` component.
 
 ```tsx
-import { useSubMenu } from 'heroui-native'
+import { useSubMenu } from 'heroui-native';
 
-const { isOpen, onOpenChange, isDisabled } = useSubMenu()
+const { isOpen, onOpenChange, isDisabled } = useSubMenu();
 ```
 
 #### Returns
@@ -831,11 +838,11 @@ Menu uses FullWindowOverlay on iOS. To enable the React Native element inspector
 When a `Menu` is opened inside a screen presented as a native modal (`presentation: 'modal' | 'formSheet' | 'pageSheet'`), the menu content may render shifted upward. In the new architecture (Fabric), `react-native-screens` marks `RNSModalScreen` as a Fabric root, so the trigger's position is reported relative to the modal's origin while `FullWindowOverlay` (where the menu is mounted) is anchored to the iOS application window. Compensate by adding `safeAreaInsets.top` to `offset`:
 
 ```tsx
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const insets = useSafeAreaInsets()
+const insets = useSafeAreaInsets();
 
-;<Menu.Content presentation="popover" offset={insets.top}>
+<Menu.Content presentation="popover" offset={insets.top}>
   ...
-</Menu.Content>
+</Menu.Content>;
 ```

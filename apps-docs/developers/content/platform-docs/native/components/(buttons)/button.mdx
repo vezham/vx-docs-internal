@@ -8,16 +8,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/button-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/button-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/button-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/button-docs-dark.mp4"
 />
 
 ## Import
 
 ```tsx
-import { Button } from 'heroui-native'
+import { Button } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -112,25 +113,17 @@ The `feedbackVariant` prop controls which press feedback effects are rendered:
 - `'none'`: No feedback animations at all
 
 ```tsx
-{
-  /* Scale + Highlight (default) */
-}
-;<Button feedbackVariant="scale-highlight">Highlight Effect</Button>
+{/* Scale + Highlight (default) */}
+<Button feedbackVariant="scale-highlight">Highlight Effect</Button>
 
-{
-  /* Scale + Ripple */
-}
-;<Button feedbackVariant="scale-ripple">Ripple Effect</Button>
+{/* Scale + Ripple */}
+<Button feedbackVariant="scale-ripple">Ripple Effect</Button>
 
-{
-  /* Scale only */
-}
-;<Button feedbackVariant="scale">Scale Only</Button>
+{/* Scale only */}
+<Button feedbackVariant="scale">Scale Only</Button>
 
-{
-  /* No feedback */
-}
-;<Button feedbackVariant="none">No Feedback</Button>
+{/* No feedback */}
+<Button feedbackVariant="none">No Feedback</Button>
 ```
 
 ### Custom Animation
@@ -138,32 +131,30 @@ The `feedbackVariant` prop controls which press feedback effects are rendered:
 The `animation` prop controls individual sub-animations. Its shape depends on the `feedbackVariant`.
 
 ```tsx
-{
-  /* Customize scale and highlight (default feedbackVariant) */
-}
-;<Button
+{/* Customize scale and highlight (default feedbackVariant) */}
+<Button
   animation={{
     scale: { value: 0.97 },
     highlight: {
       backgroundColor: { value: '#3b82f6' },
-      opacity: { value: [0, 0.2] }
-    }
-  }}>
+      opacity: { value: [0, 0.2] },
+    },
+  }}
+>
   Custom Highlight
 </Button>
 
-{
-  /* Customize scale and ripple */
-}
-;<Button
+{/* Customize scale and ripple */}
+<Button
   feedbackVariant="scale-ripple"
   animation={{
     scale: { value: 0.97 },
     ripple: {
       backgroundColor: { value: '#3b82f6' },
-      opacity: { value: [0, 0.3, 0] }
-    }
-  }}>
+      opacity: { value: [0, 0.3, 0] },
+    },
+  }}
+>
   Custom Ripple
 </Button>
 ```
@@ -173,20 +164,14 @@ The `animation` prop controls individual sub-animations. Its shape depends on th
 Disable specific sub-animations by setting them to `false`:
 
 ```tsx
-{
-  /* Disable scale, keep highlight */
-}
-;<Button animation={{ scale: false }}>No Scale</Button>
+{/* Disable scale, keep highlight */}
+<Button animation={{ scale: false }}>No Scale</Button>
 
-{
-  /* Disable highlight, keep scale */
-}
-;<Button animation={{ highlight: false }}>No Highlight</Button>
+{/* Disable highlight, keep scale */}
+<Button animation={{ highlight: false }}>No Highlight</Button>
 
-{
-  /* Disable both */
-}
-;<Button animation={{ scale: false, highlight: false }}>No Animations</Button>
+{/* Disable both */}
+<Button animation={{ scale: false, highlight: false }}>No Animations</Button>
 ```
 
 ### Disable All Animations
@@ -203,25 +188,26 @@ Use `animation={false}` to disable all feedback, or `animation="disable-all"` fo
 Transform button to loading state with spinner animation.
 
 ```tsx
-const themeColorAccentForeground = useThemeColor('accent-foreground')
+const themeColorAccentForeground = useThemeColor('accent-foreground');
 
-;<Button
+<Button
   layout={LinearTransition.springify()}
   variant="primary"
   onPress={() => {
-    setIsDownloading(true)
+    setIsDownloading(true);
     setTimeout(() => {
-      setIsDownloading(false)
-    }, 3000)
+      setIsDownloading(false);
+    }, 3000);
   }}
   isIconOnly={isDownloading}
-  className="self-center">
+  className="self-center"
+>
   {isDownloading ? (
     <Spinner entering={FadeIn.delay(50)} color={themeColorAccentForeground} />
   ) : (
     'Download now'
   )}
-</Button>
+</Button>;
 ```
 
 ### Custom Background with LinearGradient
@@ -229,41 +215,38 @@ const themeColorAccentForeground = useThemeColor('accent-foreground')
 Add gradient backgrounds using absolute positioned elements. Use `feedbackVariant="none"` to disable the default highlight overlay, or use `feedbackVariant="scale-ripple"` for a custom ripple effect.
 
 ```tsx
-import { LinearGradient } from 'expo-linear-gradient'
-import { Button, PressableFeedback } from 'heroui-native'
-import { StyleSheet } from 'react-native'
+import { Button, PressableFeedback } from 'heroui-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { StyleSheet } from 'react-native';
 
-{
-  /* Gradient with no feedback overlay */
-}
-;<Button feedbackVariant="none">
+{/* Gradient with no feedback overlay */}
+<Button feedbackVariant="none">
   <LinearGradient
     colors={['#9333ea', '#ec4899']}
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 0 }}
     style={StyleSheet.absoluteFill}
   />
-  <Button.Label className="font-bold text-white">Gradient</Button.Label>
+  <Button.Label className="text-white font-bold">Gradient</Button.Label>
 </Button>
 
-{
-  /* Gradient with custom ripple effect */
-}
-;<Button
+{/* Gradient with custom ripple effect */}
+<Button
   feedbackVariant="scale-ripple"
   animation={{
     ripple: {
       backgroundColor: { value: 'white' },
-      opacity: { value: [0, 0.5, 0] }
-    }
-  }}>
+      opacity: { value: [0, 0.5, 0] },
+    },
+  }}
+>
   <LinearGradient
     colors={['#0d9488', '#ec4899']}
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 0 }}
     style={StyleSheet.absoluteFill}
   />
-  <Button.Label className="font-bold text-white" pointerEvents="none">
+  <Button.Label className="text-white font-bold" pointerEvents="none">
     Gradient with Ripple
   </Button.Label>
 </Button>
@@ -272,22 +255,22 @@ import { StyleSheet } from 'react-native'
 ## Example
 
 ```tsx
-import { Ionicons } from '@expo/vector-icons'
-import { Button, useThemeColor } from 'heroui-native'
-import { View } from 'react-native'
+import { Button, useThemeColor } from 'heroui-native';
+import { Ionicons } from '@expo/vector-icons';
+import { View } from 'react-native';
 
 export default function ButtonExample() {
   const [
     themeColorAccentForeground,
     themeColorAccentSoftForeground,
     themeColorDangerForeground,
-    themeColorDefaultForeground
+    themeColorDefaultForeground,
   ] = useThemeColor([
     'accent-foreground',
     'accent-soft-foreground',
     'danger-foreground',
-    'default-foreground'
-  ])
+    'default-foreground',
+  ]);
 
   return (
     <View className="gap-4 p-4">
@@ -304,7 +287,8 @@ export default function ButtonExample() {
           size="sm"
           variant="secondary"
           isIconOnly
-          accessibilityLabel="Bookmark">
+          accessibilityLabel="Bookmark"
+        >
           <Ionicons
             name="bookmark"
             size={16}
@@ -315,7 +299,8 @@ export default function ButtonExample() {
           size="sm"
           variant="danger"
           isIconOnly
-          accessibilityLabel="Delete">
+          accessibilityLabel="Delete"
+        >
           <Ionicons name="trash" size={16} color={themeColorDangerForeground} />
         </Button>
       </View>
@@ -329,7 +314,7 @@ export default function ButtonExample() {
         />
       </Button>
     </View>
-  )
+  );
 }
 ```
 
@@ -341,14 +326,14 @@ You can find more examples in the [GitHub repository](<https://github.com/heroui
 
 Button extends all props from [PressableFeedback](./pressable-feedback) (except `animation`, which is redefined) with additional button-specific props.
 
-| prop              | type                                                                                          | default             | description                                                                                                                                                                     |
-| ----------------- | --------------------------------------------------------------------------------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `variant`         | `'primary' \| 'secondary' \| 'tertiary' \| 'outline' \| 'ghost' \| 'danger' \| 'danger-soft'` | `'primary'`         | Visual variant of the button                                                                                                                                                    |
-| `size`            | `'sm' \| 'md' \| 'lg'`                                                                        | `'md'`              | Size of the button                                                                                                                                                              |
-| `isIconOnly`      | `boolean`                                                                                     | `false`             | Whether the button displays an icon only (square aspect ratio)                                                                                                                  |
-| `feedbackVariant` | `'scale-highlight' \| 'scale-ripple' \| 'scale' \| 'none'`                                    | `'scale-highlight'` | Determines which feedback effects are rendered                                                                                                                                  |
-| `animation`       | `ButtonAnimation`                                                                             | -                   | Animation configuration (shape depends on `feedbackVariant`)                                                                                                                    |
-| `background`      | `React.ReactNode`                                                                             | -                   | Background layer behind the button surface. `undefined` renders the theme-aware default for the `secondary` and `tertiary` variants; custom node replaces it; `null` removes it |
+| prop              | type                                                                                          | default             | description                                                    |
+| ----------------- | --------------------------------------------------------------------------------------------- | ------------------- | -------------------------------------------------------------- |
+| `variant`         | `'primary' \| 'secondary' \| 'tertiary' \| 'outline' \| 'ghost' \| 'danger' \| 'danger-soft'` | `'primary'`         | Visual variant of the button                                   |
+| `size`            | `'sm' \| 'md' \| 'lg'`                                                                        | `'md'`              | Size of the button                                             |
+| `isIconOnly`      | `boolean`                                                                                     | `false`             | Whether the button displays an icon only (square aspect ratio) |
+| `feedbackVariant` | `'scale-highlight' \| 'scale-ripple' \| 'scale' \| 'none'`                                    | `'scale-highlight'` | Determines which feedback effects are rendered                 |
+| `animation`       | `ButtonAnimation`                                                                             | -                   | Animation configuration (shape depends on `feedbackVariant`)   |
+| `background` | `React.ReactNode` | - | Background layer behind the button surface. `undefined` renders the theme-aware default for the `secondary` and `tertiary` variants; custom node replaces it; `null` removes it |
 
 For inherited props including `isDisabled`, `className`, `children`, and all Pressable props, see [PressableFeedback API Reference](./pressable-feedback#api-reference).
 
@@ -363,25 +348,25 @@ The `animation` prop is a discriminated union based on `feedbackVariant`. It fol
 
 **When `feedbackVariant="scale-highlight"` (default):**
 
-| prop        | type                                     | default | description                                                   |
-| ----------- | ---------------------------------------- | ------- | ------------------------------------------------------------- |
-| `scale`     | `PressableFeedbackScaleAnimation`        | -       | Scale animation config (`false` to disable)                   |
-| `highlight` | `PressableFeedbackHighlightAnimation`    | -       | Highlight overlay config (`false` to disable)                 |
+| prop        | type                                     | default | description                                                  |
+| ----------- | ---------------------------------------- | ------- | ------------------------------------------------------------ |
+| `scale`     | `PressableFeedbackScaleAnimation`        | -       | Scale animation config (`false` to disable)                  |
+| `highlight` | `PressableFeedbackHighlightAnimation`    | -       | Highlight overlay config (`false` to disable)                |
 | `state`     | `'disabled' \| 'disable-all' \| boolean` | -       | Control animation state while keeping config (runtime toggle) |
 
 **When `feedbackVariant="scale-ripple"`:**
 
-| prop     | type                                     | default | description                                                   |
-| -------- | ---------------------------------------- | ------- | ------------------------------------------------------------- |
-| `scale`  | `PressableFeedbackScaleAnimation`        | -       | Scale animation config (`false` to disable)                   |
-| `ripple` | `PressableFeedbackRippleAnimation`       | -       | Ripple overlay config (`false` to disable)                    |
+| prop     | type                                     | default | description                                                  |
+| -------- | ---------------------------------------- | ------- | ------------------------------------------------------------ |
+| `scale`  | `PressableFeedbackScaleAnimation`        | -       | Scale animation config (`false` to disable)                  |
+| `ripple` | `PressableFeedbackRippleAnimation`       | -       | Ripple overlay config (`false` to disable)                   |
 | `state`  | `'disabled' \| 'disable-all' \| boolean` | -       | Control animation state while keeping config (runtime toggle) |
 
 **When `feedbackVariant="scale"`:**
 
-| prop    | type                                     | default | description                                                   |
-| ------- | ---------------------------------------- | ------- | ------------------------------------------------------------- |
-| `scale` | `PressableFeedbackScaleAnimation`        | -       | Scale animation config (`false` to disable)                   |
+| prop    | type                                     | default | description                                                  |
+| ------- | ---------------------------------------- | ------- | ------------------------------------------------------------ |
+| `scale` | `PressableFeedbackScaleAnimation`        | -       | Scale animation config (`false` to disable)                  |
 | `state` | `'disabled' \| 'disable-all' \| boolean` | -       | Control animation state while keeping config (runtime toggle) |
 
 **When `feedbackVariant="none"`:**
@@ -415,9 +400,9 @@ Absolute-fill container rendered behind the button surface. With no children, th
 Hook to access the Button context values. Returns the button's size, variant, and disabled state.
 
 ```tsx
-import { useButton } from 'heroui-native'
+import { useButton } from 'heroui-native';
 
-const { size, variant, isDisabled } = useButton()
+const { size, variant, isDisabled } = useButton();
 ```
 
 #### Return Value

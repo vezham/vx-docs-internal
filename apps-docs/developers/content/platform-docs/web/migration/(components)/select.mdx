@@ -3,16 +3,11 @@ title: Select
 description: Migration guide for Select from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 Select documentation](/docs-ui/web/components/select) for
-  complete API reference, styling guide, and advanced examples. This guide only
-  focuses on migrating from HeroUI v2.
+  Refer to the [v3 Select documentation](/docs-ui/web/components/select) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,7 +15,7 @@ import {
 In v2, Select used a simple structure with props:
 
 ```tsx
-import { Select, SelectItem } from '@heroui/react'
+import { Select, SelectItem } from "@heroui/react";
 
 export default function App() {
   return (
@@ -28,14 +23,14 @@ export default function App() {
       <SelectItem key="cat">Cat</SelectItem>
       <SelectItem key="dog">Dog</SelectItem>
     </Select>
-  )
+  );
 }
 ```
 
 In v3, Select requires compound components and uses `ListBox` for items:
 
 ```tsx
-import { Label, ListBox, Select } from '@heroui/react'
+import { Select, Label, ListBox } from "@heroui/react";
 
 export default function App() {
   return (
@@ -58,7 +53,7 @@ export default function App() {
         </ListBox>
       </Select.Popover>
     </Select>
-  )
+  );
 }
 ```
 
@@ -66,7 +61,7 @@ export default function App() {
 
 ### 1. Component Structure
 
-**v2:** Simple Select with `SelectItem` children  
+**v2:** Simple Select with `SelectItem` children
 **v3:** Compound components (`Select.Trigger`, `Select.Value`, `Select.ClearButton`, `Select.Indicator`, `Select.Popover`) with `ListBox` for items
 
 ### 2. Item Components
@@ -76,33 +71,33 @@ export default function App() {
 
 ### 3. Prop Changes
 
-| v2 Prop                                             | v3 Location          | Notes                                                               |
-| --------------------------------------------------- | -------------------- | ------------------------------------------------------------------- |
-| `selectedKeys`                                      | `value`              | Changed from Set/array to single value or array                     |
-| `onSelectionChange`                                 | `onChange`           | Renamed event handler                                               |
-| `defaultSelectedKeys`                               | `defaultValue`       | Renamed prop                                                        |
-| `label`                                             | —                    | Use `Label` component                                               |
-| `description`                                       | —                    | Use `Description` component                                         |
-| `errorMessage`                                      | —                    | Use `FieldError` component                                          |
-| `variant`                                           | `variant`            | Simplified to `primary` \| `secondary` only                         |
-| `color`                                             | —                    | Removed (use Tailwind CSS)                                          |
-| `size`                                              | —                    | Removed (use Tailwind CSS)                                          |
-| `radius`                                            | —                    | Removed (use Tailwind CSS)                                          |
-| `classNames`                                        | —                    | Use `className` props on individual components                      |
-| `startContent`                                      | —                    | Customize `Select.Trigger` directly                                 |
-| `endContent`                                        | —                    | Customize `Select.Trigger` directly                                 |
-| `selectorIcon`                                      | —                    | Customize `Select.Indicator` children                               |
-| `isClearable`                                       | `Select.ClearButton` | Built-in subcomponent; do not nest a `<button>` in `Select.Trigger` |
-| `renderValue`                                       | —                    | Use `Select.Value` render prop                                      |
-| `labelPlacement`                                    | —                    | Labels are always outside                                           |
-| `isRequired`                                        | `isRequired`         | Still exists                                                        |
-| `disabledKeys`                                      | `disabledKeys`       | Still exists                                                        |
-| `isOpen`                                            | `isOpen`             | New: controls the open state of the popover (controlled)            |
-| `defaultOpen`                                       | `defaultOpen`        | New: sets the default open state of the popover (uncontrolled)      |
-| `onOpenChange`                                      | `onOpenChange`       | New: handler called when the open state changes                     |
-| `selectionMode`                                     | `selectionMode`      | Still exists                                                        |
-| `disableAnimation`                                  | —                    | Removed (animations handled differently)                            |
-| `popoverProps`, `listboxProps`, `scrollShadowProps` | —                    | Use props on `Select.Popover`, `ListBox`, etc. directly             |
+| v2 Prop | v3 Location | Notes |
+|---------|-------------|-------|
+| `selectedKeys` | `value` | Changed from Set/array to single value or array |
+| `onSelectionChange` | `onChange` | Renamed event handler |
+| `defaultSelectedKeys` | `defaultValue` | Renamed prop |
+| `label` | — | Use `Label` component |
+| `description` | — | Use `Description` component |
+| `errorMessage` | — | Use `FieldError` component |
+| `variant` | `variant` | Simplified to `primary` \| `secondary` only |
+| `color` | — | Removed (use Tailwind CSS) |
+| `size` | — | Removed (use Tailwind CSS) |
+| `radius` | — | Removed (use Tailwind CSS) |
+| `classNames` | — | Use `className` props on individual components |
+| `startContent` | — | Customize `Select.Trigger` directly |
+| `endContent` | — | Customize `Select.Trigger` directly |
+| `selectorIcon` | — | Customize `Select.Indicator` children |
+| `isClearable` | `Select.ClearButton` | Built-in subcomponent; do not nest a `<button>` in `Select.Trigger` |
+| `renderValue` | — | Use `Select.Value` render prop |
+| `labelPlacement` | — | Labels are always outside |
+| `isRequired` | `isRequired` | Still exists |
+| `disabledKeys` | `disabledKeys` | Still exists |
+| `isOpen` | `isOpen` | New: controls the open state of the popover (controlled) |
+| `defaultOpen` | `defaultOpen` | New: sets the default open state of the popover (uncontrolled) |
+| `onOpenChange` | `onOpenChange` | New: handler called when the open state changes |
+| `selectionMode` | `selectionMode` | Still exists |
+| `disableAnimation` | — | Removed (animations handled differently) |
+| `popoverProps`, `listboxProps`, `scrollShadowProps` | — | Use props on `Select.Popover`, `ListBox`, etc. directly |
 
 ## Migration Examples
 
@@ -136,7 +131,6 @@ export default function App() {
       <SelectItem key="dog">Dog</SelectItem>
     </Select>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -192,7 +186,6 @@ export default function App() {
       </Select.Popover>
     </Select>
     ```
-
   </Tab>
 </Tabs>
 
@@ -209,7 +202,7 @@ export default function App() {
     >
       <SelectItem key="cat">Cat</SelectItem>
     </Select>
-    
+
     {/* With validation */}
     <Select
       isInvalid
@@ -260,7 +253,6 @@ export default function App() {
       <FieldError>Please select an option</FieldError>
     </Select>
     ```
-
   </Tab>
 </Tabs>
 
@@ -282,7 +274,6 @@ export default function App() {
       </SelectSection>
     </Select>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -323,7 +314,6 @@ export default function App() {
       </Select.Popover>
     </Select>
     ```
-
   </Tab>
 </Tabs>
 
@@ -366,7 +356,6 @@ export default function App() {
       </Select.Popover>
     </Select>
     ```
-
   </Tab>
 </Tabs>
 
@@ -383,7 +372,6 @@ export default function App() {
       <SelectItem key="parrot">Parrot</SelectItem>
     </Select>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -413,7 +401,6 @@ export default function App() {
       </Select.Popover>
     </Select>
     ```
-
   </Tab>
 </Tabs>
 
@@ -429,7 +416,6 @@ export default function App() {
       <SelectItem key="dog">Dog</SelectItem>
     </Select>
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -455,13 +441,12 @@ export default function App() {
       </Select.Popover>
     </Select>
     ```
-
   </Tab>
 </Tabs>
 
 ### Custom Indicator
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <Select selectorIcon={<CustomIcon />} label="Select animal">

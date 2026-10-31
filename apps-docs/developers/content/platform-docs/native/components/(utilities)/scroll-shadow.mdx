@@ -1,7 +1,7 @@
 ---
 title: ScrollShadow
 description: Adds dynamic gradient shadows to scrollable content based on scroll position and overflow.
-icon: updated
+status: updated
 links:
   source_native: scroll-shadow/scroll-shadow.tsx
   styles_native: scroll-shadow/scroll-shadow.styles.ts
@@ -9,16 +9,17 @@ links:
 
 import { NativeVideoPlayerView } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 <NativeVideoPlayerView
   target="auto"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/scroll-shadow-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/scoll-shadow-docs-dark.mp4.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/scroll-shadow-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/scoll-shadow-docs-dark.mp4.mp4"
 />
 
 ## Import
 
 ```tsx
-import { ScrollShadow } from 'heroui-native'
+import { ScrollShadow } from 'heroui-native';
 ```
 
 ## Anatomy
@@ -97,42 +98,42 @@ Override the default shadow color which uses the theme's background.
 **Important:** ScrollShadow internally converts the child to a Reanimated animated component. If you need to use the `onScroll` prop, you must use `useAnimatedScrollHandler` from react-native-reanimated.
 
 ```tsx
-import { LinearGradient } from 'expo-linear-gradient'
-import Animated, { useAnimatedScrollHandler } from 'react-native-reanimated'
+import { LinearGradient } from 'expo-linear-gradient';
+import Animated, { useAnimatedScrollHandler } from 'react-native-reanimated';
 
 const scrollHandler = useAnimatedScrollHandler({
-  onScroll: event => {
-    console.log(event.contentOffset.y)
-  }
-})
+  onScroll: (event) => {
+    console.log(event.contentOffset.y);
+  },
+});
 
-;<ScrollShadow LinearGradientComponent={LinearGradient}>
+<ScrollShadow LinearGradientComponent={LinearGradient}>
   <Animated.ScrollView onScroll={scrollHandler}>...</Animated.ScrollView>
-</ScrollShadow>
+</ScrollShadow>;
 ```
 
 ## Example
 
 ```tsx
-import { LinearGradient } from 'expo-linear-gradient'
-import { ScrollShadow, Surface } from 'heroui-native'
-import { FlatList, ScrollView, Text, View } from 'react-native'
+import { ScrollShadow, Surface } from 'heroui-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { FlatList, ScrollView, Text, View } from 'react-native';
 
 export default function ScrollShadowExample() {
   const horizontalData = Array.from({ length: 10 }, (_, i) => ({
     id: i,
-    title: `Card ${i + 1}`
-  }))
+    title: `Card ${i + 1}`,
+  }));
 
   return (
-    <View className="bg-background flex-1">
+    <View className="flex-1 bg-background">
       <Text className="px-5 py-3 text-lg font-semibold">Horizontal List</Text>
       <ScrollShadow LinearGradientComponent={LinearGradient}>
         <FlatList
           data={horizontalData}
           horizontal
           renderItem={({ item }) => (
-            <Surface variant="2" className="h-24 w-32 justify-center px-4">
+            <Surface variant="2" className="w-32 h-24 justify-center px-4">
               <Text>{item.title}</Text>
             </Surface>
           )}
@@ -145,10 +146,12 @@ export default function ScrollShadowExample() {
       <ScrollShadow
         size={80}
         className="h-48"
-        LinearGradientComponent={LinearGradient}>
+        LinearGradientComponent={LinearGradient}
+      >
         <ScrollView
           contentContainerClassName="p-5"
-          showsVerticalScrollIndicator={false}>
+          showsVerticalScrollIndicator={false}
+        >
           <Text className="mb-4 text-2xl font-bold">Long Content</Text>
           <Text className="mb-4 text-base leading-6">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -163,11 +166,11 @@ export default function ScrollShadowExample() {
         </ScrollView>
       </ScrollShadow>
     </View>
-  )
+  );
 }
 ```
 
-You can find more examples in the [GitHub repository](<https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/scroll-shadow.tsx>).
+You can find more examples in the [GitHub repository](https://github.com/heroui-inc/heroui-native/blob/main/example/src/app/(home)/components/scroll-shadow.tsx).
 
 ## API Reference
 

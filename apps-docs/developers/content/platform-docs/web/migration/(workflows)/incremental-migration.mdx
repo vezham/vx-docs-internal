@@ -5,6 +5,7 @@ description: Step-by-step guide for migrating HeroUI v2 to v3 incrementally whil
 
 import { Callout } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
+
 ## Overview
 
 Incremental migration with coexistence allows you to migrate from HeroUI v2 to v3 component-by-component while keeping your project functional throughout the migration process. This approach uses special setup strategies to allow both v2 and v3 components to work side-by-side.
@@ -61,17 +62,13 @@ This strategy uses pnpm package aliases to install v3 packages under different n
 2. Import v2 components from `@heroui/react`:
 
 ```tsx
-import { Button } from '@heroui/react'
-
-// v2
+import {Button} from "@heroui/react"; // v2
 ```
 
 3. Import v3 components from `@heroui-v3/react`:
 
 ```tsx
-import { Button } from '@heroui-v3/react'
-
-// v3
+import {Button} from "@heroui-v3/react"; // v3
 ```
 
 ### Migration Process
@@ -115,7 +112,7 @@ This strategy uses v2's component-specific packages alongside v3's unified packa
     "@heroui/react": "latest", // v3
     "@heroui/styles": "latest", // v3
     "@heroui/button": "2.8.6", // v2
-    "@heroui/card": "2.8.6" // v2
+    "@heroui/card": "2.8.6", // v2
     // ... other v2 component packages as needed
   }
 }
@@ -124,17 +121,13 @@ This strategy uses v2's component-specific packages alongside v3's unified packa
 2. Import v3 components from `@heroui/react`:
 
 ```tsx
-import { Button } from '@heroui/react'
-
-// v3
+import {Button} from "@heroui/react"; // v3
 ```
 
 3. Import v2 components from component packages:
 
 ```tsx
-import { Card } from '@heroui/card'
-
-// v2
+import {Card} from "@heroui/card"; // v2
 ```
 
 ### Migration Process
@@ -164,18 +157,17 @@ During coexistence, you'll need both CSS systems:
 
 ```css
 /* globals.css */
-@import 'tailwindcss';
+@import "tailwindcss";
 
 /* v2 styles via Tailwind plugin */
 /* (configured in tailwind.config.js) */
 
 /* v3 styles */
-@import '@heroui/styles';
+@import "@heroui/styles";
 ```
 
 <Callout type="warning">
-  **Important:** Import order matters. Import `tailwindcss` first, then
-  `@heroui/styles`.
+  **Important:** Import order matters. Import `tailwindcss` first, then `@heroui/styles`.
 </Callout>
 
 ## Tailwind Configuration
@@ -185,12 +177,12 @@ You'll need both Tailwind configs temporarily:
 **v2 Config (tailwind.config.js):**
 
 ```js
-const { heroui } = require('@heroui/react')
+const {heroui} = require("@heroui/react");
 
 module.exports = {
-  plugins: [heroui()]
+  plugins: [heroui()],
   // ... other config
-}
+};
 ```
 
 **v3 Config:** No plugin needed, but ensure Tailwind v4 is installed.
@@ -267,7 +259,6 @@ Once all components are migrated:
 Use this checklist to track your incremental migration progress:
 
 ### Initial Setup
-
 - Choose strategy (A: aliases or B: component packages)
 - Install v3 packages (with aliases or directly)
 - Configure CSS for both versions
@@ -275,7 +266,6 @@ Use this checklist to track your incremental migration progress:
 - Set up both Tailwind configs temporarily
 
 ### Component Migration (Repeat for each component)
-
 - Review component migration guide
 - Update imports (Strategy A or B)
 - Update component code to v3 API
@@ -285,7 +275,6 @@ Use this checklist to track your incremental migration progress:
 - Identify v2 removed components (Code, Image, Navbar, Ripple, Snippet, Spacer, User) — leave in place or replace per guides
 
 ### Completion
-
 - Migrate all components
 - Optional: Replace removed components using migration guides before removing v2 deps, or remove v2 deps only after all removed components are replaced
 - Remove v2 dependencies

@@ -5,16 +5,11 @@ github:
   pull: 5872
 ---
 
-import {
-  Callout,
-  PRContributors,
-  Tab,
-  Tabs,
-  VideoPlayer
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, ComponentPreview, PRContributors, Tab, Tabs, VideoPlayer } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">November 6, 2025</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">November 6, 2025</span>
 </div>
 
 This release introduces a comprehensive redesign of HeroUI v3, merging v2's beauty and animations with v3's simplicity. All components redesigned, 8 new components, and improved design system with better color tokens, shadows, and architecture.
@@ -23,26 +18,31 @@ This release introduces a comprehensive redesign of HeroUI v3, merging v2's beau
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
   <Tab value="npm">
-    ```bash npm i @heroui/styles@beta @heroui/react@beta ```
+    ```bash
+    npm i @heroui/styles@beta @heroui/react@beta
+    ```
   </Tab>
   <Tab value="pnpm">
-    ```bash pnpm add @heroui/styles@beta @heroui/react@beta ```
+    ```bash
+    pnpm add @heroui/styles@beta @heroui/react@beta
+    ```
   </Tab>
   <Tab value="yarn">
-    ```bash yarn add @heroui/styles@beta @heroui/react@beta ```
+    ```bash
+    yarn add @heroui/styles@beta @heroui/react@beta
+    ```
   </Tab>
   <Tab value="bun">
-    ```bash bun add @heroui/styles@beta @heroui/react@beta ```
+    ```bash
+    bun add @heroui/styles@beta @heroui/react@beta
+    ```
   </Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the
-  latest version" and your AI assistant will automatically compare versions and
-  apply the necessary changes. Learn more about the [HeroUI MCP
-  Server](https://heroui.com/docs/ui-for-agents/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI MCP Server](https://heroui.com/docs/ui-for-agents/mcp-server).
 </Callout>
 
 ## What's New
@@ -59,7 +59,6 @@ We've spent weeks crafting a new design system that merges the soul of HeroUI v2
 />
 
 The redesign brings:
-
 - New color system that brings v3's vision to life and stands out for its uniqueness
 - Refined shadow system for better depth perception
 - New variables and tokens for better customization
@@ -83,9 +82,12 @@ This release introduces **8 new** essential components:
 <span id="alert"></span>
 ### Alert
 
-[Live example: alert-basic](https://heroui.com/docs/react/releases/v3-0-0-beta-1)
 
-```tsx
+<ComponentPreview name="alert-basic">
+
+````tsx
+import {Alert, Button, CloseButton, Spinner} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <div className="grid w-full max-w-xl gap-4">
@@ -95,8 +97,8 @@ export function Basic() {
         <Alert.Content>
           <Alert.Title>New features available</Alert.Title>
           <Alert.Description>
-            Check out our latest updates including dark mode support and
-            improved accessibility features.
+            Check out our latest updates including dark mode support and improved accessibility
+            features.
           </Alert.Description>
         </Alert.Content>
       </Alert>
@@ -107,8 +109,8 @@ export function Basic() {
         <Alert.Content>
           <Alert.Title>Update available</Alert.Title>
           <Alert.Description>
-            A new version of the application is available. Please refresh to get
-            the latest features and bug fixes.
+            A new version of the application is available. Please refresh to get the latest features
+            and bug fixes.
           </Alert.Description>
           <Button className="mt-2 sm:hidden" size="sm" variant="primary">
             Refresh
@@ -169,22 +171,28 @@ export function Basic() {
         <Alert.Content>
           <Alert.Title>Scheduled maintenance</Alert.Title>
           <Alert.Description>
-            Our services will be unavailable on Sunday, March 15th from 2:00 AM
-            to 6:00 AM UTC for scheduled maintenance.
+            Our services will be unavailable on Sunday, March 15th from 2:00 AM to 6:00 AM UTC for
+            scheduled maintenance.
           </Alert.Description>
         </Alert.Content>
       </Alert>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 <span id="checkbox-checkboxgroup"></span>
 ### Checkbox & CheckboxGroup
 
-[Live example: checkbox-basic](https://heroui.com/docs/react/releases/v3-0-0-beta-1)
 
-```tsx
+<ComponentPreview name="checkbox-basic">
+
+````tsx
+import {Checkbox} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <Checkbox name="basic-terms">
@@ -195,13 +203,19 @@ export function Basic() {
         Accept terms and conditions
       </Checkbox.Content>
     </Checkbox>
-  )
+  );
 }
-```
+````
 
-[Live example: checkbox-group-basic](https://heroui.com/docs/react/releases/v3-0-0-beta-1)
+</ComponentPreview>
 
-```tsx
+
+
+<ComponentPreview name="checkbox-group-basic">
+
+````tsx
+import {Checkbox, CheckboxGroup, Description, Label} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <CheckboxGroup name="interests">
@@ -235,24 +249,28 @@ export function Basic() {
         <Description>Passionate about content creation</Description>
       </Checkbox>
     </CheckboxGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 <span id="inputotp"></span>
 ### InputOTP
 
-[Live example: input-otp-basic](https://heroui.com/docs/react/releases/v3-0-0-beta-1)
 
-```tsx
+<ComponentPreview name="input-otp-basic">
+
+````tsx
+import {InputOTP, Label, Link} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <div className="flex w-[280px] flex-col gap-2">
       <div className="flex flex-col gap-1">
         <Label>Verify account</Label>
-        <p className="text-muted text-sm">
-          We&apos;ve sent a code to a****@gmail.com
-        </p>
+        <p className="text-sm text-muted">We&apos;ve sent a code to a****@gmail.com</p>
       </div>
       <InputOTP maxLength={6}>
         <InputOTP.Group>
@@ -268,22 +286,28 @@ export function Basic() {
         </InputOTP.Group>
       </InputOTP>
       <div className="flex items-center gap-[5px] px-1 pt-1">
-        <p className="text-muted text-sm">Didn&apos;t receive a code?</p>
+        <p className="text-sm text-muted">Didn&apos;t receive a code?</p>
         <Link className="text-foreground underline" href="#">
           Resend
         </Link>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 <span id="listbox"></span>
 ### Listbox
 
-[Live example: list-box-default](https://heroui.com/docs/react/releases/v3-0-0-beta-1)
 
-```tsx
+<ComponentPreview name="list-box-default">
+
+````tsx
+import {Avatar, Description, Label, ListBox} from "@vezham/react-v3";
+
 export function Default() {
   return (
     <ListBox aria-label="Users" className="w-[220px]" selectionMode="single">
@@ -330,16 +354,22 @@ export function Default() {
         <ListBox.ItemIndicator />
       </ListBox.Item>
     </ListBox>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 <span id="select"></span>
 ### Select
 
-[Live example: select-default](https://heroui.com/docs/react/releases/v3-0-0-beta-1)
 
-```tsx
+<ComponentPreview name="select-default">
+
+````tsx
+import {Label, ListBox, Select} from "@vezham/react-v3";
+
 export function Default() {
   return (
     <Select className="w-[256px]" placeholder="Select one">
@@ -377,16 +407,22 @@ export function Default() {
         </ListBox>
       </Select.Popover>
     </Select>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 <span id="slider"></span>
 ### Slider
 
-[Live example: slider-default](https://heroui.com/docs/react/releases/v3-0-0-beta-1)
 
-```tsx
+<ComponentPreview name="slider-default">
+
+````tsx
+import {Label, Slider} from "@vezham/react-v3";
+
 export function Default() {
   return (
     <Slider className="w-full max-w-xs" defaultValue={30}>
@@ -397,81 +433,75 @@ export function Default() {
         <Slider.Thumb />
       </Slider.Track>
     </Slider>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 <span id="surface"></span>
 ### Surface
 
-[Live example: surface-variants](https://heroui.com/docs/react/releases/v3-0-0-beta-1)
 
-```tsx
+<ComponentPreview name="surface-variants">
+
+````tsx
+import {Surface} from "@vezham/react-v3";
+
 export function Variants() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Default</p>
-        <Surface
-          className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6"
-          variant="default">
-          <h3 className="text-foreground text-base font-semibold">
-            Surface Content
-          </h3>
-          <p className="text-muted text-sm">
+        <p className="text-sm font-medium text-muted">Default</p>
+        <Surface className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6" variant="default">
+          <h3 className="text-base font-semibold text-foreground">Surface Content</h3>
+          <p className="text-sm text-muted">
             This is a default surface variant. It uses bg-surface styling.
           </p>
         </Surface>
       </div>
 
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Secondary</p>
-        <Surface
-          className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6"
-          variant="secondary">
-          <h3 className="text-foreground text-base font-semibold">
-            Surface Content
-          </h3>
-          <p className="text-muted text-sm">
-            This is a secondary surface variant. It uses bg-surface-secondary
-            styling.
+        <p className="text-sm font-medium text-muted">Secondary</p>
+        <Surface className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6" variant="secondary">
+          <h3 className="text-base font-semibold text-foreground">Surface Content</h3>
+          <p className="text-sm text-muted">
+            This is a secondary surface variant. It uses bg-surface-secondary styling.
           </p>
         </Surface>
       </div>
 
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Tertiary</p>
-        <Surface
-          className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6"
-          variant="tertiary">
-          <h3 className="text-foreground text-base font-semibold">
-            Surface Content
-          </h3>
-          <p className="text-muted text-sm">
-            This is a tertiary surface variant. It uses bg-surface-tertiary
-            styling.
+        <p className="text-sm font-medium text-muted">Tertiary</p>
+        <Surface className="flex min-w-[320px] flex-col gap-3 rounded-3xl p-6" variant="tertiary">
+          <h3 className="text-base font-semibold text-foreground">Surface Content</h3>
+          <p className="text-sm text-muted">
+            This is a tertiary surface variant. It uses bg-surface-tertiary styling.
           </p>
         </Surface>
       </div>
 
       <div className="flex flex-col gap-2">
-        <p className="text-muted text-sm font-medium">Transparent</p>
+        <p className="text-sm font-medium text-muted">Transparent</p>
         <Surface
           className="flex min-w-[320px] flex-col gap-3 rounded-3xl border p-6"
-          variant="transparent">
-          <h3 className="text-foreground text-base font-semibold">
-            Surface Content
-          </h3>
-          <p className="text-muted text-sm">
-            This is a transparent surface variant. It has no background,
-            suitable for overlays and cards with custom backgrounds.
+          variant="transparent"
+        >
+          <h3 className="text-base font-semibold text-foreground">Surface Content</h3>
+          <p className="text-sm text-muted">
+            This is a transparent surface variant. It has no background, suitable for overlays and
+            cards with custom backgrounds.
           </p>
         </Surface>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Improved Component APIs
 
@@ -479,24 +509,34 @@ Several components have been refined with better APIs:
 
 - **Link**: Added `underline` and `underlineOffset` props for better customization
 
-[Live example: link-basic](https://heroui.com/docs/react/releases/v3-0-0-beta-1)
 
-```tsx
+<ComponentPreview name="link-basic">
+
+````tsx
+import {Link} from "@vezham/react-v3";
+
 export function LinkBasic() {
   return (
     <Link href="#">
       Call to action
       <Link.Icon />
     </Link>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 - **Card**: Improved variants and styling system
 
-[Live example: card-with-images](https://heroui.com/docs/react/releases/v3-0-0-beta-1)
 
-```tsx
+<ComponentPreview name="card-with-images">
+
+````tsx
+import {CircleDollar} from "@gravity-ui/icons";
+import {Avatar, Button, Card, CloseButton, Link} from "@vezham/react-v3";
+
 export function WithImages() {
   return (
     <div className="flex w-full items-center justify-center">
@@ -515,22 +555,15 @@ export function WithImages() {
             <Card.Header className="gap-1">
               <Card.Title className="pe-8">Become an ACME Creator!</Card.Title>
               <Card.Description>
-                Lorem ipsum dolor sit amet consectetur. Sed arcu donec id
-                aliquam dolor sed amet faucibus etiam.
+                Lorem ipsum dolor sit amet consectetur. Sed arcu donec id aliquam dolor sed amet
+                faucibus etiam.
               </Card.Description>
-              <CloseButton
-                aria-label="Close banner"
-                className="absolute end-3 top-3"
-              />
+              <CloseButton aria-label="Close banner" className="absolute end-3 top-3" />
             </Card.Header>
             <Card.Footer className="mt-auto flex w-full flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex flex-col">
-                <span className="text-foreground text-sm font-medium">
-                  Only 10 spots
-                </span>
-                <span className="text-muted text-xs">
-                  Submission ends Oct 10.
-                </span>
+                <span className="text-sm font-medium text-foreground">Only 10 spots</span>
+                <span className="text-xs text-muted">Submission ends Oct 10.</span>
               </div>
               <Button className="w-full sm:w-auto">Apply Now</Button>
             </Card.Footer>
@@ -553,9 +586,7 @@ export function WithImages() {
                   role="img"
                 />
                 <div className="flex flex-col gap-1">
-                  <span className="text-muted text-xs font-medium uppercase">
-                    PAYMENT
-                  </span>
+                  <span className="text-xs font-medium text-muted uppercase">PAYMENT</span>
                   <Card.Title className="pe-8 text-sm sm:text-base">
                     You can now withdraw on crypto
                   </Card.Title>
@@ -565,10 +596,7 @@ export function WithImages() {
                 </div>
               </Card.Header>
               <Card.Footer>
-                <Link
-                  aria-label="Go to settings"
-                  href="#"
-                  rel="noopener noreferrer">
+                <Link aria-label="Go to settings" href="#" rel="noopener noreferrer">
                   Go to settings
                   <Link.Icon aria-hidden="true" />
                 </Link>
@@ -589,7 +617,7 @@ export function WithImages() {
                 </Card.Header>
                 <Card.Content className="mt-1">
                   <p className="text-sm leading-4 font-medium">Indie Hackers</p>
-                  <p className="text-muted text-xs">148 members</p>
+                  <p className="text-xs text-muted">148 members</p>
                 </Card.Content>
                 <Card.Footer className="flex items-center gap-2">
                   <Avatar className="size-4">
@@ -599,7 +627,7 @@ export function WithImages() {
                     />
                     <Avatar.Fallback>JK</Avatar.Fallback>
                   </Avatar>
-                  <p className="text-muted text-xs">By John</p>
+                  <p className="text-xs text-muted">By John</p>
                 </Card.Footer>
               </Card>
               {/* Right Card */}
@@ -615,7 +643,7 @@ export function WithImages() {
                 </Card.Header>
                 <Card.Content className="mt-1">
                   <p className="text-sm leading-4 font-medium">AI Builders</p>
-                  <p className="text-muted text-xs">362 members</p>
+                  <p className="text-xs text-muted">362 members</p>
                 </Card.Content>
                 <Card.Footer className="flex items-center gap-2">
                   <Avatar className="size-4">
@@ -625,7 +653,7 @@ export function WithImages() {
                     />
                     <Avatar.Fallback>M</Avatar.Fallback>
                   </Avatar>
-                  <p className="text-muted text-xs">By Martha</p>
+                  <p className="text-xs text-muted">By Martha</p>
                 </Card.Footer>
               </Card>
             </div>
@@ -653,15 +681,10 @@ export function WithImages() {
             {/* Footer */}
             <Card.Footer className="z-10 mt-auto flex items-center justify-between">
               <div>
-                <div className="text-sm font-medium text-black">
-                  Available soon
-                </div>
+                <div className="text-sm font-medium text-black">Available soon</div>
                 <div className="text-xs text-black/60">Get notified</div>
               </div>
-              <Button
-                className="bg-white text-black"
-                size="sm"
-                variant="tertiary">
+              <Button className="bg-white text-black" size="sm" variant="tertiary">
                 Notify me
               </Button>
             </Card.Footer>
@@ -681,17 +704,10 @@ export function WithImages() {
 
             <Card.Footer className="z-10 mt-auto flex items-end justify-between">
               <div>
-                <div className="text-base font-medium text-black sm:text-lg">
-                  NEO
-                </div>
-                <div className="text-xs font-medium text-black/50 sm:text-sm">
-                  $499/m
-                </div>
+                <div className="text-base font-medium text-black sm:text-lg">NEO</div>
+                <div className="text-xs font-medium text-black/50 sm:text-sm">$499/m</div>
               </div>
-              <Button
-                className="bg-white text-black"
-                size="sm"
-                variant="tertiary">
+              <Button className="bg-white text-black" size="sm" variant="tertiary">
                 Get now
               </Button>
             </Card.Footer>
@@ -709,9 +725,7 @@ export function WithImages() {
               />
               <div className="flex flex-1 flex-col justify-center gap-1">
                 <Card.Title className="text-sm">Bridging the Future</Card.Title>
-                <Card.Description className="text-xs">
-                  Today, 6:30 PM
-                </Card.Description>
+                <Card.Description className="text-xs">Today, 6:30 PM</Card.Description>
               </div>
             </Card>
             {/* 2 */}
@@ -724,9 +738,7 @@ export function WithImages() {
               />
               <div className="flex flex-1 flex-col justify-center gap-1">
                 <Card.Title className="text-sm">Avocado Hackathon</Card.Title>
-                <Card.Description className="text-xs">
-                  Wed, 4:30 PM
-                </Card.Description>
+                <Card.Description className="text-xs">Wed, 4:30 PM</Card.Description>
               </div>
             </Card>
             {/* 3 */}
@@ -738,27 +750,29 @@ export function WithImages() {
                 src="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/oranges.jpeg"
               />
               <div className="flex flex-1 flex-col justify-center gap-1">
-                <Card.Title className="text-sm">
-                  Sound Electro | Beyond art
-                </Card.Title>
-                <Card.Description className="text-xs">
-                  Fri, 8:00 PM
-                </Card.Description>
+                <Card.Title className="text-sm">Sound Electro | Beyond art</Card.Title>
+                <Card.Description className="text-xs">Fri, 8:00 PM</Card.Description>
               </div>
             </Card>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 - **Chip**: Enhanced with size variants and improved color system
 
-[Live example: chip-basic](https://heroui.com/docs/react/releases/v3-0-0-beta-1)
 
-```tsx
+<ComponentPreview name="chip-basic">
+
+````tsx
+import {Chip} from "@vezham/react-v3";
+
 export function ChipBasic() {
   return (
     <div className="flex flex-wrap items-center gap-3">
@@ -768,17 +782,22 @@ export function ChipBasic() {
       <Chip color="warning">Warning</Chip>
       <Chip color="danger">Danger</Chip>
     </div>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 - **Switch**: Redesigned from the ground up with improved visual design and animations
 
 <span id="switch"></span>
 
-[Live example: switch-basic](https://heroui.com/docs/react/releases/v3-0-0-beta-1)
+<ComponentPreview name="switch-basic">
 
-```tsx
+````tsx
+import {Switch} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <Switch>
@@ -789,17 +808,22 @@ export function Basic() {
         Enable notifications
       </Switch.Content>
     </Switch>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 - **RadioGroup**: Redesigned from the ground up with better API and styling
 
 <span id="radiogroup"></span>
 
-[Live example: radio-group-basic](https://heroui.com/docs/react/releases/v3-0-0-beta-1)
+<ComponentPreview name="radio-group-basic">
 
-```tsx
+````tsx
+import {Description, Label, Radio, RadioGroup} from "@vezham/react-v3";
+
 export function Basic() {
   return (
     <RadioGroup defaultValue="premium" name="plan">
@@ -833,9 +857,12 @@ export function Basic() {
         <Description>Unlimited messages</Description>
       </Radio>
     </RadioGroup>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Flexible Component Patterns
 
@@ -886,16 +913,15 @@ import { ButtonRoot } from "@heroui/react"
 **You can mix compound and named exports** in the same component:
 
 ```tsx
-import { Avatar, AvatarFallback } from '@heroui/react'
+import { Avatar, AvatarFallback } from "@heroui/react"
 
-;<Avatar>
+<Avatar>
   <Avatar.Image src="/avatar.jpg" alt="User" />
   <AvatarFallback>JD</AvatarFallback>
 </Avatar>
 ```
 
 This provides:
-
 - **Simpler API**: Main components no longer require `.Root` suffix
 - **Flexibility**: Choose between compound pattern, compound with `.Root`, or named exports
 - **Backward Compatibility**: The `.Root` pattern still works
@@ -925,30 +951,23 @@ Learn more about animations and motion preferences in the [Animation documentati
 The `--panel` variable has been replaced with `--surface` and `--overlay` to better distinguish between non-overlay components (cards, accordions) and floating components (tooltips, popovers, modals).
 
 **Before:**
-
 ```css
 --panel: var(--white);
 --panel-foreground: var(--foreground);
---shadow-panel:
-  0 0 1px 0 rgba(0, 0, 0, 0.3) inset, 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+--shadow-panel: 0 0 1px 0 rgba(0, 0, 0, 0.3) inset, 0 2px 8px 0 rgba(0, 0, 0, 0.08);
 ```
 
 **After:**
-
 ```css
 --surface: var(--white);
 --surface-foreground: var(--foreground);
 --overlay: var(--white);
 --overlay-foreground: var(--foreground);
---shadow-surface:
-  0 2px 4px 0 rgba(0, 0, 0, 0.04), 0 1px 2px 0 rgba(0, 0, 0, 0.06),
-  0 0 1px 0 rgba(0, 0, 0, 0.06);
---shadow-overlay:
-  0 4px 16px 0 rgba(24, 24, 27, 0.08), 0 8px 24px 0 rgba(24, 24, 27, 0.09);
+--shadow-surface: 0 2px 4px 0 rgba(0, 0, 0, 0.04), 0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 0 1px 0 rgba(0, 0, 0, 0.06);
+--shadow-overlay: 0 4px 16px 0 rgba(24, 24, 27, 0.08), 0 8px 24px 0 rgba(24, 24, 27, 0.09);
 ```
 
 **Migration:**
-
 - Replace `bg-panel` with `bg-surface` for non-overlay components
 - Replace `bg-panel` with `bg-overlay` for floating components
 - Replace `shadow-panel` with `shadow-surface` or `shadow-overlay`
@@ -959,7 +978,6 @@ The `--panel` variable has been replaced with `--surface` and `--overlay` to bet
 The `--surface-1`, `--surface-2`, and `--surface-3` variables have been removed. Surface levels are now automatically calculated from `--surface` using `color-mix`, so you only need to declare the base surface color.
 
 **Before (manual declaration):**
-
 ```css
 --surface-1: var(--background);
 --surface-2: var(--color-neutral-100);
@@ -967,28 +985,15 @@ The `--surface-1`, `--surface-2`, and `--surface-3` variables have been removed.
 ```
 
 **After (auto-calculated):**
-
 ```css
 /* You only declare the base surface */
 --surface: var(--white);
 --surface-foreground: var(--foreground);
 
 /* HeroUI automatically calculates these using color-mix */
---color-surface-secondary: color-mix(
-  in oklab,
-  var(--surface) 94%,
-  var(--surface-foreground) 6%
-);
---color-surface-tertiary: color-mix(
-  in oklab,
-  var(--surface) 92%,
-  var(--surface-foreground) 8%
-);
---color-surface-quaternary: color-mix(
-  in oklab,
-  var(--surface) 86%,
-  var(--surface-foreground) 14%
-);
+--color-surface-secondary: color-mix(in oklab, var(--surface) 94%, var(--surface-foreground) 6%);
+--color-surface-tertiary: color-mix(in oklab, var(--surface) 92%, var(--surface-foreground) 8%);
+--color-surface-quaternary: color-mix(in oklab, var(--surface) 86%, var(--surface-foreground) 14%);
 ```
 
 **Customization:**
@@ -997,32 +1002,18 @@ You can override the default calculations using Tailwind's `@theme` directive:
 
 ```css
 @theme inline {
-  --color-surface-secondary: color-mix(
-    in oklab,
-    var(--surface) 96%,
-    var(--surface-foreground) 4%
-  );
-  --color-surface-tertiary: color-mix(
-    in oklab,
-    var(--surface) 94%,
-    var(--surface-foreground) 6%
-  );
-  --color-surface-quaternary: color-mix(
-    in oklab,
-    var(--surface) 90%,
-    var(--surface-foreground) 10%
-  );
+  --color-surface-secondary: color-mix(in oklab, var(--surface) 96%, var(--surface-foreground) 4%);
+  --color-surface-tertiary: color-mix(in oklab, var(--surface) 94%, var(--surface-foreground) 6%);
+  --color-surface-quaternary: color-mix(in oklab, var(--surface) 90%, var(--surface-foreground) 10%);
 }
 ```
 
 **Migration:**
-
 - Replace `bg-surface-1` with `bg-surface` (base surface)
 - Replace `bg-surface-2` with `bg-surface-secondary` (auto-calculated)
 - Replace `bg-surface-3` with `bg-surface-tertiary` (auto-calculated)
 
 The same auto-calculation pattern applies to:
-
 - **Background shades**: Calculated from `--background` → `background-secondary`, `background-tertiary`, `background-quaternary`
 - **Soft colors**: Calculated from status colors → `accent-soft`, `danger-soft`, `warning-soft`, `success-soft`
 
@@ -1031,19 +1022,16 @@ The same auto-calculation pattern applies to:
 The default border width has changed from `1px` to `0px`. Borders are now opt-in rather than default.
 
 **Before:**
-
 ```css
 --border-width: 1px;
 ```
 
 **After:**
-
 ```css
 --border-width: 0px; /* no border by default */
 ```
 
 **Migration:**
-
 - If you rely on default borders, explicitly set `border-width` in your custom styles
 - Form fields now use `transparent` borders by default
 
@@ -1052,19 +1040,16 @@ The default border width has changed from `1px` to `0px`. Borders are now opt-in
 The default border color opacity has changed from `15%` to `0%` (transparent).
 
 **Before:**
-
 ```css
 --border: oklch(0 0 0 / 15%);
 ```
 
 **After:**
-
 ```css
 --border: oklch(0 0 0 / 0%);
 ```
 
 **Field Border Default:**
-
 ```css
 --field-border: transparent; /* no border by default on form fields */
 ```
@@ -1074,29 +1059,19 @@ The default border color opacity has changed from `15%` to `0%` (transparent).
 The shadow system has been completely redesigned with separate shadows for surfaces and overlays.
 
 **Before:**
-
 ```css
---panel-shadow:
-  0 0 1px 0 rgba(0, 0, 0, 0.3) inset, 0 2px 8px 0 rgba(0, 0, 0, 0.08);
---field-shadow:
-  0 0 0 0 rgba(255, 255, 255, 0.1) inset, 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+--panel-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.3) inset, 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+--field-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1) inset, 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 ```
 
 **After (Light):**
-
 ```css
---surface-shadow:
-  0 2px 4px 0 rgba(0, 0, 0, 0.04), 0 1px 2px 0 rgba(0, 0, 0, 0.06),
-  0 0 1px 0 rgba(0, 0, 0, 0.06);
---overlay-shadow:
-  0 4px 16px 0 rgba(24, 24, 27, 0.08), 0 8px 24px 0 rgba(24, 24, 27, 0.09);
---field-shadow:
-  0 2px 4px 0 rgba(0, 0, 0, 0.04), 0 1px 2px 0 rgba(0, 0, 0, 0.06),
-  0 0 1px 0 rgba(0, 0, 0, 0.06);
+--surface-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.04), 0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 0 1px 0 rgba(0, 0, 0, 0.06);
+--overlay-shadow: 0 4px 16px 0 rgba(24, 24, 27, 0.08), 0 8px 24px 0 rgba(24, 24, 27, 0.09);
+--field-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.04), 0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 0 1px 0 rgba(0, 0, 0, 0.06);
 ```
 
 **After (Dark):**
-
 ```css
 --surface-shadow: 0 0 0 0 transparent inset; /* No shadow on dark mode */
 --overlay-shadow: 0 0 0 0 transparent inset; /* No shadow on dark mode */
@@ -1108,14 +1083,12 @@ The shadow system has been completely redesigned with separate shadows for surfa
 The accent color has been updated for better contrast and visual appeal.
 
 **Before:**
-
 ```css
 --accent: var(--color-neutral-950);
 --accent-foreground: var(--snow);
 ```
 
 **After:**
-
 ```css
 --accent: oklch(0.6204 0.195 253.83);
 --accent-foreground: var(--snow);
@@ -1126,18 +1099,15 @@ The accent color has been updated for better contrast and visual appeal.
 Success, warning, and danger colors have been refined for better consistency and contrast.
 
 **Success:**
-
 - **Before:** `oklch(0.5503 0.1244 153.56)`
 - **After:** `oklch(0.7329 0.1935 150.81)`
 - Foreground changed from `var(--snow)` to `var(--eclipse)` in light mode
 
 **Warning:**
-
 - **Before:** `oklch(0.7186 0.1521 64.85)`
 - **After:** `oklch(0.7819 0.1585 72.33)` (light), `oklch(0.8203 0.1388 76.34)` (dark)
 
 **Danger:**
-
 - **Before:** `oklch(0.6259 0.1908 29.19)`
 - **After:** `oklch(0.6532 0.2328 25.74)` (light), `oklch(0.594 0.1967 24.63)` (dark)
 
@@ -1148,27 +1118,20 @@ Success, warning, and danger colors have been refined for better consistency and
 The Chip component's `type` prop has been renamed to `color`, and a new `size` prop has been added. A new `soft` variant has been introduced.
 
 **Before:**
-
 ```tsx
-import { Chip } from '@heroui/react'
+import { Chip } from "@heroui/react";
 
-;<Chip type="danger" variant="secondary">
-  Label
-</Chip>
+<Chip type="danger" variant="secondary">Label</Chip>
 ```
 
 **After:**
-
 ```tsx
-import { Chip } from '@heroui/react'
+import { Chip } from "@heroui/react";
 
-;<Chip color="danger" variant="soft" size="md">
-  Label
-</Chip>
+<Chip color="danger" variant="soft" size="md">Label</Chip>
 ```
 
 **Migration:**
-
 - Replace `type` prop with `color` prop
 - Use `size` prop (`sm`, `md`, `lg`) to control chip size
 - The `soft` variant provides a subtle appearance for less prominent chips
@@ -1178,25 +1141,20 @@ import { Chip } from '@heroui/react'
 The Link component now supports `underline` and `underlineOffset` props, and includes `asChild` support.
 
 **Before:**
-
 ```tsx
-import { Link } from '@heroui/react'
+import { Link } from "@heroui/react";
 
-;<Link href="#">Link text</Link>
+<Link href="#">Link text</Link>
 ```
 
 **After:**
-
 ```tsx
-import { Link } from '@heroui/react'
+import { Link } from "@heroui/react";
 
-;<Link href="#" underline="hover" underlineOffset={4}>
-  Link text
-</Link>
+<Link href="#" underline="hover" underlineOffset={4}>Link text</Link>
 ```
 
 **New Props:**
-
 - `underline`: `"none" | "hover" | "always"` - Controls underline visibility
 - `underlineOffset`: `number` - Controls underline offset from text
 
@@ -1205,21 +1163,18 @@ import { Link } from '@heroui/react'
 Due to the dual pattern implementation, type references through the namespace syntax are no longer supported. Use object-style syntax or named type imports instead.
 
 **Before (no longer works):**
-
 ```tsx
 type AvatarProps = Avatar.RootProps
 ```
 
 **After (Option 1 - Object-style syntax):**
-
 ```tsx
-type AvatarProps = Avatar['RootProps']
+type AvatarProps = Avatar["RootProps"]
 ```
 
 **After (Option 2 - Named type imports, recommended):**
-
 ```tsx
-import type { AvatarRootProps } from '@heroui/react'
+import type { AvatarRootProps } from "@heroui/react"
 
 type AvatarProps = AvatarRootProps
 ```
@@ -1252,7 +1207,6 @@ Tabs.ListWrapper → Tabs.ListContainer
 #### Removed Variables
 
 The following variables have been removed:
-
 - `--panel` → Use `--surface` or `--overlay`
 - `--panel-foreground` → Use `--surface-foreground` or `--overlay-foreground`
 - `--surface-1`, `--surface-2`, `--surface-3` → Use background shades or surface levels
@@ -1271,7 +1225,6 @@ The design system now distinguishes between two types of elevated components:
 - **Overlay**: Used for floating components like tooltips, popovers, modals, and menus that appear above the page
 
 This distinction provides:
-
 - Better visual hierarchy
 - Appropriate shadow depths
 - Improved dark mode contrast
@@ -1291,21 +1244,9 @@ Background shades are automatically calculated from `--background`:
 --foreground: var(--eclipse);
 
 /* HeroUI automatically calculates these */
---color-background-secondary: color-mix(
-  in oklab,
-  var(--color-background) 96%,
-  var(--color-foreground) 4%
-);
---color-background-tertiary: color-mix(
-  in oklab,
-  var(--color-background) 92%,
-  var(--color-foreground) 8%
-);
---color-background-quaternary: color-mix(
-  in oklab,
-  var(--color-background) 86%,
-  var(--color-foreground) 14%
-);
+--color-background-secondary: color-mix(in oklab, var(--color-background) 96%, var(--color-foreground) 4%);
+--color-background-tertiary: color-mix(in oklab, var(--color-background) 92%, var(--color-foreground) 8%);
+--color-background-quaternary: color-mix(in oklab, var(--color-background) 86%, var(--color-foreground) 14%);
 ```
 
 **Surface Levels**
@@ -1318,21 +1259,9 @@ Surface levels are automatically calculated from `--surface`:
 --surface-foreground: var(--foreground);
 
 /* HeroUI automatically calculates these */
---color-surface-secondary: color-mix(
-  in oklab,
-  var(--surface) 94%,
-  var(--surface-foreground) 6%
-);
---color-surface-tertiary: color-mix(
-  in oklab,
-  var(--surface) 92%,
-  var(--surface-foreground) 8%
-);
---color-surface-quaternary: color-mix(
-  in oklab,
-  var(--surface) 86%,
-  var(--surface-foreground) 14%
-);
+--color-surface-secondary: color-mix(in oklab, var(--surface) 94%, var(--surface-foreground) 6%);
+--color-surface-tertiary: color-mix(in oklab, var(--surface) 92%, var(--surface-foreground) 8%);
+--color-surface-quaternary: color-mix(in oklab, var(--surface) 86%, var(--surface-foreground) 14%);
 ```
 
 **Soft Color Variants**
@@ -1349,16 +1278,8 @@ Soft color variants are automatically calculated from status colors:
 /* HeroUI automatically calculates these at 15% opacity */
 --color-accent-soft: color-mix(in oklab, var(--color-accent) 15%, transparent);
 --color-danger-soft: color-mix(in oklab, var(--color-danger) 15%, transparent);
---color-warning-soft: color-mix(
-  in oklab,
-  var(--color-warning) 15%,
-  transparent
-);
---color-success-soft: color-mix(
-  in oklab,
-  var(--color-success) 15%,
-  transparent
-);
+--color-warning-soft: color-mix(in oklab, var(--color-warning) 15%, transparent);
+--color-success-soft: color-mix(in oklab, var(--color-success) 15%, transparent);
 ```
 
 Each soft variant includes hover states (20% opacity) and foreground colors for proper contrast.
@@ -1370,18 +1291,10 @@ You can override any auto-calculated values using Tailwind's `@theme` directive:
 ```css
 @theme inline {
   /* Adjust surface levels */
-  --color-surface-secondary: color-mix(
-    in oklab,
-    var(--surface) 96%,
-    var(--surface-foreground) 4%
-  );
+  --color-surface-secondary: color-mix(in oklab, var(--surface) 96%, var(--surface-foreground) 4%);
 
   /* Adjust soft colors */
-  --color-accent-soft: color-mix(
-    in oklab,
-    var(--color-accent) 20%,
-    transparent
-  );
+  --color-accent-soft: color-mix(in oklab, var(--color-accent) 20%, transparent);
 }
 ```
 
@@ -1390,7 +1303,6 @@ This auto-calculation system reduces the number of variables you need to manage 
 ### Shadow System
 
 The shadow system has been redesigned to provide:
-
 - Separate shadows for surfaces and overlays
 - Better depth perception
 - Dark mode support (transparent shadows)
@@ -1471,7 +1383,6 @@ Update Chip and Link components:
 If you adopted the `.Root` suffix from v3.0.0-alpha.35, you can now simplify your code by removing it:
 
 **Before (v3.0.0-alpha.35):**
-
 ```tsx
 <Avatar.Root>
   <Avatar.Image src="..." alt="..." />
@@ -1480,7 +1391,6 @@ If you adopted the `.Root` suffix from v3.0.0-alpha.35, you can now simplify you
 ```
 
 **After (simpler):**
-
 ```tsx
 <Avatar>
   <Avatar.Image src="..." alt="..." />
@@ -1495,21 +1405,18 @@ If you adopted the `.Root` suffix from v3.0.0-alpha.35, you can now simplify you
 If you're using namespace syntax for types, switch to object-style syntax or named imports:
 
 **Before:**
-
 ```tsx
 type ButtonProps = Button.RootProps
 ```
 
 **After (Option 1 - Object-style):**
-
 ```tsx
-type ButtonProps = Button['RootProps']
+type ButtonProps = Button["RootProps"]
 ```
 
 **After (Option 2 - Named imports, recommended):**
-
 ```tsx
-import type { ButtonRootProps } from '@heroui/react'
+import type { ButtonRootProps } from "@heroui/react"
 
 type ButtonProps = ButtonRootProps
 ```
@@ -1519,17 +1426,13 @@ type ButtonProps = ButtonRootProps
 Replace `TabListWrapper` with `TabListContainer`:
 
 **Before:**
-
 ```tsx
-import { Tabs } from '@heroui/react'
+import { Tabs } from "@heroui/react"
 
-;<Tabs.Root>
+<Tabs.Root>
   <Tabs.ListWrapper>
     <Tabs.List>
-      <Tabs.Tab id="home">
-        Home
-        <Tabs.Indicator />
-      </Tabs.Tab>
+      <Tabs.Tab id="home">Home<Tabs.Indicator /></Tabs.Tab>
     </Tabs.List>
   </Tabs.ListWrapper>
   <Tabs.Panel id="home">Content</Tabs.Panel>
@@ -1537,17 +1440,13 @@ import { Tabs } from '@heroui/react'
 ```
 
 **After:**
-
 ```tsx
-import { Tabs } from '@heroui/react'
+import { Tabs } from "@heroui/react"
 
-;<Tabs>
+<Tabs>
   <Tabs.ListContainer>
     <Tabs.List>
-      <Tabs.Tab id="home">
-        Home
-        <Tabs.Indicator />
-      </Tabs.Tab>
+      <Tabs.Tab id="home">Home<Tabs.Indicator /></Tabs.Tab>
     </Tabs.List>
   </Tabs.ListContainer>
   <Tabs.Panel id="home">Content</Tabs.Panel>
@@ -1634,7 +1533,6 @@ You can use any of the three patterns (compound without `.Root`, compound with `
 ## HeroUI Pro
 
 HeroUI Pro is being reshaped from the ground up on top of the new design system. The new Pro version will feature:
-
 - New components built on top of HeroUI v3
 - Tailwind CSS v4 native support
 - CSS native animations
@@ -1645,7 +1543,6 @@ We'll share more updates soon.
 ## Roadmap
 
 We're working towards a stable release in **Q4** this year (2025). This beta release brings us significantly closer to that goal with:
-
 - Comprehensive component set
 - Refined design system
 - Improved developer experience

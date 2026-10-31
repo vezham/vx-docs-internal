@@ -5,15 +5,11 @@ github:
   pull: 6503
 ---
 
-import {
-  Callout,
-  PRContributors,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, ComponentPreview, PRContributors, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">May 15, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">May 15, 2026</span>
 </div>
 
 Patch release: `Text` is renamed to `Typography` to resolve a `tailwind-merge` collision that silently dropped variant classes. Derived color tokens (`hover`, `soft`, `border-secondary`, …) moved from `@theme inline` aliases into `variables.css` as unprefixed source tokens, so component CSS can reference them directly. Plus Checkbox and Radio border alignment fixes, an `accent-soft-foreground` hover refinement for Calendar, and a new CLI docs page.
@@ -24,26 +20,31 @@ Patch release: `Text` is renamed to `Typography` to resolve a `tailwind-merge` c
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
   <Tab value="npm">
-    ```bash npm i @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    npm i @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="pnpm">
-    ```bash pnpm add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    pnpm add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="yarn">
-    ```bash yarn add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    yarn add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="bun">
-    ```bash bun add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    bun add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the
-  latest version" and your AI assistant will automatically compare versions and
-  apply the necessary changes. Learn more about the [HeroUI MCP
-  Server](https://heroui.com/docs/ui-for-agents/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI MCP Server](https://heroui.com/docs/ui-for-agents/mcp-server).
 </Callout>
 
 ## ⚠️ Breaking Changes
@@ -57,124 +58,123 @@ Renaming the block to `typography` permanently fixes the collision ([#6505](http
 **Before:**
 
 ```tsx
-import { Text } from '@heroui/react'
+import {Text} from "@heroui/react";
 
-;<Text type="body-sm" color="muted" weight="medium">
+<Text type="body-sm" color="muted" weight="medium">
   Hello world
-</Text>
+</Text>;
 ```
 
 **After:**
 
 ```tsx
-import { Typography } from '@heroui/react'
+import {Typography} from "@heroui/react";
 
-;<Typography type="body-sm" color="muted" weight="medium">
+<Typography type="body-sm" color="muted" weight="medium">
   Hello world
-</Typography>
+</Typography>;
 ```
 
 Sub-components rename the same way:
 
-| Before           | After                  |
-| ---------------- | ---------------------- |
-| `Text`           | `Typography`           |
-| `Text.Heading`   | `Typography.Heading`   |
-| `Text.Paragraph` | `Typography.Paragraph` |
-| `Text.Code`      | `Typography.Code`      |
-| `Text.Prose`     | `Typography.Prose`     |
+| Before              | After                     |
+| ------------------- | ------------------------- |
+| `Text`              | `Typography`              |
+| `Text.Heading`      | `Typography.Heading`      |
+| `Text.Paragraph`    | `Typography.Paragraph`    |
+| `Text.Code`         | `Typography.Code`         |
+| `Text.Prose`        | `Typography.Prose`        |
 
 CSS BEM classes change too: `.text` → `.typography`, `.text--body-sm` → `.typography--body-sm`, etc. See the [Typography docs](https://heroui.com/docs/components/typography) for the full class reference.
 
-[Live example: typography-typography-scale](https://heroui.com/docs/react/releases/v3-0-5)
 
-```tsx
+<ComponentPreview name="typography-typography-scale">
+
+````tsx
+import {Typography} from "@vezham/react-v3";
+
 const scale = [
   {
-    label: 'h1',
-    meta: '36px / 600 / 1.11 / tight',
-    sample: 'Build better interfaces',
-    type: 'h1' as const
+    label: "h1",
+    meta: "36px / 600 / 1.11 / tight",
+    sample: "Build better interfaces",
+    type: "h1" as const,
   },
   {
-    label: 'h2',
-    meta: '30px / 600 / 1.17 / tight',
-    sample: 'Built for the intelligence age',
-    type: 'h2' as const
+    label: "h2",
+    meta: "30px / 600 / 1.17 / tight",
+    sample: "Built for the intelligence age",
+    type: "h2" as const,
   },
   {
-    label: 'h3',
-    meta: '24px / 600 / 1.25 / tight',
-    sample: 'Pricing on your terms',
-    type: 'h3' as const
+    label: "h3",
+    meta: "24px / 600 / 1.25 / tight",
+    sample: "Pricing on your terms",
+    type: "h3" as const,
   },
   {
-    label: 'h4',
-    meta: '20px / 600 / 1.33 / tight',
-    sample: 'Apply to the startup program',
-    type: 'h4' as const
+    label: "h4",
+    meta: "20px / 600 / 1.33 / tight",
+    sample: "Apply to the startup program",
+    type: "h4" as const,
   },
   {
-    label: 'h5',
-    meta: '18px / 600 / 1.39 / tight',
-    sample: 'Card titles',
-    type: 'h5' as const
+    label: "h5",
+    meta: "18px / 600 / 1.39 / tight",
+    sample: "Card titles",
+    type: "h5" as const,
   },
   {
-    label: 'h6',
-    meta: '16px / 600 / 1.50 / tight',
-    sample: 'Smaller feature headers',
-    type: 'h6' as const
+    label: "h6",
+    meta: "16px / 600 / 1.50 / tight",
+    sample: "Smaller feature headers",
+    type: "h6" as const,
   },
   {
-    label: 'body',
-    meta: '16px / 400 / 1.75',
-    sample:
-      'Primary body text used across documentation, marketing copy, and descriptions.',
-    type: 'body' as const
+    label: "body",
+    meta: "16px / 400 / 1.75",
+    sample: "Primary body text used across documentation, marketing copy, and descriptions.",
+    type: "body" as const,
   },
   {
-    label: 'body-sm',
-    meta: '14px / 400 / 1.50',
-    sample: 'Secondary body, table cells, navigation, and sidebar items.',
-    type: 'body-sm' as const
+    label: "body-sm",
+    meta: "14px / 400 / 1.50",
+    sample: "Secondary body, table cells, navigation, and sidebar items.",
+    type: "body-sm" as const,
   },
   {
-    label: 'body-xs',
-    meta: '12px / 400 / 1.25',
-    sample: 'Captions, badges, helper text, and fine print.',
-    type: 'body-xs' as const
+    label: "body-xs",
+    meta: "12px / 400 / 1.25",
+    sample: "Captions, badges, helper text, and fine print.",
+    type: "body-xs" as const,
   },
   {
-    label: 'code',
-    meta: '14px / mono',
-    sample: 'pnpm add @heroui/react',
-    type: 'code' as const
-  }
-] as const
+    label: "code",
+    meta: "14px / mono",
+    sample: "pnpm add @vezham/react-v3",
+    type: "code" as const,
+  },
+] as const;
 
 export const TypographyScale = () => {
   return (
-    <div className="divide-border flex w-full flex-col divide-y">
-      {scale.map(row => (
-        <div
-          key={row.label}
-          className="grid grid-cols-[160px_1fr] items-center gap-8 py-5">
+    <div className="flex w-full flex-col divide-y divide-border">
+      {scale.map((row) => (
+        <div key={row.label} className="grid grid-cols-[160px_1fr] items-center gap-8 py-5">
           <div className="flex shrink-0 flex-col gap-0.5">
-            <span className="text-foreground text-sm font-semibold">
-              {row.label}
-            </span>
-            <span className="text-muted text-xs whitespace-nowrap">
-              {row.meta}
-            </span>
+            <span className="text-sm font-semibold text-foreground">{row.label}</span>
+            <span className="text-xs whitespace-nowrap text-muted">{row.meta}</span>
           </div>
           <Typography type={row.type}>{row.sample}</Typography>
         </div>
       ))}
     </div>
-  )
-}
-```
+  );
+};
+````
+
+</ComponentPreview>
+
 
 ## Style Refactor
 
@@ -188,39 +188,20 @@ Before — the calculation lived inside the `@theme inline` block:
 
 ```css
 /* packages/styles/themes/shared/theme.css */
---color-accent-hover: color-mix(
-  in oklab,
-  var(--accent) 90%,
-  var(--accent-foreground) 10%
-);
---color-accent-soft: var(
-  --accent-soft,
-  color-mix(in oklab, var(--accent) 15%, transparent)
-);
+--color-accent-hover: color-mix(in oklab, var(--accent) 90%, var(--accent-foreground) 10%);
+--color-accent-soft: var(--accent-soft, color-mix(in oklab, var(--accent) 15%, transparent));
 --color-accent-soft-foreground: var(--accent-soft-foreground, var(--accent));
---color-border-secondary: color-mix(
-  in oklab,
-  var(--surface) 78%,
-  var(--surface-foreground) 22%
-);
+--color-border-secondary: color-mix(in oklab, var(--surface) 78%, var(--surface-foreground) 22%);
 ```
 
 After — `theme.css` is pure aliases; the formulas live in `variables.css`:
 
 ```css
 /* packages/styles/themes/default/variables.css */
---accent-hover: color-mix(
-  in oklab,
-  var(--accent) 90%,
-  var(--accent-foreground) 10%
-);
+--accent-hover: color-mix(in oklab, var(--accent) 90%, var(--accent-foreground) 10%);
 --accent-soft: color-mix(in oklab, var(--accent) 15%, transparent);
 --accent-soft-foreground: var(--accent);
---border-secondary: color-mix(
-  in oklab,
-  var(--surface) 78%,
-  var(--surface-foreground) 22%
-);
+--border-secondary: color-mix(in oklab, var(--surface) 78%, var(--surface-foreground) 22%);
 
 /* packages/styles/themes/shared/theme.css */
 --color-accent-hover: var(--accent-hover);

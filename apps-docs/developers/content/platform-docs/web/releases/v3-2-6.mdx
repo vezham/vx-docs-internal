@@ -5,15 +5,11 @@ github:
   pull: 6850
 ---
 
-import {
-  Callout,
-  PRContributors,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, PRContributors, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">September 17, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">September 17, 2026</span>
 </div>
 
 Patch release: [AvatarGroup](https://heroui.com/docs/components/avatar-group) returns as a dedicated component, focus rings are keyboard-only again on [ListBox](https://heroui.com/docs/components/list-box), [Dropdown](https://heroui.com/docs/components/dropdown), [Select](https://heroui.com/docs/components/select), and overlay triggers after a mouse-driven open, `@internationalized/date` moves to `peerDependencies` while `tailwind-merge` and `@react-aria/i18n` are dropped, [ColorSlider](https://heroui.com/docs/components/color-slider) no longer warns on every render in production, bare `.tag` markup keeps its default padding, [Breadcrumbs](https://heroui.com/docs/components/breadcrumbs) sit back on the spacing grid, and React Aria is upgraded to `1.21.1` (`react-aria@3.52.1`). Context values are also memoized across 43 components, so consumers no longer re-render on every root render.
@@ -22,37 +18,35 @@ Patch release: [AvatarGroup](https://heroui.com/docs/components/avatar-group) re
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
   <Tab value="npm">
-    ```bash npm i @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    npm i @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="pnpm">
-    ```bash pnpm add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    pnpm add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="yarn">
-    ```bash yarn add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    yarn add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
   <Tab value="bun">
-    ```bash bun add @heroui/styles@latest @heroui/react@latest ```
+    ```bash
+    bun add @heroui/styles@latest @heroui/react@latest
+    ```
   </Tab>
 </Tabs>
 
 <Callout type="warning">
-  **Peer dependencies changed.** `@internationalized/date@^3.12.4` is now a peer
-  dependency — it was always imported at runtime by
-  [Calendar](https://heroui.com/docs/components/calendar),
-  [RangeCalendar](https://heroui.com/docs/components/range-calendar), and the
-  date utilities, and only resolved by accident through `react-aria-components`.
-  Install it explicitly if your package manager does not hoist it. This release
-  also requires `react-aria-components@^1.21.1` and `react-aria@^3.52.1`, and no
-  longer requires `@react-aria/i18n`.
+  **Peer dependencies changed.** `@internationalized/date@^3.12.4` is now a peer dependency — it was always imported at runtime by [Calendar](https://heroui.com/docs/components/calendar), [RangeCalendar](https://heroui.com/docs/components/range-calendar), and the date utilities, and only resolved by accident through `react-aria-components`. Install it explicitly if your package manager does not hoist it. This release also requires `react-aria-components@^1.21.1` and `react-aria@^3.52.1`, and no longer requires `@react-aria/i18n`.
 </Callout>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the
-  latest version" and your AI assistant will automatically compare versions and
-  apply the necessary changes. Learn more about the [HeroUI MCP
-  Server](https://heroui.com/docs/ui-for-agents/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI MCP Server](https://heroui.com/docs/ui-for-agents/mcp-server).
 </Callout>
 
 ## Features

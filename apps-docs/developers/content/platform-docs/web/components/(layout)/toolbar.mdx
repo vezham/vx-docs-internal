@@ -9,25 +9,28 @@ links:
   storybook: Components/Layout/Toolbar
 ---
 
-import { RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { ComponentPreview, RelatedComponents } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 ## Usage
 
 ```tsx
-import { Toolbar } from '@heroui/react'
+import { Toolbar } from '@heroui/react';
 ```
 
-[Live example: toolbar-basic](https://heroui.com/docs/react/components/toolbar)
 
-```tsx
+<ComponentPreview name="toolbar-basic">
+
+````tsx
+import {Bold, Copy, Italic, Scissors, Underline} from "@gravity-ui/icons";
 import {
   Button,
   ButtonGroup,
   Separator,
   ToggleButton,
   ToggleButtonGroup,
-  Toolbar
-} from '@heroui/react'
+  Toolbar,
+} from "@vezham/react-v3";
 
 export function Basic() {
   return (
@@ -56,25 +59,30 @@ export function Basic() {
         </Button>
       </ButtonGroup>
     </Toolbar>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Examples
 
 ### Vertical
 
-[Live example: toolbar-vertical](https://heroui.com/docs/react/components/toolbar)
 
-```tsx
+<ComponentPreview name="toolbar-vertical">
+
+````tsx
+import {ArrowUturnCcwLeft, ArrowUturnCwRight, Bold, Italic, Underline} from "@gravity-ui/icons";
 import {
   Button,
   ButtonGroup,
   Separator,
   ToggleButton,
   ToggleButtonGroup,
-  Toolbar
-} from '@heroui/react'
+  Toolbar,
+} from "@vezham/react-v3";
 
 export function Vertical() {
   return (
@@ -103,23 +111,28 @@ export function Vertical() {
         </Button>
       </ButtonGroup>
     </Toolbar>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Attached
 
-[Live example: toolbar-attached](https://heroui.com/docs/react/components/toolbar)
 
-```tsx
+<ComponentPreview name="toolbar-attached">
+
+````tsx
+import {Bold, Copy, Italic, Scissors, Underline} from "@gravity-ui/icons";
 import {
   Button,
   ButtonGroup,
   Separator,
   ToggleButton,
   ToggleButtonGroup,
-  Toolbar
-} from '@heroui/react'
+  Toolbar,
+} from "@vezham/react-v3";
 
 export function Attached() {
   return (
@@ -148,15 +161,19 @@ export function Attached() {
         </Button>
       </ButtonGroup>
     </Toolbar>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### With ButtonGroup
 
-[Live example: toolbar-with-button-group](https://heroui.com/docs/react/components/toolbar)
 
-```tsx
+<ComponentPreview name="toolbar-with-button-group">
+
+````tsx
 import {
   ArrowUturnCcwLeft,
   ArrowUturnCwRight,
@@ -165,16 +182,16 @@ import {
   TextAlignCenter,
   TextAlignLeft,
   TextAlignRight,
-  Underline
-} from '@gravity-ui/icons'
+  Underline,
+} from "@gravity-ui/icons";
 import {
   Button,
   ButtonGroup,
   Separator,
   ToggleButton,
   ToggleButtonGroup,
-  Toolbar
-} from '@heroui/react'
+  Toolbar,
+} from "@vezham/react-v3";
 
 export function WithButtonGroup() {
   return (
@@ -219,55 +236,51 @@ export function WithButtonGroup() {
         </Button>
       </ButtonGroup>
     </Toolbar>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ## Customization
 
 ### Tailwind CSS
 
-[Live example: toolbar-custom-styles](https://heroui.com/docs/react/components/toolbar)
 
-```tsx
+<ComponentPreview name="toolbar-custom-styles">
+
+````tsx
+import {Bold, Italic, Underline} from "@gravity-ui/icons";
+import {ToggleButton, ToggleButtonGroup, Toolbar} from "@vezham/react-v3";
+
 const toggleClass =
-  'rounded-lg data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground'
+  "rounded-lg data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground";
 
 export function CustomStyles() {
   return (
     <Toolbar
       aria-label="Formatting toolbar"
-      className="border-border/80 bg-surface-secondary gap-1 rounded-xl border p-1.5">
-      <ToggleButtonGroup
-        aria-label="Text style"
-        className="gap-0.5"
-        selectionMode="multiple">
-        <ToggleButton
-          isIconOnly
-          aria-label="Bold"
-          className={toggleClass}
-          id="bold">
+      className="gap-1 rounded-xl border border-border/80 bg-surface-secondary p-1.5"
+    >
+      <ToggleButtonGroup aria-label="Text style" className="gap-0.5" selectionMode="multiple">
+        <ToggleButton isIconOnly aria-label="Bold" className={toggleClass} id="bold">
           <Bold />
         </ToggleButton>
-        <ToggleButton
-          isIconOnly
-          aria-label="Italic"
-          className={toggleClass}
-          id="italic">
+        <ToggleButton isIconOnly aria-label="Italic" className={toggleClass} id="italic">
           <Italic />
         </ToggleButton>
-        <ToggleButton
-          isIconOnly
-          aria-label="Underline"
-          className={toggleClass}
-          id="underline">
+        <ToggleButton isIconOnly aria-label="Underline" className={toggleClass} id="underline">
           <Underline />
         </ToggleButton>
       </ToggleButtonGroup>
     </Toolbar>
-  )
+  );
 }
-```
+````
+
+</ComponentPreview>
+
 
 ### Global CSS
 
@@ -277,7 +290,7 @@ To customize the Toolbar component classes, you can use the `@layer components` 
 ```css
 @layer components {
   .toolbar {
-    @apply bg-surface gap-4 rounded-lg p-3;
+    @apply gap-4 rounded-lg bg-surface p-3;
   }
 }
 ```
@@ -301,21 +314,21 @@ The Toolbar component uses these CSS classes ([View source styles](https://githu
 
 Inherits from [React Aria Toolbar](https://react-spectrum.adobe.com/react-aria/Toolbar.html).
 
-| Prop              | Type                                                                 | Default        | Description                                                     |
-| ----------------- | -------------------------------------------------------------------- | -------------- | --------------------------------------------------------------- |
-| `isAttached`      | `boolean`                                                            | `false`        | Whether the toolbar has a surface background with full rounding |
-| `orientation`     | `"horizontal" \| "vertical"`                                         | `"horizontal"` | The orientation of the toolbar                                  |
-| `aria-label`      | `string`                                                             | -              | An accessible label for the toolbar                             |
-| `aria-labelledby` | `string`                                                             | -              | The id of an element that labels the toolbar                    |
-| `children`        | `React.ReactNode \| (values: ToolbarRenderProps) => React.ReactNode` | -              | Content or render prop                                          |
-| `className`       | `string \| (values: ToolbarRenderProps) => string`                   | -              | Additional CSS classes                                          |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `isAttached` | `boolean` | `false` | Whether the toolbar has a surface background with full rounding |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | The orientation of the toolbar |
+| `aria-label` | `string` | - | An accessible label for the toolbar |
+| `aria-labelledby` | `string` | - | The id of an element that labels the toolbar |
+| `children` | `React.ReactNode \| (values: ToolbarRenderProps) => React.ReactNode` | - | Content or render prop |
+| `className` | `string \| (values: ToolbarRenderProps) => string` | - | Additional CSS classes |
 
 ### Render Props
 
 When using the render prop pattern, these values are provided:
 
-| Prop          | Type                         | Description                            |
-| ------------- | ---------------------------- | -------------------------------------- |
+| Prop | Type | Description |
+|------|------|-------------|
 | `orientation` | `"horizontal" \| "vertical"` | The current orientation of the toolbar |
 
 ## Related Components

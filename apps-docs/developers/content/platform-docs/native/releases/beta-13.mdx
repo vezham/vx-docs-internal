@@ -5,16 +5,11 @@ github:
   pull: 254
 ---
 
-import {
-  Callout,
-  NativeTryOnDevice,
-  NativeVideoPlayerView,
-  Tab,
-  Tabs
-} from '../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, NativeTryOnDevice, NativeVideoPlayerView, Tab, Tabs } from '../../../../src/components/docs/heroui-mdx.tsx'
 
-<div className="mb-6 flex items-center gap-3">
-  <span className="text-muted text-sm">February 3, 2026</span>
+
+<div className="flex items-center gap-3 mb-6">
+  <span className="text-sm text-muted">February 3, 2026</span>
 </div>
 
 Beta 13 introduces the TextArea component for multiline text input, adds Button outline variant, and exports style class names for all components. This release also includes significant improvements to Tabs with better animations and clearer variant naming, decomposes form components into standalone primitives for better flexibility, refactors popup animation system for improved consistency and Android compatibility, and fixes critical issues including Chinese character input handling, theme color calculations, Uniwind Pro compatibility, BottomSheet opening issues, and tree-shaking support. These updates enhance developer experience and component reliability across the library.
@@ -23,18 +18,31 @@ Beta 13 introduces the TextArea component for multiline text input, adds Button 
 
 Update to the latest version:
 
-<Tabs items={['npm', 'pnpm', 'yarn', 'bun']}>
-  <Tab value="npm">```bash npm i heroui-native@beta ```</Tab>
-  <Tab value="pnpm">``` bash pnpm add heroui-native@beta ```</Tab>
-  <Tab value="yarn">```bash yarn add heroui-native@beta ```</Tab>
-  <Tab value="bun">```bash bun add heroui-native@beta ```</Tab>
+<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
+<Tab value="npm">
+  ```bash
+  npm i heroui-native@beta
+  ```
+</Tab>
+<Tab value="pnpm">
+  ``` bash
+  pnpm add heroui-native@beta
+  ```
+</Tab>
+<Tab value="yarn">
+  ```bash
+  yarn add heroui-native@beta
+  ```
+</Tab>
+<Tab value="bun">
+  ```bash
+  bun add heroui-native@beta
+  ```
+</Tab>
 </Tabs>
 
 <Callout type="info">
-  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
-  the latest version" and your AI assistant will automatically compare versions
-  and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs-ui/native/getting-started/mcp-server).
+  **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to the latest version" and your AI assistant will automatically compare versions and apply the necessary changes. Learn more about the [HeroUI Native MCP Server](/docs-ui/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -58,8 +66,8 @@ The TextArea component provides a complete solution for multiline text input sce
 <NativeVideoPlayerView
   target="component"
   slug="text-area"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/text-area-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/text-area-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/text-area-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/text-area-docs-dark.mp4"
 />
 
 **Features:**
@@ -75,7 +83,7 @@ The TextArea component provides a complete solution for multiline text input sce
 **Usage:**
 
 ```tsx
-import { Description, Label, TextArea, TextField } from 'heroui-native'
+import { Description, Label, TextArea, TextField } from "heroui-native";
 
 export function Example() {
   return (
@@ -84,7 +92,7 @@ export function Example() {
       <TextArea placeholder="Enter your message here..." />
       <Description>Please provide as much detail as possible.</Description>
     </TextField>
-  )
+  );
 }
 ```
 
@@ -99,8 +107,8 @@ The Input component is now available as a standalone component, providing single
 <NativeVideoPlayerView
   target="component"
   slug="input"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/input-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/input-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/input-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/input-docs-dark.mp4"
 />
 
 **Features:**
@@ -116,7 +124,7 @@ The Input component is now available as a standalone component, providing single
 **Usage:**
 
 ```tsx
-import { Description, Input, Label, TextField } from 'heroui-native'
+import { Description, Input, Label, TextField } from "heroui-native";
 
 export function Example() {
   return (
@@ -125,7 +133,7 @@ export function Example() {
       <Input placeholder="Enter your email..." />
       <Description>We'll never share your email.</Description>
     </TextField>
-  )
+  );
 }
 ```
 
@@ -140,8 +148,8 @@ The CloseButton component provides a reusable solution for closing dialogs, moda
 <NativeVideoPlayerView
   target="component"
   slug="close-button"
-  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/close-button-docs-light.mp4"
-  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs-ui/native/components/videos/close-button-docs-dark.mp4"
+  srcLight="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/close-button-docs-light.mp4"
+  srcDark="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/components/videos/close-button-docs-dark.mp4"
 />
 
 **Features:**
@@ -187,16 +195,16 @@ The Tabs component now includes a new `Separator` subcomponent that provides ani
 **Usage:**
 
 ```tsx
-import { Tabs } from 'heroui-native'
+import { Tabs } from "heroui-native";
 
-;<Tabs value={activeTab} onValueChange={setActiveTab}>
+<Tabs value={activeTab} onValueChange={setActiveTab}>
   <Tabs.List>
     <Tabs.ScrollView>
       <Tabs.Indicator />
       <Tabs.Trigger value="general">
         <Tabs.Label>General</Tabs.Label>
       </Tabs.Trigger>
-      <Tabs.Separator betweenValues={['general', 'notifications']} />
+      <Tabs.Separator betweenValues={["general", "notifications"]} />
       <Tabs.Trigger value="notifications">
         <Tabs.Label>Notifications</Tabs.Label>
       </Tabs.Trigger>
@@ -223,9 +231,9 @@ The [Button](/docs-ui/native/components/button) component now includes an `outli
 **Usage:**
 
 ```tsx
-import { Button } from 'heroui-native'
+import { Button } from "heroui-native";
 
-;<Button variant="outline">Outline Button</Button>
+<Button variant="outline">Outline Button</Button>
 ```
 
 **Related PR:** [#235](https://github.com/heroui-inc/heroui-native/pull/235)
@@ -326,9 +334,7 @@ Granular imports are ideal when you only need a few components, as they help kee
 - `heroui-native/hooks` - Custom hooks
 
 <Callout type="warning">
-  **Important**: To keep the bundle size under control, you must follow the
-  pattern with granular imports consistently. Even one general import from
-  `heroui-native` will break this optimization strategy.
+  **Important**: To keep the bundle size under control, you must follow the pattern with granular imports consistently. Even one general import from `heroui-native` will break this optimization strategy.
 </Callout>
 
 **Related PR:** [#233](https://github.com/heroui-inc/heroui-native/pull/233)
@@ -340,13 +346,13 @@ All components now export their style class names, enabling developers to refere
 **New Capability:**
 
 ```tsx
-import { buttonClassNames } from 'heroui-native'
+import { buttonClassNames } from "heroui-native";
 
 // Access component class names programmatically
 const customStyles = {
   base: buttonClassNames.base,
-  variant: buttonClassNames.variant
-}
+  variant: buttonClassNames.variant,
+};
 ```
 
 This enhancement provides developers with programmatic access to component class names, enabling advanced styling scenarios and custom theme implementations.

@@ -3,16 +3,11 @@ title: TimeInput
 description: Migration guide for TimeInput to TimeField from HeroUI v2 to v3
 ---
 
-import {
-  Callout,
-  Tab,
-  Tabs
-} from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+
 
 <Callout type="info">
-  Refer to the [v3 TimeField documentation](/docs-ui/web/components/time-field)
-  for complete API reference, styling guide, and advanced examples. This guide
-  only focuses on migrating from HeroUI v2.
+  Refer to the [v3 TimeField documentation](/docs-ui/web/components/time-field) for complete API reference, styling guide, and advanced examples. This guide only focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -20,17 +15,17 @@ import {
 In v2, TimeInput was a single component with props:
 
 ```tsx
-import { TimeInput } from '@heroui/react'
+import { TimeInput } from "@heroui/react";
 
 export default function App() {
-  return <TimeInput label="Time" name="time" />
+  return <TimeInput label="Time" name="time" />;
 }
 ```
 
 In v3, TimeField requires compound components with DateInputGroup and a render prop for segments:
 
 ```tsx
-import { DateInputGroup, Label, TimeField } from '@heroui/react'
+import { TimeField, DateInputGroup, Label } from "@heroui/react";
 
 export default function App() {
   return (
@@ -38,11 +33,11 @@ export default function App() {
       <Label>Time</Label>
       <DateInputGroup>
         <DateInputGroup.Input>
-          {segment => <DateInputGroup.Segment segment={segment} />}
+          {(segment) => <DateInputGroup.Segment segment={segment} />}
         </DateInputGroup.Input>
       </DateInputGroup>
     </TimeField>
-  )
+  );
 }
 ```
 
@@ -50,41 +45,41 @@ export default function App() {
 
 ### 1. Component Naming
 
-**v2:** `TimeInput`  
+**v2:** `TimeInput`
 **v3:** `TimeField`
 
 ### 2. Component Structure
 
-**v2:** Single component with props  
+**v2:** Single component with props
 **v3:** Compound components: `TimeField` (root) + `DateInputGroup` with `DateInputGroup.Input` (render prop) and `DateInputGroup.Segment`; optionally `DateInputGroup.Prefix` and `DateInputGroup.Suffix`
 
 ### 3. Prop Changes
 
-| v2 Prop                                                       | v3 Location                     | Notes                                                     |
-| ------------------------------------------------------------- | ------------------------------- | --------------------------------------------------------- |
-| `label`                                                       | —                               | Use `Label` component                                     |
-| `description`                                                 | —                               | Use `Description` component                               |
-| `errorMessage`                                                | —                               | Use `FieldError` component                                |
-| `value`, `defaultValue`, `onChange`                           | `TimeField`                     | Same (React Aria)                                         |
-| `minValue`, `maxValue`, `granularity`, `placeholderValue`     | `TimeField`                     | Same                                                      |
-| `isRequired`, `isDisabled`, `isReadOnly`, `isInvalid`, `name` | `TimeField`                     | Same                                                      |
-| `validationBehavior`, `shouldForceLeadingZeros`               | `TimeField`                     | Same                                                      |
-| `variant`                                                     | `DateInputGroup`                | Simplified to `primary` \| `secondary` only               |
-| `fullWidth`                                                   | `TimeField` or `DateInputGroup` | On root or group                                          |
-| `color`                                                       | —                               | Removed (use Tailwind CSS)                                |
-| `size`                                                        | —                               | Removed (use Tailwind CSS)                                |
-| `radius`                                                      | —                               | Removed (use Tailwind CSS)                                |
-| `labelPlacement`                                              | —                               | Handle with layout                                        |
-| `startContent`                                                | `DateInputGroup.Prefix`         | Use Prefix child                                          |
-| `endContent`                                                  | `DateInputGroup.Suffix`         | Use Suffix child                                          |
-| `classNames`                                                  | —                               | Use `className` on `TimeField` and `DateInputGroup` parts |
-| `groupProps`                                                  | —                               | Use `className` or DOM props on `DateInputGroup`          |
-| `labelProps`                                                  | —                               | Use `className` on `Label`                                |
-| `fieldProps`                                                  | —                               | Use `className` on `DateInputGroup`                       |
-| `innerWrapperProps`                                           | —                               | Use `className` on group/input parts                      |
-| `descriptionProps`                                            | —                               | Use `className` on `Description`                          |
-| `errorMessageProps`                                           | —                               | Use `className` on `FieldError`                           |
-| `inputRef`                                                    | —                               | Ref handled by `TimeField` / React Aria                   |
+| v2 Prop | v3 Location | Notes |
+|---------|-------------|-------|
+| `label` | — | Use `Label` component |
+| `description` | — | Use `Description` component |
+| `errorMessage` | — | Use `FieldError` component |
+| `value`, `defaultValue`, `onChange` | `TimeField` | Same (React Aria) |
+| `minValue`, `maxValue`, `granularity`, `placeholderValue` | `TimeField` | Same |
+| `isRequired`, `isDisabled`, `isReadOnly`, `isInvalid`, `name` | `TimeField` | Same |
+| `validationBehavior`, `shouldForceLeadingZeros` | `TimeField` | Same |
+| `variant` | `DateInputGroup` | Simplified to `primary` \| `secondary` only |
+| `fullWidth` | `TimeField` or `DateInputGroup` | On root or group |
+| `color` | — | Removed (use Tailwind CSS) |
+| `size` | — | Removed (use Tailwind CSS) |
+| `radius` | — | Removed (use Tailwind CSS) |
+| `labelPlacement` | — | Handle with layout |
+| `startContent` | `DateInputGroup.Prefix` | Use Prefix child |
+| `endContent` | `DateInputGroup.Suffix` | Use Suffix child |
+| `classNames` | — | Use `className` on `TimeField` and `DateInputGroup` parts |
+| `groupProps` | — | Use `className` or DOM props on `DateInputGroup` |
+| `labelProps` | — | Use `className` on `Label` |
+| `fieldProps` | — | Use `className` on `DateInputGroup` |
+| `innerWrapperProps` | — | Use `className` on group/input parts |
+| `descriptionProps` | — | Use `className` on `Description` |
+| `errorMessageProps` | — | Use `className` on `FieldError` |
+| `inputRef` | — | Ref handled by `TimeField` / React Aria |
 
 ## Migration Examples
 
@@ -106,7 +101,6 @@ export default function App() {
       name="time"
     />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -132,7 +126,6 @@ export default function App() {
       <FieldError>Please enter a valid time</FieldError>
     </TimeField>
     ```
-
   </Tab>
 </Tabs>
 
@@ -153,7 +146,6 @@ export default function App() {
       onChange={setValue}
     />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -176,7 +168,6 @@ export default function App() {
       </DateInputGroup>
     </TimeField>
     ```
-
   </Tab>
 </Tabs>
 
@@ -195,7 +186,6 @@ export default function App() {
       name="time"
     />
     ```
-
   </Tab>
   <Tab value="v3">
     ```tsx
@@ -216,13 +206,12 @@ export default function App() {
       </DateInputGroup>
     </TimeField>
     ```
-
   </Tab>
 </Tabs>
 
 ### Start/End Content
 
-<Tabs items={['v2', 'v3']}>
+<Tabs items={["v2", "v3"]}>
   <Tab value="v2">
     ```tsx
     <TimeInput
@@ -242,7 +231,7 @@ export default function App() {
           <ClockIcon />
         </DateInputGroup.Prefix>
         <DateInputGroup.Input>
-          {segment => <DateInputGroup.Segment segment={segment} />}
+          {(segment) => <DateInputGroup.Segment segment={segment} />}
         </DateInputGroup.Input>
         <DateInputGroup.Suffix>
           <ClockIcon />
