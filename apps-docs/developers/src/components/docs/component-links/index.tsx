@@ -1,3 +1,5 @@
+import { useParams } from '@tanstack/react-router'
+
 import { Link, buttonVariants } from '@vezham/react-v3'
 
 import {
@@ -8,6 +10,7 @@ import {
 import {
   FigmaIcon,
   GithubIcon,
+  HeroUIIcon,
   RadixUIIcon,
   ReactAriaIcon,
   StorybookIcon,
@@ -20,17 +23,27 @@ const icons = {
   radix: RadixUIIcon,
   rac: ReactAriaIcon,
   storybook: StorybookIcon,
-  tailwind: TailwindIcon
+  tailwind: TailwindIcon,
+  heroui: HeroUIIcon
 }
 
 export const ComponentLinks = ({ links }: { links?: Links }) => {
+  const { platform, _splat } = useParams({ strict: false })
   const resources = getComponentResources(links)
   if (!resources.length) return null
+  const allResources = [
+    ...resources,
+    {
+      label: 'HeroUI',
+      icon: 'heroui' as const,
+      href: `https://heroui.com/docs/${platform === 'native' ? 'native' : 'react'}/${_splat ?? ''}`
+    }
+  ]
   return (
     <nav
       aria-label="Component resources"
       className="platform-docs__resources not-prose mb-4 flex flex-wrap gap-2">
-      {resources.map(resource => {
+      {allResources.map(resource => {
         const Icon = icons[resource.icon]
         return (
           <Link
