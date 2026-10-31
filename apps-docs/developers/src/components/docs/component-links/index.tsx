@@ -29,7 +29,7 @@ export const ComponentLinks = ({ links }: { links?: Links }) => {
   return (
     <nav
       aria-label="Component resources"
-      className="not-prose mb-4 flex flex-wrap gap-2">
+      className="platform-docs__resources not-prose mb-4 flex flex-wrap gap-2">
       {resources.map(resource => {
         const Icon = icons[resource.icon]
         return (

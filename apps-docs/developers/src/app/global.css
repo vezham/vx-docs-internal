@@ -2,4 +2,7 @@
 @import '../../../../packages/vx/styles/docs';
 @import '../demos/heroui/utilities.css';
 
-/* You can add global styles to this file, and also import other style files */
+/* vx-bot/NOTE: The page's 16px gap owns the spacing before component resources. */
+#nd-page > p:has(+ .prose > .platform-docs__resources) {
+  margin-bottom: 0;
+}
