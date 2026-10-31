@@ -1,6 +1,5 @@
 import { createFileRoute, notFound, useNavigate } from '@tanstack/react-router'
 
-import { DocsRoutePage } from '@vezham/start/pages/docs/route'
 import { localizedUrl } from '@vezham/start/runtime/docs'
 
 import { i18n } from '@app/docs'
@@ -13,6 +12,7 @@ import {
   PlatformDrawerHeader
 } from '@components/docs/platform-drawer'
 import { PlatformNotebookHeader } from '@components/docs/platform-notebook-header'
+import { PlatformDocsRoutePage } from '@components/docs/platform-route-page'
 import {
   type PlatformSection,
   getPlatformPage,
@@ -42,7 +42,7 @@ const RouteComponent = () => {
   })
 
   return (
-    <DocsRoutePage
+    <PlatformDocsRoutePage
       data={data}
       docs={getPlatformDocs(platform)}
       shell="notebook"

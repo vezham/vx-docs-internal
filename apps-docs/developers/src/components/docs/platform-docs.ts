@@ -6,13 +6,18 @@ import {
 } from '@vezham/start/runtime/docs'
 
 import { vxCore, vxDocs, vxI18n, vxMetadata } from '@generated/vx'
+import { componentLinksSchema } from '../../lib/docs/component-resources'
+
+const platformDocsPageSchema = docsPageSchema.extend({
+  links: componentLinksSchema.optional()
+})
 
 const webPlatformDocs = defineDocs({
   dir: 'content/platform-docs/web',
   docs: {
     async: true,
     postprocess: { includeProcessedMarkdown: true },
-    schema: docsPageSchema
+    schema: platformDocsPageSchema
   },
   meta: {
     schema: docsMetaSchema
@@ -24,7 +29,7 @@ const nativePlatformDocs = defineDocs({
   docs: {
     async: true,
     postprocess: { includeProcessedMarkdown: true },
-    schema: docsPageSchema
+    schema: platformDocsPageSchema
   },
   meta: {
     schema: docsMetaSchema

@@ -13,6 +13,8 @@ import { Button, Tabs } from '@vezham/react-v3'
 
 import { demos } from '@src/demos/heroui'
 
+import { PreviewSource } from './source'
+
 type Props = {
   children?: ReactNode
   name: string
@@ -132,10 +134,8 @@ export const ComponentPreview = ({ children, name }: Props) => {
             )}
           </div>
         </Tabs.Panel>
-        <Tabs.Panel
-          id="code"
-          className="bg-background m-0 max-h-[32rem] overflow-auto rounded-xl border px-4 py-0">
-          {children}
+        <Tabs.Panel id="code" className="m-0 min-w-0 p-0">
+          <PreviewSource>{children}</PreviewSource>
         </Tabs.Panel>
       </Tabs>
     </div>

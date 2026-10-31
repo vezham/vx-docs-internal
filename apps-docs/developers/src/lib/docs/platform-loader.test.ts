@@ -2,6 +2,7 @@ import { deserializePageTree } from '@vezham/docs-core/source/client'
 
 import { getPlatformDocsRuntime } from '../../components/docs/platform-docs'
 import { getPlatformSections } from '../../components/docs/platform-sections'
+import { getComponentResources } from './component-resources'
 import { createPlatformDocsLoader } from './platform-loader'
 
 const loader = createPlatformDocsLoader()
@@ -45,6 +46,42 @@ describe('UI documentation', () => {
     expect(markdown).toContain('@vezham/react-v3')
     expect(markdown).toContain('button-basic')
     expect(markdown).not.toContain('Live example:')
+  })
+
+  it.each(['web', 'native'] as const)(
+    'preserves %s component resource metadata',
+    platform => {
+      const runtime = getPlatformDocsRuntime(platform)
+      const { page } = runtime.getDocsPage({
+        slugs: ['components', 'accordion']
+      })
+      const resources = getComponentResources(page.data.links)
+      expect(resources.map(resource => resource.label)).toEqual(
+        platform === 'web'
+          ? ['Figma', 'Storybook', 'React Aria', 'Source', 'Styles source']
+          : ['Source', 'Styles source']
+      )
+      expect(
+        resources.find(resource => resource.label === 'Source')?.href
+      ).toBe(
+        platform === 'web'
+          ? 'https://github.com/heroui-inc/heroui/tree/v3/packages/react/src/components/accordion/accordion.tsx'
+          : 'https://github.com/heroui-inc/heroui-native/tree/main/src/components/accordion/accordion.tsx'
+      )
+    }
+  )
+
+  it('preserves absolute resource URLs in imported metadata', () => {
+    expect(
+      getComponentResources({
+        rac: 'https://react-spectrum.adobe.com/react-aria/Form.html'
+      })
+    ).toMatchObject([
+      {
+        label: 'React Aria',
+        href: 'https://react-spectrum.adobe.com/react-aria/Form.html'
+      }
+    ])
   })
 
   it('offers migration only on Web and rejects unknown platforms', async () => {
