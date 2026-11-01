@@ -265,3 +265,116 @@ test('component galleries show themed previews in the source order', async ({
       .locator('video')
   ).toHaveAttribute('src', /\/scroll-shadow-docs-light\.mp4$/)
 })
+
+test('native videos decode frames and provide working playback controls', async ({
+  page
+}) => {
+  test.setTimeout(60_000)
+  await page.emulateMedia({
+    colorScheme: 'light',
+    reducedMotion: 'no-preference'
+  })
+  await page.goto('/docs-ui/native/components/button', {
+    waitUntil: 'domcontentloaded'
+  })
+  const frame = page.locator('[data-docs-video]').first()
+  await frame.scrollIntoViewIfNeeded()
+  const video = frame.locator('video')
+  const controls = frame.getByRole('group', { name: 'Video controls' })
+  await expect
+    .poll(
+      () =>
+        video.evaluate(
+          element => element.videoWidth > 0 && element.readyState >= 2
+        ),
+      { timeout: 20_000 }
+    )
+    .toBe(true)
+  const geometry = await frame.boundingBox()
+  expect(Math.abs(geometry!.width / geometry!.height - 16 / 9)).toBeLessThan(
+    0.02
+  )
+  expect(await video.evaluate(element => element.controls)).toBe(false)
+  await expect
+    .poll(() => video.evaluate(element => element.currentTime))
+    .toBeGreaterThan(0.1)
+  await controls.getByRole('button', { name: 'Pause', exact: true }).click()
+  await expect.poll(() => video.evaluate(element => element.paused)).toBe(true)
+  const pausedAt = await video.evaluate(element => element.currentTime)
+  await controls.getByRole('button', { name: 'Play', exact: true }).click()
+  await expect
+    .poll(() => video.evaluate(element => element.currentTime))
+    .toBeGreaterThan(pausedAt + 0.1)
+  if (await video.evaluate(element => element.muted))
+    await controls.getByRole('button', { name: 'Unmute', exact: true }).click()
+  await controls.getByRole('button', { name: 'Mute', exact: true }).click()
+  await expect.poll(() => video.evaluate(element => element.muted)).toBe(true)
+  await controls.getByRole('button', { name: 'Unmute', exact: true }).click()
+  await expect.poll(() => video.evaluate(element => element.muted)).toBe(false)
+  await video.evaluate(element => {
+    element.currentTime = Math.min(5, element.duration / 2)
+  })
+  await controls.getByRole('button', { name: 'Restart', exact: true }).click()
+  await expect
+    .poll(() => video.evaluate(element => element.currentTime))
+    .toBeLessThan(2)
+  await page.locator('#api-reference').scrollIntoViewIfNeeded()
+  await expect.poll(() => video.evaluate(element => element.paused)).toBe(true)
+  await frame.scrollIntoViewIfNeeded()
+  await expect.poll(() => video.evaluate(element => element.paused)).toBe(false)
+  await page.emulateMedia({ colorScheme: 'dark' })
+  await expect(video).toHaveAttribute('src', /\/button-docs-dark\.mp4$/)
+  await expect
+    .poll(
+      () =>
+        video.evaluate(
+          element =>
+            element.videoWidth > 0 &&
+            element.readyState >= 2 &&
+            element.currentTime > 0.1
+        ),
+      { timeout: 20_000 }
+    )
+    .toBe(true)
+  await expect(frame.getByRole('alert')).toHaveCount(0)
+})
+
+test.describe('mobile native videos', () => {
+  test.use({
+    viewport: { width: 390, height: 844 },
+    userAgent:
+      'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile/15E148 Safari/604.1'
+  })
+  test('show the first frame and play on request', async ({ page }) => {
+    await page.goto('/docs-ui/native/components/button', {
+      waitUntil: 'domcontentloaded'
+    })
+    const frame = page.locator('[data-docs-video]').first()
+    await frame.scrollIntoViewIfNeeded()
+    const video = frame.locator('video')
+    await expect
+      .poll(
+        () =>
+          video.evaluate(
+            element => element.readyState >= 2 && element.videoWidth > 0
+          ),
+        { timeout: 20_000 }
+      )
+      .toBe(true)
+    expect(await video.evaluate(element => element.paused)).toBe(true)
+    const geometry = await frame.boundingBox()
+    expect(Math.abs(geometry!.width / geometry!.height - 16 / 9)).toBeLessThan(
+      0.02
+    )
+    const controls = frame.getByRole('group', { name: 'Video controls' })
+    await controls.getByRole('button', { name: 'Play', exact: true }).click()
+    await expect
+      .poll(() => video.evaluate(element => element.currentTime))
+      .toBeGreaterThan(0.1)
+    await controls.getByRole('button', { name: 'Pause', exact: true }).click()
+    await expect
+      .poll(() => video.evaluate(element => element.paused))
+      .toBe(true)
+    await expect(frame.getByRole('alert')).toHaveCount(0)
+  })
+})

@@ -2,10 +2,13 @@ import { useParams } from '@tanstack/react-router'
 import type { ComponentProps } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { useTheme } from '@vezham/docs-react/provider/base'
 import { Link } from '@vezham/react-v3'
 
-type ImageProps = ComponentProps<'img'> & {
+import { VideoPlayer, type VideoProps } from './video-player'
+
+export { VideoPlayer } from './video-player'
+
+type Props = ComponentProps<'img'> & {
   darkSrc?: string
   href?: string
   wrapperClassName?: string
@@ -21,7 +24,7 @@ export const DocsImage = ({
   alt,
   className,
   ...props
-}: ImageProps) => {
+}: Props) => {
   const images = (
     <>
       <img
@@ -62,45 +65,6 @@ export const DocsImage = ({
   )
 }
 
-type VideoProps = Omit<ComponentProps<'video'>, 'height'> & {
-  srcLight?: string
-  srcDark?: string
-  height?: number
-  playMode?: 'manual' | 'auto'
-}
-
-export const VideoPlayer = ({
-  src,
-  srcLight,
-  srcDark,
-  height,
-  muted = true,
-  playMode = 'manual',
-  className,
-  ...props
-}: VideoProps) => {
-  const { resolvedTheme } = useTheme()
-  return (
-    // eslint-disable-next-line jsx-a11y/media-has-caption -- Upstream UI demo recordings do not provide caption tracks.
-    <video
-      {...props}
-      aria-label={props['aria-label'] ?? 'HeroUI component demonstration'}
-      src={
-        resolvedTheme === 'dark'
-          ? (srcDark ?? src ?? srcLight)
-          : (src ?? srcLight ?? srcDark)
-      }
-      style={{ maxHeight: height ?? 480, ...props.style }}
-      className={`my-6 w-full rounded-xl ${className ?? ''}`}
-      controls
-      playsInline
-      autoPlay={playMode === 'auto'}
-      muted={muted}
-      preload="none"
-    />
-  )
-}
-
 const nativeAppUrl = (slug = '') =>
   `https://heroui.com/docs/native-showcase/components/${slug}`
 
@@ -118,12 +82,12 @@ export const NativeVideoPlayerView = ({
           ? _splat.split('/').slice(-1)[0]
           : ''))
   return (
-    <div className="not-prose my-6">
+    <div className="not-prose my-6 flex flex-col items-end gap-4">
       <Link
         href={nativeAppUrl(component)}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-sm">
+        className="text-foreground bg-default rounded-full px-3 py-1 text-sm no-underline">
         Open in HeroUI Native
       </Link>
       <VideoPlayer {...props} />

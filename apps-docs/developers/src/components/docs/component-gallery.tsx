@@ -1,5 +1,4 @@
 import { useParams } from '@tanstack/react-router'
-import { useEffect, useRef } from 'react'
 
 import { useTheme } from '@vezham/docs-react/provider/base'
 import { Chip, Link } from '@vezham/react-v3'
@@ -10,11 +9,12 @@ import {
   componentGalleryMedia
 } from '@src/lib/docs/heroui-presentation'
 
+import { VideoPlayer } from './video-player'
+
 type GalleryPage = (typeof herouiCatalog)[number]
 
 const NativeGalleryVideo = ({ page }: { page: GalleryPage }) => {
   const { resolvedTheme } = useTheme()
-  const video = useRef<HTMLVideoElement>(null)
   const name = page.url.split('/').slice(-1)[0]
   const videoName = componentGalleryMedia.nativeVideoNames[name] ?? name
   // vx-bot/NOTE: Both upstream dark ScrollShadow URLs return 403; its light recording remains available.
@@ -22,37 +22,7 @@ const NativeGalleryVideo = ({ page }: { page: GalleryPage }) => {
     resolvedTheme === 'dark' && name !== 'scroll-shadow' ? 'dark' : 'light'
   const src = `${componentGalleryMedia.nativeVideoBaseUrl}/${videoName}-docs-${theme}.mp4`
 
-  useEffect(() => {
-    const element = video.current
-    if (!element || typeof IntersectionObserver === 'undefined') return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (
-          entry?.isIntersecting &&
-          !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-        )
-          void element.play().catch(() => element.pause())
-        else element.pause()
-      },
-      { threshold: 0.5 }
-    )
-    observer.observe(element)
-    return () => observer.disconnect()
-  }, [src])
-
-  return (
-    <video
-      ref={video}
-      aria-label={`${page.title} preview`}
-      src={src}
-      className="aspect-video max-h-75 w-full rounded-xl border object-cover"
-      controls
-      loop
-      muted
-      playsInline
-      preload="none"
-    />
-  )
+  return <VideoPlayer aria-label={`${page.title} preview`} src={src} muted />
 }
 
 export const ComponentTile = ({

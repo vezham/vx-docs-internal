@@ -1,6 +1,10 @@
 import { type ComponentProps, type ReactNode, use, useState } from 'react'
 
 import { Callout } from '@vezham/docs-react/components/callout'
+import {
+  CodeBlock as DocsCodeBlock,
+  Pre as DocsPre
+} from '@vezham/docs-react/components/codeblock'
 import { Tab, Tabs } from '@vezham/docs-react/components/tabs'
 import { Button } from '@vezham/react-v3'
 
@@ -28,14 +32,20 @@ export const CollapsibleCode = ({
 }: {
   code: string
   lang?: string
-}) => (
-  <details className="my-4 rounded-xl border p-4">
-    <summary>View {lang ?? ''} source</summary>
-    <pre className="overflow-auto">
-      <code>{code}</code>
-    </pre>
-  </details>
-)
+}) => {
+  return (
+    <DocsCodeBlock
+      data-line-numbers
+      title={lang?.toUpperCase() ?? 'SOURCE'}
+      className="my-4 rounded-xl shadow-none">
+      <DocsPre>
+        <code className={lang ? `language-${lang}` : undefined}>
+          {code.trim()}
+        </code>
+      </DocsPre>
+    </DocsCodeBlock>
+  )
+}
 
 export const CopyPrompt = ({
   children,

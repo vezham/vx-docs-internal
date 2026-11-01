@@ -48,6 +48,10 @@ the browser tests cover representative interactive pages separately.
   Native catalogs use theme-aware videos, including the SkeletonGroup override.
 - Documentation images retain their destination links, wrappers, aspect ratios,
   and theme-specific sources. Videos retain posters, sizing, and playback props.
+- Component pages, release videos, and Native gallery previews share a 16:9
+  player with custom play/pause, mute, and restart controls. Nearby videos load
+  their first frame; desktop autoplay follows viewport visibility, while mobile
+  and reduced-motion viewers can start playback manually.
 - New, Updated, and Preview metadata survives schema validation and appears in
   page titles and component catalogs. Preview is no longer requested as a CDN icon.
 - Release pull-request metadata and introduction social-image metadata are
@@ -88,10 +92,12 @@ every upstream screenshot.
 
 - Source audit: no unexpected differences across the coverage listed above.
 - Nx lint, type checking, and production build passed; all 22 unit tests passed.
-- All seven Chromium tests passed. Coverage includes gallery image loading, theme variants, source
-  ordering, desktop/mobile placement, locale links, and Native video URLs, as
-  well as local demos, numbered source,
-  Preview/Code navigation, code scrolling, and stable Show more/Show less controls.
+- Chromium coverage includes decoded video frames, advancing playback time,
+  play/pause, mute, restart, viewport pausing, theme changes, and mobile playback,
+  alongside gallery image loading, theme variants, source ordering,
+  desktop/mobile placement, locale links, Native video URLs, local demos,
+  numbered source, Preview/Code navigation, code scrolling,
+  and stable Show more/Show less controls. All nine Chromium scenarios passed.
 - Production browser checks at desktop and mobile widths passed for color
   copying, light/dark tokens, related content, release attribution, linked images,
   social metadata, and Native video/app links, with no page runtime errors.
