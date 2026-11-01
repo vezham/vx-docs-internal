@@ -78,7 +78,7 @@ const ColorSwatch = ({
         ref={ref}
         aria-label={`Copy ${label} color`}
         variant="ghost"
-        className={`h-auto w-full min-w-0 flex-col items-start justify-center gap-1 rounded-xl text-start ${compact ? 'min-h-10 px-4 py-2.5' : 'min-h-14 px-4 py-2'} ${border ? 'border border-border' : ''}`}
+        className={`h-auto w-full min-w-0 flex-col items-start justify-center gap-1 rounded-xl text-start ${compact ? 'min-h-10 px-4 py-2.5' : 'min-h-14 px-4 py-2'} ${border ? 'border-border border' : ''}`}
         style={{ backgroundColor: background }}
         onPress={async () => {
           if (!ref.current) return
@@ -92,7 +92,7 @@ const ColorSwatch = ({
           }
         }}>
         <span
-          className="block max-w-full break-words text-sm font-medium tracking-tight"
+          className="block max-w-full text-sm font-medium tracking-tight break-words"
           style={{ color: colorValue(textColor ?? inferTextColor(variable)) }}>
           {label}
         </span>
@@ -108,7 +108,7 @@ const ColorSwatch = ({
 }
 
 const ThemeTag = ({ theme }: { theme: 'Light' | 'Dark' }) => (
-  <span className="inline-flex w-fit items-center text-xs font-medium text-muted">
+  <span className="text-muted inline-flex w-fit items-center text-xs font-medium">
     {theme}
   </span>
 )
@@ -177,7 +177,9 @@ const ColorBlock = ({
   soft?: boolean
 }) => {
   const base = colorValue(group.baseCssValue ?? group.baseVariable)
-  const foreground = colorValue(group.foregroundCssValue ?? group.foregroundVariable)
+  const foreground = colorValue(
+    group.foregroundCssValue ?? group.foregroundVariable
+  )
   const tokens: Swatch[] = [
     {
       label: 'Hover',
@@ -211,7 +213,8 @@ const ColorBlock = ({
           <div
             className="absolute inset-0"
             style={{
-              backgroundColor: group.baseCssValue ?? colorValue(group.baseVariable)
+              backgroundColor:
+                group.baseCssValue ?? colorValue(group.baseVariable)
             }}
           />
         </>
@@ -259,12 +262,7 @@ const ThemeColumn = ({
         className={`flex min-w-0 flex-col gap-2 ${soft ? 'sm:flex-row' : ''}`}>
         <ColorBlock name={name} group={group} theme={themeValue} />
         {soft && (
-          <ColorBlock
-            name={name}
-            group={soft}
-            theme={themeValue}
-            soft
-          />
+          <ColorBlock name={name} group={soft} theme={themeValue} soft />
         )}
       </div>
     </section>

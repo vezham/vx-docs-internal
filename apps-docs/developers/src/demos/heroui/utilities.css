@@ -1,4 +1,5 @@
 /* vx-bot/INFO: Imported HeroUI demo utilities; see README.md and LICENSE. */
+/* stylelint-disable at-rule-prelude-no-invalid, alpha-value-notation, color-function-alias-notation, color-no-hex, declaration-property-unit-allowed-list, length-zero-no-unit, nesting-selector-no-missing-scoping-root, property-no-vendor-prefix, rule-empty-line-before, unit-allowed-list -- preserve upstream Tailwind utilities and browser compatibility declarations */
 @keyframes shine {
   0% {
     translate: -100% 0;
@@ -197,3 +198,4 @@
     }
   }
 }
+/* stylelint-enable at-rule-prelude-no-invalid, alpha-value-notation, color-function-alias-notation, color-no-hex, declaration-property-unit-allowed-list, length-zero-no-unit, nesting-selector-no-missing-scoping-root, property-no-vendor-prefix, rule-empty-line-before, unit-allowed-list */

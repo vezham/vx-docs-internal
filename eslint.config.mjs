@@ -26,6 +26,8 @@ const ignores = [
   '**/coverage',
   '**/.next',
   '**/.next/**',
+  // vx-bot/NOTE: Preserve upstream HeroUI sample code without applying repo-specific lint rewrites.
+  '**/src/demos/heroui/**',
   '**/.vezham',
   '**/.nx',
   '**/lint-staged.config.cjs',
