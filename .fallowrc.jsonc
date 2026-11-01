@@ -24,6 +24,10 @@
     // vx-bot/NOTE: Legacy implementations are outside this npm-consumer workspace.
     "packages/vx/react/**"
   ],
+  "ignoreFindings": [
+    // vx-bot/NOTE: Preserve demo dependency tracking while hiding intentional upstream export duplication.
+    "apps-docs/developers/src/demos/heroui/**"
+  ],
   "entry": [
     // vx-bot/NOTE: Generated apps import these shared stylesheet roots directly.
     "packages/vx/styles/{index.css,docs/index.css}",
