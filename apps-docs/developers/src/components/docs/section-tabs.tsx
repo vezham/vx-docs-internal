@@ -34,7 +34,7 @@ export const SectionTabs = ({ locale, platform, selectedSection }: Props) => {
         {getPlatformSections(platform).map(item => (
           <Link
             key={item.id}
-            to="/{-$lang}/docs-ui/$platform/$"
+            to="/{-$lang}/docs/ui/$platform/$"
             params={{
               lang: locale === i18n.defaultLanguage ? undefined : locale,
               platform,

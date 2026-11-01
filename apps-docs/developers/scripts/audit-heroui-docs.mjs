@@ -8,7 +8,7 @@ import yaml from 'yaml'
 
 const upstream = path.resolve(process.argv[2])
 const app = path.resolve(import.meta.dirname, '..')
-const local = path.join(app, 'content/platform-docs')
+const local = path.join(app, 'content/ui-docs')
 const require = createRequire(import.meta.url)
 const mdxRequire = createRequire(require.resolve('@vezham/docs-mdx'))
 const { createProcessor } = await import(
@@ -63,8 +63,8 @@ const attributes = node =>
 const normalizedMetadata = value =>
   JSON.parse(
     JSON.stringify(value)
-      .replaceAll('/docs/react', '/docs-ui/web')
-      .replaceAll('/docs/native', '/docs-ui/native')
+      .replaceAll('/docs/react', '/docs/ui/web')
+      .replaceAll('/docs/native', '/docs/ui/native')
       .replaceAll('](/showcase)', '](https://heroui.com/showcase)')
   )
 const exportedNames = async (file, seen = new Set()) => {
@@ -298,7 +298,7 @@ for (const file of new Set(Object.values(registry))) {
   let expected = await readFile(path.join(upstream, 'src/demos', file), 'utf8')
   expected = expected
     .replaceAll('@heroui/react', '@vezham/react-v3')
-    .replaceAll('/docs/react/', '/docs-ui/web/')
+    .replaceAll('/docs/react/', '/docs/ui/web/')
   if (!/\bReact[.<]/.test(expected))
     expected = expected
       .replace(/^import React from "react";\n/m, '')

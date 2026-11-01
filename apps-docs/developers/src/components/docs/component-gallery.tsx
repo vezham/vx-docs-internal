@@ -110,7 +110,7 @@ const ComponentCategory = ({
   const pages = group.components.flatMap(path => {
     const name = path.split('/').slice(-1)[0]
     return herouiCatalog.filter(
-      page => page.url === `/docs-ui/${platform}/components/${name}`
+      page => page.url === `/docs/ui/${platform}/components/${name}`
     )
   })
   if (!pages.length) return null

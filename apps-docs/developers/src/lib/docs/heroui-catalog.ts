@@ -7,7 +7,7 @@ export const herouiCatalog = [
     description:
       'Group related buttons together with consistent styling and spacing',
     status: null,
-    url: '/docs-ui/web/components/button-group'
+    url: '/docs/ui/web/components/button-group'
   },
   {
     platform: 'web',
@@ -16,7 +16,7 @@ export const herouiCatalog = [
     description:
       'A clickable button component with multiple variants and states',
     status: null,
-    url: '/docs-ui/web/components/button'
+    url: '/docs/ui/web/components/button'
   },
   {
     platform: 'web',
@@ -25,7 +25,7 @@ export const herouiCatalog = [
     description:
       'Button component for closing dialogs, modals, or dismissing content',
     status: null,
-    url: '/docs-ui/web/components/close-button'
+    url: '/docs/ui/web/components/close-button'
   },
   {
     platform: 'web',
@@ -34,7 +34,7 @@ export const herouiCatalog = [
     description:
       'Groups multiple ToggleButtons into a unified control, allowing users to select one or multiple options.',
     status: null,
-    url: '/docs-ui/web/components/toggle-button-group'
+    url: '/docs/ui/web/components/toggle-button-group'
   },
   {
     platform: 'web',
@@ -43,7 +43,7 @@ export const herouiCatalog = [
     description:
       'An interactive toggle control for on/off or selected/unselected states',
     status: null,
-    url: '/docs-ui/web/components/toggle-button'
+    url: '/docs/ui/web/components/toggle-button'
   },
   {
     platform: 'web',
@@ -52,7 +52,7 @@ export const herouiCatalog = [
     description:
       'A dropdown displays a list of actions or options that a user can choose',
     status: null,
-    url: '/docs-ui/web/components/dropdown'
+    url: '/docs/ui/web/components/dropdown'
   },
   {
     platform: 'web',
@@ -61,7 +61,7 @@ export const herouiCatalog = [
     description:
       'A listbox displays a list of options and allows a user to select one or more of them',
     status: null,
-    url: '/docs-ui/web/components/list-box'
+    url: '/docs/ui/web/components/list-box'
   },
   {
     platform: 'web',
@@ -70,7 +70,7 @@ export const herouiCatalog = [
     description:
       'A focusable list of tags with support for keyboard navigation, selection, and removal',
     status: null,
-    url: '/docs-ui/web/components/tag-group'
+    url: '/docs/ui/web/components/tag-group'
   },
   {
     platform: 'web',
@@ -79,7 +79,7 @@ export const herouiCatalog = [
     description:
       'A 2D color picker that allows users to select colors from a gradient area',
     status: null,
-    url: '/docs-ui/web/components/color-area'
+    url: '/docs/ui/web/components/color-area'
   },
   {
     platform: 'web',
@@ -88,7 +88,7 @@ export const herouiCatalog = [
     description:
       'Color input field with labels, descriptions, and validation built on React Aria ColorField',
     status: null,
-    url: '/docs-ui/web/components/color-field'
+    url: '/docs/ui/web/components/color-field'
   },
   {
     platform: 'web',
@@ -97,7 +97,7 @@ export const herouiCatalog = [
     description:
       'A composable color picker that synchronizes color value between multiple color components',
     status: null,
-    url: '/docs-ui/web/components/color-picker'
+    url: '/docs/ui/web/components/color-picker'
   },
   {
     platform: 'web',
@@ -106,7 +106,7 @@ export const herouiCatalog = [
     description:
       'A color slider allows users to adjust an individual channel of a color value',
     status: null,
-    url: '/docs-ui/web/components/color-slider'
+    url: '/docs/ui/web/components/color-slider'
   },
   {
     platform: 'web',
@@ -115,7 +115,7 @@ export const herouiCatalog = [
     description:
       'A list of color swatches that allows users to select a color from a predefined palette.',
     status: null,
-    url: '/docs-ui/web/components/color-swatch-picker'
+    url: '/docs/ui/web/components/color-swatch-picker'
   },
   {
     platform: 'web',
@@ -123,7 +123,7 @@ export const herouiCatalog = [
     title: 'ColorSwatch',
     description: 'A visual preview of a color value with accessibility support',
     status: null,
-    url: '/docs-ui/web/components/color-swatch'
+    url: '/docs/ui/web/components/color-swatch'
   },
   {
     platform: 'web',
@@ -132,7 +132,7 @@ export const herouiCatalog = [
     description:
       'A slider allows a user to select one or more values within a range',
     status: null,
-    url: '/docs-ui/web/components/slider'
+    url: '/docs/ui/web/components/slider'
   },
   {
     platform: 'web',
@@ -140,7 +140,7 @@ export const herouiCatalog = [
     title: 'Switch',
     description: 'A toggle switch component for boolean states',
     status: 'updated',
-    url: '/docs-ui/web/components/switch'
+    url: '/docs/ui/web/components/switch'
   },
   {
     platform: 'web',
@@ -149,7 +149,7 @@ export const herouiCatalog = [
     description:
       'Displays a small indicator positioned relative to another element, commonly used for notification counts, status dots, and labels',
     status: null,
-    url: '/docs-ui/web/components/badge'
+    url: '/docs/ui/web/components/badge'
   },
   {
     platform: 'web',
@@ -158,7 +158,7 @@ export const herouiCatalog = [
     description:
       'Small informational badges for displaying labels, statuses, and categories',
     status: null,
-    url: '/docs-ui/web/components/chip'
+    url: '/docs/ui/web/components/chip'
   },
   {
     platform: 'web',
@@ -167,7 +167,7 @@ export const herouiCatalog = [
     description:
       'Tables display structured data in rows and columns with support for sorting, selection, column resizing, and infinite scrolling.',
     status: 'updated',
-    url: '/docs-ui/web/components/table'
+    url: '/docs/ui/web/components/table'
   },
   {
     platform: 'web',
@@ -176,7 +176,7 @@ export const herouiCatalog = [
     description:
       'Composable date picker with month grid, navigation, and year picker support built on React Aria Calendar',
     status: 'updated',
-    url: '/docs-ui/web/components/calendar'
+    url: '/docs/ui/web/components/calendar'
   },
   {
     platform: 'web',
@@ -185,7 +185,7 @@ export const herouiCatalog = [
     description:
       'Date input field with labels, descriptions, and validation built on React Aria DateField',
     status: null,
-    url: '/docs-ui/web/components/date-field'
+    url: '/docs/ui/web/components/date-field'
   },
   {
     platform: 'web',
@@ -194,7 +194,7 @@ export const herouiCatalog = [
     description:
       'Composable date picker built on React Aria DatePicker with DateField and Calendar composition',
     status: null,
-    url: '/docs-ui/web/components/date-picker'
+    url: '/docs/ui/web/components/date-picker'
   },
   {
     platform: 'web',
@@ -203,7 +203,7 @@ export const herouiCatalog = [
     description:
       'Composable date range picker built on React Aria DateRangePicker with DateField and RangeCalendar composition',
     status: null,
-    url: '/docs-ui/web/components/date-range-picker'
+    url: '/docs/ui/web/components/date-range-picker'
   },
   {
     platform: 'web',
@@ -212,7 +212,7 @@ export const herouiCatalog = [
     description:
       'Composable date range picker with month grid, navigation, and year picker support built on React Aria RangeCalendar',
     status: null,
-    url: '/docs-ui/web/components/range-calendar'
+    url: '/docs/ui/web/components/range-calendar'
   },
   {
     platform: 'web',
@@ -221,7 +221,7 @@ export const herouiCatalog = [
     description:
       'Time input field with labels, descriptions, and validation built on React Aria TimeField',
     status: null,
-    url: '/docs-ui/web/components/time-field'
+    url: '/docs/ui/web/components/time-field'
   },
   {
     platform: 'web',
@@ -230,7 +230,7 @@ export const herouiCatalog = [
     description:
       'Display important messages and notifications to users with status indicators',
     status: null,
-    url: '/docs-ui/web/components/alert'
+    url: '/docs/ui/web/components/alert'
   },
   {
     platform: 'web',
@@ -239,7 +239,7 @@ export const herouiCatalog = [
     description:
       'A meter represents a quantity within a known range, or a fractional value.',
     status: null,
-    url: '/docs-ui/web/components/meter'
+    url: '/docs/ui/web/components/meter'
   },
   {
     platform: 'web',
@@ -248,7 +248,7 @@ export const herouiCatalog = [
     description:
       'A progress bar shows either determinate or indeterminate progress of an operation over time.',
     status: null,
-    url: '/docs-ui/web/components/progress-bar'
+    url: '/docs/ui/web/components/progress-bar'
   },
   {
     platform: 'web',
@@ -257,7 +257,7 @@ export const herouiCatalog = [
     description:
       'A circular progress indicator that shows determinate or indeterminate progress.',
     status: null,
-    url: '/docs-ui/web/components/progress-circle'
+    url: '/docs/ui/web/components/progress-circle'
   },
   {
     platform: 'web',
@@ -266,7 +266,7 @@ export const herouiCatalog = [
     description:
       'Skeleton is a placeholder to show a loading state and the expected shape of a component.',
     status: null,
-    url: '/docs-ui/web/components/skeleton'
+    url: '/docs/ui/web/components/skeleton'
   },
   {
     platform: 'web',
@@ -274,7 +274,7 @@ export const herouiCatalog = [
     title: 'Spinner',
     description: 'A loading indicator component to show pending states',
     status: null,
-    url: '/docs-ui/web/components/spinner'
+    url: '/docs/ui/web/components/spinner'
   },
   {
     platform: 'web',
@@ -283,7 +283,7 @@ export const herouiCatalog = [
     description:
       'A checkbox group component for managing multiple checkbox selections',
     status: 'updated',
-    url: '/docs-ui/web/components/checkbox-group'
+    url: '/docs/ui/web/components/checkbox-group'
   },
   {
     platform: 'web',
@@ -292,7 +292,7 @@ export const herouiCatalog = [
     description:
       'Checkboxes allow users to select multiple items from a list of individual items, or to mark one individual item as selected.',
     status: 'updated',
-    url: '/docs-ui/web/components/checkbox'
+    url: '/docs/ui/web/components/checkbox'
   },
   {
     platform: 'web',
@@ -301,7 +301,7 @@ export const herouiCatalog = [
     description:
       'Provides supplementary text for form fields and other components',
     status: null,
-    url: '/docs-ui/web/components/description'
+    url: '/docs/ui/web/components/description'
   },
   {
     platform: 'web',
@@ -309,7 +309,7 @@ export const herouiCatalog = [
     title: 'ErrorMessage',
     description: 'A low-level error message component for displaying errors',
     status: null,
-    url: '/docs-ui/web/components/error-message'
+    url: '/docs/ui/web/components/error-message'
   },
   {
     platform: 'web',
@@ -317,7 +317,7 @@ export const herouiCatalog = [
     title: 'FieldError',
     description: 'Displays validation error messages for form fields',
     status: null,
-    url: '/docs-ui/web/components/field-error'
+    url: '/docs/ui/web/components/field-error'
   },
   {
     platform: 'web',
@@ -326,7 +326,7 @@ export const herouiCatalog = [
     description:
       'Group related form controls with legends, descriptions, and actions',
     status: null,
-    url: '/docs-ui/web/components/fieldset'
+    url: '/docs/ui/web/components/fieldset'
   },
   {
     platform: 'web',
@@ -335,7 +335,7 @@ export const herouiCatalog = [
     description:
       'Wrapper component for form validation and submission handling',
     status: null,
-    url: '/docs-ui/web/components/form'
+    url: '/docs/ui/web/components/form'
   },
   {
     platform: 'web',
@@ -344,7 +344,7 @@ export const herouiCatalog = [
     description:
       'Group related input controls with prefix and suffix elements for enhanced form fields',
     status: null,
-    url: '/docs-ui/web/components/input-group'
+    url: '/docs/ui/web/components/input-group'
   },
   {
     platform: 'web',
@@ -353,7 +353,7 @@ export const herouiCatalog = [
     description:
       'A one-time password input component for verification codes and secure authentication',
     status: null,
-    url: '/docs-ui/web/components/input-otp'
+    url: '/docs/ui/web/components/input-otp'
   },
   {
     platform: 'web',
@@ -362,7 +362,7 @@ export const herouiCatalog = [
     description:
       'Primitive single-line text input component that accepts standard HTML attributes',
     status: null,
-    url: '/docs-ui/web/components/input'
+    url: '/docs/ui/web/components/input'
   },
   {
     platform: 'web',
@@ -370,7 +370,7 @@ export const herouiCatalog = [
     title: 'Label',
     description: 'Renders an accessible label associated with form controls',
     status: null,
-    url: '/docs-ui/web/components/label'
+    url: '/docs/ui/web/components/label'
   },
   {
     platform: 'web',
@@ -379,7 +379,7 @@ export const herouiCatalog = [
     description:
       'Number input fields with increment/decrement buttons, validation, and internationalized formatting',
     status: null,
-    url: '/docs-ui/web/components/number-field'
+    url: '/docs/ui/web/components/number-field'
   },
   {
     platform: 'web',
@@ -387,7 +387,7 @@ export const herouiCatalog = [
     title: 'RadioGroup',
     description: 'Radio group for selecting a single option from a list',
     status: 'updated',
-    url: '/docs-ui/web/components/radio-group'
+    url: '/docs/ui/web/components/radio-group'
   },
   {
     platform: 'web',
@@ -395,7 +395,7 @@ export const herouiCatalog = [
     title: 'SearchField',
     description: 'Search input field with clear button and search icon',
     status: null,
-    url: '/docs-ui/web/components/search-field'
+    url: '/docs/ui/web/components/search-field'
   },
   {
     platform: 'web',
@@ -404,7 +404,7 @@ export const herouiCatalog = [
     description:
       'Primitive multiline text input component that accepts standard HTML attributes',
     status: null,
-    url: '/docs-ui/web/components/text-area'
+    url: '/docs/ui/web/components/text-area'
   },
   {
     platform: 'web',
@@ -413,7 +413,7 @@ export const herouiCatalog = [
     description:
       'Composition-friendly text fields with labels, descriptions, and inline validation',
     status: null,
-    url: '/docs-ui/web/components/text-field'
+    url: '/docs/ui/web/components/text-field'
   },
   {
     platform: 'web',
@@ -422,7 +422,7 @@ export const herouiCatalog = [
     description:
       'Flexible container component for grouping related content and actions',
     status: null,
-    url: '/docs-ui/web/components/card'
+    url: '/docs/ui/web/components/card'
   },
   {
     platform: 'web',
@@ -430,7 +430,7 @@ export const herouiCatalog = [
     title: 'Separator',
     description: 'Visually divide content sections',
     status: null,
-    url: '/docs-ui/web/components/separator'
+    url: '/docs/ui/web/components/separator'
   },
   {
     platform: 'web',
@@ -439,7 +439,7 @@ export const herouiCatalog = [
     description:
       'Container component that provides surface-level styling and context for child components',
     status: null,
-    url: '/docs-ui/web/components/surface'
+    url: '/docs/ui/web/components/surface'
   },
   {
     platform: 'web',
@@ -448,7 +448,7 @@ export const herouiCatalog = [
     description:
       'A container for interactive controls with arrow key navigation.',
     status: null,
-    url: '/docs-ui/web/components/toolbar'
+    url: '/docs/ui/web/components/toolbar'
   },
   {
     platform: 'web',
@@ -457,7 +457,7 @@ export const herouiCatalog = [
     description:
       'Display a stacked or grid group of avatars with overflow counting',
     status: 'new',
-    url: '/docs-ui/web/components/avatar-group'
+    url: '/docs/ui/web/components/avatar-group'
   },
   {
     platform: 'web',
@@ -466,7 +466,7 @@ export const herouiCatalog = [
     description:
       'Display user profile images with customizable fallback content',
     status: null,
-    url: '/docs-ui/web/components/avatar'
+    url: '/docs/ui/web/components/avatar'
   },
   {
     platform: 'web',
@@ -475,7 +475,7 @@ export const herouiCatalog = [
     description:
       'A collapsible content panel for organizing information in a compact space',
     status: null,
-    url: '/docs-ui/web/components/accordion'
+    url: '/docs/ui/web/components/accordion'
   },
   {
     platform: 'web',
@@ -484,7 +484,7 @@ export const herouiCatalog = [
     description:
       "Navigation breadcrumbs showing the current page's location within a hierarchy",
     status: null,
-    url: '/docs-ui/web/components/breadcrumbs'
+    url: '/docs/ui/web/components/breadcrumbs'
   },
   {
     platform: 'web',
@@ -493,7 +493,7 @@ export const herouiCatalog = [
     description:
       'Container that manages multiple Disclosure items with coordinated expanded states',
     status: null,
-    url: '/docs-ui/web/components/disclosure-group'
+    url: '/docs/ui/web/components/disclosure-group'
   },
   {
     platform: 'web',
@@ -502,7 +502,7 @@ export const herouiCatalog = [
     description:
       'A disclosure is a collapsible section with a header containing a heading and a trigger button, and a panel that wraps the content.',
     status: null,
-    url: '/docs-ui/web/components/disclosure'
+    url: '/docs/ui/web/components/disclosure'
   },
   {
     platform: 'web',
@@ -511,7 +511,7 @@ export const herouiCatalog = [
     description:
       'A styled anchor component for navigation with built-in icon support',
     status: null,
-    url: '/docs-ui/web/components/link'
+    url: '/docs/ui/web/components/link'
   },
   {
     platform: 'web',
@@ -520,7 +520,7 @@ export const herouiCatalog = [
     description:
       'Page navigation with composable page links, previous/next buttons, and ellipsis indicators',
     status: null,
-    url: '/docs-ui/web/components/pagination'
+    url: '/docs/ui/web/components/pagination'
   },
   {
     platform: 'web',
@@ -529,7 +529,7 @@ export const herouiCatalog = [
     description:
       'Tabs organize content into multiple sections and allow users to navigate between them.',
     status: 'new',
-    url: '/docs-ui/web/components/tabs'
+    url: '/docs/ui/web/components/tabs'
   },
   {
     platform: 'web',
@@ -538,7 +538,7 @@ export const herouiCatalog = [
     description:
       'Modal dialog for critical confirmations requiring user attention and explicit action',
     status: null,
-    url: '/docs-ui/web/components/alert-dialog'
+    url: '/docs/ui/web/components/alert-dialog'
   },
   {
     platform: 'web',
@@ -546,7 +546,7 @@ export const herouiCatalog = [
     title: 'Drawer',
     description: 'Slide-out panel for supplementary content and actions',
     status: null,
-    url: '/docs-ui/web/components/drawer'
+    url: '/docs/ui/web/components/drawer'
   },
   {
     platform: 'web',
@@ -555,7 +555,7 @@ export const herouiCatalog = [
     description:
       'Dialog overlay for focused user interactions and important content',
     status: null,
-    url: '/docs-ui/web/components/modal'
+    url: '/docs/ui/web/components/modal'
   },
   {
     platform: 'web',
@@ -564,7 +564,7 @@ export const herouiCatalog = [
     description:
       'Displays rich content in a portal triggered by a button or any custom element',
     status: null,
-    url: '/docs-ui/web/components/popover'
+    url: '/docs/ui/web/components/popover'
   },
   {
     platform: 'web',
@@ -573,7 +573,7 @@ export const herouiCatalog = [
     description:
       'Swipeable overlay with native scroll snapping, partial positions, and nested sheets',
     status: 'new',
-    url: '/docs-ui/web/components/sheet'
+    url: '/docs/ui/web/components/sheet'
   },
   {
     platform: 'web',
@@ -582,7 +582,7 @@ export const herouiCatalog = [
     description:
       'Display temporary notifications and messages to users with automatic dismissal and customizable placement',
     status: 'updated',
-    url: '/docs-ui/web/components/toast'
+    url: '/docs/ui/web/components/toast'
   },
   {
     platform: 'web',
@@ -591,7 +591,7 @@ export const herouiCatalog = [
     description:
       'Displays informative text when users hover over or focus on an element',
     status: 'updated',
-    url: '/docs-ui/web/components/tooltip'
+    url: '/docs/ui/web/components/tooltip'
   },
   {
     platform: 'web',
@@ -600,7 +600,7 @@ export const herouiCatalog = [
     description:
       'An autocomplete combines a select with filtering, allowing users to search and select from a list of options',
     status: null,
-    url: '/docs-ui/web/components/autocomplete'
+    url: '/docs/ui/web/components/autocomplete'
   },
   {
     platform: 'web',
@@ -609,7 +609,7 @@ export const herouiCatalog = [
     description:
       'A combo box combines a text input with a listbox, allowing users to filter a list of options to items matching a query',
     status: 'new',
-    url: '/docs-ui/web/components/combo-box'
+    url: '/docs/ui/web/components/combo-box'
   },
   {
     platform: 'web',
@@ -618,7 +618,7 @@ export const herouiCatalog = [
     description:
       'A select displays a collapsible list of options and allows a user to select one of them',
     status: null,
-    url: '/docs-ui/web/components/select'
+    url: '/docs/ui/web/components/select'
   },
   {
     platform: 'web',
@@ -626,7 +626,7 @@ export const herouiCatalog = [
     title: 'Kbd',
     description: 'Display keyboard shortcuts and key combinations',
     status: null,
-    url: '/docs-ui/web/components/kbd'
+    url: '/docs/ui/web/components/kbd'
   },
   {
     platform: 'web',
@@ -635,7 +635,7 @@ export const herouiCatalog = [
     description:
       'A semantic typography primitive for headings, body copy, and inline code built on React Aria Components Text.',
     status: null,
-    url: '/docs-ui/web/components/typography'
+    url: '/docs/ui/web/components/typography'
   },
   {
     platform: 'web',
@@ -644,7 +644,7 @@ export const herouiCatalog = [
     description:
       'Apply visual shadows to indicate scrollable content overflow with automatic detection of scroll position.',
     status: null,
-    url: '/docs-ui/web/components/scroll-shadow'
+    url: '/docs/ui/web/components/scroll-shadow'
   },
   {
     platform: 'native',
@@ -652,7 +652,7 @@ export const herouiCatalog = [
     title: 'Button',
     description: 'Interactive component that triggers an action when pressed.',
     status: null,
-    url: '/docs-ui/native/components/button'
+    url: '/docs/ui/native/components/button'
   },
   {
     platform: 'native',
@@ -661,7 +661,7 @@ export const herouiCatalog = [
     description:
       'Button component for closing dialogs, modals, or dismissing content.',
     status: null,
-    url: '/docs-ui/native/components/close-button'
+    url: '/docs/ui/native/components/close-button'
   },
   {
     platform: 'native',
@@ -670,7 +670,7 @@ export const herouiCatalog = [
     description:
       'A ghost-variant button with no highlight feedback, designed for inline link-style interactions.',
     status: null,
-    url: '/docs-ui/native/components/link-button'
+    url: '/docs/ui/native/components/link-button'
   },
   {
     platform: 'native',
@@ -679,7 +679,7 @@ export const herouiCatalog = [
     description:
       'A floating context menu with positioning, selection groups, and multiple presentation modes.',
     status: 'updated',
-    url: '/docs-ui/native/components/menu'
+    url: '/docs/ui/native/components/menu'
   },
   {
     platform: 'native',
@@ -688,7 +688,7 @@ export const herouiCatalog = [
     description:
       'A compound component for displaying and managing selectable tags with optional removal.',
     status: null,
-    url: '/docs-ui/native/components/tag-group'
+    url: '/docs/ui/native/components/tag-group'
   },
   {
     platform: 'native',
@@ -697,7 +697,7 @@ export const herouiCatalog = [
     description:
       'A draggable input for selecting a value or range within a bounded interval.',
     status: 'updated',
-    url: '/docs-ui/native/components/slider'
+    url: '/docs/ui/native/components/slider'
   },
   {
     platform: 'native',
@@ -706,7 +706,7 @@ export const herouiCatalog = [
     description:
       'A toggle control that allows users to switch between on and off states.',
     status: null,
-    url: '/docs-ui/native/components/switch'
+    url: '/docs/ui/native/components/switch'
   },
   {
     platform: 'native',
@@ -714,7 +714,7 @@ export const herouiCatalog = [
     title: 'Chip',
     description: 'Displays a compact element in a capsule shape.',
     status: null,
-    url: '/docs-ui/native/components/chip'
+    url: '/docs/ui/native/components/chip'
   },
   {
     platform: 'native',
@@ -723,7 +723,7 @@ export const herouiCatalog = [
     description:
       'Displays important messages and notifications to users with status indicators.',
     status: null,
-    url: '/docs-ui/native/components/alert'
+    url: '/docs/ui/native/components/alert'
   },
   {
     platform: 'native',
@@ -732,7 +732,7 @@ export const herouiCatalog = [
     description:
       'Coordinates multiple skeleton loading placeholders with centralized animation control.',
     status: null,
-    url: '/docs-ui/native/components/skeleton-group'
+    url: '/docs/ui/native/components/skeleton-group'
   },
   {
     platform: 'native',
@@ -741,7 +741,7 @@ export const herouiCatalog = [
     description:
       'Displays a loading placeholder with shimmer or pulse animation effects.',
     status: null,
-    url: '/docs-ui/native/components/skeleton'
+    url: '/docs/ui/native/components/skeleton'
   },
   {
     platform: 'native',
@@ -749,7 +749,7 @@ export const herouiCatalog = [
     title: 'Spinner',
     description: 'Displays an animated loading indicator.',
     status: null,
-    url: '/docs-ui/native/components/spinner'
+    url: '/docs/ui/native/components/spinner'
   },
   {
     platform: 'native',
@@ -758,7 +758,7 @@ export const herouiCatalog = [
     description:
       'A selectable control that allows users to toggle between checked and unchecked states.',
     status: null,
-    url: '/docs-ui/native/components/checkbox'
+    url: '/docs/ui/native/components/checkbox'
   },
   {
     platform: 'native',
@@ -767,7 +767,7 @@ export const herouiCatalog = [
     description:
       'A field component that combines a label, description (or other content), and a control component (Switch or Checkbox) into a single pressable area.',
     status: null,
-    url: '/docs-ui/native/components/control-field'
+    url: '/docs/ui/native/components/control-field'
   },
   {
     platform: 'native',
@@ -776,7 +776,7 @@ export const herouiCatalog = [
     description:
       'Text component for providing accessible descriptions and helper text for form fields and other UI elements.',
     status: null,
-    url: '/docs-ui/native/components/description'
+    url: '/docs/ui/native/components/description'
   },
   {
     platform: 'native',
@@ -785,7 +785,7 @@ export const herouiCatalog = [
     description:
       'Displays validation error message content with smooth animations.',
     status: null,
-    url: '/docs-ui/native/components/field-error'
+    url: '/docs/ui/native/components/field-error'
   },
   {
     platform: 'native',
@@ -794,7 +794,7 @@ export const herouiCatalog = [
     description:
       'A compound layout component that groups an input with optional prefix and suffix decorators.',
     status: 'updated',
-    url: '/docs-ui/native/components/input-group'
+    url: '/docs/ui/native/components/input-group'
   },
   {
     platform: 'native',
@@ -803,7 +803,7 @@ export const herouiCatalog = [
     description:
       'Input component for entering one-time passwords (OTP) with individual character slots, animations, and validation support.',
     status: null,
-    url: '/docs-ui/native/components/input-otp'
+    url: '/docs/ui/native/components/input-otp'
   },
   {
     platform: 'native',
@@ -812,7 +812,7 @@ export const herouiCatalog = [
     description:
       'A text input component with styled border and background for collecting user input.',
     status: 'updated',
-    url: '/docs-ui/native/components/input'
+    url: '/docs/ui/native/components/input'
   },
   {
     platform: 'native',
@@ -821,7 +821,7 @@ export const herouiCatalog = [
     description:
       'Text component for labeling form fields and other UI elements with support for required indicators and validation states.',
     status: null,
-    url: '/docs-ui/native/components/label'
+    url: '/docs/ui/native/components/label'
   },
   {
     platform: 'native',
@@ -830,7 +830,7 @@ export const herouiCatalog = [
     description:
       'A set of radio buttons where only one option can be selected at a time.',
     status: null,
-    url: '/docs-ui/native/components/radio-group'
+    url: '/docs/ui/native/components/radio-group'
   },
   {
     platform: 'native',
@@ -838,7 +838,7 @@ export const herouiCatalog = [
     title: 'SearchField',
     description: 'A compound search input for filtering and querying content.',
     status: 'updated',
-    url: '/docs-ui/native/components/search-field'
+    url: '/docs/ui/native/components/search-field'
   },
   {
     platform: 'native',
@@ -847,7 +847,7 @@ export const herouiCatalog = [
     description:
       'Displays a list of options for the user to pick from — triggered by a button.',
     status: 'updated',
-    url: '/docs-ui/native/components/select'
+    url: '/docs/ui/native/components/select'
   },
   {
     platform: 'native',
@@ -856,7 +856,7 @@ export const herouiCatalog = [
     description:
       'A multiline text input component with styled border and background for collecting longer user input.',
     status: 'updated',
-    url: '/docs-ui/native/components/text-area'
+    url: '/docs/ui/native/components/text-area'
   },
   {
     platform: 'native',
@@ -865,7 +865,7 @@ export const herouiCatalog = [
     description:
       'A text input component with label, description, and error handling for collecting user input.',
     status: null,
-    url: '/docs-ui/native/components/text-field'
+    url: '/docs/ui/native/components/text-field'
   },
   {
     platform: 'native',
@@ -874,7 +874,7 @@ export const herouiCatalog = [
     description:
       'Displays a card container with flexible layout sections for structured content.',
     status: null,
-    url: '/docs-ui/native/components/card'
+    url: '/docs/ui/native/components/card'
   },
   {
     platform: 'native',
@@ -882,7 +882,7 @@ export const herouiCatalog = [
     title: 'Separator',
     description: 'A simple line to separate content visually.',
     status: null,
-    url: '/docs-ui/native/components/separator'
+    url: '/docs/ui/native/components/separator'
   },
   {
     platform: 'native',
@@ -891,7 +891,7 @@ export const herouiCatalog = [
     description:
       'Container component that provides elevation and background styling.',
     status: null,
-    url: '/docs-ui/native/components/surface'
+    url: '/docs/ui/native/components/surface'
   },
   {
     platform: 'native',
@@ -900,7 +900,7 @@ export const herouiCatalog = [
     description:
       'Displays a user avatar with support for images, text initials, or fallback icons.',
     status: null,
-    url: '/docs-ui/native/components/avatar'
+    url: '/docs/ui/native/components/avatar'
   },
   {
     platform: 'native',
@@ -909,7 +909,7 @@ export const herouiCatalog = [
     description:
       'A collapsible content panel for organizing information in a compact space',
     status: null,
-    url: '/docs-ui/native/components/accordion'
+    url: '/docs/ui/native/components/accordion'
   },
   {
     platform: 'native',
@@ -918,7 +918,7 @@ export const herouiCatalog = [
     description:
       'A Surface-based container that groups related list items with consistent layout and spacing.',
     status: null,
-    url: '/docs-ui/native/components/list-group'
+    url: '/docs/ui/native/components/list-group'
   },
   {
     platform: 'native',
@@ -927,7 +927,7 @@ export const herouiCatalog = [
     description:
       'Organize content into tabbed views with animated transitions and indicators.',
     status: null,
-    url: '/docs-ui/native/components/tabs'
+    url: '/docs/ui/native/components/tabs'
   },
   {
     platform: 'native',
@@ -936,7 +936,7 @@ export const herouiCatalog = [
     description:
       'Displays a bottom sheet that slides up from the bottom with animated transitions and swipe-to-dismiss gestures.',
     status: 'updated',
-    url: '/docs-ui/native/components/bottom-sheet'
+    url: '/docs/ui/native/components/bottom-sheet'
   },
   {
     platform: 'native',
@@ -945,7 +945,7 @@ export const herouiCatalog = [
     description:
       'Displays a modal overlay with animated transitions and gesture-based dismissal.',
     status: null,
-    url: '/docs-ui/native/components/dialog'
+    url: '/docs/ui/native/components/dialog'
   },
   {
     platform: 'native',
@@ -954,7 +954,7 @@ export const herouiCatalog = [
     description:
       'Displays a floating content panel anchored to a trigger element with placement and alignment options.',
     status: 'updated',
-    url: '/docs-ui/native/components/popover'
+    url: '/docs/ui/native/components/popover'
   },
   {
     platform: 'native',
@@ -963,7 +963,7 @@ export const herouiCatalog = [
     description:
       'Displays temporary notification messages that appear at the top or bottom of the screen.',
     status: null,
-    url: '/docs-ui/native/components/toast'
+    url: '/docs/ui/native/components/toast'
   },
   {
     platform: 'native',
@@ -972,7 +972,7 @@ export const herouiCatalog = [
     description:
       'Primitive typography component for rendering styled text with semantic type variants.',
     status: null,
-    url: '/docs-ui/native/components/text'
+    url: '/docs/ui/native/components/text'
   },
   {
     platform: 'native',
@@ -981,7 +981,7 @@ export const herouiCatalog = [
     description:
       'Container component that provides visual feedback for press interactions with automatic scale animation.',
     status: null,
-    url: '/docs-ui/native/components/pressable-feedback'
+    url: '/docs/ui/native/components/pressable-feedback'
   },
   {
     platform: 'native',
@@ -990,7 +990,7 @@ export const herouiCatalog = [
     description:
       'Adds dynamic gradient shadows to scrollable content based on scroll position and overflow.',
     status: 'updated',
-    url: '/docs-ui/native/components/scroll-shadow'
+    url: '/docs/ui/native/components/scroll-shadow'
   }
 ]
 

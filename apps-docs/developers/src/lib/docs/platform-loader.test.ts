@@ -19,11 +19,11 @@ describe('UI documentation', () => {
         params: { platform, _splat: 'getting-started' }
       })
       expect(data.title).toBeTruthy()
-      expect(data.routePath).toBe(`/docs-ui/${platform}/getting-started`)
+      expect(data.routePath).toBe(`/docs/ui/${platform}/getting-started`)
       expect(
         deserializePageTree(data.pageTree).children.length
       ).toBeGreaterThan(0)
-      expect(data.markdownUrl).toContain(`/docs-ui/${platform}/`)
+      expect(data.markdownUrl).toContain(`/docs/ui/${platform}/`)
     },
     20_000
   )
@@ -34,7 +34,7 @@ describe('UI documentation', () => {
     })
     expect(data.title).toBe('Button')
     expect(data.locale).toBe('cn')
-    expect(data.routePath).toBe('/cn/docs-ui/web/components/button')
+    expect(data.routePath).toBe('/cn/docs/ui/web/components/button')
     expect(deserializePageTree(data.pageTree).children.length).toBeGreaterThan(
       0
     )

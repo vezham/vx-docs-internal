@@ -14,7 +14,7 @@ export const ControlCenter = ({ locale, page, platform }: Props) => {
   const router = useRouter()
   const { resolvedTheme, setTheme } = useTheme()
   const languageLocation = (language: Locale) => ({
-    to: '/{-$lang}/docs-ui/$platform/$' as const,
+    to: '/{-$lang}/docs/ui/$platform/$' as const,
     params: {
       lang: language === i18n.defaultLanguage ? undefined : language,
       platform,

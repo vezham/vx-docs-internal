@@ -20,7 +20,7 @@ export const baseOptions = (
     links: [
       {
         text: 'UI/platforms',
-        url: localizedUrl(i18n, locale, '/docs-ui/web/getting-started'),
+        url: localizedUrl(i18n, locale, '/docs/ui/web/getting-started'),
         active: 'nested-url'
       },
       {

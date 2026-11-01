@@ -20,7 +20,7 @@ export const platformDocsPageSchema = docsPageSchema.extend({
 })
 
 const webPlatformDocs = defineDocs({
-  dir: 'content/platform-docs/web',
+  dir: 'content/ui-docs/web',
   docs: {
     async: true,
     postprocess: { includeProcessedMarkdown: true },
@@ -32,7 +32,7 @@ const webPlatformDocs = defineDocs({
 })
 
 const nativePlatformDocs = defineDocs({
-  dir: 'content/platform-docs/native',
+  dir: 'content/ui-docs/native',
   docs: {
     async: true,
     postprocess: { includeProcessedMarkdown: true },
@@ -67,12 +67,12 @@ const runtimes = {
   web: createStaticDocsRuntime({
     ...runtimeOptions,
     docs: webPlatformDocs,
-    docsRoute: '/docs-ui/web'
+    docsRoute: '/docs/ui/web'
   }),
   native: createStaticDocsRuntime({
     ...runtimeOptions,
     docs: nativePlatformDocs,
-    docsRoute: '/docs-ui/native'
+    docsRoute: '/docs/ui/native'
   })
 }
 

@@ -12,7 +12,7 @@ export function RenderFunction() {
       <Tabs.ListContainer>
         <Tabs.List aria-label="Options">
           <Tabs.Tab
-            href="/docs-ui/web/getting-started"
+            href="/docs/ui/web/getting-started"
             id="getting-started"
             render={(domProps: any) => <Link {...domProps} />}
           >
@@ -20,7 +20,7 @@ export function RenderFunction() {
             <Tabs.Indicator />
           </Tabs.Tab>
           <Tabs.Tab
-            href="/docs-ui/web/components"
+            href="/docs/ui/web/components"
             id="components"
             render={(domProps: any) => <Link {...domProps} />}
           >
@@ -28,7 +28,7 @@ export function RenderFunction() {
             <Tabs.Indicator />
           </Tabs.Tab>
           <Tabs.Tab
-            href="/docs-ui/web/releases"
+            href="/docs/ui/web/releases"
             id="releases"
             render={(domProps: any) => <Link {...domProps} />}
           >
