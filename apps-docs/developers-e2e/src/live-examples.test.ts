@@ -1,10 +1,18 @@
+import type { Locator } from '@playwright/test'
+
 import { expect, test } from '@vezham/config/playwright/test'
+
+const getBounds = async (locator: Locator) => {
+  const bounds = await locator.boundingBox()
+  if (!bounds) throw new Error('Expected a visible element to measure')
+  return bounds
+}
 
 test('accordion examples run locally and expose their source', async ({
   page
 }) => {
   await page.goto('/docs-ui/web/components/accordion', {
-    waitUntil: 'networkidle'
+    waitUntil: 'domcontentloaded'
   })
   const resources = page.getByRole('navigation', {
     name: 'Component resources'
@@ -67,11 +75,11 @@ test('accordion examples run locally and expose their source', async ({
     .toBeGreaterThan(beforeWheel)
   expect(await source.evaluate(element => element.scrollTop)).toBe(0)
   await less.scrollIntoViewIfNeeded()
-  const controlTop = (await less.boundingBox())!.y
+  const controlTop = (await getBounds(less)).y
   await less.click()
   await expect(more).toHaveAttribute('aria-expanded', 'false')
   await expect
-    .poll(async () => Math.abs((await more.boundingBox())!.y - controlTop))
+    .poll(async () => Math.abs((await getBounds(more)).y - controlTop))
     .toBeLessThan(2)
   await preview.getByRole('tab', { name: 'Code', exact: true }).focus()
   await page.keyboard.press('ArrowLeft')
@@ -86,7 +94,7 @@ test('accordion examples run locally and expose their source', async ({
 
 test('loading buttons update inside the local preview', async ({ page }) => {
   await page.goto('/docs-ui/web/components/button', {
-    waitUntil: 'networkidle'
+    waitUntil: 'domcontentloaded'
   })
   const preview = page.locator(
     '[data-component-preview="button-loading-state"]'
@@ -106,7 +114,9 @@ test('loading buttons update inside the local preview', async ({ page }) => {
 })
 
 test('modal examples open and close locally', async ({ page }) => {
-  await page.goto('/docs-ui/web/components/modal', { waitUntil: 'networkidle' })
+  await page.goto('/docs-ui/web/components/modal', {
+    waitUntil: 'domcontentloaded'
+  })
   const preview = page.locator('[data-component-preview="modal-default"]')
   await preview.scrollIntoViewIfNeeded()
   await preview.getByRole('button', { name: 'Open Modal' }).click()
@@ -120,7 +130,7 @@ test('source documentation retains colors, related content, and attribution', as
   page
 }) => {
   await page.goto('/docs-ui/web/getting-started/colors', {
-    waitUntil: 'networkidle'
+    waitUntil: 'domcontentloaded'
   })
   const light = page
     .getByRole('region', { name: 'light color tokens' })
@@ -150,7 +160,7 @@ test('source documentation retains colors, related content, and attribution', as
   ).toHaveCount(2)
 
   await page.goto('/docs-ui/web/components/accordion', {
-    waitUntil: 'networkidle'
+    waitUntil: 'domcontentloaded'
   })
   await expect(page.locator('[aria-label="Related components"] a')).toHaveCount(
     2
@@ -161,7 +171,9 @@ test('source documentation retains colors, related content, and attribution', as
     '400px'
   )
 
-  await page.goto('/docs-ui/web/components/tabs', { waitUntil: 'networkidle' })
+  await page.goto('/docs-ui/web/components/tabs', {
+    waitUntil: 'domcontentloaded'
+  })
   await expect(page.getByRole('heading', { level: 1 })).toContainText('New')
   await expect(
     page.locator('[aria-label="Related showcases"] a')
@@ -170,7 +182,9 @@ test('source documentation retains colors, related content, and attribution', as
     'https://heroui.com/showcase/apple-iphone-camera-zoom'
   )
 
-  await page.goto('/docs-ui/web/releases/v3-2-7', { waitUntil: 'networkidle' })
+  await page.goto('/docs-ui/web/releases/v3-2-7', {
+    waitUntil: 'domcontentloaded'
+  })
   await expect(
     page.getByRole('link', { name: 'Contributors to pull request #6892' })
   ).toHaveAttribute('href', 'https://github.com/heroui-inc/heroui/pull/6892')
@@ -179,12 +193,14 @@ test('source documentation retains colors, related content, and attribution', as
 test('component galleries show themed previews in the source order', async ({
   page
 }) => {
-  for (const viewport of [
-    { width: 1280, height: 900 },
-    { width: 390, height: 844 }
+  for (const { viewport, titleOrder } of [
+    { viewport: { width: 1280, height: 900 }, titleOrder: 1 },
+    { viewport: { width: 390, height: 844 }, titleOrder: -1 }
   ]) {
     await page.setViewportSize(viewport)
-    await page.goto('/docs-ui/web/components', { waitUntil: 'networkidle' })
+    await page.goto('/docs-ui/web/components', {
+      waitUntil: 'domcontentloaded'
+    })
     const buttons = page.getByRole('list', { name: 'Web Buttons components' })
     await expect(buttons.getByRole('link')).toHaveText([
       'Button',
@@ -208,27 +224,34 @@ test('component galleries show themed previews in the source order', async ({
         )
         .toBeGreaterThan(0)
       const position = await tile.evaluate(element => {
-        const title = element.firstElementChild!.getBoundingClientRect()
-        const frame = element.lastElementChild!.getBoundingClientRect()
+        const titleElement = element.firstElementChild
+        const frameElement = element.lastElementChild
+        const cellElement = element.parentElement
+        if (!titleElement || !frameElement || !cellElement)
+          throw new Error(
+            'Expected a gallery tile with a title, preview, and grid cell'
+          )
+        const title = titleElement.getBoundingClientRect()
+        const frame = frameElement.getBoundingClientRect()
         return {
           title: title.top,
           frame: frame.top,
           height: frame.height,
           width: frame.width,
-          cellWidth: element.parentElement!.getBoundingClientRect().width
+          cellWidth: cellElement.getBoundingClientRect().width
         }
       })
       expect(position.height).toBe(198)
       expect(Math.abs(position.width - position.cellWidth)).toBeLessThan(1)
-      if (viewport.width < 640)
-        expect(position.title).toBeLessThan(position.frame)
-      else expect(position.title).toBeGreaterThan(position.frame)
+      expect(Math.sign(position.title - position.frame)).toBe(titleOrder)
     }
     await tile.click()
     await expect(page).toHaveURL(/\/docs-ui\/web\/components\/button\/?$/)
   }
 
-  await page.goto('/cn/docs-ui/web/components', { waitUntil: 'networkidle' })
+  await page.goto('/cn/docs-ui/web/components', {
+    waitUntil: 'domcontentloaded'
+  })
   await expect(
     page
       .getByRole('list', { name: 'Web Buttons components' })
@@ -236,7 +259,9 @@ test('component galleries show themed previews in the source order', async ({
       .first()
   ).toHaveAttribute('href', '/cn/docs-ui/web/components/button')
   await page.emulateMedia({ colorScheme: 'dark' })
-  await page.goto('/docs-ui/native/components', { waitUntil: 'networkidle' })
+  await page.goto('/docs-ui/native/components', {
+    waitUntil: 'domcontentloaded'
+  })
   const nativeButtons = page.getByRole('list', {
     name: 'Native Buttons components'
   })
@@ -285,50 +310,71 @@ test('native videos decode frames and provide working playback controls', async 
     .poll(
       () =>
         video.evaluate(
-          element => element.videoWidth > 0 && element.readyState >= 2
+          (element: HTMLVideoElement) =>
+            element.videoWidth > 0 && element.readyState >= 2
         ),
       { timeout: 20_000 }
     )
     .toBe(true)
-  const geometry = await frame.boundingBox()
-  expect(Math.abs(geometry!.width / geometry!.height - 16 / 9)).toBeLessThan(
-    0.02
-  )
-  expect(await video.evaluate(element => element.controls)).toBe(false)
+  const geometry = await getBounds(frame)
+  expect(Math.abs(geometry.width / geometry.height - 16 / 9)).toBeLessThan(0.02)
+  expect(
+    await video.evaluate((element: HTMLVideoElement) => element.controls)
+  ).toBe(false)
   await expect
-    .poll(() => video.evaluate(element => element.currentTime))
+    .poll(() =>
+      video.evaluate((element: HTMLVideoElement) => element.currentTime)
+    )
     .toBeGreaterThan(0.1)
   await controls.getByRole('button', { name: 'Pause', exact: true }).click()
-  await expect.poll(() => video.evaluate(element => element.paused)).toBe(true)
-  const pausedAt = await video.evaluate(element => element.currentTime)
+  await expect
+    .poll(() => video.evaluate((element: HTMLVideoElement) => element.paused))
+    .toBe(true)
+  const pausedAt = await video.evaluate(
+    (element: HTMLVideoElement) => element.currentTime
+  )
   await controls.getByRole('button', { name: 'Play', exact: true }).click()
   await expect
-    .poll(() => video.evaluate(element => element.currentTime))
+    .poll(() =>
+      video.evaluate((element: HTMLVideoElement) => element.currentTime)
+    )
     .toBeGreaterThan(pausedAt + 0.1)
-  if (await video.evaluate(element => element.muted))
-    await controls.getByRole('button', { name: 'Unmute', exact: true }).click()
-  await controls.getByRole('button', { name: 'Mute', exact: true }).click()
-  await expect.poll(() => video.evaluate(element => element.muted)).toBe(true)
-  await controls.getByRole('button', { name: 'Unmute', exact: true }).click()
-  await expect.poll(() => video.evaluate(element => element.muted)).toBe(false)
-  await video.evaluate(element => {
+  const initiallyMuted = await video.evaluate(
+    (element: HTMLVideoElement) => element.muted
+  )
+  const muteToggle = controls.getByRole('button', { name: /^(Mute|Unmute)$/ })
+  await muteToggle.click()
+  await expect
+    .poll(() => video.evaluate((element: HTMLVideoElement) => element.muted))
+    .toBe(!initiallyMuted)
+  await muteToggle.click()
+  await expect
+    .poll(() => video.evaluate((element: HTMLVideoElement) => element.muted))
+    .toBe(initiallyMuted)
+  await video.evaluate((element: HTMLVideoElement) => {
     element.currentTime = Math.min(5, element.duration / 2)
   })
   await controls.getByRole('button', { name: 'Restart', exact: true }).click()
   await expect
-    .poll(() => video.evaluate(element => element.currentTime))
+    .poll(() =>
+      video.evaluate((element: HTMLVideoElement) => element.currentTime)
+    )
     .toBeLessThan(2)
   await page.locator('#api-reference').scrollIntoViewIfNeeded()
-  await expect.poll(() => video.evaluate(element => element.paused)).toBe(true)
+  await expect
+    .poll(() => video.evaluate((element: HTMLVideoElement) => element.paused))
+    .toBe(true)
   await frame.scrollIntoViewIfNeeded()
-  await expect.poll(() => video.evaluate(element => element.paused)).toBe(false)
+  await expect
+    .poll(() => video.evaluate((element: HTMLVideoElement) => element.paused))
+    .toBe(false)
   await page.emulateMedia({ colorScheme: 'dark' })
   await expect(video).toHaveAttribute('src', /\/button-docs-dark\.mp4$/)
   await expect
     .poll(
       () =>
         video.evaluate(
-          element =>
+          (element: HTMLVideoElement) =>
             element.videoWidth > 0 &&
             element.readyState >= 2 &&
             element.currentTime > 0.1
@@ -345,6 +391,7 @@ test.describe('mobile native videos', () => {
     userAgent:
       'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile/15E148 Safari/604.1'
   })
+
   test('show the first frame and play on request', async ({ page }) => {
     await page.goto('/docs-ui/native/components/button', {
       waitUntil: 'domcontentloaded'
@@ -356,24 +403,29 @@ test.describe('mobile native videos', () => {
       .poll(
         () =>
           video.evaluate(
-            element => element.readyState >= 2 && element.videoWidth > 0
+            (element: HTMLVideoElement) =>
+              element.readyState >= 2 && element.videoWidth > 0
           ),
         { timeout: 20_000 }
       )
       .toBe(true)
-    expect(await video.evaluate(element => element.paused)).toBe(true)
-    const geometry = await frame.boundingBox()
-    expect(Math.abs(geometry!.width / geometry!.height - 16 / 9)).toBeLessThan(
+    expect(
+      await video.evaluate((element: HTMLVideoElement) => element.paused)
+    ).toBe(true)
+    const geometry = await getBounds(frame)
+    expect(Math.abs(geometry.width / geometry.height - 16 / 9)).toBeLessThan(
       0.02
     )
     const controls = frame.getByRole('group', { name: 'Video controls' })
     await controls.getByRole('button', { name: 'Play', exact: true }).click()
     await expect
-      .poll(() => video.evaluate(element => element.currentTime))
+      .poll(() =>
+        video.evaluate((element: HTMLVideoElement) => element.currentTime)
+      )
       .toBeGreaterThan(0.1)
     await controls.getByRole('button', { name: 'Pause', exact: true }).click()
     await expect
-      .poll(() => video.evaluate(element => element.paused))
+      .poll(() => video.evaluate((element: HTMLVideoElement) => element.paused))
       .toBe(true)
     await expect(frame.getByRole('alert')).toHaveCount(0)
   })

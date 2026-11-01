@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "lib": ["es2022", "dom", "dom.iterable"],
     "allowJs": true,
     "outDir": "out-tsc/playwright",
     "sourceMap": false,

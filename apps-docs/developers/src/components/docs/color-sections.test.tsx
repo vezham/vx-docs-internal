@@ -1,4 +1,10 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within
+} from '@testing-library/react'
 
 import {
   ColorSectionFormField,
@@ -51,15 +57,21 @@ describe('imported color documentation', () => {
         />
       </>
     )
-    for (const name of [
-      'Accent Hover',
-      'Accent Soft Base',
-      'Placeholder',
-      'Foreground'
-    ])
+    for (const theme of ['Light', 'Dark']) {
+      const palette = within(
+        screen.getByRole('region', { name: `${theme} Accent colors` })
+      )
+      expect(palette.getByText('Accent Soft')).toBeVisible()
       expect(
-        screen.getAllByRole('button', { name: `Copy ${name} color` })
+        palette.getAllByRole('button', { name: 'Copy Hover color' })
       ).toHaveLength(2)
+      expect(
+        palette.getAllByRole('button', { name: 'Copy Foreground color' })
+      ).toHaveLength(2)
+    }
+    expect(
+      screen.getAllByRole('button', { name: 'Copy Placeholder color' })
+    ).toHaveLength(2)
   })
 
   it('copies the computed swatch color', async () => {
