@@ -3,6 +3,7 @@ import {
   Component,
   type ReactNode,
   Suspense,
+  type SyntheticEvent,
   lazy,
   useEffect,
   useRef,
@@ -57,6 +58,15 @@ const previews: Partial<Record<string, ReturnType<typeof createDemo>>> =
   Object.fromEntries(
     Object.entries(demos).map(([name, entry]) => [name, createDemo(entry)])
   )
+
+const preventPlaceholderNavigation = (event: SyntheticEvent) => {
+  const target = event.target
+  if (
+    target instanceof Element &&
+    target.closest('a')?.getAttribute('href') === '#'
+  )
+    event.preventDefault()
+}
 
 export const ComponentPreview = ({
   children,
@@ -131,13 +141,9 @@ export const ComponentPreview = ({
           <div
             style={{ minHeight }}
             className={`relative isolate flex min-h-40 w-full overflow-x-auto rounded-xl border p-6 sm:p-8 ${isBgSolid ? 'bg-background' : ''} ${align === 'start' ? 'items-start justify-start' : align === 'end' ? 'items-end justify-end' : 'items-center justify-center'}`}
-            onClickCapture={event => {
-              const target = event.target
-              if (
-                target instanceof Element &&
-                target.closest('a')?.getAttribute('href') === '#'
-              )
-                event.preventDefault()
+            onClickCapture={preventPlaceholderNavigation}
+            onKeyDownCapture={event => {
+              if (event.key === 'Enter') preventPlaceholderNavigation(event)
             }}>
             {visible && Demo ? (
               <PreviewBoundary key={`${name}:${attempt}`} onRetry={retry}>

@@ -1,6 +1,6 @@
 import { platformPagePaths } from '@src/lib/docs/heroui-catalog'
 
-export const platformSections = [
+const platformSections = [
   {
     id: 'getting-started',
     title: 'Getting Started',

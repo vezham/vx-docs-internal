@@ -36,6 +36,92 @@ const allowsAutoplay = () =>
   !/iPhone|iPad|iPod|Android/i.test(navigator.userAgent) &&
   !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
+const getVideoSource = (
+  { src, srcLight, srcDark }: Pick<VideoProps, 'src' | 'srcLight' | 'srcDark'>,
+  theme: string | undefined
+) => {
+  // vx-bot/NOTE: Both dark ScrollShadow recordings in upstream docs return 403.
+  const darkSource = /\/(?:scroll|scoll)-shadow-docs-dark\.mp4(?:\.mp4)?$/.test(
+    srcDark ?? ''
+  )
+    ? (srcLight ?? src)
+    : srcDark
+  return theme === 'dark'
+    ? (darkSource ?? src ?? srcLight)
+    : (src ?? srcLight ?? darkSource)
+}
+
+type VideoControlsProps = {
+  playing: boolean
+  isMuted: boolean
+  togglePlayback: () => void
+  toggleMute: () => void
+  restart: () => void
+}
+
+const VideoControls = ({
+  playing,
+  isMuted,
+  togglePlayback,
+  toggleMute,
+  restart
+}: VideoControlsProps) => {
+  const controlClass =
+    'size-8 min-w-8 rounded-lg bg-black/15 text-white backdrop-blur-md'
+
+  return (
+    <>
+      <Button
+        aria-label="Toggle video playback"
+        variant="tertiary"
+        className="absolute inset-0 z-1 h-full w-full rounded-none bg-transparent hover:bg-transparent"
+        onPress={togglePlayback}
+      />
+      <div
+        role="group"
+        aria-label="Video controls"
+        className="absolute end-3 bottom-3 z-3 flex items-center gap-1">
+        <Tooltip delay={500}>
+          <Button
+            isIconOnly
+            aria-label={playing ? 'Pause' : 'Play'}
+            size="sm"
+            variant="tertiary"
+            className={controlClass}
+            onPress={togglePlayback}>
+            {playing ? <Pause size={16} /> : <Play size={16} />}
+          </Button>
+          <Tooltip.Content>{playing ? 'Pause' : 'Play'}</Tooltip.Content>
+        </Tooltip>
+        <Tooltip delay={500}>
+          <Button
+            isIconOnly
+            aria-label={isMuted ? 'Unmute' : 'Mute'}
+            size="sm"
+            variant="tertiary"
+            className={controlClass}
+            onPress={toggleMute}>
+            {isMuted ? <VolumeCross size={16} /> : <VolumeLoud size={16} />}
+          </Button>
+          <Tooltip.Content>{isMuted ? 'Unmute' : 'Mute'}</Tooltip.Content>
+        </Tooltip>
+        <Tooltip delay={500}>
+          <Button
+            isIconOnly
+            aria-label="Restart"
+            size="sm"
+            variant="tertiary"
+            className={controlClass}
+            onPress={restart}>
+            <Restart size={16} />
+          </Button>
+          <Tooltip.Content>Restart</Tooltip.Content>
+        </Tooltip>
+      </div>
+    </>
+  )
+}
+
 export const VideoPlayer = ({
   src,
   srcLight,
@@ -61,16 +147,7 @@ export const VideoPlayer = ({
   ...props
 }: VideoProps) => {
   const { resolvedTheme } = useTheme()
-  // vx-bot/NOTE: Both dark ScrollShadow recordings in upstream docs return 403.
-  const darkSource = /\/(?:scroll|scoll)-shadow-docs-dark\.mp4(?:\.mp4)?$/.test(
-    srcDark ?? ''
-  )
-    ? (srcLight ?? src)
-    : srcDark
-  const source =
-    resolvedTheme === 'dark'
-      ? (darkSource ?? src ?? srcLight)
-      : (src ?? srcLight ?? darkSource)
+  const source = getVideoSource({ src, srcLight, srcDark }, resolvedTheme)
   const video = useRef<HTMLVideoElement>(null)
   const frame = useRef<HTMLDivElement>(null)
   const [near, setNear] = useState(false)
@@ -151,9 +228,14 @@ export const VideoPlayer = ({
     if (video.current?.paused) void play()
     else video.current?.pause()
   }
+  const toggleMute = () => {
+    if (video.current) video.current.muted = !video.current.muted
+  }
+  const restart = () => {
+    if (video.current) video.current.currentTime = 0
+    void play()
+  }
   const label = props['aria-label'] ?? 'HeroUI component demonstration'
-  const controlClass =
-    'size-8 min-w-8 rounded-lg bg-black/15 text-white backdrop-blur-md'
 
   return (
     <div
@@ -219,60 +301,13 @@ export const VideoPlayer = ({
         }}
       />
       {!controls && (
-        <>
-          <Button
-            aria-label="Toggle video playback"
-            variant="tertiary"
-            className="absolute inset-0 z-1 h-full w-full rounded-none bg-transparent hover:bg-transparent"
-            onPress={togglePlayback}
-          />
-          <div
-            role="group"
-            aria-label="Video controls"
-            className="absolute end-3 bottom-3 z-3 flex items-center gap-1">
-            <Tooltip delay={500}>
-              <Button
-                isIconOnly
-                aria-label={playing ? 'Pause' : 'Play'}
-                size="sm"
-                variant="tertiary"
-                className={controlClass}
-                onPress={togglePlayback}>
-                {playing ? <Pause size={16} /> : <Play size={16} />}
-              </Button>
-              <Tooltip.Content>{playing ? 'Pause' : 'Play'}</Tooltip.Content>
-            </Tooltip>
-            <Tooltip delay={500}>
-              <Button
-                isIconOnly
-                aria-label={isMuted ? 'Unmute' : 'Mute'}
-                size="sm"
-                variant="tertiary"
-                className={controlClass}
-                onPress={() => {
-                  if (video.current) video.current.muted = !video.current.muted
-                }}>
-                {isMuted ? <VolumeCross size={16} /> : <VolumeLoud size={16} />}
-              </Button>
-              <Tooltip.Content>{isMuted ? 'Unmute' : 'Mute'}</Tooltip.Content>
-            </Tooltip>
-            <Tooltip delay={500}>
-              <Button
-                isIconOnly
-                aria-label="Restart"
-                size="sm"
-                variant="tertiary"
-                className={controlClass}
-                onPress={() => {
-                  if (video.current) video.current.currentTime = 0
-                  void play()
-                }}>
-                <Restart size={16} />
-              </Button>
-              <Tooltip.Content>Restart</Tooltip.Content>
-            </Tooltip>
-          </div>
-        </>
+        <VideoControls
+          playing={playing}
+          isMuted={isMuted}
+          togglePlayback={togglePlayback}
+          toggleMute={toggleMute}
+          restart={restart}
+        />
       )}
       {near && loading && !error && (
         <Spinner

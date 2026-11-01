@@ -39,6 +39,10 @@
     "**/src/router.tsx",
     // vx-bot/NOTE: For TanStack Docs app
     "**/content/**/*.mdx",
+    // vx-bot/NOTE: HeroUI maintenance scripts run directly outside the app import graph.
+    "apps-docs/developers/scripts/adapt-heroui-mdx.mjs",
+    "apps-docs/developers/scripts/audit-heroui-docs.mjs",
+    "apps-docs/developers/scripts/import-heroui-presentation.mjs",
     // vx-bot/NOTE: Workspace CLI, release, and test files load outside the app import graph.
     "vx/tools/audit/index.mjs",
     "vx/tools/audit/*.test.mjs",
@@ -183,6 +187,8 @@
   ],
   "duplicates": {
     "ignore": [
+      // vx-bot/NOTE: Upstream HeroUI demos intentionally repeat standalone component examples.
+      "apps-docs/developers/src/demos/heroui/**",
       // vx-bot/NOTE: CLI app Vite configs stay local so generated apps are self-contained.
       "apps*/*/vite.config.ts",
       // vx-bot/NOTE: CLI template pages are copied into each app with its own routes.
