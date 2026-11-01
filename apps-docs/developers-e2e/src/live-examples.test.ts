@@ -1,4 +1,4 @@
-import type { Locator } from '@playwright/test'
+import type { Locator, Page } from '@playwright/test'
 
 import { expect, test } from '@vezham/config/playwright/test'
 
@@ -6,6 +6,21 @@ const getBounds = async (locator: Locator) => {
   const bounds = await locator.boundingBox()
   if (!bounds) throw new Error('Expected a visible element to measure')
   return bounds
+}
+
+const loadExample = async (page: Page, name: string) => {
+  const preview = page.locator(`[data-component-preview="${name}"]`)
+  // vx-bot/NOTE: Hydration may restore scroll after the first move; keep the lazy demo visible until it loads.
+  await expect
+    .poll(
+      async () => {
+        await preview.scrollIntoViewIfNeeded()
+        return preview.getByText('Loading example…', { exact: true }).count()
+      },
+      { timeout: 20_000 }
+    )
+    .toBe(0)
+  return preview
 }
 
 test('accordion examples run locally and expose their source', async ({
@@ -31,8 +46,7 @@ test('accordion examples run locally and expose their source', async ({
     'href',
     'https://storybook-v3.heroui.com/?path=/docs/components-navigation-accordion--docs'
   )
-  const preview = page.locator('[data-component-preview="accordion-disabled"]')
-  await preview.scrollIntoViewIfNeeded()
+  const preview = await loadExample(page, 'accordion-disabled')
   await expect(
     preview.getByRole('button', { name: 'Disabled Item 1' })
   ).toBeDisabled()
@@ -96,10 +110,7 @@ test('loading buttons update inside the local preview', async ({ page }) => {
   await page.goto('/docs-ui/web/components/button', {
     waitUntil: 'domcontentloaded'
   })
-  const preview = page.locator(
-    '[data-component-preview="button-loading-state"]'
-  )
-  await preview.scrollIntoViewIfNeeded()
+  const preview = await loadExample(page, 'button-loading-state')
   await preview.getByRole('button', { name: 'Upload File' }).click()
   await expect(
     preview.getByRole('button', { name: 'Uploading...' })
@@ -117,8 +128,7 @@ test('modal examples open and close locally', async ({ page }) => {
   await page.goto('/docs-ui/web/components/modal', {
     waitUntil: 'domcontentloaded'
   })
-  const preview = page.locator('[data-component-preview="modal-default"]')
-  await preview.scrollIntoViewIfNeeded()
+  const preview = await loadExample(page, 'modal-default')
   await preview.getByRole('button', { name: 'Open Modal' }).click()
   const dialog = page.getByRole('dialog', { name: 'Welcome to HeroUI' })
   await expect(dialog).toBeVisible()
