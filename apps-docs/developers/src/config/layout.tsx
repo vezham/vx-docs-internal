@@ -22,6 +22,21 @@ export const baseOptions = (
         text: 'UI',
         url: localizedUrl(i18n, locale, '/docs/ui/web/getting-started'),
         active: 'nested-url'
+      },
+      {
+        text: 'Pro',
+        url: localizedUrl(i18n, locale, '/docs/pro'),
+        active: 'nested-url'
+      },
+      {
+        text: 'Handbook',
+        url: localizedUrl(i18n, locale, '/handbook/get-started'),
+        active: 'nested-url'
+      },
+      {
+        text: 'Icons',
+        url: localizedUrl(i18n, locale, '/icons'),
+        active: 'nested-url'
       }
     ]
   }

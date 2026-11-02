@@ -4,6 +4,7 @@ import type { StructuredData } from '@vezham/docs-core/mdx-plugins/remark-struct
 import { createI18nSearchAPI } from '@vezham/docs-core/search/server'
 
 import { i18n, source } from '@app/docs'
+import { markdownDocsRuntime } from '@components/docs/markdown-docs'
 import { getPlatformDocsRuntime } from '@components/docs/platform-docs'
 
 const compactSearchData = (data: StructuredData): StructuredData => {
@@ -24,6 +25,7 @@ const compactSearchData = (data: StructuredData): StructuredData => {
 
 const sources = [
   source,
+  markdownDocsRuntime.source,
   getPlatformDocsRuntime('web').source,
   getPlatformDocsRuntime('native').source
 ]
