@@ -20,7 +20,7 @@ export const platformDocsPageSchema = docsPageSchema.extend({
 })
 
 const webPlatformDocs = defineDocs({
-  dir: 'content/ui-docs/web',
+  dir: 'content/docs-ui/web',
   docs: {
     async: true,
     postprocess: { includeProcessedMarkdown: true },
@@ -32,7 +32,7 @@ const webPlatformDocs = defineDocs({
 })
 
 const nativePlatformDocs = defineDocs({
-  dir: 'content/ui-docs/native',
+  dir: 'content/docs-ui/native',
   docs: {
     async: true,
     postprocess: { includeProcessedMarkdown: true },
@@ -43,16 +43,8 @@ const nativePlatformDocs = defineDocs({
   }
 })
 
-const openapiFiles = import.meta.glob<string>('/openapi/**/*.{json,yaml,yml}', {
-  eager: true,
-  import: 'default',
-  query: '?raw'
-})
-
 const runtimeOptions = {
   i18n: { ...vxI18n, fallbackLanguage: vxI18n.defaultLanguage },
-  openapiDir: vxDocs.openapiDir,
-  openapiFiles,
   head: {
     appName: vxCore.shortName,
     docsImageRoute: vxDocs.docsImageRoute,

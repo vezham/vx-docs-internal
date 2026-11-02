@@ -19,12 +19,6 @@ export const docs = defineDocs({
   }
 })
 
-const openapiFiles = import.meta.glob<string>('/openapi/**/*.{json,yaml,yml}', {
-  eager: true,
-  import: 'default',
-  query: '?raw'
-})
-
 export const {
   i18n,
   source,
@@ -36,8 +30,6 @@ export const {
   i18n: vxI18n,
   docs,
   docsRoute: vxDocs.docsRoute,
-  openapiDir: vxDocs.openapiDir,
-  openapiFiles,
   head: {
     appName: vxCore.shortName,
     docsImageRoute: vxDocs.docsImageRoute,

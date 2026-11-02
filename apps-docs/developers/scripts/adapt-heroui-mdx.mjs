@@ -9,7 +9,7 @@ const mdxRequire = createRequire(require.resolve('@vezham/docs-mdx'))
 const { createProcessor } = await import(
   pathToFileURL(mdxRequire.resolve('@mdx-js/mdx')).href
 )
-const root = path.resolve(import.meta.dirname, '../content/ui-docs')
+const root = path.resolve(import.meta.dirname, '../content/docs-ui')
 const processor = createProcessor()
 const allNames = new Set()
 const visit = (node, callback) => {

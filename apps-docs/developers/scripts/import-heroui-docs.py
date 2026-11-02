@@ -8,7 +8,7 @@ from pathlib import Path
 
 upstream = Path(sys.argv[1]).resolve()
 app = Path(__file__).resolve().parents[1]
-output = app / 'content/ui-docs'
+output = app / 'content/docs-ui'
 registries = {}
 for locale in ('en',):
     registry = (upstream / f'src/demos/{locale}/index.ts').read_text()

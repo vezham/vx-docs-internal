@@ -8,7 +8,7 @@ import yaml from 'yaml'
 
 const upstream = path.resolve(process.argv[2])
 const app = path.resolve(import.meta.dirname, '..')
-const local = path.join(app, 'content/ui-docs')
+const local = path.join(app, 'content/docs-ui')
 const require = createRequire(import.meta.url)
 const mdxRequire = createRequire(require.resolve('@vezham/docs-mdx'))
 const { createProcessor } = await import(
