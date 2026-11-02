@@ -4,6 +4,8 @@ import { useNotebookLayout } from '@vezham/docs-react/layouts/notebook'
 import { Sidebar } from '@vezham/icons-react'
 
 import { i18n } from '@app/docs'
+import { uiLibraryRoutes } from '@components/docs/library-routes'
+import type { UiLibrary } from '@components/docs/library-selector'
 import { sectionTabVariants } from '@components/docs/navigation.variants'
 import {
   type PlatformSection,
@@ -12,12 +14,18 @@ import {
 import type { Locale } from '@generated/vx'
 
 type Props = {
+  library?: UiLibrary
   locale: Locale
   platform: 'web' | 'native'
   selectedSection: PlatformSection
 }
 
-export const SectionTabs = ({ locale, platform, selectedSection }: Props) => {
+export const SectionTabs = ({
+  library = 'react-v3',
+  locale,
+  platform,
+  selectedSection
+}: Props) => {
   const { props: layoutProps, slots } = useNotebookLayout()
   const SidebarCollapseTrigger = slots.sidebar.collapseTrigger
 
@@ -31,10 +39,10 @@ export const SectionTabs = ({ locale, platform, selectedSection }: Props) => {
       <nav
         aria-label="Documentation sections"
         className="ms-3 flex h-full items-end gap-6">
-        {getPlatformSections(platform).map(item => (
+        {getPlatformSections(platform, library).map(item => (
           <Link
             key={item.id}
-            to="/{-$lang}/docs/ui/react-v3/$platform/$"
+            to={uiLibraryRoutes[library]}
             params={{
               lang: locale === i18n.defaultLanguage ? undefined : locale,
               platform,

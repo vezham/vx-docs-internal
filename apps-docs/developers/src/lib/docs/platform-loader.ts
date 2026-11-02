@@ -3,39 +3,56 @@ import { notFound } from '@tanstack/react-router'
 import { localizedUrl } from '@vezham/start/runtime/docs'
 
 import { i18n } from '@app/docs'
-import { getPlatformDocsRuntime } from '@components/docs/platform-docs'
+import type { UiLibrary } from '@components/docs/library-selector'
+import {
+  getAvailablePlatforms,
+  getPlatformDocsRuntime
+} from '@components/docs/platform-docs'
 import { getPlatformSections } from '@components/docs/platform-sections'
 import { filterPlatformPageTree } from '@src/lib/docs/platform-page-tree'
 
 type Params = {
   _splat?: string
   lang?: string
-  platform: string
+  platform?: string
 }
 
 export const createPlatformDocsLoader =
-  () =>
+  (library: UiLibrary = 'react-v3') =>
   async ({ params }: { params: Params }) => {
-    if (params.platform !== 'web' && params.platform !== 'native')
+    if (
+      params.platform !== undefined &&
+      params.platform !== 'web' &&
+      params.platform !== 'native'
+    )
+      throw notFound()
+
+    const platforms = getAvailablePlatforms(library)
+    if (
+      params.platform
+        ? !platforms.includes(params.platform)
+        : platforms.length > 0
+    )
       throw notFound()
 
     const sectionId = params._splat?.split('/')[0]
-    const section = getPlatformSections(params.platform).find(
+    const section = getPlatformSections(params.platform ?? 'web', library).find(
       item => item.id === sectionId
     )
     if (!section) throw notFound()
 
-    const runtime = getPlatformDocsRuntime(params.platform)
+    const runtime = getPlatformDocsRuntime(params.platform, library)
     const data = await runtime.createDocsLoader()({ params })
     const { page } = runtime.getDocsPage({
       slugs: params._splat?.split('/').filter(Boolean) ?? [],
       lang: data.locale
     })
-    const routeBase = `/docs/ui/react-v3/${params.platform}`
+    const routeBase = `/docs/ui/${library}${params.platform ? `/${params.platform}` : ''}`
     const tree = runtime.source.getPageTree(data.locale)
 
     return {
       ...data,
+      platforms,
       image: page.data.image,
       pageTree: await runtime.source.serializePageTree({
         ...tree,

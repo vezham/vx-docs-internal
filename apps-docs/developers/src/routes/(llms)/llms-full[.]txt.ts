@@ -16,6 +16,10 @@ export const Route = createFileRoute('/(llms)/llms-full.txt')({
           ...(['web', 'native'] as const).flatMap(platform => {
             const runtime = getPlatformDocsRuntime(platform)
             return runtime.source.getPages().map(runtime.getLLMText)
+          }),
+          ...(['react-pro-v3', 'react'] as const).flatMap(library => {
+            const runtime = getPlatformDocsRuntime(undefined, library)
+            return runtime.source.getPages().map(runtime.getLLMText)
           })
         ])
 

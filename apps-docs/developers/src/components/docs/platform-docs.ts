@@ -7,6 +7,7 @@ import {
   docsPageSchema
 } from '@vezham/start/runtime/docs'
 
+import type { UiLibrary } from '@components/docs/library-selector'
 import { vxCore, vxDocs, vxI18n, vxMetadata } from '@generated/vx'
 
 import { componentLinksSchema } from '../../lib/docs/component-resources'
@@ -43,6 +44,26 @@ const nativePlatformDocs = defineDocs({
   }
 })
 
+const proPlatformDocs = defineDocs({
+  dir: 'content/docs-ui-pro-v3',
+  docs: {
+    async: true,
+    postprocess: { includeProcessedMarkdown: true },
+    schema: platformDocsPageSchema
+  },
+  meta: { schema: docsMetaSchema }
+})
+
+const reactPlatformDocs = defineDocs({
+  dir: 'content/docs-ui-react',
+  docs: {
+    async: true,
+    postprocess: { includeProcessedMarkdown: true },
+    schema: platformDocsPageSchema
+  },
+  meta: { schema: docsMetaSchema }
+})
+
 const runtimeOptions = {
   i18n: { ...vxI18n, fallbackLanguage: vxI18n.defaultLanguage },
   head: {
@@ -68,8 +89,48 @@ const runtimes = {
   })
 }
 
-export const getPlatformDocsRuntime = (platform: 'web' | 'native') =>
-  runtimes[platform]
+const libraryRuntimes: Record<
+  UiLibrary,
+  Partial<typeof runtimes> & { default?: typeof runtimes.web }
+> = {
+  'react-v3': runtimes,
+  'react-pro-v3': {
+    default: createStaticDocsRuntime({
+      ...runtimeOptions,
+      docs: proPlatformDocs,
+      docsRoute: '/docs/ui/react-pro-v3'
+    })
+  },
+  react: {
+    default: createStaticDocsRuntime({
+      ...runtimeOptions,
+      docs: reactPlatformDocs,
+      docsRoute: '/docs/ui/react'
+    })
+  }
+}
 
-export const getPlatformDocs = (platform: 'web' | 'native') =>
-  platform === 'web' ? webPlatformDocs : nativePlatformDocs
+export const getAvailablePlatforms = (library: UiLibrary) =>
+  (['web', 'native'] as const).filter(
+    platform =>
+      (libraryRuntimes[library][platform]?.source.getPages().length ?? 0) > 0
+  )
+
+export const getPlatformDocsRuntime = (
+  platform: 'web' | 'native' | undefined,
+  library: UiLibrary = 'react-v3'
+) => {
+  const runtime = libraryRuntimes[library][platform ?? 'default']
+  if (!runtime)
+    throw new Error(`No ${platform ?? 'default'} documentation for ${library}`)
+  return runtime
+}
+
+export const getPlatformDocs = (
+  platform: 'web' | 'native' | undefined,
+  library: UiLibrary = 'react-v3'
+) => {
+  if (library === 'react-pro-v3') return proPlatformDocs
+  if (library === 'react') return reactPlatformDocs
+  return platform === 'web' ? webPlatformDocs : nativePlatformDocs
+}

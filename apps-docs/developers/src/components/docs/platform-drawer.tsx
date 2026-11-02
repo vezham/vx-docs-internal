@@ -6,6 +6,7 @@ import { ListBox, Select } from '@vezham/react-v3'
 
 import { i18n } from '@app/docs'
 import { ControlCenter } from '@components/docs/control-center'
+import type { UiLibrary } from '@components/docs/library-selector'
 import {
   type PlatformSection,
   getPlatformSections
@@ -16,21 +17,25 @@ import type { Locale } from '@generated/vx'
 type Platform = 'web' | 'native'
 
 type PlatformNavigationProps = {
+  library?: UiLibrary
   getPlatformParams: (platform: Platform) => {
     _splat: string
     lang: string | undefined
     platform: Platform
   }
   platform: Platform
+  platforms: readonly Platform[]
 }
 
 type SectionSelectProps = {
+  library?: UiLibrary
   onSectionChange: (section: PlatformSection) => void
   selectedSection: PlatformSection
   platform: Platform
 }
 
 const PlatformSectionSelect = ({
+  library = 'react-v3',
   onSectionChange,
   selectedSection,
   platform
@@ -46,7 +51,7 @@ const PlatformSectionSelect = ({
     </Select.Trigger>
     <Select.Popover>
       <ListBox>
-        {getPlatformSections(platform).map(section => (
+        {getPlatformSections(platform, library).map(section => (
           <ListBox.Item
             key={section.id}
             id={section.id}
@@ -66,12 +71,14 @@ type HeaderProps = ComponentProps<'div'> &
   } & SectionSelectProps
 
 export const PlatformDrawerHeader = ({
+  library = 'react-v3',
   children,
   className,
   getPlatformParams,
   locale,
   onSectionChange,
   platform,
+  platforms,
   selectedSection,
   ...props
 }: HeaderProps) => {
@@ -92,6 +99,7 @@ export const PlatformDrawerHeader = ({
           </Link>
         </div>
         <PlatformSectionSelect
+          library={library}
           platform={platform}
           selectedSection={selectedSection}
           onSectionChange={onSectionChange}
@@ -100,10 +108,13 @@ export const PlatformDrawerHeader = ({
       <div
         className={`hidden flex-col gap-3 border-b p-4 md:flex lg:hidden ${className ?? ''}`}>
         <PlatformTabs
+          library={library}
           getPlatformParams={getPlatformParams}
           platform={platform}
+          platforms={platforms}
         />
         <PlatformSectionSelect
+          library={library}
           platform={platform}
           selectedSection={selectedSection}
           onSectionChange={onSectionChange}
@@ -115,11 +126,13 @@ export const PlatformDrawerHeader = ({
 }
 
 export const PlatformDrawerFooter = ({
+  library = 'react-v3',
   className,
   getPlatformParams,
   locale,
   page,
   platform,
+  platforms,
   ...props
 }: ComponentProps<'div'> &
   PlatformNavigationProps & { locale: Locale; page: string }) => {
@@ -127,8 +140,18 @@ export const PlatformDrawerFooter = ({
     <div
       {...props}
       className={`!hidden !w-full items-center !justify-between gap-2 !border-0 px-4 pt-2 pb-4 max-md:!flex ${className ?? ''}`}>
-      <PlatformTabs getPlatformParams={getPlatformParams} platform={platform} />
-      <ControlCenter locale={locale} page={page} platform={platform} />
+      <PlatformTabs
+        library={library}
+        getPlatformParams={getPlatformParams}
+        platform={platform}
+        platforms={platforms}
+      />
+      <ControlCenter
+        library={library}
+        locale={locale}
+        page={page}
+        platform={platform}
+      />
     </div>
   )
 }

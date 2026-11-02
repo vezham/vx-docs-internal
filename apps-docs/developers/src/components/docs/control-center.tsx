@@ -5,16 +5,28 @@ import { ConfiguredControlCenter as SharedControlCenter } from '@vezham/react/co
 import { getLanguageDisplayName } from '@vezham/start/tanstack-docs'
 
 import { i18n } from '@app/docs'
+import { uiLibraryRoutes } from '@components/docs/library-routes'
+import type { UiLibrary } from '@components/docs/library-selector'
 import { controlCenter } from '@generated/navigation'
 import type { Locale } from '@generated/vx'
 
-type Props = { locale: Locale; page: string; platform: 'web' | 'native' }
+type Props = {
+  library?: UiLibrary
+  locale: Locale
+  page: string
+  platform: 'web' | 'native'
+}
 
-export const ControlCenter = ({ locale, page, platform }: Props) => {
+export const ControlCenter = ({
+  library = 'react-v3',
+  locale,
+  page,
+  platform
+}: Props) => {
   const router = useRouter()
   const { resolvedTheme, setTheme } = useTheme()
   const languageLocation = (language: Locale) => ({
-    to: '/{-$lang}/docs/ui/react-v3/$platform/$' as const,
+    to: uiLibraryRoutes[library],
     params: {
       lang: language === i18n.defaultLanguage ? undefined : language,
       platform,

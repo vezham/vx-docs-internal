@@ -1,24 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router'
-
-import {
-  NotebookTodoPage,
-  getDocsTodoTree
-} from '@components/docs/handbook-docs-shell'
-
-const RouteComponent = () => {
-  const data = Route.useLoaderData()
-  return (
-    <NotebookTodoPage
-      locale={data.locale}
-      page="pro"
-      title="Pro"
-      tree={data.tree}
-    />
-  )
-}
+import { createFileRoute, redirect } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/{-$lang}/docs/pro')({
-  component: RouteComponent,
-  loader: ({ params }) => getDocsTodoTree(params.lang, 'Pro'),
-  head: () => ({ meta: [{ title: 'Pro | Developer' }] })
+  beforeLoad: ({ params }) => {
+    throw redirect({
+      to: '/{-$lang}/docs/ui/react-pro-v3/$',
+      params: { lang: params.lang, _splat: 'getting-started' }
+    })
+  }
 })

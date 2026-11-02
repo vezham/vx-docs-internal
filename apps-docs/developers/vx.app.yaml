@@ -25,8 +25,10 @@ routes:
   - path: /cn/docs/ui/react-v3/native/getting-started
   - path: /icons
   - path: /cn/icons
-  - path: /docs/pro
-  - path: /cn/docs/pro
+  - path: /docs/ui/react-pro-v3/getting-started
+  - path: /cn/docs/ui/react-pro-v3/getting-started
+  - path: /docs/ui/react/getting-started
+  - path: /cn/docs/ui/react/getting-started
   - path: /handbook/**
     source: routes
   - path: /cn/handbook/**

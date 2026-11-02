@@ -1,3 +1,4 @@
+import type { UiLibrary } from '@components/docs/library-selector'
 import { platformPagePaths } from '@src/lib/docs/heroui-catalog'
 
 const platformSections = [
@@ -29,8 +30,17 @@ const platformSections = [
 
 export type PlatformSection = (typeof platformSections)[number]['id']
 
-export const getPlatformSections = (platform: 'web' | 'native') =>
-  platformSections.filter(
+const librarySections = {
+  'react-v3': platformSections,
+  'react-pro-v3': [platformSections[0]],
+  react: [platformSections[0]]
+} as const
+
+export const getPlatformSections = (
+  platform: 'web' | 'native',
+  library: UiLibrary = 'react-v3'
+) =>
+  librarySections[library].filter(
     section => platform === 'web' || section.id !== 'migration'
   )
 

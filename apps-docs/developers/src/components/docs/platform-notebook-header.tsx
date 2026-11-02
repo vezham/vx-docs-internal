@@ -6,7 +6,10 @@ import { Sidebar, VezhamLogo } from '@vezham/icons-react'
 
 import { i18n } from '@app/docs'
 import { ControlCenter } from '@components/docs/control-center'
-import { LibrarySelector } from '@components/docs/library-selector'
+import {
+  LibrarySelector,
+  type UiLibrary
+} from '@components/docs/library-selector'
 import type { PlatformSection } from '@components/docs/platform-sections'
 import { SectionTabs } from '@components/docs/section-tabs'
 import { UserControls } from '@components/docs/user-controls'
@@ -14,6 +17,7 @@ import { VersionSelector } from '@components/docs/version-selector'
 import type { Locale } from '@generated/vx'
 
 type Props = ComponentPropsWithoutRef<'header'> & {
+  library?: UiLibrary
   locale: Locale
   page: string
   platform: 'web' | 'native'
@@ -21,6 +25,7 @@ type Props = ComponentPropsWithoutRef<'header'> & {
 }
 
 export const PlatformNotebookHeader = ({
+  library = 'react-v3',
   locale,
   page,
   platform,
@@ -50,7 +55,7 @@ export const PlatformNotebookHeader = ({
             <VezhamLogo size={20} />
             Developer
           </Link>
-          <LibrarySelector />
+          <LibrarySelector library={library} locale={locale} />
           <VersionSelector platform={platform} />
         </div>
         {FullSearchTrigger && (
@@ -83,12 +88,18 @@ export const PlatformNotebookHeader = ({
             </SidebarTrigger>
           </div>
           <div className="flex items-center gap-2 max-md:hidden">
-            <ControlCenter locale={locale} page={page} platform={platform} />
+            <ControlCenter
+              library={library}
+              locale={locale}
+              page={page}
+              platform={platform}
+            />
             <UserControls />
           </div>
         </div>
       </div>
       <SectionTabs
+        library={library}
         locale={locale}
         platform={platform}
         selectedSection={selectedSection}

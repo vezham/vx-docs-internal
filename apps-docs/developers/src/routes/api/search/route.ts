@@ -27,7 +27,9 @@ const sources = [
   source,
   markdownDocsRuntime.source,
   getPlatformDocsRuntime('web').source,
-  getPlatformDocsRuntime('native').source
+  getPlatformDocsRuntime('native').source,
+  getPlatformDocsRuntime(undefined, 'react-pro-v3').source,
+  getPlatformDocsRuntime(undefined, 'react').source
 ]
 const createServer = () =>
   createI18nSearchAPI('advanced', {

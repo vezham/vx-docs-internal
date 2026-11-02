@@ -12,6 +12,10 @@ import { localizedUrl, normalizeLocale } from '@vezham/start/runtime/docs'
 
 import { i18n } from '@app/docs'
 import { ControlCenter } from '@components/docs/control-center'
+import {
+  LibrarySelector,
+  type UiLibrary
+} from '@components/docs/library-selector'
 import { markdownDocsRuntime } from '@components/docs/markdown-docs'
 import { sectionTabVariants } from '@components/docs/navigation.variants'
 import { UserControls } from '@components/docs/user-controls'
@@ -28,6 +32,7 @@ export type HandbookSection = (typeof handbookSections)[number]['id']
 
 type HandbookNavigationProps = {
   locale: Locale
+  library?: UiLibrary
   selectedSection?: HandbookSection
 }
 
@@ -69,6 +74,7 @@ const HandbookSectionTabs = ({
 
 const HandbookNotebookHeader = ({
   locale,
+  library,
   page,
   selectedSection,
   ...props
@@ -97,6 +103,7 @@ const HandbookNotebookHeader = ({
             <VezhamLogo size={20} />
             Developer
           </Link>
+          {library && <LibrarySelector library={library} locale={locale} />}
           <VersionSelector platform="web" />
         </div>
         {FullSearchTrigger && (
@@ -146,6 +153,7 @@ const HandbookNotebookHeader = ({
 
 export const getHandbookLayoutOptions = ({
   locale,
+  library,
   page,
   selectedSection
 }: HandbookNavigationProps & { page: string }): Omit<
@@ -163,6 +171,7 @@ export const getHandbookLayoutOptions = ({
       <HandbookNotebookHeader
         {...props}
         locale={locale}
+        library={library}
         page={page}
         selectedSection={selectedSection}
       />
@@ -182,6 +191,7 @@ export const getHandbookLayoutOptions = ({
 
 type HandbookTodoPageProps = {
   locale: Locale
+  library?: UiLibrary
   page: string
   selectedSection: HandbookSection
   title: string
@@ -190,33 +200,14 @@ type HandbookTodoPageProps = {
 
 export const HandbookTodoPage = ({
   locale,
+  library,
   page,
   selectedSection,
   title,
   tree
 }: HandbookTodoPageProps) => (
   <DocsLayout
-    {...getHandbookLayoutOptions({ locale, page, selectedSection })}
-    shell="notebook"
-    tree={tree}>
-    <DocsPage
-      description={'TODO: Add documentation content for ' + title + '.'}
-      shell="notebook"
-      title={title}
-      toc={[]}>
-      <p>TODO: Add documentation content for {title}.</p>
-    </DocsPage>
-  </DocsLayout>
-)
-
-export const NotebookTodoPage = ({
-  locale,
-  title,
-  tree,
-  page
-}: Omit<HandbookTodoPageProps, 'selectedSection'> & { page: string }) => (
-  <DocsLayout
-    {...getHandbookLayoutOptions({ locale, page, selectedSection: undefined })}
+    {...getHandbookLayoutOptions({ locale, library, page, selectedSection })}
     shell="notebook"
     tree={tree}>
     <DocsPage

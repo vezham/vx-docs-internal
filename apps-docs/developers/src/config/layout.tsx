@@ -29,7 +29,11 @@ export const baseOptions = (
       },
       {
         text: 'Pro',
-        url: localizedUrl(i18n, locale, '/docs/pro'),
+        url: localizedUrl(
+          i18n,
+          locale,
+          '/docs/ui/react-pro-v3/getting-started'
+        ),
         active: 'nested-url'
       },
       {
