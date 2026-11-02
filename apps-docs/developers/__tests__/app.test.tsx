@@ -39,13 +39,13 @@ describe('App', () => {
     )
     try {
       const { findAllByRole, router } = await renderApp(
-        '/docs/ui/web/migration'
+        '/docs/ui/react-v3/web/migration'
       )
       const tabs = await findAllByRole('tab', { name: 'Native' })
       fireEvent.click(tabs[0])
       await waitFor(() =>
         expect(router.state.location.pathname).toBe(
-          '/docs/ui/native/getting-started'
+          '/docs/ui/react-v3/native/getting-started'
         )
       )
     } finally {
