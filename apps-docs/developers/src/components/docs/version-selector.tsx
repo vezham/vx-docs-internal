@@ -42,7 +42,7 @@ export const VersionSelector = ({
               rel="noopener noreferrer"
               target="_blank">
               <span>v2</span>
-              <span className={styles.version()}>2.8.x</span>
+              <span className={styles.version()}>2.x.x</span>
             </a>
           </div>
         </Popover.Dialog>

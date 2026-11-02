@@ -8,8 +8,6 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
-
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as Char123LangChar125RouteRouteImport } from './routes/{-$lang}/route'
 import { Route as llmsLlmsFullDottxtRouteImport } from './routes/(llms)/llms-full[.]txt'
@@ -18,21 +16,10 @@ import { Route as ApiHeartbeatRouteRouteImport } from './routes/api/heartbeat/ro
 import { Route as ApiPulseRouteRouteImport } from './routes/api/pulse/route'
 import { Route as ApiSearchRouteRouteImport } from './routes/api/search/route'
 import { Route as Char123LangChar125IndexRouteImport } from './routes/{-$lang}/index'
-import { Route as Char123LangChar125DocsIndexRouteImport } from './routes/{-$lang}/docs/index'
-import { Route as Char123LangChar125DocsSplatRouteImport } from './routes/{-$lang}/docs/$'
-import { Route as Char123LangChar125DocsChar123Char125DotmdRouteImport } from './routes/{-$lang}/docs/{$}[.]md'
-import { Route as Char123LangChar125LayoutsIndexRouteImport } from './routes/{-$lang}/layouts/index'
 import { Route as Char123LangChar125DocsUiIndexRouteImport } from './routes/{-$lang}/docs/ui/index'
-import { Route as Char123LangChar125LayoutsDocsIndexRouteImport } from './routes/{-$lang}/layouts/docs/index'
-import { Route as Char123LangChar125LayoutsFluxIndexRouteImport } from './routes/{-$lang}/layouts/flux/index'
-import { Route as Char123LangChar125LayoutsGlassIndexRouteImport } from './routes/{-$lang}/layouts/glass/index'
-import { Route as Char123LangChar125LayoutsHomeIndexRouteImport } from './routes/{-$lang}/layouts/home/index'
-import { Route as Char123LangChar125LayoutsNotebookIndexRouteImport } from './routes/{-$lang}/layouts/notebook/index'
 import { Route as Char123LangChar125DocsUiPlatformIndexRouteImport } from './routes/{-$lang}/docs/ui/$platform/index'
 import { Route as Char123LangChar125DocsUiPlatformSplatRouteImport } from './routes/{-$lang}/docs/ui/$platform/$'
 import { Route as Char123LangChar125DocsUiPlatformChar123Char125DotmdRouteImport } from './routes/{-$lang}/docs/ui/$platform/{$}[.]md'
-
-const Char123LangChar125ProLazyRouteImport = createFileRoute('/{-$lang}/pro')()
 
 const Char123LangChar125RouteRoute = Char123LangChar125RouteRouteImport.update({
   id: '/{-$lang}',
@@ -69,72 +56,10 @@ const Char123LangChar125IndexRoute = Char123LangChar125IndexRouteImport.update({
   path: '/',
   getParentRoute: () => Char123LangChar125RouteRoute,
 } as any)
-const Char123LangChar125ProLazyRoute =
-  Char123LangChar125ProLazyRouteImport.update({
-    id: '/pro',
-    path: '/pro',
-    getParentRoute: () => Char123LangChar125RouteRoute,
-  } as any).lazy(() =>
-    import('./routes/{-$lang}/pro.lazy').then((d) => d.Route),
-  )
-const Char123LangChar125DocsIndexRoute =
-  Char123LangChar125DocsIndexRouteImport.update({
-    id: '/docs/',
-    path: '/docs/',
-    getParentRoute: () => Char123LangChar125RouteRoute,
-  } as any)
-const Char123LangChar125DocsSplatRoute =
-  Char123LangChar125DocsSplatRouteImport.update({
-    id: '/docs/$',
-    path: '/docs/$',
-    getParentRoute: () => Char123LangChar125RouteRoute,
-  } as any)
-const Char123LangChar125DocsChar123Char125DotmdRoute =
-  Char123LangChar125DocsChar123Char125DotmdRouteImport.update({
-    id: '/docs/{$}.md',
-    path: '/docs/{$}.md',
-    getParentRoute: () => Char123LangChar125RouteRoute,
-  } as any)
-const Char123LangChar125LayoutsIndexRoute =
-  Char123LangChar125LayoutsIndexRouteImport.update({
-    id: '/layouts/',
-    path: '/layouts/',
-    getParentRoute: () => Char123LangChar125RouteRoute,
-  } as any)
 const Char123LangChar125DocsUiIndexRoute =
   Char123LangChar125DocsUiIndexRouteImport.update({
     id: '/docs/ui/',
     path: '/docs/ui/',
-    getParentRoute: () => Char123LangChar125RouteRoute,
-  } as any)
-const Char123LangChar125LayoutsDocsIndexRoute =
-  Char123LangChar125LayoutsDocsIndexRouteImport.update({
-    id: '/layouts/docs/',
-    path: '/layouts/docs/',
-    getParentRoute: () => Char123LangChar125RouteRoute,
-  } as any)
-const Char123LangChar125LayoutsFluxIndexRoute =
-  Char123LangChar125LayoutsFluxIndexRouteImport.update({
-    id: '/layouts/flux/',
-    path: '/layouts/flux/',
-    getParentRoute: () => Char123LangChar125RouteRoute,
-  } as any)
-const Char123LangChar125LayoutsGlassIndexRoute =
-  Char123LangChar125LayoutsGlassIndexRouteImport.update({
-    id: '/layouts/glass/',
-    path: '/layouts/glass/',
-    getParentRoute: () => Char123LangChar125RouteRoute,
-  } as any)
-const Char123LangChar125LayoutsHomeIndexRoute =
-  Char123LangChar125LayoutsHomeIndexRouteImport.update({
-    id: '/layouts/home/',
-    path: '/layouts/home/',
-    getParentRoute: () => Char123LangChar125RouteRoute,
-  } as any)
-const Char123LangChar125LayoutsNotebookIndexRoute =
-  Char123LangChar125LayoutsNotebookIndexRouteImport.update({
-    id: '/layouts/notebook/',
-    path: '/layouts/notebook/',
     getParentRoute: () => Char123LangChar125RouteRoute,
   } as any)
 const Char123LangChar125DocsUiPlatformIndexRoute =
@@ -163,18 +88,8 @@ export interface FileRoutesByFullPath {
   '/api/search': typeof ApiSearchRouteRoute
   '/llms-full.txt': typeof llmsLlmsFullDottxtRoute
   '/llms.txt': typeof llmsLlmsDottxtRoute
-  '/{-$lang}/pro': typeof Char123LangChar125ProLazyRoute
   '/{-$lang}/': typeof Char123LangChar125IndexRoute
-  '/{-$lang}/docs/$': typeof Char123LangChar125DocsSplatRoute
-  '/{-$lang}/docs/{$}.md': typeof Char123LangChar125DocsChar123Char125DotmdRoute
-  '/{-$lang}/docs/': typeof Char123LangChar125DocsIndexRoute
-  '/{-$lang}/layouts/': typeof Char123LangChar125LayoutsIndexRoute
   '/{-$lang}/docs/ui/': typeof Char123LangChar125DocsUiIndexRoute
-  '/{-$lang}/layouts/docs/': typeof Char123LangChar125LayoutsDocsIndexRoute
-  '/{-$lang}/layouts/flux/': typeof Char123LangChar125LayoutsFluxIndexRoute
-  '/{-$lang}/layouts/glass/': typeof Char123LangChar125LayoutsGlassIndexRoute
-  '/{-$lang}/layouts/home/': typeof Char123LangChar125LayoutsHomeIndexRoute
-  '/{-$lang}/layouts/notebook/': typeof Char123LangChar125LayoutsNotebookIndexRoute
   '/{-$lang}/docs/ui/$platform/$': typeof Char123LangChar125DocsUiPlatformSplatRoute
   '/{-$lang}/docs/ui/$platform/{$}.md': typeof Char123LangChar125DocsUiPlatformChar123Char125DotmdRoute
   '/{-$lang}/docs/ui/$platform/': typeof Char123LangChar125DocsUiPlatformIndexRoute
@@ -185,18 +100,8 @@ export interface FileRoutesByTo {
   '/api/search': typeof ApiSearchRouteRoute
   '/llms-full.txt': typeof llmsLlmsFullDottxtRoute
   '/llms.txt': typeof llmsLlmsDottxtRoute
-  '/{-$lang}/pro': typeof Char123LangChar125ProLazyRoute
   '/{-$lang}': typeof Char123LangChar125IndexRoute
-  '/{-$lang}/docs/$': typeof Char123LangChar125DocsSplatRoute
-  '/{-$lang}/docs/{$}.md': typeof Char123LangChar125DocsChar123Char125DotmdRoute
-  '/{-$lang}/docs': typeof Char123LangChar125DocsIndexRoute
-  '/{-$lang}/layouts': typeof Char123LangChar125LayoutsIndexRoute
   '/{-$lang}/docs/ui': typeof Char123LangChar125DocsUiIndexRoute
-  '/{-$lang}/layouts/docs': typeof Char123LangChar125LayoutsDocsIndexRoute
-  '/{-$lang}/layouts/flux': typeof Char123LangChar125LayoutsFluxIndexRoute
-  '/{-$lang}/layouts/glass': typeof Char123LangChar125LayoutsGlassIndexRoute
-  '/{-$lang}/layouts/home': typeof Char123LangChar125LayoutsHomeIndexRoute
-  '/{-$lang}/layouts/notebook': typeof Char123LangChar125LayoutsNotebookIndexRoute
   '/{-$lang}/docs/ui/$platform/$': typeof Char123LangChar125DocsUiPlatformSplatRoute
   '/{-$lang}/docs/ui/$platform/{$}.md': typeof Char123LangChar125DocsUiPlatformChar123Char125DotmdRoute
   '/{-$lang}/docs/ui/$platform': typeof Char123LangChar125DocsUiPlatformIndexRoute
@@ -209,18 +114,8 @@ export interface FileRoutesById {
   '/api/search': typeof ApiSearchRouteRoute
   '/(llms)/llms-full.txt': typeof llmsLlmsFullDottxtRoute
   '/(llms)/llms.txt': typeof llmsLlmsDottxtRoute
-  '/{-$lang}/pro': typeof Char123LangChar125ProLazyRoute
   '/{-$lang}/': typeof Char123LangChar125IndexRoute
-  '/{-$lang}/docs/$': typeof Char123LangChar125DocsSplatRoute
-  '/{-$lang}/docs/{$}.md': typeof Char123LangChar125DocsChar123Char125DotmdRoute
-  '/{-$lang}/docs/': typeof Char123LangChar125DocsIndexRoute
-  '/{-$lang}/layouts/': typeof Char123LangChar125LayoutsIndexRoute
   '/{-$lang}/docs/ui/': typeof Char123LangChar125DocsUiIndexRoute
-  '/{-$lang}/layouts/docs/': typeof Char123LangChar125LayoutsDocsIndexRoute
-  '/{-$lang}/layouts/flux/': typeof Char123LangChar125LayoutsFluxIndexRoute
-  '/{-$lang}/layouts/glass/': typeof Char123LangChar125LayoutsGlassIndexRoute
-  '/{-$lang}/layouts/home/': typeof Char123LangChar125LayoutsHomeIndexRoute
-  '/{-$lang}/layouts/notebook/': typeof Char123LangChar125LayoutsNotebookIndexRoute
   '/{-$lang}/docs/ui/$platform/$': typeof Char123LangChar125DocsUiPlatformSplatRoute
   '/{-$lang}/docs/ui/$platform/{$}.md': typeof Char123LangChar125DocsUiPlatformChar123Char125DotmdRoute
   '/{-$lang}/docs/ui/$platform/': typeof Char123LangChar125DocsUiPlatformIndexRoute
@@ -234,18 +129,8 @@ export interface FileRouteTypes {
     | '/api/search'
     | '/llms-full.txt'
     | '/llms.txt'
-    | '/{-$lang}/pro'
     | '/{-$lang}/'
-    | '/{-$lang}/docs/$'
-    | '/{-$lang}/docs/{$}.md'
-    | '/{-$lang}/docs/'
-    | '/{-$lang}/layouts/'
     | '/{-$lang}/docs/ui/'
-    | '/{-$lang}/layouts/docs/'
-    | '/{-$lang}/layouts/flux/'
-    | '/{-$lang}/layouts/glass/'
-    | '/{-$lang}/layouts/home/'
-    | '/{-$lang}/layouts/notebook/'
     | '/{-$lang}/docs/ui/$platform/$'
     | '/{-$lang}/docs/ui/$platform/{$}.md'
     | '/{-$lang}/docs/ui/$platform/'
@@ -256,18 +141,8 @@ export interface FileRouteTypes {
     | '/api/search'
     | '/llms-full.txt'
     | '/llms.txt'
-    | '/{-$lang}/pro'
     | '/{-$lang}'
-    | '/{-$lang}/docs/$'
-    | '/{-$lang}/docs/{$}.md'
-    | '/{-$lang}/docs'
-    | '/{-$lang}/layouts'
     | '/{-$lang}/docs/ui'
-    | '/{-$lang}/layouts/docs'
-    | '/{-$lang}/layouts/flux'
-    | '/{-$lang}/layouts/glass'
-    | '/{-$lang}/layouts/home'
-    | '/{-$lang}/layouts/notebook'
     | '/{-$lang}/docs/ui/$platform/$'
     | '/{-$lang}/docs/ui/$platform/{$}.md'
     | '/{-$lang}/docs/ui/$platform'
@@ -279,18 +154,8 @@ export interface FileRouteTypes {
     | '/api/search'
     | '/(llms)/llms-full.txt'
     | '/(llms)/llms.txt'
-    | '/{-$lang}/pro'
     | '/{-$lang}/'
-    | '/{-$lang}/docs/$'
-    | '/{-$lang}/docs/{$}.md'
-    | '/{-$lang}/docs/'
-    | '/{-$lang}/layouts/'
     | '/{-$lang}/docs/ui/'
-    | '/{-$lang}/layouts/docs/'
-    | '/{-$lang}/layouts/flux/'
-    | '/{-$lang}/layouts/glass/'
-    | '/{-$lang}/layouts/home/'
-    | '/{-$lang}/layouts/notebook/'
     | '/{-$lang}/docs/ui/$platform/$'
     | '/{-$lang}/docs/ui/$platform/{$}.md'
     | '/{-$lang}/docs/ui/$platform/'
@@ -356,81 +221,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LangChar125IndexRouteImport
       parentRoute: typeof Char123LangChar125RouteRoute
     }
-    '/{-$lang}/pro': {
-      id: '/{-$lang}/pro'
-      path: '/pro'
-      fullPath: '/{-$lang}/pro'
-      preLoaderRoute: typeof Char123LangChar125ProLazyRouteImport
-      parentRoute: typeof Char123LangChar125RouteRoute
-    }
-    '/{-$lang}/docs/': {
-      id: '/{-$lang}/docs/'
-      path: '/docs'
-      fullPath: '/{-$lang}/docs/'
-      preLoaderRoute: typeof Char123LangChar125DocsIndexRouteImport
-      parentRoute: typeof Char123LangChar125RouteRoute
-    }
-    '/{-$lang}/docs/$': {
-      id: '/{-$lang}/docs/$'
-      path: '/docs/$'
-      fullPath: '/{-$lang}/docs/$'
-      preLoaderRoute: typeof Char123LangChar125DocsSplatRouteImport
-      parentRoute: typeof Char123LangChar125RouteRoute
-    }
-    '/{-$lang}/docs/{$}.md': {
-      id: '/{-$lang}/docs/{$}.md'
-      path: '/docs/{$}.md'
-      fullPath: '/{-$lang}/docs/{$}.md'
-      preLoaderRoute: typeof Char123LangChar125DocsChar123Char125DotmdRouteImport
-      parentRoute: typeof Char123LangChar125RouteRoute
-    }
-    '/{-$lang}/layouts/': {
-      id: '/{-$lang}/layouts/'
-      path: '/layouts'
-      fullPath: '/{-$lang}/layouts/'
-      preLoaderRoute: typeof Char123LangChar125LayoutsIndexRouteImport
-      parentRoute: typeof Char123LangChar125RouteRoute
-    }
     '/{-$lang}/docs/ui/': {
       id: '/{-$lang}/docs/ui/'
       path: '/docs/ui'
       fullPath: '/{-$lang}/docs/ui/'
       preLoaderRoute: typeof Char123LangChar125DocsUiIndexRouteImport
-      parentRoute: typeof Char123LangChar125RouteRoute
-    }
-    '/{-$lang}/layouts/docs/': {
-      id: '/{-$lang}/layouts/docs/'
-      path: '/layouts/docs'
-      fullPath: '/{-$lang}/layouts/docs/'
-      preLoaderRoute: typeof Char123LangChar125LayoutsDocsIndexRouteImport
-      parentRoute: typeof Char123LangChar125RouteRoute
-    }
-    '/{-$lang}/layouts/flux/': {
-      id: '/{-$lang}/layouts/flux/'
-      path: '/layouts/flux'
-      fullPath: '/{-$lang}/layouts/flux/'
-      preLoaderRoute: typeof Char123LangChar125LayoutsFluxIndexRouteImport
-      parentRoute: typeof Char123LangChar125RouteRoute
-    }
-    '/{-$lang}/layouts/glass/': {
-      id: '/{-$lang}/layouts/glass/'
-      path: '/layouts/glass'
-      fullPath: '/{-$lang}/layouts/glass/'
-      preLoaderRoute: typeof Char123LangChar125LayoutsGlassIndexRouteImport
-      parentRoute: typeof Char123LangChar125RouteRoute
-    }
-    '/{-$lang}/layouts/home/': {
-      id: '/{-$lang}/layouts/home/'
-      path: '/layouts/home'
-      fullPath: '/{-$lang}/layouts/home/'
-      preLoaderRoute: typeof Char123LangChar125LayoutsHomeIndexRouteImport
-      parentRoute: typeof Char123LangChar125RouteRoute
-    }
-    '/{-$lang}/layouts/notebook/': {
-      id: '/{-$lang}/layouts/notebook/'
-      path: '/layouts/notebook'
-      fullPath: '/{-$lang}/layouts/notebook/'
-      preLoaderRoute: typeof Char123LangChar125LayoutsNotebookIndexRouteImport
       parentRoute: typeof Char123LangChar125RouteRoute
     }
     '/{-$lang}/docs/ui/$platform/': {
@@ -458,18 +253,8 @@ declare module '@tanstack/react-router' {
 }
 
 interface Char123LangChar125RouteRouteChildren {
-  Char123LangChar125ProLazyRoute: typeof Char123LangChar125ProLazyRoute
   Char123LangChar125IndexRoute: typeof Char123LangChar125IndexRoute
-  Char123LangChar125DocsSplatRoute: typeof Char123LangChar125DocsSplatRoute
-  Char123LangChar125DocsChar123Char125DotmdRoute: typeof Char123LangChar125DocsChar123Char125DotmdRoute
-  Char123LangChar125DocsIndexRoute: typeof Char123LangChar125DocsIndexRoute
-  Char123LangChar125LayoutsIndexRoute: typeof Char123LangChar125LayoutsIndexRoute
   Char123LangChar125DocsUiIndexRoute: typeof Char123LangChar125DocsUiIndexRoute
-  Char123LangChar125LayoutsDocsIndexRoute: typeof Char123LangChar125LayoutsDocsIndexRoute
-  Char123LangChar125LayoutsFluxIndexRoute: typeof Char123LangChar125LayoutsFluxIndexRoute
-  Char123LangChar125LayoutsGlassIndexRoute: typeof Char123LangChar125LayoutsGlassIndexRoute
-  Char123LangChar125LayoutsHomeIndexRoute: typeof Char123LangChar125LayoutsHomeIndexRoute
-  Char123LangChar125LayoutsNotebookIndexRoute: typeof Char123LangChar125LayoutsNotebookIndexRoute
   Char123LangChar125DocsUiPlatformSplatRoute: typeof Char123LangChar125DocsUiPlatformSplatRoute
   Char123LangChar125DocsUiPlatformChar123Char125DotmdRoute: typeof Char123LangChar125DocsUiPlatformChar123Char125DotmdRoute
   Char123LangChar125DocsUiPlatformIndexRoute: typeof Char123LangChar125DocsUiPlatformIndexRoute
@@ -477,24 +262,8 @@ interface Char123LangChar125RouteRouteChildren {
 
 const Char123LangChar125RouteRouteChildren: Char123LangChar125RouteRouteChildren =
   {
-    Char123LangChar125ProLazyRoute: Char123LangChar125ProLazyRoute,
     Char123LangChar125IndexRoute: Char123LangChar125IndexRoute,
-    Char123LangChar125DocsSplatRoute: Char123LangChar125DocsSplatRoute,
-    Char123LangChar125DocsChar123Char125DotmdRoute:
-      Char123LangChar125DocsChar123Char125DotmdRoute,
-    Char123LangChar125DocsIndexRoute: Char123LangChar125DocsIndexRoute,
-    Char123LangChar125LayoutsIndexRoute: Char123LangChar125LayoutsIndexRoute,
     Char123LangChar125DocsUiIndexRoute: Char123LangChar125DocsUiIndexRoute,
-    Char123LangChar125LayoutsDocsIndexRoute:
-      Char123LangChar125LayoutsDocsIndexRoute,
-    Char123LangChar125LayoutsFluxIndexRoute:
-      Char123LangChar125LayoutsFluxIndexRoute,
-    Char123LangChar125LayoutsGlassIndexRoute:
-      Char123LangChar125LayoutsGlassIndexRoute,
-    Char123LangChar125LayoutsHomeIndexRoute:
-      Char123LangChar125LayoutsHomeIndexRoute,
-    Char123LangChar125LayoutsNotebookIndexRoute:
-      Char123LangChar125LayoutsNotebookIndexRoute,
     Char123LangChar125DocsUiPlatformSplatRoute:
       Char123LangChar125DocsUiPlatformSplatRoute,
     Char123LangChar125DocsUiPlatformChar123Char125DotmdRoute:

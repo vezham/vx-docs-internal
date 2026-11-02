@@ -48,12 +48,6 @@ const RouteComponent = () => {
       shell="notebook"
       getLayoutOptions={locale => ({
         ...baseOptions(locale as Locale),
-        links: [
-          {
-            text: 'Layout previews',
-            url: localizedUrl(i18n, locale, '/layouts')
-          }
-        ],
         nav: {
           title: 'Developer Docs | Vezham',
           mode: 'top',

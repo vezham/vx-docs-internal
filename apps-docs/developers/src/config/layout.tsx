@@ -19,38 +19,8 @@ export const baseOptions = (
     },
     links: [
       {
-        text: 'UI/platforms',
+        text: 'UI',
         url: localizedUrl(i18n, locale, '/docs/ui/web/getting-started'),
-        active: 'nested-url'
-      },
-      {
-        text: 'Layouts',
-        url: localizedUrl(i18n, locale, '/layouts'),
-        active: 'nested-url'
-      },
-      {
-        text: 'UI/docs',
-        url: localizedUrl(i18n, locale, '/ui-docs/overview'),
-        active: 'nested-url'
-      },
-      {
-        text: 'UI/flux',
-        url: localizedUrl(i18n, locale, '/ui-flux/overview'),
-        active: 'nested-url'
-      },
-      {
-        text: 'UI/glass',
-        url: localizedUrl(i18n, locale, '/ui-glass/overview'),
-        active: 'nested-url'
-      },
-      {
-        text: 'UI/home',
-        url: localizedUrl(i18n, locale, '/ui-home/overview'),
-        active: 'nested-url'
-      },
-      {
-        text: 'UI/notebook',
-        url: localizedUrl(i18n, locale, '/ui-notebook/overview'),
         active: 'nested-url'
       }
     ]
