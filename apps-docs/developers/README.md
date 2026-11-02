@@ -4,9 +4,9 @@ Internal docs for libraries, guides, and handbooks.
 
 UI library documentation uses the notebook layout:
 
-- `/docs/ui/web/getting-started` — HeroUI React
-- `/docs/ui/native/getting-started` — HeroUI Native
-- `/cn/docs/ui/web/getting-started` and `/cn/docs/ui/native/getting-started`
+- `/docs/ui/react-v3/web/getting-started` — HeroUI React
+- `/docs/ui/react-v3/native/getting-started` — HeroUI Native
+- `/cn/docs/ui/react-v3/web/getting-started` and `/cn/docs/ui/react-v3/native/getting-started`
   retain the locale routes and currently fall back to English.
 
 The imported content lives in `content/docs-ui/{web,native}`. It includes

@@ -23,7 +23,7 @@ for file in sorted(set(registries['en'].values())):
     target = demo_output / Path(file).relative_to('en')
     target.parent.mkdir(parents=True, exist_ok=True)
     code = source.read_text().replace('@heroui/react', '@vezham/react-v3')
-    code = code.replace('/docs/react/', '/docs/ui/web/')
+    code = code.replace('/docs/react/', '/docs/ui/react-v3/web/')
     if not re.search(r'\bReact[.<]', code):
         code = re.sub(r'^import React from "react";\n', '', code, flags=re.M)
         code = code.replace('import React, {', 'import {')
@@ -59,18 +59,18 @@ blocks.append(css_block(css[calendar:], '@layer components'))
 def rewrite_links(text, locale):
     prefix = '/cn' if locale == 'cn' else ''
     text = re.sub(r'(?<=[("\'\s])/(?:cn/)?docs/(react|native)(?=[/\s)"#]|$)',
-                  lambda m: f'{prefix}/docs/ui/{"web" if m[1] == "react" else "native"}', text)
+                  lambda m: f'{prefix}/docs/ui/react-v3/{"web" if m[1] == "react" else "native"}', text)
     # vx-bot/NOTE: These pages belong to the upstream marketing site.
     text = re.sub(r'(?<=[("\'])/(showcase|blog|themes|figma|docs)(?=[/\s)"#])',
                   r'https://heroui.com/\1', text)
-    text = text.replace('/docs/ui/native/components/radio)', '/docs/ui/native/components/radio-group#radio)')
-    text = text.replace('/docs/ui/native/releases/create-heroui-native-app', '/docs/ui/native/releases/cli-v1-0-0')
-    text = text.replace('/docs/ui/native/hooks/use-theme-color', '/docs/ui/native/getting-started/theming')
-    text = text.replace('/docs/ui/native/components/typography', '/docs/ui/native/components/text')
+    text = text.replace('/docs/ui/react-v3/native/components/radio)', '/docs/ui/react-v3/native/components/radio-group#radio)')
+    text = text.replace('/docs/ui/react-v3/native/releases/create-heroui-native-app', '/docs/ui/react-v3/native/releases/cli-v1-0-0')
+    text = text.replace('/docs/ui/react-v3/native/hooks/use-theme-color', '/docs/ui/react-v3/native/getting-started/theming')
+    text = text.replace('/docs/ui/react-v3/native/components/typography', '/docs/ui/react-v3/native/components/text')
     text = re.sub(r'(?<=[("\'])/(react|native)/(DESIGN\.md|llms[\w-]*\.txt)', r'https://heroui.com/\1/\2', text)
     text = re.sub(r'(?<=[("\'])/(llms-(?:components|patterns)\.txt)', r'https://heroui.com/\1', text)
     for component in ('label', 'description', 'field-error'):
-        text = text.replace(f'../{component}/{component}.md', f'/docs/ui/native/components/{component}')
+        text = text.replace(f'../{component}/{component}.md', f'/docs/ui/react-v3/native/components/{component}')
     return text
 
 
@@ -117,7 +117,7 @@ for locale in ('en',):
 
 shutil.copyfile(upstream.parents[1] / 'LICENSE', output / 'LICENSE-HeroUI')
 revision = subprocess.check_output(['git', '-C', str(upstream), 'rev-parse', 'HEAD'], text=True).strip()
-(output / 'README.md').write_text(f'''# HeroUI documentation\n\nCopied from `heroui-inc/heroui`, `apps/docs/content/docs`, revision `{revision}`.\nCopyright 2025 NextUI Inc. Licensed under Apache-2.0; see LICENSE-HeroUI.\n\nLocal adaptations: React → web routes under `/docs/ui`, English content (Chinese routes fall back to English),\nportable MDX presentation, and lazy-loaded local component previews with their source code.\nWeb examples run locally using src/demos/heroui; Next.js-only helpers are adapted to React. Native videos use upstream media.\nGuide prose retains upstream package names; executable demos use the Vezham package aliases.\n\nRefresh from a checkout:\n\n```sh\npython3 apps-docs/developers/scripts/import-heroui-docs.py /path/to/heroui/apps/docs\nnode apps-docs/developers/scripts/adapt-heroui-mdx.mjs\n```\n''')
+(output / 'README.md').write_text(f'''# HeroUI documentation\n\nCopied from `heroui-inc/heroui`, `apps/docs/content/docs`, revision `{revision}`.\nCopyright 2025 NextUI Inc. Licensed under Apache-2.0; see LICENSE-HeroUI.\n\nLocal adaptations: React → web routes under `/docs/ui/react-v3`, English content (Chinese routes fall back to English),\nportable MDX presentation, and lazy-loaded local component previews with their source code.\nWeb examples run locally using src/demos/heroui; Next.js-only helpers are adapted to React. Native videos use upstream media.\nGuide prose retains upstream package names; executable demos use the Vezham package aliases.\n\nRefresh from a checkout:\n\n```sh\npython3 apps-docs/developers/scripts/import-heroui-docs.py /path/to/heroui/apps/docs\nnode apps-docs/developers/scripts/adapt-heroui-mdx.mjs\n```\n''')
 print(f'Imported {count} pages; examples without source: {sorted(missing)}')
 
 catalog = []
@@ -134,7 +134,7 @@ for platform in ('web', 'native'):
             'title': fields.get('title', page.stem).strip('"\''),
             'description': fields.get('description', '').strip('"\''),
             'status': fields.get('status'),
-            'url': '/docs/ui/' + platform + '/' + '/'.join(part for part in relative.with_suffix('').parts if not part.startswith('('))
+            'url': '/docs/ui/react-v3/' + platform + '/' + '/'.join(part for part in relative.with_suffix('').parts if not part.startswith('('))
         })
 (app / 'src/lib/docs/heroui-catalog.ts').write_text('// vx-bot/INFO: Generated by scripts/import-heroui-docs.py.\nexport const herouiCatalog = ' + json.dumps(catalog, ensure_ascii=False, indent=2) + '\n')
 

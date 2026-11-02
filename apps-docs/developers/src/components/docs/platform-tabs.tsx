@@ -21,7 +21,7 @@ export const PlatformTabs = ({ getPlatformParams, platform }: Props) => {
   const router = useRouter()
   const getHref = (value: Platform) =>
     router.buildLocation({
-      to: '/{-$lang}/docs/ui/$platform/$',
+      to: '/{-$lang}/docs/ui/react-v3/$platform/$',
       params: getPlatformParams(value)
     }).href
   return (
@@ -39,7 +39,7 @@ export const PlatformTabs = ({ getPlatformParams, platform }: Props) => {
               return (
                 <Link
                   {...linkProps}
-                  to="/{-$lang}/docs/ui/$platform/$"
+                  to="/{-$lang}/docs/ui/react-v3/$platform/$"
                   params={getPlatformParams('web')}
                 />
               )
@@ -65,7 +65,7 @@ export const PlatformTabs = ({ getPlatformParams, platform }: Props) => {
               return (
                 <Link
                   {...linkProps}
-                  to="/{-$lang}/docs/ui/$platform/$"
+                  to="/{-$lang}/docs/ui/react-v3/$platform/$"
                   params={getPlatformParams('native')}
                 />
               )

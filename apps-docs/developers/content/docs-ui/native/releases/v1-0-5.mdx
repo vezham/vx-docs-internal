@@ -33,7 +33,7 @@ Update to the latest version:
   **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
   the latest version" and your AI assistant will automatically compare versions
   and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs/ui/native/getting-started/mcp-server).
+  Server](/docs/ui/react-v3/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -44,7 +44,7 @@ Update to the latest version:
 
 ### Single-Mount Popover, Menu, and Select Animations
 
-The [Popover](/docs/ui/native/components/popover), [Menu](/docs/ui/native/components/menu), and [Select](/docs/ui/native/components/select) content now mounts a single time and animates in via a shared value once it has been measured and positioned. Previously, the content subtree was mounted twice — a hidden probe to measure dimensions, then a visible node — so the entering Keyframe could fire on mount at the correct position.
+The [Popover](/docs/ui/react-v3/native/components/popover), [Menu](/docs/ui/react-v3/native/components/menu), and [Select](/docs/ui/react-v3/native/components/select) content now mounts a single time and animates in via a shared value once it has been measured and positioned. Previously, the content subtree was mounted twice — a hidden probe to measure dimensions, then a visible node — so the entering Keyframe could fire on mount at the correct position.
 
 **Improvements:**
 
@@ -61,7 +61,7 @@ Public component APIs are unchanged — the single-mount path is entirely intern
 
 ### Typography Dynamic Type Support (iOS)
 
-The [Typography](/docs/ui/native/components/text) component now applies a default `dynamicTypeRamp` per semantic type so text scales the way Apple intends on iOS. Larger types such as titles scale more slowly than body text, matching iOS system behavior for Dynamic Type. Previously, text in every Typography component scaled with the same factor.
+The [Typography](/docs/ui/react-v3/native/components/text) component now applies a default `dynamicTypeRamp` per semantic type so text scales the way Apple intends on iOS. Larger types such as titles scale more slowly than body text, matching iOS system behavior for Dynamic Type. Previously, text in every Typography component scaled with the same factor.
 
 **Improvements:**
 
@@ -75,7 +75,7 @@ This change is iOS-only and does not alter the Typography API. Apps that already
 
 ### Select Check Icon Color
 
-The [Select](/docs/ui/native/components/select) component's `Select.ItemIndicator` now defaults its check icon color to the `accent-soft-foreground` theme token instead of `accent`, aligning the selected-item indicator with the intended semantic foreground color for better contrast and visual consistency.
+The [Select](/docs/ui/react-v3/native/components/select) component's `Select.ItemIndicator` now defaults its check icon color to the `accent-soft-foreground` theme token instead of `accent`, aligning the selected-item indicator with the intended semantic foreground color for better contrast and visual consistency.
 
 **Improvements:**
 
@@ -90,7 +90,7 @@ Only the default icon color changes when `iconProps.color` is omitted — the AP
 
 ### Provider Text Input Configuration
 
-The [HeroUINativeProvider](/docs/ui/native/getting-started/provider) (and `HeroUINativeProviderRaw`) can now configure a subset of `TextInput` props globally through a new `textInputProps` config, starting with `allowFontScaling` and `maxFontSizeMultiplier`. This mirrors the existing global `textProps` pattern and keeps input font-scaling behavior consistent across the app.
+The [HeroUINativeProvider](/docs/ui/react-v3/native/getting-started/provider) (and `HeroUINativeProviderRaw`) can now configure a subset of `TextInput` props globally through a new `textInputProps` config, starting with `allowFontScaling` and `maxFontSizeMultiplier`. This mirrors the existing global `textProps` pattern and keeps input font-scaling behavior consistent across the app.
 
 **New Capability:**
 
@@ -200,9 +200,9 @@ If you rely on `--field-border` color to produce resting borders, set a non-zero
 
 The following documentation pages have been updated to reflect the changes in this release:
 
-- [Typography](/docs/ui/native/components/text) - Documented the default `dynamicTypeRamp` behavior on iOS
-- [Select](/docs/ui/native/components/select) - Updated the `Select.ItemIndicator` default check icon color
-- [Provider](/docs/ui/native/getting-started/provider) - Added the `textInputProps` section, examples, and provider hierarchy
+- [Typography](/docs/ui/react-v3/native/components/text) - Documented the default `dynamicTypeRamp` behavior on iOS
+- [Select](/docs/ui/react-v3/native/components/select) - Updated the `Select.ItemIndicator` default check icon color
+- [Provider](/docs/ui/react-v3/native/getting-started/provider) - Added the `textInputProps` section, examples, and provider hierarchy
 
 ## Links
 

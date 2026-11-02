@@ -33,7 +33,7 @@ Update to the latest version:
   **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
   the latest version" and your AI assistant will automatically compare versions
   and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs/ui/native/getting-started/mcp-server).
+  Server](/docs/ui/react-v3/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -92,29 +92,29 @@ import { LayoutDirection } from 'uniwind'
 </LayoutDirection>
 ```
 
-The scope drives the direction reads that happen in JavaScript: gesture inversion in [Slider](/docs/ui/native/components/slider), animation offsets in [Skeleton](/docs/ui/native/components/skeleton) and `SubMenu`, and `start`/`end` alignment for [Popover](/docs/ui/native/components/popover) and [Menu](/docs/ui/native/components/menu). Your own components can read the same value with the newly exported `useIsRTL` hook.
+The scope drives the direction reads that happen in JavaScript: gesture inversion in [Slider](/docs/ui/react-v3/native/components/slider), animation offsets in [Skeleton](/docs/ui/react-v3/native/components/skeleton) and `SubMenu`, and `start`/`end` alignment for [Popover](/docs/ui/react-v3/native/components/popover) and [Menu](/docs/ui/react-v3/native/components/menu). Your own components can read the same value with the newly exported `useIsRTL` hook.
 
 <Callout type="warning">
   **Portals escape the scope.** Content rendered through a `Portal` mounts at
   the app root, so overlays fall back to the app-level direction. To keep them
-  scoped, render a [PortalHost](/docs/ui/native/getting-started/portal) with a
-  custom `name` inside the scope — as above — and pass the matching `hostName`
-  to the overlay.
+  scoped, render a [PortalHost](/docs/ui/react-v3/native/getting-started/portal)
+  with a custom `name` inside the scope — as above — and pass the matching
+  `hostName` to the overlay.
 </Callout>
 
 **Direction-aware behavior:**
 
-- **[Slider](/docs/ui/native/components/slider)**: tap and drag deltas are inverted, and the fill and thumb anchor to logical edges
-- **[Skeleton](/docs/ui/native/components/skeleton)**: the shimmer sweeps along the reading direction
-- **[Switch](/docs/ui/native/components/switch)**: thumb travel is anchored on `start`
-- **[Tabs](/docs/ui/native/components/tabs)**: indicator re-basing is keyed off the actual anchor swap rather than assuming a left anchor
-- **[Popover](/docs/ui/native/components/popover) and [Menu](/docs/ui/native/components/menu)**: `start`/`end` alignment resolves per direction
-- **[InputGroup](/docs/ui/native/components/input-group)**: measured affix widths are applied as `paddingStart`/`paddingEnd`
-- **[SearchField](/docs/ui/native/components/search-field), [ListGroup](/docs/ui/native/components/list-group), and `SubMenu`**: default chevron and magnifier icons mirror
+- **[Slider](/docs/ui/react-v3/native/components/slider)**: tap and drag deltas are inverted, and the fill and thumb anchor to logical edges
+- **[Skeleton](/docs/ui/react-v3/native/components/skeleton)**: the shimmer sweeps along the reading direction
+- **[Switch](/docs/ui/react-v3/native/components/switch)**: thumb travel is anchored on `start`
+- **[Tabs](/docs/ui/react-v3/native/components/tabs)**: indicator re-basing is keyed off the actual anchor swap rather than assuming a left anchor
+- **[Popover](/docs/ui/react-v3/native/components/popover) and [Menu](/docs/ui/react-v3/native/components/menu)**: `start`/`end` alignment resolves per direction
+- **[InputGroup](/docs/ui/react-v3/native/components/input-group)**: measured affix widths are applied as `paddingStart`/`paddingEnd`
+- **[SearchField](/docs/ui/react-v3/native/components/search-field), [ListGroup](/docs/ui/react-v3/native/components/list-group), and `SubMenu`**: default chevron and magnifier icons mirror
 
 **Text alignment:**
 
-`Text`-based parts across [Card](/docs/ui/native/components/card), [Dialog](/docs/ui/native/components/dialog), [Menu](/docs/ui/native/components/menu), [Select](/docs/ui/native/components/select), [Toast](/docs/ui/native/components/toast), [Label](/docs/ui/native/components/label), [Description](/docs/ui/native/components/description), [FieldError](/docs/ui/native/components/field-error), and others align to the leading edge in both directions. `TextInput` parts get an explicit `rtl:text-right`, since React Native resolves `TextInput` alignment physically rather than logically.
+`Text`-based parts across [Card](/docs/ui/react-v3/native/components/card), [Dialog](/docs/ui/react-v3/native/components/dialog), [Menu](/docs/ui/react-v3/native/components/menu), [Select](/docs/ui/react-v3/native/components/select), [Toast](/docs/ui/react-v3/native/components/toast), [Label](/docs/ui/react-v3/native/components/label), [Description](/docs/ui/react-v3/native/components/description), [FieldError](/docs/ui/react-v3/native/components/field-error), and others align to the leading edge in both directions. `TextInput` parts get an explicit `rtl:text-right`, since React Native resolves `TextInput` alignment physically rather than logically.
 
 The example app now ships `en`, `ar`, and `he` catalogs via Lingui with a runtime locale switcher, plus an `eslint-plugin-lingui` guard against untranslated strings. The release was verified manually on iOS and Android across all three locales, including scoped left-to-right previews inside a right-to-left app shell.
 
@@ -191,7 +191,7 @@ Move those two properties from `className` to `style`, which is merged after the
 <TagGroup.List style={{ width: 'auto', alignItems: 'center' }} />
 ```
 
-Other `className` overrides on [TagGroup](/docs/ui/native/components/tag-group) are unaffected.
+Other `className` overrides on [TagGroup](/docs/ui/react-v3/native/components/tag-group) are unaffected.
 
 **Related PR:** [#459](https://github.com/heroui-inc/heroui-native/pull/459)
 
@@ -215,8 +215,8 @@ This release also removes circular module dependencies: the `Surface` context is
 
 The following documentation pages have been updated to reflect the changes in this release:
 
-- [Quick Start](/docs/ui/native/getting-started/quick-start) - The `global.css` setup no longer includes an `@source` line, with the path-based instructions kept for v1.0.7 and earlier
-- [Provider](/docs/ui/native/getting-started/provider) - Documents the `isRTL` config option, the `LayoutDirectionScope` override, and the `useIsRTL` hook
+- [Quick Start](/docs/ui/react-v3/native/getting-started/quick-start) - The `global.css` setup no longer includes an `@source` line, with the path-based instructions kept for v1.0.7 and earlier
+- [Provider](/docs/ui/react-v3/native/getting-started/provider) - Documents the `isRTL` config option, the `LayoutDirectionScope` override, and the `useIsRTL` hook
 
 ## Links
 

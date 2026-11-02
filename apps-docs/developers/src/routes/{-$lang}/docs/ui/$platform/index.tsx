@@ -5,7 +5,7 @@ export const Route = createFileRoute('/{-$lang}/docs/ui/$platform/')({
     if (params.platform !== 'web' && params.platform !== 'native')
       throw notFound()
     throw redirect({
-      to: '/{-$lang}/docs/ui/$platform/$',
+      to: '/{-$lang}/docs/ui/react-v3/$platform/$',
       params: { ...params, _splat: 'getting-started' }
     })
   }

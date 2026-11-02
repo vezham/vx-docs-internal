@@ -31,7 +31,7 @@ This guide is designed for AI assistants (agents) helping users migrate from Her
 
 ## Incremental Migration Setup
 
-For detailed setup and migration instructions, see the [Incremental Migration Guide](/docs/ui/web/migration/incremental-migration). The guide covers:
+For detailed setup and migration instructions, see the [Incremental Migration Guide](/docs/ui/react-v3/web/migration/incremental-migration). The guide covers:
 
 - Strategy selection (A: pnpm aliases or B: component packages)
 - Detailed setup for each strategy
@@ -112,7 +112,7 @@ For projects using incremental coexistence strategies, agents should:
 When encountering v2 components with no v3 counterpart (Code, Image, Navbar, Ripple, Snippet, Spacer, User):
 
 - **Leave them in place** — do not attempt to migrate them unless the user explicitly requests removal
-- **If the user wants to remove them**: Use `get_component_migration_guides` (where available) or the [Component Migration Reference](/docs/ui/web/migration#component-migration-reference) to fetch guides and help replace with native HTML or manual implementations
+- **If the user wants to remove them**: Use `get_component_migration_guides` (where available) or the [Component Migration Reference](/docs/ui/react-v3/web/migration#component-migration-reference) to fetch guides and help replace with native HTML or manual implementations
 
 ## CSS Conflict Handling
 
@@ -243,7 +243,7 @@ Once all components are migrated:
 ### Project Uses v2 Navbar (or Other Removed Components)
 
 - Leave in place — v2 Navbar and other removed components (Code, Image, Ripple, Snippet, Spacer, User) will continue to work during coexistence
-- Inform the user they can optionally remove them later with agent assistance and the [Component Migration Reference](/docs/ui/web/migration#component-migration-reference) guides
+- Inform the user they can optionally remove them later with agent assistance and the [Component Migration Reference](/docs/ui/react-v3/web/migration#component-migration-reference) guides
 
 ## Next Steps
 

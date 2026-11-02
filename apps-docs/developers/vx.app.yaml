@@ -19,10 +19,10 @@ og:
   site: Vezham Developers
   theme: light
 routes:
-  - path: /docs/ui/web/getting-started
-  - path: /docs/ui/native/getting-started
-  - path: /cn/docs/ui/web/getting-started
-  - path: /cn/docs/ui/native/getting-started
+  - path: /docs/ui/react-v3/web/getting-started
+  - path: /docs/ui/react-v3/native/getting-started
+  - path: /cn/docs/ui/react-v3/web/getting-started
+  - path: /cn/docs/ui/react-v3/native/getting-started
   - path: /icons
   - path: /cn/icons
   - path: /docs/pro

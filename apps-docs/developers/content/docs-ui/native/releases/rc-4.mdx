@@ -34,7 +34,7 @@ Update to the latest version:
   **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
   the latest version" and your AI assistant will automatically compare versions
   and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs/ui/native/getting-started/mcp-server).
+  Server](/docs/ui/react-v3/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -45,7 +45,7 @@ Update to the latest version:
 
 ### SubMenu Component
 
-The [Menu](/docs/ui/native/components/menu) component now supports nested expandable sub-menus via the new `SubMenu` compound component. SubMenu nests inside `Menu.Content` and reveals additional items on press with spring-based expand/collapse animations and indicator rotation.
+The [Menu](/docs/ui/react-v3/native/components/menu) component now supports nested expandable sub-menus via the new `SubMenu` compound component. SubMenu nests inside `Menu.Content` and reveals additional items on press with spring-based expand/collapse animations and indicator rotation.
 
 <NativeVideoPlayerView
   target="component"
@@ -101,7 +101,7 @@ export function MenuWithSubMenu() {
 }
 ```
 
-For complete documentation and examples, see the [Menu component page](/docs/ui/native/components/menu).
+For complete documentation and examples, see the [Menu component page](/docs/ui/react-v3/native/components/menu).
 
 **Related PR:** [#331](https://github.com/heroui-inc/heroui-native/pull/331)
 
@@ -109,7 +109,7 @@ For complete documentation and examples, see the [Menu component page](/docs/ui/
 
 ### Slider Output Composition Refactor
 
-The [Slider](/docs/ui/native/components/slider) Output component has been refactored to use a proper slot-based architecture with `container` and `text` slots, and introduces `textProps` for forwarding props to the inner text element.
+The [Slider](/docs/ui/react-v3/native/components/slider) Output component has been refactored to use a proper slot-based architecture with `container` and `text` slots, and introduces `textProps` for forwarding props to the inner text element.
 
 **Improvements:**
 
@@ -122,7 +122,7 @@ The [Slider](/docs/ui/native/components/slider) Output component has been refact
 
 ### Menu.Group `disallowEmptySelection`
 
-The [Menu](/docs/ui/native/components/menu) `Menu.Group` component now supports a `disallowEmptySelection` prop that prevents deselecting the last item in `single` selection mode, enabling radio-group behavior.
+The [Menu](/docs/ui/react-v3/native/components/menu) `Menu.Group` component now supports a `disallowEmptySelection` prop that prevents deselecting the last item in `single` selection mode, enabling radio-group behavior.
 
 **Usage:**
 
@@ -147,7 +147,7 @@ The [Menu](/docs/ui/native/components/menu) `Menu.Group` component now supports 
 
 ### Bottom Sheet `enablePanDownToClose` Consistency
 
-The [Bottom Sheet](/docs/ui/native/components/bottom-sheet) component now correctly respects the `enablePanDownToClose` prop for Android hardware back button behavior. Previously, the back button would close the sheet even when `enablePanDownToClose` was set to `false`.
+The [Bottom Sheet](/docs/ui/react-v3/native/components/bottom-sheet) component now correctly respects the `enablePanDownToClose` prop for Android hardware back button behavior. Previously, the back button would close the sheet even when `enablePanDownToClose` was set to `false`.
 
 **Improvements:**
 
@@ -161,7 +161,7 @@ The [Bottom Sheet](/docs/ui/native/components/bottom-sheet) component now correc
 
 ### Chip Component Sizing
 
-The [Chip](/docs/ui/native/components/chip) component's size variants have been migrated from fixed heights to padding-based sizing to accommodate dynamic text scaling at larger accessibility font sizes.
+The [Chip](/docs/ui/react-v3/native/components/chip) component's size variants have been migrated from fixed heights to padding-based sizing to accommodate dynamic text scaling at larger accessibility font sizes.
 
 **Migration:**
 
@@ -180,8 +180,8 @@ Custom styles relying on the previous `h-5`/`h-6`/`h-7` chip heights should be u
 
 The following documentation pages have been updated to reflect the changes in this release:
 
-- [Menu](/docs/ui/native/components/menu) - SubMenu component documentation with anatomy, usage examples, full API reference, and `useSubMenu` hook docs
-- [Slider](/docs/ui/native/components/slider) - Updated Output component documentation with slot-based styling and `textProps`
+- [Menu](/docs/ui/react-v3/native/components/menu) - SubMenu component documentation with anatomy, usage examples, full API reference, and `useSubMenu` hook docs
+- [Slider](/docs/ui/react-v3/native/components/slider) - Updated Output component documentation with slot-based styling and `textProps`
 
 ## Links
 

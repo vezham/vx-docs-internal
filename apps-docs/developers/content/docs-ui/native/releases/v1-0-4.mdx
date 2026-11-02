@@ -33,7 +33,7 @@ Update to the latest version:
   **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
   the latest version" and your AI assistant will automatically compare versions
   and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs/ui/native/getting-started/mcp-server).
+  Server](/docs/ui/react-v3/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -105,7 +105,7 @@ Import `heroui-native/styles/vibrant` after the base styles to override soft-for
 
 ### Refined Soft-Foreground Colors Across Components
 
-The [Alert](/docs/ui/native/components/alert), [Avatar](/docs/ui/native/components/avatar), [Button](/docs/ui/native/components/button), [Chip](/docs/ui/native/components/chip), and [Toast](/docs/ui/native/components/toast) components now use the new `*-soft-foreground` theme tokens for labels and icons on soft backgrounds, producing better contrast and a more cohesive look across light and dark themes.
+The [Alert](/docs/ui/react-v3/native/components/alert), [Avatar](/docs/ui/react-v3/native/components/avatar), [Button](/docs/ui/react-v3/native/components/button), [Chip](/docs/ui/react-v3/native/components/chip), and [Toast](/docs/ui/react-v3/native/components/toast) components now use the new `*-soft-foreground` theme tokens for labels and icons on soft backgrounds, producing better contrast and a more cohesive look across light and dark themes.
 
 **Improvements:**
 
@@ -120,7 +120,7 @@ Component props and public APIs are unchanged — only the color values applied 
 
 ### TextArea Vertical Padding Fix
 
-The [TextArea](/docs/ui/native/components/text-area) component now applies proper inner vertical padding so multiline content no longer hugs the top edge of the field.
+The [TextArea](/docs/ui/react-v3/native/components/text-area) component now applies proper inner vertical padding so multiline content no longer hugs the top edge of the field.
 
 **Improvements:**
 
@@ -133,7 +133,7 @@ The [TextArea](/docs/ui/native/components/text-area) component now applies prope
 
 ### `useThemeColor` Token Updates
 
-The [`useThemeColor`](/docs/ui/native/getting-started/theming) hook now exposes additional surface and soft tokens, and renames the overlay backdrop token for clarity.
+The [`useThemeColor`](/docs/ui/react-v3/native/getting-started/theming) hook now exposes additional surface and soft tokens, and renames the overlay backdrop token for clarity.
 
 **New Capability:**
 
@@ -162,7 +162,7 @@ Apps using removed `useThemeColor` keys (`on-surface-*`) or the previous `overla
 
 ### `@gorhom/bottom-sheet` Peer Range Updated
 
-The peer dependency range for `@gorhom/bottom-sheet` has been bumped from `^5.2.8` to `^5.2.9`. Apps that use HeroUI Native's [BottomSheet](/docs/ui/native/components/bottom-sheet) component (or any of `Menu` / `Popover` / `Select` with `presentation="bottom-sheet"`) should ensure they are on a compatible version:
+The peer dependency range for `@gorhom/bottom-sheet` has been bumped from `^5.2.8` to `^5.2.9`. Apps that use HeroUI Native's [BottomSheet](/docs/ui/react-v3/native/components/bottom-sheet) component (or any of `Menu` / `Popover` / `Select` with `presentation="bottom-sheet"`) should ensure they are on a compatible version:
 
 ```bash
 npm i @gorhom/bottom-sheet@^5.2.9
@@ -197,7 +197,7 @@ Additional housekeeping included in this upgrade:
 
 ### iOS Native Modal Offset Guidance for Menu, Popover, and Select
 
-The [Menu](/docs/ui/native/components/menu), [Popover](/docs/ui/native/components/popover), and [Select](/docs/ui/native/components/select) documentation now includes a **Native Modal (iOS)** section that explains why overlay content can render shifted upward when a trigger lives inside a screen presented as a native modal (`presentation: "modal" | "formSheet" | "pageSheet"`), and how to compensate.
+The [Menu](/docs/ui/react-v3/native/components/menu), [Popover](/docs/ui/react-v3/native/components/popover), and [Select](/docs/ui/react-v3/native/components/select) documentation now includes a **Native Modal (iOS)** section that explains why overlay content can render shifted upward when a trigger lives inside a screen presented as a native modal (`presentation: "modal" | "formSheet" | "pageSheet"`), and how to compensate.
 
 **Improvements:**
 
@@ -263,11 +263,11 @@ import {
 
 The following documentation pages have been updated to reflect the changes in this release:
 
-- [Typography](/docs/ui/native/components/text) - Component renamed from Text; full API, anatomy, and usage reference updated
-- [Menu](/docs/ui/native/components/menu) - Added **Native Modal (iOS)** section with `offset={insets.top}` workaround
-- [Popover](/docs/ui/native/components/popover) - Added **Native Modal (iOS)** section with `offset={insets.top}` workaround
-- [Select](/docs/ui/native/components/select) - Added **Native Modal (iOS)** section with `offset={insets.top}` workaround
-- [Quick Start](/docs/ui/native/getting-started/quick-start) - Updated `@gorhom/bottom-sheet` optional peer dependency to `^5.2.9`
+- [Typography](/docs/ui/react-v3/native/components/text) - Component renamed from Text; full API, anatomy, and usage reference updated
+- [Menu](/docs/ui/react-v3/native/components/menu) - Added **Native Modal (iOS)** section with `offset={insets.top}` workaround
+- [Popover](/docs/ui/react-v3/native/components/popover) - Added **Native Modal (iOS)** section with `offset={insets.top}` workaround
+- [Select](/docs/ui/react-v3/native/components/select) - Added **Native Modal (iOS)** section with `offset={insets.top}` workaround
+- [Quick Start](/docs/ui/react-v3/native/getting-started/quick-start) - Updated `@gorhom/bottom-sheet` optional peer dependency to `^5.2.9`
 
 ## Links
 

@@ -34,7 +34,7 @@ Update to the latest version:
   **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
   the latest version" and your AI assistant will automatically compare versions
   and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs/ui/native/getting-started/mcp-server).
+  Server](/docs/ui/react-v3/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -47,7 +47,7 @@ Update to the latest version:
 
 This release introduces **1 new** typography component:
 
-- **[Text](/docs/ui/native/components/text)**: Primitive typography component with semantic `type` variants and `Heading`, `Paragraph`, and `Code` sub-components. ([Documentation](/docs/ui/native/components/text))
+- **[Text](/docs/ui/react-v3/native/components/text)**: Primitive typography component with semantic `type` variants and `Heading`, `Paragraph`, and `Code` sub-components. ([Documentation](/docs/ui/react-v3/native/components/text))
 
 #### Text
 
@@ -94,7 +94,7 @@ export function Example() {
 }
 ```
 
-For complete documentation and examples, see the [Text component page](/docs/ui/native/components/text).
+For complete documentation and examples, see the [Text component page](/docs/ui/react-v3/native/components/text).
 
 **Related PR:** [#400](https://github.com/heroui-inc/heroui-native/pull/400)
 
@@ -102,7 +102,7 @@ For complete documentation and examples, see the [Text component page](/docs/ui/
 
 ### ScrollShadow Inverted Child Support
 
-The [ScrollShadow](/docs/ui/native/components/scroll-shadow) component now correctly handles inverted scrollable children such as `<FlatList inverted>` or `<FlashList inverted>`.
+The [ScrollShadow](/docs/ui/react-v3/native/components/scroll-shadow) component now correctly handles inverted scrollable children such as `<FlatList inverted>` or `<FlashList inverted>`.
 
 **Improvements:**
 
@@ -116,7 +116,7 @@ Previously, wrapping an inverted list would render the gradient shadow on the to
 
 ### Tabs RTL Indicator Alignment
 
-The [Tabs](/docs/ui/native/components/tabs) component's indicator now positions correctly when React Native is running in RTL mode.
+The [Tabs](/docs/ui/react-v3/native/components/tabs) component's indicator now positions correctly when React Native is running in RTL mode.
 
 **Improvements:**
 
@@ -131,7 +131,7 @@ The indicator uses an absolute `left` anchor combined with a measured `translate
 
 ### Select Trigger Indicator Unified Rendering
 
-The [Select](/docs/ui/native/components/select) component's `Select.TriggerIndicator` now applies the open/close rotation animation consistently, regardless of whether the default icon or custom `children` are rendered.
+The [Select](/docs/ui/react-v3/native/components/select) component's `Select.TriggerIndicator` now applies the open/close rotation animation consistently, regardless of whether the default icon or custom `children` are rendered.
 
 **Improvements:**
 
@@ -147,7 +147,7 @@ Previously, passing custom `children` to `Select.TriggerIndicator` bypassed the 
 
 ### Optional `alt` Prop on Avatar
 
-The [Avatar](/docs/ui/native/components/avatar) component's `alt` prop is now optional and defaults to `'Avatar'`, reducing boilerplate for decorative or contextually obvious avatars while preserving accessibility support.
+The [Avatar](/docs/ui/react-v3/native/components/avatar) component's `alt` prop is now optional and defaults to `'Avatar'`, reducing boilerplate for decorative or contextually obvious avatars while preserving accessibility support.
 
 **New Capability:**
 
@@ -168,7 +168,7 @@ Existing code that passes an explicit `alt` continues to work unchanged — the 
 
 ### Button, Chip, and Input Style Refinements
 
-Refined sizing and color styling across [Button](/docs/ui/native/components/button), [Chip](/docs/ui/native/components/chip), and [Input](/docs/ui/native/components/input) to standardize on Tailwind utility classes and semantic soft color tokens.
+Refined sizing and color styling across [Button](/docs/ui/react-v3/native/components/button), [Chip](/docs/ui/react-v3/native/components/chip), and [Input](/docs/ui/react-v3/native/components/input) to standardize on Tailwind utility classes and semantic soft color tokens.
 
 **Fixes:**
 
@@ -184,7 +184,7 @@ Minor pixel-level differences in Button `sm` size (+4px) and Chip `md`/`lg` padd
 
 ### TextField and SearchField Inner Padding Fix
 
-The [TextField](/docs/ui/native/components/text-field) and [SearchField](/docs/ui/native/components/search-field) components no longer apply extra horizontal padding to nested `Label`, `Description`, and `FieldError` components.
+The [TextField](/docs/ui/react-v3/native/components/text-field) and [SearchField](/docs/ui/react-v3/native/components/search-field) components no longer apply extra horizontal padding to nested `Label`, `Description`, and `FieldError` components.
 
 **Fixes:**
 
@@ -213,9 +213,9 @@ This release includes fixes for the following issues:
 
 The following documentation pages have been updated to reflect the changes in this release:
 
-- [Text](/docs/ui/native/components/text) - New component documentation, anatomy, usage, and full API reference
-- [Avatar](/docs/ui/native/components/avatar) - `alt` prop documented as optional with default `'Avatar'`
-- [All Components](/docs/ui/native/components) - Added the new Typography category alongside the existing categories
+- [Text](/docs/ui/react-v3/native/components/text) - New component documentation, anatomy, usage, and full API reference
+- [Avatar](/docs/ui/react-v3/native/components/avatar) - `alt` prop documented as optional with default `'Avatar'`
+- [All Components](/docs/ui/react-v3/native/components) - Added the new Typography category alongside the existing categories
 
 ## Links
 

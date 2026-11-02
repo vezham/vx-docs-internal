@@ -34,7 +34,7 @@ Update to the latest version:
   **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
   the latest version" and your AI assistant will automatically compare versions
   and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs/ui/native/getting-started/mcp-server).
+  Server](/docs/ui/react-v3/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -47,9 +47,9 @@ Update to the latest version:
 
 This release introduces **3 new** components:
 
-- **[Slider](/docs/ui/native/components/slider)**: Slider component with single-value and range modes, horizontal/vertical orientation, custom number formatting, and spring-animated thumb feedback.
-- **[ListGroup](/docs/ui/native/components/list-group)**: Surface-based grouped list component with pressable items, prefix/suffix slots, and default chevron navigation indicator.
-- **[SearchField](/docs/ui/native/components/search-field)**: Compound component for filtering and querying content with built-in search icon, clearable input, and auto-hide clear button.
+- **[Slider](/docs/ui/react-v3/native/components/slider)**: Slider component with single-value and range modes, horizontal/vertical orientation, custom number formatting, and spring-animated thumb feedback.
+- **[ListGroup](/docs/ui/react-v3/native/components/list-group)**: Surface-based grouped list component with pressable items, prefix/suffix slots, and default chevron navigation indicator.
+- **[SearchField](/docs/ui/react-v3/native/components/search-field)**: Compound component for filtering and querying content with built-in search icon, clearable input, and auto-hide clear button.
 
 #### Slider
 
@@ -110,7 +110,7 @@ export function RangeSlider() {
 }
 ```
 
-For complete documentation and examples, see the [Slider component page](/docs/ui/native/components/slider).
+For complete documentation and examples, see the [Slider component page](/docs/ui/react-v3/native/components/slider).
 
 **Related PR:** [#305](https://github.com/heroui-inc/heroui-native/pull/305)
 
@@ -162,7 +162,7 @@ export function Example() {
 }
 ```
 
-For complete documentation and examples, see the [ListGroup component page](/docs/ui/native/components/list-group).
+For complete documentation and examples, see the [ListGroup component page](/docs/ui/react-v3/native/components/list-group).
 
 **Related PR:** [#302](https://github.com/heroui-inc/heroui-native/pull/302)
 
@@ -205,13 +205,13 @@ export function Example() {
 }
 ```
 
-For complete documentation and examples, see the [SearchField component page](/docs/ui/native/components/search-field).
+For complete documentation and examples, see the [SearchField component page](/docs/ui/react-v3/native/components/search-field).
 
 **Related PR:** [#299](https://github.com/heroui-inc/heroui-native/pull/299)
 
 ### Select Multi-Selection Mode
 
-The [Select](/docs/ui/native/components/select) component now supports multi-item selection via a new `selectionMode` prop. The `RootProps` type is now generic on `SelectionMode`, so TypeScript correctly resolves `value` and `onValueChange` types per mode—`SelectOption` for single, `SelectOption[]` for multiple.
+The [Select](/docs/ui/react-v3/native/components/select) component now supports multi-item selection via a new `selectionMode` prop. The `RootProps` type is now generic on `SelectionMode`, so TypeScript correctly resolves `value` and `onValueChange` types per mode—`SelectOption` for single, `SelectOption[]` for multiple.
 
 **Features:**
 
@@ -268,7 +268,7 @@ import { PressableFeedback } from 'heroui-native'
 
 ### Select Trigger and State Fixes
 
-The [Select](/docs/ui/native/components/select) component has been improved with several targeted fixes to the trigger and controllable state system.
+The [Select](/docs/ui/react-v3/native/components/select) component has been improved with several targeted fixes to the trigger and controllable state system.
 
 **Improvements:**
 
@@ -281,7 +281,7 @@ The [Select](/docs/ui/native/components/select) component has been improved with
 
 ### Avatar asChild Image Fix
 
-The [Avatar](/docs/ui/native/components/avatar) component's `AvatarImage` now correctly separates `source`, `style`, and `asChild` from rest props when forwarding to the underlying primitive, fixing an issue where all props were incorrectly spread to the image component when using `asChild`.
+The [Avatar](/docs/ui/react-v3/native/components/avatar) component's `AvatarImage` now correctly separates `source`, `style`, and `asChild` from rest props when forwarding to the underlying primitive, fixing an issue where all props were incorrectly spread to the image component when using `asChild`.
 
 **Related PR:** [#298](https://github.com/heroui-inc/heroui-native/pull/298)
 
@@ -289,7 +289,7 @@ The [Avatar](/docs/ui/native/components/avatar) component's `AvatarImage` now co
 
 ### Button Feedback API Refactor
 
-The [Button](/docs/ui/native/components/button) component's pressable feedback API has been refactored into a unified, type-safe `feedbackVariant` + `animation` prop pattern, replacing the previous multi-prop approach.
+The [Button](/docs/ui/react-v3/native/components/button) component's pressable feedback API has been refactored into a unified, type-safe `feedbackVariant` + `animation` prop pattern, replacing the previous multi-prop approach.
 
 **New Capability:**
 
@@ -397,13 +397,13 @@ This release includes fixes for the following issues:
 
 The following documentation pages have been updated to reflect the changes in this release:
 
-- [SearchField](/docs/ui/native/components/search-field) - New component documentation with usage examples and API reference
-- [ListGroup](/docs/ui/native/components/list-group) - New component documentation with usage examples and API reference
-- [Slider](/docs/ui/native/components/slider) - New component documentation with usage examples and API reference
-- [Select](/docs/ui/native/components/select) - Multi-selection mode, trigger className fix, and controllable state improvements
-- [Button](/docs/ui/native/components/button) - Updated feedback API documentation with new `feedbackVariant` and `animation` props
-- [Avatar](/docs/ui/native/components/avatar) - Fixed `asChild` image prop spreading documentation
-- [PressableFeedback](/docs/ui/native/components/pressable-feedback) - New `PressableFeedback.Scale` subcomponent documentation
+- [SearchField](/docs/ui/react-v3/native/components/search-field) - New component documentation with usage examples and API reference
+- [ListGroup](/docs/ui/react-v3/native/components/list-group) - New component documentation with usage examples and API reference
+- [Slider](/docs/ui/react-v3/native/components/slider) - New component documentation with usage examples and API reference
+- [Select](/docs/ui/react-v3/native/components/select) - Multi-selection mode, trigger className fix, and controllable state improvements
+- [Button](/docs/ui/react-v3/native/components/button) - Updated feedback API documentation with new `feedbackVariant` and `animation` props
+- [Avatar](/docs/ui/react-v3/native/components/avatar) - Fixed `asChild` image prop spreading documentation
+- [PressableFeedback](/docs/ui/react-v3/native/components/pressable-feedback) - New `PressableFeedback.Scale` subcomponent documentation
 
 ## Links
 

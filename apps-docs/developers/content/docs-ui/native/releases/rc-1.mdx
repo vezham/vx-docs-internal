@@ -34,7 +34,7 @@ Update to the latest version:
   **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
   the latest version" and your AI assistant will automatically compare versions
   and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs/ui/native/getting-started/mcp-server).
+  Server](/docs/ui/react-v3/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -47,7 +47,7 @@ Update to the latest version:
 
 This release introduces **1 new** component:
 
-- **[Alert](/docs/ui/native/components/alert)**: Accessible alert component with five status variants and compound sub-components for flexible content composition.
+- **[Alert](/docs/ui/react-v3/native/components/alert)**: Accessible alert component with five status variants and compound sub-components for flexible content composition.
 
 #### Alert
 
@@ -90,7 +90,7 @@ export function Example() {
 }
 ```
 
-For complete documentation and examples, see the [Alert component page](/docs/ui/native/components/alert).
+For complete documentation and examples, see the [Alert component page](/docs/ui/react-v3/native/components/alert).
 
 **Related PR:** [#284](https://github.com/heroui-inc/heroui-native/pull/284)
 
@@ -98,7 +98,7 @@ For complete documentation and examples, see the [Alert component page](/docs/ui
 
 #### Select.TriggerIndicator
 
-The [Select](/docs/ui/native/components/select) component now includes a `TriggerIndicator` subcomponent that displays an animated chevron icon to visually indicate the open/close state. The indicator rotates smoothly when the select opens or closes, using React Native Reanimated spring physics.
+The [Select](/docs/ui/react-v3/native/components/select) component now includes a `TriggerIndicator` subcomponent that displays an animated chevron icon to visually indicate the open/close state. The indicator rotates smoothly when the select opens or closes, using React Native Reanimated spring physics.
 
 **Features:**
 
@@ -130,7 +130,7 @@ import { Select } from 'heroui-native'
 
 ### Toast Styling and Stacking Refactor
 
-The [Toast](/docs/ui/native/components/toast) component styling has been refactored to replace the border-based padding approach with proper padding and vertical placeholder views, improving content visibility when toasts stack.
+The [Toast](/docs/ui/react-v3/native/components/toast) component styling has been refactored to replace the border-based padding approach with proper padding and vertical placeholder views, improving content visibility when toasts stack.
 
 **Improvements:**
 
@@ -146,7 +146,7 @@ This refactor ensures content remains properly hidden when toasts of different h
 
 ### Dialog Overlay Animation Fix
 
-The [Dialog](/docs/ui/native/components/dialog) component's popup animation timing has been fixed when closing via gesture. The progress value is now properly sequenced with delays to ensure the closing animation completes before resetting.
+The [Dialog](/docs/ui/react-v3/native/components/dialog) component's popup animation timing has been fixed when closing via gesture. The progress value is now properly sequenced with delays to ensure the closing animation completes before resetting.
 
 **Improvements:**
 
@@ -296,7 +296,7 @@ import { Button, Select } from "heroui-native";
 
 ### ControlField Radio Variant
 
-The [ControlField](/docs/ui/native/components/control-field) component now supports a `"radio"` variant in `ControlField.Indicator`, rendering a standalone Radio component alongside the existing `"switch"` and `"checkbox"` variants.
+The [ControlField](/docs/ui/react-v3/native/components/control-field) component now supports a `"radio"` variant in `ControlField.Indicator`, rendering a standalone Radio component alongside the existing `"switch"` and `"checkbox"` variants.
 
 **New Capability:**
 
@@ -436,21 +436,21 @@ This release includes fixes for the following issues:
 
 The following documentation pages have been updated to reflect the changes in this release:
 
-- [Alert](/docs/ui/native/components/alert) - New component documentation with usage examples and API reference
-- [Radio](/docs/ui/native/components/radio-group#radio) - New standalone Radio component documentation
-- [Radio Group](/docs/ui/native/components/radio-group) - Updated to reflect RadioGroup.Indicator removal and Radio integration
-- [Control Field](/docs/ui/native/components/control-field) - Updated with new radio variant documentation
-- [Select](/docs/ui/native/components/select) - TriggerIndicator subcomponent and Trigger variant documentation
-- [Toast](/docs/ui/native/components/toast) - Updated styling approach documentation
-- [Bottom Sheet](/docs/ui/native/components/bottom-sheet) - Added disableFullWindowOverlay documentation
-- [Dialog](/docs/ui/native/components/dialog) - Added disableFullWindowOverlay documentation
-- [Popover](/docs/ui/native/components/popover) - Added disableFullWindowOverlay documentation
-- [Provider](/docs/ui/native/getting-started/provider) - HeroUINativeProviderRaw documentation and provider hierarchy
-- [Theming](/docs/ui/native/getting-started/theming) - Updated surface variable structure and examples
-- [Accordion](/docs/ui/native/components/accordion) - Added styles prop documentation
-- [Avatar](/docs/ui/native/components/avatar) - Added styles prop documentation
-- [Label](/docs/ui/native/components/label) - Added styles prop documentation
-- [Field Error](/docs/ui/native/components/field-error) - Added styles prop documentation
+- [Alert](/docs/ui/react-v3/native/components/alert) - New component documentation with usage examples and API reference
+- [Radio](/docs/ui/react-v3/native/components/radio-group#radio) - New standalone Radio component documentation
+- [Radio Group](/docs/ui/react-v3/native/components/radio-group) - Updated to reflect RadioGroup.Indicator removal and Radio integration
+- [Control Field](/docs/ui/react-v3/native/components/control-field) - Updated with new radio variant documentation
+- [Select](/docs/ui/react-v3/native/components/select) - TriggerIndicator subcomponent and Trigger variant documentation
+- [Toast](/docs/ui/react-v3/native/components/toast) - Updated styling approach documentation
+- [Bottom Sheet](/docs/ui/react-v3/native/components/bottom-sheet) - Added disableFullWindowOverlay documentation
+- [Dialog](/docs/ui/react-v3/native/components/dialog) - Added disableFullWindowOverlay documentation
+- [Popover](/docs/ui/react-v3/native/components/popover) - Added disableFullWindowOverlay documentation
+- [Provider](/docs/ui/react-v3/native/getting-started/provider) - HeroUINativeProviderRaw documentation and provider hierarchy
+- [Theming](/docs/ui/react-v3/native/getting-started/theming) - Updated surface variable structure and examples
+- [Accordion](/docs/ui/react-v3/native/components/accordion) - Added styles prop documentation
+- [Avatar](/docs/ui/react-v3/native/components/avatar) - Added styles prop documentation
+- [Label](/docs/ui/react-v3/native/components/label) - Added styles prop documentation
+- [Field Error](/docs/ui/react-v3/native/components/field-error) - Added styles prop documentation
 
 ## Links
 

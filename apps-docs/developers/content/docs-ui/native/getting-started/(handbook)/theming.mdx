@@ -75,7 +75,7 @@ function ThemeToggle() {
 }
 ```
 
-> **Note**: See [Colors](/docs/ui/native/getting-started/colors) for the complete color palette and visual reference.
+> **Note**: See [Colors](/docs/ui/react-v3/native/getting-started/colors) for the complete color palette and visual reference.
 
 **Create your own theme:**
 
@@ -83,8 +83,8 @@ Create multiple themes using Uniwind's variant system. For complete custom theme
 
 <Callout type="warning">
   **Important:** All themes must define the same variables. See the [Default
-  Theme](/docs/ui/native/getting-started/colors#default-theme) section for a
-  complete list of all required variables.
+  Theme](/docs/ui/react-v3/native/getting-started/colors#default-theme) section
+  for a complete list of all required variables.
 </Callout>
 
 ```css
@@ -357,7 +357,7 @@ HeroUI defines three types of variables:
 2. **Theme Variables** — Colors that change between light/dark themes
 3. **Calculated Variables** — Automatically generated hover (pressed) states and size variants
 
-For a complete reference, see: [Colors Documentation](/docs/ui/native/getting-started/colors), [Default Theme Variables](https://github.com/heroui-inc/heroui-native/blob/main/src/styles/variables.css), [Shared Theme Utilities](https://github.com/heroui-inc/heroui-native/blob/main/src/styles/theme.css)
+For a complete reference, see: [Colors Documentation](/docs/ui/react-v3/native/getting-started/colors), [Default Theme Variables](https://github.com/heroui-inc/heroui-native/blob/main/src/styles/variables.css), [Shared Theme Utilities](https://github.com/heroui-inc/heroui-native/blob/main/src/styles/theme.css)
 
 **Calculated variables (Tailwind):**
 
@@ -493,7 +493,7 @@ By default, HeroUI Native uses accessible soft foreground colors that mix the se
 @import 'heroui-native/styles/vibrant'; /* [!code highlight] */
 ```
 
-This switches all `*-soft-foreground` variables (accent, success, warning, danger) to use 92% of the semantic color with only 8% foreground mixed in — closer to the raw color but with a slight contrast boost. Components such as [Alert](/docs/ui/native/components/alert), [Avatar](/docs/ui/native/components/avatar), [Button](/docs/ui/native/components/button), [Chip](/docs/ui/native/components/chip), and [Toast](/docs/ui/native/components/toast) automatically pick up the new soft foreground colors on their soft variants — no component prop changes are required.
+This switches all `*-soft-foreground` variables (accent, success, warning, danger) to use 92% of the semantic color with only 8% foreground mixed in — closer to the raw color but with a slight contrast boost. Components such as [Alert](/docs/ui/react-v3/native/components/alert), [Avatar](/docs/ui/react-v3/native/components/avatar), [Button](/docs/ui/react-v3/native/components/button), [Chip](/docs/ui/react-v3/native/components/chip), and [Toast](/docs/ui/react-v3/native/components/toast) automatically pick up the new soft foreground colors on their soft variants — no component prop changes are required.
 
 | Mode            | Accessible (default)                         | Vibrant                               |
 | --------------- | -------------------------------------------- | ------------------------------------- |
@@ -507,12 +507,12 @@ This switches all `*-soft-foreground` variables (accent, success, warning, dange
 
 <Callout type="info">
   The optional vibrant palette is available starting from
-  [v1.0.4](/docs/ui/native/releases/v1-0-4).
+  [v1.0.4](/docs/ui/react-v3/native/releases/v1-0-4).
 </Callout>
 
 ## Resources
 
-- [Colors Documentation](/docs/ui/native/getting-started/colors)
-- [Styling Guide](/docs/ui/native/getting-started/styling)
+- [Colors Documentation](/docs/ui/react-v3/native/getting-started/colors)
+- [Styling Guide](/docs/ui/react-v3/native/getting-started/styling)
 - [Tailwind CSS v4 Theming](https://tailwindcss.com/docs/theme)
 - [OKLCH Color Tool](https://oklch.com)

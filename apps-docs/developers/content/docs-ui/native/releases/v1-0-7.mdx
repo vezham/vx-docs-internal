@@ -33,7 +33,7 @@ Update to the latest version:
   **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
   the latest version" and your AI assistant will automatically compare versions
   and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs/ui/native/getting-started/mcp-server).
+  Server](/docs/ui/react-v3/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -87,7 +87,7 @@ Whether a default layer mounts is decided by the `--theme` CSS variable, with `u
 
 **Migration:**
 
-No API changes are required. To restore the previous surface appearance, override the styling on the [Select](/docs/ui/native/components/select) trigger:
+No API changes are required. To restore the previous surface appearance, override the styling on the [Select](/docs/ui/react-v3/native/components/select) trigger:
 
 ```tsx
 // Before — trigger rendered with surface tokens by default
@@ -103,7 +103,7 @@ No API changes are required. To restore the previous surface appearance, overrid
 
 `.toast__root` moves from `--color-surface` to `--color-overlay`, and its default label color moves from `--color-foreground` to `--color-overlay-foreground`.
 
-In the shipped theme these tokens resolve to identical values in both light (`--white`) and dark (`oklch(0.2103 0.0059 285.89)`) modes, so there is **no visible change** out of the box. This only matters if you have overridden `--surface` and `--overlay` — or `--foreground` and `--overlay-foreground` — to different values, in which case [Toast](/docs/ui/native/components/toast) will now pick up your overlay values instead of your surface values.
+In the shipped theme these tokens resolve to identical values in both light (`--white`) and dark (`oklch(0.2103 0.0059 285.89)`) modes, so there is **no visible change** out of the box. This only matters if you have overridden `--surface` and `--overlay` — or `--foreground` and `--overlay-foreground` — to different values, in which case [Toast](/docs/ui/react-v3/native/components/toast) will now pick up your overlay values instead of your surface values.
 
 **Migration:**
 
@@ -121,9 +121,9 @@ If you customized `--surface` for Toast, move that customization to `--overlay`,
 
 The following documentation pages have been updated to reflect the changes in this release:
 
-- [Dialog](/docs/ui/native/components/dialog) - Documented the `blur` overlay variant and `blurViewProps`
-- [Bottom Sheet](/docs/ui/native/components/bottom-sheet) - Documented the `blur` overlay variant and `blurViewProps`
-- Background layer documentation added to [Button](/docs/ui/native/components/button), [Avatar](/docs/ui/native/components/avatar), [Checkbox](/docs/ui/native/components/checkbox), [Chip](/docs/ui/native/components/chip), [Input](/docs/ui/native/components/input), [InputOTP](/docs/ui/native/components/input-otp), [Menu](/docs/ui/native/components/menu), [Radio Group](/docs/ui/native/components/radio-group), [Slider](/docs/ui/native/components/slider), [Switch](/docs/ui/native/components/switch), [Tabs](/docs/ui/native/components/tabs), and [TagGroup](/docs/ui/native/components/tag-group)
+- [Dialog](/docs/ui/react-v3/native/components/dialog) - Documented the `blur` overlay variant and `blurViewProps`
+- [Bottom Sheet](/docs/ui/react-v3/native/components/bottom-sheet) - Documented the `blur` overlay variant and `blurViewProps`
+- Background layer documentation added to [Button](/docs/ui/react-v3/native/components/button), [Avatar](/docs/ui/react-v3/native/components/avatar), [Checkbox](/docs/ui/react-v3/native/components/checkbox), [Chip](/docs/ui/react-v3/native/components/chip), [Input](/docs/ui/react-v3/native/components/input), [InputOTP](/docs/ui/react-v3/native/components/input-otp), [Menu](/docs/ui/react-v3/native/components/menu), [Radio Group](/docs/ui/react-v3/native/components/radio-group), [Slider](/docs/ui/react-v3/native/components/slider), [Switch](/docs/ui/react-v3/native/components/switch), [Tabs](/docs/ui/react-v3/native/components/tabs), and [TagGroup](/docs/ui/react-v3/native/components/tag-group)
 
 ## Links
 

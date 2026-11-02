@@ -63,8 +63,8 @@ const attributes = node =>
 const normalizedMetadata = value =>
   JSON.parse(
     JSON.stringify(value)
-      .replaceAll('/docs/react', '/docs/ui/web')
-      .replaceAll('/docs/native', '/docs/ui/native')
+      .replaceAll('/docs/react', '/docs/ui/react-v3/web')
+      .replaceAll('/docs/native', '/docs/ui/react-v3/native')
       .replaceAll('](/showcase)', '](https://heroui.com/showcase)')
   )
 const exportedNames = async (file, seen = new Set()) => {
@@ -298,7 +298,7 @@ for (const file of new Set(Object.values(registry))) {
   let expected = await readFile(path.join(upstream, 'src/demos', file), 'utf8')
   expected = expected
     .replaceAll('@heroui/react', '@vezham/react-v3')
-    .replaceAll('/docs/react/', '/docs/ui/web/')
+    .replaceAll('/docs/react/', '/docs/ui/react-v3/web/')
   if (!/\bReact[.<]/.test(expected))
     expected = expected
       .replace(/^import React from "react";\n/m, '')

@@ -17,7 +17,7 @@ Full migration is a structured approach to migrating from HeroUI v2 to v3. This 
 
 ### AI Assistant Resources
 
-AI assistants can help with migration. Use the [Migration MCP Server](/docs/ui/web/migration/mcp-server) for tools and prompts, [Migration Agent Skills](/docs/ui/web/migration/agent-skills) for skill-based knowledge, or [AGENTS.md for Migration](/docs/ui/web/migration/agents-md) to download migration docs into your project.
+AI assistants can help with migration. Use the [Migration MCP Server](/docs/ui/react-v3/web/migration/mcp-server) for tools and prompts, [Migration Agent Skills](/docs/ui/react-v3/web/migration/agent-skills) for skill-based knowledge, or [AGENTS.md for Migration](/docs/ui/react-v3/web/migration/agents-md) to download migration docs into your project.
 
 ## Migration Workflow
 
@@ -214,7 +214,7 @@ v3 removes the Framer Motion dependency and handles animations differently:
 
 HeroUI v2 provided component hooks (like `useSwitch`, `useInput`, `useCheckbox`, etc.) and utility hooks like `useDisclosure`. HeroUI v3 removes most component hooks in favor of compound components, and replaces `useDisclosure` with `useOverlayState`.
 
-See the comprehensive [Hooks Migration Guide](/docs/ui/web/migration/hooks) for:
+See the comprehensive [Hooks Migration Guide](/docs/ui/react-v3/web/migration/hooks) for:
 
 - Component hooks removal and migration to compound components
 - `useDisclosure` → `useOverlayState` migration
@@ -274,7 +274,7 @@ type MyButtonProps = ButtonProps & {
 
 ### Step 6: Component Migration
 
-Use the [Component Migration Reference](/docs/ui/web/migration#component-migration-reference) table to find migration guides for each component. Migrate components according to their specific guides.
+Use the [Component Migration Reference](/docs/ui/react-v3/web/migration#component-migration-reference) table to find migration guides for each component. Migrate components according to their specific guides.
 
 **Key points:**
 
@@ -331,7 +331,7 @@ v3 uses CSS variables. Override them in your CSS:
 }
 ```
 
-Check the [Theming documentation](/docs/ui/web/getting-started/theming) for available CSS variables.
+Check the [Theming documentation](/docs/ui/react-v3/web/getting-started/theming) for available CSS variables.
 
 This is a good point to pause and verify component functionality before proceeding to styling migration.
 
@@ -345,7 +345,7 @@ After component migration is complete, ensure all hooks have been migrated:
 
 1. **Replace component hooks**: Replace hooks like `useSwitch`, `useInput`, `useCheckbox`, etc. with compound components
 2. **Migrate useDisclosure**: Replace `useDisclosure` with `useOverlayState` for overlay state management
-3. **Reference hooks guide**: See the [Hooks Migration Guide](/docs/ui/web/migration/hooks) for detailed migration instructions and examples
+3. **Reference hooks guide**: See the [Hooks Migration Guide](/docs/ui/react-v3/web/migration/hooks) for detailed migration instructions and examples
 
 </section>
 
@@ -357,7 +357,7 @@ After hooks migration is complete, proceed with styling changes. This is a separ
 
 **Styling Migration Guide:**
 
-See the comprehensive [Styling Migration Guide](/docs/ui/web/migration/styling) for:
+See the comprehensive [Styling Migration Guide](/docs/ui/react-v3/web/migration/styling) for:
 
 - Utility class changes (`text-tiny` → `text-xs`, `rounded-small` → `rounded-sm`, etc.)
 - Color token updates (`bg-primary` → `bg-accent`, `bg-content1` → `bg-surface`, etc.)
@@ -375,7 +375,7 @@ See the comprehensive [Styling Migration Guide](/docs/ui/web/migration/styling) 
 
 **Migration Checklist:**
 
-- Review [Styling Migration Guide](/docs/ui/web/migration/styling)
+- Review [Styling Migration Guide](/docs/ui/react-v3/web/migration/styling)
 - Update utility classes (`text-tiny` → `text-xs`, etc.)
 - Update color tokens (`bg-primary` → `bg-accent`, etc.)
 - Update content colors (`bg-content1` → `bg-surface` or `bg-overlay`)
@@ -432,7 +432,7 @@ Use this checklist to track your full migration progress:
 
 ### Application Code - Hooks Migration
 
-- Review [Hooks Migration Guide](/docs/ui/web/migration/hooks)
+- Review [Hooks Migration Guide](/docs/ui/react-v3/web/migration/hooks)
 - Replace component hooks (`useSwitch`, `useInput`, `useCheckbox`, etc.) with compound components
 - Replace `useDisclosure` with `useOverlayState` for overlay state management
 - Update all hook usages according to migration guide
@@ -440,7 +440,7 @@ Use this checklist to track your full migration progress:
 
 ### Application Code - Styling Migration
 
-- Review [Styling Migration Guide](/docs/ui/web/migration/styling)
+- Review [Styling Migration Guide](/docs/ui/react-v3/web/migration/styling)
 - Update utility classes (`text-tiny` → `text-xs`, `rounded-small` → `rounded-sm`, etc.)
 - Update color tokens (`bg-primary` → `bg-accent`, `bg-secondary` → `bg-default`, etc.)
 - Update content colors (`bg-content1` → `bg-surface` or `bg-overlay`)
@@ -461,7 +461,7 @@ Use this checklist to track your full migration progress:
 
 After completing the full migration:
 
-1. Review the [v3 component documentation](/docs/ui/web/components)
+1. Review the [v3 component documentation](/docs/ui/react-v3/web/components)
 2. Explore new components available in v3
-3. Check out the [styling guide](/docs/ui/web/getting-started/styling)
-4. Learn about [composition patterns](/docs/ui/web/getting-started/composition)
+3. Check out the [styling guide](/docs/ui/react-v3/web/getting-started/styling)
+4. Learn about [composition patterns](/docs/ui/react-v3/web/getting-started/composition)

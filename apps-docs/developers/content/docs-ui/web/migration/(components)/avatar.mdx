@@ -10,9 +10,10 @@ import {
 } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
 <Callout type="info">
-  Refer to the [v3 Avatar documentation](/docs/ui/web/components/avatar) for
-  complete API reference, styling guide, and advanced examples. This guide only
-  focuses on migrating from HeroUI v2.
+  Refer to the [v3 Avatar
+  documentation](/docs/ui/react-v3/web/components/avatar) for complete API
+  reference, styling guide, and advanced examples. This guide only focuses on
+  migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -53,25 +54,25 @@ export default function App() {
 
 ### 2. Prop Changes
 
-| v2 Prop                     | v3 Location       | Notes                                                                                                                                                                                                                                          |
-| --------------------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `src`                       | `Avatar.Image`    | Use `<Avatar.Image src="..." />`                                                                                                                                                                                                               |
-| `name`                      | -                 | Generate initials and pass to `<Avatar.Fallback />`                                                                                                                                                                                            |
-| `showFallback`              | -                 | Removed (fallback shown if image fails or not provided)                                                                                                                                                                                        |
-| `fallback`, `icon`          | `Avatar.Fallback` | Place content in `<Avatar.Fallback />`                                                                                                                                                                                                         |
-| `color`                     | `Avatar`          | Same; `primary` → `accent`, `secondary` → `default`                                                                                                                                                                                            |
-| `variant`                   | `Avatar`          | New in v3; `"default"` \| `"soft"`                                                                                                                                                                                                             |
-| `size`                      | `Avatar`          | Same                                                                                                                                                                                                                                           |
-| `isBordered`                | -                 | Removed (use Tailwind e.g. `ring-2 ring-background`)                                                                                                                                                                                           |
-| `radius`                    | -                 | Removed (use Tailwind e.g. `rounded-full`)                                                                                                                                                                                                     |
-| `isDisabled`, `isFocusable` | -                 | Removed (use Tailwind / `asChild` if needed)                                                                                                                                                                                                   |
-| `getInitials`               | -                 | Generate initials manually                                                                                                                                                                                                                     |
-| `ImgComponent`, `imgProps`  | -                 | Use `asChild` on `Avatar.Image` if needed                                                                                                                                                                                                      |
-| `onError`                   | `Avatar.Image`    | Use `onError` on `<Avatar.Image />`                                                                                                                                                                                                            |
-| -                           | `Avatar.Image`    | New: `srcSet`, `sizes`, `loading` for responsive images                                                                                                                                                                                        |
-| -                           | `Avatar.Fallback` | New: `delayMs` to delay fallback display (prevents flash)                                                                                                                                                                                      |
-| `classNames`                | -                 | Use `className` on parts                                                                                                                                                                                                                       |
-| AvatarGroup                 | `AvatarGroup`     | Available again — compound `Avatar` children with `max` / `color` / `variant` / `isGrid` / `overlap` (`clip`\|`ring`) and optional `AvatarGroup.Count`; v2 `total` → explicit `Count`; see [AvatarGroup](/docs/ui/web/components/avatar-group) |
+| v2 Prop                     | v3 Location       | Notes                                                                                                                                                                                                                                                   |
+| --------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src`                       | `Avatar.Image`    | Use `<Avatar.Image src="..." />`                                                                                                                                                                                                                        |
+| `name`                      | -                 | Generate initials and pass to `<Avatar.Fallback />`                                                                                                                                                                                                     |
+| `showFallback`              | -                 | Removed (fallback shown if image fails or not provided)                                                                                                                                                                                                 |
+| `fallback`, `icon`          | `Avatar.Fallback` | Place content in `<Avatar.Fallback />`                                                                                                                                                                                                                  |
+| `color`                     | `Avatar`          | Same; `primary` → `accent`, `secondary` → `default`                                                                                                                                                                                                     |
+| `variant`                   | `Avatar`          | New in v3; `"default"` \| `"soft"`                                                                                                                                                                                                                      |
+| `size`                      | `Avatar`          | Same                                                                                                                                                                                                                                                    |
+| `isBordered`                | -                 | Removed (use Tailwind e.g. `ring-2 ring-background`)                                                                                                                                                                                                    |
+| `radius`                    | -                 | Removed (use Tailwind e.g. `rounded-full`)                                                                                                                                                                                                              |
+| `isDisabled`, `isFocusable` | -                 | Removed (use Tailwind / `asChild` if needed)                                                                                                                                                                                                            |
+| `getInitials`               | -                 | Generate initials manually                                                                                                                                                                                                                              |
+| `ImgComponent`, `imgProps`  | -                 | Use `asChild` on `Avatar.Image` if needed                                                                                                                                                                                                               |
+| `onError`                   | `Avatar.Image`    | Use `onError` on `<Avatar.Image />`                                                                                                                                                                                                                     |
+| -                           | `Avatar.Image`    | New: `srcSet`, `sizes`, `loading` for responsive images                                                                                                                                                                                                 |
+| -                           | `Avatar.Fallback` | New: `delayMs` to delay fallback display (prevents flash)                                                                                                                                                                                               |
+| `classNames`                | -                 | Use `className` on parts                                                                                                                                                                                                                                |
+| AvatarGroup                 | `AvatarGroup`     | Available again — compound `Avatar` children with `max` / `color` / `variant` / `isGrid` / `overlap` (`clip`\|`ring`) and optional `AvatarGroup.Count`; v2 `total` → explicit `Count`; see [AvatarGroup](/docs/ui/react-v3/web/components/avatar-group) |
 
 ### 3. Variant Prop (New in v3)
 
@@ -134,7 +135,7 @@ export default function App() {
 ### 8. AvatarGroup (Available in v3)
 
 **v2:** Dedicated `AvatarGroup` with props like `isBordered`, `max`, and `total`
-**v3:** `AvatarGroup` is available again as a dedicated component. Wrap compound `Avatar` children, inherit `size` / `color` / `variant` via context, and use `max`, `isGrid`, and `overlap` (`"clip"` default, or `"ring"`). v2 `total` is removed — render an explicit `AvatarGroup.Count` child for a known server total (it suppresses the auto count from `max`). `isBordered` is removed; use Tailwind or `overlap="ring"`. See the [AvatarGroup docs](/docs/ui/web/components/avatar-group).
+**v3:** `AvatarGroup` is available again as a dedicated component. Wrap compound `Avatar` children, inherit `size` / `color` / `variant` via context, and use `max`, `isGrid`, and `overlap` (`"clip"` default, or `"ring"`). v2 `total` is removed — render an explicit `AvatarGroup.Count` child for a known server total (it suppresses the auto count from `max`). `isBordered` is removed; use Tailwind or `overlap="ring"`. See the [AvatarGroup docs](/docs/ui/react-v3/web/components/avatar-group).
 
 ```tsx
 import { Avatar, AvatarGroup } from '@heroui/react'
@@ -421,6 +422,6 @@ function getInitials(name: string): string {
 8. **Bordered Removed**: Use Tailwind `ring-2 ring-background` classes
 9. **Radius Removed**: Use Tailwind `rounded-*` classes
 10. **Disabled Removed**: Use Tailwind `opacity-50` classes
-11. **AvatarGroup Available**: Use the dedicated `AvatarGroup` component ([docs](/docs/ui/web/components/avatar-group)) with compound `Avatar` children, `max` / `overlap` / `isGrid`, and optional `AvatarGroup.Count` (replaces v2 `total`)
+11. **AvatarGroup Available**: Use the dedicated `AvatarGroup` component ([docs](/docs/ui/react-v3/web/components/avatar-group)) with compound `Avatar` children, `max` / `overlap` / `isGrid`, and optional `AvatarGroup.Count` (replaces v2 `total`)
 12. **Icon Prop Removed**: Place icon content in `Avatar.Fallback`
 13. **ClassNames Removed**: Use `className` props on individual components

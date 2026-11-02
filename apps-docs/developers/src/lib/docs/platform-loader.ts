@@ -31,7 +31,7 @@ export const createPlatformDocsLoader =
       slugs: params._splat?.split('/').filter(Boolean) ?? [],
       lang: data.locale
     })
-    const routeBase = `/docs/ui/${params.platform}`
+    const routeBase = `/docs/ui/react-v3/${params.platform}`
     const tree = runtime.source.getPageTree(data.locale)
 
     return {

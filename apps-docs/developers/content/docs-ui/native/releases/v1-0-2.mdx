@@ -33,7 +33,7 @@ Update to the latest version:
   **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
   the latest version" and your AI assistant will automatically compare versions
   and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs/ui/native/getting-started/mcp-server).
+  Server](/docs/ui/react-v3/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -44,7 +44,7 @@ Update to the latest version:
 
 ### `asChild` Slot Pattern for PressableFeedback and Surface
 
-The [PressableFeedback](/docs/ui/native/components/pressable-feedback) and [Surface](/docs/ui/native/components/surface) components now support the `asChild` prop, enabling the Slot pattern for polymorphic rendering. When `asChild` is `true`, each component merges its behavior and styling onto a single child element instead of wrapping it in an additional node.
+The [PressableFeedback](/docs/ui/react-v3/native/components/pressable-feedback) and [Surface](/docs/ui/react-v3/native/components/surface) components now support the `asChild` prop, enabling the Slot pattern for polymorphic rendering. When `asChild` is `true`, each component merges its behavior and styling onto a single child element instead of wrapping it in an additional node.
 
 **PressableFeedback** uses `Animated.createAnimatedComponent(Slot.Pressable)` to merge press handling and animated styles onto the child element. **Surface** uses `Slot.View` to merge surface styling (elevation, background, className) onto the child element.
 
@@ -74,12 +74,12 @@ A new `unstable_accessibilityContainerViewIsModal` prop has been added to all po
 
 **Supported components:**
 
-- [BottomSheet](/docs/ui/native/components/bottom-sheet) (`BottomSheet.Portal`)
-- [Dialog](/docs/ui/native/components/dialog) (`Dialog.Portal`)
-- [Menu](/docs/ui/native/components/menu) (`Menu.Portal`)
-- [Popover](/docs/ui/native/components/popover) (`Popover.Portal`)
-- [Select](/docs/ui/native/components/select) (`Select.Portal`)
-- [Toast](/docs/ui/native/components/toast) (`ToastProvider`)
+- [BottomSheet](/docs/ui/react-v3/native/components/bottom-sheet) (`BottomSheet.Portal`)
+- [Dialog](/docs/ui/react-v3/native/components/dialog) (`Dialog.Portal`)
+- [Menu](/docs/ui/react-v3/native/components/menu) (`Menu.Portal`)
+- [Popover](/docs/ui/react-v3/native/components/popover) (`Popover.Portal`)
+- [Select](/docs/ui/react-v3/native/components/select) (`Select.Portal`)
+- [Toast](/docs/ui/react-v3/native/components/toast) (`ToastProvider`)
 
 **New capability:**
 
@@ -103,7 +103,7 @@ The prop defaults to `false`, preserving existing behavior. It is marked `unstab
 
 ### Input and Select Visual Refinements
 
-Refined the visual styling of the [Input](/docs/ui/native/components/input) and [Select](/docs/ui/native/components/select) components for a cleaner, more balanced appearance.
+Refined the visual styling of the [Input](/docs/ui/react-v3/native/components/input) and [Select](/docs/ui/react-v3/native/components/select) components for a cleaner, more balanced appearance.
 
 **Fixes:**
 
@@ -131,7 +131,7 @@ This release includes fixes for the following issues:
 
 ### RadioGroup Inline API Reference
 
-The [RadioGroup](/docs/ui/native/components/radio-group) documentation now embeds full API reference tables for `Radio`, `Radio.Indicator`, and `Radio.IndicatorThumb` directly within the page. This removes the need for readers to navigate to a separate Radio doc file to understand the props available when composing radios inside a `RadioGroup.Item`.
+The [RadioGroup](/docs/ui/react-v3/native/components/radio-group) documentation now embeds full API reference tables for `Radio`, `Radio.Indicator`, and `Radio.IndicatorThumb` directly within the page. This removes the need for readers to navigate to a separate Radio doc file to understand the props available when composing radios inside a `RadioGroup.Item`.
 
 **Improvements:**
 
@@ -145,15 +145,15 @@ The [RadioGroup](/docs/ui/native/components/radio-group) documentation now embed
 
 The following documentation pages have been updated to reflect the changes in this release:
 
-- [RadioGroup](/docs/ui/native/components/radio-group) - Inline API reference tables for Radio, Radio.Indicator, and Radio.IndicatorThumb
-- [PressableFeedback](/docs/ui/native/components/pressable-feedback) - Added `asChild` prop documentation
-- [Surface](/docs/ui/native/components/surface) - Added `asChild` prop documentation
-- [BottomSheet](/docs/ui/native/components/bottom-sheet) - Added `unstable_accessibilityContainerViewIsModal` prop documentation
-- [Dialog](/docs/ui/native/components/dialog) - Added `unstable_accessibilityContainerViewIsModal` prop documentation
-- [Menu](/docs/ui/native/components/menu) - Added `unstable_accessibilityContainerViewIsModal` prop documentation
-- [Popover](/docs/ui/native/components/popover) - Added `unstable_accessibilityContainerViewIsModal` prop documentation
-- [Select](/docs/ui/native/components/select) - Added `unstable_accessibilityContainerViewIsModal` prop documentation
-- [Toast](/docs/ui/native/components/toast) - Added `unstable_accessibilityContainerViewIsModal` prop documentation
+- [RadioGroup](/docs/ui/react-v3/native/components/radio-group) - Inline API reference tables for Radio, Radio.Indicator, and Radio.IndicatorThumb
+- [PressableFeedback](/docs/ui/react-v3/native/components/pressable-feedback) - Added `asChild` prop documentation
+- [Surface](/docs/ui/react-v3/native/components/surface) - Added `asChild` prop documentation
+- [BottomSheet](/docs/ui/react-v3/native/components/bottom-sheet) - Added `unstable_accessibilityContainerViewIsModal` prop documentation
+- [Dialog](/docs/ui/react-v3/native/components/dialog) - Added `unstable_accessibilityContainerViewIsModal` prop documentation
+- [Menu](/docs/ui/react-v3/native/components/menu) - Added `unstable_accessibilityContainerViewIsModal` prop documentation
+- [Popover](/docs/ui/react-v3/native/components/popover) - Added `unstable_accessibilityContainerViewIsModal` prop documentation
+- [Select](/docs/ui/react-v3/native/components/select) - Added `unstable_accessibilityContainerViewIsModal` prop documentation
+- [Toast](/docs/ui/react-v3/native/components/toast) - Added `unstable_accessibilityContainerViewIsModal` prop documentation
 
 ## Links
 

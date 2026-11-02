@@ -11,7 +11,7 @@ Incremental migration with coexistence allows you to migrate from HeroUI v2 to v
 
 ### AI Assistant Resources
 
-AI assistants can help with migration. Use the [Migration MCP Server](/docs/ui/web/migration/mcp-server) for tools and prompts, [Migration Agent Skills](/docs/ui/web/migration/agent-skills) for skill-based knowledge, or [AGENTS.md for Migration](/docs/ui/web/migration/agents-md) to download migration docs into your project.
+AI assistants can help with migration. Use the [Migration MCP Server](/docs/ui/react-v3/web/migration/mcp-server) for tools and prompts, [Migration Agent Skills](/docs/ui/react-v3/web/migration/agent-skills) for skill-based knowledge, or [AGENTS.md for Migration](/docs/ui/react-v3/web/migration/agents-md) to download migration docs into your project.
 
 ### Limitations and Considerations
 
@@ -30,7 +30,7 @@ Since v2 and v3 can coexist, v2 components that have no v3 counterpart can remai
 
 - **Code**, **Image**, **Navbar**, **Ripple**, **Snippet**, **Spacer**, **User**
 
-You do not need to replace them to complete the migration. If you prefer to remove them and use native HTML or manual implementations instead, you may ask your agent to help using the [Component Migration Reference](/docs/ui/web/migration#component-migration-reference) guides.
+You do not need to replace them to complete the migration. If you prefer to remove them and use native HTML or manual implementations instead, you may ask your agent to help using the [Component Migration Reference](/docs/ui/react-v3/web/migration#component-migration-reference) guides.
 
 ## Strategy Selection
 
@@ -86,7 +86,7 @@ import { Button } from '@heroui-v3/react'
 2. **Continue until all components are migrated**
    - Track which components have been migrated
    - Test each migrated component thoroughly
-   - If you want to remove v2 removed components later, use the [Component Migration Reference](/docs/ui/web/migration#component-migration-reference) guides and ask your agent to help replace them with native HTML or manual implementations.
+   - If you want to remove v2 removed components later, use the [Component Migration Reference](/docs/ui/react-v3/web/migration#component-migration-reference) guides and ask your agent to help replace them with native HTML or manual implementations.
 
 3. **Once all components are migrated, switch to v3-only:**
    - Remove v2 dependencies (`@heroui/react`, `@heroui/theme`)
@@ -148,7 +148,7 @@ import { Card } from '@heroui/card'
    - Test the migrated component
    - For v2 components with no v3 counterpart (Code, Image, Navbar, Ripple, Snippet, Spacer, User), leave them in place. They will continue to work during coexistence.
 4. **Continue until all components are migrated**
-   - If you want to remove v2 removed components later, use the [Component Migration Reference](/docs/ui/web/migration#component-migration-reference) guides and ask your agent to help replace them with native HTML or manual implementations.
+   - If you want to remove v2 removed components later, use the [Component Migration Reference](/docs/ui/react-v3/web/migration#component-migration-reference) guides and ask your agent to help replace them with native HTML or manual implementations.
 5. **Remove remaining v2 component packages**
 6. **Complete styling migration**
 
@@ -200,7 +200,7 @@ module.exports = {
 For each component you migrate:
 
 1. **Review the component migration guide**
-   - Use the [Component Migration Reference](/docs/ui/web/migration#component-migration-reference) table
+   - Use the [Component Migration Reference](/docs/ui/react-v3/web/migration#component-migration-reference) table
    - Check component-specific migration guides
 
 2. **Update imports**
@@ -259,7 +259,7 @@ Once all components are migrated:
    - Keep only `@import "@heroui/styles";`
 
 4. **Complete styling migration:**
-   - Follow the [Styling Migration Guide](/docs/ui/web/migration/styling)
+   - Follow the [Styling Migration Guide](/docs/ui/react-v3/web/migration/styling)
    - Update utility classes, color tokens, etc.
 
 ## Migration Checklist for Coexistence
@@ -300,7 +300,7 @@ Use this checklist to track your incremental migration progress:
 
 After completing the incremental migration:
 
-1. Review the [v3 component documentation](/docs/ui/web/components)
+1. Review the [v3 component documentation](/docs/ui/react-v3/web/components)
 2. Explore new components available in v3
-3. Check out the [styling guide](/docs/ui/web/getting-started/styling)
-4. Learn about [composition patterns](/docs/ui/web/getting-started/composition)
+3. Check out the [styling guide](/docs/ui/react-v3/web/getting-started/styling)
+4. Learn about [composition patterns](/docs/ui/react-v3/web/getting-started/composition)

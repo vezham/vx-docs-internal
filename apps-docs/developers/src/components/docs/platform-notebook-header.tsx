@@ -6,6 +6,7 @@ import { Sidebar, VezhamLogo } from '@vezham/icons-react'
 
 import { i18n } from '@app/docs'
 import { ControlCenter } from '@components/docs/control-center'
+import { LibrarySelector } from '@components/docs/library-selector'
 import type { PlatformSection } from '@components/docs/platform-sections'
 import { SectionTabs } from '@components/docs/section-tabs'
 import { UserControls } from '@components/docs/user-controls'
@@ -49,6 +50,7 @@ export const PlatformNotebookHeader = ({
             <VezhamLogo size={20} />
             Developer
           </Link>
+          <LibrarySelector />
           <VersionSelector platform={platform} />
         </div>
         {FullSearchTrigger && (

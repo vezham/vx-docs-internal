@@ -34,7 +34,7 @@ Update to the latest version:
   **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
   the latest version" and your AI assistant will automatically compare versions
   and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs/ui/native/getting-started/mcp-server).
+  Server](/docs/ui/react-v3/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -47,9 +47,9 @@ Update to the latest version:
 
 This release introduces **3 new** components:
 
-- **[TagGroup](/docs/ui/native/components/tag-group)**: Compound component for displaying and managing selectable tags with optional removal, single/multiple selection, and form field integration.
-- **[Menu](/docs/ui/native/components/menu)**: Dropdown menu system with popover and bottom-sheet presentation modes, single/multiple selection, item variants, and animated press feedback.
-- **[InputGroup](/docs/ui/native/components/input-group)**: Decorated text input with absolutely-positioned prefix/suffix slots that auto-measure widths and apply matching padding to the input.
+- **[TagGroup](/docs/ui/react-v3/native/components/tag-group)**: Compound component for displaying and managing selectable tags with optional removal, single/multiple selection, and form field integration.
+- **[Menu](/docs/ui/react-v3/native/components/menu)**: Dropdown menu system with popover and bottom-sheet presentation modes, single/multiple selection, item variants, and animated press feedback.
+- **[InputGroup](/docs/ui/react-v3/native/components/input-group)**: Decorated text input with absolutely-positioned prefix/suffix slots that auto-measure widths and apply matching padding to the input.
 
 #### TagGroup
 
@@ -116,7 +116,7 @@ export function RemovableTagGroup() {
 }
 ```
 
-For complete documentation and examples, see the [TagGroup component page](/docs/ui/native/components/tag-group).
+For complete documentation and examples, see the [TagGroup component page](/docs/ui/react-v3/native/components/tag-group).
 
 **Related PR:** [#309](https://github.com/heroui-inc/heroui-native/pull/309)
 
@@ -201,7 +201,7 @@ export function MenuWithSections() {
 }
 ```
 
-For complete documentation and examples, see the [Menu component page](/docs/ui/native/components/menu).
+For complete documentation and examples, see the [Menu component page](/docs/ui/react-v3/native/components/menu).
 
 **Related PR:** [#312](https://github.com/heroui-inc/heroui-native/pull/312)
 
@@ -255,7 +255,7 @@ export function DisabledInput() {
 }
 ```
 
-For complete documentation and examples, see the [InputGroup component page](/docs/ui/native/components/input-group).
+For complete documentation and examples, see the [InputGroup component page](/docs/ui/react-v3/native/components/input-group).
 
 **Related PR:** [#313](https://github.com/heroui-inc/heroui-native/pull/313)
 
@@ -263,13 +263,13 @@ For complete documentation and examples, see the [InputGroup component page](/do
 
 ### Bottom Sheet Android Back Press Support
 
-The [Bottom Sheet](/docs/ui/native/components/bottom-sheet) shared container now handles the Android hardware back button, dismissing any open bottom sheet when pressed. The `BackHandler` listener is only active while the sheet is open, preventing closed instances from consuming the event. This fix applies globally to all bottom-sheet-based components.
+The [Bottom Sheet](/docs/ui/react-v3/native/components/bottom-sheet) shared container now handles the Android hardware back button, dismissing any open bottom sheet when pressed. The `BackHandler` listener is only active while the sheet is open, preventing closed instances from consuming the event. This fix applies globally to all bottom-sheet-based components.
 
 **Supported components:**
 
-- [Bottom Sheet](/docs/ui/native/components/bottom-sheet)
-- [Popover](/docs/ui/native/components/popover)
-- [Select](/docs/ui/native/components/select)
+- [Bottom Sheet](/docs/ui/react-v3/native/components/bottom-sheet)
+- [Popover](/docs/ui/react-v3/native/components/popover)
+- [Select](/docs/ui/react-v3/native/components/select)
 
 The fix uses React Native's `BackHandler` API which is a no-op on iOS, so no platform-specific handling is needed.
 
@@ -317,9 +317,9 @@ This release includes fixes for the following issues:
 
 The following documentation pages have been updated to reflect the changes in this release:
 
-- [TagGroup](/docs/ui/native/components/tag-group) - New component documentation with usage examples and API reference
-- [Menu](/docs/ui/native/components/menu) - New component documentation with usage examples and API reference
-- [InputGroup](/docs/ui/native/components/input-group) - New component documentation with usage examples and API reference
+- [TagGroup](/docs/ui/react-v3/native/components/tag-group) - New component documentation with usage examples and API reference
+- [Menu](/docs/ui/react-v3/native/components/menu) - New component documentation with usage examples and API reference
+- [InputGroup](/docs/ui/react-v3/native/components/input-group) - New component documentation with usage examples and API reference
 
 ## Links
 

@@ -41,7 +41,7 @@ Update to the latest version:
   **Using AI assistants?** Simply prompt "Hey Cursor, update HeroUI Native to
   the latest version" and your AI assistant will automatically compare versions
   and apply the necessary changes. Learn more about the [HeroUI Native MCP
-  Server](/docs/ui/native/getting-started/mcp-server).
+  Server](/docs/ui/react-v3/native/getting-started/mcp-server).
 </Callout>
 
 ## Try It on Your Device
@@ -52,7 +52,7 @@ Update to the latest version:
 
 ### LinkButton Component
 
-The new [LinkButton](/docs/ui/native/components/button) compound component renders a ghost-variant button with no highlight feedback, designed for inline link-style interactions such as "Terms of Service" or "Privacy Policy" links. It delegates entirely to the existing Button infrastructure while enforcing ghost variant and disabled highlight internally.
+The new [LinkButton](/docs/ui/react-v3/native/components/button) compound component renders a ghost-variant button with no highlight feedback, designed for inline link-style interactions such as "Terms of Service" or "Privacy Policy" links. It delegates entirely to the existing Button infrastructure while enforcing ghost variant and disabled highlight internally.
 
 <NativeVideoPlayerView
   target="component"
@@ -89,7 +89,7 @@ export function TermsLink() {
 
 ### Sub-Menu Single-Open Enforcement and Backdrop Close
 
-The [Menu](/docs/ui/native/components/menu) sub-menu system has been refactored to track the active sub-menu by ID instead of a simple boolean, enforcing single-open behavior across sibling sub-menus. A backdrop pressable overlay now renders over the menu content area when a sub-menu is open, allowing users to dismiss it by tapping outside.
+The [Menu](/docs/ui/react-v3/native/components/menu) sub-menu system has been refactored to track the active sub-menu by ID instead of a simple boolean, enforcing single-open behavior across sibling sub-menus. A backdrop pressable overlay now renders over the menu content area when a sub-menu is open, allowing users to dismiss it by tapping outside.
 
 **Improvements:**
 
@@ -187,10 +187,10 @@ This release includes fixes for the following issues:
 
 The following documentation pages have been updated to reflect the changes in this release:
 
-- [LinkButton](/docs/ui/native/components/link-button) - LinkButton compound component documentation with anatomy, usage examples, and API reference
-- [Menu](/docs/ui/native/components/menu) - Updated sub-menu documentation with single-open enforcement and backdrop close behavior
-- [Input](/docs/ui/native/components/input) - Updated bottom sheet usage examples with `useBottomSheetAwareHandlers` hook pattern
-- [InputOTP](/docs/ui/native/components/input-otp) - Updated bottom sheet usage examples with `useBottomSheetAwareHandlers` hook pattern
+- [LinkButton](/docs/ui/react-v3/native/components/link-button) - LinkButton compound component documentation with anatomy, usage examples, and API reference
+- [Menu](/docs/ui/react-v3/native/components/menu) - Updated sub-menu documentation with single-open enforcement and backdrop close behavior
+- [Input](/docs/ui/react-v3/native/components/input) - Updated bottom sheet usage examples with `useBottomSheetAwareHandlers` hook pattern
+- [InputOTP](/docs/ui/react-v3/native/components/input-otp) - Updated bottom sheet usage examples with `useBottomSheetAwareHandlers` hook pattern
 
 ## Links
 

@@ -59,12 +59,12 @@ const runtimes = {
   web: createStaticDocsRuntime({
     ...runtimeOptions,
     docs: webPlatformDocs,
-    docsRoute: '/docs/ui/web'
+    docsRoute: '/docs/ui/react-v3/web'
   }),
   native: createStaticDocsRuntime({
     ...runtimeOptions,
     docs: nativePlatformDocs,
-    docsRoute: '/docs/ui/native'
+    docsRoute: '/docs/ui/react-v3/native'
   })
 }
 

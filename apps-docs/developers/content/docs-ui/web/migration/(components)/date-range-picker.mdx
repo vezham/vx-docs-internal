@@ -11,9 +11,9 @@ import {
 
 <Callout type="info">
   Refer to the [v3 DateRangePicker
-  documentation](/docs/ui/web/components/date-range-picker) for complete API
-  reference, styling guide, and advanced examples. This guide only focuses on
-  migrating from HeroUI v2.
+  documentation](/docs/ui/react-v3/web/components/date-range-picker) for
+  complete API reference, styling guide, and advanced examples. This guide only
+  focuses on migrating from HeroUI v2.
 </Callout>
 
 ## Structure Changes
@@ -89,21 +89,21 @@ export default function App() {
 
 ### 2. Composition Parts
 
-| v3 Component                       | Description                                                                                          |
-| ---------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `DateRangePicker`                  | Root container and state owner                                                                       |
-| `DateRangePicker.Trigger`          | Button that opens the calendar popover                                                               |
-| `DateRangePicker.TriggerIndicator` | Calendar icon (default) or custom indicator                                                          |
-| `DateRangePicker.RangeSeparator`   | Separator between start and end date inputs (defaults to " - ")                                      |
-| `DateRangePicker.Popover`          | Popover wrapper for the range calendar                                                               |
-| `DateField.Group`                  | Input group wrapper                                                                                  |
-| `DateField.InputContainer`         | Container for start/end inputs and separator                                                         |
-| `DateField.Input slot="start"`     | Start date segmented input                                                                           |
-| `DateField.Input slot="end"`       | End date segmented input                                                                             |
-| `DateField.Segment`                | Individual date segment (month, day, year)                                                           |
-| `DateField.Suffix`                 | Suffix slot for the trigger button                                                                   |
-| `RangeCalendar`                    | Full range calendar component (see [RangeCalendar migration](/docs/ui/web/migration/range-calendar)) |
-| `Label`                            | External label component                                                                             |
+| v3 Component                       | Description                                                                                                   |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `DateRangePicker`                  | Root container and state owner                                                                                |
+| `DateRangePicker.Trigger`          | Button that opens the calendar popover                                                                        |
+| `DateRangePicker.TriggerIndicator` | Calendar icon (default) or custom indicator                                                                   |
+| `DateRangePicker.RangeSeparator`   | Separator between start and end date inputs (defaults to " - ")                                               |
+| `DateRangePicker.Popover`          | Popover wrapper for the range calendar                                                                        |
+| `DateField.Group`                  | Input group wrapper                                                                                           |
+| `DateField.InputContainer`         | Container for start/end inputs and separator                                                                  |
+| `DateField.Input slot="start"`     | Start date segmented input                                                                                    |
+| `DateField.Input slot="end"`       | End date segmented input                                                                                      |
+| `DateField.Segment`                | Individual date segment (month, day, year)                                                                    |
+| `DateField.Suffix`                 | Suffix slot for the trigger button                                                                            |
+| `RangeCalendar`                    | Full range calendar component (see [RangeCalendar migration](/docs/ui/react-v3/web/migration/range-calendar)) |
+| `Label`                            | External label component                                                                                      |
 
 ### 3. Prop Changes
 
