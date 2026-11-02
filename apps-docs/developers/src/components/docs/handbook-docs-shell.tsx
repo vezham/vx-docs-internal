@@ -23,12 +23,12 @@ import { VersionSelector } from '@components/docs/version-selector'
 import { baseOptions } from '@config/layout'
 import type { Locale } from '@generated/vx'
 
-export const handbookSections = [
+const handbookSections = [
   { id: 'get-started', title: 'Get Started' },
   { id: 'markdown', title: 'Markdown' }
 ] as const
 
-export type HandbookSection = (typeof handbookSections)[number]['id']
+type HandbookSection = (typeof handbookSections)[number]['id']
 
 type HandbookNavigationProps = {
   locale: Locale
@@ -220,7 +220,7 @@ export const HandbookTodoPage = ({
   </DocsLayout>
 )
 
-export const getDocsTodoTree = (lang: string | undefined, name: string) => {
+const getDocsTodoTree = (lang: string | undefined, name: string) => {
   const locale = normalizeLocale(i18n, lang) as Locale
   const docsTree = markdownDocsRuntime.source.getPageTree(locale)
   return {

@@ -7,7 +7,7 @@ import {
 
 import { vxCore, vxDocs, vxI18n, vxMetadata } from '@generated/vx'
 
-export const docs = defineDocs({
+const docs = defineDocs({
   dir: 'content/docs',
   docs: {
     async: true,
@@ -19,14 +19,7 @@ export const docs = defineDocs({
   }
 })
 
-export const {
-  i18n,
-  source,
-  getDocsPage,
-  getDocsRouteHead,
-  getLLMText,
-  createDocsLoader
-} = createStaticDocsRuntime({
+export const { i18n, source, getLLMText } = createStaticDocsRuntime({
   i18n: vxI18n,
   docs,
   docsRoute: vxDocs.docsRoute,
