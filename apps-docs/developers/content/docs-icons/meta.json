@@ -1,0 +1,25 @@
+{
+  "title": "Icon documentation",
+  "pages": [
+    "index",
+    "---Frameworks---",
+    "vanilla",
+    "react",
+    "react-native",
+    "vue",
+    "svelte",
+    "flutter",
+    "figma",
+    "vscode",
+    "mcp",
+    "svg",
+    "---Reference---",
+    "props",
+    "weights",
+    "styling",
+    "accessibility",
+    "performance",
+    "typescript",
+    "troubleshooting"
+  ]
+}

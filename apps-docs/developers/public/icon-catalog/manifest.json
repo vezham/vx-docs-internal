@@ -1,0 +1,48 @@
+{
+  "version": "1.0.7",
+  "icons": 1273,
+  "illustrations": 71262,
+  "logos": 4929,
+  "frameworks": [
+    {
+      "id": "vanilla",
+      "title": "Vanilla JS / CDN"
+    },
+    {
+      "id": "react",
+      "title": "React"
+    },
+    {
+      "id": "react-native",
+      "title": "React Native"
+    },
+    {
+      "id": "vue",
+      "title": "Vue"
+    },
+    {
+      "id": "svelte",
+      "title": "Svelte"
+    },
+    {
+      "id": "flutter",
+      "title": "Flutter"
+    },
+    {
+      "id": "figma",
+      "title": "Figma"
+    },
+    {
+      "id": "vscode",
+      "title": "VS Code"
+    },
+    {
+      "id": "mcp",
+      "title": "MCP Server"
+    },
+    {
+      "id": "svg",
+      "title": "Raw SVG"
+    }
+  ]
+}

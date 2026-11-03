@@ -1,0 +1,141 @@
+{
+  "packages": [
+    {
+      "id": "vanilla",
+      "name": "@vezham/icons",
+      "description": "A Vezham Icons package for web and JavaScript applications.",
+      "npmUrl": "https://www.npmjs.com/package/@vezham/icons",
+      "sourceUrl": "https://github.com/vezham/reicon",
+      "guideUrl": "/docs/vanilla"
+    },
+    {
+      "id": "react",
+      "name": "@vezham/icons-react",
+      "description": "A Vezham Icons package for React applications.",
+      "npmUrl": "https://www.npmjs.com/package/@vezham/icons-react",
+      "sourceUrl": "https://github.com/vezham/reicon",
+      "guideUrl": "/docs/react"
+    },
+    {
+      "id": "react-native",
+      "name": "@vezham/icons-react-native",
+      "description": "React Native icon components for Vezham Icons. Tree-shakeable, TypeScript-ready. Works with Expo and bare React Native.",
+      "npmUrl": "https://www.npmjs.com/package/@vezham/icons-react-native",
+      "sourceUrl": "https://github.com/vezham/reicon",
+      "guideUrl": "/docs/react-native"
+    },
+    {
+      "id": "vue",
+      "name": "@vezham/icons-vue",
+      "description": "Vue 3 icon components for Vezham Icons. Tree-shakeable, TypeScript-ready, zero config. Works with Nuxt 3.",
+      "npmUrl": "https://www.npmjs.com/package/@vezham/icons-vue",
+      "sourceUrl": "https://github.com/vezham/reicon",
+      "guideUrl": "/docs/vue"
+    },
+    {
+      "id": "svelte",
+      "name": "@vezham/icons-svelte",
+      "description": "Svelte icon components for Vezham Icons. Tree-shakeable, TypeScript-ready, zero config. Works with SvelteKit.",
+      "npmUrl": "https://www.npmjs.com/package/@vezham/icons-svelte",
+      "sourceUrl": "https://github.com/vezham/reicon",
+      "guideUrl": "/docs/svelte"
+    },
+    {
+      "id": "flutter",
+      "name": "vezham_icons",
+      "description": "Official Flutter/Dart package for Vezham. 2700+ SVG icons as path strings. Works with flutter_svg.",
+      "npmUrl": "https://pub.dev/packages/vezham_icons",
+      "sourceUrl": "https://github.com/vezham/reicon/tree/main/packages/icons-flutter",
+      "guideUrl": "/docs/flutter"
+    },
+    {
+      "id": "figma",
+      "name": "@vezham/icons-figma",
+      "description": "Integrate Vezham Icons directly into your Figma workspace. Search, customize size/stroke weights, and insert vector shapes into your designs.",
+      "npmUrl": "https://www.figma.com/community/plugin/1652983191908763066",
+      "sourceUrl": "https://github.com/vezham/reicon/tree/main/packages/icons-figma",
+      "guideUrl": "/docs/figma"
+    },
+    {
+      "id": "vscode",
+      "name": "@vezham/icons-vscode",
+      "description": "Browse and insert Vezham icons directly into your HTML, React, Vue, Svelte, or vanilla JS code from your editor's sidebar panel.",
+      "npmUrl": "https://marketplace.visualstudio.com/items?itemName=Vezham.icons",
+      "sourceUrl": "https://github.com/vezham/reicon/tree/main/packages/icons-vscode",
+      "guideUrl": "/docs/vscode"
+    },
+    {
+      "id": "mcp",
+      "name": "@vezham/icons-mcp",
+      "description": "Search, preview, and apply Vezham icons from AI agents and automation tools via MCP or CLI.",
+      "npmUrl": "https://www.npmjs.com/package/@vezham/icons-mcp",
+      "sourceUrl": "https://github.com/vezham/reicon/tree/main/packages/icons-mcp",
+      "guideUrl": "/docs/mcp"
+    }
+  ],
+  "faq": [
+    {
+      "id": "general",
+      "title": "General",
+      "items": [
+        {
+          "id": "what-is-vezham",
+          "question": "What is Vezham?",
+          "answer": "Vezham is a vector-asset library with UI icons, SVG illustrations, and brand logos. This browser uses the pinned @vezham/icons@1.0.7 CDN runtime for icons, alongside the existing illustration and logo collections."
+        },
+        {
+          "id": "is-it-free",
+          "question": "Is Vezham completely free?",
+          "answer": "Yes, Vezham is 100% free and open-source under the MIT License. Use it in personal, commercial, education, or open-source projects — no attribution required (though always appreciated!)."
+        },
+        {
+          "id": "commercial-use",
+          "question": "Can I use it in commercial projects?",
+          "answer": "Absolutely. Commercial use is fully allowed. Bundle Vezham into templates, websites, SaaS products, or mobile apps — even ones you charge for."
+        }
+      ]
+    },
+    {
+      "id": "technical",
+      "title": "Technical",
+      "items": [
+        {
+          "id": "grid-size",
+          "question": "What grid size is used?",
+          "answer": "Every icon is drawn on a strict 24×24 pixel grid with predefined baseline strokes. This guarantees the icons stay pixel-perfect and sharp at any size, from 12px to large header formats."
+        },
+        {
+          "id": "icon-weights",
+          "question": "How are weights handled?",
+          "answer": "Vezham does not auto-generate weights. Each is handcrafted:\n- outline: Clean stroked paths (default 1.5px). Customizable via the strokeWidth prop.\n- filled: Custom solid silhouettes designed to match their outline counterparts for smooth state transitions.\n- duotone-outline and duotone-filled: Two-color variants for layered emphasis and richer states."
+        },
+        {
+          "id": "tree-shaking",
+          "question": "Does it support tree-shaking?",
+          "answer": "Yes! All packages — @vezham/icons-react, @vezham/icons-react-native, @vezham/icons-vue, and @vezham/icons-svelte — are bundled as ES modules and declare \"sideEffects\": false. Modern bundlers (Vite, Webpack, Rollup, Metro) automatically include only the icons you actually import."
+        }
+      ]
+    },
+    {
+      "id": "design",
+      "title": "Design",
+      "items": [
+        {
+          "id": "figma-library",
+          "question": "Is there a Figma library?",
+          "answer": "Yes! A community Figma file with all vector master components is maintained. Search for \"Vezham\" in the Figma Community to duplicate the official file and design with the same visual assets."
+        },
+        {
+          "id": "request-icon",
+          "question": "How do I request a new icon?",
+          "answer": "Open an Issue on our GitHub Issues tracker using the \"Icon Request\" template. We review requests weekly and design new sets based on popularity."
+        },
+        {
+          "id": "contributing",
+          "question": "How do I contribute?",
+          "answer": "We love contributions! You can help with code, type definitions, package updates, or new SVG icons. Read our contributing guide in the GitHub repository, fork the codebase, and open a Pull Request."
+        }
+      ]
+    }
+  ]
+}

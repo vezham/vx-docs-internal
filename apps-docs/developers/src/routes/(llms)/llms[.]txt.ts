@@ -5,6 +5,7 @@ import { getDocsLLMSIndex } from '@vezham/start/runtime/docs'
 import { source } from '@app/docs'
 import { markdownDocsRuntime } from '@components/docs/markdown-docs'
 import { getPlatformDocsRuntime } from '@components/docs/platform-docs'
+import { iconDocsRuntime } from '@src/lib/icon-library/docs'
 
 export const Route = createFileRoute('/(llms)/llms.txt')({
   server: {
@@ -14,6 +15,7 @@ export const Route = createFileRoute('/(llms)/llms.txt')({
           [
             source,
             markdownDocsRuntime.source,
+            iconDocsRuntime.source,
             getPlatformDocsRuntime('web').source,
             getPlatformDocsRuntime('native').source,
             getPlatformDocsRuntime(undefined, 'react-pro-v3').source,

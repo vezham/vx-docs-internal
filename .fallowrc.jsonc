@@ -46,6 +46,7 @@
     "apps-docs/developers/scripts/import-heroui-presentation.mjs",
     "apps-docs/developers/scripts/import-heroui-pro-docs.mjs",
     "apps-docs/developers/scripts/import-heroui-native-pro-docs.mjs",
+    "apps-docs/developers/scripts/import-icon-library.mjs",
     // vx-bot/NOTE: Workspace CLI, release, and test files load outside the app import graph.
     "vx/tools/audit/index.mjs",
     "vx/tools/audit/*.test.mjs",

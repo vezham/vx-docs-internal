@@ -1,0 +1,15 @@
+import { createFileRoute } from '@tanstack/react-router'
+
+import { normalizeLocale } from '@vezham/start/runtime/docs'
+
+import { i18n } from '@app/docs'
+import { IconFaq } from '@components/icon-library/info-pages'
+
+const RouteComponent = () => {
+  const { lang } = Route.useParams()
+  return <IconFaq locale={normalizeLocale(i18n, lang)} />
+}
+export const Route = createFileRoute('/{-$lang}/faq')({
+  component: RouteComponent,
+  head: () => ({ meta: [{ title: 'Faq | Vezham Icons' }] })
+})

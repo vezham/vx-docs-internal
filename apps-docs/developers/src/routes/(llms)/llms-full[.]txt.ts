@@ -3,6 +3,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { getLLMText, source } from '@app/docs'
 import { markdownDocsRuntime } from '@components/docs/markdown-docs'
 import { getPlatformDocsRuntime } from '@components/docs/platform-docs'
+import { iconDocsRuntime } from '@src/lib/icon-library/docs'
 
 export const Route = createFileRoute('/(llms)/llms-full.txt')({
   server: {
@@ -10,6 +11,7 @@ export const Route = createFileRoute('/(llms)/llms-full.txt')({
       GET: async () => {
         const scanned = await Promise.all([
           ...source.getPages().map(getLLMText),
+          ...iconDocsRuntime.source.getPages().map(iconDocsRuntime.getLLMText),
           ...markdownDocsRuntime.source
             .getPages()
             .map(markdownDocsRuntime.getLLMText),

@@ -29,6 +29,8 @@ export default defineConfig({
           crawlLinks: true
         }
       },
+      // vx-bot/NOTE: Downloadable catalog files must retain their binary contents.
+      prerender: { filter: page => !page.path.startsWith('/icon-catalog/') },
       pages: getPrerenderPages(import.meta.dirname)
     }),
     tailwindcss(),

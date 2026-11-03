@@ -6,6 +6,7 @@ import { createI18nSearchAPI } from '@vezham/docs-core/search/server'
 import { i18n, source } from '@app/docs'
 import { markdownDocsRuntime } from '@components/docs/markdown-docs'
 import { getPlatformDocsRuntime } from '@components/docs/platform-docs'
+import { iconDocsRuntime } from '@src/lib/icon-library/docs'
 
 const compactSearchData = (data: StructuredData): StructuredData => {
   const sections = new Map<string | undefined, string[]>()
@@ -26,6 +27,7 @@ const compactSearchData = (data: StructuredData): StructuredData => {
 const sources = [
   source,
   markdownDocsRuntime.source,
+  iconDocsRuntime.source,
   getPlatformDocsRuntime('web').source,
   getPlatformDocsRuntime('native').source,
   getPlatformDocsRuntime(undefined, 'react-pro-v3').source,
