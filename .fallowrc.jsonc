@@ -26,7 +26,8 @@
   ],
   "ignoreFindings": [
     // vx-bot/NOTE: Preserve demo dependency tracking while hiding intentional upstream export duplication.
-    "apps-docs/developers/src/demos/heroui/**"
+    "apps-docs/developers/src/demos/heroui/**",
+    "apps-docs/developers/src/demos/heroui-pro/**"
   ],
   "entry": [
     // vx-bot/NOTE: Generated apps import these shared stylesheet roots directly.
@@ -43,6 +44,7 @@
     "apps-docs/developers/scripts/adapt-heroui-mdx.mjs",
     "apps-docs/developers/scripts/audit-heroui-docs.mjs",
     "apps-docs/developers/scripts/import-heroui-presentation.mjs",
+    "apps-docs/developers/scripts/import-heroui-pro-docs.mjs",
     // vx-bot/NOTE: Workspace CLI, release, and test files load outside the app import graph.
     "vx/tools/audit/index.mjs",
     "vx/tools/audit/*.test.mjs",
@@ -189,6 +191,7 @@
     "ignore": [
       // vx-bot/NOTE: Upstream HeroUI demos intentionally repeat standalone component examples.
       "apps-docs/developers/src/demos/heroui/**",
+      "apps-docs/developers/src/demos/heroui-pro/**",
       // vx-bot/NOTE: CLI app Vite configs stay local so generated apps are self-contained.
       "apps*/*/vite.config.ts",
       // vx-bot/NOTE: CLI template pages are copied into each app with its own routes.

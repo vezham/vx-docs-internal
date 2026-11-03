@@ -16,6 +16,7 @@ export const platformDocsPageSchema = docsPageSchema.extend({
   links: componentLinksSchema.optional(),
   status: z.enum(['new', 'updated', 'preview', 'new-dot']).optional(),
   image: z.string().optional(),
+  sourceUrl: z.string().url().optional(),
   github: z.object({ pull: z.number().optional() }).optional(),
   index: z.boolean().optional()
 })

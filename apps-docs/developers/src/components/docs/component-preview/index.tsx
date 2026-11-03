@@ -13,9 +13,12 @@ import {
 import { Code, Eye } from '@vezham/icons-react'
 import { Button, Tabs } from '@vezham/react-v3'
 
-import { demos } from '@src/demos/heroui'
+import { demos as ossDemos } from '@src/demos/heroui'
+import { proDemos } from '@src/demos/heroui-pro'
 
 import { PreviewSource } from './source'
+
+const demos = { ...ossDemos, ...proDemos }
 
 type Props = {
   children?: ReactNode

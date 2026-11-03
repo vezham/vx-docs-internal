@@ -54,7 +54,7 @@ const Content = ({
       markdownUrl={markdownUrl}
       shell={shell}
       toc={toc}>
-      <ComponentLinks links={page.links} />
+      <ComponentLinks links={page.links} sourceUrl={page.sourceUrl} />
       <PageMetadata
         value={{
           platform: platform === 'native' ? 'native' : 'web',

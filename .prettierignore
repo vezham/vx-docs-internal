@@ -8,7 +8,9 @@
 # MDX content
 # vx-bot/NOTE: Formatting imported JSX/templates and nested fences corrupts valid MDX.
 apps-docs/developers/content/docs-ui/**/*.mdx
+apps-docs/developers/content/docs-ui-pro-v3/**/*.mdx
 apps-docs/developers/src/demos/heroui/**
+apps-docs/developers/src/demos/heroui-pro/**
 # **/content/**/*.mdx
 
 # --- END of @vx/fe-kit-config ---

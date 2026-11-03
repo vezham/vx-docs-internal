@@ -11,6 +11,26 @@ import { createPlatformDocsLoader } from './platform-loader'
 const loader = createPlatformDocsLoader()
 
 describe('UI documentation', () => {
+  it('loads Pro MDX and its independent component navigation without a platform', async () => {
+    const data = await createPlatformDocsLoader('react-pro-v3')({
+      params: { _splat: 'components/area-chart' }
+    })
+    expect(data.title).toBe('Area Chart')
+    expect(data.routePath).toBe('/docs/ui/react-pro-v3/components/area-chart')
+    expect(data.platforms).toEqual([])
+    expect(data.markdownUrl).toContain('/docs/ui/react-pro-v3/')
+    const runtime = getPlatformDocsRuntime(undefined, 'react-pro-v3')
+    const { page } = runtime.getDocsPage({
+      slugs: ['components', 'area-chart']
+    })
+    expect(await runtime.getLLMText(page)).toContain(
+      '@vezham/react-pro-v3/area-chart'
+    )
+    expect(
+      JSON.stringify(deserializePageTree(data.pageTree).children)
+    ).toContain('/docs/ui/react-pro-v3/components/area-chart')
+  }, 20_000)
+
   // vx-bot/NOTE: The first loader call compiles MDX on shared CI workers.
   it.each(['web', 'native'] as const)(
     'loads the %s introduction and section navigation',

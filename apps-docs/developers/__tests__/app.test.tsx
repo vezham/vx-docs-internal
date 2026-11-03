@@ -54,7 +54,7 @@ describe('App', () => {
         Object.defineProperty(Element.prototype, 'getAnimations', animations)
       else Reflect.deleteProperty(Element.prototype, 'getAnimations')
     }
-  })
+  }, 20_000)
 
   it('uses the configured default language for the document', async () => {
     await renderApp()

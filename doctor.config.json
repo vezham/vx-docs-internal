@@ -20,7 +20,8 @@
       "**/src/generated/**",
       "**/routeTree.gen.ts",
       "apps*/**/*-mock/**",
-      "apps-docs/developers/src/demos/heroui/**"
+      "apps-docs/developers/src/demos/heroui/**",
+      "apps-docs/developers/src/demos/heroui-pro/**"
     ],
     "overrides": [
       {

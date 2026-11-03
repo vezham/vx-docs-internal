@@ -25,6 +25,34 @@ afterEach(() => {
 })
 
 describe('local component previews', () => {
+  it('loads a Pro demo, supports interaction, and exposes its source', async () => {
+    render(
+      <ComponentPreview name="pro-cell-switch-default">
+        {createElement(
+          Fragment,
+          null,
+          createElement(
+            mdx.pre,
+            null,
+            <code>{'import { CellSwitch } from "@vezham/react-pro-v3"'}</code>
+          )
+        )}
+      </ComponentPreview>
+    )
+    const control = await screen.findByRole(
+      'switch',
+      { name: 'Animations' },
+      { timeout: 3000 }
+    )
+    expect(control).toBeChecked()
+    fireEvent.click(control)
+    expect(control).not.toBeChecked()
+    fireEvent.click(screen.getByRole('tab', { name: 'Code' }))
+    expect(
+      screen.getByRole('region', { name: 'Example source code' })
+    ).toHaveTextContent('@vezham/react-pro-v3')
+  })
+
   it('renders the disabled accordion and its active items', async () => {
     render(
       <ComponentPreview name="accordion-disabled">

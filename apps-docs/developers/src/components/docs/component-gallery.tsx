@@ -8,10 +8,17 @@ import {
   componentGalleryGroups,
   componentGalleryMedia
 } from '@src/lib/docs/heroui-presentation'
+import proGallery from '@src/lib/docs/heroui-pro-presentation.json'
 
 import { VideoPlayer } from './video-player'
 
-type GalleryPage = (typeof herouiCatalog)[number]
+type GalleryPage = Pick<
+  (typeof herouiCatalog)[number],
+  'title' | 'status' | 'platform' | 'url'
+> & {
+  images?: { light: string; dark: string }
+  variants?: number
+}
 
 const NativeGalleryVideo = ({ page }: { page: GalleryPage }) => {
   const { resolvedTheme } = useTheme()
@@ -72,10 +79,21 @@ export const ComponentTile = ({
 
   return (
     <Link href={href} className={layout}>
-      <span className="order-1 sm:order-2">{label}</span>
+      <span
+        className={`order-1 sm:order-2 ${page.variants === undefined ? '' : 'flex items-center justify-between gap-3 px-2'}`}>
+        {label}
+        {page.variants !== undefined && (
+          <span className="text-muted shrink-0 text-sm font-normal">
+            {page.variants} {page.variants === 1 ? 'variant' : 'variants'}
+          </span>
+        )}
+      </span>
       <span className="relative order-2 block h-[198px] overflow-hidden rounded-xl border sm:order-1">
         <img
-          src={`${componentGalleryMedia.imageBaseUrl}/light-${imageName}.png`}
+          src={
+            page.images?.light ??
+            `${componentGalleryMedia.imageBaseUrl}/light-${imageName}.png`
+          }
           alt=""
           width={874}
           height={594}
@@ -83,7 +101,10 @@ export const ComponentTile = ({
           className="absolute inset-0 h-full w-full object-cover dark:hidden"
         />
         <img
-          src={`${componentGalleryMedia.imageBaseUrl}/dark-${imageName}.png`}
+          src={
+            page.images?.dark ??
+            `${componentGalleryMedia.imageBaseUrl}/dark-${imageName}.png`
+          }
           alt=""
           width={874}
           height={594}
@@ -134,6 +155,30 @@ const ComponentCategory = ({
 export const ComponentsCategory = ({ category }: { category: string }) => (
   <ComponentCategory category={category} platform="web" />
 )
+
+export const ProComponentsCategory = ({ category }: { category: string }) => {
+  const { lang } = useParams({ strict: false })
+  const group = proGallery.groups.find(item => item.category === category)
+  if (!group) return null
+
+  return (
+    <ul
+      aria-label={`Pro ${group.title} components`}
+      className="not-prose my-6 grid list-none grid-cols-1 gap-x-4 gap-y-10 p-0 sm:grid-cols-2 lg:grid-cols-3">
+      {group.components.map(component => {
+        const url = `/docs/ui/react-pro-v3/components/${component.slug}`
+        return (
+          <li key={component.slug} className="min-w-0">
+            <ComponentTile
+              page={{ ...component, platform: 'web', url }}
+              href={`${lang === 'cn' ? '/cn' : ''}${url}`}
+            />
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
 
 export const NativeComponentsCategory = ({
   category

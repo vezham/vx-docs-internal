@@ -27,16 +27,26 @@ const icons = {
   heroui: HeroUIIcon
 }
 
-export const ComponentLinks = ({ links }: { links?: Links }) => {
+export const ComponentLinks = ({
+  links,
+  sourceUrl
+}: {
+  links?: Links
+  sourceUrl?: string
+}) => {
   const { platform, _splat } = useParams({ strict: false })
   const resources = getComponentResources(links)
-  if (!resources.length) return null
+  if (!resources.length && !sourceUrl) return null
   const allResources = [
     ...resources,
     {
-      label: 'HeroUI',
+      label: sourceUrl?.startsWith('https://heroui.pro/')
+        ? 'HeroUI Pro'
+        : 'HeroUI',
       icon: 'heroui' as const,
-      href: `https://heroui.com/docs/${platform === 'native' ? 'native' : 'react'}/${_splat ?? ''}`
+      href:
+        sourceUrl ??
+        `https://heroui.com/docs/${platform === 'native' ? 'native' : 'react'}/${_splat ?? ''}`
     }
   ]
   return (

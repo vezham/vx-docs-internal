@@ -32,7 +32,7 @@ export type PlatformSection = (typeof platformSections)[number]['id']
 
 const librarySections = {
   'react-v3': platformSections,
-  'react-pro-v3': [platformSections[0]],
+  'react-pro-v3': [platformSections[0], platformSections[1]],
   react: [platformSections[0]]
 } as const
 

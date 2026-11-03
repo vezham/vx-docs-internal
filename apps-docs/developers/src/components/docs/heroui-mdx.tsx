@@ -23,6 +23,7 @@ export {
 
 export {
   ComponentsCategory,
+  ProComponentsCategory,
   NativeComponentsCategory
 } from './component-gallery'
 
