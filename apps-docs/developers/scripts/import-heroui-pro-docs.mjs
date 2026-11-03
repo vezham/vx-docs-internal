@@ -8,7 +8,8 @@ const app = path.resolve(import.meta.dirname, '..')
 const snapshot = path.resolve(
   process.argv[2] ?? 'test-output/heroui-pro-import'
 )
-const content = path.join(app, 'content/docs-ui-pro-v3')
+const collection = path.join(app, 'content/docs-ui-pro-v3')
+const content = path.join(collection, 'web')
 const demosRoot = path.join(app, 'src/demos/heroui-pro')
 const require = createRequire(import.meta.url)
 const packageMetadata = JSON.parse(
@@ -346,7 +347,7 @@ await write(
 )
 await write(
   path.join(content, 'components/index.mdx'),
-  `---\ntitle: React Components\ndescription: Browse Vezham Pro components for charts, data display, forms, navigation, AI interfaces, and more.\nsourceUrl: ${gallery.sourceUrl}\n---\n\nimport { ProComponentsCategory } from '../../../src/components/docs/heroui-mdx.tsx'\n\n${Object.keys(
+  `---\ntitle: React Components\ndescription: Browse Vezham Pro components for charts, data display, forms, navigation, AI interfaces, and more.\nsourceUrl: ${gallery.sourceUrl}\n---\n\nimport { ProComponentsCategory } from '../../../../src/components/docs/heroui-mdx.tsx'\n\n${Object.keys(
     categories
   )
     .map(
@@ -410,13 +411,32 @@ await write(
   ) + '\n'
 )
 await write(
-  path.join(content, 'import-manifest.json'),
+  path.join(collection, 'import-manifest.json'),
   JSON.stringify(
     {
       package: '@vezham/react-pro-v3',
       version: packageMetadata.version,
       components: pages,
       demos: Object.keys(registry)
+    },
+    null,
+    2
+  ) + '\n'
+)
+await write(
+  path.join(app, 'src/lib/docs/heroui-pro-presentation.json'),
+  JSON.stringify(
+    {
+      ...gallery,
+      pagePaths: [
+        'components',
+        ...pages.map(page => `components/${page.slug}`),
+        ...guides.map(name =>
+          name === 'index.mdx'
+            ? 'getting-started'
+            : `getting-started/${name.replace('.mdx', '')}`
+        )
+      ]
     },
     null,
     2

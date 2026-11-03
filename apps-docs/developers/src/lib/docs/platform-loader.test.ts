@@ -4,7 +4,10 @@ import {
   getPlatformDocsRuntime,
   platformDocsPageSchema
 } from '../../components/docs/platform-docs'
-import { getPlatformSections } from '../../components/docs/platform-sections'
+import {
+  getPlatformPage,
+  getPlatformSections
+} from '../../components/docs/platform-sections'
 import { getComponentResources } from './component-resources'
 import { createPlatformDocsLoader } from './platform-loader'
 
@@ -17,7 +20,7 @@ describe('UI documentation', () => {
     })
     expect(data.title).toBe('Area Chart')
     expect(data.routePath).toBe('/docs/ui/react-pro-v3/components/area-chart')
-    expect(data.platforms).toEqual([])
+    expect(data.platforms).toEqual(['web', 'native'])
     expect(data.markdownUrl).toContain('/docs/ui/react-pro-v3/')
     const runtime = getPlatformDocsRuntime(undefined, 'react-pro-v3')
     const { page } = runtime.getDocsPage({
@@ -30,6 +33,38 @@ describe('UI documentation', () => {
       JSON.stringify(deserializePageTree(data.pageTree).children)
     ).toContain('/docs/ui/react-pro-v3/components/area-chart')
   }, 20_000)
+
+  it('loads Pro Native documentation, media, markdown and independent navigation', async () => {
+    const data = await createPlatformDocsLoader('react-pro-v3')({
+      params: { platform: 'native', _splat: 'components/fab' }
+    })
+    expect(data.title).toBe('FAB')
+    expect(data.routePath).toBe('/docs/ui/react-pro-v3/native/components/fab')
+    expect(data.platforms).toEqual(['web', 'native'])
+    const runtime = getPlatformDocsRuntime('native', 'react-pro-v3')
+    const { page } = runtime.getDocsPage({ slugs: ['components', 'fab'] })
+    const markdown = await runtime.getLLMText(page)
+    expect(markdown).toContain('heroui-native-pro')
+    expect(markdown).toContain('native-pro/videos/fab-docs-light.mp4')
+    const tree = JSON.stringify(deserializePageTree(data.pageTree).children)
+    expect(tree).toContain('/docs/ui/react-pro-v3/native/components/fab')
+    expect(tree).not.toContain('/components/data-grid')
+  }, 20_000)
+
+  it('keeps matching Pro pages and falls back within the target section', () => {
+    expect(
+      getPlatformPage('native', 'components/area-chart', 'react-pro-v3')
+    ).toBe('components/area-chart')
+    expect(
+      getPlatformPage('native', 'components/data-grid', 'react-pro-v3')
+    ).toBe('components')
+    expect(getPlatformPage('web', 'components/fab', 'react-pro-v3')).toBe(
+      'components'
+    )
+    expect(
+      getPlatformPage('web', 'getting-started/provider', 'react-pro-v3')
+    ).toBe('getting-started')
+  })
 
   // vx-bot/NOTE: The first loader call compiles MDX on shared CI workers.
   it.each(['web', 'native'] as const)(

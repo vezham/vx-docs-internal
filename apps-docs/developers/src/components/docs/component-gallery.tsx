@@ -8,6 +8,7 @@ import {
   componentGalleryGroups,
   componentGalleryMedia
 } from '@src/lib/docs/heroui-presentation'
+import nativeProGallery from '@src/lib/docs/heroui-pro-native-presentation.json'
 import proGallery from '@src/lib/docs/heroui-pro-presentation.json'
 
 import { VideoPlayer } from './video-player'
@@ -18,10 +19,20 @@ type GalleryPage = Pick<
 > & {
   images?: { light: string; dark: string }
   variants?: number
+  video?: { light: string; dark: string }
 }
 
 const NativeGalleryVideo = ({ page }: { page: GalleryPage }) => {
   const { resolvedTheme } = useTheme()
+  if (page.video)
+    return (
+      <VideoPlayer
+        aria-label={`${page.title} preview`}
+        srcLight={page.video.light}
+        srcDark={page.video.dark}
+        muted
+      />
+    )
   const name = page.url.split('/').slice(-1)[0]
   const videoName = componentGalleryMedia.nativeVideoNames[name] ?? name
   // vx-bot/NOTE: Both upstream dark ScrollShadow URLs return 403; its light recording remains available.
@@ -156,21 +167,28 @@ export const ComponentsCategory = ({ category }: { category: string }) => (
   <ComponentCategory category={category} platform="web" />
 )
 
-export const ProComponentsCategory = ({ category }: { category: string }) => {
+const ProComponentCategory = ({
+  category,
+  platform
+}: {
+  category: string
+  platform: 'web' | 'native'
+}) => {
   const { lang } = useParams({ strict: false })
-  const group = proGallery.groups.find(item => item.category === category)
+  const gallery = platform === 'native' ? nativeProGallery : proGallery
+  const group = gallery.groups.find(item => item.category === category)
   if (!group) return null
 
   return (
     <ul
-      aria-label={`Pro ${group.title} components`}
-      className="not-prose my-6 grid list-none grid-cols-1 gap-x-4 gap-y-10 p-0 sm:grid-cols-2 lg:grid-cols-3">
+      aria-label={`Pro ${platform === 'native' ? 'Native ' : ''}${group.title} components`}
+      className={`not-prose my-6 grid list-none grid-cols-1 gap-x-4 gap-y-10 p-0 sm:grid-cols-2 ${platform === 'web' ? 'lg:grid-cols-3' : ''}`}>
       {group.components.map(component => {
-        const url = `/docs/ui/react-pro-v3/components/${component.slug}`
+        const url = `/docs/ui/react-pro-v3${platform === 'native' ? '/native' : ''}/components/${component.slug}`
         return (
           <li key={component.slug} className="min-w-0">
             <ComponentTile
-              page={{ ...component, platform: 'web', url }}
+              page={{ ...component, platform, url }}
               href={`${lang === 'cn' ? '/cn' : ''}${url}`}
             />
           </li>
@@ -179,6 +197,16 @@ export const ProComponentsCategory = ({ category }: { category: string }) => {
     </ul>
   )
 }
+
+export const ProComponentsCategory = ({ category }: { category: string }) => (
+  <ProComponentCategory category={category} platform="web" />
+)
+
+export const NativeProComponentsCategory = ({
+  category
+}: {
+  category: string
+}) => <ProComponentCategory category={category} platform="native" />
 
 export const NativeComponentsCategory = ({
   category

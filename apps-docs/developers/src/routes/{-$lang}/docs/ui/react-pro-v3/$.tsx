@@ -12,7 +12,10 @@ import {
 } from '@components/docs/platform-docs'
 import { getPlatformLayoutOptions } from '@components/docs/platform-layout'
 import { PlatformDocsRoutePage } from '@components/docs/platform-route-page'
-import { getPlatformSections } from '@components/docs/platform-sections'
+import {
+  getPlatformPage,
+  getPlatformSections
+} from '@components/docs/platform-sections'
 import type { Locale } from '@generated/vx'
 import { createPlatformDocsLoader } from '@src/lib/docs/platform-loader'
 
@@ -36,7 +39,7 @@ const RouteComponent = () => {
         const getPlatformParams = (platform: 'web' | 'native') => ({
           lang: locale === i18n.defaultLanguage ? undefined : locale,
           platform,
-          _splat
+          _splat: getPlatformPage(platform, _splat, library)
         })
 
         return getPlatformLayoutOptions({

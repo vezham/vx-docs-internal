@@ -34,6 +34,9 @@ import { Route as Char123LangChar125DocsUiReactV3IndexRouteImport } from './rout
 import { Route as Char123LangChar125DocsUiReactIndexRouteImport } from './routes/{-$lang}/docs/ui/react/index'
 import { Route as Char123LangChar125DocsUiReactSplatRouteImport } from './routes/{-$lang}/docs/ui/react/$'
 import { Route as Char123LangChar125DocsUiReactChar123Char125DotmdRouteImport } from './routes/{-$lang}/docs/ui/react/{$}[.]md'
+import { Route as Char123LangChar125DocsUiReactProV3NativeIndexRouteImport } from './routes/{-$lang}/docs/ui/react-pro-v3/native/index'
+import { Route as Char123LangChar125DocsUiReactProV3NativeSplatRouteImport } from './routes/{-$lang}/docs/ui/react-pro-v3/native/$'
+import { Route as Char123LangChar125DocsUiReactProV3NativeChar123Char125DotmdRouteImport } from './routes/{-$lang}/docs/ui/react-pro-v3/native/{$}[.]md'
 import { Route as Char123LangChar125DocsUiReactProV3WebIndexRouteImport } from './routes/{-$lang}/docs/ui/react-pro-v3/web/index'
 import { Route as Char123LangChar125DocsUiReactProV3WebSplatRouteImport } from './routes/{-$lang}/docs/ui/react-pro-v3/web/$'
 import { Route as Char123LangChar125DocsUiReactProV3WebChar123Char125DotmdRouteImport } from './routes/{-$lang}/docs/ui/react-pro-v3/web/{$}[.]md'
@@ -186,6 +189,26 @@ const Char123LangChar125DocsUiReactChar123Char125DotmdRoute =
     path: '/docs/ui/react/{$}.md',
     getParentRoute: () => Char123LangChar125RouteRoute,
   } as any)
+const Char123LangChar125DocsUiReactProV3NativeIndexRoute =
+  Char123LangChar125DocsUiReactProV3NativeIndexRouteImport.update({
+    id: '/docs/ui/react-pro-v3/native/',
+    path: '/docs/ui/react-pro-v3/native/',
+    getParentRoute: () => Char123LangChar125RouteRoute,
+  } as any)
+const Char123LangChar125DocsUiReactProV3NativeSplatRoute =
+  Char123LangChar125DocsUiReactProV3NativeSplatRouteImport.update({
+    id: '/docs/ui/react-pro-v3/native/$',
+    path: '/docs/ui/react-pro-v3/native/$',
+    getParentRoute: () => Char123LangChar125RouteRoute,
+  } as any)
+const Char123LangChar125DocsUiReactProV3NativeChar123Char125DotmdRoute =
+  Char123LangChar125DocsUiReactProV3NativeChar123Char125DotmdRouteImport.update(
+    {
+      id: '/docs/ui/react-pro-v3/native/{$}.md',
+      path: '/docs/ui/react-pro-v3/native/{$}.md',
+      getParentRoute: () => Char123LangChar125RouteRoute,
+    } as any,
+  )
 const Char123LangChar125DocsUiReactProV3WebIndexRoute =
   Char123LangChar125DocsUiReactProV3WebIndexRouteImport.update({
     id: '/docs/ui/react-pro-v3/web/',
@@ -267,12 +290,15 @@ export interface FileRoutesByFullPath {
   '/{-$lang}/docs/ui/react-pro-v3/': typeof Char123LangChar125DocsUiReactProV3IndexRoute
   '/{-$lang}/docs/ui/react-v3/': typeof Char123LangChar125DocsUiReactV3IndexRoute
   '/{-$lang}/docs/ui/react/': typeof Char123LangChar125DocsUiReactIndexRoute
+  '/{-$lang}/docs/ui/react-pro-v3/native/$': typeof Char123LangChar125DocsUiReactProV3NativeSplatRoute
+  '/{-$lang}/docs/ui/react-pro-v3/native/{$}.md': typeof Char123LangChar125DocsUiReactProV3NativeChar123Char125DotmdRoute
   '/{-$lang}/docs/ui/react-pro-v3/web/$': typeof Char123LangChar125DocsUiReactProV3WebSplatRoute
   '/{-$lang}/docs/ui/react-pro-v3/web/{$}.md': typeof Char123LangChar125DocsUiReactProV3WebChar123Char125DotmdRoute
   '/{-$lang}/docs/ui/react-v3/$platform/$': typeof Char123LangChar125DocsUiReactV3PlatformSplatRoute
   '/{-$lang}/docs/ui/react-v3/$platform/{$}.md': typeof Char123LangChar125DocsUiReactV3PlatformChar123Char125DotmdRoute
   '/{-$lang}/docs/ui/react/web/$': typeof Char123LangChar125DocsUiReactWebSplatRoute
   '/{-$lang}/docs/ui/react/web/{$}.md': typeof Char123LangChar125DocsUiReactWebChar123Char125DotmdRoute
+  '/{-$lang}/docs/ui/react-pro-v3/native/': typeof Char123LangChar125DocsUiReactProV3NativeIndexRoute
   '/{-$lang}/docs/ui/react-pro-v3/web/': typeof Char123LangChar125DocsUiReactProV3WebIndexRoute
   '/{-$lang}/docs/ui/react-v3/$platform/': typeof Char123LangChar125DocsUiReactV3PlatformIndexRoute
   '/{-$lang}/docs/ui/react/web/': typeof Char123LangChar125DocsUiReactWebIndexRoute
@@ -302,12 +328,15 @@ export interface FileRoutesByTo {
   '/{-$lang}/docs/ui/react-pro-v3': typeof Char123LangChar125DocsUiReactProV3IndexRoute
   '/{-$lang}/docs/ui/react-v3': typeof Char123LangChar125DocsUiReactV3IndexRoute
   '/{-$lang}/docs/ui/react': typeof Char123LangChar125DocsUiReactIndexRoute
+  '/{-$lang}/docs/ui/react-pro-v3/native/$': typeof Char123LangChar125DocsUiReactProV3NativeSplatRoute
+  '/{-$lang}/docs/ui/react-pro-v3/native/{$}.md': typeof Char123LangChar125DocsUiReactProV3NativeChar123Char125DotmdRoute
   '/{-$lang}/docs/ui/react-pro-v3/web/$': typeof Char123LangChar125DocsUiReactProV3WebSplatRoute
   '/{-$lang}/docs/ui/react-pro-v3/web/{$}.md': typeof Char123LangChar125DocsUiReactProV3WebChar123Char125DotmdRoute
   '/{-$lang}/docs/ui/react-v3/$platform/$': typeof Char123LangChar125DocsUiReactV3PlatformSplatRoute
   '/{-$lang}/docs/ui/react-v3/$platform/{$}.md': typeof Char123LangChar125DocsUiReactV3PlatformChar123Char125DotmdRoute
   '/{-$lang}/docs/ui/react/web/$': typeof Char123LangChar125DocsUiReactWebSplatRoute
   '/{-$lang}/docs/ui/react/web/{$}.md': typeof Char123LangChar125DocsUiReactWebChar123Char125DotmdRoute
+  '/{-$lang}/docs/ui/react-pro-v3/native': typeof Char123LangChar125DocsUiReactProV3NativeIndexRoute
   '/{-$lang}/docs/ui/react-pro-v3/web': typeof Char123LangChar125DocsUiReactProV3WebIndexRoute
   '/{-$lang}/docs/ui/react-v3/$platform': typeof Char123LangChar125DocsUiReactV3PlatformIndexRoute
   '/{-$lang}/docs/ui/react/web': typeof Char123LangChar125DocsUiReactWebIndexRoute
@@ -339,12 +368,15 @@ export interface FileRoutesById {
   '/{-$lang}/docs/ui/react-pro-v3/': typeof Char123LangChar125DocsUiReactProV3IndexRoute
   '/{-$lang}/docs/ui/react-v3/': typeof Char123LangChar125DocsUiReactV3IndexRoute
   '/{-$lang}/docs/ui/react/': typeof Char123LangChar125DocsUiReactIndexRoute
+  '/{-$lang}/docs/ui/react-pro-v3/native/$': typeof Char123LangChar125DocsUiReactProV3NativeSplatRoute
+  '/{-$lang}/docs/ui/react-pro-v3/native/{$}.md': typeof Char123LangChar125DocsUiReactProV3NativeChar123Char125DotmdRoute
   '/{-$lang}/docs/ui/react-pro-v3/web/$': typeof Char123LangChar125DocsUiReactProV3WebSplatRoute
   '/{-$lang}/docs/ui/react-pro-v3/web/{$}.md': typeof Char123LangChar125DocsUiReactProV3WebChar123Char125DotmdRoute
   '/{-$lang}/docs/ui/react-v3/$platform/$': typeof Char123LangChar125DocsUiReactV3PlatformSplatRoute
   '/{-$lang}/docs/ui/react-v3/$platform/{$}.md': typeof Char123LangChar125DocsUiReactV3PlatformChar123Char125DotmdRoute
   '/{-$lang}/docs/ui/react/web/$': typeof Char123LangChar125DocsUiReactWebSplatRoute
   '/{-$lang}/docs/ui/react/web/{$}.md': typeof Char123LangChar125DocsUiReactWebChar123Char125DotmdRoute
+  '/{-$lang}/docs/ui/react-pro-v3/native/': typeof Char123LangChar125DocsUiReactProV3NativeIndexRoute
   '/{-$lang}/docs/ui/react-pro-v3/web/': typeof Char123LangChar125DocsUiReactProV3WebIndexRoute
   '/{-$lang}/docs/ui/react-v3/$platform/': typeof Char123LangChar125DocsUiReactV3PlatformIndexRoute
   '/{-$lang}/docs/ui/react/web/': typeof Char123LangChar125DocsUiReactWebIndexRoute
@@ -377,12 +409,15 @@ export interface FileRouteTypes {
     | '/{-$lang}/docs/ui/react-pro-v3/'
     | '/{-$lang}/docs/ui/react-v3/'
     | '/{-$lang}/docs/ui/react/'
+    | '/{-$lang}/docs/ui/react-pro-v3/native/$'
+    | '/{-$lang}/docs/ui/react-pro-v3/native/{$}.md'
     | '/{-$lang}/docs/ui/react-pro-v3/web/$'
     | '/{-$lang}/docs/ui/react-pro-v3/web/{$}.md'
     | '/{-$lang}/docs/ui/react-v3/$platform/$'
     | '/{-$lang}/docs/ui/react-v3/$platform/{$}.md'
     | '/{-$lang}/docs/ui/react/web/$'
     | '/{-$lang}/docs/ui/react/web/{$}.md'
+    | '/{-$lang}/docs/ui/react-pro-v3/native/'
     | '/{-$lang}/docs/ui/react-pro-v3/web/'
     | '/{-$lang}/docs/ui/react-v3/$platform/'
     | '/{-$lang}/docs/ui/react/web/'
@@ -412,12 +447,15 @@ export interface FileRouteTypes {
     | '/{-$lang}/docs/ui/react-pro-v3'
     | '/{-$lang}/docs/ui/react-v3'
     | '/{-$lang}/docs/ui/react'
+    | '/{-$lang}/docs/ui/react-pro-v3/native/$'
+    | '/{-$lang}/docs/ui/react-pro-v3/native/{$}.md'
     | '/{-$lang}/docs/ui/react-pro-v3/web/$'
     | '/{-$lang}/docs/ui/react-pro-v3/web/{$}.md'
     | '/{-$lang}/docs/ui/react-v3/$platform/$'
     | '/{-$lang}/docs/ui/react-v3/$platform/{$}.md'
     | '/{-$lang}/docs/ui/react/web/$'
     | '/{-$lang}/docs/ui/react/web/{$}.md'
+    | '/{-$lang}/docs/ui/react-pro-v3/native'
     | '/{-$lang}/docs/ui/react-pro-v3/web'
     | '/{-$lang}/docs/ui/react-v3/$platform'
     | '/{-$lang}/docs/ui/react/web'
@@ -448,12 +486,15 @@ export interface FileRouteTypes {
     | '/{-$lang}/docs/ui/react-pro-v3/'
     | '/{-$lang}/docs/ui/react-v3/'
     | '/{-$lang}/docs/ui/react/'
+    | '/{-$lang}/docs/ui/react-pro-v3/native/$'
+    | '/{-$lang}/docs/ui/react-pro-v3/native/{$}.md'
     | '/{-$lang}/docs/ui/react-pro-v3/web/$'
     | '/{-$lang}/docs/ui/react-pro-v3/web/{$}.md'
     | '/{-$lang}/docs/ui/react-v3/$platform/$'
     | '/{-$lang}/docs/ui/react-v3/$platform/{$}.md'
     | '/{-$lang}/docs/ui/react/web/$'
     | '/{-$lang}/docs/ui/react/web/{$}.md'
+    | '/{-$lang}/docs/ui/react-pro-v3/native/'
     | '/{-$lang}/docs/ui/react-pro-v3/web/'
     | '/{-$lang}/docs/ui/react-v3/$platform/'
     | '/{-$lang}/docs/ui/react/web/'
@@ -645,6 +686,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LangChar125DocsUiReactChar123Char125DotmdRouteImport
       parentRoute: typeof Char123LangChar125RouteRoute
     }
+    '/{-$lang}/docs/ui/react-pro-v3/native/': {
+      id: '/{-$lang}/docs/ui/react-pro-v3/native/'
+      path: '/docs/ui/react-pro-v3/native'
+      fullPath: '/{-$lang}/docs/ui/react-pro-v3/native/'
+      preLoaderRoute: typeof Char123LangChar125DocsUiReactProV3NativeIndexRouteImport
+      parentRoute: typeof Char123LangChar125RouteRoute
+    }
+    '/{-$lang}/docs/ui/react-pro-v3/native/$': {
+      id: '/{-$lang}/docs/ui/react-pro-v3/native/$'
+      path: '/docs/ui/react-pro-v3/native/$'
+      fullPath: '/{-$lang}/docs/ui/react-pro-v3/native/$'
+      preLoaderRoute: typeof Char123LangChar125DocsUiReactProV3NativeSplatRouteImport
+      parentRoute: typeof Char123LangChar125RouteRoute
+    }
+    '/{-$lang}/docs/ui/react-pro-v3/native/{$}.md': {
+      id: '/{-$lang}/docs/ui/react-pro-v3/native/{$}.md'
+      path: '/docs/ui/react-pro-v3/native/{$}.md'
+      fullPath: '/{-$lang}/docs/ui/react-pro-v3/native/{$}.md'
+      preLoaderRoute: typeof Char123LangChar125DocsUiReactProV3NativeChar123Char125DotmdRouteImport
+      parentRoute: typeof Char123LangChar125RouteRoute
+    }
     '/{-$lang}/docs/ui/react-pro-v3/web/': {
       id: '/{-$lang}/docs/ui/react-pro-v3/web/'
       path: '/docs/ui/react-pro-v3/web'
@@ -731,12 +793,15 @@ interface Char123LangChar125RouteRouteChildren {
   Char123LangChar125DocsUiReactProV3IndexRoute: typeof Char123LangChar125DocsUiReactProV3IndexRoute
   Char123LangChar125DocsUiReactV3IndexRoute: typeof Char123LangChar125DocsUiReactV3IndexRoute
   Char123LangChar125DocsUiReactIndexRoute: typeof Char123LangChar125DocsUiReactIndexRoute
+  Char123LangChar125DocsUiReactProV3NativeSplatRoute: typeof Char123LangChar125DocsUiReactProV3NativeSplatRoute
+  Char123LangChar125DocsUiReactProV3NativeChar123Char125DotmdRoute: typeof Char123LangChar125DocsUiReactProV3NativeChar123Char125DotmdRoute
   Char123LangChar125DocsUiReactProV3WebSplatRoute: typeof Char123LangChar125DocsUiReactProV3WebSplatRoute
   Char123LangChar125DocsUiReactProV3WebChar123Char125DotmdRoute: typeof Char123LangChar125DocsUiReactProV3WebChar123Char125DotmdRoute
   Char123LangChar125DocsUiReactV3PlatformSplatRoute: typeof Char123LangChar125DocsUiReactV3PlatformSplatRoute
   Char123LangChar125DocsUiReactV3PlatformChar123Char125DotmdRoute: typeof Char123LangChar125DocsUiReactV3PlatformChar123Char125DotmdRoute
   Char123LangChar125DocsUiReactWebSplatRoute: typeof Char123LangChar125DocsUiReactWebSplatRoute
   Char123LangChar125DocsUiReactWebChar123Char125DotmdRoute: typeof Char123LangChar125DocsUiReactWebChar123Char125DotmdRoute
+  Char123LangChar125DocsUiReactProV3NativeIndexRoute: typeof Char123LangChar125DocsUiReactProV3NativeIndexRoute
   Char123LangChar125DocsUiReactProV3WebIndexRoute: typeof Char123LangChar125DocsUiReactProV3WebIndexRoute
   Char123LangChar125DocsUiReactV3PlatformIndexRoute: typeof Char123LangChar125DocsUiReactV3PlatformIndexRoute
   Char123LangChar125DocsUiReactWebIndexRoute: typeof Char123LangChar125DocsUiReactWebIndexRoute
@@ -776,6 +841,10 @@ const Char123LangChar125RouteRouteChildren: Char123LangChar125RouteRouteChildren
       Char123LangChar125DocsUiReactV3IndexRoute,
     Char123LangChar125DocsUiReactIndexRoute:
       Char123LangChar125DocsUiReactIndexRoute,
+    Char123LangChar125DocsUiReactProV3NativeSplatRoute:
+      Char123LangChar125DocsUiReactProV3NativeSplatRoute,
+    Char123LangChar125DocsUiReactProV3NativeChar123Char125DotmdRoute:
+      Char123LangChar125DocsUiReactProV3NativeChar123Char125DotmdRoute,
     Char123LangChar125DocsUiReactProV3WebSplatRoute:
       Char123LangChar125DocsUiReactProV3WebSplatRoute,
     Char123LangChar125DocsUiReactProV3WebChar123Char125DotmdRoute:
@@ -788,6 +857,8 @@ const Char123LangChar125RouteRouteChildren: Char123LangChar125RouteRouteChildren
       Char123LangChar125DocsUiReactWebSplatRoute,
     Char123LangChar125DocsUiReactWebChar123Char125DotmdRoute:
       Char123LangChar125DocsUiReactWebChar123Char125DotmdRoute,
+    Char123LangChar125DocsUiReactProV3NativeIndexRoute:
+      Char123LangChar125DocsUiReactProV3NativeIndexRoute,
     Char123LangChar125DocsUiReactProV3WebIndexRoute:
       Char123LangChar125DocsUiReactProV3WebIndexRoute,
     Char123LangChar125DocsUiReactV3PlatformIndexRoute:

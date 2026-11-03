@@ -4,7 +4,7 @@ import { useNotebookLayout } from '@vezham/docs-react/layouts/notebook'
 import { Sidebar } from '@vezham/icons-react'
 
 import { i18n } from '@app/docs'
-import { uiLibraryRoutes } from '@components/docs/library-routes'
+import { getUiLibraryRoute } from '@components/docs/library-routes'
 import type { UiLibrary } from '@components/docs/library-selector'
 import { sectionTabVariants } from '@components/docs/navigation.variants'
 import {
@@ -42,7 +42,7 @@ export const SectionTabs = ({
         {getPlatformSections(platform, library).map(item => (
           <Link
             key={item.id}
-            to={uiLibraryRoutes[library]}
+            to={getUiLibraryRoute(library, platform)}
             params={{
               lang: locale === i18n.defaultLanguage ? undefined : locale,
               platform,

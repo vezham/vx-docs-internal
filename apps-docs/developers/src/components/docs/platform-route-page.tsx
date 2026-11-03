@@ -13,6 +13,7 @@ import type { getPlatformDocs } from './platform-docs'
 
 type Props = Omit<DocsRoutePageProps, 'docs'> & {
   docs: ReturnType<typeof getPlatformDocs>
+  platform?: 'web' | 'native'
 }
 
 const components = getMDXComponents()
@@ -21,12 +22,14 @@ const Content = ({
   docs,
   path,
   markdownUrl,
+  platform,
   shell
 }: Pick<Props, 'docs' | 'shell'> & {
   path: string
   markdownUrl: string
+  platform?: 'web' | 'native'
 }) => {
-  const { platform } = useParams({ strict: false })
+  const { platform: routePlatform } = useParams({ strict: false })
   const page = docs.getPage(path)
   if (!page) throw new Error(`Unknown platform docs page: ${path}`)
   const { toc } = use(page.load())
@@ -57,7 +60,7 @@ const Content = ({
       <ComponentLinks links={page.links} sourceUrl={page.sourceUrl} />
       <PageMetadata
         value={{
-          platform: platform === 'native' ? 'native' : 'web',
+          platform: (platform ?? routePlatform) === 'native' ? 'native' : 'web',
           github: page.github
         }}>
         <MDX components={components} />
@@ -69,6 +72,7 @@ const Content = ({
 export const PlatformDocsRoutePage = ({
   data,
   docs,
+  platform,
   getLayoutOptions,
   shell = 'notebook'
 }: Props) => {
@@ -82,6 +86,7 @@ export const PlatformDocsRoutePage = ({
       <Suspense>
         <Content
           docs={docs}
+          platform={platform}
           path={page.path}
           markdownUrl={page.markdownUrl}
           shell={shell}

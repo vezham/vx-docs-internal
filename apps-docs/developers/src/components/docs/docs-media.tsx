@@ -71,8 +71,15 @@ const nativeAppUrl = (slug = '') =>
 export const NativeVideoPlayerView = ({
   target,
   slug,
+  href,
+  linkLabel = 'Open in HeroUI Native',
   ...props
-}: VideoProps & { target?: 'home' | 'component' | 'auto'; slug?: string }) => {
+}: VideoProps & {
+  target?: 'home' | 'component' | 'auto'
+  slug?: string
+  href?: string
+  linkLabel?: string
+}) => {
   const { _splat } = useParams({ strict: false })
   const component =
     target === 'home'
@@ -84,21 +91,27 @@ export const NativeVideoPlayerView = ({
   return (
     <div className="not-prose my-6 flex flex-col items-end gap-4">
       <Link
-        href={nativeAppUrl(component)}
+        href={href ?? nativeAppUrl(component)}
         target="_blank"
         rel="noopener noreferrer"
         className="text-foreground bg-default rounded-full px-3 py-1 text-sm no-underline">
-        Open in HeroUI Native
+        {linkLabel}
       </Link>
       <VideoPlayer {...props} />
     </div>
   )
 }
 
-export const NativeImageHeroView = () => (
+export const NativeImageHeroView = ({
+  href = nativeAppUrl(),
+  linkLabel = 'Open in HeroUI Native'
+}: {
+  href?: string
+  linkLabel?: string
+}) => (
   <>
-    <Link href={nativeAppUrl()} target="_blank" rel="noopener noreferrer">
-      Open in HeroUI Native
+    <Link href={href} target="_blank" rel="noopener noreferrer">
+      {linkLabel}
     </Link>
     <DocsImage
       src="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/native/heroui-native-og-light-1.webp"

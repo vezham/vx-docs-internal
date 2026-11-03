@@ -24,6 +24,7 @@ export {
 export {
   ComponentsCategory,
   ProComponentsCategory,
+  NativeProComponentsCategory,
   NativeComponentsCategory
 } from './component-gallery'
 

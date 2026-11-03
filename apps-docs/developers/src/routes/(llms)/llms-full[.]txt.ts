@@ -13,14 +13,15 @@ export const Route = createFileRoute('/(llms)/llms-full.txt')({
           ...markdownDocsRuntime.source
             .getPages()
             .map(markdownDocsRuntime.getLLMText),
-          ...(['web', 'native'] as const).flatMap(platform => {
-            const runtime = getPlatformDocsRuntime(platform)
-            return runtime.source.getPages().map(runtime.getLLMText)
-          }),
-          ...(['react-pro-v3', 'react'] as const).flatMap(library => {
-            const runtime = getPlatformDocsRuntime(undefined, library)
-            return runtime.source.getPages().map(runtime.getLLMText)
-          })
+          ...[
+            getPlatformDocsRuntime('web'),
+            getPlatformDocsRuntime('native'),
+            getPlatformDocsRuntime(undefined, 'react-pro-v3'),
+            getPlatformDocsRuntime('native', 'react-pro-v3'),
+            getPlatformDocsRuntime(undefined, 'react')
+          ].flatMap(runtime =>
+            runtime.source.getPages().map(runtime.getLLMText)
+          )
         ])
 
         return new Response(scanned.join('\n\n'))

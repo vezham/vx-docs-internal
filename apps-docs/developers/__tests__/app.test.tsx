@@ -20,6 +20,28 @@ const renderApp = async (path = '/') => {
 }
 
 describe('App', () => {
+  it('keeps canonical Pro Web routes separate from Native routes', async () => {
+    const router = createRouter({
+      history: createMemoryHistory({
+        initialEntries: ['/docs/ui/react-pro-v3/components/area-chart']
+      }),
+      routeTree
+    })
+    const currentMatch = () =>
+      router.state.matches[router.state.matches.length - 1]
+    await router.load()
+    expect(currentMatch()?.routeId).toBe('/{-$lang}/docs/ui/react-pro-v3/$')
+    expect(currentMatch()?.status).toBe('success')
+    await router.navigate({
+      to: '/{-$lang}/docs/ui/react-pro-v3/native/$',
+      params: { _splat: 'components/fab' }
+    })
+    expect(currentMatch()?.routeId).toBe(
+      '/{-$lang}/docs/ui/react-pro-v3/native/$'
+    )
+    expect(currentMatch()?.status).toBe('success')
+  }, 20_000)
+
   it('switches a Web-only page to the Native introduction', async () => {
     const animations = Object.getOwnPropertyDescriptor(
       Element.prototype,

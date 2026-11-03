@@ -1,0 +1,93 @@
+import { createFileRoute, notFound, useNavigate } from '@tanstack/react-router'
+
+import { i18n } from '@app/docs'
+import {
+  getPlatformDocs,
+  getPlatformDocsRuntime
+} from '@components/docs/platform-docs'
+import { getPlatformLayoutOptions } from '@components/docs/platform-layout'
+import { PlatformDocsRoutePage } from '@components/docs/platform-route-page'
+import {
+  type PlatformSection,
+  getPlatformPage,
+  getPlatformSections
+} from '@components/docs/platform-sections'
+import type { Locale } from '@generated/vx'
+import { createPlatformDocsLoader } from '@src/lib/docs/platform-loader'
+
+const library = 'react-pro-v3' as const
+const loadPlatformDocs = createPlatformDocsLoader(library)
+const loadDocs = ({ params }: Parameters<typeof loadPlatformDocs>[0]) =>
+  loadPlatformDocs({ params: { ...params, platform: 'native' } })
+
+const RouteComponent = () => {
+  const navigate = useNavigate()
+  const data = Route.useLoaderData()
+  const { lang, _splat } = Route.useParams()
+  const platform = 'native' as const
+
+  const platformSections = getPlatformSections(platform, library)
+  const section = _splat?.split('/')[0]
+  const currentSection = platformSections.find(item => item.id === section)
+  if (!data || !currentSection || !_splat) throw notFound()
+
+  const locale = (lang ?? i18n.defaultLanguage) as Locale
+  const getPlatformParams = (value: 'web' | 'native') => ({
+    lang: locale === i18n.defaultLanguage ? undefined : locale,
+    platform: value,
+    _splat: getPlatformPage(value, _splat, library)
+  })
+
+  return (
+    <PlatformDocsRoutePage
+      data={data}
+      platform={platform}
+      docs={getPlatformDocs(platform, library)}
+      shell="notebook"
+      getLayoutOptions={locale =>
+        getPlatformLayoutOptions({
+          library,
+          locale: locale as Locale,
+          page: _splat,
+          platform,
+          platforms: data.platforms,
+          selectedSection: section as PlatformSection,
+          getPlatformParams,
+          onSectionChange: value => {
+            void navigate({
+              to: '/{-$lang}/docs/ui/react-pro-v3/native/$',
+              params: {
+                ...getPlatformParams(platform),
+                _splat:
+                  platformSections.find(item => item.id === value)?.page ??
+                  _splat
+              }
+            })
+          }
+        })
+      }
+    />
+  )
+}
+
+export const Route = createFileRoute('/{-$lang}/docs/ui/react-pro-v3/native/$')(
+  {
+    component: RouteComponent,
+    head: ({ loaderData }) => {
+      const head = getPlatformDocsRuntime('native', library).getDocsRouteHead(
+        loaderData
+      )
+      if (!loaderData?.image || !head.meta) return head
+      return {
+        ...head,
+        meta: head.meta.map(meta =>
+          ('property' in meta && meta.property === 'og:image') ||
+          ('name' in meta && meta.name === 'twitter:image')
+            ? { ...meta, content: loaderData.image }
+            : meta
+        )
+      }
+    },
+    loader: loadDocs
+  }
+)

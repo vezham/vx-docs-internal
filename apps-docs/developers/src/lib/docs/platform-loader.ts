@@ -6,7 +6,8 @@ import { i18n } from '@app/docs'
 import type { UiLibrary } from '@components/docs/library-selector'
 import {
   getAvailablePlatforms,
-  getPlatformDocsRuntime
+  getPlatformDocsRuntime,
+  hasPlatformDocs
 } from '@components/docs/platform-docs'
 import { getPlatformSections } from '@components/docs/platform-sections'
 import { filterPlatformPageTree } from '@src/lib/docs/platform-page-tree'
@@ -29,9 +30,8 @@ export const createPlatformDocsLoader =
 
     const platforms = getAvailablePlatforms(library)
     if (
-      params.platform
-        ? !platforms.includes(params.platform)
-        : platforms.length > 0
+      !hasPlatformDocs(params.platform, library) ||
+      (params.platform && !platforms.includes(params.platform))
     )
       throw notFound()
 

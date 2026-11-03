@@ -4,7 +4,7 @@ import type { ComponentPropsWithoutRef } from 'react'
 import { Globe, Smartphone } from '@vezham/icons-react'
 import { Tabs } from '@vezham/react-v3'
 
-import { uiLibraryRoutes } from '@components/docs/library-routes'
+import { getUiLibraryRoute } from '@components/docs/library-routes'
 import type { UiLibrary } from '@components/docs/library-selector'
 import { platformIconVariants } from '@components/docs/navigation.variants'
 
@@ -31,7 +31,7 @@ export const PlatformTabs = ({
   if (platforms.length === 0) return null
   const getHref = (value: Platform) =>
     router.buildLocation({
-      to: uiLibraryRoutes[library],
+      to: getUiLibraryRoute(library, value),
       params: getPlatformParams(value)
     }).href
   return (
@@ -50,7 +50,7 @@ export const PlatformTabs = ({
                 return (
                   <Link
                     {...linkProps}
-                    to={uiLibraryRoutes[library]}
+                    to={getUiLibraryRoute(library, 'web')}
                     params={getPlatformParams('web')}
                   />
                 )
@@ -78,7 +78,7 @@ export const PlatformTabs = ({
                 return (
                   <Link
                     {...linkProps}
-                    to={uiLibraryRoutes[library]}
+                    to={getUiLibraryRoute(library, 'native')}
                     params={getPlatformParams('native')}
                   />
                 )

@@ -15,8 +15,13 @@ Show platform tabs only for registered MDX collections that contain pages.
 Content collections:
 
 - Vezham v3: `content/docs-ui/{web,native}`
-- Vezham Pro v3: `content/docs-ui-pro-v3`
+- Vezham Pro v3: `content/docs-ui-pro-v3/{web,native}`
 - In-house Vezham: `content/docs-ui-react`
 
 Platforms are optional. Collections without platform folders use direct library
 routes and no platform selector. Do not introduce a mandatory `web` folder.
+
+Pro now has both platforms. Its existing platformless routes remain the canonical
+Web URLs; `/docs/ui/react-pro-v3/web/*` redirects there. Native uses
+`/docs/ui/react-pro-v3/native/*`. Keep platform switching and section links on the
+selected library and fall back to its section index when a page is unavailable.

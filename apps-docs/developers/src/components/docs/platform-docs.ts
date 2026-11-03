@@ -46,7 +46,17 @@ const nativePlatformDocs = defineDocs({
 })
 
 const proPlatformDocs = defineDocs({
-  dir: 'content/docs-ui-pro-v3',
+  dir: 'content/docs-ui-pro-v3/web',
+  docs: {
+    async: true,
+    postprocess: { includeProcessedMarkdown: true },
+    schema: platformDocsPageSchema
+  },
+  meta: { schema: docsMetaSchema }
+})
+
+const nativeProPlatformDocs = defineDocs({
+  dir: 'content/docs-ui-pro-v3/native',
   docs: {
     async: true,
     postprocess: { includeProcessedMarkdown: true },
@@ -90,16 +100,24 @@ const runtimes = {
   })
 }
 
+const proWebRuntime = createStaticDocsRuntime({
+  ...runtimeOptions,
+  docs: proPlatformDocs,
+  docsRoute: '/docs/ui/react-pro-v3'
+})
+
 const libraryRuntimes: Record<
   UiLibrary,
   Partial<typeof runtimes> & { default?: typeof runtimes.web }
 > = {
   'react-v3': runtimes,
   'react-pro-v3': {
-    default: createStaticDocsRuntime({
+    default: proWebRuntime,
+    web: proWebRuntime,
+    native: createStaticDocsRuntime({
       ...runtimeOptions,
-      docs: proPlatformDocs,
-      docsRoute: '/docs/ui/react-pro-v3'
+      docs: nativeProPlatformDocs,
+      docsRoute: '/docs/ui/react-pro-v3/native'
     })
   },
   react: {
@@ -117,6 +135,11 @@ export const getAvailablePlatforms = (library: UiLibrary) =>
       (libraryRuntimes[library][platform]?.source.getPages().length ?? 0) > 0
   )
 
+export const hasPlatformDocs = (
+  platform: 'web' | 'native' | undefined,
+  library: UiLibrary
+) => libraryRuntimes[library][platform ?? 'default'] !== undefined
+
 export const getPlatformDocsRuntime = (
   platform: 'web' | 'native' | undefined,
   library: UiLibrary = 'react-v3'
@@ -131,7 +154,8 @@ export const getPlatformDocs = (
   platform: 'web' | 'native' | undefined,
   library: UiLibrary = 'react-v3'
 ) => {
-  if (library === 'react-pro-v3') return proPlatformDocs
+  if (library === 'react-pro-v3')
+    return platform === 'native' ? nativeProPlatformDocs : proPlatformDocs
   if (library === 'react') return reactPlatformDocs
   return platform === 'web' ? webPlatformDocs : nativePlatformDocs
 }
