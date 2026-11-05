@@ -15,6 +15,7 @@ import {
   Label,
   Link,
   Slider,
+  Switch,
   Tabs
 } from '@vezham/react-v3'
 
@@ -137,6 +138,7 @@ export const AssetDetail = ({
   const [variant, setVariant] = useState('original')
   const [message, setMessage] = useState('')
   const [busy, setBusy] = useState(false)
+  const [showGrid, setShowGrid] = useState(true)
   const activeWeight = asset?.weights.includes(weight as IconWeight)
     ? (weight as IconWeight)
     : (asset?.weights[0] ?? 'outline')
@@ -216,6 +218,7 @@ export const AssetDetail = ({
     setSecondaryColor('#9ecfff')
     setVariant('original')
     setMessage('')
+    setShowGrid(true)
     illustration.reset()
   }
   const snippets = asset
@@ -283,7 +286,7 @@ export const AssetDetail = ({
               <div className="space-y-6">
                 <Card>
                   <Card.Content
-                    className={`flex min-h-80 items-center justify-center overflow-hidden ${kind === 'logos' ? (activeVariant.includes('white') ? 'bg-black' : 'bg-white') : ''}`}>
+                    className={`flex min-h-80 items-center justify-center overflow-hidden ${showGrid ? 'asset-preview--grid' : ''} ${kind === 'logos' ? (activeVariant.includes('white') ? 'bg-black' : 'asset-preview--logo') : ''}`}>
                     {kind === 'icons' ? (
                       <CdnIcon
                         name={asset.slug}
@@ -308,6 +311,18 @@ export const AssetDetail = ({
                     )}
                   </Card.Content>
                 </Card>
+                <Switch
+                  aria-label="Preview grid"
+                  className="w-full"
+                  isSelected={showGrid}
+                  onChange={setShowGrid}>
+                  <Switch.Content className="w-full justify-between">
+                    Grid
+                    <Switch.Control>
+                      <Switch.Thumb />
+                    </Switch.Control>
+                  </Switch.Content>
+                </Switch>
                 <Slider
                   aria-label="Preview size"
                   value={size}
@@ -510,7 +525,7 @@ export const AssetDetail = ({
                       className="min-w-0 no-underline">
                       <Card className="h-full">
                         <Card.Content
-                          className={`flex min-h-24 items-center justify-center ${kind === 'logos' ? 'bg-white' : ''}`}>
+                          className={`flex min-h-24 items-center justify-center ${kind === 'logos' ? 'asset-preview--logo' : ''}`}>
                           {kind === 'icons' ? (
                             <CdnIcon name={item.slug} size={32} />
                           ) : (

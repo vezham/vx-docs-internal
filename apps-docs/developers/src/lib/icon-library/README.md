@@ -71,6 +71,10 @@ references. Icon examples include JavaScript, CDN, SVG URLs, React, React
 Native, Vue, Svelte, Flutter, direct imports, and generated SVG source.
 Logo and illustration examples use HTML, React, Vue, CSS, and original SVG source.
 
+The optional Grid switch adds a faint preview background for alignment checks.
+It starts off, resets with Reset preview, and never appears in SVG source or
+downloaded files.
+
 Illustration detail pages extract editable palette colors from SVG fills,
 strokes, gradient stops, and paint styles. Edits apply to the preview, SVG
 source, clipboard, and SVG/PNG/WebP downloads while preserving geometry and
