@@ -37,6 +37,13 @@ export const getAssetSnippets = ({
         code: `<img src="${source}" alt="${asset.title}" width="${size}" height="${size}" />`
       },
       {
+        id: 'css',
+        title: 'CSS',
+        language: 'css',
+        logo: 'css3',
+        code: `.asset {\n  width: ${size}px;\n  height: ${size}px;\n  background: center / contain no-repeat url("${source}");\n}`
+      },
+      {
         id: 'react',
         title: 'React',
         language: 'tsx',
@@ -44,11 +51,11 @@ export const getAssetSnippets = ({
         code: `export const ${kind === 'logos' ? 'BrandLogo' : 'Illustration'} = () => (\n  <img src=${JSON.stringify(source)} alt=${JSON.stringify(asset.title)} width={${size}} height={${size}} />\n);`
       },
       {
-        id: 'css',
-        title: 'CSS',
-        language: 'css',
-        logo: 'css3',
-        code: `.asset {\n  width: ${size}px;\n  height: ${size}px;\n  background: center / contain no-repeat url("${source}");\n}`
+        id: 'vue',
+        title: 'Vue',
+        language: 'vue',
+        logo: 'vue',
+        code: `<script setup>\nconst src = ${JSON.stringify(source)};\nconst alt = ${JSON.stringify(asset.title)};\n</script>\n\n<template>\n  <img :src="src" :alt="alt" :width="${size}" :height="${size}" />\n</template>`
       }
     ]
   const secondary = weight.startsWith('duotone')
@@ -80,8 +87,9 @@ export const getAssetSnippets = ({
     },
     {
       id: 'svg-url',
-      title: 'SVG URL',
+      title: 'HTML',
       language: 'html',
+      logo: 'html5',
       code: `<img src="${svgUrl}" width="${size}" height="${size}" alt="${asset.slug} icon" />`
     },
     {

@@ -69,4 +69,4 @@ Detail pages provide HeroUI color pickers for primary and duotone colors,
 export sizes from 16px, integration tabs with framework logos, and prop
 references. Icon examples include JavaScript, CDN, SVG URLs, React, React
 Native, Vue, Svelte, Flutter, direct imports, and generated SVG source.
-Logo and illustration examples use HTML, React, CSS, and original SVG source.
+Logo and illustration examples use HTML, React, Vue, CSS, and original SVG source.

@@ -28,11 +28,11 @@ describe('asset integration snippets', () => {
       'cdn',
       'svg-url',
       'react',
+      'direct',
       'react-native',
       'vue',
       'svelte',
-      'flutter',
-      'direct'
+      'flutter'
     ])
     expect(snippets.find(snippet => snippet.id === 'vanilla')?.code).toContain(
       "secondaryColor: '#abcdef'"
@@ -68,9 +68,13 @@ describe('asset integration snippets', () => {
     expect(snippets.map(snippet => snippet.logo)).toEqual([
       'html5',
       'react',
+      'vue',
       'css3'
     ])
     for (const snippet of snippets) expect(snippet.code).toContain(source)
     expect(snippets[0].code).toContain('width="16" height="16"')
+    expect(snippets.find(snippet => snippet.id === 'vue')?.code).toContain(
+      ':width="16" :height="16"'
+    )
   })
 })
