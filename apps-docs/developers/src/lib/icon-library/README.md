@@ -70,3 +70,9 @@ export sizes from 16px, integration tabs with framework logos, and prop
 references. Icon examples include JavaScript, CDN, SVG URLs, React, React
 Native, Vue, Svelte, Flutter, direct imports, and generated SVG source.
 Logo and illustration examples use HTML, React, Vue, CSS, and original SVG source.
+
+Illustration detail pages extract editable palette colors from SVG fills,
+strokes, gradient stops, and paint styles. Edits apply to the preview, SVG
+source, clipboard, and SVG/PNG/WebP downloads while preserving geometry and
+opacity. Reset colors restores the original file. Customized embed examples
+reference the downloaded SVG; Open SVG continues to open the original CDN file.

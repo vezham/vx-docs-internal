@@ -33,10 +33,12 @@ import {
 import { getIconSvg, loadIconRuntime } from '@src/lib/icon-library/runtime'
 import { getAssetSnippets } from '@src/lib/icon-library/snippets'
 import { downloadSvg, fetchAssetSvg } from '@src/lib/icon-library/svg'
+import { useIllustrationPalette } from '@src/lib/icon-library/use-illustration-palette'
 import { useResource } from '@src/lib/icon-library/use-resource'
 
 import { AssetColorPicker } from './color-picker'
 import { AssetSelect, CdnIcon, ResourceStatus } from './controls'
+import { IllustrationPalette } from './illustration-palette'
 import { AssetPropsReference } from './props-reference'
 import { AssetShell } from './shell'
 
@@ -145,6 +147,9 @@ export const AssetDetail = ({
       : (Object.keys(asset?.variants ?? {})[0] ?? 'original')
   const source =
     asset && kind !== 'icons' ? assetUrl(kind, asset, activeVariant) : ''
+  const illustration = useIllustrationPalette(
+    kind === 'illustrations' ? source : ''
+  )
   const embedSource =
     source && typeof window !== 'undefined'
       ? new URL(source, window.location.origin).href
@@ -159,7 +164,9 @@ export const AssetDetail = ({
           color,
           secondaryColor
         )
-      : fetchAssetSvg(source)
+      : kind === 'illustrations' && illustration.svg
+        ? Promise.resolve(illustration.svg)
+        : fetchAssetSvg(source)
   const copySvg = async () => {
     if (!asset) return
     setBusy(true)
@@ -209,6 +216,7 @@ export const AssetDetail = ({
     setSecondaryColor('#9ecfff')
     setVariant('original')
     setMessage('')
+    illustration.reset()
   }
   const snippets = asset
     ? getAssetSnippets({
@@ -218,7 +226,7 @@ export const AssetDetail = ({
         size,
         color,
         secondaryColor,
-        source: embedSource
+        source: illustration.customized ? `./${asset.slug}.svg` : embedSource
       })
     : []
   const related =
@@ -286,7 +294,11 @@ export const AssetDetail = ({
                       />
                     ) : (
                       <img
-                        src={source}
+                        src={
+                          kind === 'illustrations'
+                            ? illustration.preview
+                            : source
+                        }
                         alt={asset.title}
                         width={size}
                         height={size}
@@ -345,6 +357,9 @@ export const AssetDetail = ({
                     }))}
                     onChange={setVariant}
                   />
+                )}
+                {kind === 'illustrations' && (
+                  <IllustrationPalette palette={illustration} />
                 )}
                 <Button variant="tertiary" onPress={reset}>
                   Reset preview
@@ -441,14 +456,21 @@ export const AssetDetail = ({
                     </Tabs.List>
                   </Tabs.ListContainer>
                   <Tabs.Panel id="svg">
-                    <SvgSource
-                      name={asset.slug}
-                      source={kind === 'icons' ? undefined : source}
-                      weight={activeWeight}
-                      size={Number(exportSize)}
-                      color={color}
-                      secondaryColor={secondaryColor}
-                    />
+                    {kind === 'illustrations' && illustration.svg ? (
+                      <Snippet
+                        code={illustration.svg.replace(/></g, '>\n<')}
+                        language="xml"
+                      />
+                    ) : (
+                      <SvgSource
+                        name={asset.slug}
+                        source={kind === 'icons' ? undefined : source}
+                        weight={activeWeight}
+                        size={Number(exportSize)}
+                        color={color}
+                        secondaryColor={secondaryColor}
+                      />
+                    )}
                   </Tabs.Panel>
                   {snippets.map(snippet => (
                     <Tabs.Panel id={snippet.id} key={snippet.id}>
@@ -459,6 +481,12 @@ export const AssetDetail = ({
                     </Tabs.Panel>
                   ))}
                 </Tabs>
+                {illustration.customized && (
+                  <p className="text-muted text-sm">
+                    Download the customized SVG as {asset.slug}.svg to use these
+                    embed examples. Open SVG shows the original artwork.
+                  </p>
+                )}
                 <AssetPropsReference icons={kind === 'icons'} />
                 <Link
                   href={`${lang ? '/' + lang : ''}/docs/${kind === 'icons' ? 'vanilla' : 'svg'}`}>

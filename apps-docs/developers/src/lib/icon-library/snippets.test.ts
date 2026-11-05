@@ -67,9 +67,9 @@ describe('asset integration snippets', () => {
     const snippets = getAssetSnippets({ ...options, kind: 'logos', source })
     expect(snippets.map(snippet => snippet.logo)).toEqual([
       'html5',
+      'css3',
       'react',
-      'vue',
-      'css3'
+      'vue'
     ])
     for (const snippet of snippets) expect(snippet.code).toContain(source)
     expect(snippets[0].code).toContain('width="16" height="16"')
