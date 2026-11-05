@@ -1,4 +1,4 @@
-import { type ReactNode, createElement } from 'react'
+import { type ReactNode, createElement, useCallback } from 'react'
 
 import {
   Alert,
@@ -10,6 +10,7 @@ import {
 } from '@vezham/react-v3'
 
 import type { IconWeight } from '@src/lib/icon-library/catalog'
+import { applyIconSecondaryColor } from '@src/lib/icon-library/runtime'
 
 export const AssetSelect = ({
   label,
@@ -58,8 +59,24 @@ export const CdnIcon = ({
   size?: number
   color?: string
   secondaryColor?: string
-}) =>
-  createElement('vx-icon', {
+}) => {
+  const attach = useCallback(
+    (element: HTMLElement | null) => {
+      const root = element?.shadowRoot
+      if (!root || !weight.startsWith('duotone')) return
+      const update = () => {
+        const svg = root.querySelector('svg')
+        if (svg) applyIconSecondaryColor(svg, weight)
+      }
+      update()
+      const observer = new MutationObserver(update)
+      observer.observe(root, { childList: true, subtree: true })
+      return () => observer.disconnect()
+    },
+    [weight]
+  )
+  return createElement('vx-icon', {
+    ref: attach,
     icon: name,
     weight,
     size: String(size),
@@ -70,6 +87,7 @@ export const CdnIcon = ({
     loading: 'lazy',
     style: { display: 'inline-block', width: size, height: size }
   })
+}
 
 export const ResourceStatus = ({
   error,

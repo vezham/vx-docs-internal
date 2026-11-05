@@ -49,6 +49,32 @@ export const loadIconRuntime = (): Promise<Runtime> => {
   return pending
 }
 
+// vx-bot/NOTE: The pinned runtime uses the primary paint for low-opacity duotone layers.
+export const applyIconSecondaryColor = (svg: SVGSVGElement, weight: string) => {
+  if (!weight.startsWith('duotone')) return
+  for (const layer of svg.querySelectorAll(
+    '[opacity], [fill-opacity], [stroke-opacity]'
+  )) {
+    const secondary = ['opacity', 'fill-opacity', 'stroke-opacity'].some(
+      attribute => {
+        const value = layer.getAttribute(attribute)
+        return value !== null && Number(value) > 0 && Number(value) < 1
+      }
+    )
+    if (!secondary) continue
+    for (const element of [
+      layer,
+      ...layer.querySelectorAll('[fill], [stroke]')
+    ]) {
+      for (const attribute of ['fill', 'stroke']) {
+        const paint = element.getAttribute(attribute)
+        if (paint === 'currentColor' || paint === 'var(--vx-icon-primary)')
+          element.setAttribute(attribute, 'var(--vx-icon-secondary)')
+      }
+    }
+  }
+}
+
 export const getIconSvg = async (
   name: string,
   weight: string,
@@ -61,6 +87,8 @@ export const getIconSvg = async (
   element.setAttribute('icon', name)
   element.setAttribute('weight', weight)
   element.setAttribute('size', String(size))
+  element.setAttribute('color', color)
+  element.setAttribute('secondary-color', secondaryColor)
   element.setAttribute('decorative', '')
   element.style.position = 'fixed'
   element.style.visibility = 'hidden'
@@ -69,6 +97,7 @@ export const getIconSvg = async (
     const svg = element.shadowRoot?.querySelector('svg')?.cloneNode(true) as
       SVGSVGElement | undefined
     if (!svg) throw new Error('This icon could not be exported.')
+    applyIconSecondaryColor(svg, weight)
     svg.setAttribute('width', String(size))
     svg.setAttribute('height', String(size))
     svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg')

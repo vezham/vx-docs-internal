@@ -64,3 +64,9 @@ Framework guides remain in `content/docs-icons`. Their routes, search index
 and markdown exports share the existing documentation runtime. Raster exports
 preserve aspect ratio inside the chosen square; embed snippets use absolute
 URLs. CDN origins come from the app environment.
+
+Detail pages provide HeroUI color pickers for primary and duotone colors,
+export sizes from 16px, integration tabs with framework logos, and prop
+references. Icon examples include JavaScript, CDN, SVG URLs, React, React
+Native, Vue, Svelte, Flutter, direct imports, and generated SVG source.
+Logo and illustration examples use HTML, React, CSS, and original SVG source.

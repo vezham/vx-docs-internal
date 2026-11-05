@@ -47,4 +47,35 @@ describe('icon CDN runtime', () => {
       ?.dispatchEvent(new Event('load'))
     expect((await retry).icons).toEqual(['home'])
   })
+
+  it('passes both colors to the renderer before exporting a duotone SVG', async () => {
+    customElements.define(
+      'vx-icon',
+      class extends HTMLElement {
+        connectedCallback() {
+          const shadow = this.attachShadow({ mode: 'open' })
+          shadow.innerHTML = `<svg viewBox="0 0 24 24"><path fill="${this.getAttribute('color') ?? 'currentColor'}"/><g opacity="0.5"><path fill="currentColor"/></g></svg>`
+        }
+      }
+    )
+    window.VezhamIcons = {
+      icons: ['home'],
+      categories: [],
+      ready: Promise.resolve(),
+      preload: vi.fn()
+    }
+    const { getIconSvg } = await import('./runtime')
+    const svg = await getIconSvg(
+      'home',
+      'duotone-filled',
+      16,
+      '#123456',
+      '#abcdef'
+    )
+    expect(svg).toContain('width="16"')
+    expect(svg).toContain('height="16"')
+    expect(svg).toContain('fill="#123456"')
+    expect(svg).toContain('fill="#abcdef"')
+    expect(document.querySelector('vx-icon')).toBeNull()
+  })
 })

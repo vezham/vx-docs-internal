@@ -5,19 +5,17 @@ import {
 import { useCallback, useState } from 'react'
 
 import { useTheme } from '@vezham/docs-react/provider/base'
+import { Code, Link as LinkIcon } from '@vezham/icons-react'
 import { CodeBlock } from '@vezham/react-pro-v3/code-block'
 import {
   Breadcrumbs,
   Button,
   Card,
   Chip,
-  ColorField,
-  ColorSwatch,
   Label,
   Link,
   Slider,
-  Tabs,
-  parseColor
+  Tabs
 } from '@vezham/react-v3'
 
 import { i18n } from '@app/docs'
@@ -32,15 +30,14 @@ import {
   kindLabels,
   loadCatalog
 } from '@src/lib/icon-library/catalog'
-import {
-  getIconSvg,
-  iconCdnUrl,
-  loadIconRuntime
-} from '@src/lib/icon-library/runtime'
+import { getIconSvg, loadIconRuntime } from '@src/lib/icon-library/runtime'
+import { getAssetSnippets } from '@src/lib/icon-library/snippets'
 import { downloadSvg, fetchAssetSvg } from '@src/lib/icon-library/svg'
 import { useResource } from '@src/lib/icon-library/use-resource'
 
+import { AssetColorPicker } from './color-picker'
 import { AssetSelect, CdnIcon, ResourceStatus } from './controls'
+import { AssetPropsReference } from './props-reference'
 import { AssetShell } from './shell'
 
 export const parseDetailSearch = (
@@ -214,59 +211,15 @@ export const AssetDetail = ({
     setMessage('')
   }
   const snippets = asset
-    ? kind === 'icons'
-      ? [
-          {
-            id: 'cdn',
-            title: 'CDN',
-            language: 'html',
-            code: `<script defer src="${iconCdnUrl}"></script>\n\n<vx-icon icon="${asset.slug}" weight="${activeWeight}" size="${size}" color="${color}" secondary-color="${secondaryColor}"></vx-icon>`
-          },
-          {
-            id: 'react',
-            title: 'React',
-            language: 'tsx',
-            code: `import { ${asset.title} } from '@vezham/icons-react';\n\n<${asset.title} size={${size}} weight="${activeWeight}" color="${color}" secondaryColor="${secondaryColor}" />`
-          },
-          {
-            id: 'react-native',
-            title: 'React Native',
-            language: 'tsx',
-            code: `import { ${asset.title} } from '@vezham/icons-react-native';\n\n<${asset.title} size={${size}} weight="${activeWeight}" color="${color}" secondaryColor="${secondaryColor}" />`
-          },
-          {
-            id: 'vue',
-            title: 'Vue',
-            language: 'vue',
-            code: `<script setup>\nimport { ${asset.title} } from '@vezham/icons-vue';\n</script>\n\n<template>\n  <${asset.title} :size="${size}" weight="${activeWeight}" color="${color}" secondaryColor="${secondaryColor}" />\n</template>`
-          },
-          {
-            id: 'svelte',
-            title: 'Svelte',
-            language: 'svelte',
-            code: `<script>\nimport { ${asset.title} } from '@vezham/icons-svelte';\n</script>\n\n<${asset.title} size={${size}} weight="${activeWeight}" color="${color}" secondaryColor="${secondaryColor}" />`
-          }
-        ]
-      : [
-          {
-            id: 'html',
-            title: 'HTML',
-            language: 'html',
-            code: `<img src="${embedSource}" alt="${asset.title}" width="${size}" height="${size}" />`
-          },
-          {
-            id: 'react',
-            title: 'React',
-            language: 'tsx',
-            code: `export const ${kind === 'logos' ? 'BrandLogo' : 'Illustration'} = () => (\n  <img src=${JSON.stringify(embedSource)} alt=${JSON.stringify(asset.title)} width={${size}} height={${size}} />\n);`
-          },
-          {
-            id: 'css',
-            title: 'CSS',
-            language: 'css',
-            code: `.asset {\n  width: ${size}px;\n  height: ${size}px;\n  background: center / contain no-repeat url("${embedSource}");\n}`
-          }
-        ]
+    ? getAssetSnippets({
+        kind,
+        asset,
+        weight: activeWeight,
+        size,
+        color,
+        secondaryColor,
+        source: embedSource
+      })
     : []
   const related =
     resource.data
@@ -346,7 +299,7 @@ export const AssetDetail = ({
                 <Slider
                   aria-label="Preview size"
                   value={size}
-                  minValue={24}
+                  minValue={16}
                   maxValue={256}
                   step={8}
                   onChange={value => setSize(Number(value))}>
@@ -368,33 +321,17 @@ export const AssetDetail = ({
                       }))}
                       onChange={setWeight}
                     />
-                    <ColorField
-                      value={parseColor(color)}
-                      onChange={value => {
-                        if (value) setColor(value.toString('hex'))
-                      }}>
-                      <Label>Primary color</Label>
-                      <ColorField.Group>
-                        <ColorField.Prefix>
-                          <ColorSwatch color={color} size="xs" />
-                        </ColorField.Prefix>
-                        <ColorField.Input />
-                      </ColorField.Group>
-                    </ColorField>
+                    <AssetColorPicker
+                      label="Primary color"
+                      value={color}
+                      onChange={setColor}
+                    />
                     {activeWeight.startsWith('duotone') && (
-                      <ColorField
-                        value={parseColor(secondaryColor)}
-                        onChange={value => {
-                          if (value) setSecondaryColor(value.toString('hex'))
-                        }}>
-                        <Label>Secondary color</Label>
-                        <ColorField.Group>
-                          <ColorField.Prefix>
-                            <ColorSwatch color={secondaryColor} size="xs" />
-                          </ColorField.Prefix>
-                          <ColorField.Input />
-                        </ColorField.Group>
-                      </ColorField>
+                      <AssetColorPicker
+                        label="Secondary color"
+                        value={secondaryColor}
+                        onChange={setSecondaryColor}
+                      />
                     )}
                   </>
                 )}
@@ -418,10 +355,12 @@ export const AssetDetail = ({
                   <AssetSelect
                     label="Export size"
                     value={exportSize}
-                    options={[32, 64, 128, 256, 512, 1024].map(n => ({
-                      id: String(n),
-                      title: `${n}px`
-                    }))}
+                    options={[16, 24, 32, 48, 64, 128, 256, 512, 1024].map(
+                      n => ({
+                        id: String(n),
+                        title: `${n}px`
+                      })
+                    )}
                     onChange={setExportSize}
                   />
                   <Button isDisabled={busy} onPress={() => void copySvg()}>
@@ -464,29 +403,43 @@ export const AssetDetail = ({
                     : message ||
                       'Copy the SVG, export an image, or use an embed snippet below.'}
                 </p>
-                <Tabs defaultSelectedKey={snippets[0]?.id}>
-                  <Tabs.ListContainer>
-                    <Tabs.List aria-label="Integration code">
+                <Tabs defaultSelectedKey="svg" className="min-w-0">
+                  <Tabs.ListContainer className="w-fit max-w-full">
+                    <Tabs.List
+                      aria-label="Integration code"
+                      className="w-max min-w-0">
+                      <Tabs.Tab
+                        id="svg"
+                        className="w-auto flex-none gap-2 whitespace-nowrap">
+                        <Code size={16} aria-hidden="true" />
+                        SVG
+                        <Tabs.Indicator />
+                      </Tabs.Tab>
                       {snippets.map(snippet => (
-                        <Tabs.Tab id={snippet.id} key={snippet.id}>
+                        <Tabs.Tab
+                          id={snippet.id}
+                          key={snippet.id}
+                          className="w-auto flex-none gap-2 whitespace-nowrap">
+                          {snippet.logo ? (
+                            <img
+                              src={assetUrl('logos', {
+                                slug: snippet.logo,
+                                variants: {}
+                              })}
+                              alt=""
+                              width={16}
+                              height={16}
+                              className="size-4 shrink-0 object-contain"
+                            />
+                          ) : (
+                            <LinkIcon size={16} aria-hidden="true" />
+                          )}
                           {snippet.title}
                           <Tabs.Indicator />
                         </Tabs.Tab>
                       ))}
-                      <Tabs.Tab id="svg">
-                        SVG
-                        <Tabs.Indicator />
-                      </Tabs.Tab>
                     </Tabs.List>
                   </Tabs.ListContainer>
-                  {snippets.map(snippet => (
-                    <Tabs.Panel id={snippet.id} key={snippet.id}>
-                      <Snippet
-                        code={snippet.code}
-                        language={snippet.language}
-                      />
-                    </Tabs.Panel>
-                  ))}
                   <Tabs.Panel id="svg">
                     <SvgSource
                       name={asset.slug}
@@ -497,7 +450,16 @@ export const AssetDetail = ({
                       secondaryColor={secondaryColor}
                     />
                   </Tabs.Panel>
+                  {snippets.map(snippet => (
+                    <Tabs.Panel id={snippet.id} key={snippet.id}>
+                      <Snippet
+                        code={snippet.code}
+                        language={snippet.language}
+                      />
+                    </Tabs.Panel>
+                  ))}
                 </Tabs>
+                <AssetPropsReference icons={kind === 'icons'} />
                 <Link
                   href={`${lang ? '/' + lang : ''}/docs/${kind === 'icons' ? 'vanilla' : 'svg'}`}>
                   Read the integration guide

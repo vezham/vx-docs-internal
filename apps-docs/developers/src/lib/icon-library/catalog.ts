@@ -97,7 +97,7 @@ export const loadCatalog = (kind: AssetKind): Promise<Asset[]> => {
 
 export const assetUrl = (
   kind: Exclude<AssetKind, 'icons'>,
-  asset: Asset,
+  asset: Pick<Asset, 'slug' | 'variants'>,
   variant = 'original'
 ) => {
   if (kind === 'logos') {
