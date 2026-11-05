@@ -1,5 +1,5 @@
 import { RouterProvider, createMemoryHistory } from '@tanstack/react-router'
-import { fireEvent, render, waitFor } from '@testing-library/react'
+import { fireEvent, render, waitFor, within } from '@testing-library/react'
 
 import { createRouter } from '@vezham/start/router/tanstack'
 
@@ -20,6 +20,52 @@ const renderApp = async (path = '/') => {
 }
 
 describe('App', () => {
+  it('keeps icon resources and framework guides in the shared notebook shell', async () => {
+    const animations = Object.getOwnPropertyDescriptor(
+      Element.prototype,
+      'getAnimations'
+    )
+    Object.defineProperty(Element.prototype, 'getAnimations', {
+      configurable: true,
+      value: () => []
+    })
+    vi.stubGlobal(
+      'IntersectionObserver',
+      class {
+        observe = () => undefined
+        unobserve = () => undefined
+        disconnect = () => undefined
+      }
+    )
+    try {
+      const { container, findByRole, router } = await renderApp('/packages')
+      await findByRole('heading', { name: 'Packages and tools' })
+      expect(container.querySelector('#nd-notebook-layout')).toBeTruthy()
+      expect(container.querySelector('#nd-sidebar')).toBeTruthy()
+      const navigation = within(
+        await findByRole('navigation', { name: 'Icon library sections' })
+      )
+      const selected = navigation.getByRole('link', { name: 'Packages' })
+      expect(selected.getAttribute('aria-current')).toBe('page')
+      fireEvent.click(navigation.getByRole('link', { name: 'Docs' }))
+      await waitFor(() => expect(router.state.location.pathname).toBe('/docs'))
+      await findByRole('heading', { name: 'Vezham Icons' }, { timeout: 10_000 })
+      expect(container.querySelector('#nd-notebook-layout')).toBeTruthy()
+      expect(
+        container.querySelector('#nd-subnav a[aria-current="page"]')
+          ?.textContent
+      ).toBe('Docs')
+      expect(
+        container.querySelector('#nd-sidebar a[href="/docs/react"]')
+      ).toBeTruthy()
+    } finally {
+      vi.unstubAllGlobals()
+      if (animations)
+        Object.defineProperty(Element.prototype, 'getAnimations', animations)
+      else Reflect.deleteProperty(Element.prototype, 'getAnimations')
+    }
+  }, 20_000)
+
   it('keeps canonical Pro Web routes separate from Native routes', async () => {
     const router = createRouter({
       history: createMemoryHistory({

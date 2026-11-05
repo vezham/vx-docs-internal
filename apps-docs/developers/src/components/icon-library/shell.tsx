@@ -1,10 +1,16 @@
-import { Link as RouterLink } from '@tanstack/react-router'
-import type { ComponentPropsWithoutRef, ReactNode } from 'react'
+import { Link as RouterLink, useRouterState } from '@tanstack/react-router'
+import type { ReactNode } from 'react'
 
-import { HomeLayout } from '@vezham/docs-react/layouts/home'
-import { Tabs } from '@vezham/react-v3'
+import type { Root } from '@vezham/docs-core/page-tree'
+import { DocsPage as NotebookPage } from '@vezham/docs-react/layouts/notebook/page'
+import { DocsLayout, type DocsLayoutProps } from '@vezham/start/layouts/docs'
+import { localizedUrl } from '@vezham/start/runtime/docs'
 
 import { i18n } from '@app/docs'
+import { sectionTabVariants } from '@components/docs/navigation.variants'
+import { NotebookHeader } from '@components/docs/notebook-header'
+import { NotebookSectionTabs } from '@components/docs/section-tabs'
+import { VersionSelector } from '@components/docs/version-selector'
 import { baseOptions } from '@config/layout'
 import type { Locale } from '@generated/vx'
 
@@ -17,43 +23,85 @@ const navigation = [
   { id: 'faq', title: 'FAQ', to: '/{-$lang}/faq' }
 ] as const
 type AssetSection = (typeof navigation)[number]['id']
+const sectionUrl = (locale: Locale, path: string) =>
+  localizedUrl(i18n, locale, path.replace('/{-$lang}', ''))
 
-export const AssetNavigation = ({
+const AssetNavigation = ({
   active,
   locale
 }: {
   active: AssetSection
   locale: Locale
 }) => (
-  <Tabs selectedKey={active} keyboardActivation="manual" className="min-w-0">
-    <Tabs.ListContainer>
-      <Tabs.List aria-label="Icon library sections">
-        {navigation.map(item => (
-          <Tabs.Tab
-            key={item.id}
-            id={item.id}
-            href={`${locale === i18n.defaultLanguage ? '' : '/' + locale}${item.to.replace('/{-$lang}', '')}`}
-            render={props => {
-              const linkProps = { ...(props as ComponentPropsWithoutRef<'a'>) }
-              delete linkProps.href
-              return (
-                <RouterLink
-                  {...linkProps}
-                  to={item.to}
-                  params={{
-                    lang: locale === i18n.defaultLanguage ? undefined : locale
-                  }}
-                />
-              )
-            }}>
-            {item.title}
-            <Tabs.Indicator />
-          </Tabs.Tab>
-        ))}
-      </Tabs.List>
-    </Tabs.ListContainer>
-  </Tabs>
+  <NotebookSectionTabs label="Icon library sections">
+    {navigation.map(item => (
+      <RouterLink
+        key={item.id}
+        to={item.to}
+        params={{
+          lang: locale === i18n.defaultLanguage ? undefined : locale
+        }}
+        aria-current={item.id === active ? 'page' : undefined}
+        className={sectionTabVariants({ selected: item.id === active })}>
+        {item.title}
+      </RouterLink>
+    ))}
+  </NotebookSectionTabs>
 )
+
+export const getAssetLayoutOptions = ({
+  active,
+  locale,
+  pathname
+}: {
+  active: AssetSection
+  locale: Locale
+  pathname: string
+}): Omit<DocsLayoutProps, 'children' | 'shell' | 'tree'> => ({
+  ...baseOptions(locale),
+  nav: { title: 'Developer Docs | Vezham', mode: 'top' },
+  tabMode: 'navbar',
+  slots: {
+    header: props => (
+      <NotebookHeader
+        {...props}
+        locale={locale}
+        leading={
+          <>
+            <span className="text-muted hidden text-sm font-medium sm:inline">
+              Icons
+            </span>
+            <VersionSelector platform="web" />
+          </>
+        }>
+        <AssetNavigation active={active} locale={locale} />
+      </NotebookHeader>
+    )
+  },
+  tabs: navigation.map(item => ({
+    title: item.title,
+    url: sectionUrl(locale, item.to),
+    urls: item.id === active ? new Set([pathname]) : undefined
+  }))
+})
+
+const navigationTree = (locale: Locale): Root => ({
+  name: 'Icon library',
+  children: [
+    { type: 'separator', name: 'Browse' },
+    ...navigation.slice(0, 3).map(item => ({
+      type: 'page' as const,
+      name: item.title,
+      url: sectionUrl(locale, item.to)
+    })),
+    { type: 'separator', name: 'Resources' },
+    ...navigation.slice(3).map(item => ({
+      type: 'page' as const,
+      name: item.title,
+      url: sectionUrl(locale, item.to)
+    }))
+  ]
+})
 
 export const AssetShell = ({
   active,
@@ -63,11 +111,19 @@ export const AssetShell = ({
   active: AssetSection
   locale: Locale
   children: ReactNode
-}) => (
-  <HomeLayout {...baseOptions(locale)}>
-    <main className="mx-auto flex w-full max-w-7xl min-w-0 flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
-      <AssetNavigation active={active} locale={locale} />
-      {children}
-    </main>
-  </HomeLayout>
-)
+}) => {
+  const pathname = useRouterState({ select: state => state.location.pathname })
+  return (
+    <DocsLayout
+      {...getAssetLayoutOptions({ active, locale, pathname })}
+      shell="notebook"
+      tree={navigationTree(locale)}>
+      <NotebookPage
+        full
+        breadcrumb={{ enabled: false }}
+        footer={{ enabled: false }}>
+        <div className="flex min-w-0 flex-col gap-8">{children}</div>
+      </NotebookPage>
+    </DocsLayout>
+  )
+}

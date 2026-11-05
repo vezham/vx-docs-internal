@@ -3,6 +3,11 @@
 Icons use the pinned `@vezham/icons@1.0.7` npm/jsDelivr runtime. Their metadata
 and downloadable ZIP archive remain in `public/icon-catalog`.
 
+All icon-library routes use the UI documentation notebook shell, sharing its
+header, section bar, search, and responsive sidebar. Catalogs and asset details
+use the full-width notebook page; framework guides retain their MDX page tree
+and table of contents.
+
 The CDN repository owns illustration and logo SVGs, catalogs and manifests:
 
 | Collection    | Catalog                                   | SVGs                            |
