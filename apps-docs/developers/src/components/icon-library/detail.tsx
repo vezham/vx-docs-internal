@@ -33,11 +33,11 @@ import {
   loadCatalog
 } from '@src/lib/icon-library/catalog'
 import {
-  downloadIcon,
   getIconSvg,
   iconCdnUrl,
   loadIconRuntime
 } from '@src/lib/icon-library/runtime'
+import { downloadSvg, fetchAssetSvg } from '@src/lib/icon-library/svg'
 import { useResource } from '@src/lib/icon-library/use-resource'
 
 import { AssetSelect, CdnIcon, ResourceStatus } from './controls'
@@ -69,23 +69,28 @@ const Snippet = ({ code, language }: { code: string; language: string }) => {
 
 const SvgSource = ({
   name,
+  source,
   weight,
   size,
   color,
   secondaryColor
 }: {
   name: string
+  source?: string
   weight: string
   size: number
   color: string
   secondaryColor: string
 }) => {
   const load = useCallback(
-    () => getIconSvg(name, weight, size, color, secondaryColor),
-    [name, weight, size, color, secondaryColor]
+    () =>
+      source
+        ? fetchAssetSvg(source)
+        : getIconSvg(name, weight, size, color, secondaryColor),
+    [source, name, weight, size, color, secondaryColor]
   )
   const resource = useResource(
-    `${name}:${weight}:${size}:${color}:${secondaryColor}`,
+    `${source ?? name}:${weight}:${size}:${color}:${secondaryColor}`,
     load
   )
   return (
@@ -141,45 +146,60 @@ export const AssetDetail = ({
     : asset?.variants.original
       ? 'original'
       : (Object.keys(asset?.variants ?? {})[0] ?? 'original')
-  const source = asset ? assetUrl(kind, asset, activeVariant) : ''
+  const source =
+    asset && kind !== 'icons' ? assetUrl(kind, asset, activeVariant) : ''
+  const embedSource =
+    source && typeof window !== 'undefined'
+      ? new URL(source, window.location.origin).href
+      : source
   const lang = locale === i18n.defaultLanguage ? undefined : locale
-  const copySvg = async () => {
-    if (!asset) return
-    try {
-      await navigator.clipboard.writeText(
-        await getIconSvg(
+  const loadSvg = () =>
+    kind === 'icons' && asset
+      ? getIconSvg(
           asset.slug,
           activeWeight,
           Number(exportSize),
           color,
           secondaryColor
         )
-      )
+      : fetchAssetSvg(source)
+  const copySvg = async () => {
+    if (!asset) return
+    setBusy(true)
+    try {
+      await navigator.clipboard.writeText(await loadSvg())
       setMessage('SVG copied to clipboard.')
-    } catch {
-      setMessage('Unable to copy. Use the SVG source tab and try again.')
+    } catch (error: unknown) {
+      setMessage(
+        error instanceof Error
+          ? error.message
+          : 'Unable to copy. Use the SVG source tab and try again.'
+      )
+    } finally {
+      setBusy(false)
     }
   }
   const exportFile = async (format: 'svg' | 'png' | 'webp') => {
     if (!asset) return
     setBusy(true)
     try {
-      const svg = await getIconSvg(
-        asset.slug,
-        activeWeight,
-        Number(exportSize),
-        color,
-        secondaryColor
+      const svg = await loadSvg()
+      const filename =
+        kind === 'icons'
+          ? `${asset.slug}-${activeWeight}-${exportSize}`
+          : `${asset.slug}${kind === 'logos' ? '-' + activeVariant : ''}${format === 'svg' ? '' : '-' + exportSize}`
+      await downloadSvg(svg, filename, format, Number(exportSize))
+      setMessage(
+        format === 'svg'
+          ? 'SVG downloaded.'
+          : `${format.toUpperCase()} exported at ${exportSize}px.`
       )
-      await downloadIcon(
-        svg,
-        `${asset.slug}-${activeWeight}-${exportSize}`,
-        format,
-        Number(exportSize)
+    } catch (error: unknown) {
+      setMessage(
+        error instanceof Error
+          ? error.message
+          : 'Export failed. Please try again.'
       )
-      setMessage(`${format.toUpperCase()} exported at ${exportSize}px.`)
-    } catch {
-      setMessage('Export failed. Please try again.')
     } finally {
       setBusy(false)
     }
@@ -232,19 +252,19 @@ export const AssetDetail = ({
             id: 'html',
             title: 'HTML',
             language: 'html',
-            code: `<img src="${source}" alt="${asset.title}" width="${size}" height="${size}" />`
+            code: `<img src="${embedSource}" alt="${asset.title}" width="${size}" height="${size}" />`
           },
           {
             id: 'react',
             title: 'React',
             language: 'tsx',
-            code: `export const ${kind === 'logos' ? 'BrandLogo' : 'Illustration'} = () => (\n  <img src=${JSON.stringify(source)} alt=${JSON.stringify(asset.title)} width={${size}} height={${size}} />\n);`
+            code: `export const ${kind === 'logos' ? 'BrandLogo' : 'Illustration'} = () => (\n  <img src=${JSON.stringify(embedSource)} alt=${JSON.stringify(asset.title)} width={${size}} height={${size}} />\n);`
           },
           {
             id: 'css',
             title: 'CSS',
             language: 'css',
-            code: `.asset {\n  width: ${size}px;\n  height: ${size}px;\n  background: center / contain no-repeat url("${source}");\n}`
+            code: `.asset {\n  width: ${size}px;\n  height: ${size}px;\n  background: center / contain no-repeat url("${embedSource}");\n}`
           }
         ]
     : []
@@ -395,38 +415,37 @@ export const AssetDetail = ({
               </div>
               <div className="min-w-0 space-y-6">
                 <div className="flex flex-wrap items-end gap-3">
-                  {kind === 'icons' ? (
-                    <>
-                      <AssetSelect
-                        label="Export size"
-                        value={exportSize}
-                        options={[32, 64, 128, 256, 512, 1024].map(n => ({
-                          id: String(n),
-                          title: `${n}px`
-                        }))}
-                        onChange={setExportSize}
-                      />
-                      <Button onPress={() => void copySvg()}>Copy SVG</Button>
-                      <Button
-                        variant="secondary"
-                        isDisabled={busy}
-                        onPress={() => void exportFile('svg')}>
-                        Download SVG
-                      </Button>
-                      <Button
-                        variant="secondary"
-                        isDisabled={busy}
-                        onPress={() => void exportFile('png')}>
-                        PNG
-                      </Button>
-                      <Button
-                        variant="secondary"
-                        isDisabled={busy}
-                        onPress={() => void exportFile('webp')}>
-                        WebP
-                      </Button>
-                    </>
-                  ) : (
+                  <AssetSelect
+                    label="Export size"
+                    value={exportSize}
+                    options={[32, 64, 128, 256, 512, 1024].map(n => ({
+                      id: String(n),
+                      title: `${n}px`
+                    }))}
+                    onChange={setExportSize}
+                  />
+                  <Button isDisabled={busy} onPress={() => void copySvg()}>
+                    Copy SVG
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    isDisabled={busy}
+                    onPress={() => void exportFile('svg')}>
+                    Download SVG
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    isDisabled={busy}
+                    onPress={() => void exportFile('png')}>
+                    PNG
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    isDisabled={busy}
+                    onPress={() => void exportFile('webp')}>
+                    WebP
+                  </Button>
+                  {kind !== 'icons' && (
                     <Link
                       href={source}
                       target="_blank"
@@ -440,10 +459,10 @@ export const AssetDetail = ({
                   role="status"
                   aria-live="polite"
                   className="text-muted min-h-5 text-sm">
-                  {message ||
-                    (kind !== 'icons'
-                      ? 'Use the original SVG or copy an embed snippet below.'
-                      : 'Customize the preview, then copy code or export the icon.')}
+                  {busy
+                    ? 'Preparing your SVG…'
+                    : message ||
+                      'Copy the SVG, export an image, or use an embed snippet below.'}
                 </p>
                 <Tabs defaultSelectedKey={snippets[0]?.id}>
                   <Tabs.ListContainer>
@@ -454,12 +473,10 @@ export const AssetDetail = ({
                           <Tabs.Indicator />
                         </Tabs.Tab>
                       ))}
-                      {kind === 'icons' && (
-                        <Tabs.Tab id="svg">
-                          SVG
-                          <Tabs.Indicator />
-                        </Tabs.Tab>
-                      )}
+                      <Tabs.Tab id="svg">
+                        SVG
+                        <Tabs.Indicator />
+                      </Tabs.Tab>
                     </Tabs.List>
                   </Tabs.ListContainer>
                   {snippets.map(snippet => (
@@ -470,17 +487,16 @@ export const AssetDetail = ({
                       />
                     </Tabs.Panel>
                   ))}
-                  {kind === 'icons' && (
-                    <Tabs.Panel id="svg">
-                      <SvgSource
-                        name={asset.slug}
-                        weight={activeWeight}
-                        size={Number(exportSize)}
-                        color={color}
-                        secondaryColor={secondaryColor}
-                      />
-                    </Tabs.Panel>
-                  )}
+                  <Tabs.Panel id="svg">
+                    <SvgSource
+                      name={asset.slug}
+                      source={kind === 'icons' ? undefined : source}
+                      weight={activeWeight}
+                      size={Number(exportSize)}
+                      color={color}
+                      secondaryColor={secondaryColor}
+                    />
+                  </Tabs.Panel>
                 </Tabs>
                 <Link
                   href={`${lang ? '/' + lang : ''}/docs/${kind === 'icons' ? 'vanilla' : 'svg'}`}>

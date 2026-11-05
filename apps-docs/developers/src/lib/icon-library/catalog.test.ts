@@ -72,3 +72,86 @@ describe('asset catalog search', () => {
     expect(parsed).toMatchObject({ weight: 'outline', size: 72, page: 1 })
   })
 })
+
+describe('CDN collection ownership', () => {
+  beforeEach(() => {
+    vi.resetModules()
+    vi.stubEnv(
+      'V_ILLUSTRATIONS_CDN_URL',
+      'https://illustrations.cdn.vezham.com'
+    )
+    vi.stubEnv('V_LOGOS_CDN_URL', 'https://logos.cdn.vezham.com')
+  })
+
+  afterEach(() => {
+    vi.unstubAllGlobals()
+    vi.unstubAllEnvs()
+  })
+
+  it('loads illustration and logo catalogs from their own CDN while keeping icon metadata local', async () => {
+    const fetch = vi
+      .fn()
+      .mockImplementation(() => Promise.resolve(new Response('[]')))
+    vi.stubGlobal('fetch', fetch)
+    const { loadCatalog } = await import('./catalog')
+    await Promise.all([
+      loadCatalog('illustrations'),
+      loadCatalog('logos'),
+      loadCatalog('icons')
+    ])
+    expect(fetch.mock.calls.map(([url]) => url)).toEqual([
+      'https://illustrations.cdn.vezham.com/catalog.json',
+      'https://logos.cdn.vezham.com/catalog.json',
+      '/icon-catalog/icons.json'
+    ])
+  })
+
+  it('resolves assets on the same origin as their catalog and falls back to an available logo variant', async () => {
+    const { assetUrl } = await import('./catalog')
+    const asset = {
+      ...assets[0],
+      slug: 'react',
+      variants: {
+        original: 'https://logos.cdn.vezham.com/assets/react/original.svg',
+        text: 'https://logos.cdn.vezham.com/assets/react/text.svg'
+      }
+    }
+    expect(assetUrl('illustrations', { ...asset, slug: 'astronaut' })).toBe(
+      'https://illustrations.cdn.vezham.com/assets/astronaut.svg'
+    )
+    expect(assetUrl('logos', asset, 'text')).toBe(
+      'https://logos.cdn.vezham.com/assets/react/text.svg'
+    )
+    expect(assetUrl('logos', asset, 'missing')).toBe(
+      'https://logos.cdn.vezham.com/assets/react/original.svg'
+    )
+  })
+
+  it('uses environment overrides for catalogs and SVGs even when logo metadata contains production URLs', async () => {
+    vi.stubEnv('V_ILLUSTRATIONS_CDN_URL', 'http://localhost:4101/')
+    vi.stubEnv('V_LOGOS_CDN_URL', 'https://logos.test.vezham.com/')
+    const fetch = vi
+      .fn()
+      .mockImplementation(() => Promise.resolve(new Response('[]')))
+    vi.stubGlobal('fetch', fetch)
+    const { loadCatalog, assetUrl } = await import('./catalog')
+    await Promise.all([loadCatalog('illustrations'), loadCatalog('logos')])
+    expect(fetch.mock.calls.map(([url]) => url)).toEqual([
+      'http://localhost:4101/catalog.json',
+      'https://logos.test.vezham.com/catalog.json'
+    ])
+    const asset = {
+      ...assets[0],
+      slug: 'react',
+      variants: {
+        original: 'https://logos.cdn.vezham.com/assets/react/original.svg'
+      }
+    }
+    expect(assetUrl('illustrations', { ...asset, slug: 'astronaut' })).toBe(
+      'http://localhost:4101/assets/astronaut.svg'
+    )
+    expect(assetUrl('logos', asset, 'missing')).toBe(
+      'https://logos.test.vezham.com/assets/react/original.svg'
+    )
+  })
+})

@@ -5,6 +5,13 @@
   "sourceRoot": "apps-docs/developers/src",
   "targets": {
     "build": {
+      "inputs": [
+        "production",
+        "^production",
+        { "externalDependencies": ["vite"] },
+        { "env": "V_ILLUSTRATIONS_CDN_URL" },
+        { "env": "V_LOGOS_CDN_URL" }
+      ],
       "dependsOn": [
         "metadata:generate",
         "deploy:generate",

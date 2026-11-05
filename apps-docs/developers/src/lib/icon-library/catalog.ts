@@ -44,12 +44,25 @@ export const kindLabels = {
 }
 export const formatLabel = (value: string) =>
   value.replace(/[-_]/g, ' ').replace(/\b\w/g, char => char.toUpperCase())
+const collectionOrigins = {
+  illustrations: import.meta.env.V_ILLUSTRATIONS_CDN_URL,
+  logos: import.meta.env.V_LOGOS_CDN_URL
+} as const
+const collectionOrigin = (kind: Exclude<AssetKind, 'icons'>) => {
+  const origin: string | undefined = collectionOrigins[kind]
+  if (!origin?.trim()) throw new Error(`The ${kind} CDN URL is not configured.`)
+  return origin.trim().replace(/\/+$/, '')
+}
 const catalogs = new Map<AssetKind, Promise<Asset[]>>()
 
 export const loadCatalog = (kind: AssetKind): Promise<Asset[]> => {
   const cached = catalogs.get(kind)
   if (cached) return cached
-  const request = fetch(`/icon-catalog/${kind}.json`)
+  const catalogUrl =
+    kind === 'icons'
+      ? '/icon-catalog/icons.json'
+      : `${collectionOrigin(kind)}/catalog.json`
+  const request = fetch(catalogUrl)
     .then(async response => {
       if (!response.ok)
         throw new Error('The asset catalog could not load. Please try again.')
@@ -83,15 +96,20 @@ export const loadCatalog = (kind: AssetKind): Promise<Asset[]> => {
 }
 
 export const assetUrl = (
-  kind: AssetKind,
+  kind: Exclude<AssetKind, 'icons'>,
   asset: Asset,
   variant = 'original'
-) =>
-  kind === 'logos'
-    ? (asset.variants[variant] ??
-      asset.variants.original ??
-      Object.values(asset.variants)[0])
-    : `https://cdn.reicon.dev/${encodeURIComponent(asset.slug)}.svg`
+) => {
+  if (kind === 'logos') {
+    const availableVariant = asset.variants[variant]
+      ? variant
+      : asset.variants.original
+        ? 'original'
+        : (Object.keys(asset.variants)[0] ?? 'original')
+    return `${collectionOrigin(kind)}/assets/${encodeURIComponent(asset.slug)}/${encodeURIComponent(availableVariant)}.svg`
+  }
+  return `${collectionOrigin(kind)}/assets/${encodeURIComponent(asset.slug)}.svg`
+}
 
 export type CatalogSearch = {
   q: string

@@ -2,11 +2,24 @@ import { JSDOM } from 'jsdom'
 import fs from 'node:fs'
 import path from 'node:path'
 import ts from 'typescript'
+import { loadEnv } from 'vite'
 
-if (!process.argv[2])
-  throw new Error('Usage: node import-icon-library.mjs /path/to/reicon')
+if (!process.argv[2] || !process.argv[3])
+  throw new Error(
+    'Usage: node import-icon-library.mjs /path/to/reicon /path/to/vx-fe-apps-cdns'
+  )
 const src = path.resolve(process.argv[2])
 const app = path.resolve(import.meta.dirname, '..')
+const env = loadEnv(process.env.NODE_ENV ?? 'development', app, 'V_')
+if (!env.V_LOGOS_CDN_URL?.trim())
+  throw new Error('V_LOGOS_CDN_URL must be configured in the app environment.')
+const logosOrigin = env.V_LOGOS_CDN_URL.trim().replace(/\/+$/, '')
+const cdn = path.resolve(process.argv[3], 'apps-cdns')
+const collectionOutput = kind => path.join(cdn, `${kind}-cdn`, 'public')
+for (const kind of ['illustrations', 'logos']) {
+  if (!fs.existsSync(collectionOutput(kind)))
+    throw new Error(`Missing CDN app: ${kind}-cdn`)
+}
 const out = app + '/public/icon-catalog'
 fs.mkdirSync(out, { recursive: true })
 fs.copyFileSync(src + '/public/vezham-icons.zip', out + '/vezham-icons.zip')
@@ -69,7 +82,10 @@ const illustrations = [...all.values()].sort(
     (rank.get(a[0]) ?? 100000) - (rank.get(b[0]) ?? 100000) ||
     a[0].localeCompare(b[0])
 )
-fs.writeFileSync(out + '/illustrations.json', JSON.stringify(illustrations))
+fs.writeFileSync(
+  path.join(collectionOutput('illustrations'), 'catalog.json'),
+  JSON.stringify(illustrations)
+)
 const logoMap = JSON.parse(
   fs.readFileSync(src + '/public/logos-data/icons.json')
 )
@@ -90,9 +106,40 @@ const logos = Object.entries(logoMap).map(([slug, variants]) => [
   slug,
   '',
   null,
-  variants
+  Object.fromEntries(
+    Object.keys(variants).map(variant => [
+      variant,
+      `${logosOrigin}/assets/${slug}/${variant}.svg`
+    ])
+  )
 ])
-fs.writeFileSync(out + '/logos.json', JSON.stringify(logos))
+fs.writeFileSync(
+  path.join(collectionOutput('logos'), 'catalog.json'),
+  JSON.stringify(logos)
+)
+for (const [kind, rows] of [
+  ['illustrations', illustrations],
+  ['logos', logos]
+]) {
+  fs.writeFileSync(
+    path.join(collectionOutput(kind), 'catalog-manifest.json'),
+    JSON.stringify(
+      {
+        schemaVersion: 1,
+        collection: kind,
+        catalog: '/catalog.json',
+        assets: '/assets/',
+        entries: rows.length,
+        assetFiles:
+          kind === 'illustrations'
+            ? rows.length
+            : rows.reduce((count, row) => count + Object.keys(row[6]).length, 0)
+      },
+      null,
+      2
+    ) + '\n'
+  )
+}
 const props = node =>
   Object.fromEntries(
     node.properties
@@ -201,7 +248,7 @@ for (const [id, folder, title] of fw) {
     )
   fs.writeFileSync(
     docs + '/' + id + '.mdx',
-    `---\ntitle: ${JSON.stringify(title)}\ndescription: ${JSON.stringify('Use Vezham Icons with ' + title + '.')}\n---\n\n${md.trim()}\n`
+    `---\ntitle: ${JSON.stringify(title)}\ndescription: ${JSON.stringify('Use Vezham Icons with ' + title + '.')}\n---\n\n${md.trim()}${id === 'svg' ? "\n\n## Illustrations and logos\n\nOpen any [illustration](/illustration) or [logo](/logos) to copy its original SVG, download the vector file, or export a transparent PNG/WebP at the selected size. Logos include a variant selector when multiple versions are available.\n\nRaster exports preserve the artwork's aspect ratio inside a square canvas. Use **Open SVG** to open the original file, or copy an HTML, React, or CSS embed snippet." : ''}\n`
   )
 }
 for (const name of [
@@ -256,8 +303,6 @@ fs.writeFileSync(
     {
       version: '1.0.7',
       icons: icons.length,
-      illustrations: illustrations.length,
-      logos: logos.length,
       frameworks: fw.map(([id, , title]) => ({ id, title }))
     },
     null,
