@@ -38,10 +38,12 @@ describe('App', () => {
       }
     )
     try {
-      const { container, findByRole, router } = await renderApp('/packages')
+      const { container, findByRole, queryByRole, router } =
+        await renderApp('/packages')
       await findByRole('heading', { name: 'Packages and tools' })
       expect(container.querySelector('#nd-notebook-layout')).toBeTruthy()
       expect(container.querySelector('#nd-sidebar')).toBeTruthy()
+      expect(queryByRole('button', { name: 'Collapse sidebar' })).toBeNull()
       const navigation = within(
         await findByRole('navigation', { name: 'Icon library sections' })
       )
@@ -51,6 +53,9 @@ describe('App', () => {
       await waitFor(() => expect(router.state.location.pathname).toBe('/docs'))
       await findByRole('heading', { name: 'Vezham Icons' }, { timeout: 10_000 })
       expect(container.querySelector('#nd-notebook-layout')).toBeTruthy()
+      expect(
+        await findByRole('button', { name: 'Collapse sidebar' })
+      ).toBeTruthy()
       expect(
         container.querySelector('#nd-subnav a[aria-current="page"]')
           ?.textContent

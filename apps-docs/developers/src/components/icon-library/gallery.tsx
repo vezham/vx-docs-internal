@@ -56,8 +56,14 @@ export const AssetGallery = ({
   )
   const categories = useMemo(() => {
     const counts = new Map<string, number>()
-    for (const asset of assets ?? [])
-      counts.set(asset.category, (counts.get(asset.category) ?? 0) + 1)
+    for (const asset of assets ?? []) {
+      const matchesWeight =
+        kind !== 'icons' || asset.weights.includes(search.weight)
+      counts.set(
+        asset.category,
+        (counts.get(asset.category) ?? 0) + (matchesWeight ? 1 : 0)
+      )
+    }
     return [
       { id: 'all', title: 'All categories' },
       ...Array.from(counts)
@@ -67,7 +73,7 @@ export const AssetGallery = ({
           title: `${formatLabel(id)} (${count.toLocaleString()})`
         }))
     ]
-  }, [assets])
+  }, [assets, kind, search.weight])
   const update = (patch: Partial<CatalogSearch>) =>
     onSearchChange({ ...search, page: 1, ...patch })
   const totalPages = Math.max(1, Math.ceil(results.length / pageSize))
@@ -156,7 +162,8 @@ export const AssetGallery = ({
         retry={resource.retry}>
         <div className="space-y-6">
           <p className="text-muted text-sm" aria-live="polite">
-            {results.length.toLocaleString()} results
+            {results.length.toLocaleString()}{' '}
+            {results.length === 1 ? 'result' : 'results'}
             {search.q ? ` for “${search.q}”` : ''}
           </p>
           {shown.length ? (

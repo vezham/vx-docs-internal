@@ -33,7 +33,9 @@ const AssetNavigation = ({
   active: AssetSection
   locale: Locale
 }) => (
-  <NotebookSectionTabs label="Icon library sections">
+  <NotebookSectionTabs
+    label="Icon library sections"
+    desktopSidebar={active === 'docs'}>
     {navigation.map(item => (
       <RouterLink
         key={item.id}
@@ -60,6 +62,13 @@ export const getAssetLayoutOptions = ({
 }): Omit<DocsLayoutProps, 'children' | 'shell' | 'tree'> => ({
   ...baseOptions(locale),
   nav: { title: 'Developer Docs | Vezham', mode: 'top' },
+  containerProps:
+    active === 'docs'
+      ? undefined
+      : {
+          className:
+            '[--fd-sidebar-col:0px]! [&_[data-sidebar-placeholder]]:hidden'
+        },
   tabMode: 'navbar',
   slots: {
     header: props => (

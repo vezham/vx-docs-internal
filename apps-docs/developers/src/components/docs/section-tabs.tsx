@@ -50,10 +50,12 @@ export const SectionTabs = ({
 
 export const NotebookSectionTabs = ({
   children,
-  label = 'Documentation sections'
+  label = 'Documentation sections',
+  desktopSidebar = true
 }: {
   children: ReactNode
   label?: string
+  desktopSidebar?: boolean
 }) => {
   const { props: layoutProps, slots } = useNotebookLayout()
   const SidebarCollapseTrigger = slots.sidebar.collapseTrigger
@@ -61,12 +63,16 @@ export const NotebookSectionTabs = ({
   return (
     <div
       data-header-tabs=""
-      className="flex h-10 items-center border-b px-4 max-lg:hidden md:px-6">
-      <SidebarCollapseTrigger
-        aria-label="Collapse sidebar"
-        className="text-muted hover:bg-default-hover hover:text-foreground -ms-1 inline-flex size-8 shrink-0 items-center justify-center rounded-md">
-        <Sidebar size={16} />
-      </SidebarCollapseTrigger>
+      className={`flex h-10 items-center border-b px-4 md:px-6 ${desktopSidebar ? 'max-lg:hidden' : 'max-md:hidden'}`}>
+      {desktopSidebar ? (
+        <SidebarCollapseTrigger
+          aria-label="Collapse sidebar"
+          className="text-muted hover:bg-default-hover hover:text-foreground -ms-1 inline-flex size-8 shrink-0 items-center justify-center rounded-md">
+          <Sidebar size={16} />
+        </SidebarCollapseTrigger>
+      ) : (
+        <span aria-hidden="true" className="-ms-1 size-8 shrink-0" />
+      )}
       <nav aria-label={label} className="ms-3 flex h-full items-end gap-6">
         {children}
       </nav>
