@@ -5,6 +5,7 @@ import { Accordion, Card, Link, SearchField } from '@vezham/react-v3'
 
 import { i18n } from '@app/docs'
 import type { Locale } from '@generated/vx'
+import { assetUrl } from '@src/lib/icon-library/catalog'
 import content from '@src/lib/icon-library/content.json'
 
 import { AssetShell } from './shell'
@@ -23,25 +24,32 @@ export const IconPackages = ({ locale }: { locale: Locale }) => {
       </header>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {content.packages.map(item => (
-          <Card key={item.id}>
-            <Card.Header>
-              <Card.Title>{item.name}</Card.Title>
-              <Card.Description>{item.description}</Card.Description>
+          <Card key={item.id} className="min-w-0">
+            <Card.Header className="flex-row items-center gap-3">
+              <img
+                src={assetUrl('logos', { slug: item.logo, variants: {} })}
+                alt=""
+                width={24}
+                height={24}
+                loading="lazy"
+                className={`size-6 shrink-0 rounded-none object-contain ${item.id === 'mcp' ? 'dark:invert' : ''}`}
+              />
+              <Card.Title className="min-w-0 break-words">
+                {item.name}
+              </Card.Title>
             </Card.Header>
-            <Card.Content>
-              <code className="text-sm">
-                {item.id === 'flutter'
-                  ? 'flutter pub add vezham_icons'
-                  : item.id === 'figma' || item.id === 'vscode'
-                    ? 'Design and developer tools'
+            <Card.Content className="gap-4">
+              <Card.Description>{item.description}</Card.Description>
+              {item.id !== 'figma' && item.id !== 'vscode' && (
+                <code className="mt-auto text-sm break-all">
+                  {item.id === 'flutter'
+                    ? 'flutter pub add vezham_icons'
                     : `pnpm add ${item.name}`}
-              </code>
+                </code>
+              )}
             </Card.Content>
-            <Card.Footer className="mt-auto flex flex-wrap gap-4">
-              <Link href={`${prefix}${item.guideUrl}`}>
-                Guide
-                <Link.Icon />
-              </Link>
+            <Card.Footer className="flex-wrap gap-4">
+              <Link href={`${prefix}${item.guideUrl}`}>Guide</Link>
               <Link
                 href={item.npmUrl}
                 target="_blank"
@@ -65,19 +73,28 @@ export const IconPackages = ({ locale }: { locale: Locale }) => {
             </Card.Footer>
           </Card>
         ))}
-        <Card>
-          <Card.Header>
-            <Card.Title>Raw SVG assets</Card.Title>
+        <Card className="min-w-0">
+          <Card.Header className="flex-row items-center gap-3">
+            <img
+              src={assetUrl('logos', { slug: 'svg', variants: {} })}
+              alt=""
+              width={24}
+              height={24}
+              loading="lazy"
+              className="size-6 shrink-0 rounded-none object-contain"
+            />
+            <Card.Title className="min-w-0 break-words">
+              Raw SVG assets
+            </Card.Title>
+          </Card.Header>
+          <Card.Content>
             <Card.Description>
               Use vector files directly without a JavaScript framework or build
               step.
             </Card.Description>
-          </Card.Header>
-          <Card.Footer>
-            <Link href={`${prefix}/docs/svg`}>
-              SVG guide
-              <Link.Icon />
-            </Link>
+          </Card.Content>
+          <Card.Footer className="flex-wrap gap-4">
+            <Link href={`${prefix}/docs/svg`}>SVG guide</Link>
             <Link
               href="/icon-catalog/vezham-icons.zip"
               target="_blank"

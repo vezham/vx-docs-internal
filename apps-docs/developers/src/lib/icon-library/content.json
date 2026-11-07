@@ -6,7 +6,8 @@
       "description": "A Vezham Icons package for web and JavaScript applications.",
       "npmUrl": "https://www.npmjs.com/package/@vezham/icons",
       "sourceUrl": "https://github.com/vezham/reicon",
-      "guideUrl": "/docs/vanilla"
+      "guideUrl": "/docs/vanilla",
+      "logo": "javascript"
     },
     {
       "id": "react",
@@ -14,7 +15,8 @@
       "description": "A Vezham Icons package for React applications.",
       "npmUrl": "https://www.npmjs.com/package/@vezham/icons-react",
       "sourceUrl": "https://github.com/vezham/reicon",
-      "guideUrl": "/docs/react"
+      "guideUrl": "/docs/react",
+      "logo": "react"
     },
     {
       "id": "react-native",
@@ -22,7 +24,8 @@
       "description": "React Native icon components for Vezham Icons. Tree-shakeable, TypeScript-ready. Works with Expo and bare React Native.",
       "npmUrl": "https://www.npmjs.com/package/@vezham/icons-react-native",
       "sourceUrl": "https://github.com/vezham/reicon",
-      "guideUrl": "/docs/react-native"
+      "guideUrl": "/docs/react-native",
+      "logo": "reactnative"
     },
     {
       "id": "vue",
@@ -30,7 +33,8 @@
       "description": "Vue 3 icon components for Vezham Icons. Tree-shakeable, TypeScript-ready, zero config. Works with Nuxt 3.",
       "npmUrl": "https://www.npmjs.com/package/@vezham/icons-vue",
       "sourceUrl": "https://github.com/vezham/reicon",
-      "guideUrl": "/docs/vue"
+      "guideUrl": "/docs/vue",
+      "logo": "vue"
     },
     {
       "id": "svelte",
@@ -38,7 +42,8 @@
       "description": "Svelte icon components for Vezham Icons. Tree-shakeable, TypeScript-ready, zero config. Works with SvelteKit.",
       "npmUrl": "https://www.npmjs.com/package/@vezham/icons-svelte",
       "sourceUrl": "https://github.com/vezham/reicon",
-      "guideUrl": "/docs/svelte"
+      "guideUrl": "/docs/svelte",
+      "logo": "svelte"
     },
     {
       "id": "flutter",
@@ -46,7 +51,8 @@
       "description": "Official Flutter/Dart package for Vezham. 2700+ SVG icons as path strings. Works with flutter_svg.",
       "npmUrl": "https://pub.dev/packages/vezham_icons",
       "sourceUrl": "https://github.com/vezham/reicon/tree/main/packages/icons-flutter",
-      "guideUrl": "/docs/flutter"
+      "guideUrl": "/docs/flutter",
+      "logo": "flutter"
     },
     {
       "id": "figma",
@@ -54,7 +60,8 @@
       "description": "Integrate Vezham Icons directly into your Figma workspace. Search, customize size/stroke weights, and insert vector shapes into your designs.",
       "npmUrl": "https://www.figma.com/community/plugin/1652983191908763066",
       "sourceUrl": "https://github.com/vezham/reicon/tree/main/packages/icons-figma",
-      "guideUrl": "/docs/figma"
+      "guideUrl": "/docs/figma",
+      "logo": "figma"
     },
     {
       "id": "vscode",
@@ -62,7 +69,8 @@
       "description": "Browse and insert Vezham icons directly into your HTML, React, Vue, Svelte, or vanilla JS code from your editor's sidebar panel.",
       "npmUrl": "https://marketplace.visualstudio.com/items?itemName=Vezham.icons",
       "sourceUrl": "https://github.com/vezham/reicon/tree/main/packages/icons-vscode",
-      "guideUrl": "/docs/vscode"
+      "guideUrl": "/docs/vscode",
+      "logo": "visual-studio-code"
     },
     {
       "id": "mcp",
@@ -70,7 +78,8 @@
       "description": "Search, preview, and apply Vezham icons from AI agents and automation tools via MCP or CLI.",
       "npmUrl": "https://www.npmjs.com/package/@vezham/icons-mcp",
       "sourceUrl": "https://github.com/vezham/reicon/tree/main/packages/icons-mcp",
-      "guideUrl": "/docs/mcp"
+      "guideUrl": "/docs/mcp",
+      "logo": "mcp-model-context-protocol"
     }
   ],
   "faq": [

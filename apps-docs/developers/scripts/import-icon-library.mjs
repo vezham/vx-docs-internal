@@ -182,6 +182,12 @@ const faq = constant(
 })
 faq[0].items[0].answer =
   'Vezham is a vector-asset library with UI icons, SVG illustrations, and brand logos. This browser uses the pinned @vezham/icons@1.0.7 CDN runtime for icons, alongside the existing illustration and logo collections.'
+const packageLogos = {
+  vanilla: 'javascript',
+  'react-native': 'reactnative',
+  vscode: 'visual-studio-code',
+  mcp: 'mcp-model-context-protocol'
+}
 const packages = constant(
   src + '/src/pages/packages/data.tsx',
   'PACKAGES'
@@ -197,6 +203,7 @@ const packages = constant(
     item.name = 'vezham_icons'
     item.npmUrl = 'https://pub.dev/packages/vezham_icons'
   }
+  item.logo = packageLogos[item.id] ?? item.id
   return item
 })
 const tools = constant(
@@ -207,6 +214,7 @@ const tools = constant(
   const a = props(p.primaryAction)
   return {
     id: text(p.id),
+    logo: packageLogos[text(p.id)] ?? text(p.id),
     name: text(p.name),
     description: text(p.description),
     npmUrl: text(a.href),
