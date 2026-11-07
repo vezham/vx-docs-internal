@@ -5,7 +5,8 @@ import {
 import { useCallback, useState } from 'react'
 
 import { useTheme } from '@vezham/docs-react/provider/base'
-import { Code, Link as LinkIcon } from '@vezham/icons-react'
+import { useCopyToClipboard } from '@vezham/hooks'
+import { CheckCircle, Code, Copy, Link as LinkIcon } from '@vezham/icons-react'
 import { CodeBlock } from '@vezham/react-pro-v3/code-block'
 import {
   Breadcrumbs,
@@ -51,11 +52,30 @@ export const parseDetailSearch = (
 
 const Snippet = ({ code, language }: { code: string; language: string }) => {
   const { resolvedTheme } = useTheme()
+  const { copy, isCopied, isUnavailable } = useCopyToClipboard()
   return (
     <CodeBlock className="min-w-0">
       <CodeBlock.Header>
         <span className="text-muted text-sm">{language}</span>
-        <CodeBlock.CopyButton code={code} />
+        <Button
+          aria-label={
+            isUnavailable
+              ? 'Copy unavailable'
+              : isCopied
+                ? 'Code copied'
+                : 'Copy code'
+          }
+          className="code-block__copy-button"
+          isIconOnly
+          size="sm"
+          variant="ghost"
+          onPress={() => void copy(code)}>
+          {isCopied ? (
+            <CheckCircle aria-hidden="true" />
+          ) : (
+            <Copy aria-hidden="true" />
+          )}
+        </Button>
       </CodeBlock.Header>
       <CodeBlock.Code
         code={code}
@@ -139,6 +159,7 @@ export const AssetDetail = ({
   const [message, setMessage] = useState('')
   const [busy, setBusy] = useState(false)
   const [showGrid, setShowGrid] = useState(true)
+  const { copy } = useCopyToClipboard()
   const activeWeight = asset?.weights.includes(weight as IconWeight)
     ? (weight as IconWeight)
     : (asset?.weights[0] ?? 'outline')
@@ -173,8 +194,12 @@ export const AssetDetail = ({
     if (!asset) return
     setBusy(true)
     try {
-      await navigator.clipboard.writeText(await loadSvg())
-      setMessage('SVG copied to clipboard.')
+      const copied = await copy(await loadSvg())
+      setMessage(
+        copied
+          ? 'SVG copied to clipboard.'
+          : 'Unable to copy. Use the SVG source tab and try again.'
+      )
     } catch (error: unknown) {
       setMessage(
         error instanceof Error
