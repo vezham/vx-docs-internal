@@ -248,7 +248,7 @@ for (const [id, folder, title] of fw) {
     )
   fs.writeFileSync(
     docs + '/' + id + '.mdx',
-    `---\ntitle: ${JSON.stringify(title)}\ndescription: ${JSON.stringify('Use Vezham Icons with ' + title + '.')}\n---\n\n${md.trim()}${id === 'svg' ? "\n\n## Illustrations and logos\n\nOpen any [illustration](/illustration) or [logo](/logos) to copy its original SVG, download the vector file, or export a transparent PNG/WebP at the selected size. Logos include a variant selector when multiple versions are available.\n\nRaster exports preserve the artwork's aspect ratio inside a square canvas. Use **Open SVG** to open the original file, or copy an HTML, React, or CSS embed snippet." : ''}\n`
+    `---\ntitle: ${JSON.stringify(title)}\ndescription: ${JSON.stringify('Use Vezham Icons with ' + title + '.')}\n---\n\n${md.trim()}${id === 'svg' ? "\n\n## Illustrations and logos\n\nOpen any [illustration](/illustrations) or [logo](/logos) to copy its original SVG, download the vector file, or export a transparent PNG/WebP at the selected size. Logos include a variant selector when multiple versions are available.\n\nRaster exports preserve the artwork's aspect ratio inside a square canvas. Use **Open SVG** to open the original file, or copy an HTML, React, or CSS embed snippet." : ''}\n`
   )
 }
 for (const name of [
@@ -272,7 +272,7 @@ for (const name of [
 }
 fs.writeFileSync(
   docs + '/index.mdx',
-  `---\ntitle: Vezham Icons\ndescription: Browse vector assets and use them in your framework of choice.\n---\n\nVezham brings UI icons, illustrations, and brand logos into one library. Search the catalogs, open an asset to customize its preview, and copy the code you need.\n\n## Quick start with the CDN\n\nThe icon browser uses this pinned, framework-independent web component:\n\n\`\`\`html\n<script defer src="https://cdn.jsdelivr.net/npm/@vezham/icons@1.0.7/dist/cdn/vezham-icons.js"></script>\n<vx-icon icon="home" weight="outline" size="24"></vx-icon>\n\`\`\`\n\n## Choose a framework\n\n${fw.map(([id, , title]) => '- [' + title + '](/docs/' + id + ')').join('\n')}\n\n## Explore the library\n\n- [Icons](/icons) — four drawing weights, color controls, and SVG or raster exports.\n- [Illustrations](/illustration) — search the full illustration collection.\n- [Logos](/logos) — browse brands and available variants.\n- [Packages and tools](/packages) — integrations for your app and design workflow.\n- [FAQ](/faq) — answers about the library.\n`
+  `---\ntitle: Vezham Icons\ndescription: Browse vector assets and use them in your framework of choice.\n---\n\nVezham brings UI icons, illustrations, and brand logos into one library. Search the catalogs, open an asset to customize its preview, and copy the code you need.\n\n## Quick start with the CDN\n\nThe icon browser uses this pinned, framework-independent web component:\n\n\`\`\`html\n<script defer src="https://cdn.jsdelivr.net/npm/@vezham/icons@1.0.7/dist/cdn/vezham-icons.js"></script>\n<vx-icon icon="home" weight="outline" size="24"></vx-icon>\n\`\`\`\n\n## Choose a framework\n\n${fw.map(([id, , title]) => '- [' + title + '](/docs/' + id + ')').join('\n')}\n\n## Explore the library\n\n- [Icons](/icons) — four drawing weights, color controls, and SVG or raster exports.\n- [Illustrations](/illustrations) — search the full illustration collection.\n- [Logos](/logos) — browse brands and available variants.\n- [Packages and tools](/packages) — integrations for your app and design workflow.\n- [FAQ](/faq) — answers about the library.\n`
 )
 fs.writeFileSync(
   docs + '/meta.json',

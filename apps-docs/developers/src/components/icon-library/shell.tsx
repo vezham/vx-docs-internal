@@ -16,7 +16,11 @@ import type { Locale } from '@generated/vx'
 
 const navigation = [
   { id: 'icons', title: 'Icons', to: '/{-$lang}/icons' },
-  { id: 'illustrations', title: 'Illustrations', to: '/{-$lang}/illustration' },
+  {
+    id: 'illustrations',
+    title: 'Illustrations',
+    to: '/{-$lang}/illustrations'
+  },
   { id: 'logos', title: 'Logos', to: '/{-$lang}/logos' },
   { id: 'docs', title: 'Docs', to: '/{-$lang}/docs' },
   { id: 'packages', title: 'Packages', to: '/{-$lang}/packages' },

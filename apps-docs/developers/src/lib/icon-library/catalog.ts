@@ -29,13 +29,13 @@ type AssetRow = [
 
 export const catalogRoutes = {
   icons: '/icons',
-  illustrations: '/illustration',
+  illustrations: '/illustrations',
   logos: '/logos'
 } as const
 export const detailRoutes = {
-  icons: '/{-$lang}/icon/$name',
-  illustrations: '/{-$lang}/illustration/$name',
-  logos: '/{-$lang}/logo/$name'
+  icons: '/{-$lang}/icons/$name',
+  illustrations: '/{-$lang}/illustrations/$name',
+  logos: '/{-$lang}/logos/$name'
 } as const
 export const kindLabels = {
   icons: 'Icons',

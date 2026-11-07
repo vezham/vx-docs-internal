@@ -21,7 +21,7 @@ const RouteComponent = () => {
     />
   )
 }
-export const Route = createFileRoute('/{-$lang}/icons')({
+export const Route = createFileRoute('/{-$lang}/icons/')({
   component: RouteComponent,
   validateSearch: validateCatalogSearch,
   head: () => ({ meta: [{ title: 'Icons | Vezham Developers' }] })

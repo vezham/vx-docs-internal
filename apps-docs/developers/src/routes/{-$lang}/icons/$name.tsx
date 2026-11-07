@@ -17,7 +17,7 @@ const RouteComponent = () => {
     />
   )
 }
-export const Route = createFileRoute('/{-$lang}/icon/$name')({
+export const Route = createFileRoute('/{-$lang}/icons/$name')({
   component: RouteComponent,
   validateSearch: parseDetailSearch,
   head: ({ params }) => ({ meta: [{ title: `${params.name} | Vezham Icons` }] })

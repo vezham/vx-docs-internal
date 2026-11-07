@@ -25,7 +25,7 @@ routes:
   - path: /cn/docs/ui/react-v3/native/getting-started
   - path: /icons
   - path: /cn/icons
-  - path: /illustration
+  - path: /illustrations
   - path: /logos
   - path: /packages
   - path: /faq

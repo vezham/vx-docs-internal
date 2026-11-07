@@ -12,7 +12,7 @@ const RouteComponent = () => {
   const navigate = Route.useNavigate()
   return (
     <AssetGallery
-      kind="logos"
+      kind="illustrations"
       locale={normalizeLocale(i18n, lang)}
       search={search}
       onSearchChange={value => {
@@ -21,8 +21,8 @@ const RouteComponent = () => {
     />
   )
 }
-export const Route = createFileRoute('/{-$lang}/logos')({
+export const Route = createFileRoute('/{-$lang}/illustrations/')({
   component: RouteComponent,
-  validateSearch: input => validateCatalogSearch(input, 'logos'),
-  head: () => ({ meta: [{ title: 'Logos | Vezham Developers' }] })
+  validateSearch: input => validateCatalogSearch(input, 'illustrations'),
+  head: () => ({ meta: [{ title: 'Illustrations | Vezham Developers' }] })
 })
