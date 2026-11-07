@@ -121,21 +121,26 @@ export type CatalogSearch = {
 }
 
 export const parseCatalogSearch = (
-  input: Record<string, unknown>
+  input: Record<string, unknown>,
+  kind: AssetKind = 'icons'
 ): CatalogSearch => ({
   q: typeof input.q === 'string' ? input.q.slice(0, 200) : '',
   category: typeof input.category === 'string' ? input.category : 'all',
   weight: iconWeights.includes(input.weight as IconWeight)
     ? (input.weight as IconWeight)
     : 'outline',
-  size: Math.min(72, Math.max(24, Number(input.size) || 36)),
+  size:
+    kind === 'illustrations'
+      ? Math.min(144, Math.max(48, Number(input.size) || 144))
+      : Math.min(72, Math.max(24, Number(input.size) || 36)),
   sort: input.sort === 'az' || input.sort === 'za' ? input.sort : 'featured',
   page: Math.max(1, Math.floor(Number(input.page) || 1))
 })
 
 export const validateCatalogSearch = (
-  input: Record<string, unknown> & SearchSchemaInput
-) => parseCatalogSearch(input)
+  input: Record<string, unknown> & SearchSchemaInput,
+  kind: AssetKind = 'icons'
+) => parseCatalogSearch(input, kind)
 
 const synonyms: Record<string, string[]> = {
   gear: ['settings', 'cog'],

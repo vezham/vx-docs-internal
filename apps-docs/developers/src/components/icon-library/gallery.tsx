@@ -24,7 +24,6 @@ import { AssetSelect, CdnIcon, ResourceStatus } from './controls'
 import { AssetShell } from './shell'
 
 const pageSize = 60
-const defaultSearch = parseCatalogSearch({})
 type Props = {
   kind: AssetKind
   locale: Locale
@@ -39,7 +38,7 @@ export const AssetGallery = ({
   onSearchChange
 }: Props) => {
   // vx-bot/NOTE: Static HTML contains default filters; restore URL filters after hydration.
-  const search = useHydrated() ? routeSearch : defaultSearch
+  const search = useHydrated() ? routeSearch : parseCatalogSearch({}, kind)
   const loader = useCallback(async () => {
     const [assets] = await Promise.all([
       loadCatalog(kind),
@@ -125,25 +124,28 @@ export const AssetGallery = ({
           onChange={category => update({ category })}
         />
         {kind === 'icons' && (
-          <>
-            <AssetSelect
-              label="Weight"
-              value={search.weight}
-              options={iconWeights.map(id => ({ id, title: formatLabel(id) }))}
-              onChange={weight =>
-                update({ weight: weight as CatalogSearch['weight'] })
-              }
-            />
-            <AssetSelect
-              label="Preview size"
-              value={String(search.size)}
-              options={[24, 36, 48, 60, 72].map(size => ({
-                id: String(size),
-                title: `${size}px`
-              }))}
-              onChange={size => update({ size: Number(size) })}
-            />
-          </>
+          <AssetSelect
+            label="Weight"
+            value={search.weight}
+            options={iconWeights.map(id => ({ id, title: formatLabel(id) }))}
+            onChange={weight =>
+              update({ weight: weight as CatalogSearch['weight'] })
+            }
+          />
+        )}
+        {kind !== 'logos' && (
+          <AssetSelect
+            label="Preview size"
+            value={String(search.size)}
+            options={(kind === 'illustrations'
+              ? [48, 72, 96, 120, 144]
+              : [24, 36, 48, 60, 72]
+            ).map(size => ({
+              id: String(size),
+              title: `${size}px`
+            }))}
+            onChange={size => update({ size: Number(size) })}
+          />
         )}
         <AssetSelect
           label="Sort"
@@ -195,6 +197,11 @@ export const AssetGallery = ({
                           src={assetUrl(kind, asset)}
                           alt=""
                           loading="lazy"
+                          style={
+                            kind === 'illustrations'
+                              ? { width: search.size, height: search.size }
+                              : undefined
+                          }
                           className="h-full max-h-36 max-w-full object-contain"
                         />
                       )}

@@ -27,7 +27,8 @@ export const getAssetSnippets = ({
   secondaryColor,
   source
 }: Options): Snippet[] => {
-  if (kind !== 'icons')
+  if (kind !== 'icons') {
+    const className = kind === 'logos' ? 'vx-logo' : 'vx-illustration'
     return [
       {
         id: 'html',
@@ -41,7 +42,7 @@ export const getAssetSnippets = ({
         title: 'CSS',
         language: 'css',
         logo: 'css3',
-        code: `.asset {\n  width: ${size}px;\n  height: ${size}px;\n  background: center / contain no-repeat url("${source}");\n}`
+        code: `/* Use: class="${className} ${className}--${asset.slug}" */\n.${className} {\n  width: ${size}px;\n  height: ${size}px;\n  background: center / contain no-repeat;\n}\n\n.${className}--${asset.slug} {\n  background-image: url("${source}");\n}`
       },
       {
         id: 'react',
@@ -58,6 +59,7 @@ export const getAssetSnippets = ({
         code: `<script setup>\nconst src = ${JSON.stringify(source)};\nconst alt = ${JSON.stringify(asset.title)};\n</script>\n\n<template>\n  <img :src="src" :alt="alt" :width="${size}" :height="${size}" />\n</template>`
       }
     ]
+  }
   const secondary = weight.startsWith('duotone')
   const jsxColor = `color="${color}"${secondary ? ` secondaryColor="${secondaryColor}"` : ''}`
   const jsColor = `color: '${color}'${secondary ? `, secondaryColor: '${secondaryColor}'` : ''}`

@@ -23,6 +23,6 @@ const RouteComponent = () => {
 }
 export const Route = createFileRoute('/{-$lang}/illustration/')({
   component: RouteComponent,
-  validateSearch: validateCatalogSearch,
+  validateSearch: input => validateCatalogSearch(input, 'illustrations'),
   head: () => ({ meta: [{ title: 'Illustrations | Vezham Developers' }] })
 })
