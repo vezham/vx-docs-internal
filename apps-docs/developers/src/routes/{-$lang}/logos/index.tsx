@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { type SearchSchemaInput, createFileRoute } from '@tanstack/react-router'
 
 import { normalizeLocale } from '@vezham/start/runtime/docs'
 
@@ -23,6 +23,7 @@ const RouteComponent = () => {
 }
 export const Route = createFileRoute('/{-$lang}/logos/')({
   component: RouteComponent,
-  validateSearch: input => validateCatalogSearch(input, 'logos'),
+  validateSearch: (input: Record<string, unknown> & SearchSchemaInput) =>
+    validateCatalogSearch(input, 'logos'),
   head: () => ({ meta: [{ title: 'Logos | Vezham Developers' }] })
 })

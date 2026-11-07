@@ -4,7 +4,7 @@ description: Get started with HeroUI v3 in minutes
 icon: rocket
 ---
 
-import { Callout, CopyPrompt, Tab, Tabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
+import { Callout, CopyPrompt, InstallTabs } from '../../../../../src/components/docs/heroui-mdx.tsx'
 
 
 ## Requirements
@@ -39,28 +39,7 @@ When done, summarize the changes you made and tell me how to start the dev serve
 
 Install HeroUI and required dependencies:
 
-<Tabs items={["npm", "pnpm", "yarn", "bun"]}>
-  <Tab value="npm">
-    ```bash
-    npm i @heroui/styles @heroui/react
-    ```
-  </Tab>
-  <Tab value="pnpm">
-    ```bash
-    pnpm add @heroui/styles @heroui/react
-    ```
-  </Tab>
-  <Tab value="yarn">
-    ```bash
-    yarn add @heroui/styles @heroui/react
-    ```
-  </Tab>
-  <Tab value="bun">
-    ```bash
-    bun add @heroui/styles @heroui/react
-    ```
-  </Tab>
-</Tabs>
+<InstallTabs packages="@heroui/styles @heroui/react" />
 
 ## Import Styles
 

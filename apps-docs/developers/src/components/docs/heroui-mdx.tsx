@@ -11,6 +11,7 @@ import { Button } from '@vezham/react-v3'
 import { PageMetadata } from './page-metadata'
 
 export { Callout, Tab, Tabs }
+export { InstallTabs } from './install-tabs'
 export { ComponentPreview } from '@components/docs/component-preview'
 
 export {

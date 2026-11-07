@@ -238,6 +238,12 @@ for (const [id, folder, title] of fw) {
     .replace(/^# .+\n/, '')
     .replaceAll('@vezham/icons@latest', '@vezham/icons@1.0.7')
     .replaceAll(
+      'Browse all icons at [vezham.com](https://vezham.com).',
+      'Browse the full [icon gallery](/icons).'
+    )
+    .replace(/\]\(https:\/\/vezham\.com\/docs\/?\)/g, '](/docs)')
+    .replace(/\]\(https:\/\/vezham\.com\/?\)/g, '](/icons)')
+    .replaceAll(
       './packages/icons-flutter',
       'https://github.com/vezham/reicon/tree/main/packages/icons-flutter'
     )
@@ -245,6 +251,18 @@ for (const [id, folder, title] of fw) {
     .replace(
       'Get the complete, compressed package containing all 2,700+ icon designs across outline, filled, duotone-outline, and duotone-filled weights.',
       'Download the original SVG archive, with outline, filled, duotone-outline, and duotone-filled weights. For exports from the pinned CDN version used by this browser, open an [icon detail page](/icons) and choose Download SVG.'
+    )
+    .replace(
+      /```bash\n((?:(?:npm install|yarn add|pnpm add|bun add) [^\n]+\n|# or\n)+)```/g,
+      (block, commands) => {
+        const packages = /^npm install ([^\n]+)$/m.exec(commands)?.[1]
+        if (
+          !packages ||
+          packages.split(/\s+/).some(name => name.startsWith('-'))
+        )
+          return block
+        return `<InstallTabs packages=${JSON.stringify(packages)} />`
+      }
     )
   fs.writeFileSync(
     docs + '/' + id + '.mdx',

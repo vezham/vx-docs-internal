@@ -65,6 +65,13 @@ and markdown exports share the existing documentation runtime. Raster exports
 preserve aspect ratio inside the chosen square; embed snippets use absolute
 URLs. CDN origins come from the app environment.
 
+Use `<InstallTabs packages="@vezham/icons" />` for package installation commands.
+The shared `components/docs/install-tabs.tsx` component provides npm, pnpm, Yarn,
+and Bun tabs with CDN logos and clipboard support. Pass several packages as a
+space-separated string or array, and add `dev` for development dependencies.
+Icon guides receive it through their MDX component map; other guides can import
+it from `@components/docs/install-tabs`. The import script preserves this usage.
+
 Detail pages provide HeroUI color pickers for primary and duotone colors,
 export sizes from 16px, integration tabs with framework logos, and prop
 references. Icon examples include JavaScript, CDN, SVG URLs, React, React

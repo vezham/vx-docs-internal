@@ -5,12 +5,13 @@ import { useDocsLoader } from '@vezham/docs-core/source/client'
 import { DocsLayout, DocsPage } from '@vezham/start/layouts/docs'
 import { getMDXComponents } from '@vezham/start/mdx'
 
+import { InstallTabs } from '@components/docs/install-tabs'
 import type { Locale } from '@generated/vx'
 import { type IconDocsLoaderData, iconDocs } from '@src/lib/icon-library/docs'
 
 import { getAssetLayoutOptions } from './shell'
 
-const mdxComponents = getMDXComponents()
+const mdxComponents = getMDXComponents({ InstallTabs })
 const Content = ({
   path,
   markdownUrl
