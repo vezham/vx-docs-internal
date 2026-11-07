@@ -130,7 +130,7 @@ export const parseCatalogSearch = (
     ? (input.weight as IconWeight)
     : 'outline',
   size:
-    kind === 'illustrations'
+    kind !== 'icons'
       ? Math.min(144, Math.max(48, Number(input.size) || 144))
       : Math.min(72, Math.max(24, Number(input.size) || 36)),
   sort: input.sort === 'az' || input.sort === 'za' ? input.sort : 'featured',

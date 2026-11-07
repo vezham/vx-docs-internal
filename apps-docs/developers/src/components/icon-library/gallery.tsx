@@ -133,20 +133,18 @@ export const AssetGallery = ({
             }
           />
         )}
-        {kind !== 'logos' && (
-          <AssetSelect
-            label="Preview size"
-            value={String(search.size)}
-            options={(kind === 'illustrations'
-              ? [48, 72, 96, 120, 144]
-              : [24, 36, 48, 60, 72]
-            ).map(size => ({
-              id: String(size),
-              title: `${size}px`
-            }))}
-            onChange={size => update({ size: Number(size) })}
-          />
-        )}
+        <AssetSelect
+          label="Preview size"
+          value={String(search.size)}
+          options={(kind === 'icons'
+            ? [24, 36, 48, 60, 72]
+            : [48, 72, 96, 120, 144]
+          ).map(size => ({
+            id: String(size),
+            title: `${size}px`
+          }))}
+          onChange={size => update({ size: Number(size) })}
+        />
         <AssetSelect
           label="Sort"
           value={search.sort}
@@ -197,11 +195,7 @@ export const AssetGallery = ({
                           src={assetUrl(kind, asset)}
                           alt=""
                           loading="lazy"
-                          style={
-                            kind === 'illustrations'
-                              ? { width: search.size, height: search.size }
-                              : undefined
-                          }
+                          style={{ width: search.size, height: search.size }}
                           className="h-full max-h-36 max-w-full object-contain"
                         />
                       )}
