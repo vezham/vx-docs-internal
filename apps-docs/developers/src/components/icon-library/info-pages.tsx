@@ -1,8 +1,23 @@
 import { useState } from 'react'
 
-import { Code, InfoCircle, Palette, QuestionCircle } from '@vezham/icons-react'
+import {
+  Book,
+  Code,
+  Download,
+  InfoCircle,
+  Palette,
+  QuestionCircle
+} from '@vezham/icons-react'
 import { Markdown } from '@vezham/react-pro-v3/markdown'
-import { Accordion, Card, Link, SearchField, Tabs } from '@vezham/react-v3'
+import {
+  Accordion,
+  Avatar,
+  Card,
+  Chip,
+  Link,
+  SearchField,
+  Tabs
+} from '@vezham/react-v3'
 
 import { i18n } from '@app/docs'
 import type { Locale } from '@generated/vx'
@@ -10,6 +25,28 @@ import { assetUrl } from '@src/lib/icon-library/catalog'
 import content from '@src/lib/icon-library/content.json'
 
 import { AssetShell } from './shell'
+
+const PackageLinkAvatar = ({
+  logo,
+  icon: Icon = Code
+}: {
+  logo?: string
+  icon?: typeof Code
+}) => (
+  <Avatar className="size-3 rounded-none bg-transparent" aria-hidden="true">
+    {logo && (
+      <Avatar.Image
+        src={assetUrl('logos', { slug: logo, variants: {} })}
+        alt=""
+        loading="lazy"
+        className={`object-contain ${logo === 'github' ? 'invert dark:invert-0' : ''}`}
+      />
+    )}
+    <Avatar.Fallback className="bg-transparent text-inherit">
+      <Icon size={12} />
+    </Avatar.Fallback>
+  </Avatar>
+)
 
 export const IconPackages = ({ locale }: { locale: Locale }) => {
   const prefix = locale === i18n.defaultLanguage ? '' : '/' + locale
@@ -49,21 +86,34 @@ export const IconPackages = ({ locale }: { locale: Locale }) => {
                 </code>
               )}
             </Card.Content>
-            <Card.Footer className="flex-wrap gap-4">
-              <Link href={`${prefix}${item.guideUrl}`}>Guide</Link>
+            <Card.Footer className="flex-wrap gap-2">
+              <Link className="no-underline" href={`${prefix}${item.guideUrl}`}>
+                <Chip color="accent" size="sm" variant="soft">
+                  <PackageLinkAvatar icon={Book} />
+                  <Chip.Label>Guide</Chip.Label>
+                </Chip>
+              </Link>
               <Link
+                className="no-underline"
                 href={item.npmUrl}
                 target="_blank"
                 rel="noopener noreferrer">
-                {item.registryLabel}
-                <Link.Icon />
+                <Chip size="sm" variant="tertiary">
+                  <PackageLinkAvatar logo={item.registryLogo} />
+                  <Chip.Label>{item.registryLabel}</Chip.Label>
+                  <Link.Icon />
+                </Chip>
               </Link>
               <Link
+                className="no-underline"
                 href={item.sourceUrl}
                 target="_blank"
                 rel="noopener noreferrer">
-                Source
-                <Link.Icon />
+                <Chip size="sm" variant="tertiary">
+                  <PackageLinkAvatar logo={item.sourceLogo} />
+                  <Chip.Label>Source</Chip.Label>
+                  <Link.Icon />
+                </Chip>
               </Link>
             </Card.Footer>
           </Card>
@@ -88,14 +138,23 @@ export const IconPackages = ({ locale }: { locale: Locale }) => {
               step.
             </Card.Description>
           </Card.Content>
-          <Card.Footer className="flex-wrap gap-4">
-            <Link href={`${prefix}/docs/svg`}>SVG guide</Link>
+          <Card.Footer className="flex-wrap gap-2">
+            <Link className="no-underline" href={`${prefix}/docs/svg`}>
+              <Chip color="accent" size="sm" variant="soft">
+                <PackageLinkAvatar icon={Book} />
+                <Chip.Label>SVG guide</Chip.Label>
+              </Chip>
+            </Link>
             <Link
+              className="no-underline"
               href="/icon-catalog/vezham-icons.zip"
               target="_blank"
               rel="noopener noreferrer">
-              Icon archive
-              <Link.Icon />
+              <Chip size="sm" variant="tertiary">
+                <PackageLinkAvatar icon={Download} />
+                <Chip.Label>Icon archive</Chip.Label>
+                <Link.Icon />
+              </Chip>
             </Link>
           </Card.Footer>
         </Card>

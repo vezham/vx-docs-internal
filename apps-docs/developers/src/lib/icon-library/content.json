@@ -8,7 +8,9 @@
       "sourceUrl": "https://github.com/vezham/reicon",
       "guideUrl": "/docs/vanilla",
       "logo": "javascript",
-      "registryLabel": "npm"
+      "registryLabel": "npm",
+      "registryLogo": "npm",
+      "sourceLogo": "github"
     },
     {
       "id": "react",
@@ -18,7 +20,9 @@
       "sourceUrl": "https://github.com/vezham/reicon",
       "guideUrl": "/docs/react",
       "logo": "react",
-      "registryLabel": "npm"
+      "registryLabel": "npm",
+      "registryLogo": "npm",
+      "sourceLogo": "github"
     },
     {
       "id": "react-native",
@@ -28,7 +32,9 @@
       "sourceUrl": "https://github.com/vezham/reicon",
       "guideUrl": "/docs/react-native",
       "logo": "reactnative",
-      "registryLabel": "npm"
+      "registryLabel": "npm",
+      "registryLogo": "npm",
+      "sourceLogo": "github"
     },
     {
       "id": "vue",
@@ -38,7 +44,9 @@
       "sourceUrl": "https://github.com/vezham/reicon",
       "guideUrl": "/docs/vue",
       "logo": "vue",
-      "registryLabel": "npm"
+      "registryLabel": "npm",
+      "registryLogo": "npm",
+      "sourceLogo": "github"
     },
     {
       "id": "svelte",
@@ -48,7 +56,9 @@
       "sourceUrl": "https://github.com/vezham/reicon",
       "guideUrl": "/docs/svelte",
       "logo": "svelte",
-      "registryLabel": "npm"
+      "registryLabel": "npm",
+      "registryLogo": "npm",
+      "sourceLogo": "github"
     },
     {
       "id": "flutter",
@@ -58,7 +68,9 @@
       "sourceUrl": "https://github.com/vezham/reicon/tree/main/packages/icons-flutter",
       "guideUrl": "/docs/flutter",
       "logo": "flutter",
-      "registryLabel": "pub.dev"
+      "registryLabel": "pub.dev",
+      "registryLogo": "dart",
+      "sourceLogo": "github"
     },
     {
       "id": "figma",
@@ -68,7 +80,9 @@
       "sourceUrl": "https://github.com/vezham/reicon/tree/main/packages/icons-figma",
       "guideUrl": "/docs/figma",
       "logo": "figma",
-      "registryLabel": "Figma"
+      "registryLabel": "Figma",
+      "registryLogo": "figma",
+      "sourceLogo": "github"
     },
     {
       "id": "vscode",
@@ -78,7 +92,9 @@
       "sourceUrl": "https://github.com/vezham/reicon/tree/main/packages/icons-vscode",
       "guideUrl": "/docs/vscode",
       "logo": "visual-studio-code",
-      "registryLabel": "Marketplace"
+      "registryLabel": "Marketplace",
+      "registryLogo": "visual-studio-code",
+      "sourceLogo": "github"
     },
     {
       "id": "mcp",
@@ -88,7 +104,9 @@
       "sourceUrl": "https://github.com/vezham/reicon/tree/main/packages/icons-mcp",
       "guideUrl": "/docs/mcp",
       "logo": "mcp-model-context-protocol",
-      "registryLabel": "npm"
+      "registryLabel": "npm",
+      "registryLogo": "npm",
+      "sourceLogo": "github"
     }
   ],
   "faq": [

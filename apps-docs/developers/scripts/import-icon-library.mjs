@@ -193,6 +193,11 @@ const registryLabels = {
   figma: 'Figma',
   vscode: 'Marketplace'
 }
+const registryLogos = {
+  flutter: 'dart',
+  figma: 'figma',
+  vscode: 'visual-studio-code'
+}
 const packages = constant(
   src + '/src/pages/packages/data.tsx',
   'PACKAGES'
@@ -210,6 +215,8 @@ const packages = constant(
   }
   item.logo = packageLogos[item.id] ?? item.id
   item.registryLabel = registryLabels[item.id] ?? 'npm'
+  item.registryLogo = registryLogos[item.id] ?? 'npm'
+  item.sourceLogo = 'github'
   return item
 })
 const tools = constant(
@@ -225,6 +232,8 @@ const tools = constant(
     description: text(p.description),
     npmUrl: text(a.href),
     registryLabel: registryLabels[text(p.id)] ?? 'npm',
+    registryLogo: registryLogos[text(p.id)] ?? 'npm',
+    sourceLogo: 'github',
     sourceUrl: text(p.sourceUrl),
     guideUrl: text(p.guideUrl)
   }
