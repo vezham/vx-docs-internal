@@ -16,6 +16,7 @@ type Snippet = {
   language: string
   code: string
   logo?: string
+  guide: string
 }
 
 export const getAssetSnippets = ({
@@ -32,6 +33,7 @@ export const getAssetSnippets = ({
     return [
       {
         id: 'html',
+        guide: 'svg',
         title: 'HTML',
         language: 'html',
         logo: 'html5',
@@ -39,6 +41,7 @@ export const getAssetSnippets = ({
       },
       {
         id: 'css',
+        guide: 'svg',
         title: 'CSS',
         language: 'css',
         logo: 'css3',
@@ -46,6 +49,7 @@ export const getAssetSnippets = ({
       },
       {
         id: 'react',
+        guide: 'svg',
         title: 'React',
         language: 'tsx',
         logo: 'react',
@@ -53,6 +57,7 @@ export const getAssetSnippets = ({
       },
       {
         id: 'vue',
+        guide: 'svg',
         title: 'Vue',
         language: 'vue',
         logo: 'vue',
@@ -75,6 +80,7 @@ export const getAssetSnippets = ({
   return [
     {
       id: 'vanilla',
+      guide: 'vanilla',
       title: 'JS',
       language: 'javascript',
       logo: 'javascript',
@@ -82,6 +88,7 @@ export const getAssetSnippets = ({
     },
     {
       id: 'cdn',
+      guide: 'vanilla',
       title: 'CDN',
       language: 'html',
       logo: 'javascript',
@@ -89,6 +96,7 @@ export const getAssetSnippets = ({
     },
     {
       id: 'svg-url',
+      guide: 'svg',
       title: 'HTML',
       language: 'html',
       logo: 'html5',
@@ -96,6 +104,7 @@ export const getAssetSnippets = ({
     },
     {
       id: 'react',
+      guide: 'react',
       title: 'React',
       language: 'tsx',
       logo: 'react',
@@ -103,6 +112,7 @@ export const getAssetSnippets = ({
     },
     {
       id: 'direct',
+      guide: 'react',
       title: 'Direct',
       language: 'tsx',
       logo: 'react',
@@ -110,6 +120,7 @@ export const getAssetSnippets = ({
     },
     {
       id: 'react-native',
+      guide: 'react-native',
       title: 'React Native',
       language: 'tsx',
       logo: 'react',
@@ -117,6 +128,7 @@ export const getAssetSnippets = ({
     },
     {
       id: 'vue',
+      guide: 'vue',
       title: 'Vue',
       language: 'vue',
       logo: 'vue',
@@ -124,6 +136,7 @@ export const getAssetSnippets = ({
     },
     {
       id: 'svelte',
+      guide: 'svelte',
       title: 'Svelte',
       language: 'svelte',
       logo: 'svelte',
@@ -131,6 +144,7 @@ export const getAssetSnippets = ({
     },
     {
       id: 'flutter',
+      guide: 'flutter',
       title: 'Flutter',
       language: 'dart',
       logo: 'flutter',

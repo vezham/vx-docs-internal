@@ -159,6 +159,7 @@ export const AssetDetail = ({
   const [message, setMessage] = useState('')
   const [busy, setBusy] = useState(false)
   const [showGrid, setShowGrid] = useState(true)
+  const [selectedSnippet, setSelectedSnippet] = useState('svg')
   const { copy } = useCopyToClipboard()
   const activeWeight = asset?.weights.includes(weight as IconWeight)
     ? (weight as IconWeight)
@@ -263,6 +264,7 @@ export const AssetDetail = ({
         item => item.category === asset?.category && item.slug !== asset?.slug
       )
       .slice(0, 8) ?? []
+  const activeSnippet = snippets.find(snippet => snippet.id === selectedSnippet)
 
   return (
     <AssetShell active={kind} locale={locale}>
@@ -458,7 +460,10 @@ export const AssetDetail = ({
                     : message ||
                       'Copy the SVG, export an image, or use an embed snippet below.'}
                 </p>
-                <Tabs defaultSelectedKey="svg" className="min-w-0">
+                <Tabs
+                  selectedKey={activeSnippet?.id ?? 'svg'}
+                  onSelectionChange={key => setSelectedSnippet(String(key))}
+                  className="min-w-0">
                   <Tabs.ListContainer className="w-fit max-w-full">
                     <Tabs.List
                       aria-label="Integration code"
@@ -529,9 +534,8 @@ export const AssetDetail = ({
                 )}
                 <AssetPropsReference icons={kind === 'icons'} />
                 <Link
-                  href={`${lang ? '/' + lang : ''}/docs/${kind === 'icons' ? 'vanilla' : 'svg'}`}>
+                  href={`${lang ? '/' + lang : ''}/docs/${activeSnippet?.guide ?? 'svg'}`}>
                   Read the integration guide
-                  <Link.Icon />
                 </Link>
               </div>
             </div>
