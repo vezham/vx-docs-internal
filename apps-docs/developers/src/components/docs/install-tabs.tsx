@@ -64,14 +64,17 @@ export const InstallTabs = ({
     <Tabs defaultValue="npm">
       <TabsList aria-label="Package manager">
         {packageManagers.map(manager => (
-          <TabsTrigger key={manager.id} value={manager.id}>
+          <TabsTrigger
+            key={manager.id}
+            value={manager.id}
+            className="cursor-pointer">
             <img
               src={assetUrl('logos', { slug: manager.id, variants: {} })}
               alt=""
-              width={16}
-              height={16}
+              width={12}
+              height={12}
               loading="lazy"
-              className="size-4 shrink-0 rounded-none object-contain"
+              className="block shrink-0 translate-y-0.5 rounded-none object-contain"
             />
             {manager.id}
           </TabsTrigger>
