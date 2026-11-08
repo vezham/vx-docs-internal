@@ -10,7 +10,6 @@ import { i18n } from '@app/docs'
 import { sectionTabVariants } from '@components/docs/navigation.variants'
 import { NotebookHeader } from '@components/docs/notebook-header'
 import { NotebookSectionTabs } from '@components/docs/section-tabs'
-import { VersionSelector } from '@components/docs/version-selector'
 import { baseOptions } from '@config/layout'
 import type { Locale } from '@generated/vx'
 
@@ -76,17 +75,7 @@ export const getAssetLayoutOptions = ({
   tabMode: 'navbar',
   slots: {
     header: props => (
-      <NotebookHeader
-        {...props}
-        locale={locale}
-        leading={
-          <>
-            <span className="text-muted hidden text-sm font-medium sm:inline">
-              Icons
-            </span>
-            <VersionSelector platform="web" />
-          </>
-        }>
+      <NotebookHeader {...props} locale={locale}>
         <AssetNavigation active={active} locale={locale} />
       </NotebookHeader>
     )

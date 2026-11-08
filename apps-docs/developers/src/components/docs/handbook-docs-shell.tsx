@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router'
 import type { ComponentPropsWithoutRef } from 'react'
 
 import { useNotebookLayout } from '@vezham/docs-react/layouts/notebook'
-import { Sidebar, VezhamLogo } from '@vezham/icons-react'
+import { Sidebar } from '@vezham/icons-react'
 import {
   DocsLayout,
   type DocsLayoutProps,
@@ -11,6 +11,7 @@ import {
 import { localizedUrl, normalizeLocale } from '@vezham/start/runtime/docs'
 
 import { i18n } from '@app/docs'
+import { Brand } from '@components/brand'
 import { ControlCenter } from '@components/docs/control-center'
 import {
   LibrarySelector,
@@ -19,7 +20,6 @@ import {
 import { markdownDocsRuntime } from '@components/docs/markdown-docs'
 import { sectionTabVariants } from '@components/docs/navigation.variants'
 import { UserControls } from '@components/docs/user-controls'
-import { VersionSelector } from '@components/docs/version-selector'
 import { baseOptions } from '@config/layout'
 import type { Locale } from '@generated/vx'
 
@@ -94,17 +94,8 @@ const HandbookNotebookHeader = ({
       className={`layout:[--fd-header-height:--spacing(14)] lg:layout:[--fd-header-height:--spacing(24)] sticky top-(--fd-docs-row-1) z-10 flex flex-col backdrop-blur-sm transition-colors [grid-area:header] ${props.className ?? ''}`}>
       <div data-header-body="" className="flex h-14 gap-2 px-4 md:px-6">
         <div className="flex flex-1 items-center gap-2">
-          <Link
-            to="/{-$lang}"
-            params={{
-              lang: locale === i18n.defaultLanguage ? undefined : locale
-            }}
-            className="inline-flex items-center gap-2 font-semibold">
-            <VezhamLogo size={20} />
-            Developer
-          </Link>
+          <Brand.Link locale={locale} />
           {library && <LibrarySelector library={library} locale={locale} />}
-          <VersionSelector platform="web" />
         </div>
         {FullSearchTrigger && (
           <FullSearchTrigger

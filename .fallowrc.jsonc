@@ -25,6 +25,8 @@
     "packages/vx/react/**"
   ],
   "ignoreFindings": [
+    // vx-bot/NOTE: Retained as a reference until separate versioned docs are available.
+    "apps-docs/developers/src/components/docs/version-selector.tsx",
     // vx-bot/NOTE: Preserve demo dependency tracking while hiding intentional upstream export duplication.
     "apps-docs/developers/src/demos/heroui/**",
     "apps-docs/developers/src/demos/heroui-pro/**"

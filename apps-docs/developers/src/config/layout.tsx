@@ -1,8 +1,8 @@
 import type { BaseLayoutProps } from '@vezham/docs-react/layouts/shared'
-import { VezhamLogo } from '@vezham/icons-react'
 import { localizedUrl } from '@vezham/start/runtime/docs'
 
 import { i18n } from '@app/docs'
+import { Brand } from '@components/brand'
 import type { Locale } from '@generated/vx'
 
 export const baseOptions = (
@@ -10,12 +10,7 @@ export const baseOptions = (
 ): BaseLayoutProps => {
   return {
     nav: {
-      title: (
-        <span className="inline-flex items-center gap-2 font-semibold">
-          <VezhamLogo size={22} />
-          Developer
-        </span>
-      )
+      title: <Brand logoSize={22} />
     },
     links: [
       {

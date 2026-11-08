@@ -128,13 +128,15 @@ export const LibrarySelector = ({
                 {section.items.map(option => (
                   <Dropdown.Item
                     key={option.id}
-                    className="py-2 ps-3 pe-10"
+                    className="group/library data-[selected=true]:bg-accent-soft py-2 ps-3 pe-10"
                     id={option.id}
                     isDisabled={option.disabled}
                     textValue={option.title}>
                     <div className="flex min-w-0 flex-1 flex-col gap-0.5">
                       <div className="flex flex-wrap items-center gap-2">
-                        <Label>{option.title}</Label>
+                        <Label className="group-data-[selected=true]/library:text-accent-soft-foreground">
+                          {option.title}
+                        </Label>
                         {option.badge && (
                           <Chip size="sm" variant="soft">
                             {option.badge}
@@ -146,7 +148,7 @@ export const LibrarySelector = ({
                       )}
                     </div>
                     {option.destination && (
-                      <Dropdown.ItemIndicator className="start-auto end-3" />
+                      <Dropdown.ItemIndicator className="group-data-[selected=true]/library:text-accent-soft-foreground start-auto end-3" />
                     )}
                   </Dropdown.Item>
                 ))}

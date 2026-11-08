@@ -1,10 +1,9 @@
-import { Link } from '@tanstack/react-router'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 
 import { useNotebookLayout } from '@vezham/docs-react/layouts/notebook'
-import { Sidebar, VezhamLogo } from '@vezham/icons-react'
+import { Sidebar } from '@vezham/icons-react'
 
-import { i18n } from '@app/docs'
+import { Brand } from '@components/brand'
 import { UserControls } from '@components/docs/user-controls'
 import type { Locale } from '@generated/vx'
 
@@ -36,15 +35,7 @@ export const NotebookHeader = ({
       className={`layout:[--fd-header-height:--spacing(14)] lg:layout:[--fd-header-height:--spacing(24)] sticky top-(--fd-docs-row-1) z-10 flex flex-col backdrop-blur-sm transition-colors [grid-area:header] ${props.className ?? ''}`}>
       <div data-header-body="" className="flex h-14 gap-2 px-4 md:px-6">
         <div className="flex flex-1 items-center gap-2">
-          <Link
-            to="/{-$lang}"
-            params={{
-              lang: locale === i18n.defaultLanguage ? undefined : locale
-            }}
-            className="inline-flex items-center gap-2 font-semibold">
-            <VezhamLogo size={20} />
-            Developer
-          </Link>
+          <Brand.Link locale={locale} />
           {leading}
         </div>
         {FullSearchTrigger && (

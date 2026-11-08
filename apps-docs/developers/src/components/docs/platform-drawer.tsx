@@ -1,10 +1,8 @@
-import { Link } from '@tanstack/react-router'
 import type { ComponentProps } from 'react'
 
-import { VezhamLogo } from '@vezham/icons-react'
 import { ListBox, Select } from '@vezham/react-v3'
 
-import { i18n } from '@app/docs'
+import { Brand } from '@components/brand'
 import { ControlCenter } from '@components/docs/control-center'
 import type { UiLibrary } from '@components/docs/library-selector'
 import {
@@ -88,15 +86,7 @@ export const PlatformDrawerHeader = ({
         {...props}
         className={`flex flex-col gap-4 border-b px-4 pt-4 pb-3 md:hidden ${className ?? ''}`}>
         <div className="flex items-center justify-between gap-4 ps-1">
-          <Link
-            to="/{-$lang}"
-            params={{
-              lang: locale === i18n.defaultLanguage ? undefined : locale
-            }}
-            className="inline-flex items-center gap-2 font-semibold">
-            <VezhamLogo size={22} />
-            Developer
-          </Link>
+          <Brand.Link locale={locale} logoSize={22} />
         </div>
         <PlatformSectionSelect
           library={library}

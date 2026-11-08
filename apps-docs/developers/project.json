@@ -11,7 +11,9 @@
         { "externalDependencies": ["vite"] },
         { "env": "V_ILLUSTRATIONS_CDN_URL" },
         { "env": "V_LOGOS_CDN_URL" },
-        { "env": "V_APP_VER" }
+        { "env": "V_APP_VER" },
+        { "env": "V_APP_BRAND_NAME" },
+        { "env": "V_APP_BRAND_CHANNEL" }
       ],
       "dependsOn": [
         "metadata:generate",

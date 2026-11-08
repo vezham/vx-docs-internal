@@ -8,7 +8,6 @@ import {
 import { NotebookHeader } from '@components/docs/notebook-header'
 import type { PlatformSection } from '@components/docs/platform-sections'
 import { SectionTabs } from '@components/docs/section-tabs'
-import { VersionSelector } from '@components/docs/version-selector'
 import type { Locale } from '@generated/vx'
 
 type Props = ComponentPropsWithoutRef<'header'> & {
@@ -31,12 +30,7 @@ export const PlatformNotebookHeader = ({
     <NotebookHeader
       {...props}
       locale={locale}
-      leading={
-        <>
-          <LibrarySelector library={library} locale={locale} />
-          <VersionSelector platform={platform} />
-        </>
-      }
+      leading={<LibrarySelector library={library} locale={locale} />}
       controls={
         <ControlCenter
           library={library}
