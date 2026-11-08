@@ -65,6 +65,10 @@ and markdown exports share the existing documentation runtime. Raster exports
 preserve aspect ratio inside the chosen square; embed snippets use absolute
 URLs. CDN origins come from the app environment.
 
+Set `logo: javascript` (or another logo catalog slug) in a guide's frontmatter
+to display a plain 24px logo beside its page title. The import script preserves
+the framework and tool logo mappings.
+
 Use `<InstallTabs packages="@vezham/icons" />` for package installation commands.
 The shared `components/docs/install-tabs.tsx` component provides npm, pnpm, Yarn,
 and Bun tabs with CDN logos and clipboard support. Pass several packages as a

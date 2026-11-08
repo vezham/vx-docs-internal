@@ -7,6 +7,7 @@ import { getMDXComponents } from '@vezham/start/mdx'
 
 import { InstallTabs } from '@components/docs/install-tabs'
 import type { Locale } from '@generated/vx'
+import { assetUrl } from '@src/lib/icon-library/catalog'
 import { type IconDocsLoaderData, iconDocs } from '@src/lib/icon-library/docs'
 
 import { getAssetLayoutOptions } from './shell'
@@ -25,7 +26,22 @@ const Content = ({
   const MDX = page.body
   return (
     <DocsPage
-      title={page.title}
+      title={
+        page.logo ? (
+          <span className="inline-flex items-center gap-3">
+            <img
+              src={assetUrl('logos', { slug: page.logo, variants: {} })}
+              alt=""
+              width={24}
+              height={24}
+              className={`block shrink-0 rounded-none object-contain ${page.logo === 'mcp-model-context-protocol' ? 'dark:invert' : ''}`}
+            />
+            <span>{page.title}</span>
+          </span>
+        ) : (
+          page.title
+        )
+      }
       description={page.description}
       toc={toc}
       markdownUrl={markdownUrl}

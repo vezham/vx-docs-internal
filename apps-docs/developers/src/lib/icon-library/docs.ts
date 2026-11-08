@@ -1,3 +1,5 @@
+import { z } from 'zod'
+
 import { defineDocs } from '@vezham/docs-mdx/macro'
 import {
   createStaticDocsRuntime,
@@ -12,7 +14,7 @@ export const iconDocs = defineDocs({
   docs: {
     async: true,
     postprocess: { includeProcessedMarkdown: true },
-    schema: docsPageSchema
+    schema: docsPageSchema.extend({ logo: z.string().optional() })
   },
   meta: { schema: docsMetaSchema }
 })

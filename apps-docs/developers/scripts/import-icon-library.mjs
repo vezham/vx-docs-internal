@@ -274,7 +274,7 @@ for (const [id, folder, title] of fw) {
     )
   fs.writeFileSync(
     docs + '/' + id + '.mdx',
-    `---\ntitle: ${JSON.stringify(title)}\ndescription: ${JSON.stringify('Use Vezham Icons with ' + title + '.')}\n---\n\n${md.trim()}${id === 'svg' ? "\n\n## Illustrations and logos\n\nOpen any [illustration](/illustrations) or [logo](/logos) to copy its original SVG, download the vector file, or export a transparent PNG/WebP at the selected size. Logos include a variant selector when multiple versions are available.\n\nRaster exports preserve the artwork's aspect ratio inside a square canvas. Use **Open SVG** to open the original file, or copy an HTML, React, or CSS embed snippet." : ''}\n`
+    `---\ntitle: ${JSON.stringify(title)}\ndescription: ${JSON.stringify('Use Vezham Icons with ' + title + '.')}\nlogo: ${JSON.stringify(packageLogos[id] ?? id)}\n---\n\n${md.trim()}${id === 'svg' ? "\n\n## Illustrations and logos\n\nOpen any [illustration](/illustrations) or [logo](/logos) to copy its original SVG, download the vector file, or export a transparent PNG/WebP at the selected size. Logos include a variant selector when multiple versions are available.\n\nRaster exports preserve the artwork's aspect ratio inside a square canvas. Use **Open SVG** to open the original file, or copy an HTML, React, or CSS embed snippet." : ''}\n`
   )
 }
 for (const name of [
