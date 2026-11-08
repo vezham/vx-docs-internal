@@ -15,6 +15,13 @@ utilities can override this default: `mx-0` on a direct content block or
 `[&>*]:mx-0` on the docs page restores start alignment. There is no
 icon-library-specific alignment setting.
 
+Galleries append 60 results at a time with **Load more**. The `page` search
+parameter records the number of loaded batches, so returning from a detail page
+or reopening a gallery URL restores that range. Filter changes reset the batch
+count; preview size changes retain it. Gallery search updates replace the current
+history entry without resetting scroll. The app router handles back-navigation
+scroll restoration.
+
 The CDN repository owns illustration and logo SVGs, catalogs and manifests:
 
 | Collection    | Catalog                                   | SVGs                            |

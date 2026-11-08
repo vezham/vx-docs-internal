@@ -16,7 +16,7 @@ const RouteComponent = () => {
       locale={normalizeLocale(i18n, lang)}
       search={search}
       onSearchChange={value => {
-        void navigate({ search: value, replace: true })
+        return navigate({ search: value, replace: true, resetScroll: false })
       }}
     />
   )

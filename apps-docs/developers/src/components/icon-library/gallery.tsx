@@ -1,7 +1,7 @@
 import { Link as RouterLink, useHydrated } from '@tanstack/react-router'
-import { useCallback, useDeferredValue, useMemo } from 'react'
+import { useCallback, useDeferredValue, useMemo, useTransition } from 'react'
 
-import { Card, Chip, Pagination, SearchField } from '@vezham/react-v3'
+import { Button, Card, Chip, SearchField, Spinner } from '@vezham/react-v3'
 
 import { i18n } from '@app/docs'
 import type { Locale } from '@generated/vx'
@@ -28,7 +28,7 @@ type Props = {
   kind: AssetKind
   locale: Locale
   search: CatalogSearch
-  onSearchChange: (search: CatalogSearch) => void
+  onSearchChange: (search: CatalogSearch) => Promise<void>
 }
 
 export const AssetGallery = ({
@@ -47,6 +47,7 @@ export const AssetGallery = ({
     return assets
   }, [kind])
   const resource = useResource(kind, loader)
+  const [isLoadingMore, startLoadingMore] = useTransition()
   const assets = resource.data
   const query = useDeferredValue(search.q)
   const results = useMemo(
@@ -74,10 +75,14 @@ export const AssetGallery = ({
     ]
   }, [assets, kind, search.weight])
   const update = (patch: Partial<CatalogSearch>) =>
-    onSearchChange({ ...search, page: 1, ...patch })
+    void onSearchChange({ ...search, page: 1, ...patch })
   const totalPages = Math.max(1, Math.ceil(results.length / pageSize))
   const page = Math.min(search.page, totalPages)
-  const shown = results.slice((page - 1) * pageSize, page * pageSize)
+  const shown = results.slice(0, page * pageSize)
+  const loadMore = () =>
+    startLoadingMore(async () => {
+      await onSearchChange({ ...search, page: page + 1 })
+    })
 
   return (
     <AssetShell active={kind} locale={locale}>
@@ -143,7 +148,7 @@ export const AssetGallery = ({
             id: String(size),
             title: `${size}px`
           }))}
-          onChange={size => update({ size: Number(size) })}
+          onChange={size => update({ size: Number(size), page: search.page })}
         />
         <AssetSelect
           label="Sort"
@@ -160,7 +165,7 @@ export const AssetGallery = ({
         error={resource.error}
         loading={resource.loading}
         retry={resource.retry}>
-        <div className="space-y-6">
+        <div className="space-y-6 [overflow-anchor:none]">
           <p className="text-muted text-sm" aria-live="polite">
             {results.length.toLocaleString()}{' '}
             {results.length === 1 ? 'result' : 'results'}
@@ -168,7 +173,9 @@ export const AssetGallery = ({
           </p>
           {shown.length ? (
             <div
+              id={`${kind}-results`}
               aria-label={`${kindLabels[kind]} results`}
+              aria-busy={isLoadingMore}
               className={`grid gap-3 ${kind === 'icons' ? 'grid-cols-2 sm:grid-cols-4 lg:grid-cols-6' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'}`}>
               {shown.map(asset => (
                 <RouterLink
@@ -219,33 +226,26 @@ export const AssetGallery = ({
               </p>
             </div>
           )}
-          {totalPages > 1 && (
-            <Pagination>
-              <Pagination.Summary>
-                Page {page.toLocaleString()} of {totalPages.toLocaleString()}
-              </Pagination.Summary>
-              <Pagination.Content>
-                <Pagination.Item>
-                  <Pagination.Previous
-                    isDisabled={page === 1}
-                    onPress={() => update({ page: page - 1 })}>
-                    <Pagination.PreviousIcon />
-                    Previous
-                  </Pagination.Previous>
-                </Pagination.Item>
-                <Pagination.Item>
-                  <Pagination.Link isActive>{page}</Pagination.Link>
-                </Pagination.Item>
-                <Pagination.Item>
-                  <Pagination.Next
-                    isDisabled={page === totalPages}
-                    onPress={() => update({ page: page + 1 })}>
-                    Next
-                    <Pagination.NextIcon />
-                  </Pagination.Next>
-                </Pagination.Item>
-              </Pagination.Content>
-            </Pagination>
+          {shown.length > 0 && (
+            <div className="flex flex-col items-center gap-3">
+              <p className="text-muted text-sm" role="status">
+                Showing {shown.length.toLocaleString()} of{' '}
+                {results.length.toLocaleString()}
+              </p>
+              {shown.length < results.length && (
+                <Button
+                  variant="secondary"
+                  aria-controls={`${kind}-results`}
+                  isPending={isLoadingMore}
+                  isDisabled={query !== search.q}
+                  onPress={loadMore}>
+                  {isLoadingMore && (
+                    <Spinner aria-hidden="true" color="current" size="sm" />
+                  )}
+                  {isLoadingMore ? 'Loading…' : 'Load more'}
+                </Button>
+              )}
+            </div>
           )}
         </div>
       </ResourceStatus>
