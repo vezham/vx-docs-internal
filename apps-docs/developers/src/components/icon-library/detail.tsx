@@ -311,7 +311,7 @@ export const AssetDetail = ({
               <div className="space-y-6">
                 <Card>
                   <Card.Content
-                    className={`flex min-h-80 items-center justify-center overflow-hidden ${showGrid ? 'asset-preview--grid' : ''} ${kind === 'logos' ? (activeVariant.includes('white') ? 'bg-black' : 'asset-preview--logo') : ''}`}>
+                    className={`flex min-h-80 items-center justify-center overflow-hidden ${showGrid ? 'asset-preview--grid' : ''} ${kind === 'logos' ? (activeVariant.includes('white') ? 'rounded-xl bg-black' : 'asset-preview--logo rounded-xl') : ''}`}>
                     {kind === 'icons' ? (
                       <CdnIcon
                         name={asset.slug}
@@ -550,7 +550,7 @@ export const AssetDetail = ({
                       className="min-w-0 no-underline">
                       <Card className="h-full">
                         <Card.Content
-                          className={`flex min-h-24 items-center justify-center ${kind === 'logos' ? 'asset-preview--logo' : ''}`}>
+                          className={`flex min-h-24 items-center justify-center ${kind === 'logos' ? 'asset-preview--logo rounded-xl' : ''}`}>
                           {kind === 'icons' ? (
                             <CdnIcon name={item.slug} size={32} />
                           ) : (

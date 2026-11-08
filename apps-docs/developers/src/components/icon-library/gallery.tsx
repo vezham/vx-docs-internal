@@ -183,7 +183,7 @@ export const AssetGallery = ({
                   aria-label={`View ${asset.title}`}>
                   <Card className="h-full">
                     <Card.Content
-                      className={`flex items-center justify-center ${kind === 'icons' ? 'min-h-24' : 'min-h-40'} ${kind === 'logos' ? 'asset-preview--logo' : ''}`}>
+                      className={`flex items-center justify-center ${kind === 'icons' ? 'min-h-24' : 'min-h-40'} ${kind === 'logos' ? 'asset-preview--logo rounded-xl' : ''}`}>
                       {kind === 'icons' ? (
                         <CdnIcon
                           name={asset.slug}
