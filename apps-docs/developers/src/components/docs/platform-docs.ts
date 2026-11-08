@@ -103,7 +103,7 @@ const runtimes = {
 const proWebRuntime = createStaticDocsRuntime({
   ...runtimeOptions,
   docs: proPlatformDocs,
-  docsRoute: '/docs/ui/react-pro-v3'
+  docsRoute: '/docs/ui/react-pro-v3/web'
 })
 
 const libraryRuntimes: Record<
@@ -112,7 +112,6 @@ const libraryRuntimes: Record<
 > = {
   'react-v3': runtimes,
   'react-pro-v3': {
-    default: proWebRuntime,
     web: proWebRuntime,
     native: createStaticDocsRuntime({
       ...runtimeOptions,

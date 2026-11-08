@@ -31,7 +31,7 @@ export const PlatformTabs = ({
   if (platforms.length === 0) return null
   const getHref = (value: Platform) =>
     router.buildLocation({
-      to: getUiLibraryRoute(library, value),
+      to: getUiLibraryRoute(library),
       params: getPlatformParams(value)
     }).href
   return (
@@ -50,7 +50,7 @@ export const PlatformTabs = ({
                 return (
                   <Link
                     {...linkProps}
-                    to={getUiLibraryRoute(library, 'web')}
+                    to={getUiLibraryRoute(library)}
                     params={getPlatformParams('web')}
                   />
                 )
@@ -78,7 +78,7 @@ export const PlatformTabs = ({
                 return (
                   <Link
                     {...linkProps}
-                    to={getUiLibraryRoute(library, 'native')}
+                    to={getUiLibraryRoute(library)}
                     params={getPlatformParams('native')}
                   />
                 )

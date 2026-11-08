@@ -21,10 +21,11 @@ Content collections:
 Platforms are optional. Collections without platform folders use direct library
 routes and no platform selector. Do not introduce a mandatory `web` folder.
 
-Pro now has both platforms. Its existing platformless routes remain the canonical
-Web URLs; `/docs/ui/react-pro-v3/web/*` redirects there. Native uses
-`/docs/ui/react-pro-v3/native/*`. Keep platform switching and section links on the
-selected library and fall back to its section index when a page is unavailable.
+Pro and v3 both use `/docs/ui/{library}/{web,native}/*` as canonical URLs.
+Both libraries use the same four route files; page and markdown URLs require a
+platform. Their library roots open Web Getting Started.
+Keep platform switching and section links on the selected library and fall back
+to its section index when a page is unavailable.
 
 ## Standalone page layout
 

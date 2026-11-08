@@ -26,7 +26,7 @@ export const ControlCenter = ({
   const router = useRouter()
   const { resolvedTheme, setTheme } = useTheme()
   const languageLocation = (language: Locale) => ({
-    to: getUiLibraryRoute(library, platform),
+    to: getUiLibraryRoute(library),
     params: {
       lang: language === i18n.defaultLanguage ? undefined : language,
       platform,

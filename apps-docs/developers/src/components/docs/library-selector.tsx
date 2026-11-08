@@ -110,8 +110,12 @@ export const LibrarySelector = ({
               })
             } else if (option?.destination === 'react-pro-v3') {
               void navigate({
-                to: '/{-$lang}/docs/ui/react-pro-v3/$',
-                params: { lang: language, _splat: 'getting-started' }
+                to: '/{-$lang}/docs/ui/react-pro-v3/$platform/$',
+                params: {
+                  lang: language,
+                  platform: 'web',
+                  _splat: 'getting-started'
+                }
               })
             } else if (option?.destination === 'react') {
               void navigate({

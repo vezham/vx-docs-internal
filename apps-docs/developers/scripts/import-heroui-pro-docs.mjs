@@ -74,7 +74,7 @@ const adapt = value =>
       'import {ChevronDown, FileText} from "../../icons";',
       'import {AltArrowDown as ChevronDown, DocumentText as FileText} from "@vezham/icons-react";'
     )
-    .replaceAll('](/docs/react/', '](/docs/ui/react-pro-v3/')
+    .replaceAll('](/docs/react/', '](/docs/ui/react-pro-v3/web/')
     .replaceAll('.replaceAll(/', '.replace(/')
 
 const adaptExample = (code, slug) => {

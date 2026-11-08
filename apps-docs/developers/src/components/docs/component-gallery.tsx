@@ -184,7 +184,7 @@ const ProComponentCategory = ({
       aria-label={`Pro ${platform === 'native' ? 'Native ' : ''}${group.title} components`}
       className={`not-prose my-6 grid list-none grid-cols-1 gap-x-4 gap-y-10 p-0 sm:grid-cols-2 ${platform === 'web' ? 'lg:grid-cols-3' : ''}`}>
       {group.components.map(component => {
-        const url = `/docs/ui/react-pro-v3${platform === 'native' ? '/native' : ''}/components/${component.slug}`
+        const url = `/docs/ui/react-pro-v3/${platform}/components/${component.slug}`
         return (
           <li key={component.slug} className="min-w-0">
             <ComponentTile

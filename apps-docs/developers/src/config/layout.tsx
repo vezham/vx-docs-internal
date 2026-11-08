@@ -27,7 +27,7 @@ export const baseOptions = (
         url: localizedUrl(
           i18n,
           locale,
-          '/docs/ui/react-pro-v3/getting-started'
+          '/docs/ui/react-pro-v3/web/getting-started'
         ),
         active: 'nested-url'
       },

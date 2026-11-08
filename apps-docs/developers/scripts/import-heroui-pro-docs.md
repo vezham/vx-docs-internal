@@ -5,8 +5,10 @@ Every page links to its upstream source. Content uses the current internal
 package aliases and shares the UI documentation layout and preview viewer.
 
 The collection contains separate `web` and `native` folders, each with independent
-`getting-started` and `components` sections. Web retains its platformless URLs;
-Native uses `/docs/ui/react-pro-v3/native/*`. Navigation order is defined by their `meta.json` files. The generated
+`getting-started` and `components` sections. Web uses `/docs/ui/react-pro-v3/web/*`;
+Native uses `/docs/ui/react-pro-v3/native/*`. Page and markdown URLs require a
+platform, matching the v3 library. Navigation order is defined by their `meta.json`
+files. The generated
 `import-manifest.json` records the component pages and live demos.
 
 The component gallery reuses the shared image tiles and the light/dark image

@@ -16,15 +16,13 @@ import type { Locale } from '@generated/vx'
 import { createPlatformDocsLoader } from '@src/lib/docs/platform-loader'
 
 const library = 'react-pro-v3' as const
-const loadPlatformDocs = createPlatformDocsLoader(library)
-const loadDocs = ({ params }: Parameters<typeof loadPlatformDocs>[0]) =>
-  loadPlatformDocs({ params: { ...params, platform: 'native' } })
+const loadDocs = createPlatformDocsLoader(library)
 
 const RouteComponent = () => {
   const navigate = useNavigate()
   const data = Route.useLoaderData()
-  const { lang, _splat } = Route.useParams()
-  const platform = 'native' as const
+  const { lang, platform, _splat } = Route.useParams()
+  if (platform !== 'web' && platform !== 'native') throw notFound()
 
   const platformSections = getPlatformSections(platform, library)
   const section = _splat?.split('/')[0]
@@ -55,7 +53,7 @@ const RouteComponent = () => {
           getPlatformParams,
           onSectionChange: value => {
             void navigate({
-              to: '/{-$lang}/docs/ui/react-pro-v3/native/$',
+              to: '/{-$lang}/docs/ui/react-pro-v3/$platform/$',
               params: {
                 ...getPlatformParams(platform),
                 _splat:
@@ -70,24 +68,25 @@ const RouteComponent = () => {
   )
 }
 
-export const Route = createFileRoute('/{-$lang}/docs/ui/react-pro-v3/native/$')(
-  {
-    component: RouteComponent,
-    head: ({ loaderData }) => {
-      const head = getPlatformDocsRuntime('native', library).getDocsRouteHead(
-        loaderData
+export const Route = createFileRoute(
+  '/{-$lang}/docs/ui/react-pro-v3/$platform/$'
+)({
+  component: RouteComponent,
+  head: ({ loaderData, params }) => {
+    const head = getPlatformDocsRuntime(
+      params.platform === 'native' ? 'native' : 'web',
+      library
+    ).getDocsRouteHead(loaderData)
+    if (!loaderData?.image || !head.meta) return head
+    return {
+      ...head,
+      meta: head.meta.map(meta =>
+        ('property' in meta && meta.property === 'og:image') ||
+        ('name' in meta && meta.name === 'twitter:image')
+          ? { ...meta, content: loaderData.image }
+          : meta
       )
-      if (!loaderData?.image || !head.meta) return head
-      return {
-        ...head,
-        meta: head.meta.map(meta =>
-          ('property' in meta && meta.property === 'og:image') ||
-          ('name' in meta && meta.name === 'twitter:image')
-            ? { ...meta, content: loaderData.image }
-            : meta
-        )
-      }
-    },
-    loader: loadDocs
-  }
-)
+    }
+  },
+  loader: loadDocs
+})

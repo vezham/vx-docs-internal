@@ -14,15 +14,17 @@ import { createPlatformDocsLoader } from './platform-loader'
 const loader = createPlatformDocsLoader()
 
 describe('UI documentation', () => {
-  it('loads Pro MDX and its independent component navigation without a platform', async () => {
+  it('loads Pro Web MDX and its independent component navigation', async () => {
     const data = await createPlatformDocsLoader('react-pro-v3')({
-      params: { _splat: 'components/area-chart' }
+      params: { platform: 'web', _splat: 'components/area-chart' }
     })
     expect(data.title).toBe('Area Chart')
-    expect(data.routePath).toBe('/docs/ui/react-pro-v3/components/area-chart')
+    expect(data.routePath).toBe(
+      '/docs/ui/react-pro-v3/web/components/area-chart'
+    )
     expect(data.platforms).toEqual(['web', 'native'])
-    expect(data.markdownUrl).toContain('/docs/ui/react-pro-v3/')
-    const runtime = getPlatformDocsRuntime(undefined, 'react-pro-v3')
+    expect(data.markdownUrl).toContain('/docs/ui/react-pro-v3/web/')
+    const runtime = getPlatformDocsRuntime('web', 'react-pro-v3')
     const { page } = runtime.getDocsPage({
       slugs: ['components', 'area-chart']
     })
@@ -31,7 +33,7 @@ describe('UI documentation', () => {
     )
     expect(
       JSON.stringify(deserializePageTree(data.pageTree).children)
-    ).toContain('/docs/ui/react-pro-v3/components/area-chart')
+    ).toContain('/docs/ui/react-pro-v3/web/components/area-chart')
   }, 20_000)
 
   it('loads Pro Native documentation, media, markdown and independent navigation', async () => {
@@ -50,6 +52,16 @@ describe('UI documentation', () => {
     expect(tree).toContain('/docs/ui/react-pro-v3/native/components/fab')
     expect(tree).not.toContain('/components/data-grid')
   }, 20_000)
+
+  it('requires a supported platform when loading Pro documentation', async () => {
+    const loadPro = createPlatformDocsLoader('react-pro-v3')
+    await expect(
+      loadPro({ params: { _splat: 'getting-started' } })
+    ).rejects.toMatchObject({ isNotFound: true })
+    await expect(
+      loadPro({ params: { platform: 'other', _splat: 'getting-started' } })
+    ).rejects.toMatchObject({ isNotFound: true })
+  })
 
   it('keeps matching Pro pages and falls back within the target section', () => {
     expect(

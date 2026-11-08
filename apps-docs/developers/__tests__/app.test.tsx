@@ -71,27 +71,73 @@ describe('App', () => {
     }
   }, 20_000)
 
-  it('keeps canonical Pro Web routes separate from Native routes', async () => {
+  it('uses the same platform route for Pro Web and Native', async () => {
     const router = createRouter({
       history: createMemoryHistory({
-        initialEntries: ['/docs/ui/react-pro-v3/components/area-chart']
+        initialEntries: ['/docs/ui/react-pro-v3/web/components/area-chart']
       }),
       routeTree
     })
     const currentMatch = () =>
       router.state.matches[router.state.matches.length - 1]
     await router.load()
-    expect(currentMatch()?.routeId).toBe('/{-$lang}/docs/ui/react-pro-v3/$')
+    expect(currentMatch()?.routeId).toBe(
+      '/{-$lang}/docs/ui/react-pro-v3/$platform/$'
+    )
     expect(currentMatch()?.status).toBe('success')
     await router.navigate({
-      to: '/{-$lang}/docs/ui/react-pro-v3/native/$',
-      params: { _splat: 'components/fab' }
+      to: '/{-$lang}/docs/ui/react-pro-v3/$platform/$',
+      params: { platform: 'native', _splat: 'components/fab' }
     })
     expect(currentMatch()?.routeId).toBe(
-      '/{-$lang}/docs/ui/react-pro-v3/native/$'
+      '/{-$lang}/docs/ui/react-pro-v3/$platform/$'
     )
     expect(currentMatch()?.status).toBe('success')
   }, 20_000)
+
+  it.each([
+    ['/docs/ui/react-v3', '/docs/ui/react-v3/web/getting-started'],
+    ['/docs/ui/react-pro-v3', '/docs/ui/react-pro-v3/web/getting-started'],
+    ['/docs/ui/react-pro-v3/web', '/docs/ui/react-pro-v3/web/getting-started'],
+    [
+      '/docs/ui/react-pro-v3/native',
+      '/docs/ui/react-pro-v3/native/getting-started'
+    ],
+    ['/cn/docs/ui/react-pro-v3', '/cn/docs/ui/react-pro-v3/web/getting-started']
+  ])(
+    'redirects UI library URL %s to %s',
+    async (from, to) => {
+      const router = createRouter({
+        history: createMemoryHistory({ initialEntries: [from] }),
+        routeTree
+      })
+      await router.load()
+      await waitFor(() => expect(router.state.location.pathname).toBe(to))
+      expect(
+        router.state.matches[router.state.matches.length - 1]?.status
+      ).toBe('success')
+    },
+    20_000
+  )
+
+  it.each([
+    '/docs/ui/react-pro-v3/other/components/area-chart',
+    '/docs/ui/react-pro-v3/getting-started',
+    '/docs/ui/react-pro-v3/components/area-chart'
+  ])(
+    'rejects Pro URL without a supported platform: %s',
+    async path => {
+      const router = createRouter({
+        history: createMemoryHistory({ initialEntries: [path] }),
+        routeTree
+      })
+      await router.load()
+      expect(
+        router.state.matches[router.state.matches.length - 1]?.status
+      ).toBe('notFound')
+    },
+    20_000
+  )
 
   it('switches a Web-only page to the Native introduction', async () => {
     const animations = Object.getOwnPropertyDescriptor(

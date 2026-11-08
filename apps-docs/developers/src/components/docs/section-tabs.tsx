@@ -32,7 +32,7 @@ export const SectionTabs = ({
       {getPlatformSections(platform, library).map(item => (
         <Link
           key={item.id}
-          to={getUiLibraryRoute(library, platform)}
+          to={getUiLibraryRoute(library)}
           params={{
             lang: locale === i18n.defaultLanguage ? undefined : locale,
             platform,
