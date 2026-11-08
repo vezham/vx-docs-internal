@@ -31,13 +31,19 @@ environment to select different CDN hosts. For example:
 ```dotenv
 V_ILLUSTRATIONS_CDN_URL=http://localhost:4101
 V_LOGOS_CDN_URL=http://localhost:4102
+V_APP_VER=26.0.3
 ```
 
 Vite reads these public URLs at build time. Restart the dev server or rebuild
 the static app after changing them. Catalog requests, previews, SVG source,
 downloads, and embed links all use the selected origin, including when a logo
 catalog contains absolute URLs for a different environment. Trailing slashes
-are accepted. Nx also includes both environment overrides in the build cache key.
+are accepted. `APP_VER` from `@vezham/env/vite` reads the existing `V_APP_VER`
+and adds it as `?vx=26.0.3` to both CDN catalog and SVG URLs, including logos in
+docs, preview images, downloads, Open SVG, and embed snippets. The app version
+controls cache busting; there are no separate CDN version settings. Icon npm URLs
+keep their pinned package version. Nx includes both CDN origins and `V_APP_VER`
+in the build cache key.
 
 ## Importing the original collection
 

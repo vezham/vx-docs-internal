@@ -81,6 +81,7 @@ describe('CDN collection ownership', () => {
       'https://illustrations.cdn.vezham.com'
     )
     vi.stubEnv('V_LOGOS_CDN_URL', 'https://logos.cdn.vezham.com')
+    vi.stubEnv('V_APP_VER', '26.0.3')
   })
 
   afterEach(() => {
@@ -100,8 +101,8 @@ describe('CDN collection ownership', () => {
       loadCatalog('icons')
     ])
     expect(fetch.mock.calls.map(([url]) => url)).toEqual([
-      'https://illustrations.cdn.vezham.com/catalog.json',
-      'https://logos.cdn.vezham.com/catalog.json',
+      'https://illustrations.cdn.vezham.com/catalog.json?vx=26.0.3',
+      'https://logos.cdn.vezham.com/catalog.json?vx=26.0.3',
       '/icon-catalog/icons.json'
     ])
   })
@@ -117,19 +118,20 @@ describe('CDN collection ownership', () => {
       }
     }
     expect(assetUrl('illustrations', { ...asset, slug: 'astronaut' })).toBe(
-      'https://illustrations.cdn.vezham.com/assets/astronaut.svg'
+      'https://illustrations.cdn.vezham.com/assets/astronaut.svg?vx=26.0.3'
     )
     expect(assetUrl('logos', asset, 'text')).toBe(
-      'https://logos.cdn.vezham.com/assets/react/text.svg'
+      'https://logos.cdn.vezham.com/assets/react/text.svg?vx=26.0.3'
     )
     expect(assetUrl('logos', asset, 'missing')).toBe(
-      'https://logos.cdn.vezham.com/assets/react/original.svg'
+      'https://logos.cdn.vezham.com/assets/react/original.svg?vx=26.0.3'
     )
   })
 
   it('uses environment overrides for catalogs and SVGs even when logo metadata contains production URLs', async () => {
     vi.stubEnv('V_ILLUSTRATIONS_CDN_URL', 'http://localhost:4101/')
     vi.stubEnv('V_LOGOS_CDN_URL', 'https://logos.test.vezham.com/')
+    vi.stubEnv('V_APP_VER', '26.0.4+preview')
     const fetch = vi
       .fn()
       .mockImplementation(() => Promise.resolve(new Response('[]')))
@@ -137,8 +139,8 @@ describe('CDN collection ownership', () => {
     const { loadCatalog, assetUrl } = await import('./catalog')
     await Promise.all([loadCatalog('illustrations'), loadCatalog('logos')])
     expect(fetch.mock.calls.map(([url]) => url)).toEqual([
-      'http://localhost:4101/catalog.json',
-      'https://logos.test.vezham.com/catalog.json'
+      'http://localhost:4101/catalog.json?vx=26.0.4%2Bpreview',
+      'https://logos.test.vezham.com/catalog.json?vx=26.0.4%2Bpreview'
     ])
     const asset = {
       ...assets[0],
@@ -148,10 +150,10 @@ describe('CDN collection ownership', () => {
       }
     }
     expect(assetUrl('illustrations', { ...asset, slug: 'astronaut' })).toBe(
-      'http://localhost:4101/assets/astronaut.svg'
+      'http://localhost:4101/assets/astronaut.svg?vx=26.0.4%2Bpreview'
     )
     expect(assetUrl('logos', asset, 'missing')).toBe(
-      'https://logos.test.vezham.com/assets/react/original.svg'
+      'https://logos.test.vezham.com/assets/react/original.svg?vx=26.0.4%2Bpreview'
     )
   })
 })

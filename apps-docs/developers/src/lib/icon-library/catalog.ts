@@ -1,5 +1,7 @@
 import type { SearchSchemaInput } from '@tanstack/react-router'
 
+import { APP_VER } from '@vezham/env/vite'
+
 export type AssetKind = 'icons' | 'illustrations' | 'logos'
 export const iconWeights = [
   'outline',
@@ -53,6 +55,11 @@ const collectionOrigin = (kind: Exclude<AssetKind, 'icons'>) => {
   if (!origin?.trim()) throw new Error(`The ${kind} CDN URL is not configured.`)
   return origin.trim().replace(/\/+$/, '')
 }
+const collectionUrl = (kind: Exclude<AssetKind, 'icons'>, path: string) => {
+  const url = new URL(`${collectionOrigin(kind)}${path}`)
+  url.searchParams.set('vx', APP_VER)
+  return url.href
+}
 const catalogs = new Map<AssetKind, Promise<Asset[]>>()
 
 export const loadCatalog = (kind: AssetKind): Promise<Asset[]> => {
@@ -61,7 +68,7 @@ export const loadCatalog = (kind: AssetKind): Promise<Asset[]> => {
   const catalogUrl =
     kind === 'icons'
       ? '/icon-catalog/icons.json'
-      : `${collectionOrigin(kind)}/catalog.json`
+      : collectionUrl(kind, '/catalog.json')
   const request = fetch(catalogUrl)
     .then(async response => {
       if (!response.ok)
@@ -106,9 +113,12 @@ export const assetUrl = (
       : asset.variants.original
         ? 'original'
         : (Object.keys(asset.variants)[0] ?? 'original')
-    return `${collectionOrigin(kind)}/assets/${encodeURIComponent(asset.slug)}/${encodeURIComponent(availableVariant)}.svg`
+    return collectionUrl(
+      kind,
+      `/assets/${encodeURIComponent(asset.slug)}/${encodeURIComponent(availableVariant)}.svg`
+    )
   }
-  return `${collectionOrigin(kind)}/assets/${encodeURIComponent(asset.slug)}.svg`
+  return collectionUrl(kind, `/assets/${encodeURIComponent(asset.slug)}.svg`)
 }
 
 export type CatalogSearch = {
