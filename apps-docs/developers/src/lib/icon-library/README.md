@@ -9,6 +9,12 @@ the full-width notebook page without a desktop sidebar; their section links
 remain available in the mobile drawer. Framework guides retain their MDX
 sidebar and table of contents.
 
+The shared docs styles in `packages/vx/styles/docs/index.css` center page content
+by default, retaining the layout's width limits and responsive padding. Page
+utilities can override this default: `mx-0` on a direct content block or
+`[&>*]:mx-0` on the docs page restores start alignment. There is no
+icon-library-specific alignment setting.
+
 The CDN repository owns illustration and logo SVGs, catalogs and manifests:
 
 | Collection    | Catalog                                   | SVGs                            |
