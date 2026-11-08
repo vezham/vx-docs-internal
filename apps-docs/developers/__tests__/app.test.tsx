@@ -96,6 +96,10 @@ describe('App', () => {
   }, 20_000)
 
   it.each([
+    ['/docs/ui/react', '/docs/ui/react/web/getting-started'],
+    ['/docs/ui/react/web', '/docs/ui/react/web/getting-started'],
+    ['/docs/ui/react/native', '/docs/ui/react/native/getting-started'],
+    ['/cn/docs/ui/react', '/cn/docs/ui/react/web/getting-started'],
     ['/docs/ui/react-v3', '/docs/ui/react-v3/web/getting-started'],
     ['/docs/ui/react-pro-v3', '/docs/ui/react-pro-v3/web/getting-started'],
     ['/docs/ui/react-pro-v3/web', '/docs/ui/react-pro-v3/web/getting-started'],
@@ -121,11 +125,13 @@ describe('App', () => {
   )
 
   it.each([
+    '/docs/ui/react/other/getting-started',
+    '/docs/ui/react/getting-started',
     '/docs/ui/react-pro-v3/other/components/area-chart',
     '/docs/ui/react-pro-v3/getting-started',
     '/docs/ui/react-pro-v3/components/area-chart'
   ])(
-    'rejects Pro URL without a supported platform: %s',
+    'rejects UI library URL without a supported platform: %s',
     async path => {
       const router = createRouter({
         history: createMemoryHistory({ initialEntries: [path] }),

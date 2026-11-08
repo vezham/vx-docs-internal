@@ -119,8 +119,12 @@ export const LibrarySelector = ({
               })
             } else if (option?.destination === 'react') {
               void navigate({
-                to: '/{-$lang}/docs/ui/react/$',
-                params: { lang: language, _splat: 'getting-started' }
+                to: '/{-$lang}/docs/ui/react/$platform/$',
+                params: {
+                  lang: language,
+                  platform: 'web',
+                  _splat: 'getting-started'
+                }
               })
             }
           }}>

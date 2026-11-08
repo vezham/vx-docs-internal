@@ -1,4 +1,5 @@
 import type { UiLibrary } from '@components/docs/library-selector'
+import { getPlatformDocsRuntime } from '@components/docs/platform-docs'
 import { platformPagePaths } from '@src/lib/docs/heroui-catalog'
 import nativeProGallery from '@src/lib/docs/heroui-pro-native-presentation.json'
 import proGallery from '@src/lib/docs/heroui-pro-presentation.json'
@@ -52,9 +53,13 @@ export const getPlatformPage = (
   library: UiLibrary = 'react-v3'
 ) => {
   const pages =
-    library === 'react-pro-v3'
-      ? (platform === 'native' ? nativeProGallery : proGallery).pagePaths
-      : platformPagePaths[platform]
+    library === 'react'
+      ? getPlatformDocsRuntime(platform, library)
+          .source.getPages()
+          .map(page => page.slugs.join('/'))
+      : library === 'react-pro-v3'
+        ? (platform === 'native' ? nativeProGallery : proGallery).pagePaths
+        : platformPagePaths[platform]
   if (pages.includes(page)) return page
   const section = page.split('/')[0]
   return (

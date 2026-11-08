@@ -16,14 +16,12 @@ Content collections:
 
 - Vezham v3: `content/docs-ui/{web,native}`
 - Vezham Pro v3: `content/docs-ui-pro-v3/{web,native}`
-- In-house Vezham: `content/docs-ui-react`
+- In-house Vezham: `content/docs-ui-react/{web,native}`
 
-Platforms are optional. Collections without platform folders use direct library
-routes and no platform selector. Do not introduce a mandatory `web` folder.
-
-Pro and v3 both use `/docs/ui/{library}/{web,native}/*` as canonical URLs.
-Both libraries use the same four route files; page and markdown URLs require a
-platform. Their library roots open Web Getting Started.
+All three UI libraries use `/docs/ui/{library}/{web,native}/*` as canonical URLs.
+Each library uses the same four route files; page and markdown URLs require a
+platform. Their library roots open Web Getting Started. Native content for the
+in-house library is currently a TODO in MDX using the shared docs layout.
 Keep platform switching and section links on the selected library and fall back
 to its section index when a page is unavailable.
 

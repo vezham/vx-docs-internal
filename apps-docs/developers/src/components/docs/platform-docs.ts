@@ -66,7 +66,17 @@ const nativeProPlatformDocs = defineDocs({
 })
 
 const reactPlatformDocs = defineDocs({
-  dir: 'content/docs-ui-react',
+  dir: 'content/docs-ui-react/web',
+  docs: {
+    async: true,
+    postprocess: { includeProcessedMarkdown: true },
+    schema: platformDocsPageSchema
+  },
+  meta: { schema: docsMetaSchema }
+})
+
+const nativeReactPlatformDocs = defineDocs({
+  dir: 'content/docs-ui-react/native',
   docs: {
     async: true,
     postprocess: { includeProcessedMarkdown: true },
@@ -120,10 +130,15 @@ const libraryRuntimes: Record<
     })
   },
   react: {
-    default: createStaticDocsRuntime({
+    web: createStaticDocsRuntime({
       ...runtimeOptions,
       docs: reactPlatformDocs,
-      docsRoute: '/docs/ui/react'
+      docsRoute: '/docs/ui/react/web'
+    }),
+    native: createStaticDocsRuntime({
+      ...runtimeOptions,
+      docs: nativeReactPlatformDocs,
+      docsRoute: '/docs/ui/react/native'
     })
   }
 }
@@ -155,6 +170,7 @@ export const getPlatformDocs = (
 ) => {
   if (library === 'react-pro-v3')
     return platform === 'native' ? nativeProPlatformDocs : proPlatformDocs
-  if (library === 'react') return reactPlatformDocs
+  if (library === 'react')
+    return platform === 'native' ? nativeReactPlatformDocs : reactPlatformDocs
   return platform === 'web' ? webPlatformDocs : nativePlatformDocs
 }

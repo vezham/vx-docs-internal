@@ -14,6 +14,54 @@ import { createPlatformDocsLoader } from './platform-loader'
 const loader = createPlatformDocsLoader()
 
 describe('UI documentation', () => {
+  it.each(['web', 'native'] as const)(
+    'loads in-house %s MDX with its own navigation and markdown',
+    async platform => {
+      const data = await createPlatformDocsLoader('react')({
+        params: { platform, _splat: 'getting-started' }
+      })
+      expect(data.title).toBe('Getting Started')
+      expect(data.routePath).toBe(`/docs/ui/react/${platform}/getting-started`)
+      expect(data.platforms).toEqual(['web', 'native'])
+      expect(data.markdownUrl).toContain(`/docs/ui/react/${platform}/`)
+      const runtime = getPlatformDocsRuntime(platform, 'react')
+      const { page } = runtime.getDocsPage({ slugs: ['getting-started'] })
+      expect(await runtime.getLLMText(page)).toContain(
+        platform === 'native'
+          ? 'TODO: Add getting started documentation for the in-house Vezham Native library.'
+          : 'TODO: Add getting started documentation for the in-house Vezham library.'
+      )
+      const tree = JSON.stringify(deserializePageTree(data.pageTree).children)
+      expect(tree).toContain(`/docs/ui/react/${platform}/getting-started`)
+      expect(tree).not.toContain('/react-v3/')
+      expect(tree).not.toContain('/react-pro-v3/')
+      expect(
+        getPlatformSections(platform, 'react').map(item => item.id)
+      ).toEqual(['getting-started'])
+    },
+    20_000
+  )
+
+  it('requires an in-house platform and rejects unavailable sections', async () => {
+    const loadReact = createPlatformDocsLoader('react')
+    for (const params of [
+      { _splat: 'getting-started' },
+      { platform: 'other', _splat: 'getting-started' },
+      { platform: 'native', _splat: 'components' }
+    ]) {
+      await expect(loadReact({ params })).rejects.toMatchObject({
+        isNotFound: true
+      })
+    }
+    expect(getPlatformPage('native', 'components/button', 'react')).toBe(
+      'getting-started'
+    )
+    const localized = await loadReact({
+      params: { lang: 'cn', platform: 'native', _splat: 'getting-started' }
+    })
+    expect(localized.routePath).toBe('/cn/docs/ui/react/native/getting-started')
+  })
+
   it('loads Pro Web MDX and its independent component navigation', async () => {
     const data = await createPlatformDocsLoader('react-pro-v3')({
       params: { platform: 'web', _splat: 'components/area-chart' }

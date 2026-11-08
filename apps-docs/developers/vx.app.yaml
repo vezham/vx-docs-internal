@@ -32,8 +32,10 @@ routes:
   - path: /docs
   - path: /docs/ui/react-pro-v3/web/getting-started
   - path: /cn/docs/ui/react-pro-v3/web/getting-started
-  - path: /docs/ui/react/getting-started
-  - path: /cn/docs/ui/react/getting-started
+  - path: /docs/ui/react/web/getting-started
+  - path: /docs/ui/react/native/getting-started
+  - path: /cn/docs/ui/react/web/getting-started
+  - path: /cn/docs/ui/react/native/getting-started
   - path: /handbook/**
     source: routes
   - path: /cn/handbook/**

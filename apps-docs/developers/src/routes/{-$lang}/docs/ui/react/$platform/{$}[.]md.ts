@@ -2,11 +2,16 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { getPlatformDocsRuntime } from '@components/docs/platform-docs'
 
-export const Route = createFileRoute('/{-$lang}/docs/ui/react/{$}.md')({
+export const Route = createFileRoute(
+  '/{-$lang}/docs/ui/react/$platform/{$}.md'
+)({
   server: {
     handlers: {
       GET: async ({ params }) => {
-        const runtime = getPlatformDocsRuntime(undefined, 'react')
+        if (params.platform !== 'web' && params.platform !== 'native')
+          return new Response(null, { status: 404 })
+
+        const runtime = getPlatformDocsRuntime(params.platform, 'react')
         const { page } = runtime.getDocsPage({
           slugs: params._splat?.split('/') ?? [],
           lang: params.lang,
@@ -14,7 +19,9 @@ export const Route = createFileRoute('/{-$lang}/docs/ui/react/{$}.md')({
         })
 
         return new Response(await runtime.getLLMText(page), {
-          headers: { 'Content-Type': 'text/markdown' }
+          headers: {
+            'Content-Type': 'text/markdown'
+          }
         })
       }
     }
