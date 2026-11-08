@@ -25,3 +25,12 @@ Pro now has both platforms. Its existing platformless routes remain the canonica
 Web URLs; `/docs/ui/react-pro-v3/web/*` redirects there. Native uses
 `/docs/ui/react-pro-v3/native/*`. Keep platform switching and section links on the
 selected library and fall back to its section index when a page is unavailable.
+
+## Standalone page layout
+
+Use `.vx-page__content` from `packages/vx/styles/page.css`, imported by the app's
+`src/app/global.css`, for non-docs page content including Home. It centers content
+up to 1285px wide with responsive padding.
+Keep full-width sections outside this container. Page utilities may override the
+default width, margins, or padding when needed. Docs pages use the shared styles
+in `packages/vx/styles/docs/index.css`.

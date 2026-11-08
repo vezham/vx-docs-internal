@@ -1,0 +1,18 @@
+@layer components {
+  .vx-page__content {
+    width: 100%;
+
+    /* vx-bot/NOTE: Include desktop gutters around the shared 1285px content width. */
+    max-width: 84.3125rem;
+    margin-inline: auto;
+    padding: 1.5rem 1rem;
+
+    @variant md {
+      padding: 2rem 1.5rem;
+    }
+
+    @variant xl {
+      padding-inline: 2rem;
+    }
+  }
+}

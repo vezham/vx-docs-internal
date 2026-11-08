@@ -18,13 +18,17 @@ export default ({ locale }: Props) => {
 
   return (
     <HomeLayout {...baseOptions(locale)}>
-      Hello World
-      <Link
-        onPress={() => navigate({ to: '/{-$lang}/docs/ui', params: { lang } })}>
-        <Link.Icon />
-        Open Vezham UI
-        <Link.Icon />
-      </Link>
+      <div className="vx-page__content flex flex-col items-start gap-4">
+        Hello World
+        <Link
+          onPress={() =>
+            navigate({ to: '/{-$lang}/docs/ui', params: { lang } })
+          }>
+          <Link.Icon />
+          Open Vezham UI
+          <Link.Icon />
+        </Link>
+      </div>
     </HomeLayout>
   )
 }
