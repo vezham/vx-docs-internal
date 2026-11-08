@@ -248,6 +248,8 @@ const fw = [
   ['svg', 'svg', 'Raw SVG']
 ]
 for (const [id, folder, title] of fw) {
+  // vx-bot/NOTE: Preserve the local SVG guide, which documents this app's export behavior.
+  if (id === 'svg' && fs.existsSync(docs + '/svg.mdx')) continue
   const md = fs
     .readFileSync(src + '/docs/' + folder + '/index.md', 'utf8')
     .replace(/^# .+\n/, '')
