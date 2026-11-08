@@ -1,7 +1,8 @@
 import { useState } from 'react'
 
+import { Code, InfoCircle, Palette, QuestionCircle } from '@vezham/icons-react'
 import { Markdown } from '@vezham/react-pro-v3/markdown'
-import { Accordion, Card, Link, SearchField } from '@vezham/react-v3'
+import { Accordion, Card, Link, SearchField, Tabs } from '@vezham/react-v3'
 
 import { i18n } from '@app/docs'
 import type { Locale } from '@generated/vx'
@@ -109,8 +110,39 @@ export const IconPackages = ({ locale }: { locale: Locale }) => {
   )
 }
 
+const faqGroupIcons: Record<string, typeof InfoCircle> = {
+  general: InfoCircle,
+  technical: Code,
+  design: Palette
+}
+
+const FaqQuestions = ({
+  items
+}: {
+  items: (typeof content.faq)[number]['items']
+}) => (
+  <Accordion allowsMultipleExpanded>
+    {items.map(item => (
+      <Accordion.Item key={item.id} id={item.id}>
+        <Accordion.Heading>
+          <Accordion.Trigger>
+            {item.question}
+            <Accordion.Indicator />
+          </Accordion.Trigger>
+        </Accordion.Heading>
+        <Accordion.Panel>
+          <Accordion.Body>
+            <Markdown>{item.answer}</Markdown>
+          </Accordion.Body>
+        </Accordion.Panel>
+      </Accordion.Item>
+    ))}
+  </Accordion>
+)
+
 export const IconFaq = ({ locale }: { locale: Locale }) => {
   const [query, setQuery] = useState('')
+  const [activeGroup, setActiveGroup] = useState(content.faq[0]?.id ?? '')
   const q = query.trim().toLowerCase()
   const groups = content.faq
     .map(group => ({
@@ -120,6 +152,10 @@ export const IconFaq = ({ locale }: { locale: Locale }) => {
       )
     }))
     .filter(group => group.items.length)
+  const matchCount = groups.reduce(
+    (total, group) => total + group.items.length,
+    0
+  )
   return (
     <AssetShell active="faq" locale={locale}>
       <header className="space-y-2">
@@ -131,7 +167,7 @@ export const IconFaq = ({ locale }: { locale: Locale }) => {
         </p>
       </header>
       <SearchField
-        aria-label="Search questions"
+        aria-label="Search all FAQ groups"
         value={query}
         onChange={setQuery}
         className="max-w-xl">
@@ -141,33 +177,45 @@ export const IconFaq = ({ locale }: { locale: Locale }) => {
           <SearchField.ClearButton />
         </SearchField.Group>
       </SearchField>
-      <div className="max-w-3xl space-y-10">
-        {groups.map(group => (
-          <section key={group.id} className="space-y-3">
-            <h2 className="text-xl font-semibold">{group.title}</h2>
-            <Accordion allowsMultipleExpanded>
-              {group.items.map(item => (
-                <Accordion.Item key={item.id} id={item.id}>
-                  <Accordion.Heading>
-                    <Accordion.Trigger>
-                      {item.question}
-                      <Accordion.Indicator />
-                    </Accordion.Trigger>
-                  </Accordion.Heading>
-                  <Accordion.Panel>
-                    <Accordion.Body>
-                      <Markdown>{item.answer}</Markdown>
-                    </Accordion.Body>
-                  </Accordion.Panel>
-                </Accordion.Item>
-              ))}
-            </Accordion>
-          </section>
-        ))}
-        {!groups.length && (
-          <p className="text-muted py-12">
-            No questions match your search. Try a different word.
-          </p>
+      <div className="max-w-3xl min-w-0">
+        {q ? (
+          <div className="space-y-8">
+            <p className="text-muted text-sm" role="status">
+              {groups.length
+                ? `${matchCount} matching ${matchCount === 1 ? 'question' : 'questions'} across all groups`
+                : 'No questions match your search. Try a different word.'}
+            </p>
+            {groups.map(group => (
+              <section key={group.id} className="space-y-3">
+                <h2 className="text-xl font-semibold">{group.title}</h2>
+                <FaqQuestions items={group.items} />
+              </section>
+            ))}
+          </div>
+        ) : (
+          <Tabs
+            selectedKey={activeGroup}
+            onSelectionChange={key => setActiveGroup(String(key))}>
+            <Tabs.ListContainer className="w-fit max-w-full">
+              <Tabs.List aria-label="FAQ groups">
+                {content.faq.map(group => {
+                  const Icon = faqGroupIcons[group.id] ?? QuestionCircle
+                  return (
+                    <Tabs.Tab key={group.id} id={group.id} className="gap-2">
+                      <Icon size={16} aria-hidden="true" />
+                      {group.title}
+                      <Tabs.Indicator />
+                    </Tabs.Tab>
+                  )
+                })}
+              </Tabs.List>
+            </Tabs.ListContainer>
+            {content.faq.map(group => (
+              <Tabs.Panel key={group.id} id={group.id}>
+                <FaqQuestions items={group.items} />
+              </Tabs.Panel>
+            ))}
+          </Tabs>
         )}
       </div>
     </AssetShell>
