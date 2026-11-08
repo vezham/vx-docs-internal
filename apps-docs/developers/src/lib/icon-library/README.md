@@ -67,6 +67,7 @@ node apps-docs/developers/scripts/import-icon-library.mjs /path/to/reicon /path/
 This imports icon metadata and framework guides into this app, and writes
 illustration/logo catalogs and manifests into the matching CDN apps. Icon
 names and supported weights are extracted from the pinned npm runtime.
+The FAQ in `content.json` is maintained locally and preserved during imports.
 The import script reads the same app environment files using Vite's loader;
 `NODE_ENV` selects the mode (default: `development`). Shell overrides take
 precedence. Generated logo variant URLs use `V_LOGOS_CDN_URL`.

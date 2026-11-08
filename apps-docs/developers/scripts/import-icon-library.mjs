@@ -162,26 +162,15 @@ const constant = (file, name) => {
     .flatMap(s => s.declarationList.declarations)
     .find(d => d.name.getText() === name).initializer
 }
-const faq = constant(
-  src + '/src/pages/faq/FaqPage.tsx',
-  'FAQ_CATEGORIES'
-).elements.map(n => {
-  const p = props(n)
-  return {
-    id: text(p.id),
-    title: text(p.title),
-    items: p.items.elements.map(item => {
-      const q = props(item)
-      return {
-        id: text(q.id),
-        question: text(q.question),
-        answer: text(q.markdownAnswer)
-      }
-    })
-  }
-})
-faq[0].items[0].answer =
-  'Vezham is a vector-asset library with UI icons, SVG illustrations, and brand logos. This browser uses the pinned @vezham/icons@1.0.7 CDN runtime for icons, alongside the existing illustration and logo collections.'
+// vx-bot/NOTE: Keep reviewed FAQ content instead of restoring upstream claims during sync.
+const { faq } = JSON.parse(
+  fs.readFileSync(app + '/src/lib/icon-library/content.json', 'utf8')
+)
+const updateRepositoryLinks = value =>
+  value.replace(
+    /github\.com\/vezham\/reicon\b/g,
+    'github.com/vezham-oss/reicon'
+  )
 const packageLogos = {
   vanilla: 'javascript',
   'react-native': 'reactnative',
@@ -213,6 +202,7 @@ const packages = constant(
     item.name = 'vezham_icons'
     item.npmUrl = 'https://pub.dev/packages/vezham_icons'
   }
+  item.sourceUrl = updateRepositoryLinks(item.sourceUrl)
   item.logo = packageLogos[item.id] ?? item.id
   item.registryLabel = registryLabels[item.id] ?? 'npm'
   item.registryLogo = registryLogos[item.id] ?? 'npm'
@@ -234,7 +224,7 @@ const tools = constant(
     registryLabel: registryLabels[text(p.id)] ?? 'npm',
     registryLogo: registryLogos[text(p.id)] ?? 'npm',
     sourceLogo: 'github',
-    sourceUrl: text(p.sourceUrl),
+    sourceUrl: updateRepositoryLinks(text(p.sourceUrl)),
     guideUrl: text(p.guideUrl)
   }
 })
@@ -259,8 +249,9 @@ const fw = [
 for (const [id, folder, title] of fw) {
   // vx-bot/NOTE: Preserve the local SVG guide, which documents this app's export behavior.
   if (id === 'svg' && fs.existsSync(docs + '/svg.mdx')) continue
-  const md = fs
-    .readFileSync(src + '/docs/' + folder + '/index.md', 'utf8')
+  const md = updateRepositoryLinks(
+    fs.readFileSync(src + '/docs/' + folder + '/index.md', 'utf8')
+  )
     .replace(/^# .+\n/, '')
     .replaceAll('@vezham/icons@latest', '@vezham/icons@1.0.7')
     .replaceAll(
@@ -271,7 +262,7 @@ for (const [id, folder, title] of fw) {
     .replace(/\]\(https:\/\/vezham\.com\/?\)/g, '](/icons)')
     .replaceAll(
       './packages/icons-flutter',
-      'https://github.com/vezham/reicon/tree/main/packages/icons-flutter'
+      'https://github.com/vezham-oss/reicon/tree/main/packages/icons-flutter'
     )
     .replaceAll('/vezham-icons.zip', '/icon-catalog/vezham-icons.zip')
     .replace(
@@ -304,7 +295,9 @@ for (const name of [
   'typescript',
   'troubleshooting'
 ]) {
-  const raw = fs.readFileSync(src + '/docs/shared/' + name + '.md', 'utf8')
+  const raw = updateRepositoryLinks(
+    fs.readFileSync(src + '/docs/shared/' + name + '.md', 'utf8')
+  )
   const title = /^# (.+)/m.exec(raw)?.[1] || name
   fs.writeFileSync(
     docs + '/' + name + '.mdx',
