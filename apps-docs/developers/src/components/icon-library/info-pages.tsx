@@ -55,13 +55,7 @@ export const IconPackages = ({ locale }: { locale: Locale }) => {
                 href={item.npmUrl}
                 target="_blank"
                 rel="noopener noreferrer">
-                {item.id === 'figma'
-                  ? 'Figma'
-                  : item.id === 'vscode'
-                    ? 'Marketplace'
-                    : item.id === 'flutter'
-                      ? 'pub.dev'
-                      : 'npm'}
+                {item.registryLabel}
                 <Link.Icon />
               </Link>
               <Link

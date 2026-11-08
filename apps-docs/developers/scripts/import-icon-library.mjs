@@ -188,6 +188,11 @@ const packageLogos = {
   vscode: 'visual-studio-code',
   mcp: 'mcp-model-context-protocol'
 }
+const registryLabels = {
+  flutter: 'pub.dev',
+  figma: 'Figma',
+  vscode: 'Marketplace'
+}
 const packages = constant(
   src + '/src/pages/packages/data.tsx',
   'PACKAGES'
@@ -204,6 +209,7 @@ const packages = constant(
     item.npmUrl = 'https://pub.dev/packages/vezham_icons'
   }
   item.logo = packageLogos[item.id] ?? item.id
+  item.registryLabel = registryLabels[item.id] ?? 'npm'
   return item
 })
 const tools = constant(
@@ -218,6 +224,7 @@ const tools = constant(
     name: text(p.name),
     description: text(p.description),
     npmUrl: text(a.href),
+    registryLabel: registryLabels[text(p.id)] ?? 'npm',
     sourceUrl: text(p.sourceUrl),
     guideUrl: text(p.guideUrl)
   }
