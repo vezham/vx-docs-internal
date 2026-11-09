@@ -15,30 +15,17 @@ export const baseOptions = (
     links: [
       {
         text: 'UI',
-        url: localizedUrl(
-          i18n,
-          locale,
-          '/docs/ui/react-v3/web/getting-started'
-        ),
+        url: localizedUrl(i18n, locale, '/docs/ui/react/web/getting-started'),
         active: 'nested-url'
       },
       {
-        text: 'Pro',
-        url: localizedUrl(
-          i18n,
-          locale,
-          '/docs/ui/react-pro-v3/web/getting-started'
-        ),
+        text: 'Assets',
+        url: localizedUrl(i18n, locale, '/docs/assets/icons'),
         active: 'nested-url'
       },
       {
         text: 'Handbook',
-        url: localizedUrl(i18n, locale, '/handbook/get-started'),
-        active: 'nested-url'
-      },
-      {
-        text: 'Icons',
-        url: localizedUrl(i18n, locale, '/icons'),
+        url: localizedUrl(i18n, locale, '/handbook'),
         active: 'nested-url'
       }
     ]

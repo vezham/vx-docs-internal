@@ -9,7 +9,7 @@ const RouteComponent = () => {
   const { lang } = Route.useParams()
   return <IconPackages locale={normalizeLocale(i18n, lang)} />
 }
-export const Route = createFileRoute('/{-$lang}/packages')({
+export const Route = createFileRoute('/{-$lang}/docs/assets/packages/')({
   component: RouteComponent,
   head: () => ({ meta: [{ title: 'Packages | Vezham Icons' }] })
 })

@@ -116,10 +116,7 @@ const proWebRuntime = createStaticDocsRuntime({
   docsRoute: '/docs/ui/react-pro-v3/web'
 })
 
-const libraryRuntimes: Record<
-  UiLibrary,
-  Partial<typeof runtimes> & { default?: typeof runtimes.web }
-> = {
+const libraryRuntimes: Record<UiLibrary, typeof runtimes> = {
   'react-v3': runtimes,
   'react-pro-v3': {
     web: proWebRuntime,
@@ -149,24 +146,16 @@ export const getAvailablePlatforms = (library: UiLibrary) =>
       (libraryRuntimes[library][platform]?.source.getPages().length ?? 0) > 0
   )
 
-export const hasPlatformDocs = (
-  platform: 'web' | 'native' | undefined,
-  library: UiLibrary
-) => libraryRuntimes[library][platform ?? 'default'] !== undefined
-
 export const getPlatformDocsRuntime = (
-  platform: 'web' | 'native' | undefined,
-  library: UiLibrary = 'react-v3'
+  platform: 'web' | 'native',
+  library: UiLibrary = 'react'
 ) => {
-  const runtime = libraryRuntimes[library][platform ?? 'default']
-  if (!runtime)
-    throw new Error(`No ${platform ?? 'default'} documentation for ${library}`)
-  return runtime
+  return libraryRuntimes[library][platform]
 }
 
 export const getPlatformDocs = (
-  platform: 'web' | 'native' | undefined,
-  library: UiLibrary = 'react-v3'
+  platform: 'web' | 'native',
+  library: UiLibrary = 'react'
 ) => {
   if (library === 'react-pro-v3')
     return platform === 'native' ? nativeProPlatformDocs : proPlatformDocs

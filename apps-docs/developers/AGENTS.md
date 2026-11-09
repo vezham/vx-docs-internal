@@ -22,8 +22,27 @@ All three UI libraries use `/docs/ui/{library}/{web,native}/*` as canonical URLs
 Each library uses the same four route files; page and markdown URLs require a
 platform. Their library roots open Web Getting Started. Native content for the
 in-house library is currently a TODO in MDX using the shared docs layout.
+The in-house `react` library is the default for shared docs helpers and UI
+components. `/docs` and `/docs/ui` open its Web Getting Started page. Pass
+`react-v3` or `react-pro-v3` explicitly for those libraries.
 Keep platform switching and section links on the selected library and fall back
 to its section index when a page is unavailable.
+
+## Handbook routes
+
+`/handbook` renders `content/docs-handbook/index.mdx`. Other handbook pages
+resolve only from that collection; missing pages return 404. The Markdown
+collection remains at `content/docs-markdown`, with its MDX index rendered at
+`/handbook/markdown`. Keep TODO text in MDX; do not add generic TODO page
+components, platformless UI branches, or redirects for retired URLs.
+
+## Asset library routes
+
+Keep asset galleries, details, packages, FAQ, and framework guides under
+`src/routes/{-$lang}/docs/assets`. Galleries use `icons`, `illustrations`, and
+`logos`; framework documentation uses `guides`. Their public paths start with
+`/docs/assets`, alongside UI documentation at `/docs/ui`. Keep the app homepage
+at `src/routes/{-$lang}/index.tsx`.
 
 ## Standalone page layout
 

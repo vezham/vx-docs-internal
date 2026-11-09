@@ -534,7 +534,7 @@ export const AssetDetail = ({
                 )}
                 <AssetPropsReference icons={kind === 'icons'} />
                 <Link
-                  href={`${lang ? '/' + lang : ''}/docs/${activeSnippet?.guide ?? 'svg'}`}>
+                  href={`${lang ? '/' + lang : ''}/docs/assets/guides/${activeSnippet?.guide ?? 'svg'}`}>
                   Read the integration guide
                 </Link>
               </div>

@@ -31,8 +31,5 @@ const RouteComponent = () => {
 export const Route = createFileRoute('/{-$lang}/handbook/markdown/')({
   component: RouteComponent,
   head: ({ loaderData }) => markdownDocsRuntime.getDocsRouteHead(loaderData),
-  loader: ({ params }) =>
-    markdownDocsRuntime.createDocsLoader()({
-      params: { ...params, _splat: 'overview' }
-    })
+  loader: ({ params }) => markdownDocsRuntime.createDocsLoader()({ params })
 })

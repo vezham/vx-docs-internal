@@ -41,7 +41,7 @@ const librarySections = {
 
 export const getPlatformSections = (
   platform: 'web' | 'native',
-  library: UiLibrary = 'react-v3'
+  library: UiLibrary = 'react'
 ) =>
   librarySections[library].filter(
     section => platform === 'web' || section.id !== 'migration'
@@ -50,7 +50,7 @@ export const getPlatformSections = (
 export const getPlatformPage = (
   platform: 'web' | 'native',
   page: string,
-  library: UiLibrary = 'react-v3'
+  library: UiLibrary = 'react'
 ) => {
   const pages =
     library === 'react'

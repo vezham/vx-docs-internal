@@ -36,6 +36,17 @@ const librarySections: {
   items: LibraryOption[]
 }[] = [
   {
+    id: 'current',
+    items: [
+      {
+        id: 'react',
+        title: `Vezham ${reactPackage.version}`,
+        //wjdlz/REF: badge: 'Coming soon',
+        destination: 'react'
+      }
+    ]
+  },
+  {
     id: 'v3',
     title: 'v3',
     items: [
@@ -52,17 +63,6 @@ const librarySections: {
         description: 'Components, themes and templates',
         icon: Box,
         destination: 'react-pro-v3'
-      }
-    ]
-  },
-  {
-    id: 'upcoming',
-    items: [
-      {
-        id: 'react',
-        title: `Vezham ${reactPackage.version}`,
-        //wjdlz/REF: badge: 'Coming soon',
-        destination: 'react'
       }
     ]
   }

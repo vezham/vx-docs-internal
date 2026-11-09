@@ -15,13 +15,15 @@ import {
 import type { Locale } from '@generated/vx'
 import { createPlatformDocsLoader } from '@src/lib/docs/platform-loader'
 
+const library = 'react-v3' as const
+
 const RouteComponent = () => {
   const navigate = useNavigate()
   const data = Route.useLoaderData()
   const { lang, platform, _splat } = Route.useParams()
   if (platform !== 'web' && platform !== 'native') throw notFound()
 
-  const platformSections = getPlatformSections(platform)
+  const platformSections = getPlatformSections(platform, library)
   const section = _splat?.split('/')[0]
   const currentSection = platformSections.find(item => item.id === section)
   if (!data || !currentSection || !_splat) throw notFound()
@@ -30,16 +32,18 @@ const RouteComponent = () => {
   const getPlatformParams = (value: 'web' | 'native') => ({
     lang: locale === i18n.defaultLanguage ? undefined : locale,
     platform: value,
-    _splat: getPlatformPage(value, _splat)
+    _splat: getPlatformPage(value, _splat, library)
   })
 
   return (
     <PlatformDocsRoutePage
       data={data}
-      docs={getPlatformDocs(platform)}
+      platform={platform}
+      docs={getPlatformDocs(platform, library)}
       shell="notebook"
       getLayoutOptions={locale =>
         getPlatformLayoutOptions({
+          library,
           locale: locale as Locale,
           page: _splat,
           platform,
@@ -67,7 +71,8 @@ export const Route = createFileRoute('/{-$lang}/docs/ui/react-v3/$platform/$')({
   component: RouteComponent,
   head: ({ loaderData, params }) => {
     const head = getPlatformDocsRuntime(
-      params.platform === 'native' ? 'native' : 'web'
+      params.platform === 'native' ? 'native' : 'web',
+      library
     ).getDocsRouteHead(loaderData)
     if (!loaderData?.image || !head.meta) return head
     return {
@@ -80,5 +85,5 @@ export const Route = createFileRoute('/{-$lang}/docs/ui/react-v3/$platform/$')({
       )
     }
   },
-  loader: createPlatformDocsLoader()
+  loader: createPlatformDocsLoader(library)
 })

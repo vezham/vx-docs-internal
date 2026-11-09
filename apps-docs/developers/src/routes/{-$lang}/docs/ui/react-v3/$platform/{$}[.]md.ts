@@ -11,7 +11,7 @@ export const Route = createFileRoute(
         if (params.platform !== 'web' && params.platform !== 'native')
           return new Response(null, { status: 404 })
 
-        const runtime = getPlatformDocsRuntime(params.platform)
+        const runtime = getPlatformDocsRuntime(params.platform, 'react-v3')
         const { page } = runtime.getDocsPage({
           slugs: params._splat?.split('/') ?? [],
           lang: params.lang,

@@ -19,7 +19,7 @@ type Props = ComponentPropsWithoutRef<'header'> & {
 }
 
 export const PlatformNotebookHeader = ({
-  library = 'react-v3',
+  library = 'react',
   locale,
   page,
   platform,

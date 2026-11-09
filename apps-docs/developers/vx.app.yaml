@@ -23,13 +23,18 @@ routes:
   - path: /docs/ui/react-v3/native/getting-started
   - path: /cn/docs/ui/react-v3/web/getting-started
   - path: /cn/docs/ui/react-v3/native/getting-started
-  - path: /icons
-  - path: /cn/icons
-  - path: /illustrations
-  - path: /logos
-  - path: /packages
-  - path: /faq
-  - path: /docs
+  - path: /docs/assets/icons
+  - path: /cn/docs/assets/icons
+  - path: /docs/assets/illustrations
+  - path: /docs/assets/logos
+  - path: /docs/assets/packages
+  - path: /docs/assets/faq
+  - path: /docs/assets/guides
+  - path: /docs/assets/guides/**
+    source: routes
+  - path: /cn/docs/assets/guides
+  - path: /cn/docs/assets/guides/**
+    source: routes
   - path: /docs/ui/react-pro-v3/web/getting-started
   - path: /cn/docs/ui/react-pro-v3/web/getting-started
   - path: /docs/ui/react/web/getting-started

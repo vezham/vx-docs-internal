@@ -8,7 +8,7 @@ export const brandConfig: {
 } = {
   defaultChannel: { color: 'warning', variant: 'soft' },
   channels: [
-    { id: 'intra', label: 'Intra', color: 'danger', variant: 'primary' },
-    { id: 'oss', label: 'OSS', color: 'accent', variant: 'soft' }
+    { id: 'intra', label: 'Internal', color: 'danger', variant: 'primary' },
+    { id: 'oss', label: 'OSS', color: 'success', variant: 'soft' }
   ]
 }

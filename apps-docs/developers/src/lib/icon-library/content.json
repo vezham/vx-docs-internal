@@ -6,7 +6,7 @@
       "description": "A Vezham Icons package for web and JavaScript applications.",
       "npmUrl": "https://www.npmjs.com/package/@vezham/icons",
       "sourceUrl": "https://github.com/vezham-oss/reicon",
-      "guideUrl": "/docs/vanilla",
+      "guideUrl": "/docs/assets/guides/vanilla",
       "logo": "javascript",
       "registryLabel": "npm",
       "registryLogo": "npm",
@@ -18,7 +18,7 @@
       "description": "A Vezham Icons package for React applications.",
       "npmUrl": "https://www.npmjs.com/package/@vezham/icons-react",
       "sourceUrl": "https://github.com/vezham-oss/reicon",
-      "guideUrl": "/docs/react",
+      "guideUrl": "/docs/assets/guides/react",
       "logo": "react",
       "registryLabel": "npm",
       "registryLogo": "npm",
@@ -30,7 +30,7 @@
       "description": "React Native icon components for Vezham Icons. Tree-shakeable, TypeScript-ready. Works with Expo and bare React Native.",
       "npmUrl": "https://www.npmjs.com/package/@vezham/icons-react-native",
       "sourceUrl": "https://github.com/vezham-oss/reicon",
-      "guideUrl": "/docs/react-native",
+      "guideUrl": "/docs/assets/guides/react-native",
       "logo": "reactnative",
       "registryLabel": "npm",
       "registryLogo": "npm",
@@ -42,7 +42,7 @@
       "description": "Vue 3 icon components for Vezham Icons. Tree-shakeable, TypeScript-ready, zero config. Works with Nuxt 3.",
       "npmUrl": "https://www.npmjs.com/package/@vezham/icons-vue",
       "sourceUrl": "https://github.com/vezham-oss/reicon",
-      "guideUrl": "/docs/vue",
+      "guideUrl": "/docs/assets/guides/vue",
       "logo": "vue",
       "registryLabel": "npm",
       "registryLogo": "npm",
@@ -54,7 +54,7 @@
       "description": "Svelte icon components for Vezham Icons. Tree-shakeable, TypeScript-ready, zero config. Works with SvelteKit.",
       "npmUrl": "https://www.npmjs.com/package/@vezham/icons-svelte",
       "sourceUrl": "https://github.com/vezham-oss/reicon",
-      "guideUrl": "/docs/svelte",
+      "guideUrl": "/docs/assets/guides/svelte",
       "logo": "svelte",
       "registryLabel": "npm",
       "registryLogo": "npm",
@@ -66,7 +66,7 @@
       "description": "Official Flutter/Dart package for Vezham. 2700+ SVG icons as path strings. Works with flutter_svg.",
       "npmUrl": "https://pub.dev/packages/vezham_icons",
       "sourceUrl": "https://github.com/vezham-oss/reicon/tree/main/packages/icons-flutter",
-      "guideUrl": "/docs/flutter",
+      "guideUrl": "/docs/assets/guides/flutter",
       "logo": "flutter",
       "registryLabel": "pub.dev",
       "registryLogo": "dart",
@@ -78,7 +78,7 @@
       "description": "Integrate Vezham Icons directly into your Figma workspace. Search, customize size/stroke weights, and insert vector shapes into your designs.",
       "npmUrl": "https://www.figma.com/community/plugin/1652983191908763066",
       "sourceUrl": "https://github.com/vezham-oss/reicon/tree/main/packages/icons-figma",
-      "guideUrl": "/docs/figma",
+      "guideUrl": "/docs/assets/guides/figma",
       "logo": "figma",
       "registryLabel": "Figma",
       "registryLogo": "figma",
@@ -90,7 +90,7 @@
       "description": "Browse and insert Vezham icons directly into your HTML, React, Vue, Svelte, or vanilla JS code from your editor's sidebar panel.",
       "npmUrl": "https://marketplace.visualstudio.com/items?itemName=Vezham.icons",
       "sourceUrl": "https://github.com/vezham-oss/reicon/tree/main/packages/icons-vscode",
-      "guideUrl": "/docs/vscode",
+      "guideUrl": "/docs/assets/guides/vscode",
       "logo": "visual-studio-code",
       "registryLabel": "Marketplace",
       "registryLogo": "visual-studio-code",
@@ -102,7 +102,7 @@
       "description": "Search, preview, and apply Vezham icons from AI agents and automation tools via MCP or CLI.",
       "npmUrl": "https://www.npmjs.com/package/@vezham/icons-mcp",
       "sourceUrl": "https://github.com/vezham-oss/reicon/tree/main/packages/icons-mcp",
-      "guideUrl": "/docs/mcp",
+      "guideUrl": "/docs/assets/guides/mcp",
       "logo": "mcp-model-context-protocol",
       "registryLabel": "npm",
       "registryLogo": "npm",
@@ -117,7 +117,7 @@
         {
           "id": "what-is-vezham",
           "question": "What is Vezham?",
-          "answer": "Vezham brings UI icons, SVG illustrations, and brand logos into one browser. Browse the galleries, customize supported assets, and copy snippets or download files. See [Packages and tools](/packages) for framework integrations."
+          "answer": "Vezham brings UI icons, SVG illustrations, and brand logos into one browser. Browse the galleries, customize supported assets, and copy snippets or download files. See [Packages and tools](/docs/assets/packages) for framework integrations."
         },
         {
           "id": "is-it-free",
@@ -148,7 +148,7 @@
         {
           "id": "tree-shaking",
           "question": "Does it support tree-shaking?",
-          "answer": "The JavaScript, React, React Native, Vue, and Svelte icon packages expose ES modules and declare sideEffects: false. Import only the icons you need; the final bundle depends on your bundler and production configuration. The CDN script uses a separate loading approach. See your [framework guide](/docs) for installation and import examples."
+          "answer": "The JavaScript, React, React Native, Vue, and Svelte icon packages expose ES modules and declare sideEffects: false. Import only the icons you need; the final bundle depends on your bundler and production configuration. The CDN script uses a separate loading approach. See your [framework guide](/docs/assets/guides) for installation and import examples."
         }
       ]
     },
@@ -159,7 +159,7 @@
         {
           "id": "figma-library",
           "question": "Can I use Vezham icons in Figma?",
-          "answer": "Use the Vezham Figma plugin to browse and insert icons into your designs. See the [Figma guide](/docs/figma) for installation and usage."
+          "answer": "Use the Vezham Figma plugin to browse and insert icons into your designs. See the [Figma guide](/docs/assets/guides/figma) for installation and usage."
         },
         {
           "id": "request-icon",

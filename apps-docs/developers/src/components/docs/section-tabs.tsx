@@ -22,7 +22,7 @@ type Props = {
 }
 
 export const SectionTabs = ({
-  library = 'react-v3',
+  library = 'react',
   locale,
   platform,
   selectedSection

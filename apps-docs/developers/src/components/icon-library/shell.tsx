@@ -14,16 +14,16 @@ import { baseOptions } from '@config/layout'
 import type { Locale } from '@generated/vx'
 
 const navigation = [
-  { id: 'icons', title: 'Icons', to: '/{-$lang}/icons' },
+  { id: 'icons', title: 'Icons', to: '/{-$lang}/docs/assets/icons' },
   {
     id: 'illustrations',
     title: 'Illustrations',
-    to: '/{-$lang}/illustrations'
+    to: '/{-$lang}/docs/assets/illustrations'
   },
-  { id: 'logos', title: 'Logos', to: '/{-$lang}/logos' },
-  { id: 'docs', title: 'Docs', to: '/{-$lang}/docs' },
-  { id: 'packages', title: 'Packages', to: '/{-$lang}/packages' },
-  { id: 'faq', title: 'FAQ', to: '/{-$lang}/faq' }
+  { id: 'logos', title: 'Logos', to: '/{-$lang}/docs/assets/logos' },
+  { id: 'docs', title: 'Guides', to: '/{-$lang}/docs/assets/guides' },
+  { id: 'packages', title: 'Packages', to: '/{-$lang}/docs/assets/packages' },
+  { id: 'faq', title: 'FAQ', to: '/{-$lang}/docs/assets/faq' }
 ] as const
 type AssetSection = (typeof navigation)[number]['id']
 const sectionUrl = (locale: Locale, path: string) =>

@@ -2,7 +2,9 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { iconDocsRuntime } from '@src/lib/icon-library/docs'
 
-export const Route = createFileRoute('/{-$lang}/docs/{$framework}.md')({
+export const Route = createFileRoute(
+  '/{-$lang}/docs/assets/guides/{$framework}.md'
+)({
   server: {
     handlers: {
       GET: async ({ params }) => {

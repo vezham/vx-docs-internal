@@ -3,43 +3,30 @@ import type { ComponentPropsWithoutRef } from 'react'
 
 import { useNotebookLayout } from '@vezham/docs-react/layouts/notebook'
 import { Sidebar } from '@vezham/icons-react'
-import {
-  DocsLayout,
-  type DocsLayoutProps,
-  DocsPage
-} from '@vezham/start/layouts/docs'
-import { localizedUrl, normalizeLocale } from '@vezham/start/runtime/docs'
+import type { DocsLayoutProps } from '@vezham/start/layouts/docs'
+import { localizedUrl } from '@vezham/start/runtime/docs'
 
 import { i18n } from '@app/docs'
 import { Brand } from '@components/brand'
 import { ControlCenter } from '@components/docs/control-center'
-import {
-  LibrarySelector,
-  type UiLibrary
-} from '@components/docs/library-selector'
-import { markdownDocsRuntime } from '@components/docs/markdown-docs'
 import { sectionTabVariants } from '@components/docs/navigation.variants'
 import { UserControls } from '@components/docs/user-controls'
 import { baseOptions } from '@config/layout'
 import type { Locale } from '@generated/vx'
 
 const handbookSections = [
-  { id: 'get-started', title: 'Get Started' },
-  { id: 'markdown', title: 'Markdown' }
+  { id: 'getting-started', title: 'Getting Started', path: '' },
+  { id: 'markdown', title: 'Markdown', path: 'markdown' }
 ] as const
 
 type HandbookSection = (typeof handbookSections)[number]['id']
 
-type HandbookNavigationProps = {
+type Props = {
   locale: Locale
-  library?: UiLibrary
   selectedSection?: HandbookSection
 }
 
-const HandbookSectionTabs = ({
-  locale,
-  selectedSection
-}: HandbookNavigationProps) => {
+const HandbookSectionTabs = ({ locale, selectedSection }: Props) => {
   const { slots } = useNotebookLayout()
   const SidebarCollapseTrigger = slots.sidebar.collapseTrigger
 
@@ -56,11 +43,11 @@ const HandbookSectionTabs = ({
         {handbookSections.map(section => (
           <Link
             key={section.id}
-            to="/{-$lang}/handbook/$"
-            params={{
-              lang: locale === i18n.defaultLanguage ? undefined : locale,
-              _splat: section.id
-            }}
+            to={localizedUrl(
+              i18n,
+              locale,
+              `/handbook${section.path ? `/${section.path}` : ''}`
+            )}
             className={sectionTabVariants({
               selected: section.id === selectedSection
             })}>
@@ -74,12 +61,10 @@ const HandbookSectionTabs = ({
 
 const HandbookNotebookHeader = ({
   locale,
-  library,
   page,
   selectedSection,
   ...props
-}: ComponentPropsWithoutRef<'header'> &
-  HandbookNavigationProps & { page: string }) => {
+}: ComponentPropsWithoutRef<'header'> & Props & { page: string }) => {
   const { navItems, slots } = useNotebookLayout()
   const searchTrigger =
     slots.searchTrigger === false ? undefined : slots.searchTrigger
@@ -95,7 +80,6 @@ const HandbookNotebookHeader = ({
       <div data-header-body="" className="flex h-14 gap-2 px-4 md:px-6">
         <div className="flex flex-1 items-center gap-2">
           <Brand.Link locale={locale} />
-          {library && <LibrarySelector library={library} locale={locale} />}
         </div>
         {FullSearchTrigger && (
           <FullSearchTrigger
@@ -127,7 +111,10 @@ const HandbookNotebookHeader = ({
             </SidebarTrigger>
           </div>
           <div className="flex items-center gap-2 max-md:hidden">
-            <ControlCenter locale={locale} page={page} platform="web" />
+            <ControlCenter
+              locale={locale}
+              path={`/handbook${page ? `/${page}` : ''}`}
+            />
             <UserControls />
           </div>
         </div>
@@ -144,10 +131,9 @@ const HandbookNotebookHeader = ({
 
 export const getHandbookLayoutOptions = ({
   locale,
-  library,
   page,
   selectedSection
-}: HandbookNavigationProps & { page: string }): Omit<
+}: Props & { page: string }): Omit<
   DocsLayoutProps,
   'children' | 'shell' | 'tree'
 > => ({
@@ -162,7 +148,6 @@ export const getHandbookLayoutOptions = ({
       <HandbookNotebookHeader
         {...props}
         locale={locale}
-        library={library}
         page={page}
         selectedSection={selectedSection}
       />
@@ -171,54 +156,17 @@ export const getHandbookLayoutOptions = ({
   tabs: selectedSection
     ? handbookSections.map(section => ({
         title: section.title,
-        url: localizedUrl(i18n, locale, '/handbook/' + section.id),
+        url: localizedUrl(
+          i18n,
+          locale,
+          `/handbook${section.path ? `/${section.path}` : ''}`
+        ),
         urls:
           section.id === selectedSection
-            ? new Set([localizedUrl(i18n, locale, '/handbook/' + page)])
+            ? new Set([
+                localizedUrl(i18n, locale, `/handbook${page ? `/${page}` : ''}`)
+              ])
             : undefined
       }))
     : []
 })
-
-type HandbookTodoPageProps = {
-  locale: Locale
-  library?: UiLibrary
-  page: string
-  selectedSection: HandbookSection
-  title: string
-  tree: ReturnType<typeof markdownDocsRuntime.source.getPageTree>
-}
-
-export const HandbookTodoPage = ({
-  locale,
-  library,
-  page,
-  selectedSection,
-  title,
-  tree
-}: HandbookTodoPageProps) => (
-  <DocsLayout
-    {...getHandbookLayoutOptions({ locale, library, page, selectedSection })}
-    shell="notebook"
-    tree={tree}>
-    <DocsPage
-      description={'TODO: Add documentation content for ' + title + '.'}
-      shell="notebook"
-      title={title}
-      toc={[]}>
-      <p>TODO: Add documentation content for {title}.</p>
-    </DocsPage>
-  </DocsLayout>
-)
-
-const getDocsTodoTree = (lang: string | undefined, name: string) => {
-  const locale = normalizeLocale(i18n, lang) as Locale
-  const docsTree = markdownDocsRuntime.source.getPageTree(locale)
-  return {
-    locale,
-    tree: { ...docsTree, name, children: [] }
-  }
-}
-
-export const getHandbookTodoTree = async (lang?: string) =>
-  getDocsTodoTree(lang, 'Handbook')

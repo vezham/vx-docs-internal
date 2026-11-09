@@ -23,7 +23,7 @@ const docsI18n = { ...vxI18n, fallbackLanguage: vxI18n.defaultLanguage }
 export const iconDocsRuntime = createStaticDocsRuntime({
   i18n: docsI18n,
   docs: iconDocs,
-  docsRoute: '/docs',
+  docsRoute: '/docs/assets/guides',
   head: {
     appName: vxCore.shortName,
     docsImageRoute: vxDocs.docsImageRoute,

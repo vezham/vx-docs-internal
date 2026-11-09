@@ -1,35 +1,36 @@
 import { createFileRoute } from '@tanstack/react-router'
 
+import { DocsRoutePage } from '@vezham/start/pages/docs/route'
+
 import {
-  HandbookTodoPage,
-  getHandbookTodoTree
-} from '@components/docs/handbook-docs-shell'
+  handbookDocs,
+  handbookDocsRuntime
+} from '@components/docs/handbook-docs'
+import { getHandbookLayoutOptions } from '@components/docs/handbook-docs-shell'
+import type { Locale } from '@generated/vx'
 
 const RouteComponent = () => {
   const { _splat } = Route.useParams()
   const data = Route.useLoaderData()
-  const segments = _splat?.split('/') ?? []
-  const pageName = segments[segments.length - 1] ?? 'Handbook'
-  const title = pageName
-    .split('-')
-    .map(part => part[0]?.toUpperCase() + part.slice(1))
-    .join(' ')
-
+  if (!data) throw new Error('Handbook docs loader returned no page data')
   return (
-    <HandbookTodoPage
-      locale={data.locale}
-      page={_splat ?? 'get-started'}
-      selectedSection="get-started"
-      title={title}
-      tree={data.tree}
+    <DocsRoutePage
+      data={data}
+      docs={handbookDocs}
+      getLayoutOptions={locale =>
+        getHandbookLayoutOptions({
+          locale: locale as Locale,
+          page: _splat ?? '',
+          selectedSection: 'getting-started'
+        })
+      }
+      shell="notebook"
     />
   )
 }
 
 export const Route = createFileRoute('/{-$lang}/handbook/$')({
   component: RouteComponent,
-  loader: ({ params }) => getHandbookTodoTree(params.lang),
-  head: ({ params }) => ({
-    meta: [{ title: `${params._splat ?? 'Handbook'} | Developer` }]
-  })
+  head: ({ loaderData }) => handbookDocsRuntime.getDocsRouteHead(loaderData),
+  loader: ({ params }) => handbookDocsRuntime.createDocsLoader()({ params })
 })

@@ -21,7 +21,7 @@ const RouteComponent = () => {
     />
   )
 }
-export const Route = createFileRoute('/{-$lang}/illustrations/')({
+export const Route = createFileRoute('/{-$lang}/docs/assets/illustrations/')({
   component: RouteComponent,
   validateSearch: (input: Record<string, unknown> & SearchSchemaInput) =>
     validateCatalogSearch(input, 'illustrations'),

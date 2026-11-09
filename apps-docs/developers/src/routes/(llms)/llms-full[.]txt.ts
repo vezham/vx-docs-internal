@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-import { getLLMText, source } from '@app/docs'
+import { handbookDocsRuntime } from '@components/docs/handbook-docs'
 import { markdownDocsRuntime } from '@components/docs/markdown-docs'
 import { getPlatformDocsRuntime } from '@components/docs/platform-docs'
 import { iconDocsRuntime } from '@src/lib/icon-library/docs'
@@ -10,14 +10,16 @@ export const Route = createFileRoute('/(llms)/llms-full.txt')({
     handlers: {
       GET: async () => {
         const scanned = await Promise.all([
-          ...source.getPages().map(getLLMText),
+          ...handbookDocsRuntime.source
+            .getPages()
+            .map(handbookDocsRuntime.getLLMText),
           ...iconDocsRuntime.source.getPages().map(iconDocsRuntime.getLLMText),
           ...markdownDocsRuntime.source
             .getPages()
             .map(markdownDocsRuntime.getLLMText),
           ...[
-            getPlatformDocsRuntime('web'),
-            getPlatformDocsRuntime('native'),
+            getPlatformDocsRuntime('web', 'react-v3'),
+            getPlatformDocsRuntime('native', 'react-v3'),
             getPlatformDocsRuntime('web', 'react-pro-v3'),
             getPlatformDocsRuntime('native', 'react-pro-v3'),
             getPlatformDocsRuntime('web', 'react'),

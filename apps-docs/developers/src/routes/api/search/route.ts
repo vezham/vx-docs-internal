@@ -3,7 +3,8 @@ import { createFileRoute } from '@tanstack/react-router'
 import type { StructuredData } from '@vezham/docs-core/mdx-plugins/remark-structure'
 import { createI18nSearchAPI } from '@vezham/docs-core/search/server'
 
-import { i18n, source } from '@app/docs'
+import { i18n } from '@app/docs'
+import { handbookDocsRuntime } from '@components/docs/handbook-docs'
 import { markdownDocsRuntime } from '@components/docs/markdown-docs'
 import { getPlatformDocsRuntime } from '@components/docs/platform-docs'
 import { iconDocsRuntime } from '@src/lib/icon-library/docs'
@@ -25,11 +26,11 @@ const compactSearchData = (data: StructuredData): StructuredData => {
 }
 
 const sources = [
-  source,
+  handbookDocsRuntime.source,
   markdownDocsRuntime.source,
   iconDocsRuntime.source,
-  getPlatformDocsRuntime('web').source,
-  getPlatformDocsRuntime('native').source,
+  getPlatformDocsRuntime('web', 'react-v3').source,
+  getPlatformDocsRuntime('native', 'react-v3').source,
   getPlatformDocsRuntime('web', 'react-pro-v3').source,
   getPlatformDocsRuntime('native', 'react-pro-v3').source,
   getPlatformDocsRuntime('web', 'react').source,

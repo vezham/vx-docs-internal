@@ -1,22 +1,31 @@
 import { useState } from 'react'
 
+import { createMarkdownRenderer } from '@vezham/docs-core/content/md'
+import { DocsBody } from '@vezham/docs-react/layouts/notebook/page'
+import defaultMdxComponents from '@vezham/docs-react/mdx'
+import { useCopyToClipboard } from '@vezham/hooks'
 import {
   Book,
+  CheckCircle,
   Code,
+  Copy,
   Download,
   InfoCircle,
   Palette,
   QuestionCircle
 } from '@vezham/icons-react'
-import { Markdown } from '@vezham/react-pro-v3/markdown'
+import { Markdown as HeroUIMarkdown } from '@vezham/react-pro-v3/markdown'
 import {
   Accordion,
   Avatar,
+  Button,
   Card,
   Chip,
   Link,
   SearchField,
-  Tabs
+  Separator,
+  Tabs,
+  Tooltip
 } from '@vezham/react-v3'
 
 import { i18n } from '@app/docs'
@@ -25,6 +34,49 @@ import { assetUrl } from '@src/lib/icon-library/catalog'
 import content from '@src/lib/icon-library/content.json'
 
 import { AssetShell } from './shell'
+
+const { Markdown } = createMarkdownRenderer()
+
+const PackageInstallCommand = ({
+  command,
+  name
+}: {
+  command: string
+  name: string
+}) => {
+  const { copy, isCopied, isUnavailable } = useCopyToClipboard()
+  const feedback = isUnavailable
+    ? 'Unable to copy install command'
+    : isCopied
+      ? 'Install command copied'
+      : ''
+  const label = `${feedback || 'Copy install command'} for ${name}`
+
+  return (
+    <div className="mt-auto flex min-w-0 items-center gap-2">
+      <code className="min-w-0 flex-1 text-sm break-all">{command}</code>
+      <Tooltip delay={500}>
+        <Button
+          aria-label={label}
+          className="shrink-0"
+          isIconOnly
+          size="sm"
+          variant="ghost"
+          onPress={() => void copy(command)}>
+          {isCopied ? (
+            <CheckCircle size={16} aria-hidden="true" />
+          ) : (
+            <Copy size={16} aria-hidden="true" />
+          )}
+        </Button>
+        <Tooltip.Content>{feedback || 'Copy install command'}</Tooltip.Content>
+      </Tooltip>
+      <span className="sr-only" role="status">
+        {feedback && label}
+      </span>
+    </div>
+  )
+}
 
 const PackageLinkAvatar = ({
   logo,
@@ -79,11 +131,14 @@ export const IconPackages = ({ locale }: { locale: Locale }) => {
             <Card.Content className="gap-4">
               <Card.Description>{item.description}</Card.Description>
               {item.id !== 'figma' && item.id !== 'vscode' && (
-                <code className="mt-auto text-sm break-all">
-                  {item.id === 'flutter'
-                    ? 'flutter pub add vezham_icons'
-                    : `pnpm add ${item.name}`}
-                </code>
+                <PackageInstallCommand
+                  name={item.name}
+                  command={
+                    item.id === 'flutter'
+                      ? 'flutter pub add vezham_icons'
+                      : `pnpm add ${item.name}`
+                  }
+                />
               )}
             </Card.Content>
             <Card.Footer className="flex-wrap gap-2">
@@ -139,7 +194,9 @@ export const IconPackages = ({ locale }: { locale: Locale }) => {
             </Card.Description>
           </Card.Content>
           <Card.Footer className="flex-wrap gap-2">
-            <Link className="no-underline" href={`${prefix}/docs/svg`}>
+            <Link
+              className="no-underline"
+              href={`${prefix}/docs/assets/guides/svg`}>
               <Chip color="accent" size="sm" variant="soft">
                 <PackageLinkAvatar icon={Book} />
                 <Chip.Label>SVG guide</Chip.Label>
@@ -185,7 +242,13 @@ const FaqQuestions = ({
         </Accordion.Heading>
         <Accordion.Panel>
           <Accordion.Body>
-            <Markdown>{item.answer}</Markdown>
+            <DocsBody>
+              <Markdown components={defaultMdxComponents}>
+                {item.answer}
+              </Markdown>
+            </DocsBody>
+            <Separator />
+            <HeroUIMarkdown>{item.answer}</HeroUIMarkdown>
           </Accordion.Body>
         </Accordion.Panel>
       </Accordion.Item>

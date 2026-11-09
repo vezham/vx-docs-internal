@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { getDocsLLMSIndex } from '@vezham/start/runtime/docs'
 
-import { source } from '@app/docs'
+import { handbookDocsRuntime } from '@components/docs/handbook-docs'
 import { markdownDocsRuntime } from '@components/docs/markdown-docs'
 import { getPlatformDocsRuntime } from '@components/docs/platform-docs'
 import { iconDocsRuntime } from '@src/lib/icon-library/docs'
@@ -13,11 +13,11 @@ export const Route = createFileRoute('/(llms)/llms.txt')({
       GET: () =>
         new Response(
           [
-            source,
+            handbookDocsRuntime.source,
             markdownDocsRuntime.source,
             iconDocsRuntime.source,
-            getPlatformDocsRuntime('web').source,
-            getPlatformDocsRuntime('native').source,
+            getPlatformDocsRuntime('web', 'react-v3').source,
+            getPlatformDocsRuntime('native', 'react-v3').source,
             getPlatformDocsRuntime('web', 'react-pro-v3').source,
             getPlatformDocsRuntime('native', 'react-pro-v3').source,
             getPlatformDocsRuntime('web', 'react').source,

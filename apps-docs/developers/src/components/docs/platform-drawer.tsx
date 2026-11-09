@@ -33,7 +33,7 @@ type SectionSelectProps = {
 }
 
 const PlatformSectionSelect = ({
-  library = 'react-v3',
+  library = 'react',
   onSectionChange,
   selectedSection,
   platform
@@ -69,7 +69,7 @@ type HeaderProps = ComponentProps<'div'> &
   } & SectionSelectProps
 
 export const PlatformDrawerHeader = ({
-  library = 'react-v3',
+  library = 'react',
   children,
   className,
   getPlatformParams,
@@ -116,7 +116,7 @@ export const PlatformDrawerHeader = ({
 }
 
 export const PlatformDrawerFooter = ({
-  library = 'react-v3',
+  library = 'react',
   className,
   getPlatformParams,
   locale,

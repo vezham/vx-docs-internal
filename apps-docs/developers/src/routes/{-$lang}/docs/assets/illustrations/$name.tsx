@@ -17,7 +17,9 @@ const RouteComponent = () => {
     />
   )
 }
-export const Route = createFileRoute('/{-$lang}/illustrations/$name')({
+export const Route = createFileRoute(
+  '/{-$lang}/docs/assets/illustrations/$name'
+)({
   component: RouteComponent,
   validateSearch: parseDetailSearch,
   head: ({ params }) => ({

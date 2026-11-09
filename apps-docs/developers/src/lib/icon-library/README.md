@@ -3,7 +3,10 @@
 Icons use the pinned `@vezham/icons@1.0.7` npm/jsDelivr runtime. Their metadata
 and downloadable ZIP archive remain in `public/icon-catalog`.
 
-All icon-library routes use the UI documentation notebook shell, sharing its
+Asset library pages live under `/docs/assets`: `icons`, `illustrations`,
+`logos`, `packages`, `faq`, and framework `guides`. `/docs/assets` opens the icon
+gallery; `/docs/assets/guides` opens the guide overview. All use the UI
+documentation notebook shell, sharing its
 header, section bar, and search. Catalogs, asset details, Packages, and FAQ use
 the full-width notebook page without a desktop sidebar; their section links
 remain available in the mobile drawer. Framework guides retain their MDX

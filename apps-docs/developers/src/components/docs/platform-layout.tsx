@@ -22,7 +22,7 @@ type Options = {
   library?: UiLibrary
   locale: Locale
   page: string
-  platform?: Platform
+  platform: Platform
   platforms: readonly Platform[]
   selectedSection: PlatformSection
   getPlatformParams: (platform: Platform) => {
@@ -34,7 +34,7 @@ type Options = {
 }
 
 export const getPlatformLayoutOptions = ({
-  library = 'react-v3',
+  library = 'react',
   locale,
   page,
   platform,
@@ -51,7 +51,7 @@ export const getPlatformLayoutOptions = ({
       <PlatformTabs
         library={library}
         getPlatformParams={getPlatformParams}
-        platform={platform ?? 'web'}
+        platform={platform}
         platforms={platforms}
       />
     )
@@ -63,7 +63,7 @@ export const getPlatformLayoutOptions = ({
         library={library}
         getPlatformParams={getPlatformParams}
         locale={locale}
-        platform={platform ?? 'web'}
+        platform={platform}
         platforms={platforms}
         selectedSection={selectedSection}
         onSectionChange={onSectionChange}
@@ -76,7 +76,7 @@ export const getPlatformLayoutOptions = ({
         getPlatformParams={getPlatformParams}
         locale={locale}
         page={page}
-        platform={platform ?? 'web'}
+        platform={platform}
         platforms={platforms}
       />
     )
@@ -89,17 +89,17 @@ export const getPlatformLayoutOptions = ({
         library={library}
         locale={locale}
         page={page}
-        platform={platform ?? 'web'}
+        platform={platform}
         selectedSection={selectedSection}
       />
     )
   },
-  tabs: getPlatformSections(platform ?? 'web', library).map(item => ({
+  tabs: getPlatformSections(platform, library).map(item => ({
     title: item.title,
     url: localizedUrl(
       i18n,
       locale,
-      `/docs/ui/${library}${platform ? `/${platform}` : ''}/${item.page}`
+      `/docs/ui/${library}/${platform}/${item.page}`
     ),
     urls:
       item.id === selectedSection
@@ -107,7 +107,7 @@ export const getPlatformLayoutOptions = ({
             localizedUrl(
               i18n,
               locale,
-              `/docs/ui/${library}${platform ? `/${platform}` : ''}/${page}`
+              `/docs/ui/${library}/${platform}/${page}`
             )
           ])
         : undefined

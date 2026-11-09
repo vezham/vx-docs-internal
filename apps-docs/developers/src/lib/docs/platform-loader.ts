@@ -6,8 +6,7 @@ import { i18n } from '@app/docs'
 import type { UiLibrary } from '@components/docs/library-selector'
 import {
   getAvailablePlatforms,
-  getPlatformDocsRuntime,
-  hasPlatformDocs
+  getPlatformDocsRuntime
 } from '@components/docs/platform-docs'
 import { getPlatformSections } from '@components/docs/platform-sections'
 import { filterPlatformPageTree } from '@src/lib/docs/platform-page-tree'
@@ -19,24 +18,16 @@ type Params = {
 }
 
 export const createPlatformDocsLoader =
-  (library: UiLibrary = 'react-v3') =>
+  (library: UiLibrary = 'react') =>
   async ({ params }: { params: Params }) => {
-    if (
-      params.platform !== undefined &&
-      params.platform !== 'web' &&
-      params.platform !== 'native'
-    )
+    if (params.platform !== 'web' && params.platform !== 'native')
       throw notFound()
 
     const platforms = getAvailablePlatforms(library)
-    if (
-      !hasPlatformDocs(params.platform, library) ||
-      (params.platform && !platforms.includes(params.platform))
-    )
-      throw notFound()
+    if (!platforms.includes(params.platform)) throw notFound()
 
     const sectionId = params._splat?.split('/')[0]
-    const section = getPlatformSections(params.platform ?? 'web', library).find(
+    const section = getPlatformSections(params.platform, library).find(
       item => item.id === sectionId
     )
     if (!section) throw notFound()
@@ -47,7 +38,7 @@ export const createPlatformDocsLoader =
       slugs: params._splat?.split('/').filter(Boolean) ?? [],
       lang: data.locale
     })
-    const routeBase = `/docs/ui/${library}${params.platform ? `/${params.platform}` : ''}`
+    const routeBase = `/docs/ui/${library}/${params.platform}`
     const tree = runtime.source.getPageTree(data.locale)
 
     return {

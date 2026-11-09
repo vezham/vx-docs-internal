@@ -20,6 +20,104 @@ const renderApp = async (path = '/') => {
 }
 
 describe('App', () => {
+  it.each([
+    '/docs/pro',
+    '/cn/docs/pro',
+    '/docs/ui/web/getting-started',
+    '/docs/ui/native/getting-started',
+    '/docs-ui/web/getting-started',
+    '/docs/react',
+    '/icons',
+    '/icons/align-bottom',
+    '/illustrations',
+    '/illustration/accelerometer',
+    '/logos',
+    '/logo/react',
+    '/packages',
+    '/faq'
+  ])('does not resolve the retired route %s', async path => {
+    const router = createRouter({
+      history: createMemoryHistory({ initialEntries: [path] }),
+      routeTree
+    })
+    await router.load()
+    expect(
+      router.state.matches.filter(
+        match => match.routeId !== '__root__' && match.routeId !== '/{-$lang}'
+      )
+    ).toEqual([])
+    expect(router.state.location.pathname).toBe(path)
+  })
+
+  it.each([
+    '/handbook',
+    '/cn/handbook',
+    '/handbook/markdown',
+    '/handbook/markdown/handbooks/basic'
+  ])(
+    'keeps the active handbook route %s',
+    async path => {
+      const router = createRouter({
+        history: createMemoryHistory({ initialEntries: [path] }),
+        routeTree
+      })
+      await router.load()
+      expect(
+        router.state.matches[router.state.matches.length - 1]?.status
+      ).toBe('success')
+    },
+    20_000
+  )
+
+  it.each([
+    '/docs/assets/icons',
+    '/docs/assets/icons/align-bottom?weight=filled',
+    '/docs/assets/illustrations',
+    '/docs/assets/illustrations/accelerometer',
+    '/docs/assets/logos',
+    '/docs/assets/logos/react',
+    '/docs/assets/packages',
+    '/docs/assets/faq',
+    '/docs/assets/guides',
+    '/docs/assets/guides/react',
+    '/cn/docs/assets/icons',
+    '/cn/docs/assets/guides/react'
+  ])(
+    'loads the asset library at %s',
+    async path => {
+      const router = createRouter({
+        history: createMemoryHistory({ initialEntries: [path] }),
+        routeTree
+      })
+      await router.load()
+      const match = router.state.matches[router.state.matches.length - 1]
+      expect(match?.status).toBe('success')
+      expect(match?.routeId).toContain('/docs/assets/')
+      if (path.includes('weight=filled'))
+        expect(router.state.location.search).toMatchObject({ weight: 'filled' })
+    },
+    20_000
+  )
+
+  it.each([
+    ['/docs/assets', '/docs/assets/icons'],
+    ['/cn/docs/assets', '/cn/docs/assets/icons']
+  ])(
+    'opens the asset entry URL %s at %s',
+    async (from, to) => {
+      const router = createRouter({
+        history: createMemoryHistory({ initialEntries: [from] }),
+        routeTree
+      })
+      await router.load()
+      await waitFor(() => expect(router.state.location.pathname).toBe(to))
+      expect(
+        router.state.matches[router.state.matches.length - 1]?.status
+      ).toBe('success')
+    },
+    20_000
+  )
+
   it('keeps icon resources and framework guides in the shared notebook shell', async () => {
     const animations = Object.getOwnPropertyDescriptor(
       Element.prototype,
@@ -38,8 +136,9 @@ describe('App', () => {
       }
     )
     try {
-      const { container, findByRole, queryByRole, router } =
-        await renderApp('/packages')
+      const { container, findByRole, queryByRole, router } = await renderApp(
+        '/docs/assets/packages'
+      )
       await findByRole('heading', { name: 'Packages and tools' })
       expect(container.querySelector('#nd-notebook-layout')).toBeTruthy()
       expect(container.querySelector('#nd-sidebar')).toBeTruthy()
@@ -49,8 +148,10 @@ describe('App', () => {
       )
       const selected = navigation.getByRole('link', { name: 'Packages' })
       expect(selected.getAttribute('aria-current')).toBe('page')
-      fireEvent.click(navigation.getByRole('link', { name: 'Docs' }))
-      await waitFor(() => expect(router.state.location.pathname).toBe('/docs'))
+      fireEvent.click(navigation.getByRole('link', { name: 'Guides' }))
+      await waitFor(() =>
+        expect(router.state.location.pathname).toBe('/docs/assets/guides')
+      )
       await findByRole('heading', { name: 'Vezham Icons' }, { timeout: 10_000 })
       expect(container.querySelector('#nd-notebook-layout')).toBeTruthy()
       expect(
@@ -59,9 +160,11 @@ describe('App', () => {
       expect(
         container.querySelector('#nd-subnav a[aria-current="page"]')
           ?.textContent
-      ).toBe('Docs')
+      ).toBe('Guides')
       expect(
-        container.querySelector('#nd-sidebar a[href="/docs/react"]')
+        container.querySelector(
+          '#nd-sidebar a[href="/docs/assets/guides/react"]'
+        )
       ).toBeTruthy()
     } finally {
       vi.unstubAllGlobals()
@@ -96,6 +199,10 @@ describe('App', () => {
   }, 20_000)
 
   it.each([
+    ['/docs', '/docs/ui/react/web/getting-started'],
+    ['/cn/docs', '/cn/docs/ui/react/web/getting-started'],
+    ['/docs/ui', '/docs/ui/react/web/getting-started'],
+    ['/cn/docs/ui', '/cn/docs/ui/react/web/getting-started'],
     ['/docs/ui/react', '/docs/ui/react/web/getting-started'],
     ['/docs/ui/react/web', '/docs/ui/react/web/getting-started'],
     ['/docs/ui/react/native', '/docs/ui/react/native/getting-started'],

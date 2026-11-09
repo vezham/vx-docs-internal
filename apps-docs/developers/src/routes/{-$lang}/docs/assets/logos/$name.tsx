@@ -10,15 +10,15 @@ const RouteComponent = () => {
   const { weight } = Route.useSearch()
   return (
     <AssetDetail
-      kind="icons"
+      kind="logos"
       name={name}
       locale={normalizeLocale(i18n, lang)}
       initialWeight={weight}
     />
   )
 }
-export const Route = createFileRoute('/{-$lang}/icons/$name')({
+export const Route = createFileRoute('/{-$lang}/docs/assets/logos/$name')({
   component: RouteComponent,
   validateSearch: parseDetailSearch,
-  head: ({ params }) => ({ meta: [{ title: `${params.name} | Vezham Icons` }] })
+  head: ({ params }) => ({ meta: [{ title: `${params.name} | Vezham Logos` }] })
 })

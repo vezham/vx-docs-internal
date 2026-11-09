@@ -171,6 +171,18 @@ const updateRepositoryLinks = value =>
     /github\.com\/vezham\/reicon\b/g,
     'github.com/vezham-oss/reicon'
   )
+const updateGuideUrl = value =>
+  value.replace(/^\/docs(?=\/|$)/, '/docs/assets/guides')
+const updateImportedLinks = value =>
+  updateRepositoryLinks(value)
+    .replace(
+      /(\]\(|href=["'])\/(icons|illustrations|logos|packages|faq)(?=[/)"'?#])/g,
+      '$1/docs/assets/$2'
+    )
+    .replace(
+      /(\]\(|href=["'])\/docs(?!\/assets|\/ui)(?=[/)"'?#])/g,
+      '$1/docs/assets/guides'
+    )
 const packageLogos = {
   vanilla: 'javascript',
   'react-native': 'reactnative',
@@ -203,6 +215,7 @@ const packages = constant(
     item.npmUrl = 'https://pub.dev/packages/vezham_icons'
   }
   item.sourceUrl = updateRepositoryLinks(item.sourceUrl)
+  item.guideUrl = updateGuideUrl(item.guideUrl)
   item.logo = packageLogos[item.id] ?? item.id
   item.registryLabel = registryLabels[item.id] ?? 'npm'
   item.registryLogo = registryLogos[item.id] ?? 'npm'
@@ -225,7 +238,7 @@ const tools = constant(
     registryLogo: registryLogos[text(p.id)] ?? 'npm',
     sourceLogo: 'github',
     sourceUrl: updateRepositoryLinks(text(p.sourceUrl)),
-    guideUrl: text(p.guideUrl)
+    guideUrl: updateGuideUrl(text(p.guideUrl))
   }
 })
 fs.writeFileSync(
@@ -249,17 +262,17 @@ const fw = [
 for (const [id, folder, title] of fw) {
   // vx-bot/NOTE: Preserve the local SVG guide, which documents this app's export behavior.
   if (id === 'svg' && fs.existsSync(docs + '/svg.mdx')) continue
-  const md = updateRepositoryLinks(
+  const md = updateImportedLinks(
     fs.readFileSync(src + '/docs/' + folder + '/index.md', 'utf8')
   )
     .replace(/^# .+\n/, '')
     .replaceAll('@vezham/icons@latest', '@vezham/icons@1.0.7')
     .replaceAll(
       'Browse all icons at [vezham.com](https://vezham.com).',
-      'Browse the full [icon gallery](/icons).'
+      'Browse the full [icon gallery](/docs/assets/icons).'
     )
-    .replace(/\]\(https:\/\/vezham\.com\/docs\/?\)/g, '](/docs)')
-    .replace(/\]\(https:\/\/vezham\.com\/?\)/g, '](/icons)')
+    .replace(/\]\(https:\/\/vezham\.com\/docs\/?\)/g, '](/docs/assets/guides)')
+    .replace(/\]\(https:\/\/vezham\.com\/?\)/g, '](/docs/assets/icons)')
     .replaceAll(
       './packages/icons-flutter',
       'https://github.com/vezham-oss/reicon/tree/main/packages/icons-flutter'
@@ -267,7 +280,7 @@ for (const [id, folder, title] of fw) {
     .replaceAll('/vezham-icons.zip', '/icon-catalog/vezham-icons.zip')
     .replace(
       'Get the complete, compressed package containing all 2,700+ icon designs across outline, filled, duotone-outline, and duotone-filled weights.',
-      'Download the original SVG archive, with outline, filled, duotone-outline, and duotone-filled weights. For exports from the pinned CDN version used by this browser, open an [icon detail page](/icons) and choose Download SVG.'
+      'Download the original SVG archive, with outline, filled, duotone-outline, and duotone-filled weights. For exports from the pinned CDN version used by this browser, open an [icon detail page](/docs/assets/icons) and choose Download SVG.'
     )
     .replace(
       /```bash\n((?:(?:npm install|yarn add|pnpm add|bun add) [^\n]+\n|# or\n)+)```/g,
@@ -283,7 +296,7 @@ for (const [id, folder, title] of fw) {
     )
   fs.writeFileSync(
     docs + '/' + id + '.mdx',
-    `---\ntitle: ${JSON.stringify(title)}\ndescription: ${JSON.stringify('Use Vezham Icons with ' + title + '.')}\nlogo: ${JSON.stringify(packageLogos[id] ?? id)}\n---\n\n${md.trim()}${id === 'svg' ? "\n\n## Illustrations and logos\n\nOpen any [illustration](/illustrations) or [logo](/logos) to copy its original SVG, download the vector file, or export a transparent PNG/WebP at the selected size. Logos include a variant selector when multiple versions are available.\n\nRaster exports preserve the artwork's aspect ratio inside a square canvas. Use **Open SVG** to open the original file, or copy an HTML, React, or CSS embed snippet." : ''}\n`
+    `---\ntitle: ${JSON.stringify(title)}\ndescription: ${JSON.stringify('Use Vezham Icons with ' + title + '.')}\nlogo: ${JSON.stringify(packageLogos[id] ?? id)}\n---\n\n${md.trim()}${id === 'svg' ? "\n\n## Illustrations and logos\n\nOpen any [illustration](/docs/assets/illustrations) or [logo](/docs/assets/logos) to copy its original SVG, download the vector file, or export a transparent PNG/WebP at the selected size. Logos include a variant selector when multiple versions are available.\n\nRaster exports preserve the artwork's aspect ratio inside a square canvas. Use **Open SVG** to open the original file, or copy an HTML, React, or CSS embed snippet." : ''}\n`
   )
 }
 for (const name of [
@@ -295,7 +308,7 @@ for (const name of [
   'typescript',
   'troubleshooting'
 ]) {
-  const raw = updateRepositoryLinks(
+  const raw = updateImportedLinks(
     fs.readFileSync(src + '/docs/shared/' + name + '.md', 'utf8')
   )
   const title = /^# (.+)/m.exec(raw)?.[1] || name
@@ -309,7 +322,7 @@ for (const name of [
 }
 fs.writeFileSync(
   docs + '/index.mdx',
-  `---\ntitle: Vezham Icons\ndescription: Browse vector assets and use them in your framework of choice.\n---\n\nVezham brings UI icons, illustrations, and brand logos into one library. Search the catalogs, open an asset to customize its preview, and copy the code you need.\n\n## Quick start with the CDN\n\nThe icon browser uses this pinned, framework-independent web component:\n\n\`\`\`html\n<script defer src="https://cdn.jsdelivr.net/npm/@vezham/icons@1.0.7/dist/cdn/vezham-icons.js"></script>\n<vx-icon icon="home" weight="outline" size="24"></vx-icon>\n\`\`\`\n\n## Choose a framework\n\n${fw.map(([id, , title]) => '- [' + title + '](/docs/' + id + ')').join('\n')}\n\n## Explore the library\n\n- [Icons](/icons) — four drawing weights, color controls, and SVG or raster exports.\n- [Illustrations](/illustrations) — search the full illustration collection.\n- [Logos](/logos) — browse brands and available variants.\n- [Packages and tools](/packages) — integrations for your app and design workflow.\n- [FAQ](/faq) — answers about the library.\n`
+  `---\ntitle: Vezham Icons\ndescription: Browse vector assets and use them in your framework of choice.\n---\n\nVezham brings UI icons, illustrations, and brand logos into one library. Search the catalogs, open an asset to customize its preview, and copy the code you need.\n\n## Quick start with the CDN\n\nThe icon browser uses this pinned, framework-independent web component:\n\n\`\`\`html\n<script defer src="https://cdn.jsdelivr.net/npm/@vezham/icons@1.0.7/dist/cdn/vezham-icons.js"></script>\n<vx-icon icon="home" weight="outline" size="24"></vx-icon>\n\`\`\`\n\n## Choose a framework\n\n${fw.map(([id, , title]) => '- [' + title + '](/docs/assets/guides/' + id + ')').join('\n')}\n\n## Explore the library\n\n- [Icons](/docs/assets/icons) — four drawing weights, color controls, and SVG or raster exports.\n- [Illustrations](/docs/assets/illustrations) — search the full illustration collection.\n- [Logos](/docs/assets/logos) — browse brands and available variants.\n- [Packages and tools](/docs/assets/packages) — integrations for your app and design workflow.\n- [FAQ](/docs/assets/faq) — answers about the library.\n`
 )
 fs.writeFileSync(
   docs + '/meta.json',

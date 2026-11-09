@@ -1,5 +1,6 @@
 import { deserializePageTree } from '@vezham/docs-core/source/client'
 
+import { getUiLibraryRoute } from '../../components/docs/library-routes'
 import {
   getPlatformDocsRuntime,
   platformDocsPageSchema
@@ -11,9 +12,28 @@ import {
 import { getComponentResources } from './component-resources'
 import { createPlatformDocsLoader } from './platform-loader'
 
-const loader = createPlatformDocsLoader()
+const loader = createPlatformDocsLoader('react-v3')
 
 describe('UI documentation', () => {
+  it('defaults to the in-house React library', async () => {
+    const data = await createPlatformDocsLoader()({
+      params: { platform: 'web', _splat: 'getting-started' }
+    })
+    expect(data.routePath).toBe('/docs/ui/react/web/getting-started')
+    expect(getPlatformDocsRuntime('web')).toBe(
+      getPlatformDocsRuntime('web', 'react')
+    )
+    expect(getPlatformSections('web').map(section => section.id)).toEqual([
+      'getting-started'
+    ])
+    expect(getPlatformPage('native', 'components/button')).toBe(
+      'getting-started'
+    )
+    expect(getUiLibraryRoute('react')).toBe(
+      '/{-$lang}/docs/ui/react/$platform/$'
+    )
+  })
+
   it.each(['web', 'native'] as const)(
     'loads in-house %s MDX with its own navigation and markdown',
     async platform => {
@@ -158,7 +178,7 @@ describe('UI documentation', () => {
   })
 
   it('includes copied example source in markdown exports', async () => {
-    const runtime = getPlatformDocsRuntime('web')
+    const runtime = getPlatformDocsRuntime('web', 'react-v3')
     const { page } = runtime.getDocsPage({ slugs: ['components', 'button'] })
     const markdown = await runtime.getLLMText(page)
     expect(markdown).toContain('Button')
@@ -171,7 +191,7 @@ describe('UI documentation', () => {
   it.each(['web', 'native'] as const)(
     'preserves %s component resource metadata',
     platform => {
-      const runtime = getPlatformDocsRuntime(platform)
+      const runtime = getPlatformDocsRuntime(platform, 'react-v3')
       const { page } = runtime.getDocsPage({
         slugs: ['components', 'accordion']
       })
@@ -205,7 +225,7 @@ describe('UI documentation', () => {
   })
 
   it('retains status, release attribution, and social images', () => {
-    const runtime = getPlatformDocsRuntime('web')
+    const runtime = getPlatformDocsRuntime('web', 'react-v3')
     expect(
       runtime.getDocsPage({ slugs: ['components', 'tabs'] }).page.data.status
     ).toBe('new')
@@ -224,11 +244,11 @@ describe('UI documentation', () => {
 
   it('offers migration only on Web and rejects unknown platforms', async () => {
     expect(
-      getPlatformSections('native').map(section => section.id)
+      getPlatformSections('native', 'react-v3').map(section => section.id)
     ).not.toContain('migration')
-    expect(getPlatformSections('web').map(section => section.id)).toContain(
-      'migration'
-    )
+    expect(
+      getPlatformSections('web', 'react-v3').map(section => section.id)
+    ).toContain('migration')
     await expect(
       loader({ params: { platform: 'other', _splat: 'getting-started' } })
     ).rejects.toMatchObject({ isNotFound: true })

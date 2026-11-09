@@ -22,7 +22,7 @@ type Props = {
 }
 
 export const PlatformTabs = ({
-  library = 'react-v3',
+  library = 'react',
   getPlatformParams,
   platform,
   platforms

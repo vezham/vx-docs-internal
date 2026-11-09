@@ -22,7 +22,7 @@ vi.mock('@tanstack/react-router', async importOriginal => ({
     children: ReactNode
     'aria-label'?: string
   }) => (
-    <a href="/icons/asset-000" aria-label={label}>
+    <a href="/docs/assets/icons/asset-000" aria-label={label}>
       {children}
     </a>
   )
