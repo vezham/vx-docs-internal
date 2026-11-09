@@ -83,7 +83,7 @@ node vx/tools/cdn/sync-assets.mjs logos
 pnpm nx run-many -p illustrations-cdn logos-cdn -t catalog:validate
 ```
 
-Framework guides remain in `content/docs-icons`. Their routes, search index
+Framework guides remain in `content/docs-assets`. Their routes, search index
 and markdown exports share the existing documentation runtime. Raster exports
 preserve aspect ratio inside the chosen square; embed snippets use absolute
 URLs. CDN origins come from the app environment.

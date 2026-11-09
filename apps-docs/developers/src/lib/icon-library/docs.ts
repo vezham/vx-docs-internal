@@ -10,7 +10,7 @@ import {
 import { vxCore, vxDocs, vxI18n, vxMetadata } from '@generated/vx'
 
 export const iconDocs = defineDocs({
-  dir: 'content/docs-icons',
+  dir: 'content/docs-assets',
   docs: {
     async: true,
     postprocess: { includeProcessedMarkdown: true },

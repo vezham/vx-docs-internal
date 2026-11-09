@@ -8,7 +8,7 @@ import {
 import { vxCore, vxDocs, vxI18n, vxMetadata } from '@generated/vx'
 
 export const handbookDocs = defineDocs({
-  dir: 'content/docs-handbook',
+  dir: 'content/handbook',
   docs: {
     async: true,
     postprocess: { includeProcessedMarkdown: true },

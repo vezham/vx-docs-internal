@@ -14,9 +14,9 @@ Show platform tabs only for registered MDX collections that contain pages.
 
 Content collections:
 
-- Vezham v3: `content/docs-ui/{web,native}`
-- Vezham Pro v3: `content/docs-ui-pro-v3/{web,native}`
-- In-house Vezham: `content/docs-ui-react/{web,native}`
+- Vezham v3: `content/docs-react-v3/{web,native}`
+- Vezham Pro v3: `content/docs-react-pro-v3/{web,native}`
+- In-house Vezham: `content/docs-react/{web,native}`
 
 All three UI libraries use `/docs/ui/{library}/{web,native}/*` as canonical URLs.
 Each library uses the same four route files; page and markdown URLs require a
@@ -30,9 +30,9 @@ to its section index when a page is unavailable.
 
 ## Handbook routes
 
-`/handbook` renders `content/docs-handbook/index.mdx`. Other handbook pages
+`/handbook` renders `content/handbook/index.mdx`. Other handbook pages
 resolve only from that collection; missing pages return 404. The Markdown
-collection remains at `content/docs-markdown`, with its MDX index rendered at
+collection remains at `content/handbook-markdown`, with its MDX index rendered at
 `/handbook/markdown`. Keep TODO text in MDX; do not add generic TODO page
 components, platformless UI branches, or redirects for retired URLs.
 

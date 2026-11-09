@@ -9,13 +9,13 @@ UI library documentation uses the notebook layout:
 - `/cn/docs/ui/react-v3/web/getting-started` and `/cn/docs/ui/react-v3/native/getting-started`
   retain the locale routes and currently fall back to English.
 
-The imported content lives in `content/docs-ui/{web,native}`. It includes
+The imported content lives in `content/docs-react-v3/{web,native}`. It includes
 Getting Started, Components, Releases, and Web Migration. Web examples run locally through a lazy-loaded demo registry, with Preview and Code
 tabs for every example. Executable sources live in `src/demos/heroui`. Images and native
 videos use upstream media URLs. Search, Markdown endpoints, and LLM exports
 include these collections.
 
-See [content provenance and refresh instructions](content/docs-ui/README.md).
+See [content provenance and refresh instructions](content/docs-react-v3/README.md).
 
 Validation:
 

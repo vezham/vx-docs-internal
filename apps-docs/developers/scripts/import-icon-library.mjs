@@ -245,7 +245,7 @@ fs.writeFileSync(
   app + '/src/lib/icon-library/content.json',
   JSON.stringify({ packages: [...packages, ...tools], faq }, null, 2) + '\n'
 )
-const docs = app + '/content/docs-icons'
+const docs = app + '/content/docs-assets'
 fs.mkdirSync(docs, { recursive: true })
 const fw = [
   ['vanilla', 'javascript', 'Vanilla JS / CDN'],

@@ -22,7 +22,7 @@ export const platformDocsPageSchema = docsPageSchema.extend({
 })
 
 const webPlatformDocs = defineDocs({
-  dir: 'content/docs-ui/web',
+  dir: 'content/docs-react-v3/web',
   docs: {
     async: true,
     postprocess: { includeProcessedMarkdown: true },
@@ -34,7 +34,7 @@ const webPlatformDocs = defineDocs({
 })
 
 const nativePlatformDocs = defineDocs({
-  dir: 'content/docs-ui/native',
+  dir: 'content/docs-react-v3/native',
   docs: {
     async: true,
     postprocess: { includeProcessedMarkdown: true },
@@ -46,7 +46,7 @@ const nativePlatformDocs = defineDocs({
 })
 
 const proPlatformDocs = defineDocs({
-  dir: 'content/docs-ui-pro-v3/web',
+  dir: 'content/docs-react-pro-v3/web',
   docs: {
     async: true,
     postprocess: { includeProcessedMarkdown: true },
@@ -56,7 +56,7 @@ const proPlatformDocs = defineDocs({
 })
 
 const nativeProPlatformDocs = defineDocs({
-  dir: 'content/docs-ui-pro-v3/native',
+  dir: 'content/docs-react-pro-v3/native',
   docs: {
     async: true,
     postprocess: { includeProcessedMarkdown: true },
@@ -66,7 +66,7 @@ const nativeProPlatformDocs = defineDocs({
 })
 
 const reactPlatformDocs = defineDocs({
-  dir: 'content/docs-ui-react/web',
+  dir: 'content/docs-react/web',
   docs: {
     async: true,
     postprocess: { includeProcessedMarkdown: true },
@@ -76,7 +76,7 @@ const reactPlatformDocs = defineDocs({
 })
 
 const nativeReactPlatformDocs = defineDocs({
-  dir: 'content/docs-ui-react/native',
+  dir: 'content/docs-react/native',
   docs: {
     async: true,
     postprocess: { includeProcessedMarkdown: true },

@@ -7,8 +7,8 @@
 
 # MDX content
 # vx-bot/NOTE: Formatting imported JSX/templates and nested fences corrupts valid MDX.
-apps-docs/developers/content/docs-ui/**/*.mdx
-apps-docs/developers/content/docs-ui-pro-v3/**/*.mdx
+apps-docs/developers/content/docs-react-v3/**/*.mdx
+apps-docs/developers/content/docs-react-pro-v3/**/*.mdx
 apps-docs/developers/src/demos/heroui/**
 apps-docs/developers/src/demos/heroui-pro/**
 # **/content/**/*.mdx
@@ -214,4 +214,4 @@ firebase-debug.*.log*
 .claude/settings.local.json
 # Imported icon catalogs and framework documentation retain source formatting.
 apps-docs/developers/public/icon-catalog/**
-apps-docs/developers/content/docs-icons/**
+apps-docs/developers/content/docs-assets/**

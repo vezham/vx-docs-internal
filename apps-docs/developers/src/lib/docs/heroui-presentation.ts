@@ -1,4 +1,4 @@
-// vx-bot/INFO: Generated from HeroUI docs (Apache-2.0); see content/docs-ui/LICENSE-HeroUI.
+// vx-bot/INFO: Generated from HeroUI docs (Apache-2.0); see content/docs-react-v3/LICENSE-HeroUI.
 export const relatedComponents: Record<string, string[]> = {
   accordion: ['disclosuregroup', 'disclosure'],
   alert: ['closebutton', 'button', 'spinner'],

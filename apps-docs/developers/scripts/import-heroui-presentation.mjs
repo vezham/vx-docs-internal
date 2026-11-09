@@ -107,7 +107,7 @@ const output = path.resolve(
 await writeFile(
   output,
   await prettier.format(
-    `// vx-bot/INFO: Generated from HeroUI docs (Apache-2.0); see content/docs-ui/LICENSE-HeroUI.\nexport const relatedComponents: Record<string, string[]> = ${JSON.stringify(related, null, 2)}\n\nexport const relatedShowcases = ${JSON.stringify(cards, null, 2)}\n\nexport const componentGalleryGroups = ${JSON.stringify(galleryGroups, null, 2)}\n\nexport const componentGalleryMedia: { imageBaseUrl: string; nativeVideoBaseUrl: string; nativeVideoNames: Record<string, string> } = ${JSON.stringify(galleryMedia, null, 2)}\n`,
+    `// vx-bot/INFO: Generated from HeroUI docs (Apache-2.0); see content/docs-react-v3/LICENSE-HeroUI.\nexport const relatedComponents: Record<string, string[]> = ${JSON.stringify(related, null, 2)}\n\nexport const relatedShowcases = ${JSON.stringify(cards, null, 2)}\n\nexport const componentGalleryGroups = ${JSON.stringify(galleryGroups, null, 2)}\n\nexport const componentGalleryMedia: { imageBaseUrl: string; nativeVideoBaseUrl: string; nativeVideoNames: Record<string, string> } = ${JSON.stringify(galleryMedia, null, 2)}\n`,
     { ...(await prettier.resolveConfig(output)), filepath: output }
   )
 )

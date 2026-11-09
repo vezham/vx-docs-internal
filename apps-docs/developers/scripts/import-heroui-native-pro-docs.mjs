@@ -5,7 +5,7 @@ const app = path.resolve(import.meta.dirname, '..')
 const snapshot = path.resolve(
   process.argv[2] ?? 'test-output/heroui-pro-native-import'
 )
-const content = path.join(app, 'content/docs-ui-pro-v3/native')
+const content = path.join(app, 'content/docs-react-pro-v3/native')
 const gallery = JSON.parse(
   await readFile(path.join(snapshot, 'gallery.json'), 'utf8')
 )
