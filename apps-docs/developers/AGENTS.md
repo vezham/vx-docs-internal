@@ -25,6 +25,10 @@ in-house library is currently a TODO in MDX using the shared docs layout.
 The in-house `react` library is the default for shared docs helpers and UI
 components. `/docs` and `/docs/ui` open its Web Getting Started page. Pass
 `react-v3` or `react-pro-v3` explicitly for those libraries.
+Keep library labels, selector metadata, groups, platform labels, and route bases
+in `src/config/ui-libraries.ts`. Routes supply page-title context explicitly;
+`src/lib/page-head.ts` only formats browser and social metadata, without parsing
+URLs to infer library or section names.
 Keep platform switching and section links on the selected library and fall back
 to its section index when a page is unavailable.
 

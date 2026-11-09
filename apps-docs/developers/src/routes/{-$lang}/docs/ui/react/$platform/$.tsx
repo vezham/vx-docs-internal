@@ -12,8 +12,10 @@ import {
   getPlatformPage,
   getPlatformSections
 } from '@components/docs/platform-sections'
+import { getUiLibrarySectionTitle } from '@config/ui-libraries'
 import type { Locale } from '@generated/vx'
 import { createPlatformDocsLoader } from '@src/lib/docs/platform-loader'
+import { docsPageHead } from '@src/lib/page-head'
 
 const library = 'react' as const
 const loadDocs = createPlatformDocsLoader(library)
@@ -71,10 +73,19 @@ const RouteComponent = () => {
 export const Route = createFileRoute('/{-$lang}/docs/ui/react/$platform/$')({
   component: RouteComponent,
   head: ({ loaderData, params }) => {
-    const head = getPlatformDocsRuntime(
-      params.platform === 'native' ? 'native' : 'web',
-      library
-    ).getDocsRouteHead(loaderData)
+    const head = docsPageHead(
+      loaderData,
+      getPlatformDocsRuntime(
+        params.platform === 'native' ? 'native' : 'web',
+        library
+      ).getDocsRouteHead(loaderData),
+      {
+        section: getUiLibrarySectionTitle(
+          library,
+          params.platform === 'native' ? 'native' : 'web'
+        )
+      }
+    )
     if (!loaderData?.image || !head.meta) return head
     return {
       ...head,

@@ -6,12 +6,12 @@ import { Sidebar } from '@vezham/icons-react'
 
 import { i18n } from '@app/docs'
 import { getUiLibraryRoute } from '@components/docs/library-routes'
-import type { UiLibrary } from '@components/docs/library-selector'
 import { sectionTabVariants } from '@components/docs/navigation.variants'
 import {
   type PlatformSection,
   getPlatformSections
 } from '@components/docs/platform-sections'
+import type { UiLibrary } from '@config/ui-libraries'
 import type { Locale } from '@generated/vx'
 
 type Props = {

@@ -7,7 +7,7 @@ import {
   docsPageSchema
 } from '@vezham/start/runtime/docs'
 
-import type { UiLibrary } from '@components/docs/library-selector'
+import { type UiLibrary, uiLibraries } from '@config/ui-libraries'
 import { vxCore, vxDocs, vxI18n, vxMetadata } from '@generated/vx'
 
 import { componentLinksSchema } from '../../lib/docs/component-resources'
@@ -101,19 +101,19 @@ const runtimes = {
   web: createStaticDocsRuntime({
     ...runtimeOptions,
     docs: webPlatformDocs,
-    docsRoute: '/docs/ui/react-v3/web'
+    docsRoute: `${uiLibraries['react-v3'].routeBase}/web`
   }),
   native: createStaticDocsRuntime({
     ...runtimeOptions,
     docs: nativePlatformDocs,
-    docsRoute: '/docs/ui/react-v3/native'
+    docsRoute: `${uiLibraries['react-v3'].routeBase}/native`
   })
 }
 
 const proWebRuntime = createStaticDocsRuntime({
   ...runtimeOptions,
   docs: proPlatformDocs,
-  docsRoute: '/docs/ui/react-pro-v3/web'
+  docsRoute: `${uiLibraries['react-pro-v3'].routeBase}/web`
 })
 
 const libraryRuntimes: Record<UiLibrary, typeof runtimes> = {
@@ -123,19 +123,19 @@ const libraryRuntimes: Record<UiLibrary, typeof runtimes> = {
     native: createStaticDocsRuntime({
       ...runtimeOptions,
       docs: nativeProPlatformDocs,
-      docsRoute: '/docs/ui/react-pro-v3/native'
+      docsRoute: `${uiLibraries['react-pro-v3'].routeBase}/native`
     })
   },
   react: {
     web: createStaticDocsRuntime({
       ...runtimeOptions,
       docs: reactPlatformDocs,
-      docsRoute: '/docs/ui/react/web'
+      docsRoute: `${uiLibraries['react'].routeBase}/web`
     }),
     native: createStaticDocsRuntime({
       ...runtimeOptions,
       docs: nativeReactPlatformDocs,
-      docsRoute: '/docs/ui/react/native'
+      docsRoute: `${uiLibraries['react'].routeBase}/native`
     })
   }
 }

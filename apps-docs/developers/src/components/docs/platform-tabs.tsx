@@ -5,8 +5,8 @@ import { Globe, Smartphone } from '@vezham/icons-react'
 import { Tabs } from '@vezham/react-v3'
 
 import { getUiLibraryRoute } from '@components/docs/library-routes'
-import type { UiLibrary } from '@components/docs/library-selector'
 import { platformIconVariants } from '@components/docs/navigation.variants'
+import { type UiLibrary, uiPlatforms } from '@config/ui-libraries'
 
 type Platform = 'web' | 'native'
 
@@ -62,7 +62,7 @@ export const PlatformTabs = ({
                   selected: platform === 'web'
                 })}
               />
-              Web
+              {uiPlatforms.web}
               <Tabs.Indicator />
             </Tabs.Tab>
           )}
@@ -90,7 +90,7 @@ export const PlatformTabs = ({
                   selected: platform === 'native'
                 })}
               />
-              Native
+              {uiPlatforms.native}
               <Tabs.Indicator />
             </Tabs.Tab>
           )}

@@ -4,12 +4,12 @@ import { ListBox, Select } from '@vezham/react-v3'
 
 import { Brand } from '@components/brand'
 import { ControlCenter } from '@components/docs/control-center'
-import type { UiLibrary } from '@components/docs/library-selector'
 import {
   type PlatformSection,
   getPlatformSections
 } from '@components/docs/platform-sections'
 import { PlatformTabs } from '@components/docs/platform-tabs'
+import type { UiLibrary } from '@config/ui-libraries'
 import type { Locale } from '@generated/vx'
 
 type Platform = 'web' | 'native'

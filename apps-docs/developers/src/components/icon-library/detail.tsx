@@ -2,7 +2,7 @@ import {
   Link as RouterLink,
   type SearchSchemaInput
 } from '@tanstack/react-router'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import { useTheme } from '@vezham/docs-react/provider/base'
 import { useCopyToClipboard } from '@vezham/hooks'
@@ -37,6 +37,7 @@ import { getAssetSnippets } from '@src/lib/icon-library/snippets'
 import { downloadSvg, fetchAssetSvg } from '@src/lib/icon-library/svg'
 import { useIllustrationPalette } from '@src/lib/icon-library/use-illustration-palette'
 import { useResource } from '@src/lib/icon-library/use-resource'
+import { pageTitle } from '@src/lib/page-head'
 
 import { AssetColorPicker } from './color-picker'
 import { AssetSelect, CdnIcon, ResourceStatus } from './controls'
@@ -150,6 +151,18 @@ export const AssetDetail = ({
     item =>
       item.slug === name || item.title.toLowerCase() === name.toLowerCase()
   )
+  useEffect(() => {
+    if (!asset) return
+    const title = pageTitle(
+      kind === 'icons' ? formatLabel(asset.slug) : asset.title,
+      kindLabels[kind]
+    )
+    document.title = title
+    for (const element of document.querySelectorAll<HTMLMetaElement>(
+      'meta[property="og:title"], meta[name="twitter:title"]'
+    ))
+      element.content = title
+  }, [asset, kind])
   const [weight, setWeight] = useState(initialWeight)
   const [size, setSize] = useState(128)
   const [exportSize, setExportSize] = useState('128')

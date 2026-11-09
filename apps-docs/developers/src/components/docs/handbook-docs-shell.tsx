@@ -136,37 +136,44 @@ export const getHandbookLayoutOptions = ({
 }: Props & { page: string }): Omit<
   DocsLayoutProps,
   'children' | 'shell' | 'tree'
-> => ({
-  ...baseOptions(locale),
-  nav: {
-    title: 'Developer Docs | Vezham',
-    mode: 'top' as const
-  },
-  tabMode: 'navbar' as const,
-  slots: {
-    header: (props: ComponentPropsWithoutRef<'header'>) => (
-      <HandbookNotebookHeader
-        {...props}
-        locale={locale}
-        page={page}
-        selectedSection={selectedSection}
-      />
-    )
-  },
-  tabs: selectedSection
-    ? handbookSections.map(section => ({
-        title: section.title,
-        url: localizedUrl(
-          i18n,
-          locale,
-          `/handbook${section.path ? `/${section.path}` : ''}`
-        ),
-        urls:
-          section.id === selectedSection
-            ? new Set([
-                localizedUrl(i18n, locale, `/handbook${page ? `/${page}` : ''}`)
-              ])
-            : undefined
-      }))
-    : []
-})
+> => {
+  const options = baseOptions(locale)
+  return {
+    ...options,
+    nav: {
+      ...options.nav,
+      mode: 'top' as const
+    },
+    tabMode: 'navbar' as const,
+    slots: {
+      header: (props: ComponentPropsWithoutRef<'header'>) => (
+        <HandbookNotebookHeader
+          {...props}
+          locale={locale}
+          page={page}
+          selectedSection={selectedSection}
+        />
+      )
+    },
+    tabs: selectedSection
+      ? handbookSections.map(section => ({
+          title: section.title,
+          url: localizedUrl(
+            i18n,
+            locale,
+            `/handbook${section.path ? `/${section.path}` : ''}`
+          ),
+          urls:
+            section.id === selectedSection
+              ? new Set([
+                  localizedUrl(
+                    i18n,
+                    locale,
+                    `/handbook${page ? `/${page}` : ''}`
+                  )
+                ])
+              : undefined
+        }))
+      : []
+  }
+}

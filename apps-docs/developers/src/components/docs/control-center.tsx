@@ -7,7 +7,7 @@ import { getLanguageDisplayName } from '@vezham/start/tanstack-docs'
 
 import { i18n } from '@app/docs'
 import { getUiLibraryRoute } from '@components/docs/library-routes'
-import type { UiLibrary } from '@components/docs/library-selector'
+import type { UiLibrary } from '@config/ui-libraries'
 import { controlCenter } from '@generated/navigation'
 import type { Locale } from '@generated/vx'
 

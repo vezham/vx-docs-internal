@@ -4,6 +4,7 @@ import { normalizeLocale } from '@vezham/start/runtime/docs'
 
 import { i18n } from '@app/docs'
 import { IconFaq } from '@components/icon-library/info-pages'
+import { pageHead } from '@src/lib/page-head'
 
 const RouteComponent = () => {
   const { lang } = Route.useParams()
@@ -11,5 +12,5 @@ const RouteComponent = () => {
 }
 export const Route = createFileRoute('/{-$lang}/docs/assets/faq/')({
   component: RouteComponent,
-  head: () => ({ meta: [{ title: 'Faq | Vezham Icons' }] })
+  head: () => pageHead('FAQ', 'Assets')
 })

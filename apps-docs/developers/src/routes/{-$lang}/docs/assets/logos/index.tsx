@@ -5,6 +5,7 @@ import { normalizeLocale } from '@vezham/start/runtime/docs'
 import { i18n } from '@app/docs'
 import { AssetGallery } from '@components/icon-library/gallery'
 import { validateCatalogSearch } from '@src/lib/icon-library/catalog'
+import { pageHead } from '@src/lib/page-head'
 
 const RouteComponent = () => {
   const { lang } = Route.useParams()
@@ -25,5 +26,5 @@ export const Route = createFileRoute('/{-$lang}/docs/assets/logos/')({
   component: RouteComponent,
   validateSearch: (input: Record<string, unknown> & SearchSchemaInput) =>
     validateCatalogSearch(input, 'logos'),
-  head: () => ({ meta: [{ title: 'Logos | Vezham Developers' }] })
+  head: () => pageHead('Logos')
 })

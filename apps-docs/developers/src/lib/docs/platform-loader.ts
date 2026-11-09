@@ -3,12 +3,12 @@ import { notFound } from '@tanstack/react-router'
 import { localizedUrl } from '@vezham/start/runtime/docs'
 
 import { i18n } from '@app/docs'
-import type { UiLibrary } from '@components/docs/library-selector'
 import {
   getAvailablePlatforms,
   getPlatformDocsRuntime
 } from '@components/docs/platform-docs'
 import { getPlatformSections } from '@components/docs/platform-sections'
+import { type UiLibrary, uiLibraries } from '@config/ui-libraries'
 import { filterPlatformPageTree } from '@src/lib/docs/platform-page-tree'
 
 type Params = {
@@ -38,7 +38,7 @@ export const createPlatformDocsLoader =
       slugs: params._splat?.split('/').filter(Boolean) ?? [],
       lang: data.locale
     })
-    const routeBase = `/docs/ui/${library}/${params.platform}`
+    const routeBase = `${uiLibraries[library].routeBase}/${params.platform}`
     const tree = runtime.source.getPageTree(data.locale)
 
     return {

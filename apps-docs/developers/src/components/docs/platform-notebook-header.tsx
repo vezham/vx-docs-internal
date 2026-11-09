@@ -1,13 +1,11 @@
 import type { ComponentPropsWithoutRef } from 'react'
 
 import { ControlCenter } from '@components/docs/control-center'
-import {
-  LibrarySelector,
-  type UiLibrary
-} from '@components/docs/library-selector'
+import { LibrarySelector } from '@components/docs/library-selector'
 import { NotebookHeader } from '@components/docs/notebook-header'
 import type { PlatformSection } from '@components/docs/platform-sections'
 import { SectionTabs } from '@components/docs/section-tabs'
+import type { UiLibrary } from '@config/ui-libraries'
 import type { Locale } from '@generated/vx'
 
 type Props = ComponentPropsWithoutRef<'header'> & {

@@ -8,6 +8,7 @@ import {
   markdownDocsRuntime
 } from '@components/docs/markdown-docs'
 import type { Locale } from '@generated/vx'
+import { docsPageHead } from '@src/lib/page-head'
 
 const RouteComponent = () => {
   const data = Route.useLoaderData()
@@ -30,6 +31,10 @@ const RouteComponent = () => {
 
 export const Route = createFileRoute('/{-$lang}/handbook/markdown/')({
   component: RouteComponent,
-  head: ({ loaderData }) => markdownDocsRuntime.getDocsRouteHead(loaderData),
+  head: ({ loaderData }) =>
+    docsPageHead(loaderData, markdownDocsRuntime.getDocsRouteHead(loaderData), {
+      title: 'Markdown',
+      section: 'Handbook'
+    }),
   loader: ({ params }) => markdownDocsRuntime.createDocsLoader()({ params })
 })

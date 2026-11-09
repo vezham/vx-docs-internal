@@ -8,6 +8,7 @@ import {
 } from '@components/docs/handbook-docs'
 import { getHandbookLayoutOptions } from '@components/docs/handbook-docs-shell'
 import type { Locale } from '@generated/vx'
+import { docsPageHead } from '@src/lib/page-head'
 
 const RouteComponent = () => {
   const { _splat } = Route.useParams()
@@ -31,6 +32,9 @@ const RouteComponent = () => {
 
 export const Route = createFileRoute('/{-$lang}/handbook/$')({
   component: RouteComponent,
-  head: ({ loaderData }) => handbookDocsRuntime.getDocsRouteHead(loaderData),
+  head: ({ loaderData }) =>
+    docsPageHead(loaderData, handbookDocsRuntime.getDocsRouteHead(loaderData), {
+      section: 'Handbook'
+    }),
   loader: ({ params }) => handbookDocsRuntime.createDocsLoader()({ params })
 })

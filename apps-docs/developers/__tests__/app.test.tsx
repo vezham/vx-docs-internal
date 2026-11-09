@@ -21,6 +21,46 @@ const renderApp = async (path = '/') => {
 
 describe('App', () => {
   it.each([
+    ['/docs/ui/react/web/getting-started', 'Getting Started - Vezham Web'],
+    [
+      '/docs/ui/react/native/getting-started',
+      'Getting Started - Vezham Native'
+    ],
+    ['/docs/ui/react-v3/web/getting-started', 'Introduction - Vezham v3 Web'],
+    [
+      '/docs/ui/react-v3/native/getting-started',
+      'Introduction - Vezham v3 Native'
+    ],
+    [
+      '/docs/ui/react-pro-v3/web/getting-started',
+      'Introduction - Vezham Pro v3 Web'
+    ],
+    [
+      '/cn/docs/ui/react-pro-v3/native/getting-started',
+      'Introduction - Vezham Pro v3 Native'
+    ],
+    ['/docs/assets/guides', 'Guides - Assets'],
+    ['/docs/assets/guides/react', 'React - Assets'],
+    ['/handbook', 'Handbook'],
+    ['/cn/handbook/markdown', 'Markdown - Handbook']
+  ])(
+    'sets route-owned title context at %s',
+    async (path, expected) => {
+      const router = createRouter({
+        history: createMemoryHistory({ initialEntries: [path] }),
+        routeTree
+      })
+      await router.load()
+      const match = router.state.matches[router.state.matches.length - 1]
+      expect(match?.status).toBe('success')
+      expect(match?.meta).toContainEqual({
+        title: `${expected} | Vezham Developers`
+      })
+    },
+    20_000
+  )
+
+  it.each([
     '/docs/pro',
     '/cn/docs/pro',
     '/docs/ui/web/getting-started',

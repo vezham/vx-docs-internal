@@ -62,30 +62,33 @@ export const getAssetLayoutOptions = ({
   active: AssetSection
   locale: Locale
   pathname: string
-}): Omit<DocsLayoutProps, 'children' | 'shell' | 'tree'> => ({
-  ...baseOptions(locale),
-  nav: { title: 'Developer Docs | Vezham', mode: 'top' },
-  containerProps:
-    active === 'docs'
-      ? undefined
-      : {
-          className:
-            '[--fd-sidebar-col:0px]! [&_[data-sidebar-placeholder]]:hidden'
-        },
-  tabMode: 'navbar',
-  slots: {
-    header: props => (
-      <NotebookHeader {...props} locale={locale}>
-        <AssetNavigation active={active} locale={locale} />
-      </NotebookHeader>
-    )
-  },
-  tabs: navigation.map(item => ({
-    title: item.title,
-    url: sectionUrl(locale, item.to),
-    urls: item.id === active ? new Set([pathname]) : undefined
-  }))
-})
+}): Omit<DocsLayoutProps, 'children' | 'shell' | 'tree'> => {
+  const options = baseOptions(locale)
+  return {
+    ...options,
+    nav: { ...options.nav, mode: 'top' },
+    containerProps:
+      active === 'docs'
+        ? undefined
+        : {
+            className:
+              '[--fd-sidebar-col:0px]! [&_[data-sidebar-placeholder]]:hidden'
+          },
+    tabMode: 'navbar',
+    slots: {
+      header: props => (
+        <NotebookHeader {...props} locale={locale}>
+          <AssetNavigation active={active} locale={locale} />
+        </NotebookHeader>
+      )
+    },
+    tabs: navigation.map(item => ({
+      title: item.title,
+      url: sectionUrl(locale, item.to),
+      urls: item.id === active ? new Set([pathname]) : undefined
+    }))
+  }
+}
 
 const navigationTree = (locale: Locale): Root => ({
   name: 'Icon library',

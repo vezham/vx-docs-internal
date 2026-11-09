@@ -1,5 +1,5 @@
-import type { UiLibrary } from '@components/docs/library-selector'
 import { getPlatformDocsRuntime } from '@components/docs/platform-docs'
+import type { UiLibrary } from '@config/ui-libraries'
 import { platformPagePaths } from '@src/lib/docs/heroui-catalog'
 import nativeProGallery from '@src/lib/docs/heroui-pro-native-presentation.json'
 import proGallery from '@src/lib/docs/heroui-pro-presentation.json'

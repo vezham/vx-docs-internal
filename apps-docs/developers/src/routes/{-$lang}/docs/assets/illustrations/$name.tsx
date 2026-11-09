@@ -4,6 +4,8 @@ import { normalizeLocale } from '@vezham/start/runtime/docs'
 
 import { i18n } from '@app/docs'
 import { AssetDetail, parseDetailSearch } from '@components/icon-library/detail'
+import { formatLabel } from '@src/lib/icon-library/catalog'
+import { pageHead } from '@src/lib/page-head'
 
 const RouteComponent = () => {
   const { lang, name } = Route.useParams()
@@ -22,7 +24,5 @@ export const Route = createFileRoute(
 )({
   component: RouteComponent,
   validateSearch: parseDetailSearch,
-  head: ({ params }) => ({
-    meta: [{ title: `${params.name} | Vezham Illustrations` }]
-  })
+  head: ({ params }) => pageHead(formatLabel(params.name), 'Illustrations')
 })
