@@ -77,4 +77,26 @@ describe('asset integration snippets', () => {
       ':width="16" :height="16"'
     )
   })
+
+  it('keeps embedded asset strings from terminating a Vue script block', () => {
+    const source =
+      'https://example.com/</script><script>alert("url")</script>&logo.svg'
+    const title = '</script><script>alert("title")</script>'
+    const snippets = getAssetSnippets({
+      ...options,
+      kind: 'logos',
+      source,
+      asset: { ...asset, title }
+    })
+    const vue = snippets.find(snippet => snippet.id === 'vue')?.code ?? ''
+    expect(vue.match(/<\/script>/g)).toHaveLength(1)
+    expect(vue).not.toContain('<script>alert')
+    const sourceLiteral = vue.match(/const src = (.+);/)?.[1] ?? ''
+    const titleLiteral = vue.match(/const alt = (.+);/)?.[1] ?? ''
+    expect(JSON.parse(sourceLiteral)).toBe(source)
+    expect(JSON.parse(titleLiteral)).toBe(title)
+    expect(snippets.find(snippet => snippet.id === 'react')?.code).toContain(
+      'src={"https:'
+    )
+  })
 })

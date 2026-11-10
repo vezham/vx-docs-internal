@@ -29,6 +29,9 @@ Keep library labels, selector metadata, groups, platform labels, and route bases
 in `src/config/ui-libraries.ts`. Routes supply page-title context explicitly;
 `src/lib/page-head.ts` only formats browser and social metadata, without parsing
 URLs to infer library or section names.
+Keep UI route files as adapters to `UiDocsPage` and the shared route options and
+Markdown handler in `src/lib/docs/platform-route.ts`. Search and LLM endpoints
+share the collection registry in `src/lib/docs/runtimes.ts`.
 Keep platform switching and section links on the selected library and fall back
 to its section index when a page is unavailable.
 

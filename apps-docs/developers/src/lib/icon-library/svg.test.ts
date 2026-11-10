@@ -60,6 +60,46 @@ describe('asset SVG exports', () => {
     ).rejects.toThrow('valid SVG')
   })
 
+  it('revokes the SVG download URL even when the download cannot start', async () => {
+    vi.stubGlobal(
+      'URL',
+      class extends URL {
+        static override createObjectURL = vi.fn(() => 'blob:failed-download')
+        static override revokeObjectURL = vi.fn()
+      }
+    )
+    vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => {
+      throw new Error('Download blocked')
+    })
+    const { downloadSvg } = await import('./svg')
+    await expect(downloadSvg(svg, 'logo', 'svg', 32)).rejects.toThrow(
+      'Download blocked'
+    )
+    expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:failed-download')
+  })
+
+  it('does not allocate a blob URL when image decoding fails', async () => {
+    vi.stubGlobal(
+      'Image',
+      class {
+        src = ''
+        decode = () => Promise.reject(new Error('Decode failed'))
+      }
+    )
+    vi.stubGlobal(
+      'URL',
+      class extends URL {
+        static override createObjectURL = vi.fn(() => 'blob:failed-image')
+        static override revokeObjectURL = vi.fn()
+      }
+    )
+    const { downloadSvg } = await import('./svg')
+    await expect(downloadSvg(svg, 'logo', 'png', 32)).rejects.toThrow(
+      'Decode failed'
+    )
+    expect(URL.createObjectURL).not.toHaveBeenCalled()
+  })
+
   it('fits a rectangular logo within a transparent square without stretching it', async () => {
     vi.useFakeTimers()
     vi.stubGlobal(
@@ -89,10 +129,10 @@ describe('asset SVG exports', () => {
       () => undefined
     )
     const { downloadSvg } = await import('./svg')
-    await downloadSvg(svg, 'logo', 'png', 256)
+    const exporting = downloadSvg(svg, 'logo', 'png', 256)
+    await vi.advanceTimersByTimeAsync(1000)
+    await exporting
     expect(drawImage).toHaveBeenCalledWith(expect.anything(), 0, 64, 256, 128)
     expect(URL.revokeObjectURL).toHaveBeenCalledTimes(1)
-    vi.runAllTimers()
-    expect(URL.revokeObjectURL).toHaveBeenCalledTimes(2)
   })
 })

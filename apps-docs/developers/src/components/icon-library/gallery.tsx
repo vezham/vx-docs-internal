@@ -1,11 +1,12 @@
 import { Link as RouterLink, useHydrated } from '@tanstack/react-router'
-import { useCallback, useDeferredValue, useMemo, useTransition } from 'react'
+import { useDeferredValue, useMemo, useTransition } from 'react'
 
 import { Button, Card, Chip, SearchField, Spinner } from '@vezham/react-v3'
 
 import { i18n } from '@app/docs'
 import type { Locale } from '@generated/vx'
 import {
+  type Asset,
   type AssetKind,
   type CatalogSearch,
   assetUrl,
@@ -14,14 +15,66 @@ import {
   formatLabel,
   iconWeights,
   kindLabels,
-  loadCatalog,
   parseCatalogSearch
 } from '@src/lib/icon-library/catalog'
-import { loadIconRuntime } from '@src/lib/icon-library/runtime'
-import { useResource } from '@src/lib/icon-library/use-resource'
+import { useCatalog } from '@src/lib/icon-library/use-catalog'
 
 import { AssetSelect, CdnIcon, ResourceStatus } from './controls'
 import { AssetShell } from './shell'
+
+const GalleryAssetCard = ({
+  asset,
+  kind,
+  locale,
+  search
+}: {
+  asset: Asset
+  kind: AssetKind
+  locale: Locale
+  search: CatalogSearch
+}) => (
+  <RouterLink
+    to={detailRoutes[kind]}
+    params={{
+      lang: locale === i18n.defaultLanguage ? undefined : locale,
+      name: asset.slug
+    }}
+    search={kind === 'icons' ? { weight: search.weight } : {}}
+    className="min-w-0 no-underline"
+    aria-label={`View ${asset.title}`}>
+    <Card className="h-full">
+      <Card.Content
+        className={`flex items-center justify-center ${kind === 'icons' ? 'min-h-24' : 'min-h-40'} ${kind === 'logos' ? 'asset-preview--logo rounded-xl' : ''}`}>
+        {kind === 'icons' ? (
+          <CdnIcon
+            name={asset.slug}
+            weight={search.weight}
+            size={search.size}
+          />
+        ) : (
+          <img
+            src={assetUrl(kind, asset)}
+            alt=""
+            loading="lazy"
+            style={{ width: search.size, height: search.size }}
+            className="h-full max-h-36 max-w-full object-contain"
+          />
+        )}
+      </Card.Content>
+      <Card.Footer className="min-w-0">
+        <span className="text-foreground truncate text-sm">
+          {kind === 'icons' ? formatLabel(asset.slug) : asset.title}
+        </span>
+      </Card.Footer>
+    </Card>
+  </RouterLink>
+)
+
+const galleryDescriptions = {
+  icons: 'Find the right icon. Make it yours.',
+  illustrations: 'A little character for your next project.',
+  logos: 'Find a brand, choose a variant, and get its SVG.'
+}
 
 const pageSize = 60
 type Props = {
@@ -39,14 +92,7 @@ export const AssetGallery = ({
 }: Props) => {
   // vx-bot/NOTE: Static HTML contains default filters; restore URL filters after hydration.
   const search = useHydrated() ? routeSearch : parseCatalogSearch({}, kind)
-  const loader = useCallback(async () => {
-    const [assets] = await Promise.all([
-      loadCatalog(kind),
-      kind === 'icons' ? loadIconRuntime() : Promise.resolve()
-    ])
-    return assets
-  }, [kind])
-  const resource = useResource(kind, loader)
+  const resource = useCatalog(kind)
   const [isLoadingMore, startLoadingMore] = useTransition()
   const assets = resource.data
   const query = useDeferredValue(search.q)
@@ -91,13 +137,7 @@ export const AssetGallery = ({
           <h1 className="text-3xl font-semibold tracking-tight">
             {kindLabels[kind]}
           </h1>
-          <p className="text-muted">
-            {kind === 'icons'
-              ? 'Find the right icon. Make it yours.'
-              : kind === 'illustrations'
-                ? 'A little character for your next project.'
-                : 'Find a brand, choose a variant, and get its SVG.'}
-          </p>
+          <p className="text-muted">{galleryDescriptions[kind]}</p>
         </div>
         {assets && (
           <Chip variant="soft">
@@ -178,44 +218,13 @@ export const AssetGallery = ({
               aria-busy={isLoadingMore}
               className={`grid gap-3 ${kind === 'icons' ? 'grid-cols-2 sm:grid-cols-4 lg:grid-cols-6' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'}`}>
               {shown.map(asset => (
-                <RouterLink
+                <GalleryAssetCard
                   key={asset.slug}
-                  to={detailRoutes[kind]}
-                  params={{
-                    lang: locale === i18n.defaultLanguage ? undefined : locale,
-                    name: asset.slug
-                  }}
-                  search={kind === 'icons' ? { weight: search.weight } : {}}
-                  className="min-w-0 no-underline"
-                  aria-label={`View ${asset.title}`}>
-                  <Card className="h-full">
-                    <Card.Content
-                      className={`flex items-center justify-center ${kind === 'icons' ? 'min-h-24' : 'min-h-40'} ${kind === 'logos' ? 'asset-preview--logo rounded-xl' : ''}`}>
-                      {kind === 'icons' ? (
-                        <CdnIcon
-                          name={asset.slug}
-                          weight={search.weight}
-                          size={search.size}
-                        />
-                      ) : (
-                        <img
-                          src={assetUrl(kind, asset)}
-                          alt=""
-                          loading="lazy"
-                          style={{ width: search.size, height: search.size }}
-                          className="h-full max-h-36 max-w-full object-contain"
-                        />
-                      )}
-                    </Card.Content>
-                    <Card.Footer className="min-w-0">
-                      <span className="text-foreground truncate text-sm">
-                        {kind === 'icons'
-                          ? formatLabel(asset.slug)
-                          : asset.title}
-                      </span>
-                    </Card.Footer>
-                  </Card>
-                </RouterLink>
+                  asset={asset}
+                  kind={kind}
+                  locale={locale}
+                  search={search}
+                />
               ))}
             </div>
           ) : (

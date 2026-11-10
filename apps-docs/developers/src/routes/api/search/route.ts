@@ -4,10 +4,7 @@ import type { StructuredData } from '@vezham/docs-core/mdx-plugins/remark-struct
 import { createI18nSearchAPI } from '@vezham/docs-core/search/server'
 
 import { i18n } from '@app/docs'
-import { handbookDocsRuntime } from '@components/docs/handbook-docs'
-import { markdownDocsRuntime } from '@components/docs/markdown-docs'
-import { getPlatformDocsRuntime } from '@components/docs/platform-docs'
-import { iconDocsRuntime } from '@src/lib/icon-library/docs'
+import { docsRuntimes } from '@src/lib/docs/runtimes'
 
 const compactSearchData = (data: StructuredData): StructuredData => {
   const sections = new Map<string | undefined, string[]>()
@@ -25,17 +22,7 @@ const compactSearchData = (data: StructuredData): StructuredData => {
   }
 }
 
-const sources = [
-  handbookDocsRuntime.source,
-  markdownDocsRuntime.source,
-  iconDocsRuntime.source,
-  getPlatformDocsRuntime('web', 'react-v3').source,
-  getPlatformDocsRuntime('native', 'react-v3').source,
-  getPlatformDocsRuntime('web', 'react-pro-v3').source,
-  getPlatformDocsRuntime('native', 'react-pro-v3').source,
-  getPlatformDocsRuntime('web', 'react').source,
-  getPlatformDocsRuntime('native', 'react').source
-]
+const sources = docsRuntimes.map(runtime => runtime.source)
 const createServer = () =>
   createI18nSearchAPI('advanced', {
     i18n,

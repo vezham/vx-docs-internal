@@ -102,17 +102,23 @@ export const loadCatalog = (kind: AssetKind): Promise<Asset[]> => {
   return request
 }
 
+export const getAssetVariant = (
+  asset: Pick<Asset, 'variants'>,
+  variant: string
+) =>
+  asset.variants[variant]
+    ? variant
+    : asset.variants.original
+      ? 'original'
+      : (Object.keys(asset.variants)[0] ?? 'original')
+
 export const assetUrl = (
   kind: Exclude<AssetKind, 'icons'>,
   asset: Pick<Asset, 'slug' | 'variants'>,
   variant = 'original'
 ) => {
   if (kind === 'logos') {
-    const availableVariant = asset.variants[variant]
-      ? variant
-      : asset.variants.original
-        ? 'original'
-        : (Object.keys(asset.variants)[0] ?? 'original')
+    const availableVariant = getAssetVariant(asset, variant)
     return collectionUrl(
       kind,
       `/assets/${encodeURIComponent(asset.slug)}/${encodeURIComponent(availableVariant)}.svg`

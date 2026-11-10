@@ -1,4 +1,4 @@
-import { type ReactNode, createElement, useCallback } from 'react'
+import { type ReactNode, createElement, useEffect, useState } from 'react'
 
 import {
   Alert,
@@ -60,23 +60,21 @@ export const CdnIcon = ({
   color?: string
   secondaryColor?: string
 }) => {
-  const attach = useCallback(
-    (element: HTMLElement | null) => {
-      const root = element?.shadowRoot
-      if (!root || !weight.startsWith('duotone')) return
-      const update = () => {
-        const svg = root.querySelector('svg')
-        if (svg) applyIconSecondaryColor(svg, weight)
-      }
-      update()
-      const observer = new MutationObserver(update)
-      observer.observe(root, { childList: true, subtree: true })
-      return () => observer.disconnect()
-    },
-    [weight]
-  )
+  const [element, setElement] = useState<HTMLElement | null>(null)
+  useEffect(() => {
+    const root = element?.shadowRoot
+    if (!root || !weight.startsWith('duotone')) return
+    const update = () => {
+      const svg = root.querySelector('svg')
+      if (svg) applyIconSecondaryColor(svg, weight)
+    }
+    update()
+    const observer = new MutationObserver(update)
+    observer.observe(root, { childList: true, subtree: true })
+    return () => observer.disconnect()
+  }, [element, weight])
   return createElement('vx-icon', {
-    ref: attach,
+    ref: setElement,
     icon: name,
     weight,
     size: String(size),

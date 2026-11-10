@@ -1,6 +1,12 @@
 import type { Asset, AssetKind, IconWeight } from './catalog'
 import { iconCdnUrl } from './runtime'
 
+const scriptString = (value: string) =>
+  JSON.stringify(value)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e')
+    .replace(/&/g, '\\u0026')
+
 type Options = {
   kind: AssetKind
   asset: Asset
@@ -53,7 +59,7 @@ export const getAssetSnippets = ({
         title: 'React',
         language: 'tsx',
         logo: 'react',
-        code: `export const ${kind === 'logos' ? 'BrandLogo' : 'Illustration'} = () => (\n  <img src=${JSON.stringify(source)} alt=${JSON.stringify(asset.title)} width={${size}} height={${size}} />\n);`
+        code: `export const ${kind === 'logos' ? 'BrandLogo' : 'Illustration'} = () => (\n  <img src={${scriptString(source)}} alt={${scriptString(asset.title)}} width={${size}} height={${size}} />\n);`
       },
       {
         id: 'vue',
@@ -61,7 +67,7 @@ export const getAssetSnippets = ({
         title: 'Vue',
         language: 'vue',
         logo: 'vue',
-        code: `<script setup>\nconst src = ${JSON.stringify(source)};\nconst alt = ${JSON.stringify(asset.title)};\n</script>\n\n<template>\n  <img :src="src" :alt="alt" :width="${size}" :height="${size}" />\n</template>`
+        code: `<script setup>\nconst src = ${scriptString(source)};\nconst alt = ${scriptString(asset.title)};\n</script>\n\n<template>\n  <img :src="src" :alt="alt" :width="${size}" :height="${size}" />\n</template>`
       }
     ]
   }

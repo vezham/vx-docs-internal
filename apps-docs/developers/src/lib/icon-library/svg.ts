@@ -35,13 +35,17 @@ export const fetchAssetSvg = (url: string): Promise<string> => {
   return request
 }
 
-const saveBlob = (blob: Blob, filename: string) => {
+const saveBlob = async (blob: Blob, filename: string) => {
   const url = URL.createObjectURL(blob)
-  const link = document.createElement('a')
-  link.href = url
-  link.download = filename
-  link.click()
-  window.setTimeout(() => URL.revokeObjectURL(url), 1000)
+  try {
+    const link = document.createElement('a')
+    link.href = url
+    link.download = filename
+    link.click()
+    await new Promise(resolve => window.setTimeout(resolve, 1000))
+  } finally {
+    URL.revokeObjectURL(url)
+  }
 }
 
 export const downloadSvg = async (
@@ -52,42 +56,33 @@ export const downloadSvg = async (
 ) => {
   const blob = new Blob([svg], { type: 'image/svg+xml' })
   if (format === 'svg') {
-    saveBlob(blob, `${filename}.svg`)
+    await saveBlob(blob, `${filename}.svg`)
     return
   }
-  const url = URL.createObjectURL(blob)
-  try {
-    const image = new Image()
-    image.src = url
-    await image.decode()
-    const canvas = document.createElement('canvas')
-    canvas.width = size
-    canvas.height = size
-    const context = canvas.getContext('2d')
-    if (!context)
-      throw new Error('Image export is unavailable in this browser.')
-    const scale = Math.min(
-      size / image.naturalWidth,
-      size / image.naturalHeight
+  const image = new Image()
+  image.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`
+  await image.decode()
+  const canvas = document.createElement('canvas')
+  canvas.width = size
+  canvas.height = size
+  const context = canvas.getContext('2d')
+  if (!context) throw new Error('Image export is unavailable in this browser.')
+  const scale = Math.min(size / image.naturalWidth, size / image.naturalHeight)
+  const width = image.naturalWidth * scale
+  const height = image.naturalHeight * scale
+  context.drawImage(
+    image,
+    (size - width) / 2,
+    (size - height) / 2,
+    width,
+    height
+  )
+  const output = await new Promise<Blob>((resolve, reject) =>
+    canvas.toBlob(
+      value =>
+        value ? resolve(value) : reject(new Error('Image export failed.')),
+      `image/${format}`
     )
-    const width = image.naturalWidth * scale
-    const height = image.naturalHeight * scale
-    context.drawImage(
-      image,
-      (size - width) / 2,
-      (size - height) / 2,
-      width,
-      height
-    )
-    const output = await new Promise<Blob>((resolve, reject) =>
-      canvas.toBlob(
-        value =>
-          value ? resolve(value) : reject(new Error('Image export failed.')),
-        `image/${format}`
-      )
-    )
-    saveBlob(output, `${filename}.${format}`)
-  } finally {
-    URL.revokeObjectURL(url)
-  }
+  )
+  await saveBlob(output, `${filename}.${format}`)
 }

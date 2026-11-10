@@ -1,48 +1,33 @@
-import {
-  Link as RouterLink,
-  type SearchSchemaInput
-} from '@tanstack/react-router'
-import { useCallback, useEffect, useState } from 'react'
+import type { SearchSchemaInput } from '@tanstack/react-router'
+import { useEffect, useState } from 'react'
 
-import { useTheme } from '@vezham/docs-react/provider/base'
-import { useCopyToClipboard } from '@vezham/hooks'
-import { CheckCircle, Code, Copy, Link as LinkIcon } from '@vezham/icons-react'
-import { CodeBlock } from '@vezham/react-pro-v3/code-block'
-import {
-  Breadcrumbs,
-  Button,
-  Card,
-  Chip,
-  Label,
-  Link,
-  Slider,
-  Switch,
-  Tabs
-} from '@vezham/react-v3'
+import { Breadcrumbs, Button, Chip, Link } from '@vezham/react-v3'
 
 import { i18n } from '@app/docs'
 import type { Locale } from '@generated/vx'
 import {
+  type Asset,
   type AssetKind,
   type IconWeight,
   assetUrl,
   catalogRoutes,
-  detailRoutes,
   formatLabel,
-  kindLabels,
-  loadCatalog
+  getAssetVariant,
+  kindLabels
 } from '@src/lib/icon-library/catalog'
-import { getIconSvg, loadIconRuntime } from '@src/lib/icon-library/runtime'
+import { getIconSvg } from '@src/lib/icon-library/runtime'
 import { getAssetSnippets } from '@src/lib/icon-library/snippets'
-import { downloadSvg, fetchAssetSvg } from '@src/lib/icon-library/svg'
+import { fetchAssetSvg } from '@src/lib/icon-library/svg'
+import { useAssetExports } from '@src/lib/icon-library/use-asset-exports'
+import { useCatalog } from '@src/lib/icon-library/use-catalog'
 import { useIllustrationPalette } from '@src/lib/icon-library/use-illustration-palette'
-import { useResource } from '@src/lib/icon-library/use-resource'
 import { pageTitle } from '@src/lib/page-head'
 
-import { AssetColorPicker } from './color-picker'
-import { AssetSelect, CdnIcon, ResourceStatus } from './controls'
-import { IllustrationPalette } from './illustration-palette'
+import { AssetSelect, ResourceStatus } from './controls'
+import { AssetDetailPreview } from './detail-preview'
+import { AssetDetailSnippets } from './detail-snippets'
 import { AssetPropsReference } from './props-reference'
+import { RelatedAssets } from './related-assets'
 import { AssetShell } from './shell'
 
 export const parseDetailSearch = (
@@ -50,82 +35,6 @@ export const parseDetailSearch = (
 ) => ({
   weight: typeof input.weight === 'string' ? input.weight : 'outline'
 })
-
-const Snippet = ({ code, language }: { code: string; language: string }) => {
-  const { resolvedTheme } = useTheme()
-  const { copy, isCopied, isUnavailable } = useCopyToClipboard()
-  return (
-    <CodeBlock className="min-w-0">
-      <CodeBlock.Header>
-        <span className="text-muted text-sm">{language}</span>
-        <Button
-          aria-label={
-            isUnavailable
-              ? 'Copy unavailable'
-              : isCopied
-                ? 'Code copied'
-                : 'Copy code'
-          }
-          className="code-block__copy-button"
-          isIconOnly
-          size="sm"
-          variant="ghost"
-          onPress={() => void copy(code)}>
-          {isCopied ? (
-            <CheckCircle aria-hidden="true" />
-          ) : (
-            <Copy aria-hidden="true" />
-          )}
-        </Button>
-      </CodeBlock.Header>
-      <CodeBlock.Code
-        code={code}
-        language={language}
-        theme={resolvedTheme === 'dark' ? 'github-dark' : 'github-light'}
-        className="max-h-96 overflow-auto"
-      />
-    </CodeBlock>
-  )
-}
-
-const SvgSource = ({
-  name,
-  source,
-  weight,
-  size,
-  color,
-  secondaryColor
-}: {
-  name: string
-  source?: string
-  weight: string
-  size: number
-  color: string
-  secondaryColor: string
-}) => {
-  const load = useCallback(
-    () =>
-      source
-        ? fetchAssetSvg(source)
-        : getIconSvg(name, weight, size, color, secondaryColor),
-    [source, name, weight, size, color, secondaryColor]
-  )
-  const resource = useResource(
-    `${source ?? name}:${weight}:${size}:${color}:${secondaryColor}`,
-    load
-  )
-  return (
-    <ResourceStatus
-      loading={resource.loading}
-      error={resource.error}
-      retry={resource.retry}>
-      <Snippet
-        code={(resource.data ?? '').replace(/></g, '>\n<')}
-        language="xml"
-      />
-    </ResourceStatus>
-  )
-}
 
 type Props = {
   kind: AssetKind
@@ -139,14 +48,7 @@ export const AssetDetail = ({
   locale,
   initialWeight = 'outline'
 }: Props) => {
-  const loader = useCallback(async () => {
-    const [assets] = await Promise.all([
-      loadCatalog(kind),
-      kind === 'icons' ? loadIconRuntime() : Promise.resolve()
-    ])
-    return assets
-  }, [kind])
-  const resource = useResource(kind, loader)
+  const resource = useCatalog(kind)
   const asset = resource.data?.find(
     item =>
       item.slug === name || item.title.toLowerCase() === name.toLowerCase()
@@ -163,121 +65,7 @@ export const AssetDetail = ({
     ))
       element.content = title
   }, [asset, kind])
-  const [weight, setWeight] = useState(initialWeight)
-  const [size, setSize] = useState(128)
-  const [exportSize, setExportSize] = useState('128')
-  const [color, setColor] = useState('#0485f7')
-  const [secondaryColor, setSecondaryColor] = useState('#9ecfff')
-  const [variant, setVariant] = useState('original')
-  const [message, setMessage] = useState('')
-  const [busy, setBusy] = useState(false)
-  const [showGrid, setShowGrid] = useState(true)
-  const [selectedSnippet, setSelectedSnippet] = useState('svg')
-  const { copy } = useCopyToClipboard()
-  const activeWeight = asset?.weights.includes(weight as IconWeight)
-    ? (weight as IconWeight)
-    : (asset?.weights[0] ?? 'outline')
-  const activeVariant = asset?.variants[variant]
-    ? variant
-    : asset?.variants.original
-      ? 'original'
-      : (Object.keys(asset?.variants ?? {})[0] ?? 'original')
-  const source =
-    asset && kind !== 'icons' ? assetUrl(kind, asset, activeVariant) : ''
-  const illustration = useIllustrationPalette(
-    kind === 'illustrations' ? source : ''
-  )
-  const embedSource =
-    source && typeof window !== 'undefined'
-      ? new URL(source, window.location.origin).href
-      : source
   const lang = locale === i18n.defaultLanguage ? undefined : locale
-  const loadSvg = () =>
-    kind === 'icons' && asset
-      ? getIconSvg(
-          asset.slug,
-          activeWeight,
-          Number(exportSize),
-          color,
-          secondaryColor
-        )
-      : kind === 'illustrations' && illustration.svg
-        ? Promise.resolve(illustration.svg)
-        : fetchAssetSvg(source)
-  const copySvg = async () => {
-    if (!asset) return
-    setBusy(true)
-    try {
-      const copied = await copy(await loadSvg())
-      setMessage(
-        copied
-          ? 'SVG copied to clipboard.'
-          : 'Unable to copy. Use the SVG source tab and try again.'
-      )
-    } catch (error: unknown) {
-      setMessage(
-        error instanceof Error
-          ? error.message
-          : 'Unable to copy. Use the SVG source tab and try again.'
-      )
-    } finally {
-      setBusy(false)
-    }
-  }
-  const exportFile = async (format: 'svg' | 'png' | 'webp') => {
-    if (!asset) return
-    setBusy(true)
-    try {
-      const svg = await loadSvg()
-      const filename =
-        kind === 'icons'
-          ? `${asset.slug}-${activeWeight}-${exportSize}`
-          : `${asset.slug}${kind === 'logos' ? '-' + activeVariant : ''}${format === 'svg' ? '' : '-' + exportSize}`
-      await downloadSvg(svg, filename, format, Number(exportSize))
-      setMessage(
-        format === 'svg'
-          ? 'SVG downloaded.'
-          : `${format.toUpperCase()} exported at ${exportSize}px.`
-      )
-    } catch (error: unknown) {
-      setMessage(
-        error instanceof Error
-          ? error.message
-          : 'Export failed. Please try again.'
-      )
-    } finally {
-      setBusy(false)
-    }
-  }
-  const reset = () => {
-    setWeight('outline')
-    setSize(128)
-    setExportSize('128')
-    setColor('#0485f7')
-    setSecondaryColor('#9ecfff')
-    setVariant('original')
-    setMessage('')
-    setShowGrid(true)
-    illustration.reset()
-  }
-  const snippets = asset
-    ? getAssetSnippets({
-        kind,
-        asset,
-        weight: activeWeight,
-        size,
-        color,
-        secondaryColor,
-        source: illustration.customized ? `./${asset.slug}.svg` : embedSource
-      })
-    : []
-  const related =
-    resource.data
-      ?.filter(
-        item => item.category === asset?.category && item.slug !== asset?.slug
-      )
-      .slice(0, 8) ?? []
-  const activeSnippet = snippets.find(snippet => snippet.id === selectedSnippet)
 
   return (
     <AssetShell active={kind} locale={locale}>
@@ -305,294 +93,222 @@ export const AssetDetail = ({
             </Link>
           </div>
         ) : (
-          <>
-            <header className="space-y-3">
-              <h1 className="text-3xl font-semibold tracking-tight">
-                {kind === 'icons' ? formatLabel(asset.slug) : asset.title}
-              </h1>
-              <div className="flex flex-wrap gap-2">
-                <Chip variant="soft">
-                  <Chip.Label>{formatLabel(asset.category)}</Chip.Label>
-                </Chip>
-                {asset.subcategory && (
-                  <Chip variant="soft">
-                    <Chip.Label>{formatLabel(asset.subcategory)}</Chip.Label>
-                  </Chip>
-                )}
-                <span className="text-muted text-sm">{asset.slug}</span>
-              </div>
-            </header>
-            <div className="grid min-w-0 gap-8 lg:grid-cols-[340px_minmax(0,1fr)]">
-              <div className="space-y-6">
-                <Card>
-                  <Card.Content
-                    className={`flex min-h-80 items-center justify-center overflow-hidden ${showGrid ? 'asset-preview--grid' : ''} ${kind === 'logos' ? (activeVariant.includes('white') ? 'rounded-xl bg-black' : 'asset-preview--logo rounded-xl') : ''}`}>
-                    {kind === 'icons' ? (
-                      <CdnIcon
-                        name={asset.slug}
-                        weight={activeWeight}
-                        size={size}
-                        color={color}
-                        secondaryColor={secondaryColor}
-                      />
-                    ) : (
-                      <img
-                        src={
-                          kind === 'illustrations'
-                            ? illustration.preview
-                            : source
-                        }
-                        alt={asset.title}
-                        width={size}
-                        height={size}
-                        style={{ width: size, height: size }}
-                        className="max-w-full object-contain"
-                      />
-                    )}
-                  </Card.Content>
-                </Card>
-                <Switch
-                  aria-label="Preview grid"
-                  className="w-full"
-                  isSelected={showGrid}
-                  onChange={setShowGrid}>
-                  <Switch.Content className="w-full justify-between">
-                    Grid
-                    <Switch.Control>
-                      <Switch.Thumb />
-                    </Switch.Control>
-                  </Switch.Content>
-                </Switch>
-                <Slider
-                  aria-label="Preview size"
-                  value={size}
-                  minValue={16}
-                  maxValue={256}
-                  step={8}
-                  onChange={value => setSize(Number(value))}>
-                  <Label>Preview size</Label>
-                  <Slider.Output />
-                  <Slider.Track>
-                    <Slider.Fill />
-                    <Slider.Thumb />
-                  </Slider.Track>
-                </Slider>
-                {kind === 'icons' && (
-                  <>
-                    <AssetSelect
-                      label="Weight"
-                      value={activeWeight}
-                      options={asset.weights.map(id => ({
-                        id,
-                        title: formatLabel(id)
-                      }))}
-                      onChange={setWeight}
-                    />
-                    <AssetColorPicker
-                      label="Primary color"
-                      value={color}
-                      onChange={setColor}
-                    />
-                    {activeWeight.startsWith('duotone') && (
-                      <AssetColorPicker
-                        label="Secondary color"
-                        value={secondaryColor}
-                        onChange={setSecondaryColor}
-                      />
-                    )}
-                  </>
-                )}
-                {kind === 'logos' && (
-                  <AssetSelect
-                    label="Logo variant"
-                    value={activeVariant}
-                    options={Object.keys(asset.variants).map(id => ({
-                      id,
-                      title: formatLabel(id)
-                    }))}
-                    onChange={setVariant}
-                  />
-                )}
-                {kind === 'illustrations' && (
-                  <IllustrationPalette palette={illustration} />
-                )}
-                <Button variant="tertiary" onPress={reset}>
-                  Reset preview
-                </Button>
-              </div>
-              <div className="min-w-0 space-y-6">
-                <div className="flex flex-wrap items-end gap-3">
-                  <AssetSelect
-                    label="Export size"
-                    value={exportSize}
-                    options={[16, 24, 32, 48, 64, 128, 256, 512, 1024].map(
-                      n => ({
-                        id: String(n),
-                        title: `${n}px`
-                      })
-                    )}
-                    onChange={setExportSize}
-                  />
-                  <Button isDisabled={busy} onPress={() => void copySvg()}>
-                    Copy SVG
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    isDisabled={busy}
-                    onPress={() => void exportFile('svg')}>
-                    Download SVG
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    isDisabled={busy}
-                    onPress={() => void exportFile('png')}>
-                    PNG
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    isDisabled={busy}
-                    onPress={() => void exportFile('webp')}>
-                    WebP
-                  </Button>
-                  {kind !== 'icons' && (
-                    <Link
-                      href={source}
-                      target="_blank"
-                      rel="noopener noreferrer">
-                      Open SVG
-                      <Link.Icon />
-                    </Link>
-                  )}
-                </div>
-                <p
-                  role="status"
-                  aria-live="polite"
-                  className="text-muted min-h-5 text-sm">
-                  {busy
-                    ? 'Preparing your SVG…'
-                    : message ||
-                      'Copy the SVG, export an image, or use an embed snippet below.'}
-                </p>
-                <Tabs
-                  selectedKey={activeSnippet?.id ?? 'svg'}
-                  onSelectionChange={key => setSelectedSnippet(String(key))}
-                  className="min-w-0">
-                  <Tabs.ListContainer className="w-fit max-w-full">
-                    <Tabs.List
-                      aria-label="Integration code"
-                      className="w-max min-w-0">
-                      <Tabs.Tab
-                        id="svg"
-                        className="w-auto flex-none gap-2 whitespace-nowrap">
-                        <Code size={16} aria-hidden="true" />
-                        SVG
-                        <Tabs.Indicator />
-                      </Tabs.Tab>
-                      {snippets.map(snippet => (
-                        <Tabs.Tab
-                          id={snippet.id}
-                          key={snippet.id}
-                          className="w-auto flex-none gap-2 whitespace-nowrap">
-                          {snippet.logo ? (
-                            <img
-                              src={assetUrl('logos', {
-                                slug: snippet.logo,
-                                variants: {}
-                              })}
-                              alt=""
-                              width={16}
-                              height={16}
-                              className="size-4 shrink-0 object-contain"
-                            />
-                          ) : (
-                            <LinkIcon size={16} aria-hidden="true" />
-                          )}
-                          {snippet.title}
-                          <Tabs.Indicator />
-                        </Tabs.Tab>
-                      ))}
-                    </Tabs.List>
-                  </Tabs.ListContainer>
-                  <Tabs.Panel id="svg">
-                    {kind === 'illustrations' && illustration.svg ? (
-                      <Snippet
-                        code={illustration.svg.replace(/></g, '>\n<')}
-                        language="xml"
-                      />
-                    ) : (
-                      <SvgSource
-                        name={asset.slug}
-                        source={kind === 'icons' ? undefined : source}
-                        weight={activeWeight}
-                        size={Number(exportSize)}
-                        color={color}
-                        secondaryColor={secondaryColor}
-                      />
-                    )}
-                  </Tabs.Panel>
-                  {snippets.map(snippet => (
-                    <Tabs.Panel id={snippet.id} key={snippet.id}>
-                      <Snippet
-                        code={snippet.code}
-                        language={snippet.language}
-                      />
-                    </Tabs.Panel>
-                  ))}
-                </Tabs>
-                {illustration.customized && (
-                  <p className="text-muted text-sm">
-                    Download the customized SVG as {asset.slug}.svg to use these
-                    embed examples. Open SVG shows the original artwork.
-                  </p>
-                )}
-                <AssetPropsReference icons={kind === 'icons'} />
-                <Link
-                  href={`${lang ? '/' + lang : ''}/docs/assets/guides/${activeSnippet?.guide ?? 'svg'}`}>
-                  Read the integration guide
-                </Link>
-              </div>
-            </div>
-            {related.length > 0 && (
-              <section className="space-y-4">
-                <h2 className="text-xl font-semibold">
-                  More in {formatLabel(asset.category)}
-                </h2>
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8">
-                  {related.map(item => (
-                    <RouterLink
-                      key={item.slug}
-                      to={detailRoutes[kind]}
-                      params={{ lang, name: item.slug }}
-                      search={{}}
-                      className="min-w-0 no-underline">
-                      <Card className="h-full">
-                        <Card.Content
-                          className={`flex min-h-24 items-center justify-center ${kind === 'logos' ? 'asset-preview--logo rounded-xl' : ''}`}>
-                          {kind === 'icons' ? (
-                            <CdnIcon name={item.slug} size={32} />
-                          ) : (
-                            <img
-                              src={assetUrl(kind, item)}
-                              alt=""
-                              loading="lazy"
-                              className="max-h-20 max-w-full object-contain"
-                            />
-                          )}
-                        </Card.Content>
-                        <Card.Footer>
-                          <span className="truncate text-xs">
-                            {formatLabel(item.slug)}
-                          </span>
-                        </Card.Footer>
-                      </Card>
-                    </RouterLink>
-                  ))}
-                </div>
-              </section>
-            )}
-          </>
+          <AssetDetailContent
+            asset={asset}
+            assets={resource.data ?? []}
+            kind={kind}
+            locale={locale}
+            initialWeight={initialWeight}
+          />
         )}
       </ResourceStatus>
     </AssetShell>
   )
 }
+
+type DetailContentProps = {
+  asset: Asset
+  assets: Asset[]
+  kind: AssetKind
+  locale: Locale
+  initialWeight: string
+}
+
+const AssetDetailContent = ({
+  asset,
+  assets,
+  kind,
+  locale,
+  initialWeight
+}: DetailContentProps) => {
+  const [weight, setWeight] = useState(initialWeight)
+  const [size, setSize] = useState(128)
+  const [exportSize, setExportSize] = useState('128')
+  const [color, setColor] = useState('#0485f7')
+  const [secondaryColor, setSecondaryColor] = useState('#9ecfff')
+  const [variant, setVariant] = useState('original')
+  const [showGrid, setShowGrid] = useState(true)
+  const [selectedSnippet, setSelectedSnippet] = useState('svg')
+  const activeWeight = asset.weights.includes(weight as IconWeight)
+    ? (weight as IconWeight)
+    : (asset.weights[0] ?? 'outline')
+  const activeVariant = getAssetVariant(asset, variant)
+  const source = kind !== 'icons' ? assetUrl(kind, asset, activeVariant) : ''
+  const illustration = useIllustrationPalette(
+    kind === 'illustrations' ? source : ''
+  )
+  const lang = locale === i18n.defaultLanguage ? undefined : locale
+  const loadSvg = () =>
+    kind === 'icons'
+      ? getIconSvg(
+          asset.slug,
+          activeWeight,
+          Number(exportSize),
+          color,
+          secondaryColor
+        )
+      : kind === 'illustrations' && illustration.svg
+        ? Promise.resolve(illustration.svg)
+        : fetchAssetSvg(source)
+  const { busy, message, copySvg, exportFile, clearMessage } = useAssetExports({
+    loadSvg,
+    exportSize,
+    getFilename: format => {
+      if (kind === 'icons') return `${asset.slug}-${activeWeight}-${exportSize}`
+      const variantSuffix = kind === 'logos' ? '-' + activeVariant : ''
+      const sizeSuffix = format === 'svg' ? '' : '-' + exportSize
+      return `${asset.slug}${variantSuffix}${sizeSuffix}`
+    }
+  })
+  const reset = () => {
+    setWeight('outline')
+    setSize(128)
+    setExportSize('128')
+    setColor('#0485f7')
+    setSecondaryColor('#9ecfff')
+    setVariant('original')
+    clearMessage()
+    setShowGrid(true)
+    illustration.reset()
+  }
+  const snippets = getAssetSnippets({
+    kind,
+    asset,
+    weight: activeWeight,
+    size,
+    color,
+    secondaryColor,
+    source: illustration.customized ? `./${asset.slug}.svg` : source
+  })
+  const related = assets
+    .filter(
+      item => item.category === asset.category && item.slug !== asset.slug
+    )
+    .slice(0, 8)
+  const activeSnippet = snippets.find(snippet => snippet.id === selectedSnippet)
+
+  return (
+    <>
+      <AssetHeading asset={asset} kind={kind} />
+      <div className="grid min-w-0 gap-8 lg:grid-cols-[340px_minmax(0,1fr)]">
+        <AssetDetailPreview
+          asset={asset}
+          kind={kind}
+          activeVariant={activeVariant}
+          source={source}
+          illustration={illustration}
+          showGrid={showGrid}
+          setShowGrid={setShowGrid}
+          size={size}
+          setSize={setSize}
+          activeWeight={activeWeight}
+          setWeight={setWeight}
+          color={color}
+          setColor={setColor}
+          secondaryColor={secondaryColor}
+          setSecondaryColor={setSecondaryColor}
+          setVariant={setVariant}
+          reset={reset}
+        />
+        <div className="min-w-0 space-y-6">
+          <div className="flex flex-wrap items-end gap-3">
+            <AssetSelect
+              label="Export size"
+              value={exportSize}
+              options={[16, 24, 32, 48, 64, 128, 256, 512, 1024].map(n => ({
+                id: String(n),
+                title: `${n}px`
+              }))}
+              onChange={setExportSize}
+            />
+            <Button isDisabled={busy} onPress={() => void copySvg()}>
+              Copy SVG
+            </Button>
+            <Button
+              variant="secondary"
+              isDisabled={busy}
+              onPress={() => void exportFile('svg')}>
+              Download SVG
+            </Button>
+            <Button
+              variant="secondary"
+              isDisabled={busy}
+              onPress={() => void exportFile('png')}>
+              PNG
+            </Button>
+            <Button
+              variant="secondary"
+              isDisabled={busy}
+              onPress={() => void exportFile('webp')}>
+              WebP
+            </Button>
+            {kind !== 'icons' && (
+              <Link href={source} target="_blank" rel="noopener noreferrer">
+                Open SVG
+                <Link.Icon />
+              </Link>
+            )}
+          </div>
+          <p
+            role="status"
+            aria-live="polite"
+            className="text-muted min-h-5 text-sm">
+            {busy
+              ? 'Preparing your SVG…'
+              : message ||
+                'Copy the SVG, export an image, or use an embed snippet below.'}
+          </p>
+          <AssetDetailSnippets
+            kind={kind}
+            name={asset.slug}
+            source={source}
+            weight={activeWeight}
+            size={Number(exportSize)}
+            color={color}
+            secondaryColor={secondaryColor}
+            illustrationSvg={illustration.svg}
+            snippets={snippets}
+            selectedSnippet={activeSnippet?.id ?? 'svg'}
+            onSelectionChange={setSelectedSnippet}
+          />
+          {illustration.customized && (
+            <p className="text-muted text-sm">
+              Download the customized SVG as {asset.slug}.svg to use these embed
+              examples. Open SVG shows the original artwork.
+            </p>
+          )}
+          <AssetPropsReference icons={kind === 'icons'} />
+          <Link
+            href={`${lang ? '/' + lang : ''}/docs/assets/guides/${activeSnippet?.guide ?? 'svg'}`}>
+            Read the integration guide
+          </Link>
+        </div>
+      </div>
+      <RelatedAssets
+        items={related}
+        kind={kind}
+        category={asset.category}
+        lang={lang}
+      />
+    </>
+  )
+}
+
+const AssetHeading = ({ asset, kind }: { asset: Asset; kind: AssetKind }) => (
+  <header className="space-y-3">
+    <h1 className="text-3xl font-semibold tracking-tight">
+      {kind === 'icons' ? formatLabel(asset.slug) : asset.title}
+    </h1>
+    <div className="flex flex-wrap gap-2">
+      <Chip variant="soft">
+        <Chip.Label>{formatLabel(asset.category)}</Chip.Label>
+      </Chip>
+      {asset.subcategory && (
+        <Chip variant="soft">
+          <Chip.Label>{formatLabel(asset.subcategory)}</Chip.Label>
+        </Chip>
+      )}
+      <span className="text-muted text-sm">{asset.slug}</span>
+    </div>
+  </header>
+)

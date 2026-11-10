@@ -1,29 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-import { getPlatformDocsRuntime } from '@components/docs/platform-docs'
+import { createPlatformMarkdownHandler } from '@src/lib/docs/platform-route'
 
 export const Route = createFileRoute(
   '/{-$lang}/docs/ui/react/$platform/{$}.md'
 )({
-  server: {
-    handlers: {
-      GET: async ({ params }) => {
-        if (params.platform !== 'web' && params.platform !== 'native')
-          return new Response(null, { status: 404 })
-
-        const runtime = getPlatformDocsRuntime(params.platform, 'react')
-        const { page } = runtime.getDocsPage({
-          slugs: params._splat?.split('/') ?? [],
-          lang: params.lang,
-          pathFormat: 'markdown-url'
-        })
-
-        return new Response(await runtime.getLLMText(page), {
-          headers: {
-            'Content-Type': 'text/markdown'
-          }
-        })
-      }
-    }
-  }
+  server: { handlers: { GET: createPlatformMarkdownHandler('react') } }
 })

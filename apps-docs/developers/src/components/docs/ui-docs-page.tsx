@@ -1,0 +1,71 @@
+import { notFound, useNavigate } from '@tanstack/react-router'
+
+import { i18n } from '@app/docs'
+import { getPlatformDocs } from '@components/docs/platform-docs'
+import { getPlatformLayoutOptions } from '@components/docs/platform-layout'
+import { PlatformDocsRoutePage } from '@components/docs/platform-route-page'
+import {
+  type PlatformSection,
+  getPlatformPage,
+  getPlatformSections
+} from '@components/docs/platform-sections'
+import type { UiLibrary } from '@config/ui-libraries'
+import type { Locale } from '@generated/vx'
+import type { createPlatformDocsLoader } from '@src/lib/docs/platform-loader'
+
+import { getUiLibraryRoute } from './library-routes'
+
+type Props = {
+  library: UiLibrary
+  data: Awaited<ReturnType<ReturnType<typeof createPlatformDocsLoader>>>
+  params: { lang?: string; platform?: string; _splat?: string }
+}
+
+export const UiDocsPage = ({ library, data, params }: Props) => {
+  const navigate = useNavigate()
+  const { lang, platform, _splat } = params
+  if (platform !== 'web' && platform !== 'native') throw notFound()
+
+  const platformSections = getPlatformSections(platform, library)
+  const section = _splat?.split('/')[0]
+  const currentSection = platformSections.find(item => item.id === section)
+  if (!data || !currentSection || !_splat) throw notFound()
+
+  const locale = (lang ?? i18n.defaultLanguage) as Locale
+  const getPlatformParams = (value: 'web' | 'native') => ({
+    lang: locale === i18n.defaultLanguage ? undefined : locale,
+    platform: value,
+    _splat: getPlatformPage(value, _splat, library)
+  })
+
+  return (
+    <PlatformDocsRoutePage
+      data={data}
+      platform={platform}
+      docs={getPlatformDocs(platform, library)}
+      shell="notebook"
+      getLayoutOptions={locale =>
+        getPlatformLayoutOptions({
+          library,
+          locale: locale as Locale,
+          page: _splat,
+          platform,
+          platforms: data.platforms,
+          selectedSection: section as PlatformSection,
+          getPlatformParams,
+          onSectionChange: value => {
+            void navigate({
+              to: getUiLibraryRoute(library),
+              params: {
+                ...getPlatformParams(platform),
+                _splat:
+                  platformSections.find(item => item.id === value)?.page ??
+                  _splat
+              }
+            })
+          }
+        })
+      }
+    />
+  )
+}
