@@ -1,12 +1,16 @@
 import type { ComponentProps } from 'react'
 
-import { ListBox, Select } from '@vezham/react-v3'
+import { localizedUrl } from '@vezham/start/runtime/docs'
 
-import { Brand } from '@components/brand'
+import { i18n } from '@app/docs'
 import { ControlCenter } from '@components/docs/control-center'
+import {
+  NotebookDrawerFooter,
+  NotebookDrawerHeader
+} from '@components/docs/notebook-drawer'
 import { getPlatformSections } from '@components/docs/platform-sections'
 import { PlatformTabs } from '@components/docs/platform-tabs'
-import type { UiLibrary } from '@config/ui-libraries'
+import { type UiLibrary, uiLibraries } from '@config/ui-libraries'
 import type { Locale } from '@generated/vx'
 
 type Platform = 'web' | 'native'
@@ -22,50 +26,11 @@ type PlatformNavigationProps = {
   platforms: readonly Platform[]
 }
 
-type SectionSelectProps = {
-  library?: UiLibrary
-  onSectionChange: (section: string) => void
-  selectedSection: string
-  platform: Platform
-  locale: Locale
-}
-
-const PlatformSectionSelect = ({
-  library = 'react',
-  onSectionChange,
-  selectedSection,
-  platform,
-  locale
-}: SectionSelectProps) => (
-  <Select
-    aria-label="Documentation section"
-    className="w-full"
-    selectedKey={selectedSection}
-    onSelectionChange={key => onSectionChange(String(key))}>
-    <Select.Trigger>
-      <Select.Value />
-      <Select.Indicator />
-    </Select.Trigger>
-    <Select.Popover>
-      <ListBox>
-        {getPlatformSections(platform, library, locale).map(section => (
-          <ListBox.Item
-            key={section.id}
-            id={section.id}
-            textValue={section.title}>
-            {section.title}
-            <ListBox.ItemIndicator />
-          </ListBox.Item>
-        ))}
-      </ListBox>
-    </Select.Popover>
-  </Select>
-)
-
 type HeaderProps = ComponentProps<'div'> &
   PlatformNavigationProps & {
     locale: Locale
-  } & SectionSelectProps
+    selectedSection: string
+  }
 
 export const PlatformDrawerHeader = ({
   library = 'react',
@@ -73,46 +38,36 @@ export const PlatformDrawerHeader = ({
   className,
   getPlatformParams,
   locale,
-  onSectionChange,
   platform,
   platforms,
   selectedSection,
   ...props
 }: HeaderProps) => {
   return (
-    <>
-      <div
-        {...props}
-        className={`flex flex-col gap-4 border-b px-4 pt-4 pb-3 md:hidden ${className ?? ''}`}>
-        <div className="flex items-center justify-between gap-4 ps-1">
-          <Brand.Link locale={locale} logoSize={22} />
-        </div>
-        <PlatformSectionSelect
-          library={library}
-          platform={platform}
-          selectedSection={selectedSection}
-          locale={locale}
-          onSectionChange={onSectionChange}
-        />
-      </div>
-      <div
-        className={`hidden flex-col gap-3 border-b p-4 md:flex lg:hidden ${className ?? ''}`}>
+    <NotebookDrawerHeader
+      {...props}
+      className={className}
+      locale={locale}
+      selectedSection={selectedSection}
+      sections={getPlatformSections(platform, library, locale).map(section => ({
+        id: section.id,
+        title: section.title,
+        url: localizedUrl(
+          i18n,
+          locale,
+          `${uiLibraries[library].routeBase}/${platform}/${section.page}`
+        )
+      }))}
+      secondary={
         <PlatformTabs
           library={library}
           getPlatformParams={getPlatformParams}
           platform={platform}
           platforms={platforms}
         />
-        <PlatformSectionSelect
-          library={library}
-          platform={platform}
-          selectedSection={selectedSection}
-          locale={locale}
-          onSectionChange={onSectionChange}
-        />
-      </div>
-      <div className={`hidden lg:block ${className ?? ''}`}>{children}</div>
-    </>
+      }>
+      {children}
+    </NotebookDrawerHeader>
   )
 }
 
@@ -128,21 +83,25 @@ export const PlatformDrawerFooter = ({
 }: ComponentProps<'div'> &
   PlatformNavigationProps & { locale: Locale; page: string }) => {
   return (
-    <div
+    <NotebookDrawerFooter
       {...props}
-      className={`!hidden !w-full items-center !justify-between gap-2 !border-0 px-4 pt-2 pb-4 max-md:!flex ${className ?? ''}`}>
-      <PlatformTabs
-        library={library}
-        getPlatformParams={getPlatformParams}
-        platform={platform}
-        platforms={platforms}
-      />
-      <ControlCenter
-        library={library}
-        locale={locale}
-        page={page}
-        platform={platform}
-      />
-    </div>
+      className={className}
+      secondary={
+        <PlatformTabs
+          library={library}
+          getPlatformParams={getPlatformParams}
+          platform={platform}
+          platforms={platforms}
+        />
+      }
+      controls={
+        <ControlCenter
+          library={library}
+          locale={locale}
+          page={page}
+          platform={platform}
+        />
+      }
+    />
   )
 }

@@ -4,6 +4,12 @@ All docs routes use the notebook shell with the shared `NotebookHeader`, section
 row, and sidebar controls. For a single-page collection, use
 `getNotebookLayoutOptions`; UI libraries, assets, and the handbook keep their
 section-specific notebook options. Keep each collection's own navigation.
+Use the shared `NotebookDrawerHeader` and `NotebookDrawerFooter` for mobile and
+tablet navigation across UI, Assets, Packages, and Handbook. The UI docs drawer
+is the layout baseline: brand and section picker on mobile, collection selector
+and section picker on tablet, and collection controls with ControlCenter in the
+mobile footer. Derive section options and selection from the same navigation as
+the desktop header.
 
 ## UI documentation layout
 

@@ -7,6 +7,10 @@ import { localizedUrl } from '@vezham/start/runtime/docs'
 import { i18n } from '@app/docs'
 import { ControlCenter } from '@components/docs/control-center'
 import { sectionTabVariants } from '@components/docs/navigation.variants'
+import {
+  NotebookDrawerFooter,
+  NotebookDrawerHeader
+} from '@components/docs/notebook-drawer'
 import { NotebookHeader } from '@components/docs/notebook-header'
 import { NotebookSectionTabs } from '@components/docs/section-tabs'
 import { baseOptions } from '@config/layout'
@@ -38,6 +42,28 @@ export const getNotebookLayoutOptions = ({
   return {
     ...options,
     nav: { ...options.nav, mode: 'top', children: secondary },
+    sidebar: {
+      banner: props => (
+        <NotebookDrawerHeader
+          {...props}
+          locale={locale}
+          secondary={secondary}
+          selectedSection={activePath}
+          sections={sections.map(section => ({
+            id: section.path,
+            title: section.title,
+            url: localizedUrl(i18n, locale, section.path)
+          }))}
+        />
+      ),
+      footer: props => (
+        <NotebookDrawerFooter
+          {...props}
+          secondary={secondary}
+          controls={<ControlCenter locale={locale} path={path} />}
+        />
+      )
+    },
     tabMode: 'navbar',
     tabs: sections.map(section => ({
       title: section.title,

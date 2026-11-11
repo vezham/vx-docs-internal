@@ -1,4 +1,4 @@
-import { notFound, useNavigate } from '@tanstack/react-router'
+import { notFound } from '@tanstack/react-router'
 
 import { i18n } from '@app/docs'
 import { getPlatformDocs } from '@components/docs/platform-docs'
@@ -12,8 +12,6 @@ import type { UiLibrary } from '@config/ui-libraries'
 import type { Locale } from '@generated/vx'
 import type { createPlatformDocsLoader } from '@src/lib/docs/platform-loader'
 
-import { getUiLibraryRoute } from './library-routes'
-
 type Props = {
   library: UiLibrary
   data: Awaited<ReturnType<ReturnType<typeof createPlatformDocsLoader>>>
@@ -21,7 +19,6 @@ type Props = {
 }
 
 export const UiDocsPage = ({ library, data, params }: Props) => {
-  const navigate = useNavigate()
   const { platform, _splat } = params
   if (platform !== 'web' && platform !== 'native') throw notFound()
 
@@ -51,18 +48,7 @@ export const UiDocsPage = ({ library, data, params }: Props) => {
           platform,
           platforms: data.platforms,
           selectedSection: currentSection.id,
-          getPlatformParams,
-          onSectionChange: value => {
-            void navigate({
-              to: getUiLibraryRoute(library),
-              params: {
-                ...getPlatformParams(platform),
-                _splat:
-                  platformSections.find(item => item.id === value)?.page ??
-                  _splat
-              }
-            })
-          }
+          getPlatformParams
         })
       }
     />

@@ -27,7 +27,6 @@ type Options = {
     platform: Platform
     _splat: string
   }
-  onSectionChange: (section: string) => void
 }
 
 export const getPlatformLayoutOptions = ({
@@ -37,8 +36,7 @@ export const getPlatformLayoutOptions = ({
   platform,
   platforms,
   selectedSection,
-  getPlatformParams,
-  onSectionChange
+  getPlatformParams
 }: Options): Omit<DocsLayoutProps, 'children' | 'shell' | 'tree'> => {
   const options = baseOptions(locale)
   return {
@@ -65,7 +63,6 @@ export const getPlatformLayoutOptions = ({
           platform={platform}
           platforms={platforms}
           selectedSection={selectedSection}
-          onSectionChange={onSectionChange}
         />
       ),
       footer: props => (

@@ -319,6 +319,26 @@ describe('App', () => {
     20_000
   )
 
+  it.each([
+    ['/docs/ui/react-v3/web/getting-started', 'Getting Started'],
+    ['/docs/assets/guides/react', 'Guides'],
+    ['/docs/packages/hooks/guides', 'Guides'],
+    ['/handbook/markdown', 'Markdown']
+  ])(
+    'keeps the drawer section selection synchronized at %s',
+    async (path, title) => {
+      const view = await renderApp(path)
+      const triggers = await view.findAllByRole('button', {
+        name: /Documentation section/
+      })
+      for (const trigger of triggers)
+        expect(trigger.textContent).toContain(title)
+      expect(
+        view.getAllByRole('button', { name: 'Close sidebar' }).length
+      ).toBeGreaterThan(0)
+    }
+  )
+
   it('keeps icon resources and framework guides in the shared notebook shell', async () => {
     const { container, findByRole, queryByRole, router } = await renderApp(
       '/docs/assets/packages'

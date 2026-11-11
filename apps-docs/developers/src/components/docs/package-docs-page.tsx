@@ -26,20 +26,15 @@ export const PackageDocsPage = ({ data }: Props) => (
           page={data.page}
         />
       )
-      return {
-        ...getNotebookLayoutOptions({
-          locale: language,
-          path: getPackageDocsPath(data.packageId, data.page),
-          title: docsPackages[data.packageId].name,
-          leading: <PackageVersionSelector packageId={data.packageId} />,
-          secondary: selector,
-          sectionLabel: 'Package documentation sections',
-          sections: data.sections
-        }),
-        sidebar: {
-          banner: () => <div className="p-4 lg:hidden">{selector}</div>
-        }
-      }
+      return getNotebookLayoutOptions({
+        locale: language,
+        path: getPackageDocsPath(data.packageId, data.page),
+        title: docsPackages[data.packageId].name,
+        leading: <PackageVersionSelector packageId={data.packageId} />,
+        secondary: selector,
+        sectionLabel: 'Package documentation sections',
+        sections: data.sections
+      })
     }}
   />
 )

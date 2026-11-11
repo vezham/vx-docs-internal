@@ -12,6 +12,10 @@ import {
 import { i18n } from '@app/docs'
 import { ControlCenter } from '@components/docs/control-center'
 import { sectionTabVariants } from '@components/docs/navigation.variants'
+import {
+  NotebookDrawerFooter,
+  NotebookDrawerHeader
+} from '@components/docs/notebook-drawer'
 import { NotebookHeader } from '@components/docs/notebook-header'
 import { NotebookSectionTabs } from '@components/docs/section-tabs'
 import { baseOptions } from '@config/layout'
@@ -77,9 +81,33 @@ export const getAssetLayoutOptions = ({
   pathname: string
 }): Omit<DocsLayoutProps, 'children' | 'shell' | 'tree'> => {
   const options = baseOptions(locale)
+  const path = normalizeDocsRoutePath({
+    languages: i18n.languages,
+    routePath: pathname
+  })
   return {
     ...options,
     nav: { ...options.nav, mode: 'top' },
+    sidebar: {
+      banner: props => (
+        <NotebookDrawerHeader
+          {...props}
+          locale={locale}
+          selectedSection={active}
+          sections={navigation.map(item => ({
+            id: item.id,
+            title: item.title,
+            url: sectionUrl(locale, item.to)
+          }))}
+        />
+      ),
+      footer: props => (
+        <NotebookDrawerFooter
+          {...props}
+          controls={<ControlCenter locale={locale} path={path} />}
+        />
+      )
+    },
     containerProps:
       active === 'docs'
         ? undefined
@@ -93,15 +121,7 @@ export const getAssetLayoutOptions = ({
         <NotebookHeader
           {...props}
           locale={locale}
-          controls={
-            <ControlCenter
-              locale={locale}
-              path={normalizeDocsRoutePath({
-                languages: i18n.languages,
-                routePath: pathname
-              })}
-            />
-          }>
+          controls={<ControlCenter locale={locale} path={path} />}>
           <AssetNavigation active={active} locale={locale} />
         </NotebookHeader>
       )
