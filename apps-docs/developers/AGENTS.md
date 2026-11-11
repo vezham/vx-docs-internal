@@ -84,6 +84,10 @@ brand. Only the latest documented version is available for now. Derive package
 sections from the content tree: `meta.json` controls their order and section
 index MDX files supply their titles. Keep TODO content in MDX. `/docs/packages` opens the
 default package's Getting Started page.
+Use HeroUI Sheet for the package picker in the mobile drawer footer; keep Select
+on tablet and desktop. Both use the same content-derived options and navigation.
+`PackageSelector` handles responsive presentation internally; layouts pass only
+the shared `secondary` control.
 
 ## Standalone page layout
 
