@@ -1,6 +1,6 @@
 import type { Item, Node } from '@vezham/docs-core/page-tree'
 
-import { resolvePlatformIcon } from './platform-icons'
+import { resolveDocsIcon } from '@src/lib/docs/icons'
 
 type Props = {
   docsBase: string
@@ -9,7 +9,7 @@ type Props = {
   preserveSeparators?: boolean
 }
 
-const matchesPlatform = (node: Item, docsBase: string, prefix: string) => {
+const matchesSection = (node: Item, docsBase: string, prefix: string) => {
   if (!prefix) return node.url === docsBase || node.url === `${docsBase}/`
   const base = `${docsBase}/`
   if (!node.url.startsWith(base)) return false
@@ -26,13 +26,13 @@ const filterNodes = ({
 }: Props): Node[] =>
   nodes.flatMap((node): Node[] => {
     if (node.type === 'page') {
-      return matchesPlatform(node, docsBase, prefix)
-        ? [{ ...node, icon: resolvePlatformIcon(node.icon) }]
+      return matchesSection(node, docsBase, prefix)
+        ? [{ ...node, icon: resolveDocsIcon(node.icon) }]
         : []
     }
     if (node.type === 'separator')
       return preserveSeparators
-        ? [{ ...node, icon: resolvePlatformIcon(node.icon) }]
+        ? [{ ...node, icon: resolveDocsIcon(node.icon) }]
         : []
     if (node.type !== 'folder') return []
 
@@ -42,22 +42,22 @@ const filterNodes = ({
       prefix,
       preserveSeparators:
         preserveSeparators ||
-        Boolean(node.index && matchesPlatform(node.index, docsBase, prefix)) ||
+        Boolean(node.index && matchesSection(node.index, docsBase, prefix)) ||
         node.children.some(
           child =>
-            child.type === 'page' && matchesPlatform(child, docsBase, prefix)
+            child.type === 'page' && matchesSection(child, docsBase, prefix)
         )
     })
     const index =
-      node.index && matchesPlatform(node.index, docsBase, prefix)
-        ? { ...node.index, icon: resolvePlatformIcon(node.index.icon) }
+      node.index && matchesSection(node.index, docsBase, prefix)
+        ? { ...node.index, icon: resolveDocsIcon(node.index.icon) }
         : undefined
 
     return children.length || index
       ? [
           {
             ...node,
-            icon: resolvePlatformIcon(node.icon),
+            icon: resolveDocsIcon(node.icon),
             defaultOpen: true,
             root: false,
             children,
@@ -67,10 +67,28 @@ const filterNodes = ({
       : []
   })
 
-export const filterPlatformPageTree = (props: Props): Node[] => {
+export const filterSidebarTree = (props: Props): Node[] => {
   const nodes = filterNodes(props)
   if (nodes.length !== 1 || nodes[0].type !== 'folder') return nodes
 
   const { children, index } = nodes[0]
   return index?.type === 'page' ? [index, ...children] : children
 }
+
+// vx-bot/NOTE: Group headings toggle their pages; index pages remain regular links.
+const groupNodes = (nodes: Node[]): Node[] =>
+  nodes.map(node =>
+    node.type === 'folder'
+      ? {
+          ...node,
+          index: undefined,
+          children: groupNodes([
+            ...(node.index ? [node.index] : []),
+            ...node.children
+          ])
+        }
+      : node
+  )
+
+export const createSidebarGroups = (props: Props): Node[] =>
+  groupNodes(filterSidebarTree(props))

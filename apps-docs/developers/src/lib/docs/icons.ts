@@ -57,7 +57,7 @@ const icons: Record<string, typeof Book> = {
   settings: Settings
 }
 
-export const resolvePlatformIcon = (icon: ReactNode): ReactNode => {
+export const resolveDocsIcon = (icon: ReactNode): ReactNode => {
   if (!isValidElement<{ 'data-vx-icon'?: string }>(icon)) return icon
   const name = icon.props['data-vx-icon']
   if (!name) return icon

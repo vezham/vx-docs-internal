@@ -1,16 +1,16 @@
 import type { Item, Node } from '@vezham/docs-core/page-tree'
 
-import { filterPlatformPageTree } from './platform-page-tree'
+import { createSidebarGroups, filterSidebarTree } from './tree'
 
 const page = (url: string): Item => ({ type: 'page', name: url, url })
 const filter = (nodes: Node[]) =>
-  filterPlatformPageTree({ docsBase: '/docs', prefix: 'web', nodes })
+  filterSidebarTree({ docsBase: '/docs', prefix: 'web', nodes })
 
-describe('platform page tree', () => {
+describe('sidebar page tree', () => {
   it('scopes an empty section prefix to the collection landing page', () => {
     const index = page('/handbook')
     expect(
-      filterPlatformPageTree({
+      filterSidebarTree({
         docsBase: '/handbook',
         prefix: '',
         nodes: [
@@ -38,7 +38,7 @@ describe('platform page tree', () => {
     ).toEqual([overview, index, handbook, guide])
   })
 
-  it('matches the exact platform and descendants within the docs base', () => {
+  it('matches the exact section and descendants within the docs base', () => {
     const index = page('/docs/web')
     const child = page('/docs/web/start')
     expect(
@@ -125,5 +125,54 @@ describe('platform page tree', () => {
         }
       ])
     ).toEqual([])
+  })
+
+  it('keeps nested group indexes as links without changing the source tree', () => {
+    const index = page('/docs/web/guide')
+    const nestedIndex = page('/docs/web/guide/examples')
+    const example = page('/docs/web/guide/examples/basic')
+    const nodes: Node[] = [
+      page('/docs/web'),
+      {
+        type: 'folder',
+        name: 'Guide',
+        index,
+        children: [
+          {
+            type: 'folder',
+            name: 'Examples',
+            index: nestedIndex,
+            children: [example]
+          },
+          page('/docs/native/guide')
+        ]
+      }
+    ]
+    const original = structuredClone(nodes)
+
+    expect(
+      createSidebarGroups({ docsBase: '/docs', prefix: 'web', nodes })
+    ).toEqual([
+      page('/docs/web'),
+      {
+        type: 'folder',
+        name: 'Guide',
+        defaultOpen: true,
+        root: false,
+        index: undefined,
+        children: [
+          index,
+          {
+            type: 'folder',
+            name: 'Examples',
+            defaultOpen: true,
+            root: false,
+            index: undefined,
+            children: [nestedIndex, example]
+          }
+        ]
+      }
+    ])
+    expect(nodes).toEqual(original)
   })
 })

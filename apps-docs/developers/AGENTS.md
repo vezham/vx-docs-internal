@@ -70,6 +70,12 @@ by UI and Packages; section roots should not add an extra sidebar folder.
 Markdown groups use `SidebarGroup` with HeroUI Disclosure so child links
 retain the flat Assets Guides sidebar styling, with icons and collapsible group
 headers. Keep group labels, icons, and ordering in content metadata.
+Keep the reusable renderer, tree helpers, and tests together in
+`src/components/docs/sidebar-group`. Loaders import `filterSidebarTree` or
+`createSidebarGroups` from its `tree` module; pages import `SidebarGroup` from
+the folder entry point. Keep collection-specific loading and metadata outside
+this component folder. Share metadata icon resolution independently through
+`resolveDocsIcon` in `src/lib/docs/icons.ts`.
 
 ## Asset library routes
 

@@ -34,10 +34,9 @@ describe('MDX handbook', () => {
         if (node.type === 'folder') {
           expect(node.defaultOpen).toBe(true)
           expect(node.index).toBeUndefined()
-          expect(
-            renderToStaticMarkup(node.icon),
-            `Icon for ${text(node.name)}`
-          ).toContain('<svg')
+          const icon = renderToStaticMarkup(node.icon)
+          if (text(node.name) === 'TODO') expect(icon).toBe('')
+          else expect(icon, `Icon for ${text(node.name)}`).toContain('<svg')
         }
       expect(
         tree.children

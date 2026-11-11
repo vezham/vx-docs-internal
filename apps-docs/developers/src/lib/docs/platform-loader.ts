@@ -8,8 +8,8 @@ import {
   getPlatformDocsRuntime
 } from '@components/docs/platform-docs'
 import { getPlatformSections } from '@components/docs/platform-sections'
+import { filterSidebarTree } from '@components/docs/sidebar-group/tree'
 import { type UiLibrary, uiLibraries } from '@config/ui-libraries'
-import { filterPlatformPageTree } from '@src/lib/docs/platform-page-tree'
 
 type Params = {
   _splat?: string
@@ -51,7 +51,7 @@ export const createPlatformDocsLoader =
         ...tree,
         $id: `${data.locale}:${routeBase}:${section.id}`,
         name: section.title,
-        children: filterPlatformPageTree({
+        children: filterSidebarTree({
           docsBase: localizedUrl(i18n, data.locale, routeBase),
           nodes: tree.children,
           prefix: section.prefix
