@@ -26,14 +26,16 @@ export const createPlatformDocsLoader =
     const platforms = getAvailablePlatforms(library)
     if (!platforms.includes(params.platform)) throw notFound()
 
-    const sectionId = params._splat?.split('/')[0]
-    const section = getPlatformSections(params.platform, library).find(
-      item => item.id === sectionId
-    )
-    if (!section) throw notFound()
-
     const runtime = getPlatformDocsRuntime(params.platform, library)
     const data = await runtime.createDocsLoader()({ params })
+    const sectionId = params._splat?.split('/')[0]
+    const section = getPlatformSections(
+      params.platform,
+      library,
+      data.locale
+    ).find(item => item.id === sectionId)
+    if (!section) throw notFound()
+
     const { page } = runtime.getDocsPage({
       slugs: params._splat?.split('/').filter(Boolean) ?? [],
       lang: data.locale

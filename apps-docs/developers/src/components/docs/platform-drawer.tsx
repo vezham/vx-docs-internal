@@ -4,10 +4,7 @@ import { ListBox, Select } from '@vezham/react-v3'
 
 import { Brand } from '@components/brand'
 import { ControlCenter } from '@components/docs/control-center'
-import {
-  type PlatformSection,
-  getPlatformSections
-} from '@components/docs/platform-sections'
+import { getPlatformSections } from '@components/docs/platform-sections'
 import { PlatformTabs } from '@components/docs/platform-tabs'
 import type { UiLibrary } from '@config/ui-libraries'
 import type { Locale } from '@generated/vx'
@@ -27,29 +24,31 @@ type PlatformNavigationProps = {
 
 type SectionSelectProps = {
   library?: UiLibrary
-  onSectionChange: (section: PlatformSection) => void
-  selectedSection: PlatformSection
+  onSectionChange: (section: string) => void
+  selectedSection: string
   platform: Platform
+  locale: Locale
 }
 
 const PlatformSectionSelect = ({
   library = 'react',
   onSectionChange,
   selectedSection,
-  platform
+  platform,
+  locale
 }: SectionSelectProps) => (
   <Select
     aria-label="Documentation section"
     className="w-full"
     selectedKey={selectedSection}
-    onSelectionChange={key => onSectionChange(key as PlatformSection)}>
+    onSelectionChange={key => onSectionChange(String(key))}>
     <Select.Trigger>
       <Select.Value />
       <Select.Indicator />
     </Select.Trigger>
     <Select.Popover>
       <ListBox>
-        {getPlatformSections(platform, library).map(section => (
+        {getPlatformSections(platform, library, locale).map(section => (
           <ListBox.Item
             key={section.id}
             id={section.id}
@@ -92,6 +91,7 @@ export const PlatformDrawerHeader = ({
           library={library}
           platform={platform}
           selectedSection={selectedSection}
+          locale={locale}
           onSectionChange={onSectionChange}
         />
       </div>
@@ -107,6 +107,7 @@ export const PlatformDrawerHeader = ({
           library={library}
           platform={platform}
           selectedSection={selectedSection}
+          locale={locale}
           onSectionChange={onSectionChange}
         />
       </div>

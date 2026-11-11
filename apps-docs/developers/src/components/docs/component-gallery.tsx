@@ -3,7 +3,7 @@ import { useParams } from '@tanstack/react-router'
 import { useTheme } from '@vezham/docs-react/provider/base'
 import { Chip, Link } from '@vezham/react-v3'
 
-import { herouiCatalog } from '@src/lib/docs/heroui-catalog'
+import { getComponentCatalog } from '@src/lib/docs/component-catalog'
 import {
   componentGalleryGroups,
   componentGalleryMedia
@@ -14,7 +14,7 @@ import proGallery from '@src/lib/docs/heroui-pro-presentation.json'
 import { VideoPlayer } from './video-player'
 
 type GalleryPage = Pick<
-  (typeof herouiCatalog)[number],
+  ReturnType<typeof getComponentCatalog>[number],
   'title' | 'status' | 'platform' | 'url'
 > & {
   images?: { light: string; dark: string }
@@ -139,11 +139,10 @@ const ComponentCategory = ({
     item => item.category === category
   )
   if (!group) return null
+  const catalog = getComponentCatalog(platform, 'react-v3', lang)
   const pages = group.components.flatMap(path => {
     const name = path.split('/').slice(-1)[0]
-    return herouiCatalog.filter(
-      page => page.url === `/docs/ui/react-v3/${platform}/components/${name}`
-    )
+    return catalog.filter(page => page.slug === name)
   })
   if (!pages.length) return null
 
@@ -153,10 +152,7 @@ const ComponentCategory = ({
       className={`not-prose my-6 grid list-none grid-cols-1 gap-x-4 gap-y-10 p-0 sm:grid-cols-2 ${platform === 'web' ? 'lg:grid-cols-3' : ''}`}>
       {pages.map(page => (
         <li key={page.url} className="min-w-0">
-          <ComponentTile
-            page={page}
-            href={`${lang === 'cn' ? '/cn' : ''}${page.url}`}
-          />
+          <ComponentTile page={page} href={page.url} />
         </li>
       ))}
     </ul>
@@ -176,6 +172,7 @@ const ProComponentCategory = ({
 }) => {
   const { lang } = useParams({ strict: false })
   const gallery = platform === 'native' ? nativeProGallery : proGallery
+  const catalog = getComponentCatalog(platform, 'react-pro-v3', lang)
   const group = gallery.groups.find(item => item.category === category)
   if (!group) return null
 
@@ -184,13 +181,11 @@ const ProComponentCategory = ({
       aria-label={`Pro ${platform === 'native' ? 'Native ' : ''}${group.title} components`}
       className={`not-prose my-6 grid list-none grid-cols-1 gap-x-4 gap-y-10 p-0 sm:grid-cols-2 ${platform === 'web' ? 'lg:grid-cols-3' : ''}`}>
       {group.components.map(component => {
-        const url = `/docs/ui/react-pro-v3/${platform}/components/${component.slug}`
+        const page = catalog.find(item => item.slug === component.slug)
+        if (!page) return null
         return (
           <li key={component.slug} className="min-w-0">
-            <ComponentTile
-              page={{ ...component, platform, url }}
-              href={`${lang === 'cn' ? '/cn' : ''}${url}`}
-            />
+            <ComponentTile page={{ ...component, ...page }} href={page.url} />
           </li>
         )
       })}

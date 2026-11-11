@@ -1,12 +1,7 @@
-import { createFileRoute, notFound, redirect } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/{-$lang}/docs/ui/react/$platform/')({
-  beforeLoad: ({ params }) => {
-    if (params.platform !== 'web' && params.platform !== 'native')
-      throw notFound()
-    throw redirect({
-      to: '/{-$lang}/docs/ui/react/$platform/$',
-      params: { ...params, _splat: 'getting-started' }
-    })
-  }
-})
+import { createUiDocsIndexRouteOptions } from '@src/lib/docs/platform-route'
+
+export const Route = createFileRoute('/{-$lang}/docs/ui/react/$platform/')(
+  createUiDocsIndexRouteOptions('react')
+)

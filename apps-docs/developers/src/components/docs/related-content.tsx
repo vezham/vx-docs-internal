@@ -1,6 +1,6 @@
 import { useParams } from '@tanstack/react-router'
 
-import { herouiCatalog } from '@src/lib/docs/heroui-catalog'
+import { getComponentCatalog } from '@src/lib/docs/component-catalog'
 import {
   relatedComponents,
   relatedShowcases
@@ -13,8 +13,9 @@ const normalize = (value: string) => value.toLowerCase().replace(/[-_\s]/g, '')
 export const RelatedComponents = ({ component }: { component: string }) => {
   const { lang } = useParams({ strict: false })
   const names = relatedComponents[normalize(component)] ?? []
+  const catalog = getComponentCatalog('web', 'react-v3', lang)
   const pages = names.flatMap(name =>
-    herouiCatalog.filter(
+    catalog.filter(
       item =>
         item.platform === 'web' && normalize(item.title) === normalize(name)
     )
@@ -25,11 +26,7 @@ export const RelatedComponents = ({ component }: { component: string }) => {
       className="not-prose my-6 grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 lg:grid-cols-3"
       aria-label="Related components">
       {pages.map(page => (
-        <ComponentTile
-          key={page.url}
-          page={page}
-          href={`${lang === 'cn' ? '/cn' : ''}${page.url}`}
-        />
+        <ComponentTile key={page.url} page={page} href={page.url} />
       ))}
     </div>
   )

@@ -148,11 +148,7 @@ await write(
 )
 await write(
   path.join(app, 'src/lib/docs/heroui-pro-native-presentation.json'),
-  JSON.stringify(
-    { ...gallery, pagePaths: ['components', ...pagePaths] },
-    null,
-    2
-  ) + '\n'
+  JSON.stringify(gallery, null, 2) + '\n'
 )
 await write(
   path.join(content, '..', 'native-import-manifest.json'),

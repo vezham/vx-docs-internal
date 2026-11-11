@@ -4,23 +4,36 @@ import type { ReactNode } from 'react'
 import type { Root } from '@vezham/docs-core/page-tree'
 import { DocsPage as NotebookPage } from '@vezham/docs-react/layouts/notebook/page'
 import { DocsLayout, type DocsLayoutProps } from '@vezham/start/layouts/docs'
-import { localizedUrl } from '@vezham/start/runtime/docs'
+import {
+  localizedUrl,
+  normalizeDocsRoutePath
+} from '@vezham/start/runtime/docs'
 
 import { i18n } from '@app/docs'
+import { ControlCenter } from '@components/docs/control-center'
 import { sectionTabVariants } from '@components/docs/navigation.variants'
 import { NotebookHeader } from '@components/docs/notebook-header'
 import { NotebookSectionTabs } from '@components/docs/section-tabs'
 import { baseOptions } from '@config/layout'
 import type { Locale } from '@generated/vx'
+import { catalogRoutes, kindLabels } from '@src/lib/icon-library/catalog'
 
 const navigation = [
-  { id: 'icons', title: 'Icons', to: '/{-$lang}/docs/assets/icons' },
+  {
+    id: 'icons',
+    title: kindLabels.icons,
+    to: `/{-$lang}${catalogRoutes.icons}`
+  },
   {
     id: 'illustrations',
-    title: 'Illustrations',
-    to: '/{-$lang}/docs/assets/illustrations'
+    title: kindLabels.illustrations,
+    to: `/{-$lang}${catalogRoutes.illustrations}`
   },
-  { id: 'logos', title: 'Logos', to: '/{-$lang}/docs/assets/logos' },
+  {
+    id: 'logos',
+    title: kindLabels.logos,
+    to: `/{-$lang}${catalogRoutes.logos}`
+  },
   { id: 'docs', title: 'Guides', to: '/{-$lang}/docs/assets/guides' },
   { id: 'packages', title: 'Packages', to: '/{-$lang}/docs/assets/packages' },
   { id: 'faq', title: 'FAQ', to: '/{-$lang}/docs/assets/faq' }
@@ -77,7 +90,18 @@ export const getAssetLayoutOptions = ({
     tabMode: 'navbar',
     slots: {
       header: props => (
-        <NotebookHeader {...props} locale={locale}>
+        <NotebookHeader
+          {...props}
+          locale={locale}
+          controls={
+            <ControlCenter
+              locale={locale}
+              path={normalizeDocsRoutePath({
+                languages: i18n.languages,
+                routePath: pathname
+              })}
+            />
+          }>
           <AssetNavigation active={active} locale={locale} />
         </NotebookHeader>
       )

@@ -1,10 +1,7 @@
-import { createFileRoute, redirect } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/{-$lang}/docs/')({
-  beforeLoad: ({ params }) => {
-    throw redirect({
-      to: '/{-$lang}/docs/ui/react/$platform/$',
-      params: { lang: params.lang, platform: 'web', _splat: 'getting-started' }
-    })
-  }
-})
+import { createUiDocsIndexRouteOptions } from '@src/lib/docs/platform-route'
+
+export const Route = createFileRoute('/{-$lang}/docs/')(
+  createUiDocsIndexRouteOptions()
+)

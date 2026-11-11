@@ -5,6 +5,7 @@ import {
   docsPageSchema
 } from '@vezham/start/runtime/docs'
 
+import { getDocsPackage } from '@config/packages'
 import { vxCore, vxDocs, vxI18n, vxMetadata } from '@generated/vx'
 
 export const packagesDocs = defineDocs({
@@ -32,3 +33,12 @@ export const packagesDocsRuntime = createStaticDocsRuntime({
     siteUrl: vxMetadata.url
   }
 })
+
+export const getAvailableDocsPackages = (locale?: string) =>
+  packagesDocsRuntime.source.getPageTree(locale).children.flatMap(node => {
+    if (node.type !== 'folder') return []
+    const id = getDocsPackage(
+      packagesDocsRuntime.source.getNodeMeta(node, locale)?.path.split('/')[0]
+    )
+    return id ? [id] : []
+  })

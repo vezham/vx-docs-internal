@@ -7,10 +7,7 @@ import {
   PlatformDrawerHeader
 } from '@components/docs/platform-drawer'
 import { PlatformNotebookHeader } from '@components/docs/platform-notebook-header'
-import {
-  type PlatformSection,
-  getPlatformSections
-} from '@components/docs/platform-sections'
+import { getPlatformSections } from '@components/docs/platform-sections'
 import { PlatformTabs } from '@components/docs/platform-tabs'
 import { baseOptions } from '@config/layout'
 import { type UiLibrary, uiLibraries } from '@config/ui-libraries'
@@ -24,13 +21,13 @@ type Options = {
   page: string
   platform: Platform
   platforms: readonly Platform[]
-  selectedSection: PlatformSection
+  selectedSection: string
   getPlatformParams: (platform: Platform) => {
     lang: string | undefined
     platform: Platform
     _splat: string
   }
-  onSectionChange: (section: PlatformSection) => void
+  onSectionChange: (section: string) => void
 }
 
 export const getPlatformLayoutOptions = ({
@@ -96,7 +93,7 @@ export const getPlatformLayoutOptions = ({
         />
       )
     },
-    tabs: getPlatformSections(platform, library).map(item => ({
+    tabs: getPlatformSections(platform, library, locale).map(item => ({
       title: item.title,
       url: localizedUrl(
         i18n,

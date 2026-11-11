@@ -17,13 +17,10 @@ export const docsPackages = {
 } as const
 
 export type DocsPackage = keyof typeof docsPackages
-export const defaultDocsPackage: DocsPackage = 'env'
 export const docsPackageIds = Object.keys(docsPackages) as DocsPackage[]
 
 export const getDocsPackage = (value?: string) =>
   docsPackageIds.find(id => id === value)
 
-export const getPackageDocsPath = (
-  packageId: DocsPackage,
-  page = 'getting-started'
-) => `/docs/packages/${packageId}/${page}`
+export const getPackageDocsPath = (packageId: DocsPackage, page: string) =>
+  `/docs/packages/${packageId}/${page}`

@@ -5,7 +5,6 @@ import { getPlatformDocs } from '@components/docs/platform-docs'
 import { getPlatformLayoutOptions } from '@components/docs/platform-layout'
 import { PlatformDocsRoutePage } from '@components/docs/platform-route-page'
 import {
-  type PlatformSection,
   getPlatformPage,
   getPlatformSections
 } from '@components/docs/platform-sections'
@@ -23,19 +22,19 @@ type Props = {
 
 export const UiDocsPage = ({ library, data, params }: Props) => {
   const navigate = useNavigate()
-  const { lang, platform, _splat } = params
+  const { platform, _splat } = params
   if (platform !== 'web' && platform !== 'native') throw notFound()
 
-  const platformSections = getPlatformSections(platform, library)
+  const locale = data.locale as Locale
+  const platformSections = getPlatformSections(platform, library, locale)
   const section = _splat?.split('/')[0]
   const currentSection = platformSections.find(item => item.id === section)
   if (!data || !currentSection || !_splat) throw notFound()
 
-  const locale = (lang ?? i18n.defaultLanguage) as Locale
   const getPlatformParams = (value: 'web' | 'native') => ({
     lang: locale === i18n.defaultLanguage ? undefined : locale,
     platform: value,
-    _splat: getPlatformPage(value, _splat, library)
+    _splat: getPlatformPage(value, _splat, library, locale)
   })
 
   return (
@@ -51,7 +50,7 @@ export const UiDocsPage = ({ library, data, params }: Props) => {
           page: _splat,
           platform,
           platforms: data.platforms,
-          selectedSection: section as PlatformSection,
+          selectedSection: currentSection.id,
           getPlatformParams,
           onSectionChange: value => {
             void navigate({

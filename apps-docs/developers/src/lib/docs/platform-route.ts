@@ -1,4 +1,11 @@
-import { getPlatformDocsRuntime } from '@components/docs/platform-docs'
+import { notFound, redirect } from '@tanstack/react-router'
+
+import { getUiLibraryRoute } from '@components/docs/library-routes'
+import {
+  getAvailablePlatforms,
+  getPlatformDocsRuntime
+} from '@components/docs/platform-docs'
+import { getPlatformPage } from '@components/docs/platform-sections'
 import { type UiLibrary, getUiLibrarySectionTitle } from '@config/ui-libraries'
 import { docsPageHead } from '@src/lib/page-head'
 
@@ -8,6 +15,28 @@ type PlatformDocsData = Awaited<
   ReturnType<ReturnType<typeof createPlatformDocsLoader>>
 >
 type PlatformParams = { platform: string; _splat?: string; lang?: string }
+
+export const createUiDocsIndexRouteOptions = (
+  library: UiLibrary = 'react'
+) => ({
+  beforeLoad: ({
+    params
+  }: {
+    params: { lang?: string; platform?: string }
+  }) => {
+    const platform = params.platform ?? getAvailablePlatforms(library)[0]
+    if (platform !== 'web' && platform !== 'native') throw notFound()
+    if (!getAvailablePlatforms(library).includes(platform)) throw notFound()
+    throw redirect({
+      to: getUiLibraryRoute(library),
+      params: {
+        lang: params.lang,
+        platform,
+        _splat: getPlatformPage(platform, '', library, params.lang)
+      }
+    })
+  }
+})
 
 export const createPlatformDocsRouteOptions = (library: UiLibrary) => ({
   head: ({

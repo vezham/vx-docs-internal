@@ -10,6 +10,7 @@ import {
   Label,
   Separator
 } from '@vezham/react-v3'
+import { localizedUrl } from '@vezham/start/runtime/docs'
 
 import { i18n } from '@app/docs'
 import { versionSelectorVariants } from '@components/docs/navigation.variants'
@@ -20,8 +21,6 @@ import {
   uiLibrarySections
 } from '@config/ui-libraries'
 import type { Locale } from '@generated/vx'
-
-import { getUiLibraryRoute } from './library-routes'
 
 const styles = versionSelectorVariants()
 
@@ -34,7 +33,6 @@ export const LibrarySelector = ({
 }) => {
   const [open, setOpen] = useState(false)
   const navigate = useNavigate()
-  const language = locale === i18n.defaultLanguage ? undefined : locale
 
   return (
     <Dropdown isOpen={open} onOpenChange={setOpen}>
@@ -56,12 +54,7 @@ export const LibrarySelector = ({
               .find(id => id === key)
             if (!id || getUiLibrary(id).disabled) return
             void navigate({
-              to: getUiLibraryRoute(id),
-              params: {
-                lang: language,
-                platform: 'web',
-                _splat: 'getting-started'
-              }
+              to: localizedUrl(i18n, locale, getUiLibrary(id).routeBase)
             })
           }}>
           {uiLibrarySections.map((section, index) => (

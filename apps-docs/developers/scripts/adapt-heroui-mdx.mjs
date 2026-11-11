@@ -2,7 +2,6 @@ import { readFile, readdir, writeFile } from 'node:fs/promises'
 import { createRequire } from 'node:module'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
-import prettier from 'prettier'
 
 const require = createRequire(import.meta.url)
 const mdxRequire = createRequire(require.resolve('@vezham/docs-mdx'))
@@ -44,15 +43,4 @@ for (const file of await readdir(root, { recursive: true })) {
     : text
   await writeFile(filename, adapted)
 }
-const catalog = path.resolve(
-  import.meta.dirname,
-  '../src/lib/docs/heroui-catalog.ts'
-)
-await writeFile(
-  catalog,
-  await prettier.format(await readFile(catalog, 'utf8'), {
-    ...(await prettier.resolveConfig(catalog)),
-    filepath: catalog
-  })
-)
 console.log([...allNames].sort().join('\n'))

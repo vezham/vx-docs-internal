@@ -5,13 +5,17 @@ import { localizedUrl } from '@vezham/start/runtime/docs'
 
 import { i18n } from '@app/docs'
 import {
+  getAvailableDocsPackages,
+  packagesDocsRuntime
+} from '@components/docs/packages-docs'
+import {
   type DocsPackage,
-  docsPackageIds,
   docsPackages,
   getDocsPackage,
   getPackageDocsPath
 } from '@config/packages'
 import type { Locale } from '@generated/vx'
+import { getContentPage } from '@src/lib/docs/content-navigation'
 
 export const PackageSelector = ({
   packageId,
@@ -29,9 +33,15 @@ export const PackageSelector = ({
       value={packageId}
       onChange={key => {
         const id = getDocsPackage(String(key))
-        if (id)
+        const target =
+          id &&
+          getContentPage(packagesDocsRuntime.source, page, {
+            locale,
+            prefix: id
+          })
+        if (id && target !== undefined)
           void navigate({
-            to: localizedUrl(i18n, locale, getPackageDocsPath(id, page))
+            to: localizedUrl(i18n, locale, getPackageDocsPath(id, target))
           })
       }}>
       <Select.Trigger>
@@ -40,7 +50,7 @@ export const PackageSelector = ({
       </Select.Trigger>
       <Select.Popover placement="bottom end">
         <ListBox aria-label="Packages">
-          {docsPackageIds.map(id => (
+          {getAvailableDocsPackages(locale).map(id => (
             <ListBox.Item key={id} id={id} textValue={docsPackages[id].name}>
               {docsPackages[id].name}
               <ListBox.ItemIndicator />

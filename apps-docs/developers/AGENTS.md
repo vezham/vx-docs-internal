@@ -13,9 +13,10 @@ libraries, including Pro and the in-house Vezham library. Reuse
 sidebar drawer components. Use `getting-started` for the introductory page.
 Change this layout only when the user explicitly requests it.
 
-Each library has its own sub-navigation and MDX content collection. Configure
-its sections independently in `platform-sections.ts`; share layout components,
-not section lists. Store placeholder content as TODO text in the library's
+Each library has its own sub-navigation and MDX content collection. Derive
+section order, visibility, and labels from that collection's content tree and
+metadata through `platform-sections.ts`. Share layout components, not section
+lists. Platform switching resolves live MDX pages, not generated gallery lists. Store placeholder content as TODO text in the library's
 `getting-started/index.mdx`, rather than a dedicated TODO React page/component.
 Show platform tabs only for registered MDX collections that contain pages.
 
@@ -25,9 +26,13 @@ Content collections:
 - Vezham Pro v3: `content/docs-react-pro-v3/{web,native}`
 - In-house Vezham: `content/docs-react/{web,native}`
 
+UI and package entry routes open the first section listed in content metadata.
+Keep redirect logic in their shared route helpers.
+
 All three UI libraries use `/docs/ui/{library}/{web,native}/*` as canonical URLs.
 Each library uses the same four route files; page and markdown URLs require a
-platform. Their library roots open Web Getting Started. Native content for the
+platform. Library roots resolve the first available platform and content section
+(currently Web Getting Started). Native content for the
 in-house library is currently a TODO in MDX using the shared docs layout.
 The in-house `react` library is the default for shared docs helpers and UI
 components. `/docs` and `/docs/ui` open its Web Getting Started page. Pass
@@ -47,7 +52,9 @@ to its section index when a page is unavailable.
 `/handbook` renders `content/handbook/index.mdx`. Other handbook pages
 resolve only from that collection; missing pages return 404. Markdown lives in `content/handbook/markdown` within the same collection,
 with its MDX index rendered at `/handbook/markdown`. Register the handbook runtime
-only once for search and LLM endpoints. Keep TODO text in MDX; do not add generic TODO page
+only once for search and LLM endpoints. Handbook route files are adapters to
+`HandbookDocsPage` and `handbook-route.ts`; its tabs come from the same content
+tree as its sidebar. Keep TODO text in MDX; do not add generic TODO page
 components, platformless UI branches, or redirects for retired URLs.
 
 ## Asset library routes

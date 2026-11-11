@@ -7,10 +7,7 @@ import { Sidebar } from '@vezham/icons-react'
 import { i18n } from '@app/docs'
 import { getUiLibraryRoute } from '@components/docs/library-routes'
 import { sectionTabVariants } from '@components/docs/navigation.variants'
-import {
-  type PlatformSection,
-  getPlatformSections
-} from '@components/docs/platform-sections'
+import { getPlatformSections } from '@components/docs/platform-sections'
 import type { UiLibrary } from '@config/ui-libraries'
 import type { Locale } from '@generated/vx'
 
@@ -18,7 +15,7 @@ type Props = {
   library?: UiLibrary
   locale: Locale
   platform: 'web' | 'native'
-  selectedSection: PlatformSection
+  selectedSection: string
 }
 
 export const SectionTabs = ({
@@ -29,7 +26,7 @@ export const SectionTabs = ({
 }: Props) => {
   return (
     <NotebookSectionTabs>
-      {getPlatformSections(platform, library).map(item => (
+      {getPlatformSections(platform, library, locale).map(item => (
         <Link
           key={item.id}
           to={getUiLibraryRoute(library)}

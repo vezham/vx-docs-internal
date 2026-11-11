@@ -23,9 +23,6 @@ import { Route as Char123LangChar125HandbookChar123Char125DotmdRouteImport } fro
 import { Route as Char123LangChar125DocsAssetsIndexRouteImport } from './routes/{-$lang}/docs/assets/index'
 import { Route as Char123LangChar125DocsPackagesIndexRouteImport } from './routes/{-$lang}/docs/packages/index'
 import { Route as Char123LangChar125DocsUiIndexRouteImport } from './routes/{-$lang}/docs/ui/index'
-import { Route as Char123LangChar125HandbookMarkdownIndexRouteImport } from './routes/{-$lang}/handbook/markdown/index'
-import { Route as Char123LangChar125HandbookMarkdownSplatRouteImport } from './routes/{-$lang}/handbook/markdown/$'
-import { Route as Char123LangChar125HandbookMarkdownChar123Char125DotmdRouteImport } from './routes/{-$lang}/handbook/markdown/{$}[.]md'
 import { Route as Char123LangChar125DocsAssetsFaqIndexRouteImport } from './routes/{-$lang}/docs/assets/faq/index'
 import { Route as Char123LangChar125DocsAssetsGuidesIndexRouteImport } from './routes/{-$lang}/docs/assets/guides/index'
 import { Route as Char123LangChar125DocsAssetsGuidesFrameworkRouteImport } from './routes/{-$lang}/docs/assets/guides/$framework'
@@ -128,24 +125,6 @@ const Char123LangChar125DocsUiIndexRoute =
   Char123LangChar125DocsUiIndexRouteImport.update({
     id: '/docs/ui/',
     path: '/docs/ui/',
-    getParentRoute: () => Char123LangChar125RouteRoute,
-  } as any)
-const Char123LangChar125HandbookMarkdownIndexRoute =
-  Char123LangChar125HandbookMarkdownIndexRouteImport.update({
-    id: '/handbook/markdown/',
-    path: '/handbook/markdown/',
-    getParentRoute: () => Char123LangChar125RouteRoute,
-  } as any)
-const Char123LangChar125HandbookMarkdownSplatRoute =
-  Char123LangChar125HandbookMarkdownSplatRouteImport.update({
-    id: '/handbook/markdown/$',
-    path: '/handbook/markdown/$',
-    getParentRoute: () => Char123LangChar125RouteRoute,
-  } as any)
-const Char123LangChar125HandbookMarkdownChar123Char125DotmdRoute =
-  Char123LangChar125HandbookMarkdownChar123Char125DotmdRouteImport.update({
-    id: '/handbook/markdown/{$}.md',
-    path: '/handbook/markdown/{$}.md',
     getParentRoute: () => Char123LangChar125RouteRoute,
   } as any)
 const Char123LangChar125DocsAssetsFaqIndexRoute =
@@ -321,12 +300,9 @@ export interface FileRoutesByFullPath {
   '/{-$lang}/handbook/{$}.md': typeof Char123LangChar125HandbookChar123Char125DotmdRoute
   '/{-$lang}/docs/': typeof Char123LangChar125DocsIndexRoute
   '/{-$lang}/handbook/': typeof Char123LangChar125HandbookIndexRoute
-  '/{-$lang}/handbook/markdown/$': typeof Char123LangChar125HandbookMarkdownSplatRoute
-  '/{-$lang}/handbook/markdown/{$}.md': typeof Char123LangChar125HandbookMarkdownChar123Char125DotmdRoute
   '/{-$lang}/docs/assets/': typeof Char123LangChar125DocsAssetsIndexRoute
   '/{-$lang}/docs/packages/': typeof Char123LangChar125DocsPackagesIndexRoute
   '/{-$lang}/docs/ui/': typeof Char123LangChar125DocsUiIndexRoute
-  '/{-$lang}/handbook/markdown/': typeof Char123LangChar125HandbookMarkdownIndexRoute
   '/{-$lang}/docs/assets/guides/$framework': typeof Char123LangChar125DocsAssetsGuidesFrameworkRoute
   '/{-$lang}/docs/assets/guides/{$framework}.md': typeof Char123LangChar125DocsAssetsGuidesChar123frameworkChar125DotmdRoute
   '/{-$lang}/docs/assets/icons/$name': typeof Char123LangChar125DocsAssetsIconsNameRoute
@@ -365,12 +341,9 @@ export interface FileRoutesByTo {
   '/{-$lang}/handbook/{$}.md': typeof Char123LangChar125HandbookChar123Char125DotmdRoute
   '/{-$lang}/docs': typeof Char123LangChar125DocsIndexRoute
   '/{-$lang}/handbook': typeof Char123LangChar125HandbookIndexRoute
-  '/{-$lang}/handbook/markdown/$': typeof Char123LangChar125HandbookMarkdownSplatRoute
-  '/{-$lang}/handbook/markdown/{$}.md': typeof Char123LangChar125HandbookMarkdownChar123Char125DotmdRoute
   '/{-$lang}/docs/assets': typeof Char123LangChar125DocsAssetsIndexRoute
   '/{-$lang}/docs/packages': typeof Char123LangChar125DocsPackagesIndexRoute
   '/{-$lang}/docs/ui': typeof Char123LangChar125DocsUiIndexRoute
-  '/{-$lang}/handbook/markdown': typeof Char123LangChar125HandbookMarkdownIndexRoute
   '/{-$lang}/docs/assets/guides/$framework': typeof Char123LangChar125DocsAssetsGuidesFrameworkRoute
   '/{-$lang}/docs/assets/guides/{$framework}.md': typeof Char123LangChar125DocsAssetsGuidesChar123frameworkChar125DotmdRoute
   '/{-$lang}/docs/assets/icons/$name': typeof Char123LangChar125DocsAssetsIconsNameRoute
@@ -411,12 +384,9 @@ export interface FileRoutesById {
   '/{-$lang}/handbook/{$}.md': typeof Char123LangChar125HandbookChar123Char125DotmdRoute
   '/{-$lang}/docs/': typeof Char123LangChar125DocsIndexRoute
   '/{-$lang}/handbook/': typeof Char123LangChar125HandbookIndexRoute
-  '/{-$lang}/handbook/markdown/$': typeof Char123LangChar125HandbookMarkdownSplatRoute
-  '/{-$lang}/handbook/markdown/{$}.md': typeof Char123LangChar125HandbookMarkdownChar123Char125DotmdRoute
   '/{-$lang}/docs/assets/': typeof Char123LangChar125DocsAssetsIndexRoute
   '/{-$lang}/docs/packages/': typeof Char123LangChar125DocsPackagesIndexRoute
   '/{-$lang}/docs/ui/': typeof Char123LangChar125DocsUiIndexRoute
-  '/{-$lang}/handbook/markdown/': typeof Char123LangChar125HandbookMarkdownIndexRoute
   '/{-$lang}/docs/assets/guides/$framework': typeof Char123LangChar125DocsAssetsGuidesFrameworkRoute
   '/{-$lang}/docs/assets/guides/{$framework}.md': typeof Char123LangChar125DocsAssetsGuidesChar123frameworkChar125DotmdRoute
   '/{-$lang}/docs/assets/icons/$name': typeof Char123LangChar125DocsAssetsIconsNameRoute
@@ -458,12 +428,9 @@ export interface FileRouteTypes {
     | '/{-$lang}/handbook/{$}.md'
     | '/{-$lang}/docs/'
     | '/{-$lang}/handbook/'
-    | '/{-$lang}/handbook/markdown/$'
-    | '/{-$lang}/handbook/markdown/{$}.md'
     | '/{-$lang}/docs/assets/'
     | '/{-$lang}/docs/packages/'
     | '/{-$lang}/docs/ui/'
-    | '/{-$lang}/handbook/markdown/'
     | '/{-$lang}/docs/assets/guides/$framework'
     | '/{-$lang}/docs/assets/guides/{$framework}.md'
     | '/{-$lang}/docs/assets/icons/$name'
@@ -502,12 +469,9 @@ export interface FileRouteTypes {
     | '/{-$lang}/handbook/{$}.md'
     | '/{-$lang}/docs'
     | '/{-$lang}/handbook'
-    | '/{-$lang}/handbook/markdown/$'
-    | '/{-$lang}/handbook/markdown/{$}.md'
     | '/{-$lang}/docs/assets'
     | '/{-$lang}/docs/packages'
     | '/{-$lang}/docs/ui'
-    | '/{-$lang}/handbook/markdown'
     | '/{-$lang}/docs/assets/guides/$framework'
     | '/{-$lang}/docs/assets/guides/{$framework}.md'
     | '/{-$lang}/docs/assets/icons/$name'
@@ -547,12 +511,9 @@ export interface FileRouteTypes {
     | '/{-$lang}/handbook/{$}.md'
     | '/{-$lang}/docs/'
     | '/{-$lang}/handbook/'
-    | '/{-$lang}/handbook/markdown/$'
-    | '/{-$lang}/handbook/markdown/{$}.md'
     | '/{-$lang}/docs/assets/'
     | '/{-$lang}/docs/packages/'
     | '/{-$lang}/docs/ui/'
-    | '/{-$lang}/handbook/markdown/'
     | '/{-$lang}/docs/assets/guides/$framework'
     | '/{-$lang}/docs/assets/guides/{$framework}.md'
     | '/{-$lang}/docs/assets/icons/$name'
@@ -688,27 +649,6 @@ declare module '@tanstack/react-router' {
       path: '/docs/ui'
       fullPath: '/{-$lang}/docs/ui/'
       preLoaderRoute: typeof Char123LangChar125DocsUiIndexRouteImport
-      parentRoute: typeof Char123LangChar125RouteRoute
-    }
-    '/{-$lang}/handbook/markdown/': {
-      id: '/{-$lang}/handbook/markdown/'
-      path: '/handbook/markdown'
-      fullPath: '/{-$lang}/handbook/markdown/'
-      preLoaderRoute: typeof Char123LangChar125HandbookMarkdownIndexRouteImport
-      parentRoute: typeof Char123LangChar125RouteRoute
-    }
-    '/{-$lang}/handbook/markdown/$': {
-      id: '/{-$lang}/handbook/markdown/$'
-      path: '/handbook/markdown/$'
-      fullPath: '/{-$lang}/handbook/markdown/$'
-      preLoaderRoute: typeof Char123LangChar125HandbookMarkdownSplatRouteImport
-      parentRoute: typeof Char123LangChar125RouteRoute
-    }
-    '/{-$lang}/handbook/markdown/{$}.md': {
-      id: '/{-$lang}/handbook/markdown/{$}.md'
-      path: '/handbook/markdown/{$}.md'
-      fullPath: '/{-$lang}/handbook/markdown/{$}.md'
-      preLoaderRoute: typeof Char123LangChar125HandbookMarkdownChar123Char125DotmdRouteImport
       parentRoute: typeof Char123LangChar125RouteRoute
     }
     '/{-$lang}/docs/assets/faq/': {
@@ -902,12 +842,9 @@ interface Char123LangChar125RouteRouteChildren {
   Char123LangChar125HandbookChar123Char125DotmdRoute: typeof Char123LangChar125HandbookChar123Char125DotmdRoute
   Char123LangChar125DocsIndexRoute: typeof Char123LangChar125DocsIndexRoute
   Char123LangChar125HandbookIndexRoute: typeof Char123LangChar125HandbookIndexRoute
-  Char123LangChar125HandbookMarkdownSplatRoute: typeof Char123LangChar125HandbookMarkdownSplatRoute
-  Char123LangChar125HandbookMarkdownChar123Char125DotmdRoute: typeof Char123LangChar125HandbookMarkdownChar123Char125DotmdRoute
   Char123LangChar125DocsAssetsIndexRoute: typeof Char123LangChar125DocsAssetsIndexRoute
   Char123LangChar125DocsPackagesIndexRoute: typeof Char123LangChar125DocsPackagesIndexRoute
   Char123LangChar125DocsUiIndexRoute: typeof Char123LangChar125DocsUiIndexRoute
-  Char123LangChar125HandbookMarkdownIndexRoute: typeof Char123LangChar125HandbookMarkdownIndexRoute
   Char123LangChar125DocsAssetsGuidesFrameworkRoute: typeof Char123LangChar125DocsAssetsGuidesFrameworkRoute
   Char123LangChar125DocsAssetsGuidesChar123frameworkChar125DotmdRoute: typeof Char123LangChar125DocsAssetsGuidesChar123frameworkChar125DotmdRoute
   Char123LangChar125DocsAssetsIconsNameRoute: typeof Char123LangChar125DocsAssetsIconsNameRoute
@@ -944,17 +881,11 @@ const Char123LangChar125RouteRouteChildren: Char123LangChar125RouteRouteChildren
       Char123LangChar125HandbookChar123Char125DotmdRoute,
     Char123LangChar125DocsIndexRoute: Char123LangChar125DocsIndexRoute,
     Char123LangChar125HandbookIndexRoute: Char123LangChar125HandbookIndexRoute,
-    Char123LangChar125HandbookMarkdownSplatRoute:
-      Char123LangChar125HandbookMarkdownSplatRoute,
-    Char123LangChar125HandbookMarkdownChar123Char125DotmdRoute:
-      Char123LangChar125HandbookMarkdownChar123Char125DotmdRoute,
     Char123LangChar125DocsAssetsIndexRoute:
       Char123LangChar125DocsAssetsIndexRoute,
     Char123LangChar125DocsPackagesIndexRoute:
       Char123LangChar125DocsPackagesIndexRoute,
     Char123LangChar125DocsUiIndexRoute: Char123LangChar125DocsUiIndexRoute,
-    Char123LangChar125HandbookMarkdownIndexRoute:
-      Char123LangChar125HandbookMarkdownIndexRoute,
     Char123LangChar125DocsAssetsGuidesFrameworkRoute:
       Char123LangChar125DocsAssetsGuidesFrameworkRoute,
     Char123LangChar125DocsAssetsGuidesChar123frameworkChar125DotmdRoute:

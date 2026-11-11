@@ -24,7 +24,7 @@ const uiSection = {
   title: 'UI',
   headline: 'Your next interface starts here.',
   content: 'Components and patterns for your next interface.',
-  href: `${uiLibraries.react.routeBase}/web/getting-started`,
+  href: uiLibraries.react.routeBase,
   action: 'Explore UI',
   layout: 'md:col-span-2',
   appearance: 'bg-[#ffe283] text-[#482111]',

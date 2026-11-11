@@ -1,7 +1,7 @@
 import { deserializePageTree } from '@vezham/docs-core/source/client'
-import { decodeMarkdownUrl } from '@vezham/start/runtime/docs'
 
 import { handbookDocsRuntime } from '../../components/docs/handbook-docs'
+import { handbookMarkdownHandler } from './handbook-route'
 
 describe('MDX handbook', () => {
   it('includes Markdown in the shared handbook source', () => {
@@ -79,10 +79,11 @@ describe('MDX handbook', () => {
   it.each(['index.md', 'handbooks/basic.md'])(
     'preserves section-relative Markdown export %s',
     async path => {
-      const { page } = handbookDocsRuntime.getDocsPage({
-        slugs: ['markdown', ...decodeMarkdownUrl(path.split('/'))]
+      const response = await handbookMarkdownHandler({
+        params: { _splat: 'markdown/' + path }
       })
-      expect(await handbookDocsRuntime.getLLMText(page)).toContain('Syntax')
+      expect(response.headers.get('content-type')).toBe('text/markdown')
+      expect(await response.text()).toContain('Syntax')
     }
   )
 })

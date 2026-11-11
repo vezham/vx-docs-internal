@@ -30,6 +30,11 @@ export const getNotebookLayoutOptions = ({
   sectionLabel?: string
 }): Omit<DocsLayoutProps, 'children' | 'shell' | 'tree'> => {
   const options = baseOptions(locale)
+  const activePath = sections
+    .filter(
+      section => path === section.path || path.startsWith(`${section.path}/`)
+    )
+    .sort((a, b) => b.path.length - a.path.length)[0]?.path
   return {
     ...options,
     nav: { ...options.nav, mode: 'top', children: secondary },
@@ -38,7 +43,7 @@ export const getNotebookLayoutOptions = ({
       title: section.title,
       url: localizedUrl(i18n, locale, section.path),
       urls:
-        path === section.path || path.startsWith(`${section.path}/`)
+        section.path === activePath
           ? new Set([localizedUrl(i18n, locale, path)])
           : undefined
     })),
@@ -51,12 +56,12 @@ export const getNotebookLayoutOptions = ({
           controls={<ControlCenter locale={locale} path={path} />}>
           <NotebookSectionTabs label={sectionLabel}>
             {sections.map(section => {
-              const selected =
-                path === section.path || path.startsWith(`${section.path}/`)
+              const selected = section.path === activePath
               return (
                 <Link
                   key={section.path}
                   to={localizedUrl(i18n, locale, section.path)}
+                  activeOptions={{ exact: true }}
                   aria-current={selected ? 'page' : undefined}
                   className={sectionTabVariants({ selected })}>
                   {section.title}

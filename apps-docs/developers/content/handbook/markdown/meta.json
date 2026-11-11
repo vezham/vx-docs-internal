@@ -1,6 +1,6 @@
 {
   "root": true,
-  "title": "Markdown 101",
+  "title": "Markdown",
   "description": "Class on Markdown 101",
   "icon": "text-format",
   "pages": ["index", "handbooks", "ref", "todo"]

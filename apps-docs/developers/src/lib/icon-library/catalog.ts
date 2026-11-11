@@ -35,9 +35,9 @@ export const catalogRoutes = {
   logos: '/docs/assets/logos'
 } as const
 export const detailRoutes = {
-  icons: '/{-$lang}/docs/assets/icons/$name',
-  illustrations: '/{-$lang}/docs/assets/illustrations/$name',
-  logos: '/{-$lang}/docs/assets/logos/$name'
+  icons: `/{-$lang}${catalogRoutes.icons}/$name`,
+  illustrations: `/{-$lang}${catalogRoutes.illustrations}/$name`,
+  logos: `/{-$lang}${catalogRoutes.logos}/$name`
 } as const
 export const kindLabels = {
   icons: 'Icons',

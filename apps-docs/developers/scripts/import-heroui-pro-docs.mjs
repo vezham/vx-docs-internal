@@ -425,22 +425,7 @@ await write(
 )
 await write(
   path.join(app, 'src/lib/docs/heroui-pro-presentation.json'),
-  JSON.stringify(
-    {
-      ...gallery,
-      pagePaths: [
-        'components',
-        ...pages.map(page => `components/${page.slug}`),
-        ...guides.map(name =>
-          name === 'index.mdx'
-            ? 'getting-started'
-            : `getting-started/${name.replace('.mdx', '')}`
-        )
-      ]
-    },
-    null,
-    2
-  ) + '\n'
+  JSON.stringify(gallery, null, 2) + '\n'
 )
 console.log(
   `Imported ${pages.length} component pages, ${guides.length} guides and ${Object.keys(registry).length} live demos.`

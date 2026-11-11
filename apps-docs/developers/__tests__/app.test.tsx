@@ -63,7 +63,7 @@ describe('App', () => {
         const navigation = within(view.getByRole('navigation', { name: label }))
         expect(
           navigation.getByRole('link', { name: 'Explore UI' })
-        ).toHaveAttribute('href', `${prefix}/docs/ui/react/web/getting-started`)
+        ).toHaveAttribute('href', `${prefix}/docs/ui/react`)
         expect(
           navigation.getByRole('link', { name: 'Browse assets' })
         ).toHaveAttribute('href', `${prefix}/docs/assets/icons`)
@@ -229,6 +229,26 @@ describe('App', () => {
     ).toEqual([])
     expect(router.state.location.pathname).toBe(path)
   })
+
+  it.each(['', '/cn'])(
+    'selects only the active handbook section at %s',
+    async prefix => {
+      const view = await renderApp(
+        `${prefix}/handbook/markdown/handbooks/basic`
+      )
+      const navigation = view.getByRole('navigation', {
+        name: 'Handbook sections'
+      })
+      const tabs = within(navigation)
+      expect(tabs.getByRole('link', { name: 'Markdown' })).toHaveAttribute(
+        'aria-current',
+        'page'
+      )
+      expect(tabs.getByRole('link', { name: 'Handbook' })).not.toHaveAttribute(
+        'aria-current'
+      )
+    }
+  )
 
   it.each([
     '/handbook',
