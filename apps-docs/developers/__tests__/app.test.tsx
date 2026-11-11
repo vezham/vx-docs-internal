@@ -20,6 +20,50 @@ const renderApp = async (path = '/') => {
 }
 
 describe('App', () => {
+  beforeEach(() => {
+    vi.stubGlobal(
+      'IntersectionObserver',
+      class {
+        observe = () => undefined
+        unobserve = () => undefined
+        disconnect = () => undefined
+      }
+    )
+  })
+
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
+
+  it.each(['/', '/cn'])(
+    'offers the primary docs destinations from the homepage at %s',
+    async path => {
+      const view = await renderApp(path)
+      const prefix = path === '/' ? '' : '/cn'
+      expect(
+        view.getByRole('heading', { name: 'Vezham Developers', level: 1 })
+      ).toBeTruthy()
+      for (const label of [
+        'Explore documentation',
+        'Explore documentation list'
+      ]) {
+        const navigation = within(view.getByRole('navigation', { name: label }))
+        expect(
+          navigation.getByRole('link', { name: 'Explore UI' })
+        ).toHaveAttribute('href', `${prefix}/docs/ui/react/web/getting-started`)
+        expect(
+          navigation.getByRole('link', { name: 'Browse assets' })
+        ).toHaveAttribute('href', `${prefix}/docs/assets/icons`)
+        expect(
+          navigation.getByRole('link', { name: 'Read the handbook' })
+        ).toHaveAttribute('href', `${prefix}/handbook`)
+        expect(
+          navigation.getByRole('link', { name: 'View packages' })
+        ).toHaveAttribute('href', `${prefix}/docs/assets/packages`)
+      }
+    }
+  )
+
   it.each([
     ['/docs/ui/react/web/getting-started', 'Getting Started - Vezham Web'],
     [
@@ -167,14 +211,6 @@ describe('App', () => {
       configurable: true,
       value: () => []
     })
-    vi.stubGlobal(
-      'IntersectionObserver',
-      class {
-        observe = () => undefined
-        unobserve = () => undefined
-        disconnect = () => undefined
-      }
-    )
     try {
       const { container, findByRole, queryByRole, router } = await renderApp(
         '/docs/assets/packages'
@@ -207,7 +243,6 @@ describe('App', () => {
         )
       ).toBeTruthy()
     } finally {
-      vi.unstubAllGlobals()
       if (animations)
         Object.defineProperty(Element.prototype, 'getAnimations', animations)
       else Reflect.deleteProperty(Element.prototype, 'getAnimations')
@@ -301,14 +336,6 @@ describe('App', () => {
       configurable: true,
       value: () => []
     })
-    vi.stubGlobal(
-      'IntersectionObserver',
-      class {
-        observe = () => undefined
-        unobserve = () => undefined
-        disconnect = () => undefined
-      }
-    )
     try {
       const { findAllByRole, router } = await renderApp(
         '/docs/ui/react-v3/web/migration'
@@ -321,7 +348,6 @@ describe('App', () => {
         )
       )
     } finally {
-      vi.unstubAllGlobals()
       if (animations)
         Object.defineProperty(Element.prototype, 'getAnimations', animations)
       else Reflect.deleteProperty(Element.prototype, 'getAnimations')

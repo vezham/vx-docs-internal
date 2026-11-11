@@ -10,24 +10,8 @@ export const baseOptions = (
 ): BaseLayoutProps => {
   return {
     nav: {
-      title: <Brand logoSize={22} />
-    },
-    links: [
-      {
-        text: 'UI',
-        url: localizedUrl(i18n, locale, '/docs/ui/react/web/getting-started'),
-        active: 'nested-url'
-      },
-      {
-        text: 'Assets',
-        url: localizedUrl(i18n, locale, '/docs/assets/icons'),
-        active: 'nested-url'
-      },
-      {
-        text: 'Handbook',
-        url: localizedUrl(i18n, locale, '/handbook'),
-        active: 'nested-url'
-      }
-    ]
+      title: <Brand logoSize={22} />,
+      url: localizedUrl(i18n, locale, '/')
+    }
   }
 }
