@@ -246,7 +246,18 @@ fs.writeFileSync(
   JSON.stringify({ packages: [...packages, ...tools], faq }, null, 2) + '\n'
 )
 const docs = app + '/content/docs-assets'
-fs.mkdirSync(docs, { recursive: true })
+const navigation = JSON.parse(fs.readFileSync(docs + '/meta.json', 'utf8'))
+const guideFiles = new Map(
+  navigation.pages
+    .filter(entry => entry !== 'index' && !entry.startsWith('---'))
+    .map(entry => [path.basename(entry), path.join(docs, entry + '.mdx')])
+)
+const guideFile = id => {
+  const file = guideFiles.get(id)
+  if (!file) throw new Error(`Missing asset guide in meta.json: ${id}`)
+  fs.mkdirSync(path.dirname(file), { recursive: true })
+  return file
+}
 const fw = [
   ['vanilla', 'javascript', 'Vanilla JS / CDN'],
   ['react', 'react', 'React'],
@@ -260,8 +271,9 @@ const fw = [
   ['svg', 'svg', 'Raw SVG']
 ]
 for (const [id, folder, title] of fw) {
+  const destination = guideFile(id)
   // vx-bot/NOTE: Preserve the local SVG guide, which documents this app's export behavior.
-  if (id === 'svg' && fs.existsSync(docs + '/svg.mdx')) continue
+  if (id === 'svg' && fs.existsSync(destination)) continue
   const md = updateImportedLinks(
     fs.readFileSync(src + '/docs/' + folder + '/index.md', 'utf8')
   )
@@ -295,58 +307,27 @@ for (const [id, folder, title] of fw) {
       }
     )
   fs.writeFileSync(
-    docs + '/' + id + '.mdx',
+    destination,
     `---\ntitle: ${JSON.stringify(title)}\ndescription: ${JSON.stringify('Use Vezham Icons with ' + title + '.')}\nlogo: ${JSON.stringify(packageLogos[id] ?? id)}\n---\n\n${md.trim()}${id === 'svg' ? "\n\n## Illustrations and logos\n\nOpen any [illustration](/docs/assets/illustrations) or [logo](/docs/assets/logos) to copy its original SVG, download the vector file, or export a transparent PNG/WebP at the selected size. Logos include a variant selector when multiple versions are available.\n\nRaster exports preserve the artwork's aspect ratio inside a square canvas. Use **Open SVG** to open the original file, or copy an HTML, React, or CSS embed snippet." : ''}\n`
   )
 }
-for (const name of [
-  'props',
-  'weights',
-  'styling',
-  'accessibility',
-  'performance',
-  'typescript',
-  'troubleshooting'
-]) {
+for (const entry of navigation.pages.filter(entry =>
+  entry.startsWith('(reference)/')
+)) {
+  const name = path.basename(entry)
   const raw = updateImportedLinks(
     fs.readFileSync(src + '/docs/shared/' + name + '.md', 'utf8')
   )
   const title = /^# (.+)/m.exec(raw)?.[1] || name
   fs.writeFileSync(
-    docs + '/' + name + '.mdx',
+    guideFile(name),
     `---\ntitle: ${JSON.stringify(title)}\n---\n\n${raw
       .replace(/^# .+\n/, '')
       .replaceAll('@vezham/icons@latest', '@vezham/icons@1.0.7')
       .trim()}\n`
   )
 }
-fs.writeFileSync(
-  docs + '/index.mdx',
-  `---\ntitle: Vezham Icons\ndescription: Browse vector assets and use them in your framework of choice.\n---\n\nVezham brings UI icons, illustrations, and brand logos into one library. Search the catalogs, open an asset to customize its preview, and copy the code you need.\n\n## Quick start with the CDN\n\nThe icon browser uses this pinned, framework-independent web component:\n\n\`\`\`html\n<script defer src="https://cdn.jsdelivr.net/npm/@vezham/icons@1.0.7/dist/cdn/vezham-icons.js"></script>\n<vx-icon icon="home" weight="outline" size="24"></vx-icon>\n\`\`\`\n\n## Choose a framework\n\n${fw.map(([id, , title]) => '- [' + title + '](/docs/assets/guides/' + id + ')').join('\n')}\n\n## Explore the library\n\n- [Icons](/docs/assets/icons) — four drawing weights, color controls, and SVG or raster exports.\n- [Illustrations](/docs/assets/illustrations) — search the full illustration collection.\n- [Logos](/docs/assets/logos) — browse brands and available variants.\n- [Packages and tools](/docs/assets/packages) — integrations for your app and design workflow.\n- [FAQ](/docs/assets/faq) — answers about the library.\n`
-)
-fs.writeFileSync(
-  docs + '/meta.json',
-  JSON.stringify(
-    {
-      title: 'Icon documentation',
-      pages: [
-        'index',
-        '---Frameworks---',
-        ...fw.map(f => f[0]),
-        '---Reference---',
-        'props',
-        'weights',
-        'styling',
-        'accessibility',
-        'performance',
-        'typescript',
-        'troubleshooting'
-      ]
-    },
-    null,
-    2
-  ) + '\n'
-)
+// vx-bot/NOTE: The overview and navigation are maintained locally, not regenerated from upstream.
 fs.writeFileSync(
   out + '/manifest.json',
   JSON.stringify(
@@ -364,7 +345,7 @@ console.log(
     icons: icons.length,
     illustrations: illustrations.length,
     logos: logos.length,
-    docs: 18,
+    docs: guideFiles.size + 1,
     faq: faq.reduce((n, g) => n + g.items.length, 0)
   })
 )
