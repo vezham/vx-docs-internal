@@ -60,7 +60,7 @@ const packagesSection = {
   title: 'Packages',
   headline: 'Your favorite tools. One library.',
   content: 'Packages for your app, editor, and design workflow.',
-  href: '/docs/assets/packages',
+  href: '/docs/packages',
   action: 'View packages',
   appearance: 'bg-[#cbbbec] text-[#40134f]',
   icon: Box

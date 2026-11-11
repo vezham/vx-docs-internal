@@ -19,6 +19,26 @@ og:
   site: Vezham Developers
   theme: light
 routes:
+  - path: /docs/packages
+  - path: /docs/packages/**
+    source: routes
+  - path: /cn/docs/packages
+  - path: /cn/docs/packages/**
+    source: routes
+  - path: /docs/packages/env/getting-started
+  - path: /docs/packages/start/getting-started
+  - path: /docs/packages/template/getting-started
+  - path: /docs/packages/utils/getting-started
+  - path: /docs/packages/devtools/getting-started
+  - path: /docs/packages/config/getting-started
+  - path: /docs/packages/hooks/getting-started
+  - path: /cn/docs/packages/env/getting-started
+  - path: /cn/docs/packages/start/getting-started
+  - path: /cn/docs/packages/template/getting-started
+  - path: /cn/docs/packages/utils/getting-started
+  - path: /cn/docs/packages/devtools/getting-started
+  - path: /cn/docs/packages/config/getting-started
+  - path: /cn/docs/packages/hooks/getting-started
   - path: /docs/ui/react-v3/web/getting-started
   - path: /docs/ui/react-v3/native/getting-started
   - path: /cn/docs/ui/react-v3/web/getting-started

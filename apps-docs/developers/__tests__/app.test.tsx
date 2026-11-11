@@ -3,6 +3,7 @@ import { fireEvent, render, waitFor, within } from '@testing-library/react'
 
 import { createRouter } from '@vezham/start/router/tanstack'
 
+import { docsPackages } from '../src/config/packages'
 import { vxI18n } from '../src/generated/vx'
 import { routeTree } from '../src/routeTree.gen'
 
@@ -20,7 +21,16 @@ const renderApp = async (path = '/') => {
 }
 
 describe('App', () => {
+  const animations = Object.getOwnPropertyDescriptor(
+    Element.prototype,
+    'getAnimations'
+  )
+
   beforeEach(() => {
+    Object.defineProperty(Element.prototype, 'getAnimations', {
+      configurable: true,
+      value: () => []
+    })
     vi.stubGlobal(
       'IntersectionObserver',
       class {
@@ -32,6 +42,9 @@ describe('App', () => {
   })
 
   afterEach(() => {
+    if (animations)
+      Object.defineProperty(Element.prototype, 'getAnimations', animations)
+    else Reflect.deleteProperty(Element.prototype, 'getAnimations')
     vi.unstubAllGlobals()
   })
 
@@ -59,12 +72,94 @@ describe('App', () => {
         ).toHaveAttribute('href', `${prefix}/handbook`)
         expect(
           navigation.getByRole('link', { name: 'View packages' })
-        ).toHaveAttribute('href', `${prefix}/docs/assets/packages`)
+        ).toHaveAttribute('href', `${prefix}/docs/packages`)
       }
     }
   )
 
+  it.each(['/docs/packages', '/cn/docs/packages'])(
+    'renders the packages TODO from MDX at %s',
+    async path => {
+      const view = await renderApp(path)
+      expect(
+        await view.findByRole('heading', { name: 'Getting Started', level: 1 })
+      ).toBeTruthy()
+      expect(
+        await view.findByText(
+          'TODO: Add getting started documentation for @vezham/env.'
+        )
+      ).toBeTruthy()
+    }
+  )
+
+  it.each(['', '/cn'])(
+    'switches package sections and shows the current version at %s',
+    async prefix => {
+      const view = await renderApp(
+        `${prefix}/docs/packages/hooks/getting-started`
+      )
+      await view.findByText(
+        'TODO: Add getting started documentation for @vezham/hooks.'
+      )
+      const header = within(
+        view.container.querySelector('#nd-subnav') as HTMLElement
+      )
+      expect(
+        header.getByRole('button', { name: /Package version/ }).textContent
+      ).toContain(docsPackages.hooks.version)
+      expect(
+        header.getByRole('button', { name: /Choose package/ }).textContent
+      ).toContain('@vezham/hooks')
+      const sections = within(
+        view.getByRole('navigation', { name: 'Package documentation sections' })
+      )
+      for (const title of [
+        'Getting Started',
+        'Guides',
+        'API Reference',
+        'Releases'
+      ])
+        expect(sections.getByRole('link', { name: title })).toBeTruthy()
+      fireEvent.click(sections.getByRole('link', { name: 'Guides' }))
+      await waitFor(() =>
+        expect(view.router.state.location.pathname).toBe(
+          `${prefix}/docs/packages/hooks/guides`
+        )
+      )
+      await view.findByText('TODO: Add usage guides for @vezham/hooks.')
+      expect(
+        view.container.querySelector('#nd-sidebar')?.textContent
+      ).not.toContain('@vezham/env')
+    }
+  )
+
   it.each([
+    '/docs/packages',
+    '/cn/docs/packages',
+    '/handbook',
+    '/handbook/markdown',
+    '/docs/ui/react/web/getting-started',
+    '/docs/ui/react-v3/web/getting-started',
+    '/docs/ui/react-pro-v3/web/getting-started',
+    '/docs/assets/guides'
+  ])('uses the shared notebook layout at %s', async path => {
+    const view = await renderApp(path)
+    await view.findAllByRole('heading', { level: 1 })
+    await waitFor(() => {
+      expect(view.container.querySelector('#nd-notebook-layout')).toBeTruthy()
+      expect(
+        view.container.querySelector('#nd-subnav [data-header-body]')
+      ).toBeTruthy()
+      expect(
+        view.container.querySelector('#nd-subnav [data-header-tabs]')
+      ).toBeTruthy()
+      expect(view.container.querySelector('#nd-sidebar')).toBeTruthy()
+    })
+  })
+
+  it.each([
+    ['/docs/packages', 'Getting Started - @vezham/env'],
+    ['/cn/docs/packages', 'Getting Started - @vezham/env'],
     ['/docs/ui/react/web/getting-started', 'Getting Started - Vezham Web'],
     [
       '/docs/ui/react/native/getting-started',
@@ -203,50 +298,33 @@ describe('App', () => {
   )
 
   it('keeps icon resources and framework guides in the shared notebook shell', async () => {
-    const animations = Object.getOwnPropertyDescriptor(
-      Element.prototype,
-      'getAnimations'
+    const { container, findByRole, queryByRole, router } = await renderApp(
+      '/docs/assets/packages'
     )
-    Object.defineProperty(Element.prototype, 'getAnimations', {
-      configurable: true,
-      value: () => []
-    })
-    try {
-      const { container, findByRole, queryByRole, router } = await renderApp(
-        '/docs/assets/packages'
-      )
-      await findByRole('heading', { name: 'Packages and tools' })
-      expect(container.querySelector('#nd-notebook-layout')).toBeTruthy()
-      expect(container.querySelector('#nd-sidebar')).toBeTruthy()
-      expect(queryByRole('button', { name: 'Collapse sidebar' })).toBeNull()
-      const navigation = within(
-        await findByRole('navigation', { name: 'Icon library sections' })
-      )
-      const selected = navigation.getByRole('link', { name: 'Packages' })
-      expect(selected.getAttribute('aria-current')).toBe('page')
-      fireEvent.click(navigation.getByRole('link', { name: 'Guides' }))
-      await waitFor(() =>
-        expect(router.state.location.pathname).toBe('/docs/assets/guides')
-      )
-      await findByRole('heading', { name: 'Vezham Icons' }, { timeout: 10_000 })
-      expect(container.querySelector('#nd-notebook-layout')).toBeTruthy()
-      expect(
-        await findByRole('button', { name: 'Collapse sidebar' })
-      ).toBeTruthy()
-      expect(
-        container.querySelector('#nd-subnav a[aria-current="page"]')
-          ?.textContent
-      ).toBe('Guides')
-      expect(
-        container.querySelector(
-          '#nd-sidebar a[href="/docs/assets/guides/react"]'
-        )
-      ).toBeTruthy()
-    } finally {
-      if (animations)
-        Object.defineProperty(Element.prototype, 'getAnimations', animations)
-      else Reflect.deleteProperty(Element.prototype, 'getAnimations')
-    }
+    await findByRole('heading', { name: 'Packages and tools' })
+    expect(container.querySelector('#nd-notebook-layout')).toBeTruthy()
+    expect(container.querySelector('#nd-sidebar')).toBeTruthy()
+    expect(queryByRole('button', { name: 'Collapse sidebar' })).toBeNull()
+    const navigation = within(
+      await findByRole('navigation', { name: 'Icon library sections' })
+    )
+    const selected = navigation.getByRole('link', { name: 'Packages' })
+    expect(selected.getAttribute('aria-current')).toBe('page')
+    fireEvent.click(navigation.getByRole('link', { name: 'Guides' }))
+    await waitFor(() =>
+      expect(router.state.location.pathname).toBe('/docs/assets/guides')
+    )
+    await findByRole('heading', { name: 'Vezham Icons' }, { timeout: 10_000 })
+    expect(container.querySelector('#nd-notebook-layout')).toBeTruthy()
+    expect(
+      await findByRole('button', { name: 'Collapse sidebar' })
+    ).toBeTruthy()
+    expect(
+      container.querySelector('#nd-subnav a[aria-current="page"]')?.textContent
+    ).toBe('Guides')
+    expect(
+      container.querySelector('#nd-sidebar a[href="/docs/assets/guides/react"]')
+    ).toBeTruthy()
   }, 20_000)
 
   it('uses the same platform route for Pro Web and Native', async () => {
@@ -328,30 +406,16 @@ describe('App', () => {
   )
 
   it('switches a Web-only page to the Native introduction', async () => {
-    const animations = Object.getOwnPropertyDescriptor(
-      Element.prototype,
-      'getAnimations'
+    const { findAllByRole, router } = await renderApp(
+      '/docs/ui/react-v3/web/migration'
     )
-    Object.defineProperty(Element.prototype, 'getAnimations', {
-      configurable: true,
-      value: () => []
-    })
-    try {
-      const { findAllByRole, router } = await renderApp(
-        '/docs/ui/react-v3/web/migration'
+    const tabs = await findAllByRole('tab', { name: 'Native' })
+    fireEvent.click(tabs[0])
+    await waitFor(() =>
+      expect(router.state.location.pathname).toBe(
+        '/docs/ui/react-v3/native/getting-started'
       )
-      const tabs = await findAllByRole('tab', { name: 'Native' })
-      fireEvent.click(tabs[0])
-      await waitFor(() =>
-        expect(router.state.location.pathname).toBe(
-          '/docs/ui/react-v3/native/getting-started'
-        )
-      )
-    } finally {
-      if (animations)
-        Object.defineProperty(Element.prototype, 'getAnimations', animations)
-      else Reflect.deleteProperty(Element.prototype, 'getAnimations')
-    }
+    )
   }, 20_000)
 
   it('uses the configured default language for the document', async () => {

@@ -21,6 +21,7 @@ import { Route as Char123LangChar125HandbookIndexRouteImport } from './routes/{-
 import { Route as Char123LangChar125HandbookSplatRouteImport } from './routes/{-$lang}/handbook/$'
 import { Route as Char123LangChar125HandbookChar123Char125DotmdRouteImport } from './routes/{-$lang}/handbook/{$}[.]md'
 import { Route as Char123LangChar125DocsAssetsIndexRouteImport } from './routes/{-$lang}/docs/assets/index'
+import { Route as Char123LangChar125DocsPackagesIndexRouteImport } from './routes/{-$lang}/docs/packages/index'
 import { Route as Char123LangChar125DocsUiIndexRouteImport } from './routes/{-$lang}/docs/ui/index'
 import { Route as Char123LangChar125HandbookMarkdownIndexRouteImport } from './routes/{-$lang}/handbook/markdown/index'
 import { Route as Char123LangChar125HandbookMarkdownSplatRouteImport } from './routes/{-$lang}/handbook/markdown/$'
@@ -36,6 +37,9 @@ import { Route as Char123LangChar125DocsAssetsIllustrationsNameRouteImport } fro
 import { Route as Char123LangChar125DocsAssetsLogosIndexRouteImport } from './routes/{-$lang}/docs/assets/logos/index'
 import { Route as Char123LangChar125DocsAssetsLogosNameRouteImport } from './routes/{-$lang}/docs/assets/logos/$name'
 import { Route as Char123LangChar125DocsAssetsPackagesIndexRouteImport } from './routes/{-$lang}/docs/assets/packages/index'
+import { Route as Char123LangChar125DocsPackagesPackageIndexRouteImport } from './routes/{-$lang}/docs/packages/$package/index'
+import { Route as Char123LangChar125DocsPackagesPackageSplatRouteImport } from './routes/{-$lang}/docs/packages/$package/$'
+import { Route as Char123LangChar125DocsPackagesPackageChar123Char125DotmdRouteImport } from './routes/{-$lang}/docs/packages/$package/{$}[.]md'
 import { Route as Char123LangChar125DocsUiReactProV3IndexRouteImport } from './routes/{-$lang}/docs/ui/react-pro-v3/index'
 import { Route as Char123LangChar125DocsUiReactV3IndexRouteImport } from './routes/{-$lang}/docs/ui/react-v3/index'
 import { Route as Char123LangChar125DocsUiReactIndexRouteImport } from './routes/{-$lang}/docs/ui/react/index'
@@ -112,6 +116,12 @@ const Char123LangChar125DocsAssetsIndexRoute =
   Char123LangChar125DocsAssetsIndexRouteImport.update({
     id: '/docs/assets/',
     path: '/docs/assets/',
+    getParentRoute: () => Char123LangChar125RouteRoute,
+  } as any)
+const Char123LangChar125DocsPackagesIndexRoute =
+  Char123LangChar125DocsPackagesIndexRouteImport.update({
+    id: '/docs/packages/',
+    path: '/docs/packages/',
     getParentRoute: () => Char123LangChar125RouteRoute,
   } as any)
 const Char123LangChar125DocsUiIndexRoute =
@@ -206,6 +216,24 @@ const Char123LangChar125DocsAssetsPackagesIndexRoute =
     path: '/docs/assets/packages/',
     getParentRoute: () => Char123LangChar125RouteRoute,
   } as any)
+const Char123LangChar125DocsPackagesPackageIndexRoute =
+  Char123LangChar125DocsPackagesPackageIndexRouteImport.update({
+    id: '/docs/packages/$package/',
+    path: '/docs/packages/$package/',
+    getParentRoute: () => Char123LangChar125RouteRoute,
+  } as any)
+const Char123LangChar125DocsPackagesPackageSplatRoute =
+  Char123LangChar125DocsPackagesPackageSplatRouteImport.update({
+    id: '/docs/packages/$package/$',
+    path: '/docs/packages/$package/$',
+    getParentRoute: () => Char123LangChar125RouteRoute,
+  } as any)
+const Char123LangChar125DocsPackagesPackageChar123Char125DotmdRoute =
+  Char123LangChar125DocsPackagesPackageChar123Char125DotmdRouteImport.update({
+    id: '/docs/packages/$package/{$}.md',
+    path: '/docs/packages/$package/{$}.md',
+    getParentRoute: () => Char123LangChar125RouteRoute,
+  } as any)
 const Char123LangChar125DocsUiReactProV3IndexRoute =
   Char123LangChar125DocsUiReactProV3IndexRouteImport.update({
     id: '/docs/ui/react-pro-v3/',
@@ -296,6 +324,7 @@ export interface FileRoutesByFullPath {
   '/{-$lang}/handbook/markdown/$': typeof Char123LangChar125HandbookMarkdownSplatRoute
   '/{-$lang}/handbook/markdown/{$}.md': typeof Char123LangChar125HandbookMarkdownChar123Char125DotmdRoute
   '/{-$lang}/docs/assets/': typeof Char123LangChar125DocsAssetsIndexRoute
+  '/{-$lang}/docs/packages/': typeof Char123LangChar125DocsPackagesIndexRoute
   '/{-$lang}/docs/ui/': typeof Char123LangChar125DocsUiIndexRoute
   '/{-$lang}/handbook/markdown/': typeof Char123LangChar125HandbookMarkdownIndexRoute
   '/{-$lang}/docs/assets/guides/$framework': typeof Char123LangChar125DocsAssetsGuidesFrameworkRoute
@@ -303,12 +332,15 @@ export interface FileRoutesByFullPath {
   '/{-$lang}/docs/assets/icons/$name': typeof Char123LangChar125DocsAssetsIconsNameRoute
   '/{-$lang}/docs/assets/illustrations/$name': typeof Char123LangChar125DocsAssetsIllustrationsNameRoute
   '/{-$lang}/docs/assets/logos/$name': typeof Char123LangChar125DocsAssetsLogosNameRoute
+  '/{-$lang}/docs/packages/$package/$': typeof Char123LangChar125DocsPackagesPackageSplatRoute
+  '/{-$lang}/docs/packages/$package/{$}.md': typeof Char123LangChar125DocsPackagesPackageChar123Char125DotmdRoute
   '/{-$lang}/docs/assets/faq/': typeof Char123LangChar125DocsAssetsFaqIndexRoute
   '/{-$lang}/docs/assets/guides/': typeof Char123LangChar125DocsAssetsGuidesIndexRoute
   '/{-$lang}/docs/assets/icons/': typeof Char123LangChar125DocsAssetsIconsIndexRoute
   '/{-$lang}/docs/assets/illustrations/': typeof Char123LangChar125DocsAssetsIllustrationsIndexRoute
   '/{-$lang}/docs/assets/logos/': typeof Char123LangChar125DocsAssetsLogosIndexRoute
   '/{-$lang}/docs/assets/packages/': typeof Char123LangChar125DocsAssetsPackagesIndexRoute
+  '/{-$lang}/docs/packages/$package/': typeof Char123LangChar125DocsPackagesPackageIndexRoute
   '/{-$lang}/docs/ui/react-pro-v3/': typeof Char123LangChar125DocsUiReactProV3IndexRoute
   '/{-$lang}/docs/ui/react-v3/': typeof Char123LangChar125DocsUiReactV3IndexRoute
   '/{-$lang}/docs/ui/react/': typeof Char123LangChar125DocsUiReactIndexRoute
@@ -336,6 +368,7 @@ export interface FileRoutesByTo {
   '/{-$lang}/handbook/markdown/$': typeof Char123LangChar125HandbookMarkdownSplatRoute
   '/{-$lang}/handbook/markdown/{$}.md': typeof Char123LangChar125HandbookMarkdownChar123Char125DotmdRoute
   '/{-$lang}/docs/assets': typeof Char123LangChar125DocsAssetsIndexRoute
+  '/{-$lang}/docs/packages': typeof Char123LangChar125DocsPackagesIndexRoute
   '/{-$lang}/docs/ui': typeof Char123LangChar125DocsUiIndexRoute
   '/{-$lang}/handbook/markdown': typeof Char123LangChar125HandbookMarkdownIndexRoute
   '/{-$lang}/docs/assets/guides/$framework': typeof Char123LangChar125DocsAssetsGuidesFrameworkRoute
@@ -343,12 +376,15 @@ export interface FileRoutesByTo {
   '/{-$lang}/docs/assets/icons/$name': typeof Char123LangChar125DocsAssetsIconsNameRoute
   '/{-$lang}/docs/assets/illustrations/$name': typeof Char123LangChar125DocsAssetsIllustrationsNameRoute
   '/{-$lang}/docs/assets/logos/$name': typeof Char123LangChar125DocsAssetsLogosNameRoute
+  '/{-$lang}/docs/packages/$package/$': typeof Char123LangChar125DocsPackagesPackageSplatRoute
+  '/{-$lang}/docs/packages/$package/{$}.md': typeof Char123LangChar125DocsPackagesPackageChar123Char125DotmdRoute
   '/{-$lang}/docs/assets/faq': typeof Char123LangChar125DocsAssetsFaqIndexRoute
   '/{-$lang}/docs/assets/guides': typeof Char123LangChar125DocsAssetsGuidesIndexRoute
   '/{-$lang}/docs/assets/icons': typeof Char123LangChar125DocsAssetsIconsIndexRoute
   '/{-$lang}/docs/assets/illustrations': typeof Char123LangChar125DocsAssetsIllustrationsIndexRoute
   '/{-$lang}/docs/assets/logos': typeof Char123LangChar125DocsAssetsLogosIndexRoute
   '/{-$lang}/docs/assets/packages': typeof Char123LangChar125DocsAssetsPackagesIndexRoute
+  '/{-$lang}/docs/packages/$package': typeof Char123LangChar125DocsPackagesPackageIndexRoute
   '/{-$lang}/docs/ui/react-pro-v3': typeof Char123LangChar125DocsUiReactProV3IndexRoute
   '/{-$lang}/docs/ui/react-v3': typeof Char123LangChar125DocsUiReactV3IndexRoute
   '/{-$lang}/docs/ui/react': typeof Char123LangChar125DocsUiReactIndexRoute
@@ -378,6 +414,7 @@ export interface FileRoutesById {
   '/{-$lang}/handbook/markdown/$': typeof Char123LangChar125HandbookMarkdownSplatRoute
   '/{-$lang}/handbook/markdown/{$}.md': typeof Char123LangChar125HandbookMarkdownChar123Char125DotmdRoute
   '/{-$lang}/docs/assets/': typeof Char123LangChar125DocsAssetsIndexRoute
+  '/{-$lang}/docs/packages/': typeof Char123LangChar125DocsPackagesIndexRoute
   '/{-$lang}/docs/ui/': typeof Char123LangChar125DocsUiIndexRoute
   '/{-$lang}/handbook/markdown/': typeof Char123LangChar125HandbookMarkdownIndexRoute
   '/{-$lang}/docs/assets/guides/$framework': typeof Char123LangChar125DocsAssetsGuidesFrameworkRoute
@@ -385,12 +422,15 @@ export interface FileRoutesById {
   '/{-$lang}/docs/assets/icons/$name': typeof Char123LangChar125DocsAssetsIconsNameRoute
   '/{-$lang}/docs/assets/illustrations/$name': typeof Char123LangChar125DocsAssetsIllustrationsNameRoute
   '/{-$lang}/docs/assets/logos/$name': typeof Char123LangChar125DocsAssetsLogosNameRoute
+  '/{-$lang}/docs/packages/$package/$': typeof Char123LangChar125DocsPackagesPackageSplatRoute
+  '/{-$lang}/docs/packages/$package/{$}.md': typeof Char123LangChar125DocsPackagesPackageChar123Char125DotmdRoute
   '/{-$lang}/docs/assets/faq/': typeof Char123LangChar125DocsAssetsFaqIndexRoute
   '/{-$lang}/docs/assets/guides/': typeof Char123LangChar125DocsAssetsGuidesIndexRoute
   '/{-$lang}/docs/assets/icons/': typeof Char123LangChar125DocsAssetsIconsIndexRoute
   '/{-$lang}/docs/assets/illustrations/': typeof Char123LangChar125DocsAssetsIllustrationsIndexRoute
   '/{-$lang}/docs/assets/logos/': typeof Char123LangChar125DocsAssetsLogosIndexRoute
   '/{-$lang}/docs/assets/packages/': typeof Char123LangChar125DocsAssetsPackagesIndexRoute
+  '/{-$lang}/docs/packages/$package/': typeof Char123LangChar125DocsPackagesPackageIndexRoute
   '/{-$lang}/docs/ui/react-pro-v3/': typeof Char123LangChar125DocsUiReactProV3IndexRoute
   '/{-$lang}/docs/ui/react-v3/': typeof Char123LangChar125DocsUiReactV3IndexRoute
   '/{-$lang}/docs/ui/react/': typeof Char123LangChar125DocsUiReactIndexRoute
@@ -421,6 +461,7 @@ export interface FileRouteTypes {
     | '/{-$lang}/handbook/markdown/$'
     | '/{-$lang}/handbook/markdown/{$}.md'
     | '/{-$lang}/docs/assets/'
+    | '/{-$lang}/docs/packages/'
     | '/{-$lang}/docs/ui/'
     | '/{-$lang}/handbook/markdown/'
     | '/{-$lang}/docs/assets/guides/$framework'
@@ -428,12 +469,15 @@ export interface FileRouteTypes {
     | '/{-$lang}/docs/assets/icons/$name'
     | '/{-$lang}/docs/assets/illustrations/$name'
     | '/{-$lang}/docs/assets/logos/$name'
+    | '/{-$lang}/docs/packages/$package/$'
+    | '/{-$lang}/docs/packages/$package/{$}.md'
     | '/{-$lang}/docs/assets/faq/'
     | '/{-$lang}/docs/assets/guides/'
     | '/{-$lang}/docs/assets/icons/'
     | '/{-$lang}/docs/assets/illustrations/'
     | '/{-$lang}/docs/assets/logos/'
     | '/{-$lang}/docs/assets/packages/'
+    | '/{-$lang}/docs/packages/$package/'
     | '/{-$lang}/docs/ui/react-pro-v3/'
     | '/{-$lang}/docs/ui/react-v3/'
     | '/{-$lang}/docs/ui/react/'
@@ -461,6 +505,7 @@ export interface FileRouteTypes {
     | '/{-$lang}/handbook/markdown/$'
     | '/{-$lang}/handbook/markdown/{$}.md'
     | '/{-$lang}/docs/assets'
+    | '/{-$lang}/docs/packages'
     | '/{-$lang}/docs/ui'
     | '/{-$lang}/handbook/markdown'
     | '/{-$lang}/docs/assets/guides/$framework'
@@ -468,12 +513,15 @@ export interface FileRouteTypes {
     | '/{-$lang}/docs/assets/icons/$name'
     | '/{-$lang}/docs/assets/illustrations/$name'
     | '/{-$lang}/docs/assets/logos/$name'
+    | '/{-$lang}/docs/packages/$package/$'
+    | '/{-$lang}/docs/packages/$package/{$}.md'
     | '/{-$lang}/docs/assets/faq'
     | '/{-$lang}/docs/assets/guides'
     | '/{-$lang}/docs/assets/icons'
     | '/{-$lang}/docs/assets/illustrations'
     | '/{-$lang}/docs/assets/logos'
     | '/{-$lang}/docs/assets/packages'
+    | '/{-$lang}/docs/packages/$package'
     | '/{-$lang}/docs/ui/react-pro-v3'
     | '/{-$lang}/docs/ui/react-v3'
     | '/{-$lang}/docs/ui/react'
@@ -502,6 +550,7 @@ export interface FileRouteTypes {
     | '/{-$lang}/handbook/markdown/$'
     | '/{-$lang}/handbook/markdown/{$}.md'
     | '/{-$lang}/docs/assets/'
+    | '/{-$lang}/docs/packages/'
     | '/{-$lang}/docs/ui/'
     | '/{-$lang}/handbook/markdown/'
     | '/{-$lang}/docs/assets/guides/$framework'
@@ -509,12 +558,15 @@ export interface FileRouteTypes {
     | '/{-$lang}/docs/assets/icons/$name'
     | '/{-$lang}/docs/assets/illustrations/$name'
     | '/{-$lang}/docs/assets/logos/$name'
+    | '/{-$lang}/docs/packages/$package/$'
+    | '/{-$lang}/docs/packages/$package/{$}.md'
     | '/{-$lang}/docs/assets/faq/'
     | '/{-$lang}/docs/assets/guides/'
     | '/{-$lang}/docs/assets/icons/'
     | '/{-$lang}/docs/assets/illustrations/'
     | '/{-$lang}/docs/assets/logos/'
     | '/{-$lang}/docs/assets/packages/'
+    | '/{-$lang}/docs/packages/$package/'
     | '/{-$lang}/docs/ui/react-pro-v3/'
     | '/{-$lang}/docs/ui/react-v3/'
     | '/{-$lang}/docs/ui/react/'
@@ -624,6 +676,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LangChar125DocsAssetsIndexRouteImport
       parentRoute: typeof Char123LangChar125RouteRoute
     }
+    '/{-$lang}/docs/packages/': {
+      id: '/{-$lang}/docs/packages/'
+      path: '/docs/packages'
+      fullPath: '/{-$lang}/docs/packages/'
+      preLoaderRoute: typeof Char123LangChar125DocsPackagesIndexRouteImport
+      parentRoute: typeof Char123LangChar125RouteRoute
+    }
     '/{-$lang}/docs/ui/': {
       id: '/{-$lang}/docs/ui/'
       path: '/docs/ui'
@@ -729,6 +788,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LangChar125DocsAssetsPackagesIndexRouteImport
       parentRoute: typeof Char123LangChar125RouteRoute
     }
+    '/{-$lang}/docs/packages/$package/': {
+      id: '/{-$lang}/docs/packages/$package/'
+      path: '/docs/packages/$package'
+      fullPath: '/{-$lang}/docs/packages/$package/'
+      preLoaderRoute: typeof Char123LangChar125DocsPackagesPackageIndexRouteImport
+      parentRoute: typeof Char123LangChar125RouteRoute
+    }
+    '/{-$lang}/docs/packages/$package/$': {
+      id: '/{-$lang}/docs/packages/$package/$'
+      path: '/docs/packages/$package/$'
+      fullPath: '/{-$lang}/docs/packages/$package/$'
+      preLoaderRoute: typeof Char123LangChar125DocsPackagesPackageSplatRouteImport
+      parentRoute: typeof Char123LangChar125RouteRoute
+    }
+    '/{-$lang}/docs/packages/$package/{$}.md': {
+      id: '/{-$lang}/docs/packages/$package/{$}.md'
+      path: '/docs/packages/$package/{$}.md'
+      fullPath: '/{-$lang}/docs/packages/$package/{$}.md'
+      preLoaderRoute: typeof Char123LangChar125DocsPackagesPackageChar123Char125DotmdRouteImport
+      parentRoute: typeof Char123LangChar125RouteRoute
+    }
     '/{-$lang}/docs/ui/react-pro-v3/': {
       id: '/{-$lang}/docs/ui/react-pro-v3/'
       path: '/docs/ui/react-pro-v3'
@@ -825,6 +905,7 @@ interface Char123LangChar125RouteRouteChildren {
   Char123LangChar125HandbookMarkdownSplatRoute: typeof Char123LangChar125HandbookMarkdownSplatRoute
   Char123LangChar125HandbookMarkdownChar123Char125DotmdRoute: typeof Char123LangChar125HandbookMarkdownChar123Char125DotmdRoute
   Char123LangChar125DocsAssetsIndexRoute: typeof Char123LangChar125DocsAssetsIndexRoute
+  Char123LangChar125DocsPackagesIndexRoute: typeof Char123LangChar125DocsPackagesIndexRoute
   Char123LangChar125DocsUiIndexRoute: typeof Char123LangChar125DocsUiIndexRoute
   Char123LangChar125HandbookMarkdownIndexRoute: typeof Char123LangChar125HandbookMarkdownIndexRoute
   Char123LangChar125DocsAssetsGuidesFrameworkRoute: typeof Char123LangChar125DocsAssetsGuidesFrameworkRoute
@@ -832,12 +913,15 @@ interface Char123LangChar125RouteRouteChildren {
   Char123LangChar125DocsAssetsIconsNameRoute: typeof Char123LangChar125DocsAssetsIconsNameRoute
   Char123LangChar125DocsAssetsIllustrationsNameRoute: typeof Char123LangChar125DocsAssetsIllustrationsNameRoute
   Char123LangChar125DocsAssetsLogosNameRoute: typeof Char123LangChar125DocsAssetsLogosNameRoute
+  Char123LangChar125DocsPackagesPackageSplatRoute: typeof Char123LangChar125DocsPackagesPackageSplatRoute
+  Char123LangChar125DocsPackagesPackageChar123Char125DotmdRoute: typeof Char123LangChar125DocsPackagesPackageChar123Char125DotmdRoute
   Char123LangChar125DocsAssetsFaqIndexRoute: typeof Char123LangChar125DocsAssetsFaqIndexRoute
   Char123LangChar125DocsAssetsGuidesIndexRoute: typeof Char123LangChar125DocsAssetsGuidesIndexRoute
   Char123LangChar125DocsAssetsIconsIndexRoute: typeof Char123LangChar125DocsAssetsIconsIndexRoute
   Char123LangChar125DocsAssetsIllustrationsIndexRoute: typeof Char123LangChar125DocsAssetsIllustrationsIndexRoute
   Char123LangChar125DocsAssetsLogosIndexRoute: typeof Char123LangChar125DocsAssetsLogosIndexRoute
   Char123LangChar125DocsAssetsPackagesIndexRoute: typeof Char123LangChar125DocsAssetsPackagesIndexRoute
+  Char123LangChar125DocsPackagesPackageIndexRoute: typeof Char123LangChar125DocsPackagesPackageIndexRoute
   Char123LangChar125DocsUiReactProV3IndexRoute: typeof Char123LangChar125DocsUiReactProV3IndexRoute
   Char123LangChar125DocsUiReactV3IndexRoute: typeof Char123LangChar125DocsUiReactV3IndexRoute
   Char123LangChar125DocsUiReactIndexRoute: typeof Char123LangChar125DocsUiReactIndexRoute
@@ -866,6 +950,8 @@ const Char123LangChar125RouteRouteChildren: Char123LangChar125RouteRouteChildren
       Char123LangChar125HandbookMarkdownChar123Char125DotmdRoute,
     Char123LangChar125DocsAssetsIndexRoute:
       Char123LangChar125DocsAssetsIndexRoute,
+    Char123LangChar125DocsPackagesIndexRoute:
+      Char123LangChar125DocsPackagesIndexRoute,
     Char123LangChar125DocsUiIndexRoute: Char123LangChar125DocsUiIndexRoute,
     Char123LangChar125HandbookMarkdownIndexRoute:
       Char123LangChar125HandbookMarkdownIndexRoute,
@@ -879,6 +965,10 @@ const Char123LangChar125RouteRouteChildren: Char123LangChar125RouteRouteChildren
       Char123LangChar125DocsAssetsIllustrationsNameRoute,
     Char123LangChar125DocsAssetsLogosNameRoute:
       Char123LangChar125DocsAssetsLogosNameRoute,
+    Char123LangChar125DocsPackagesPackageSplatRoute:
+      Char123LangChar125DocsPackagesPackageSplatRoute,
+    Char123LangChar125DocsPackagesPackageChar123Char125DotmdRoute:
+      Char123LangChar125DocsPackagesPackageChar123Char125DotmdRoute,
     Char123LangChar125DocsAssetsFaqIndexRoute:
       Char123LangChar125DocsAssetsFaqIndexRoute,
     Char123LangChar125DocsAssetsGuidesIndexRoute:
@@ -891,6 +981,8 @@ const Char123LangChar125RouteRouteChildren: Char123LangChar125RouteRouteChildren
       Char123LangChar125DocsAssetsLogosIndexRoute,
     Char123LangChar125DocsAssetsPackagesIndexRoute:
       Char123LangChar125DocsAssetsPackagesIndexRoute,
+    Char123LangChar125DocsPackagesPackageIndexRoute:
+      Char123LangChar125DocsPackagesPackageIndexRoute,
     Char123LangChar125DocsUiReactProV3IndexRoute:
       Char123LangChar125DocsUiReactProV3IndexRoute,
     Char123LangChar125DocsUiReactV3IndexRoute:
