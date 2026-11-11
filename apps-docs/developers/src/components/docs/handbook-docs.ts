@@ -7,7 +7,7 @@ import {
 
 import { vxCore, vxDocs, vxI18n, vxMetadata } from '@generated/vx'
 
-// vx-bot/NOTE: The engineering handbook and Markdown section share one content collection.
+// vx-bot/NOTE: Handbook and Markdown share one collection, including group metadata for labels and icons.
 export const handbookDocs = defineDocs({
   dir: 'content/handbook',
   docs: {

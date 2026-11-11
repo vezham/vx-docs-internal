@@ -247,8 +247,46 @@ describe('App', () => {
       expect(tabs.getByRole('link', { name: 'Handbook' })).not.toHaveAttribute(
         'aria-current'
       )
+      const sidebar = within(
+        view.container.querySelector('#nd-sidebar') as HTMLElement
+      )
+      const basic = sidebar.getByRole('link', { name: 'Basic Syntax' })
+      expect(basic).toHaveAttribute(
+        'href',
+        `${prefix}/handbook/markdown/handbooks/basic`
+      )
+      expect(basic.querySelector('svg')).toBeTruthy()
+      expect(sidebar.queryByRole('link', { name: 'Handbook' })).toBeNull()
+      expect(sidebar.queryByRole('link', { name: 'Markdown' })).toBeNull()
+      const group = sidebar.getByRole('button', { name: 'Handbooks' })
+      expect(group.querySelector('svg.vezham')).toBeTruthy()
+      expect(group).toHaveAttribute('aria-expanded', 'true')
+      fireEvent.click(group)
+      expect(group).toHaveAttribute('aria-expanded', 'false')
+      fireEvent.click(group)
+      expect(group).toHaveAttribute('aria-expanded', 'true')
     }
   )
+
+  it('uses the Assets Guides link styling for Markdown group pages', async () => {
+    const assets = await renderApp('/docs/assets/guides/react')
+    const assetSidebar = within(
+      assets.container.querySelector('#nd-sidebar') as HTMLElement
+    )
+    const reference = assetSidebar.getByRole('link', { name: 'React' })
+    const appearance = {
+      className: reference.className,
+      padding: reference.style.paddingInlineStart
+    }
+    assets.unmount()
+    const handbook = await renderApp('/handbook/markdown/handbooks/basic')
+    const sidebar = within(
+      handbook.container.querySelector('#nd-sidebar') as HTMLElement
+    )
+    const basic = sidebar.getByRole('link', { name: 'Basic Syntax' })
+    expect(basic.className).toBe(appearance.className)
+    expect(basic.style.paddingInlineStart).toBe(appearance.padding)
+  })
 
   it.each([
     '/handbook',

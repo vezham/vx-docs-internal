@@ -7,6 +7,21 @@ const filter = (nodes: Node[]) =>
   filterPlatformPageTree({ docsBase: '/docs', prefix: 'web', nodes })
 
 describe('platform page tree', () => {
+  it('scopes an empty section prefix to the collection landing page', () => {
+    const index = page('/handbook')
+    expect(
+      filterPlatformPageTree({
+        docsBase: '/handbook',
+        prefix: '',
+        nodes: [
+          index,
+          page('/handbook/markdown'),
+          page('/handbook/markdown/handbooks/basic')
+        ]
+      })
+    ).toEqual([index])
+  })
+
   it('keeps section labels when the index is listed as a child page', () => {
     const overview = { type: 'separator', name: 'Overview' } as const
     const handbook = { type: 'separator', name: 'Handbook' } as const

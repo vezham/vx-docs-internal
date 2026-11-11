@@ -65,6 +65,11 @@ only once for search and LLM endpoints. Handbook route files are adapters to
 `HandbookDocsPage` and `handbook-route.ts`; its tabs come from the same content
 tree as its sidebar. Keep TODO text in MDX; do not add generic TODO page
 components, platformless UI branches, or redirects for retired URLs.
+Scope and normalize the handbook sidebar with the shared page-tree filter used
+by UI and Packages; section roots should not add an extra sidebar folder.
+Markdown groups use `SidebarGroup` with HeroUI Disclosure so child links
+retain the flat Assets Guides sidebar styling, with icons and collapsible group
+headers. Keep group labels, icons, and ordering in content metadata.
 
 ## Asset library routes
 

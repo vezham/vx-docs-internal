@@ -10,6 +10,7 @@ type Props = {
 }
 
 const matchesPlatform = (node: Item, docsBase: string, prefix: string) => {
+  if (!prefix) return node.url === docsBase || node.url === `${docsBase}/`
   const base = `${docsBase}/`
   if (!node.url.startsWith(base)) return false
 

@@ -1,9 +1,27 @@
-import { decodeMarkdownUrl } from '@vezham/start/runtime/docs'
+import type { Node } from '@vezham/docs-core/page-tree'
+import { decodeMarkdownUrl, localizedUrl } from '@vezham/start/runtime/docs'
 
+import { i18n } from '@app/docs'
 import { handbookDocsRuntime } from '@components/docs/handbook-docs'
 import { docsPageHead } from '@src/lib/page-head'
 
 import { getContentSections } from './content-navigation'
+import { filterPlatformPageTree } from './platform-page-tree'
+
+// vx-bot/NOTE: Group headings toggle their pages; index pages remain regular links.
+const sidebarGroups = (nodes: Node[]): Node[] =>
+  nodes.map(node =>
+    node.type === 'folder'
+      ? {
+          ...node,
+          index: undefined,
+          children: sidebarGroups([
+            ...(node.index ? [node.index] : []),
+            ...node.children
+          ])
+        }
+      : node
+  )
 
 export const loadHandbookDocs = async ({
   params
@@ -19,7 +37,27 @@ export const loadHandbookDocs = async ({
     sections.find(item => item.id === page.split('/')[0]) ??
     sections.find(item => item.page === '')
   const title = handbookDocsRuntime.source.getPage([], data.locale)?.data.title
-  return { ...data, page, sections, section, collectionTitle: title }
+  const tree = handbookDocsRuntime.source.getPageTree(data.locale)
+  return {
+    ...data,
+    page,
+    sections,
+    section,
+    collectionTitle: title,
+    pageTree: await handbookDocsRuntime.source.serializePageTree({
+      ...tree,
+      $id: `${data.locale}:handbook:${section?.id || 'index'}`,
+      name: section?.title ?? tree.name,
+      children: sidebarGroups(
+        filterPlatformPageTree({
+          docsBase: localizedUrl(i18n, data.locale, '/handbook'),
+          nodes: tree.children,
+          prefix: section?.id ?? ''
+        })
+      ),
+      fallback: undefined
+    })
+  }
 }
 
 type Data = Awaited<ReturnType<typeof loadHandbookDocs>>
