@@ -4,6 +4,7 @@ import { useNotebookLayout } from '@vezham/docs-react/layouts/notebook'
 import { Sidebar } from '@vezham/icons-react'
 
 import { Brand } from '@components/brand'
+import { ControlCenter } from '@components/docs/control-center'
 import { UserControls } from '@components/docs/user-controls'
 import type { Locale } from '@generated/vx'
 
@@ -26,7 +27,6 @@ export const NotebookHeader = ({
   const FullSearchTrigger = searchTrigger?.full
   const SmallSearchTrigger = searchTrigger?.sm
   const SidebarTrigger = slots.sidebar.trigger
-  const ThemeSwitch = slots.themeSwitch
 
   return (
     <header
@@ -70,7 +70,7 @@ export const NotebookHeader = ({
             </SidebarTrigger>
           </div>
           <div className="flex items-center gap-2 max-md:hidden">
-            {controls ?? (ThemeSwitch && <ThemeSwitch />)}
+            {controls ?? <ControlCenter />}
             <UserControls />
           </div>
         </div>

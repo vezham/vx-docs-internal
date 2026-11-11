@@ -6,6 +6,7 @@ import { Close } from '@vezham/icons-react'
 import { ListBox, Select } from '@vezham/react-v3'
 
 import { Brand } from '@components/brand'
+import { ControlCenter } from '@components/docs/control-center'
 import type { Locale } from '@generated/vx'
 
 type Section = { id: string; title: string; url: string }
@@ -102,12 +103,12 @@ export const NotebookDrawerFooter = ({
   ...props
 }: ComponentProps<'div'> & {
   secondary?: ReactNode
-  controls: ReactNode
+  controls?: ReactNode
 }) => (
   <div
     {...props}
     className={`!hidden !w-full items-center !justify-between gap-2 !border-0 px-4 pt-2 pb-4 max-md:!flex ${className ?? ''}`}>
     {secondary}
-    <div className="ms-auto">{controls}</div>
+    <div className="ms-auto">{controls ?? <ControlCenter />}</div>
   </div>
 )

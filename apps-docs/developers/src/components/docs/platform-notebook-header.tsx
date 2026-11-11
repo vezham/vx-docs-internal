@@ -1,6 +1,5 @@
 import type { ComponentPropsWithoutRef } from 'react'
 
-import { ControlCenter } from '@components/docs/control-center'
 import { LibrarySelector } from '@components/docs/library-selector'
 import { NotebookHeader } from '@components/docs/notebook-header'
 import { SectionTabs } from '@components/docs/section-tabs'
@@ -10,7 +9,6 @@ import type { Locale } from '@generated/vx'
 type Props = ComponentPropsWithoutRef<'header'> & {
   library?: UiLibrary
   locale: Locale
-  page: string
   platform: 'web' | 'native'
   selectedSection: string
 }
@@ -18,7 +16,6 @@ type Props = ComponentPropsWithoutRef<'header'> & {
 export const PlatformNotebookHeader = ({
   library = 'react',
   locale,
-  page,
   platform,
   selectedSection,
   ...props
@@ -27,15 +24,7 @@ export const PlatformNotebookHeader = ({
     <NotebookHeader
       {...props}
       locale={locale}
-      leading={<LibrarySelector library={library} locale={locale} />}
-      controls={
-        <ControlCenter
-          library={library}
-          locale={locale}
-          page={page}
-          platform={platform}
-        />
-      }>
+      leading={<LibrarySelector library={library} locale={locale} />}>
       <SectionTabs
         library={library}
         locale={locale}

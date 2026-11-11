@@ -5,7 +5,6 @@ import type { DocsLayoutProps } from '@vezham/start/layouts/docs'
 import { localizedUrl } from '@vezham/start/runtime/docs'
 
 import { i18n } from '@app/docs'
-import { ControlCenter } from '@components/docs/control-center'
 import { sectionTabVariants } from '@components/docs/navigation.variants'
 import {
   NotebookDrawerFooter,
@@ -56,13 +55,7 @@ export const getNotebookLayoutOptions = ({
           }))}
         />
       ),
-      footer: props => (
-        <NotebookDrawerFooter
-          {...props}
-          secondary={secondary}
-          controls={<ControlCenter locale={locale} path={path} />}
-        />
-      )
+      footer: props => <NotebookDrawerFooter {...props} secondary={secondary} />
     },
     tabMode: 'navbar',
     tabs: sections.map(section => ({
@@ -75,11 +68,7 @@ export const getNotebookLayoutOptions = ({
     })),
     slots: {
       header: props => (
-        <NotebookHeader
-          {...props}
-          locale={locale}
-          leading={leading}
-          controls={<ControlCenter locale={locale} path={path} />}>
+        <NotebookHeader {...props} locale={locale} leading={leading}>
           <NotebookSectionTabs label={sectionLabel}>
             {sections.map(section => {
               const selected = section.path === activePath

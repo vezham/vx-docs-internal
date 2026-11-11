@@ -1,7 +1,8 @@
 import { fireEvent, render, waitFor } from '@testing-library/react'
 import type { ComponentProps } from 'react'
 
-import { NotebookDrawerHeader } from './notebook-drawer'
+import { NotebookDrawerFooter, NotebookDrawerHeader } from './notebook-drawer'
+import { NotebookHeader } from './notebook-header'
 
 const { navigate, close } = vi.hoisted(() => ({
   navigate: vi.fn(),
@@ -15,6 +16,7 @@ vi.mock('@tanstack/react-router', async original => ({
 
 vi.mock('@vezham/docs-react/layouts/notebook', () => ({
   useNotebookLayout: () => ({
+    navItems: [],
     slots: {
       sidebar: {
         trigger: (props: ComponentProps<'button'>) => (
@@ -29,8 +31,37 @@ vi.mock('../brand', () => ({
   Brand: { Link: () => <a href="/">Vezham Developers</a> }
 }))
 
+vi.mock('./control-center', () => ({
+  ControlCenter: () => <button>ControlCenter</button>
+}))
+
 describe('notebook drawer', () => {
   beforeEach(() => vi.clearAllMocks())
+
+  it('uses default controls and allows replacing or hiding them in the footer', () => {
+    const view = render(<NotebookDrawerFooter />)
+    expect(view.getByRole('button', { name: 'ControlCenter' })).toBeTruthy()
+    view.rerender(
+      <NotebookDrawerFooter controls={<button>Custom controls</button>} />
+    )
+    expect(view.queryByRole('button', { name: 'ControlCenter' })).toBeNull()
+    expect(view.getByRole('button', { name: 'Custom controls' })).toBeTruthy()
+    view.rerender(<NotebookDrawerFooter controls={false} />)
+    expect(view.queryByRole('button')).toBeNull()
+  })
+
+  it('uses the same default and overrides in the header', () => {
+    const view = render(<NotebookHeader locale="en" />)
+    expect(view.getByRole('button', { name: 'ControlCenter' })).toBeTruthy()
+    view.rerender(
+      <NotebookHeader locale="en" controls={<button>Custom controls</button>} />
+    )
+    expect(view.queryByRole('button', { name: 'ControlCenter' })).toBeNull()
+    expect(view.getByRole('button', { name: 'Custom controls' })).toBeTruthy()
+    view.rerender(<NotebookHeader locale="en" controls={false} />)
+    expect(view.queryByRole('button', { name: 'ControlCenter' })).toBeNull()
+    expect(view.queryByRole('button', { name: 'Custom controls' })).toBeNull()
+  })
 
   it.each(['en', 'cn'] as const)(
     'keeps the active section in sync and navigates with the %s locale',

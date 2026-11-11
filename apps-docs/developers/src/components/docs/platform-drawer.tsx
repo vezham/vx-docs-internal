@@ -3,7 +3,6 @@ import type { ComponentProps } from 'react'
 import { localizedUrl } from '@vezham/start/runtime/docs'
 
 import { i18n } from '@app/docs'
-import { ControlCenter } from '@components/docs/control-center'
 import {
   NotebookDrawerFooter,
   NotebookDrawerHeader
@@ -75,13 +74,10 @@ export const PlatformDrawerFooter = ({
   library = 'react',
   className,
   getPlatformParams,
-  locale,
-  page,
   platform,
   platforms,
   ...props
-}: ComponentProps<'div'> &
-  PlatformNavigationProps & { locale: Locale; page: string }) => {
+}: ComponentProps<'div'> & PlatformNavigationProps) => {
   return (
     <NotebookDrawerFooter
       {...props}
@@ -92,14 +88,6 @@ export const PlatformDrawerFooter = ({
           getPlatformParams={getPlatformParams}
           platform={platform}
           platforms={platforms}
-        />
-      }
-      controls={
-        <ControlCenter
-          library={library}
-          locale={locale}
-          page={page}
-          platform={platform}
         />
       }
     />

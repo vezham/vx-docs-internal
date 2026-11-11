@@ -4,13 +4,9 @@ import type { ReactNode } from 'react'
 import type { Root } from '@vezham/docs-core/page-tree'
 import { DocsPage as NotebookPage } from '@vezham/docs-react/layouts/notebook/page'
 import { DocsLayout, type DocsLayoutProps } from '@vezham/start/layouts/docs'
-import {
-  localizedUrl,
-  normalizeDocsRoutePath
-} from '@vezham/start/runtime/docs'
+import { localizedUrl } from '@vezham/start/runtime/docs'
 
 import { i18n } from '@app/docs'
-import { ControlCenter } from '@components/docs/control-center'
 import { sectionTabVariants } from '@components/docs/navigation.variants'
 import {
   NotebookDrawerFooter,
@@ -81,10 +77,6 @@ export const getAssetLayoutOptions = ({
   pathname: string
 }): Omit<DocsLayoutProps, 'children' | 'shell' | 'tree'> => {
   const options = baseOptions(locale)
-  const path = normalizeDocsRoutePath({
-    languages: i18n.languages,
-    routePath: pathname
-  })
   return {
     ...options,
     nav: { ...options.nav, mode: 'top' },
@@ -101,12 +93,7 @@ export const getAssetLayoutOptions = ({
           }))}
         />
       ),
-      footer: props => (
-        <NotebookDrawerFooter
-          {...props}
-          controls={<ControlCenter locale={locale} path={path} />}
-        />
-      )
+      footer: props => <NotebookDrawerFooter {...props} />
     },
     containerProps:
       active === 'docs'
@@ -118,10 +105,7 @@ export const getAssetLayoutOptions = ({
     tabMode: 'navbar',
     slots: {
       header: props => (
-        <NotebookHeader
-          {...props}
-          locale={locale}
-          controls={<ControlCenter locale={locale} path={path} />}>
+        <NotebookHeader {...props} locale={locale}>
           <AssetNavigation active={active} locale={locale} />
         </NotebookHeader>
       )

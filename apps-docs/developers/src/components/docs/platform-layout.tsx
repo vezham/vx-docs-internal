@@ -70,8 +70,6 @@ export const getPlatformLayoutOptions = ({
           {...props}
           library={library}
           getPlatformParams={getPlatformParams}
-          locale={locale}
-          page={page}
           platform={platform}
           platforms={platforms}
         />
@@ -84,7 +82,6 @@ export const getPlatformLayoutOptions = ({
           {...props}
           library={library}
           locale={locale}
-          page={page}
           platform={platform}
           selectedSection={selectedSection}
         />

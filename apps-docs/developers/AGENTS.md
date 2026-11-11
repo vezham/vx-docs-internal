@@ -10,6 +10,9 @@ is the layout baseline: brand and section picker on mobile, collection selector
 and section picker on tablet, and collection controls with ControlCenter in the
 mobile footer. Derive section options and selection from the same navigation as
 the desktop header.
+`NotebookHeader` and `NotebookDrawerFooter` render `ControlCenter` by default.
+It reads the current locale and path from the router. Use `controls` only for a
+page-specific replacement, or `controls={false}` to hide it.
 
 ## UI documentation layout
 
