@@ -45,9 +45,9 @@ to its section index when a page is unavailable.
 ## Handbook routes
 
 `/handbook` renders `content/handbook/index.mdx`. Other handbook pages
-resolve only from that collection; missing pages return 404. The Markdown
-collection remains at `content/handbook-markdown`, with its MDX index rendered at
-`/handbook/markdown`. Keep TODO text in MDX; do not add generic TODO page
+resolve only from that collection; missing pages return 404. Markdown lives in `content/handbook/markdown` within the same collection,
+with its MDX index rendered at `/handbook/markdown`. Register the handbook runtime
+only once for search and LLM endpoints. Keep TODO text in MDX; do not add generic TODO page
 components, platformless UI branches, or redirects for retired URLs.
 
 ## Asset library routes

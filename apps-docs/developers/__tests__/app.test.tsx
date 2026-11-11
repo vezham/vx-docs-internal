@@ -128,8 +128,10 @@ describe('App', () => {
       )
       await view.findByText('TODO: Add usage guides for @vezham/hooks.')
       expect(
-        view.container.querySelector('#nd-sidebar')?.textContent
-      ).not.toContain('@vezham/env')
+        view.container.querySelector(
+          '#nd-sidebar a[href*="/docs/packages/env/"]'
+        )
+      ).toBeNull()
     }
   )
 

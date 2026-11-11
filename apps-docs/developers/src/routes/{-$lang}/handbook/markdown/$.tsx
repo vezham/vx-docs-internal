@@ -2,11 +2,11 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { DocsRoutePage } from '@vezham/start/pages/docs/route'
 
-import { getHandbookLayoutOptions } from '@components/docs/handbook-docs-shell'
 import {
-  markdownDocs,
-  markdownDocsRuntime
-} from '@components/docs/markdown-docs'
+  handbookDocs,
+  handbookDocsRuntime
+} from '@components/docs/handbook-docs'
+import { getHandbookLayoutOptions } from '@components/docs/handbook-docs-shell'
 import type { Locale } from '@generated/vx'
 import { docsPageHead } from '@src/lib/page-head'
 
@@ -17,7 +17,7 @@ const RouteComponent = () => {
   return (
     <DocsRoutePage
       data={data}
-      docs={markdownDocs}
+      docs={handbookDocs}
       getLayoutOptions={locale =>
         getHandbookLayoutOptions({
           locale: locale as Locale,
@@ -33,8 +33,14 @@ const RouteComponent = () => {
 export const Route = createFileRoute('/{-$lang}/handbook/markdown/$')({
   component: RouteComponent,
   head: ({ loaderData }) =>
-    docsPageHead(loaderData, markdownDocsRuntime.getDocsRouteHead(loaderData), {
+    docsPageHead(loaderData, handbookDocsRuntime.getDocsRouteHead(loaderData), {
       section: 'Markdown'
     }),
-  loader: ({ params }) => markdownDocsRuntime.createDocsLoader()({ params })
+  loader: ({ params }) =>
+    handbookDocsRuntime.createDocsLoader()({
+      params: {
+        ...params,
+        _splat: ['markdown', params._splat].filter(Boolean).join('/')
+      }
+    })
 })
