@@ -37,7 +37,7 @@ const handbookSection = {
   title: 'Handbook',
   headline: 'Built on shared ideas.',
   content: 'Libraries, architecture, and the principles behind our products.',
-  href: '/handbook',
+  href: '/handbook/markdown',
   action: 'Read the handbook',
   layout: 'md:row-span-2',
   icon: Book,

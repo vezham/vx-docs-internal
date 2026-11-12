@@ -69,7 +69,7 @@ describe('App', () => {
         ).toHaveAttribute('href', `${prefix}/docs/assets/icons`)
         expect(
           navigation.getByRole('link', { name: 'Read the handbook' })
-        ).toHaveAttribute('href', `${prefix}/handbook`)
+        ).toHaveAttribute('href', `${prefix}/handbook/markdown`)
         expect(
           navigation.getByRole('link', { name: 'View packages' })
         ).toHaveAttribute('href', `${prefix}/docs/packages`)
@@ -138,7 +138,6 @@ describe('App', () => {
   it.each([
     '/docs/packages',
     '/cn/docs/packages',
-    '/handbook',
     '/handbook/markdown',
     '/docs/ui/react/web/getting-started',
     '/docs/ui/react-v3/web/getting-started',
@@ -146,7 +145,6 @@ describe('App', () => {
     '/docs/assets/guides'
   ])('uses the shared notebook layout at %s', async path => {
     const view = await renderApp(path)
-    await view.findAllByRole('heading', { level: 1 })
     await waitFor(() => {
       expect(view.container.querySelector('#nd-notebook-layout')).toBeTruthy()
       expect(
@@ -182,7 +180,6 @@ describe('App', () => {
     ],
     ['/docs/assets/guides', 'Guides - Assets'],
     ['/docs/assets/guides/react', 'React - Assets'],
-    ['/handbook', 'Handbook'],
     ['/cn/handbook/markdown', 'Markdown - Handbook']
   ])(
     'sets route-owned title context at %s',
@@ -244,9 +241,7 @@ describe('App', () => {
         'aria-current',
         'page'
       )
-      expect(tabs.getByRole('link', { name: 'Handbook' })).not.toHaveAttribute(
-        'aria-current'
-      )
+      expect(tabs.queryByRole('link', { name: 'Handbook' })).toBeNull()
       const sidebar = within(
         view.container.querySelector('#nd-sidebar') as HTMLElement
       )
@@ -288,12 +283,7 @@ describe('App', () => {
     expect(basic.style.paddingInlineStart).toBe(appearance.padding)
   })
 
-  it.each([
-    '/handbook',
-    '/cn/handbook',
-    '/handbook/markdown',
-    '/handbook/markdown/handbooks/basic'
-  ])(
+  it.each(['/handbook/markdown', '/handbook/markdown/handbooks/basic'])(
     'keeps the active handbook route %s',
     async path => {
       const router = createRouter({

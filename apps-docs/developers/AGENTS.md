@@ -58,8 +58,9 @@ to its section index when a page is unavailable.
 
 ## Handbook routes
 
-`/handbook` renders `content/handbook/index.mdx`. Other handbook pages
-resolve only from that collection; missing pages return 404. Markdown lives in `content/handbook/markdown` within the same collection,
+There is no `/handbook` landing page or redirect. The Handbook card on Home links
+directly to `/handbook/markdown`. Handbook pages resolve only from the content
+collection; missing pages return 404. Markdown lives in `content/handbook/markdown` within the same collection,
 with its MDX index rendered at `/handbook/markdown`. Register the handbook runtime
 only once for search and LLM endpoints. Handbook route files are adapters to
 `HandbookDocsPage` and `handbook-route.ts`; its tabs come from the same content

@@ -5,6 +5,7 @@ import { handbookDocsRuntime } from '@components/docs/handbook-docs'
 import { createSidebarGroups } from '@components/docs/sidebar-group/tree'
 import { docsPageHead } from '@src/lib/page-head'
 
+import handbookMeta from '../../../content/handbook/meta.json'
 import { getContentSections } from './content-navigation'
 
 export const loadHandbookDocs = async ({
@@ -17,17 +18,14 @@ export const loadHandbookDocs = async ({
   const sections = getContentSections(handbookDocsRuntime.source, {
     locale: data.locale
   })
-  const section =
-    sections.find(item => item.id === page.split('/')[0]) ??
-    sections.find(item => item.page === '')
-  const title = handbookDocsRuntime.source.getPage([], data.locale)?.data.title
+  const section = sections.find(item => item.id === page.split('/')[0])
   const tree = handbookDocsRuntime.source.getPageTree(data.locale)
   return {
     ...data,
     page,
     sections,
     section,
-    collectionTitle: title,
+    collectionTitle: handbookMeta.title,
     pageTree: await handbookDocsRuntime.source.serializePageTree({
       ...tree,
       $id: `${data.locale}:handbook:${section?.id || 'index'}`,

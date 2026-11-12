@@ -63,14 +63,6 @@ describe('MDX handbook', () => {
           node => node.type === 'page' && node.url === `${prefix}/handbook`
         )
       ).toBe(false)
-      const home = await loadHandbookDocs({ params: { lang } })
-      const homeTree = deserializePageTree(home.pageTree)
-      expect(homeTree.$id).not.toBe(tree.$id)
-      expect(homeTree.children).toHaveLength(1)
-      expect(homeTree.children[0]).toMatchObject({
-        type: 'page',
-        url: `${prefix}/handbook`
-      })
     }
   )
 
@@ -79,26 +71,7 @@ describe('MDX handbook', () => {
       handbookDocsRuntime.source.getPages().map(page => page.slugs.join('/'))
     ).toContain('markdown')
   })
-  it.each([undefined, 'cn'])(
-    'loads the MDX index for locale %s',
-    async lang => {
-      const data = await handbookDocsRuntime.createDocsLoader()({
-        params: { lang }
-      })
-      const prefix = lang ? `/${lang}` : ''
-      expect(data.title).toBe('Handbook')
-      expect(data.routePath).toBe(`${prefix}/handbook`)
-      expect(data.markdownUrl).toBe(`${prefix}/handbook/index.md`)
-      const tree = JSON.stringify(deserializePageTree(data.pageTree).children)
-      expect(tree).toContain(`${prefix}/handbook`)
-      const { page } = handbookDocsRuntime.getDocsPage({ slugs: [], lang })
-      expect(await handbookDocsRuntime.getLLMText(page)).toContain(
-        'TODO: Add the Vezham engineering handbook.'
-      )
-    }
-  )
-
-  it.each(['get-started', 'missing', 'markdown/missing'])(
+  it.each(['', 'get-started', 'missing', 'markdown/missing'])(
     'rejects missing handbook page %s instead of inventing a TODO page',
     async slug => {
       await expect(

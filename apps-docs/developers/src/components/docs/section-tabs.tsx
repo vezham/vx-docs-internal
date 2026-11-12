@@ -64,7 +64,7 @@ export const NotebookSectionTabs = ({
       {desktopSidebar ? (
         <SidebarCollapseTrigger
           aria-label="Collapse sidebar"
-          className="text-muted hover:bg-default-hover hover:text-foreground -ms-1 inline-flex size-8 shrink-0 items-center justify-center rounded-md">
+          className="text-muted hover:bg-default-hover hover:text-foreground -ms-1 inline-flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-md">
           <Sidebar size={16} />
         </SidebarCollapseTrigger>
       ) : (
