@@ -96,7 +96,6 @@ describe('content navigation', () => {
 
   it('derives handbook sections and their order from the merged collection', () => {
     expect(getContentSections(handbookDocsRuntime.source)).toEqual([
-      { id: '', title: 'Handbook', page: '' },
       { id: 'markdown', title: 'Markdown', page: 'markdown' }
     ])
   })

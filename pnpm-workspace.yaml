@@ -14,15 +14,15 @@ catalog:
   react-aria-components: 1.22.1
   yaml: 2.9.1
   # vx-bot/NOTE: vx-pkgs
-  '@vezham/env': 26.3.1
-  '@vezham/react': 26.3.1
-  '@vezham/start': 26.3.1
-  '@vezham/template': 26.3.1
-  '@vezham/utils': 26.3.1
-  '@vezham/devtools': 26.3.1
-  '@vezham/config': 26.3.1
+  '@vezham/env': 26.3.2
+  '@vezham/react': 26.3.2
+  '@vezham/start': 26.3.2
+  '@vezham/template': 26.3.2
+  '@vezham/utils': 26.3.2
+  '@vezham/devtools': 26.3.2
+  '@vezham/config': 26.3.2
   # vx-bot/NOTE: Directly consumed by the developers app for clipboard support.
-  '@vezham/hooks': 26.3.1
+  '@vezham/hooks': 26.3.2
 
 # vx-bot/NOTE: Resolve docs packages' upstream peer names to the workspace's Vezham forks.
 # vx-bot/TODO: Remove these overrides when the published @vx-oss docs packages use
