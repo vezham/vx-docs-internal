@@ -68,10 +68,6 @@ publicHoistPattern:
 
 minimumReleaseAge: 10080 # wjdlz/NOTE: days in minutes - 5 = 7200, 7 = 10080, 14 = 20160
 minimumReleaseAgeExclude:
-  # vx-bot/NOTE: Approved exact HeroUI versions required by the imported live demos.
-  # vx-bot/TODO: Remove these exceptions after 2026-11-04 19:36 UTC.
-  - '@heroui/react@3.2.7'
-  - '@heroui/styles@3.2.7'
   - '@vx-cli/*'
   - '@vx-oss/*'
   - '@vezham/*'
