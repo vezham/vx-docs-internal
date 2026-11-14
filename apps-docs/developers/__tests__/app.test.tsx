@@ -31,21 +31,12 @@ describe('App', () => {
       configurable: true,
       value: () => []
     })
-    vi.stubGlobal(
-      'IntersectionObserver',
-      class {
-        observe = () => undefined
-        unobserve = () => undefined
-        disconnect = () => undefined
-      }
-    )
   })
 
   afterEach(() => {
     if (animations)
       Object.defineProperty(Element.prototype, 'getAnimations', animations)
     else Reflect.deleteProperty(Element.prototype, 'getAnimations')
-    vi.unstubAllGlobals()
   })
 
   it.each(['/', '/cn'])(

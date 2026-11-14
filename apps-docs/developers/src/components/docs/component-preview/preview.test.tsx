@@ -1,6 +1,6 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { act, fireEvent, render, screen } from '@testing-library/react'
 import { Fragment, createElement } from 'react'
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import mdx from '@vezham/docs-react/mdx'
 
@@ -10,15 +10,43 @@ const animations = Object.getOwnPropertyDescriptor(
   Element.prototype,
   'getAnimations'
 )
+const OriginalIntersectionObserver = globalThis.IntersectionObserver
 
 beforeEach(() => {
   Object.defineProperty(Element.prototype, 'getAnimations', {
     configurable: true,
     value: () => []
   })
+  globalThis.IntersectionObserver = class extends OriginalIntersectionObserver {
+    constructor(
+      private callback: IntersectionObserverCallback,
+      options?: IntersectionObserverInit
+    ) {
+      super(callback, options)
+    }
+
+    override observe = (target: Element) => {
+      const rect = target.getBoundingClientRect()
+      this.callback(
+        [
+          {
+            boundingClientRect: rect,
+            intersectionRatio: 1,
+            intersectionRect: rect,
+            isIntersecting: true,
+            rootBounds: null,
+            target,
+            time: 0
+          }
+        ],
+        this
+      )
+    }
+  }
 })
 
 afterEach(() => {
+  globalThis.IntersectionObserver = OriginalIntersectionObserver
   if (animations)
     Object.defineProperty(Element.prototype, 'getAnimations', animations)
   else Reflect.deleteProperty(Element.prototype, 'getAnimations')
@@ -39,6 +67,7 @@ describe('local component previews', () => {
         )}
       </ComponentPreview>
     )
+    await act(() => vi.dynamicImportSettled())
     const control = await screen.findByRole(
       'switch',
       { name: 'Animations' },
@@ -63,6 +92,7 @@ describe('local component previews', () => {
         )}
       </ComponentPreview>
     )
+    await act(() => vi.dynamicImportSettled())
     expect(
       await screen.findByRole('button', { name: 'Disabled Item 1' })
     ).toBeDisabled()
