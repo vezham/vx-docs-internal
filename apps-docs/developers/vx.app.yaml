@@ -4,7 +4,7 @@ core:
   id: vezham-developers
   name: Vezham Developers
   shortName: Developers
-  version: 26.27.0
+  version: 27.0.1
   description: Documentation for Vezham Developers
   publisher:
     name: Vezham Technologies Private Limited

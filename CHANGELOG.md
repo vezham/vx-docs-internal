@@ -1,3 +1,22 @@
+## 27.0.1 (2026-11-16)
+
+### 🏡 Chore
+
+- **developers:** add docs app dependencies ([62e2879a](https://github.com/vezham/vx-docs-internal/commit/62e2879a))
+- **release:** publish 27.0.0-alpha.2 ([c7000cb3](https://github.com/vezham/vx-docs-internal/commit/c7000cb3))
+- **release:** publish 27.0.0 ([4765e39a](https://github.com/vezham/vx-docs-internal/commit/4765e39a))
+- **repo:** update Nx to 24.0.5 ([9cfc761d](https://github.com/vezham/vx-docs-internal/commit/9cfc761d))
+- **workspace:** update v27 dependencies ([b49a0a14](https://github.com/vezham/vx-docs-internal/commit/b49a0a14))
+
+### ✅ Tests
+
+- **developers-e2e:** remove mobile sheet test ([4706f0e7](https://github.com/vezham/vx-docs-internal/commit/4706f0e7))
+
+### ❤️ Thank You
+
+- v0xvigneshwaran
+- vx-vigneshwaran
+
 ## 26.27.0 (2026-11-15)
 
 ### 🚀 Features
