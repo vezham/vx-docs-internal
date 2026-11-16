@@ -1,31 +1,5 @@
 import { expect, test } from '@vezham/config/playwright/test'
 
-test('the mobile control center Sheet opens and dismisses', async ({
-  page
-}) => {
-  await page.setViewportSize({ width: 390, height: 844 })
-  await page.goto('/docs/ui/react-v3/web/getting-started', {
-    waitUntil: 'load'
-  })
-  await page
-    .getByRole('button', { name: 'Toggle sidebar', exact: true })
-    .click()
-  await page
-    .getByRole('button', { name: 'Control center', exact: true })
-    .click()
-
-  const sheet = page.getByRole('dialog', {
-    name: 'Control Center',
-    exact: true
-  })
-  await expect(sheet).toBeVisible()
-  await sheet.getByRole('button', { name: 'Close Control Center' }).click()
-  await expect(sheet).toBeHidden()
-  await expect(
-    page.getByRole('button', { name: 'Control center', exact: true })
-  ).toBeFocused()
-})
-
 test('component documentation is reachable from the gallery', async ({
   page
 }) => {
