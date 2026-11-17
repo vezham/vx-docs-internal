@@ -52,5 +52,5 @@ jobs:
     uses: vezham/vx-fe-deployer/.github/workflows/web-app.yml@timeline
     secrets: inherit
     with:
-      APP: developers
+      APP: developers-intra
       CALLER: ${{ github.ref_name }}
