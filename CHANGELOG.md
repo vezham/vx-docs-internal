@@ -1,3 +1,13 @@
+## 27.0.2 (2026-11-18)
+
+### 🏡 Chore
+
+- **developers:** target intra deployment ([471a170b](https://github.com/vezham/vx-docs-internal/commit/471a170b))
+
+### ❤️ Thank You
+
+- vx-vigneshwaran
+
 ## 27.0.1 (2026-11-16)
 
 ### 🏡 Chore
