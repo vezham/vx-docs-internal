@@ -1,351 +1,80 @@
-import { JSDOM } from 'jsdom'
-import fs from 'node:fs'
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
+import { createRequire } from 'node:module'
 import path from 'node:path'
-import ts from 'typescript'
-import { loadEnv } from 'vite'
 
-if (!process.argv[2] || !process.argv[3])
+const [workspace] = process.argv.slice(2)
+if (!workspace || process.argv.length !== 3)
   throw new Error(
-    'Usage: node import-icon-library.mjs /path/to/reicon /path/to/vx-fe-apps-cdns'
+    'Usage: node apps-docs/developers/scripts/import-icon-library.mjs /path/to/vx-fe-assets-pkgs'
   )
-const src = path.resolve(process.argv[2])
-const app = path.resolve(import.meta.dirname, '..')
-const env = loadEnv(process.env.NODE_ENV ?? 'development', app, 'V_')
-if (!env.V_LOGOS_CDN_URL?.trim())
-  throw new Error('V_LOGOS_CDN_URL must be configured in the app environment.')
-const logosOrigin = env.V_LOGOS_CDN_URL.trim().replace(/\/+$/, '')
-const cdn = path.resolve(process.argv[3], 'apps-cdns')
-const collectionOutput = kind => path.join(cdn, `${kind}-cdn`, 'public')
-for (const kind of ['illustrations', 'logos']) {
-  if (!fs.existsSync(collectionOutput(kind)))
-    throw new Error(`Missing CDN app: ${kind}-cdn`)
-}
-const out = app + '/public/icon-catalog'
-fs.mkdirSync(out, { recursive: true })
-fs.copyFileSync(src + '/public/vezham-icons.zip', out + '/vezham-icons.zip')
-fs.mkdirSync(app + '/src/lib/icon-library', { recursive: true })
-const w = new JSDOM('', { runScripts: 'outside-only' }).window
-const response = await fetch(
-  'https://cdn.jsdelivr.net/npm/@vezham/icons@1.0.7/dist/cdn/vezham-icons.js'
-)
-if (!response.ok) throw new Error('Unable to download the pinned icon runtime')
-w.eval(
-  (await response.text()).replace(
-    'C.VezhamIcons=H',
-    'C.__IconData=o;C.VezhamIcons=H'
+
+const readJson = file => JSON.parse(readFileSync(file, 'utf8'))
+const assetsRoot = path.resolve(workspace, 'packages')
+const packageRoot = path.join(assetsRoot, 'icons')
+const catalogDir = path.resolve(import.meta.dirname, '../public/icon-catalog')
+const manifestPath = path.join(catalogDir, 'manifest.json')
+const catalogPath = path.join(catalogDir, 'icons.json')
+const pkg = readJson(path.join(packageRoot, 'package.json'))
+const manifest = readJson(manifestPath)
+
+if (pkg.name !== '@vezham/icons' || pkg.version !== manifest.version)
+  throw new Error(
+    `Expected @vezham/icons@${manifest.version} to match the catalog's pinned runtime.`
   )
+
+const dist = path.join(packageRoot, 'dist')
+const buildManifest = path.join(dist, 'package.json')
+if (
+  !existsSync(buildManifest) ||
+  readJson(buildManifest).version !== pkg.version
 )
-const tags = new Map(
-  JSON.parse(fs.readFileSync(src + '/src/data/search-index.json')).map(x => [
-    x.n,
-    x
-  ])
+  throw new Error('Run pnpm nx build icons in the assets workspace first.')
+
+const names = readJson(path.join(dist, 'icon-names.json'))
+const previous = new Map(readJson(catalogPath).map(row => [row[0], row]))
+const require = createRequire(import.meta.url)
+const { loadIconData } = require(
+  path.join(assetsRoot, 'icons-data/icon-source.cjs')
 )
-const names = JSON.parse(fs.readFileSync(src + '/scripts/icon-names.json'))
-const weights = {
-  O: 'outline',
-  F: 'filled',
-  DO: 'duotone-outline',
-  DF: 'duotone-filled'
-}
-const icons = w.VezhamIcons.icons.map(slug => [
-  slug,
-  names[slug] || slug,
-  w.VezhamIcons.categoryOf(slug),
-  tags.get(slug)?.t.join(' ') || slug,
-  '',
-  Object.keys(w.__IconData[slug][1]).map(k => weights[k]),
-  null
-])
-fs.writeFileSync(out + '/icons.json', JSON.stringify(icons))
-const all = new Map()
-for (const filename of fs.readdirSync(src + '/public/illustration-data/all')) {
-  for (const row of (data =>
-    Array.isArray(data)
-      ? data
-      : Array.isArray(data.entries)
-        ? data.entries
-        : [])(
-    JSON.parse(
-      fs.readFileSync(src + '/public/illustration-data/all/' + filename)
-    )
-  )) {
-    all.set(row[0], [row[0], row[1], row[5], row[2], row[6], null, null])
-  }
-}
-const featured = JSON.parse(
-  fs.readFileSync(src + '/public/illustration-data/featured.json')
-).map(r => r[0])
-const rank = new Map(featured.map((slug, i) => [slug, i]))
-const illustrations = [...all.values()].sort(
-  (a, b) =>
-    (rank.get(a[0]) ?? 100000) - (rank.get(b[0]) ?? 100000) ||
-    a[0].localeCompare(b[0])
-)
-fs.writeFileSync(
-  path.join(collectionOutput('illustrations'), 'catalog.json'),
-  JSON.stringify(illustrations)
-)
-const logoMap = JSON.parse(
-  fs.readFileSync(src + '/public/logos-data/icons.json')
-)
-const categoryMap = JSON.parse(
-  fs.readFileSync(src + '/public/logos-data/brands-by-category.json')
-)
-const categoryBySlug = {}
-for (const [category, slugs] of Object.entries(categoryMap))
-  for (const slug of slugs)
-    categoryBySlug[slug.toLowerCase().replace(/[^a-z0-9]/g, '')] = category
-const logos = Object.entries(logoMap).map(([slug, variants]) => [
-  slug,
-  slug
-    .split('-')
-    .map(s => s.charAt(0).toUpperCase() + s.slice(1))
-    .join(' '),
-  categoryBySlug[slug.replace(/[^a-z0-9]/g, '')] || 'General',
-  slug,
-  '',
-  null,
-  Object.fromEntries(
-    Object.keys(variants).map(variant => [
-      variant,
-      `${logosOrigin}/assets/${slug}/${variant}.svg`
-    ])
-  )
-])
-fs.writeFileSync(
-  path.join(collectionOutput('logos'), 'catalog.json'),
-  JSON.stringify(logos)
-)
-for (const [kind, rows] of [
-  ['illustrations', illustrations],
-  ['logos', logos]
-]) {
-  fs.writeFileSync(
-    path.join(collectionOutput(kind), 'catalog-manifest.json'),
-    JSON.stringify(
-      {
-        schemaVersion: 1,
-        collection: kind,
-        catalog: '/catalog.json',
-        assets: '/assets/',
-        entries: rows.length,
-        assetFiles:
-          kind === 'illustrations'
-            ? rows.length
-            : rows.reduce((count, row) => count + Object.keys(row[6]).length, 0)
-      },
-      null,
-      2
-    ) + '\n'
-  )
-}
-const props = node =>
-  Object.fromEntries(
-    node.properties
-      .filter(ts.isPropertyAssignment)
-      .map(p => [p.name.getText().replace(/['"]/g, ''), p.initializer])
-  )
-const text = n => (n && ts.isStringLiteralLike(n) ? n.text : undefined)
-const sourceFile = file =>
-  ts.createSourceFile(
-    file,
-    fs.readFileSync(file, 'utf8'),
-    ts.ScriptTarget.Latest,
-    true,
-    ts.ScriptKind.TSX
-  )
-const constant = (file, name) => {
-  const ast = sourceFile(file)
-  return ast.statements
-    .filter(ts.isVariableStatement)
-    .flatMap(s => s.declarationList.declarations)
-    .find(d => d.name.getText() === name).initializer
-}
-// vx-bot/NOTE: Keep reviewed FAQ content instead of restoring upstream claims during sync.
-const { faq } = JSON.parse(
-  fs.readFileSync(app + '/src/lib/icon-library/content.json', 'utf8')
-)
-const updateRepositoryLinks = value =>
-  value.replace(
-    /github\.com\/vezham\/reicon\b/g,
-    'github.com/vezham-oss/reicon'
-  )
-const updateGuideUrl = value =>
-  value.replace(/^\/docs(?=\/|$)/, '/docs/assets/guides')
-const updateImportedLinks = value =>
-  updateRepositoryLinks(value)
-    .replace(
-      /(\]\(|href=["'])\/(icons|illustrations|logos|packages|faq)(?=[/)"'?#])/g,
-      '$1/docs/assets/$2'
-    )
-    .replace(
-      /(\]\(|href=["'])\/docs(?!\/assets|\/ui)(?=[/)"'?#])/g,
-      '$1/docs/assets/guides'
-    )
-const packageLogos = {
-  vanilla: 'javascript',
-  'react-native': 'reactnative',
-  vscode: 'visual-studio-code',
-  mcp: 'mcp-model-context-protocol'
-}
-const registryLabels = {
-  flutter: 'pub.dev',
-  figma: 'Figma',
-  vscode: 'Marketplace'
-}
-const registryLogos = {
-  flutter: 'dart',
-  figma: 'figma',
-  vscode: 'visual-studio-code'
-}
-const packages = constant(
-  src + '/src/pages/packages/data.tsx',
-  'PACKAGES'
-).elements.map(n => {
-  const p = props(n)
-  const item = Object.fromEntries(
-    ['id', 'name', 'description', 'npmUrl', 'sourceUrl', 'guideUrl'].map(k => [
-      k,
-      text(p[k])
-    ])
-  )
-  if (item.id === 'flutter') {
-    item.name = 'vezham_icons'
-    item.npmUrl = 'https://pub.dev/packages/vezham_icons'
-  }
-  item.sourceUrl = updateRepositoryLinks(item.sourceUrl)
-  item.guideUrl = updateGuideUrl(item.guideUrl)
-  item.logo = packageLogos[item.id] ?? item.id
-  item.registryLabel = registryLabels[item.id] ?? 'npm'
-  item.registryLogo = registryLogos[item.id] ?? 'npm'
-  item.sourceLogo = 'github'
-  return item
-})
-const tools = constant(
-  src + '/src/pages/packages/data.tsx',
-  'TOOLS'
-).elements.map(n => {
-  const p = props(n)
-  const a = props(p.primaryAction)
-  return {
-    id: text(p.id),
-    logo: packageLogos[text(p.id)] ?? text(p.id),
-    name: text(p.name),
-    description: text(p.description),
-    npmUrl: text(a.href),
-    registryLabel: registryLabels[text(p.id)] ?? 'npm',
-    registryLogo: registryLogos[text(p.id)] ?? 'npm',
-    sourceLogo: 'github',
-    sourceUrl: updateRepositoryLinks(text(p.sourceUrl)),
-    guideUrl: updateGuideUrl(text(p.guideUrl))
-  }
-})
-fs.writeFileSync(
-  app + '/src/lib/icon-library/content.json',
-  JSON.stringify({ packages: [...packages, ...tools], faq }, null, 2) + '\n'
-)
-const docs = app + '/content/docs-assets'
-const navigation = JSON.parse(fs.readFileSync(docs + '/meta.json', 'utf8'))
-const guideFiles = new Map(
-  navigation.pages
-    .filter(entry => entry !== 'index' && !entry.startsWith('---'))
-    .map(entry => [path.basename(entry), path.join(docs, entry + '.mdx')])
-)
-const guideFile = id => {
-  const file = guideFiles.get(id)
-  if (!file) throw new Error(`Missing asset guide in meta.json: ${id}`)
-  fs.mkdirSync(path.dirname(file), { recursive: true })
-  return file
-}
-const fw = [
-  ['vanilla', 'javascript', 'Vanilla JS / CDN'],
-  ['react', 'react', 'React'],
-  ['react-native', 'react-native', 'React Native'],
-  ['vue', 'vue', 'Vue'],
-  ['svelte', 'svelte', 'Svelte'],
-  ['flutter', 'flutter', 'Flutter'],
-  ['figma', 'figma', 'Figma'],
-  ['vscode', 'vscode', 'VS Code'],
-  ['mcp', 'mcp', 'MCP Server'],
-  ['svg', 'svg', 'Raw SVG']
+const supportedWeights = [
+  'outline',
+  'filled',
+  'duotone-outline',
+  'duotone-filled'
 ]
-for (const [id, folder, title] of fw) {
-  const destination = guideFile(id)
-  // vx-bot/NOTE: Preserve the local SVG guide, which documents this app's export behavior.
-  if (id === 'svg' && fs.existsSync(destination)) continue
-  const md = updateImportedLinks(
-    fs.readFileSync(src + '/docs/' + folder + '/index.md', 'utf8')
-  )
-    .replace(/^# .+\n/, '')
-    .replaceAll('@vezham/icons@latest', '@vezham/icons@1.0.7')
-    .replaceAll(
-      'Browse all icons at [vezham.com](https://vezham.com).',
-      'Browse the full [icon gallery](/docs/assets/icons).'
-    )
-    .replace(/\]\(https:\/\/vezham\.com\/docs\/?\)/g, '](/docs/assets/guides)')
-    .replace(/\]\(https:\/\/vezham\.com\/?\)/g, '](/docs/assets/icons)')
-    .replaceAll(
-      './packages/icons-flutter',
-      'https://github.com/vezham-oss/reicon/tree/main/packages/icons-flutter'
-    )
-    .replaceAll('/vezham-icons.zip', '/icon-catalog/vezham-icons.zip')
-    .replace(
-      'Get the complete, compressed package containing all 2,700+ icon designs across outline, filled, duotone-outline, and duotone-filled weights.',
-      'Download the original SVG archive, with outline, filled, duotone-outline, and duotone-filled weights. For exports from the pinned CDN version used by this browser, open an [icon detail page](/docs/assets/icons) and choose Download SVG.'
-    )
-    .replace(
-      /```bash\n((?:(?:npm install|yarn add|pnpm add|bun add) [^\n]+\n|# or\n)+)```/g,
-      (block, commands) => {
-        const packages = /^npm install ([^\n]+)$/m.exec(commands)?.[1]
-        if (
-          !packages ||
-          packages.split(/\s+/).some(name => name.startsWith('-'))
-        )
-          return block
-        return `<InstallTabs packages=${JSON.stringify(packages)} />`
-      }
-    )
-  fs.writeFileSync(
-    destination,
-    `---\ntitle: ${JSON.stringify(title)}\ndescription: ${JSON.stringify('Use Vezham Icons with ' + title + '.')}\nlogo: ${JSON.stringify(packageLogos[id] ?? id)}\n---\n\n${md.trim()}${id === 'svg' ? "\n\n## Illustrations and logos\n\nOpen any [illustration](/docs/assets/illustrations) or [logo](/docs/assets/logos) to copy its original SVG, download the vector file, or export a transparent PNG/WebP at the selected size. Logos include a variant selector when multiple versions are available.\n\nRaster exports preserve the artwork's aspect ratio inside a square canvas. Use **Open SVG** to open the original file, or copy an HTML, React, or CSS embed snippet." : ''}\n`
-  )
+const rows = new Map()
+
+for (const [category, group] of Object.entries(loadIconData().categories)) {
+  for (const [slug, icon] of Object.entries(group.icons)) {
+    const title = names[slug]
+    if (!title || rows.has(slug))
+      throw new Error(
+        `Missing or ambiguous name for ${slug}. Rebuild the icons package.`
+      )
+
+    const existing = previous.get(slug)
+    const tags = Array.isArray(icon.description) ? icon.description : []
+    rows.set(slug, [
+      slug,
+      title,
+      category,
+      existing?.[3] ?? [slug, ...tags].join(' '),
+      existing?.[4] ?? '',
+      supportedWeights.filter(weight => icon.weights[weight]),
+      null
+    ])
+  }
 }
-for (const entry of navigation.pages.filter(entry =>
-  entry.startsWith('(reference)/')
-)) {
-  const name = path.basename(entry)
-  const raw = updateImportedLinks(
-    fs.readFileSync(src + '/docs/shared/' + name + '.md', 'utf8')
-  )
-  const title = /^# (.+)/m.exec(raw)?.[1] || name
-  fs.writeFileSync(
-    guideFile(name),
-    `---\ntitle: ${JSON.stringify(title)}\n---\n\n${raw
-      .replace(/^# .+\n/, '')
-      .replaceAll('@vezham/icons@latest', '@vezham/icons@1.0.7')
-      .trim()}\n`
-  )
-}
-// vx-bot/NOTE: The overview and navigation are maintained locally, not regenerated from upstream.
-fs.writeFileSync(
-  out + '/manifest.json',
-  JSON.stringify(
-    {
-      version: '1.0.7',
-      icons: icons.length,
-      frameworks: fw.map(([id, , title]) => ({ id, title }))
-    },
-    null,
-    2
-  ) + '\n'
+
+if (!rows.size || rows.size !== Object.keys(names).length)
+  throw new Error('The generated icon names do not match the source catalog.')
+
+const icons = [...rows.values()].sort((a, b) => a[1].localeCompare(b[1]))
+writeFileSync(catalogPath, JSON.stringify(icons))
+writeFileSync(
+  manifestPath,
+  JSON.stringify({ ...manifest, icons: icons.length }, null, 2) + '\n'
 )
 console.log(
-  JSON.stringify({
-    icons: icons.length,
-    illustrations: illustrations.length,
-    logos: logos.length,
-    docs: guideFiles.size + 1,
-    faq: faq.reduce((n, g) => n + g.items.length, 0)
-  })
+  `Refreshed ${icons.length} Vezham icons for @vezham/icons@${pkg.version}.`
 )

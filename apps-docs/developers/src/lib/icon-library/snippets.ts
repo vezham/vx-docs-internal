@@ -122,7 +122,7 @@ export const getAssetSnippets = ({
       title: 'Direct',
       language: 'tsx',
       logo: 'react',
-      code: `import ${asset.title} from '@vezham/icons-react/icons/${asset.title}';\n\n<${asset.title} size={${size}} weight="${weight}" ${jsxColor} />`
+      code: `// Requires @vezham/icons-react newer than 27.0.2.\nimport ${asset.title} from '@vezham/icons-react/${asset.title}';\n\n<${asset.title} size={${size}} weight="${weight}" ${jsxColor} />`
     },
     {
       id: 'react-native',

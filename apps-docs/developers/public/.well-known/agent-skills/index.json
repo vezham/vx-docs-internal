@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "vezham-icon-integration",
+      "type": "skill-md",
+      "description": "Find Vezham icons and add them to React, React Native, Vue, Svelte, HTML, or SVG projects.",
+      "url": "vezham-icon-integration/SKILL.md",
+      "digest": "sha256:2c34236d3f4d656b21e64a3b2f79e3aa78be59db6de40308ef91ac2e7de01e7c"
+    }
+  ]
+}

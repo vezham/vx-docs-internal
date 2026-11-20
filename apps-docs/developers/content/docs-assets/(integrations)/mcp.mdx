@@ -4,10 +4,10 @@ description: "Use Vezham Icons with MCP Server."
 logo: mcp-model-context-protocol
 ---
 
-The `vezham-icons-mcp` package exposes Vezham icons to AI agents and automation tools through the Model Context Protocol. Agents can search the icon library, inspect SVG markup, and generate copy-pasteable code snippets for React, Vue, Svelte, HTML, or raw SVG without human intervention.
+The `@vezham/icons-mcp` package exposes Vezham icons to AI agents and automation tools through the Model Context Protocol. Agents can search the icon library, inspect SVG markup, and generate copy-pasteable code snippets for React, Vue, Svelte, HTML, or raw SVG without human intervention.
 
 ## What you can accomplish
-- Search 2,700+ icons by keyword with ranked results
+- Search the Vezham icon catalog by keyword with ranked results
 - Preview raw SVG markup before applying an icon
 - Generate framework-specific import and docs snippets
 - Browse icons by category
@@ -17,16 +17,15 @@ The `vezham-icons-mcp` package exposes Vezham icons to AI agents and automation 
 
 ## Installation
 
-Install from npm or build from the monorepo:
+Install from npm or build from the Vezham assets workspace.
 
 <InstallTabs packages="@vezham/icons-mcp" />
 
-From source:
+From the root of a [Vezham assets workspace](https://github.com/vezham/vx-fe-assets-pkgs) checkout:
 
 ```bash
-git clone https://github.com/vezham-oss/reicon.git
-cd vezham
-npm run build:mcp
+pnpm install
+pnpm nx build icons-mcp
 ```
 
 ---
@@ -151,6 +150,6 @@ This replaces the exact marker with the docs snippet and inserts the import at t
 
 ## Offline Operation
 
-The search index is bundled at build time from `data/icons`. No network calls are made at runtime. Once installed, the server works fully offline.
+The search index is bundled at build time from `packages/icons-data/icons`. No network calls are made at runtime. Once installed, the server works fully offline.
 
-> **Note:** Rebuild with `npm run build:mcp` after the icon dataset changes to refresh the bundled index.
+> **Note:** Rebuild with `pnpm nx build icons-mcp` after the icon dataset changes to refresh the bundled index.

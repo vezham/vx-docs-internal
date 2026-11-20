@@ -49,14 +49,6 @@ const svgString = Home.toSvg({ size: 24, color: 'currentColor' });
 res.send(`<div class="icon-wrap">${svgString}</div>`);
 ```
 
-### Registering Custom Element (`<vx-icon>`)
-You can register and import the web component runtime right from your npm installation. Simply import `@vezham/icons/element` once in your application entry point.
-```javascript
-import '@vezham/icons/element';
-
-// Now use <vx-icon icon="home"></vx-icon> in your HTML templates!
-```
-
 ### Direct Import for Smallest Bundles
 For optimal build performance, import individual icons directly from their path:
 ```javascript
@@ -73,18 +65,18 @@ Perfect for static HTML websites, legacy applications, and prototyping. Include 
 ### Register Custom Element (`<vx-icon>`)
 Include the script tag inside your HTML page. This registers a reactive `<vx-icon>` component that supports dynamic styling, sizes, weights, and gradients.
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@vezham/icons@1.0.7/dist/cdn/vezham-icons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@vezham/icons@27.0.2/dist/cdn/vezham-icons.js"></script>
 ```
 
 ### CDN Provider
 Use **jsDelivr** for production pages because it is optimized as a global CDN and works well with pinned npm versions:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@vezham/icons@1.0.7/dist/cdn/vezham-icons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@vezham/icons@27.0.2/dist/cdn/vezham-icons.js"></script>
 ```
 
 Use **unpkg** for quick testing or npm file browsing:
 ```html
-<script src="https://unpkg.com/@vezham/icons@1.0.7/dist/cdn/vezham-icons.js"></script>
+<script src="https://unpkg.com/@vezham/icons@27.0.2/dist/cdn/vezham-icons.js"></script>
 ```
 
 Browsers automatically request gzip or Brotli compression from both CDNs. Keep the script URL pointed at `.js`, not `.js.gz`.
@@ -99,10 +91,10 @@ Simply add the `<vx-icon>` tags directly in your HTML:
 ### Direct SVG CDN
 Use a direct SVG URL when you want a specific icon file without loading the runtime:
 ```html
-<img src="https://cdn.jsdelivr.net/npm/@vezham/icons@1.0.7/dist/cdn/icons/home.svg" alt="Home" />
-<img src="https://cdn.jsdelivr.net/npm/@vezham/icons@1.0.7/dist/cdn/icons/home-filled.svg" alt="Home" />
-<img src="https://cdn.jsdelivr.net/npm/@vezham/icons@1.0.7/dist/cdn/icons/home-duotone-outline.svg" alt="Home" />
-<img src="https://cdn.jsdelivr.net/npm/@vezham/icons@1.0.7/dist/cdn/icons/home-duotone-filled.svg" alt="Home" />
+<img src="https://cdn.jsdelivr.net/npm/@vezham/icons@27.0.2/dist/cdn/icons/home.svg" alt="Home" />
+<img src="https://cdn.jsdelivr.net/npm/@vezham/icons@27.0.2/dist/cdn/icons/home-filled.svg" alt="Home" />
+<img src="https://cdn.jsdelivr.net/npm/@vezham/icons@27.0.2/dist/cdn/icons/home-duotone-outline.svg" alt="Home" />
+<img src="https://cdn.jsdelivr.net/npm/@vezham/icons@27.0.2/dist/cdn/icons/home-duotone-filled.svg" alt="Home" />
 ```
 
 The default file is outline. Add `-filled`, `-duotone-outline`, or `-duotone-filled` before `.svg` for other weights.
@@ -111,7 +103,7 @@ Every direct SVG uses a flat kebab-case filename under `/dist/cdn/icons`.
 ### Load Functions globally via Script tag
 If you want to use the global `VezhamIcons` object functions directly in a browser script tag:
 ```html
-<script src="https://unpkg.com/@vezham/icons@1.0.7/dist/umd/vezham-icons.js"></script>
+<script src="https://unpkg.com/@vezham/icons@27.0.2/dist/umd/vezham-icons.js"></script>
 <script>
   // Create icon elements via global object
   document.body.appendChild(VezhamIcons.Home({ size: 32 }));
@@ -159,7 +151,7 @@ A complete HTML document importing Vezham via CDN and showcasing customizations:
 <head>
   <meta charset="UTF-8">
   <title>Vezham Page</title>
-  <script src="https://unpkg.com/@vezham/icons@1.0.7/dist/cdn/vezham-icons.js"></script>
+  <script src="https://unpkg.com/@vezham/icons@27.0.2/dist/cdn/vezham-icons.js"></script>
 </head>
 <body>
   <nav>

@@ -17,6 +17,7 @@ import {
   kindLabels,
   parseCatalogSearch
 } from '@src/lib/icon-library/catalog'
+import { iconVersion } from '@src/lib/icon-library/runtime'
 import { useCatalog } from '@src/lib/icon-library/use-catalog'
 
 import { AssetSelect, CdnIcon, ResourceStatus } from './controls'
@@ -143,7 +144,7 @@ export const AssetGallery = ({
           <Chip variant="soft">
             <Chip.Label>
               {assets.length.toLocaleString()} {kindLabels[kind].toLowerCase()}
-              {kind === 'icons' ? ' · v1.0.7' : ''}
+              {kind === 'icons' ? ` · v${iconVersion}` : ''}
             </Chip.Label>
           </Chip>
         )}

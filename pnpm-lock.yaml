@@ -505,8 +505,8 @@ importers:
         specifier: 'catalog:'
         version: 27.0.0
       '@vezham/icons-react':
-        specifier: 1.0.7
-        version: 1.0.7(react@19.2.7)
+        specifier: 27.0.2
+        version: 27.0.2(react@19.2.7)
       '@vezham/react-v2':
         specifier: npm:@vx-oss/heroui-v2-react@2.9.0-beta.1
         version: '@vx-oss/heroui-v2-react@2.9.0-beta.1(@react-spectrum/provider@3.11.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@types/react@19.2.17)(framer-motion@12.43.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(tailwindcss@4.3.0)'
@@ -6183,6 +6183,11 @@ packages:
 
   '@vezham/icons-react@1.0.7':
     resolution: {integrity: sha512-f9ckgxi4NIP/OBG3RCw4mCAK9rl8EKDdiocVqYYXQ/2IjsKytJ3DQkzHqcBa1RLprF93rIRvvCc+1YYT5QaknQ==}
+    peerDependencies:
+      react: '>=16.8.0'
+
+  '@vezham/icons-react@27.0.2':
+    resolution: {integrity: sha512-Va9OgGFWbucpS8Tz0A2Z3yny8VYQfQ+7mTc2yRfTUadBBEKHwtW2/StcTBXrf6Hq4ZJSXMW6dnSvrLREoRO9eA==}
     peerDependencies:
       react: '>=16.8.0'
 
@@ -19048,6 +19053,11 @@ snapshots:
   '@vezham/icons-react@1.0.7(react@19.2.7)':
     dependencies:
       react: 19.2.7
+
+  '@vezham/icons-react@27.0.2(react@19.2.7)':
+    dependencies:
+      react: 19.2.7
+      saxes: 6.0.0
 
   '@vezham/react@27.0.0(@internationalized/date@3.12.4)(@opentelemetry/api@1.10.0)(@react-aria/ssr@3.10.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@react-aria/utils@3.34.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@react-spectrum/provider@3.11.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-aria@3.53.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(supports-color@10.2.2)(tailwind-merge@3.7.0)(tailwindcss@4.3.0)':
     dependencies:

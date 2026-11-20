@@ -1,0 +1,24 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.vezham/icons-mcp",
+  "title": "Vezham Icons",
+  "description": "Search Vezham Icons, inspect SVGs, and generate framework snippets.",
+  "version": "27.0.3",
+  "websiteUrl": "https://oss.vezham.com/docs/assets/guides/mcp",
+  "repository": {
+    "url": "https://github.com/vezham/vx-fe-assets-pkgs",
+    "source": "github",
+    "subfolder": "packages/icons-mcp"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@vezham/icons-mcp",
+      "version": "27.0.3",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

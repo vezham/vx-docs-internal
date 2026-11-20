@@ -143,11 +143,11 @@ import { UserCircle } from '@vezham/icons-react-native';
 
 ## Direct Import (Tree-Shaking)
 
-Import specific icons for optimal bundle size:
+Starting with releases after `27.0.2`, import an icon directly using its PascalCase name.
 
 ```tsx
-import Home from '@vezham/icons-react-native/icons/Home';
-import Settings from '@vezham/icons-react-native/icons/Settings';
+import Home from '@vezham/icons-react-native/Home';
+import Settings from '@vezham/icons-react-native/Settings';
 
 function App() {
   return (
@@ -251,8 +251,8 @@ Every icon is a separate module, ensuring only imported icons are bundled:
 // ✅ Good - only Home is bundled
 import { Home } from '@vezham/icons-react-native';
 
-// ✅ Also good - explicit path
-import Home from '@vezham/icons-react-native/icons/Home';
+// ✅ Direct path in releases after 27.0.2
+import Home from '@vezham/icons-react-native/Home';
 ```
 
 ### Memoization
@@ -388,5 +388,5 @@ Make sure your `tsconfig.json` includes:
 - 🌐 [Browse all icons](/docs/assets/icons)
 - 📖 [Full documentation](/docs/assets/guides)
 - 📦 [npm package](https://npmjs.com/package/@vezham/icons-react-native)
-- 🐙 [GitHub repository](https://github.com/vezham-oss/reicon)
-- 🐛 [Report issues](https://github.com/vezham-oss/reicon/issues)
+- 🐙 [GitHub repository](https://github.com/vezham/vx-fe-assets-pkgs/tree/HEAD/packages/icons-react-native)
+- 🐛 [Report issues](https://github.com/vezham/vx-fe-assets-pkgs/issues)

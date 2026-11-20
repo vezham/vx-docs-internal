@@ -1,6 +1,6 @@
 # Icon library
 
-Icons use the pinned `@vezham/icons@1.0.7` npm/jsDelivr runtime. Their metadata
+Icons use the pinned `@vezham/icons@27.0.2` npm/jsDelivr runtime. Their metadata
 and downloadable ZIP archive remain in `public/icon-catalog`.
 
 Asset library pages live under `/docs/assets`: `icons`, `illustrations`,
@@ -61,22 +61,27 @@ controls cache busting; there are no separate CDN version settings. Icon npm URL
 keep their pinned package version. Nx includes both CDN origins and `V_APP_VER`
 in the build cache key.
 
-## Importing the original collection
+## Refreshing the icon catalog
+
+Build the core package from the root of the [Vezham assets workspace](https://github.com/vezham/vx-fe-assets-pkgs):
 
 ```sh
-node apps-docs/developers/scripts/import-icon-library.mjs /path/to/reicon /path/to/vx-fe-apps-cdns
+pnpm nx build icons
 ```
 
-This imports icon metadata and framework guides into this app, and writes
-illustration/logo catalogs and manifests into the matching CDN apps. Icon
-names and supported weights are extracted from the pinned npm runtime.
-The FAQ in `content.json`, guide overview, navigation metadata, and reviewed SVG
-guide are maintained locally and preserved during imports. Guide destinations
-come from `content/docs-assets/meta.json`: `(frameworks)`, `(integrations)`, and
-`(reference)` organize files without changing their public URLs.
-The import script reads the same app environment files using Vite's loader;
-`NODE_ENV` selects the mode (default: `development`). Shell overrides take
-precedence. Generated logo variant URLs use `V_LOGOS_CDN_URL`.
+Then run the catalog refresh from the docs workspace:
+
+```sh
+node apps-docs/developers/scripts/import-icon-library.mjs /path/to/vx-fe-assets-pkgs
+```
+
+The refresh reads SVG metadata from `packages/icons-data/` and icon names from
+the built package. It updates
+`public/icon-catalog/icons.json` and the manifest's icon count, preserving local
+search keywords. The source package version must match the icon catalog
+manifest and the pinned browser runtime. Update the runtime and examples
+together when switching the docs to a new published version. The guides, FAQ,
+and downloadable SVG archive are maintained in this repository.
 
 Run asset sync and validation in the CDN repository:
 
@@ -92,15 +97,14 @@ preserve aspect ratio inside the chosen square; embed snippets use absolute
 URLs. CDN origins come from the app environment.
 
 Set `logo: javascript` (or another logo catalog slug) in a guide's frontmatter
-to display a plain 24px logo beside its page title. The import script preserves
-the framework and tool logo mappings.
+to display a plain 24px logo beside its page title.
 
 Use `<InstallTabs packages="@vezham/icons" />` for package installation commands.
 The shared `components/docs/install-tabs.tsx` component provides npm, pnpm, Yarn,
 and Bun tabs with CDN logos and clipboard support. Pass several packages as a
 space-separated string or array, and add `dev` for development dependencies.
 Icon guides receive it through their MDX component map; other guides can import
-it from `@components/docs/install-tabs`. The import script preserves this usage.
+it from `@components/docs/install-tabs`.
 
 Detail pages provide HeroUI color pickers for primary and duotone colors,
 export sizes from 16px, integration tabs with framework logos, and prop

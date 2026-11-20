@@ -41,7 +41,7 @@ describe('asset integration snippets', () => {
       'size="16" color="#123456" secondary-color="#abcdef"'
     )
     expect(snippets.find(snippet => snippet.id === 'direct')?.code).toContain(
-      '@vezham/icons-react/icons/AlignBottom'
+      '@vezham/icons-react/AlignBottom'
     )
     expect(snippets.find(snippet => snippet.id === 'flutter')?.code).toContain(
       'Vezham.duotoneFilled.alignBottom'
@@ -53,7 +53,7 @@ describe('asset integration snippets', () => {
       const snippets = getAssetSnippets({ ...options, weight })
       const svg = snippets.find(snippet => snippet.id === 'svg-url')?.code
       expect(svg).toContain(
-        `@vezham/icons@1.0.7/dist/cdn/icons/align-bottom${weight === 'outline' ? '' : '-' + weight}.svg`
+        `@vezham/icons@27.0.2/dist/cdn/icons/align-bottom${weight === 'outline' ? '' : '-' + weight}.svg`
       )
       if (!weight.startsWith('duotone'))
         expect(

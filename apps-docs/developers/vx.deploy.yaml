@@ -4,5 +4,56 @@ providers:
   - firebase
 redirectDefaultLanguage: true
 firebase:
+  ignore:
+    - firebase.json
+    - '**/.!(well-known)'
+    - '**/.!(well-known)/**'
+    - '**/node_modules/**'
+    - '**/*.d.ts'
+    - '**/*.d.ts.map'
+    - '**/*.tsbuildinfo'
   headers:
-    docs: true
+    - source: /sw.js
+      headers:
+        - key: Cache-Control
+          value: no-cache,no-store,must-revalidate
+    - source: /manifest.webmanifest
+      headers: &short-cache
+        - key: Cache-Control
+          value: public,max-age=300
+    - source: /_shell.html
+      headers: *short-cache
+    - source: /assets/**
+      headers:
+        - key: Cache-Control
+          value: public,max-age=31536000,immutable
+    - source: '**/*.@(html|json|txt|md)'
+      headers: *short-cache
+    - source: /
+      headers: *short-cache
+    - source: /docs
+      headers: *short-cache
+    - source: /docs/**
+      headers: *short-cache
+    - source: /cn/docs
+      headers: *short-cache
+    - source: /cn/docs/**
+      headers: *short-cache
+    - source: /api/**
+      headers: *short-cache
+    - source: /.well-known/api-catalog
+      headers:
+        - key: Content-Type
+          value: application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"
+    - source: /.well-known/agent-skills/**/SKILL.md
+      headers:
+        - key: Content-Type
+          value: text/markdown; charset=utf-8
+  # vx-bot/NOTE: Missing discovery files return a 404 instead of the app shell.
+  rewrites:
+    - source: /
+      destination: /_shell.html
+    - source: '/!(.well-known)'
+      destination: /_shell.html
+    - source: '/!(.well-known)/**'
+      destination: /_shell.html

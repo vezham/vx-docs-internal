@@ -62,10 +62,10 @@ Every icon component accepts the following props to customize its appearance. Yo
 ---
 
 ## Direct Import for Smaller Bundles
-For the absolute smallest bundle size, import each icon directly from its own module. This guarantees only that single icon's code is included.
+Starting with releases after `27.0.2`, import an icon directly using its PascalCase name.
 ```javascript
-import Home from '@vezham/icons-svelte/icons/Home.svelte';
-import ShieldCheck from '@vezham/icons-svelte/icons/ShieldCheck.svelte';
+import Home from '@vezham/icons-svelte/Home';
+import ShieldCheck from '@vezham/icons-svelte/ShieldCheck';
 ```
 > **Tip:** Direct imports are recommended for production apps where bundle size matters.
 

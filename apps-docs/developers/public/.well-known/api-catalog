@@ -1,0 +1,19 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://oss.vezham.com/docs/assets/guides/mcp",
+      "service-desc": [
+        {
+          "href": "https://oss.vezham.com/.well-known/mcp.json",
+          "type": "application/json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://oss.vezham.com/docs/assets/guides/mcp",
+          "type": "text/html"
+        }
+      ]
+    }
+  ]
+}
