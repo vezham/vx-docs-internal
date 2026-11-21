@@ -1,6 +1,6 @@
 # Icon library
 
-Icons use the pinned `@vezham/icons@27.0.2` npm/jsDelivr runtime. Their metadata
+Icons use the pinned `@vezham/icons@27.0.4` npm/jsDelivr runtime. Their metadata
 and downloadable ZIP archive remain in `public/icon-catalog`.
 
 Asset library pages live under `/docs/assets`: `icons`, `illustrations`,

@@ -34,7 +34,7 @@ vi.mock('./shell', () => ({
 }))
 vi.mock('../../lib/icon-library/runtime', () => ({
   iconCdnUrl:
-    'https://cdn.jsdelivr.net/npm/@vezham/icons@27.0.2/dist/cdn/vezham-icons.js',
+    'https://cdn.jsdelivr.net/npm/@vezham/icons@27.0.4/dist/cdn/vezham-icons.js',
   loadIconRuntime: () => Promise.resolve(),
   getIconSvg,
   applyIconSecondaryColor: vi.fn()

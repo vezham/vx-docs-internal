@@ -53,7 +53,7 @@ describe('asset integration snippets', () => {
       const snippets = getAssetSnippets({ ...options, weight })
       const svg = snippets.find(snippet => snippet.id === 'svg-url')?.code
       expect(svg).toContain(
-        `@vezham/icons@27.0.2/dist/cdn/icons/align-bottom${weight === 'outline' ? '' : '-' + weight}.svg`
+        `@vezham/icons@27.0.4/dist/cdn/icons/align-bottom${weight === 'outline' ? '' : '-' + weight}.svg`
       )
       if (!weight.startsWith('duotone'))
         expect(

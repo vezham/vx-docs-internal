@@ -1,4 +1,4 @@
-export const iconVersion = '27.0.2'
+export const iconVersion = '27.0.4'
 export const iconCdnUrl = `https://cdn.jsdelivr.net/npm/@vezham/icons@${iconVersion}/dist/cdn/vezham-icons.js`
 
 type Runtime = {
