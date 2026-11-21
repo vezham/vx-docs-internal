@@ -1,6 +1,6 @@
 {
   "name": "developers",
-  "version": "27.0.2",
+  "version": "27.1.0",
   "private": true,
   "type": "module",
   "dependencies": {

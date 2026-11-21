@@ -1,3 +1,13 @@
+## 27.1.0 (2026-11-21)
+
+### 🚀 Features
+
+- **developers:** update icon docs and discovery ([1da1da69](https://github.com/vezham/vx-docs-internal/commit/1da1da69))
+
+### ❤️ Thank You
+
+- vx-vigneshwaran
+
 ## 27.0.2 (2026-11-18)
 
 ### 🏡 Chore
