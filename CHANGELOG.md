@@ -1,3 +1,13 @@
+## 27.1.1 (2026-11-25)
+
+### 📖 Documentation
+
+- **developers:** update icon runtime to 27.0.4 ([eebf9d9a](https://github.com/vezham/vx-docs-internal/commit/eebf9d9a))
+
+### ❤️ Thank You
+
+- vx-vigneshwaran
+
 ## 27.1.0 (2026-11-21)
 
 ### 🚀 Features
